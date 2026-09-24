@@ -38,7 +38,12 @@ class ConvBlock(nn.Sequential):
 
 
 class TemporalUNet(nn.Module):
-    """Architecture in research document 02 section 4.2; [B,T,D] -> [B,T]."""
+    """Architecture in research document 02 section 4.2; ``[B,T,D]`` -> ``[B,T]``.
+
+    ``lengths`` must be supplied whenever ``features`` is right-padded (as in
+    :func:`collate_feature_batch`).  GroupNorm and temporal pooling otherwise
+    see the padding and can change valid-timestep logits.
+    """
 
     def __init__(self, input_dim: int = 512, aux_dim: int = 0):
         super().__init__()

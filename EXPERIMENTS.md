@@ -30,6 +30,12 @@
 - Failure condition：后续需多 seed 和联合空间评估确认；当前不锁定 SAFE_BASELINE。
 - Status：Promising proxy result; continue controlled validation.
 
+### A0/A1 paired seed check
+
+- Seeds 20260926/20260927 were run with identical controls on physical GPUs 2/4.
+- A0 proxy F1: `0.000000`, `0.000000`; A1 proxy F1: `0.071770`, `0.000000`.
+- Including seed 20260925, A0 mean is `0.003673`, A1 mean is `0.029418`; variance is very high and one paired difference is zero. This is evidence to retain A1 for further data/metric work, not evidence of a stable competition gain.
+
 ## A2_001（已运行，拒绝）
 
 - Hypothesis：固定 32D motion/quality/audio/composition bank 融合到 A1 的 128D 时序投影，可以补充低成本边界与质量线索。

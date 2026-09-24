@@ -10,6 +10,7 @@
 - [x] 下载 TVSum 原包，记录许可/来源/hash/split/帧对齐。
 - [x] A0_001 特征缓存、训练、时间代理验证与真实文件审计。
 - [x] A1 TSM：相同数据、split、时序头和训练预算，单独比较 TSM。
+- [x] A1 paired seeds 20260926/20260927；结果方差很高，暂不宣布稳定增益。
 - [x] A2 Feature Bank：motion/quality/audio/composition 总体对照；结果退化，已停止无结构调参。
 - [ ] A3a 固定时间帧集合下比较学习空间候选与最大合法居中 crop（待合法 crop GT）。
 - [ ] 取得官方样例/evaluator/初赛索引，核对未知契约并生成实际提交。

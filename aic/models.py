@@ -40,10 +40,12 @@ class ConvBlock(nn.Sequential):
 class TemporalUNet(nn.Module):
     """Architecture in research document 02 section 4.2; [B,T,D] -> [B,T]."""
 
-    def __init__(self, input_dim: int = 512):
+    def __init__(self, input_dim: int = 512, aux_dim: int = 0):
         super().__init__()
         self.input_dim = input_dim
+        self.aux_dim = int(aux_dim)
         self.adapter = nn.Linear(input_dim, 128)
+        self.aux_adapter = nn.Sequential(nn.Linear(self.aux_dim, 64), nn.ReLU(), nn.Linear(64, 128)) if self.aux_dim else None
         self.encoder0 = ConvBlock(128, 128)
         self.encoder1 = ConvBlock(128, 192)
         self.encoder2 = ConvBlock(192, 256)
@@ -52,7 +54,7 @@ class TemporalUNet(nn.Module):
         self.decoder0 = ConvBlock(192 + 128, 128)
         self.output = nn.Conv1d(128, 1, 1)
 
-    def forward(self, features: Tensor) -> Tensor:
+    def forward(self, features: Tensor, aux: Tensor | None = None) -> Tensor:
         if features.ndim != 3 or features.shape[-1] != self.input_dim:
             raise ValueError(f"Expected [B,T,{self.input_dim}], got {features.shape}")
         if features.shape[1] == 0:
@@ -61,7 +63,12 @@ class TemporalUNet(nn.Module):
         # Two stride-2 reductions require at least four temporal positions.
         if original_length < 4:
             features = F.pad(features, (0, 0, 0, 4 - original_length))
-        x = self.adapter(features).transpose(1, 2)
+        projected = self.adapter(features)
+        if self.aux_dim:
+            if aux is None or aux.ndim != 3 or aux.shape[:2] != features.shape[:2] or aux.shape[-1] != self.aux_dim:
+                raise ValueError(f"Expected aux [B,T,{self.aux_dim}] for feature-bank model")
+            projected = projected + self.aux_adapter(aux)
+        x = projected.transpose(1, 2)
         e0 = self.encoder0(x)
         e1 = self.encoder1(F.max_pool1d(e0, 2, ceil_mode=True))
         e2 = self.encoder2(F.max_pool1d(e1, 2, ceil_mode=True))
@@ -91,7 +98,7 @@ def temporal_shift(features: Tensor, fold_div: int = 8) -> Tensor:
 
 class A0Model(nn.Module):
     def __init__(self, feature_dim: int = 512, backbone: nn.Module | None = None,
-                 temporal_shift_enabled: bool = False):
+                 temporal_shift_enabled: bool = False, feature_bank_enabled: bool = False):
         super().__init__()
         if backbone is None:
             from torchvision.models import resnet18
@@ -100,7 +107,8 @@ class A0Model(nn.Module):
         self.backbone = backbone
         self.feature_dim = int(feature_dim)
         self.temporal_shift_enabled = bool(temporal_shift_enabled)
-        self.temporal = TemporalUNet(self.feature_dim)
+        self.feature_bank_enabled = bool(feature_bank_enabled)
+        self.temporal = TemporalUNet(self.feature_dim, 32 if self.feature_bank_enabled else 0)
 
     def encode_frames(self, images: Tensor) -> Tensor:
         return self.backbone(images)
@@ -110,14 +118,14 @@ class A0Model(nn.Module):
         """Compatibility name used by inference/ablation scripts."""
         return self.temporal
 
-    def forward(self, features: Tensor) -> Tensor:
+    def forward(self, features: Tensor, aux: Tensor | None = None) -> Tensor:
         if features.ndim == 5:
             batch, steps = features.shape[:2]
             features = self.encode_frames(features.reshape(batch * steps, *features.shape[2:]))
             features = features.reshape(batch, steps, -1)
         if self.temporal_shift_enabled:
             features = temporal_shift(features)
-        return self.temporal(features)
+        return self.temporal(features, aux if self.feature_bank_enabled else None)
 
 
 # Descriptive aliases retained for scripts/configs that refer to the route by
@@ -182,11 +190,13 @@ def export_inference(model: A0Model, directory: str | Path,
     for name, dtype in [("fp32", torch.float32), ("fp16", torch.float16)]:
         state = {key: value.to(dtype) if value.is_floating_point() else value
                  for key, value in original.items()}
-        architecture = "A1_resnet18_tsm_tunet" if model.temporal_shift_enabled else "A0_resnet18_tunet"
+        architecture = ("A2_resnet18_featurebank_tunet" if model.feature_bank_enabled else
+                        "A1_resnet18_tsm_tunet" if model.temporal_shift_enabled else "A0_resnet18_tunet")
         bundle = {"format_version": 1, "architecture": architecture,
                   "state_dict": state, "config": copy.deepcopy(config),
                   "backbone_provenance": provenance, "persistent_dtype": name,
-                  "temporal_shift_enabled": model.temporal_shift_enabled}
+                  "temporal_shift_enabled": model.temporal_shift_enabled,
+                  "feature_bank_enabled": model.feature_bank_enabled}
         path = directory / f"model_{name}.pt"
         torch.save(bundle, path)
         size = path.stat().st_size
@@ -196,7 +206,8 @@ def export_inference(model: A0Model, directory: str | Path,
             "MiB_binary": size / (1024**2), "sha256": sha256_file(path),
             "parameter_count": sum(p.numel() for p in model.parameters()),
             "components": ["ResNet18 without classifier", "TemporalUNet including adapter"] +
-                          (["parameter-free temporal shift"] if model.temporal_shift_enabled else []),
+                          (["parameter-free temporal shift"] if model.temporal_shift_enabled else []) +
+                          (["32D feature-bank MLP"] if model.feature_bank_enabled else []),
             "size_tier_decimal_assumption": "S" if mb <= 100 else "M" if mb <= 500 else "L" if mb <= 9216 else "invalid",
             "size_coefficient_decimal_assumption": 1.0 if mb <= 100 else .95 if mb <= 500 else .9 if mb <= 9216 else None,
         }
@@ -210,12 +221,12 @@ def load_inference_model(path: str | Path, device: str | torch.device = "cpu"
     """Offline loader: the single file includes all actually used model weights."""
     bundle = torch.load(path, map_location="cpu", weights_only=True)
     if bundle.get("format_version") != 1 or bundle.get("architecture") not in {
-        "A0_resnet18_tunet", "A1_resnet18_tsm_tunet"
+        "A0_resnet18_tunet", "A1_resnet18_tsm_tunet", "A2_resnet18_featurebank_tunet"
     }:
         raise ValueError("Unsupported inference bundle")
     model = A0Model(temporal_shift_enabled=bool(
         bundle.get("temporal_shift_enabled", bundle.get("architecture") == "A1_resnet18_tsm_tunet")
-    ))
+    ), feature_bank_enabled=bool(bundle.get("feature_bank_enabled", bundle.get("architecture") == "A2_resnet18_featurebank_tunet")))
     model.load_state_dict(bundle["state_dict"], strict=True)
     # CPU FP16 convolution support is uneven; explicit FP32 runtime conversion
     # does not change the persisted file used for this candidate.

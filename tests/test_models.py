@@ -64,3 +64,10 @@ def test_temporal_shift_is_parameter_free_and_loader_roundtrips(tmp_path: Path):
     assert audit["exports"]["fp32"]["parameter_count"] == sum(p.numel() for p in model.parameters())
     loaded, _ = load_inference_model(tmp_path / "model_fp32.pt")
     assert loaded.temporal_shift_enabled
+
+
+def test_feature_bank_fusion_has_finite_output_and_extra_head():
+    model = A0Model(temporal_shift_enabled=True, feature_bank_enabled=True).eval()
+    result = model(torch.randn(2, 7, 512), torch.randn(2, 7, 32))
+    assert result.shape == (2, 7) and torch.isfinite(result).all()
+    assert sum(p.numel() for p in model.parameters()) > 12807489

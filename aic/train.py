@@ -105,7 +105,7 @@ def environment_snapshot() -> dict[str, Any]:
 
 
 def _move(batch: dict[str, Any], device: torch.device) -> tuple[torch.Tensor, ...]:
-    return tuple(batch[key].to(device, non_blocking=True) for key in ("features", "labels", "mask"))
+    return tuple(batch[key].to(device, non_blocking=True) for key in ("features", "aux", "labels", "mask"))
 
 
 def run_epoch(model: A0Model, loader: DataLoader, optimizer: torch.optim.Optimizer | None,
@@ -119,12 +119,12 @@ def run_epoch(model: A0Model, loader: DataLoader, optimizer: torch.optim.Optimiz
     losses: list[float] = []; tp = fp = fn = valid_count = 0
     autocast = torch.cuda.amp.autocast
     for batch in loader:
-        features, labels, mask = _move(batch, device)
+        features, aux, labels, mask = _move(batch, device)
         valid_count += int(mask.sum())
         if train:
             optimizer.zero_grad(set_to_none=True)
         with autocast(enabled=amp):
-            logits = model(features)
+            logits = model(features, aux if model.feature_bank_enabled else None)
             finite_or_raise("logits", logits)
             loss = masked_bce(logits, labels, mask)
         if train:
@@ -178,7 +178,8 @@ def train(config: dict[str, Any]) -> dict[str, Any]:
     train_loader = DataLoader(train_data, shuffle=True, **loader_args)
     val_loader = DataLoader(val_data, shuffle=False, **loader_args)
     model = A0Model(int(config.get("feature_dim", 512)),
-                    temporal_shift_enabled=bool(config.get("temporal_shift", False)))
+                    temporal_shift_enabled=bool(config.get("temporal_shift", False)),
+                    feature_bank_enabled=bool(config.get("feature_bank", False)))
     backbone_state = config.get("backbone_state")
     if backbone_state:
         state = torch.load(backbone_state, map_location="cpu", weights_only=True)

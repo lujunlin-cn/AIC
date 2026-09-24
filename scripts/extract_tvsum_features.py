@@ -20,6 +20,7 @@ def main(argv=None) -> int:
     parser.add_argument("--sample-fps", type=float, default=2.0)
     parser.add_argument("--batch-size", type=int, default=64)
     parser.add_argument("--limit", type=int, default=0)
+    parser.add_argument("--feature-bank", action="store_true")
     args = parser.parse_args(argv)
     os.environ.setdefault("TORCH_HOME", str(Path(args.backbone_state).parent))
     import torch
@@ -35,6 +36,9 @@ def main(argv=None) -> int:
         # A temporary bounded manifest makes --limit deterministic and leaves
         # the source provenance manifest untouched.
         records = [json.loads(line) for line in manifest.read_text().splitlines() if line.strip()]
+        if args.feature_bank:
+            for record in records:
+                record["feature_bank"] = True
         if args.limit:
             records = records[:args.limit]
         temporary = manifest_dir / f".{split}.extract.jsonl"

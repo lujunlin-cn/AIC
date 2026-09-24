@@ -22,6 +22,8 @@ def main(argv=None) -> int:
     parser.add_argument("--include-test", action="store_true")
     parser.add_argument("--strict-license-gate", action="store_true",
                         help="skip non-approved records; default follows project user authorization")
+    parser.add_argument("--feature-bank", action="store_true",
+                        help="mark records for the fixed 32D low-cost feature bank")
     args = parser.parse_args(argv)
     records = read_manifest(args.dataset_manifest, require_path=True)
     cache_dir, output_dir = Path(args.cache_dir), Path(args.output_dir)
@@ -40,7 +42,7 @@ def main(argv=None) -> int:
                 "labels_path": record.annotation_path, "split": record.split,
                 "source_id": record.source_id, "source_group": record.source_group,
                 "dataset": record.dataset, "annotation_type": record.annotation_type,
-                "video_path": record.path}
+                "video_path": record.path, "feature_bank": bool(args.feature_bank)}
         grouped[record.split].append(item)
     for split, items in grouped.items():
         if split == "test" and not args.include_test:

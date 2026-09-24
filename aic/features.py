@@ -16,7 +16,8 @@ import torch
 from torch import Tensor, nn
 
 
-CACHE_VERSION = 1
+CACHE_VERSION = 2
+FEATURE_BANK_VERSION = "32d_v1"
 IMAGENET_MEAN = torch.tensor([0.485, 0.456, 0.406]).view(1, 3, 1, 1)
 IMAGENET_STD = torch.tensor([0.229, 0.224, 0.225]).view(1, 3, 1, 1)
 
@@ -116,7 +117,8 @@ def save_feature_cache(path: str | Path, features: np.ndarray | Tensor,
                        frame_indices: np.ndarray, timestamps: np.ndarray,
                        labels: np.ndarray | None = None,
                        label_mask: np.ndarray | None = None,
-                       metadata: dict[str, Any] | None = None) -> None:
+                       metadata: dict[str, Any] | None = None,
+                       aux: np.ndarray | None = None) -> None:
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     features = np.asarray(features.detach().cpu() if isinstance(features, Tensor) else features,
@@ -137,10 +139,15 @@ def save_feature_cache(path: str | Path, features: np.ndarray | Tensor,
         raise ValueError("labels and label_mask must be [T]")
     if not np.isfinite(labels).all() or np.any((labels < 0) | (labels > 1)):
         raise ValueError("labels must be finite values in [0, 1]")
+    if aux is None:
+        aux = np.zeros((len(features), 0), dtype=np.float32)
+    aux = np.asarray(aux, dtype=np.float32)
+    if aux.ndim != 2 or aux.shape[0] != len(features) or not np.isfinite(aux).all():
+        raise ValueError("aux must be finite [T,F]")
     metadata = dict(metadata or {})
     metadata.update({"cache_version": CACHE_VERSION, "feature_dim": int(features.shape[1]),
                      "length": int(len(features)), "dtype": "float32"})
-    np.savez_compressed(path, features=features, labels=labels, mask=label_mask,
+    np.savez_compressed(path, features=features, labels=labels, mask=label_mask, aux=aux,
                         frame_indices=frame_indices, timestamps=timestamps,
                         metadata_json=np.asarray(json.dumps(metadata, sort_keys=True)))
 
@@ -154,8 +161,13 @@ def load_feature_cache(path: str | Path) -> dict[str, Any]:
         metadata_raw = data["metadata_json"] if "metadata_json" in data else np.asarray("{}")
         metadata = json.loads(str(metadata_raw.item()))
         result = {key: np.array(data[key]) for key in required}
+        result["aux"] = np.array(data["aux"]) if "aux" in data else np.zeros((len(result["features"]), 0), dtype=np.float32)
     if result["features"].ndim != 2 or not np.isfinite(result["features"]).all():
         raise ValueError(f"Invalid/non-finite cache features in {path}")
+    if result["aux"].ndim != 2 or result["aux"].shape[0] != len(result["features"]):
+        raise ValueError(f"Invalid aux feature shape in {path}")
+    if not np.isfinite(result["aux"]).all():
+        raise ValueError(f"Non-finite aux features in {path}")
     if len({len(result["features"]), len(result["labels"]), len(result["mask"]),
             len(result["frame_indices"]), len(result["timestamps"])}) != 1:
         raise ValueError(f"Inconsistent cache lengths in {path}")
@@ -189,19 +201,86 @@ def collate_feature_batch(items: list[dict[str, Any]]) -> dict[str, Any]:
         raise ValueError("Empty batch")
     max_t = max(len(item["features"]) for item in items)
     dim = items[0]["features"].shape[1]
+    aux_dim = max(item.get("aux", np.zeros((len(item["features"]), 0))).shape[1] for item in items)
     batch = len(items)
     features = torch.zeros(batch, max_t, dim, dtype=torch.float32)
     labels = torch.zeros(batch, max_t, dtype=torch.float32)
     mask = torch.zeros(batch, max_t, dtype=torch.bool)
+    aux = torch.zeros(batch, max_t, aux_dim, dtype=torch.float32)
     lengths = torch.zeros(batch, dtype=torch.long)
     for i, item in enumerate(items):
         t = len(item["features"])
         features[i, :t] = torch.from_numpy(item["features"])
         labels[i, :t] = torch.from_numpy(item["labels"])
         mask[i, :t] = torch.from_numpy(item["mask"].astype(np.bool_))
+        item_aux = item.get("aux", np.zeros((t, 0), dtype=np.float32))
+        if item_aux.shape[1] not in (0, aux_dim):
+            raise ValueError("Feature cache aux dimensions differ within a batch")
+        if item_aux.shape[1]:
+            aux[i, :t] = torch.from_numpy(item_aux)
         lengths[i] = t
-    return {"features": features, "labels": labels, "mask": mask,
+    return {"features": features, "aux": aux, "labels": labels, "mask": mask,
             "lengths": lengths, "video_ids": [item["video_id"] for item in items]}
+
+
+def compute_feature_bank(frames: np.ndarray, *, audio_available: bool = False) -> np.ndarray:
+    """Compute the fixed 32D low-cost bank from sampled RGB frames.
+
+    The bank intentionally contains no learned weights: motion/quality proxies,
+    missing-audio masks and a gradient saliency center. Values are robustly
+    standardized per video, with the two mask dimensions left binary.
+    """
+    if frames.ndim != 4 or frames.shape[-1] != 3 or len(frames) == 0:
+        raise ValueError("Expected nonempty RGB [T,H,W,3] frames")
+    rgb = frames.astype(np.float32) / 255.0
+    gray = rgb.mean(axis=-1)
+    t, h, w = gray.shape
+    diff = np.zeros((t, h, w), np.float32)
+    if t > 1:
+        diff[1:] = np.abs(gray[1:] - gray[:-1])
+    gx = np.diff(gray, axis=2, prepend=gray[:, :, :1])
+    gy = np.diff(gray, axis=1, prepend=gray[:, :1, :])
+    grad = np.sqrt(gx * gx + gy * gy)
+    lap = np.abs(np.diff(gray, n=2, axis=2, prepend=gray[:, :, :1], append=gray[:, :, -1:]))
+    # Frame-level statistics grouped in the same semantic order as the research
+    # document. Audio slots remain zero when no waveform was decoded.
+    def stat(x, q=0.9):
+        return np.stack([x.mean((1, 2)), np.quantile(x, q, axis=(1, 2)),
+                         x.std((1, 2)), x.max((1, 2))], axis=1)
+    bank = np.zeros((t, 32), dtype=np.float32)
+    bank[:, 0:4] = stat(diff)
+    bank[:, 4] = np.r_[0.0, np.diff(bank[:, 0])]
+    bank[:, 5] = np.abs(gx).mean((1, 2))
+    bank[:, 6] = np.abs(gy).mean((1, 2))
+    bank[:, 7] = grad.mean((1, 2))
+    bank[:, 8] = bank[:, 0]
+    bank[:, 9] = np.abs(np.diff(gray, axis=0, prepend=gray[:1])).mean((1, 2))
+    bank[:, 10] = np.arange(t, dtype=np.float32) / max(1, t - 1)
+    bank[:, 11] = float(t)
+    bank[:, 12:16] = stat(lap)
+    bank[:, 16] = grad.mean((1, 2))
+    bank[:, 17] = (gray < .05).mean((1, 2))
+    bank[:, 18] = (gray > .95).mean((1, 2))
+    bank[:, 19] = gray.mean((1, 2))
+    bank[:, 20] = gray.std((1, 2))
+    bank[:, 21] = np.abs(gray - gray.mean((1, 2), keepdims=True)).mean((1, 2))
+    bank[:, 22] = np.abs(gray[:, :, 1:] - gray[:, :, :-1]).mean((1, 2))
+    # 23-28: audio energy/onset/silence/beat slots; missing is explicit.
+    bank[:, 23:29] = 0.0
+    sal = grad + 0.25 * diff + 1e-6
+    yy, xx = np.mgrid[0:h, 0:w].astype(np.float32)
+    mass = sal.sum((1, 2))
+    cx = (sal * xx).sum((1, 2)) / (mass * max(1, w - 1))
+    cy = (sal * yy).sum((1, 2)) / (mass * max(1, h - 1))
+    bank[:, 29] = cx
+    bank[:, 30] = cy
+    bank[:, 31] = float(audio_available)
+    # Keep binary/missing semantics while scaling continuous dimensions.
+    continuous = bank[:, :31]
+    med = np.median(continuous, axis=0, keepdims=True)
+    scale = np.median(np.abs(continuous - med), axis=0, keepdims=True) * 1.4826 + 1e-4
+    bank[:, :31] = np.clip((continuous - med) / scale, -8, 8)
+    return bank
 
 
 @torch.inference_mode()
@@ -227,10 +306,13 @@ def extract_video_cache(model: nn.Module, video_path: str | Path, output_path: s
         outputs.append(value)
     features = np.concatenate(outputs, axis=0)
     labels, mask = align_labels(_read_labels(labels_path), frame_indices)
+    frames_array = np.stack([item[2] for item in sampled])
+    aux = compute_feature_bank(frames_array) if (metadata or {}).get("feature_bank", False) else None
     meta = dict(metadata or {})
     meta.update({"video_path": str(video_path), "sample_fps": sample_fps,
-                 "backbone": "ResNet18_without_classifier", "label_source": str(labels_path) if labels_path else None})
-    save_feature_cache(output_path, features, frame_indices, timestamps, labels, mask, meta)
+                 "backbone": "ResNet18_without_classifier", "label_source": str(labels_path) if labels_path else None,
+                 "feature_bank_version": FEATURE_BANK_VERSION if aux is not None else None})
+    save_feature_cache(output_path, features, frame_indices, timestamps, labels, mask, meta, aux=aux)
     return {"path": str(output_path), "frames": len(features), "feature_dim": features.shape[1],
             "labeled_frames": int(mask.sum())}
 
@@ -251,9 +333,10 @@ def extract_manifest(manifest: str | Path, output_dir: str | Path, model: nn.Mod
         # Cache manifests may retain the destination in ``path`` while the
         # original licensed source is carried as ``video_path``.
         video_path = record.get("video_path", record["path"])
+        metadata = {key: record.get(key) for key in ("video_id", "split", "source_id", "source_group", "feature_bank")}
         result = extract_video_cache(model, video_path, output, record.get("labels_path"),
                                      device, sample_fps, batch_size,
-                                     {key: record.get(key) for key in ("video_id", "split", "source_id", "source_group")})
+                                     metadata)
         result["video_id"] = video_id
         results.append(result)
     return results

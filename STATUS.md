@@ -23,6 +23,7 @@
 - Running Experiments：无合法训练；已完成契约集成、TVSum provenance/解包和 A0 代码审计。
 - Latest Failure：TVSum 包内 WebscopeReadMe 的 Yahoo DSA 条款与 CC-BY README 冲突；A0_001 已用闸门前 TVSum 代理完成但被判无效并移入 `/data/aic/quarantine/TVSum_A0_001_blocked`。
 - Next Experiments：取得赛事方/权利人书面许可，或准备许可明确的训练集；随后从 clean environment 重建特征缓存和 A0。拿到视频后先用 `scripts/build_video_index.py` 做真实帧数/PTS审计。
+- Remote smoke：在授权 GPU 外的 CPU/临时目录用合成视频跑通 compact index → enriched index → center-crop JSONL；1 行、5 原始帧、validator valid。该结果不作竞赛指标。
 
 ## 时间与外部依赖
 

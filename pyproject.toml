@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aic-highlight"
+version = "0.1.0"
+description = "Reproducible temporal highlight and spatial reframing baseline"
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.24,<3", "av>=12,<17", "Pillow>=10", "torch>=2.2,<2.7", "torchvision>=0.17,<0.22"]
+
+[project.optional-dependencies]
+test = ["pytest>=8"]
+
+[tool.setuptools.packages.find]
+include = ["aic*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

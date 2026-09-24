@@ -13,8 +13,8 @@ from typing import Any, Mapping, Sequence
 
 import numpy as np
 
-from .contract import (ContractError, VideoMetadata, center_crop, load_index,
-                       load_jsonl, write_submission)
+from .contract import (ContractError, LetterboxTransform, VideoMetadata,
+                       center_crop, load_index, load_jsonl, write_submission)
 from .video import expand_scores, frame_timeline, iter_sampled_frames, probe_video
 
 
@@ -57,8 +57,9 @@ def _spatial_crop(image: np.ndarray, mode: str, ratio: Sequence[float],
     image_h, image_w = image.shape[:2]
     candidate_x, candidate_y, candidate_w = crop
     candidate_h = candidate_w * float(ratio[1]) / float(ratio[0])
-    cx = (candidate_x + candidate_w / 2) / max(1, image_w) * width
-    cy = (candidate_y + candidate_h / 2) / max(1, image_h) * height
+    transform = LetterboxTransform.from_sizes(width, height, image_w, image_h)
+    cx, cy = transform.inverse_point(
+        (candidate_x + candidate_w / 2, candidate_y + candidate_h / 2))
     from .spatial import place_crop
     return place_crop(width, height, ratio, cx, cy, center_crop(width, height, ratio)[2])
 

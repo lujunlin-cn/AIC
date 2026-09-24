@@ -77,3 +77,22 @@ def saliency_crop(rgb: np.ndarray, target_ratio: Sequence[float], alpha: float =
     cx, cy, _ = gradient_saliency_center(rgb)
     # Keep the largest legal window for a stable, conservative first candidate.
     return place_crop(width, height, target_ratio, cx * width, cy * height)
+
+
+def subject_crop(rgb: np.ndarray, target_ratio: Sequence[float],
+                 confidence_floor: float = .08) -> list[float]:
+    """Return a conservative subject-centred crop candidate.
+
+    No detector is bundled in the <=100 MB baseline.  This policy uses the
+    gradient saliency centre as a subject proxy and blends it toward the
+    geometric centre when saliency confidence is weak.  Keeping this policy
+    explicit makes raw-video inference reproducible and prevents callers from
+    silently treating the old fixed centre crop as a learned subject box.
+    """
+    height, width = rgb.shape[:2]
+    cx, cy, confidence = gradient_saliency_center(rgb)
+    weight = float(np.clip((confidence - confidence_floor) /
+                           max(1e-6, 1.0 - confidence_floor), 0.0, 1.0))
+    cx = .5 + weight * (cx - .5)
+    cy = .5 + weight * (cy - .5)
+    return place_crop(width, height, target_ratio, cx * width, cy * height)

@@ -18,6 +18,9 @@ from .contract import (ContractError, VideoMetadata, center_crop, load_index,
 from .video import expand_scores, frame_timeline, iter_sampled_frames, probe_video
 
 
+SPATIAL_MODES = ("center", "saliency", "subject")
+
+
 def _normalise(images: Sequence[np.ndarray]):
     import torch
 
@@ -30,10 +33,45 @@ def _normalise(images: Sequence[np.ndarray]):
     return torch.from_numpy((values - mean) / std)
 
 
+def _spatial_crop(image: np.ndarray, mode: str, ratio: Sequence[float],
+                  width: int, height: int) -> list[float]:
+    """Select one explicit spatial policy for a selected frame.
+
+    ``image`` is the same sampled, letterboxed RGB tensor used to produce the
+    temporal features.  The geometry output is always in original coded pixel
+    coordinates.  Saliency and subject are lightweight candidates; they do not
+    claim detector boxes or crop IoU without spatial ground truth.
+    """
+    if mode not in SPATIAL_MODES:
+        raise ContractError(f"spatial_mode must be one of {SPATIAL_MODES}, got {mode!r}")
+    if mode == "center":
+        return center_crop(width, height, ratio)
+    from .spatial import saliency_crop, subject_crop
+    if mode == "saliency":
+        # Candidate functions operate in image dimensions; map their normalized
+        # centre to the original coded-pixel geometry while retaining the legal
+        # crop width chosen by the policy.
+        crop = saliency_crop(image, ratio)
+    else:
+        crop = subject_crop(image, ratio)
+    image_h, image_w = image.shape[:2]
+    candidate_x, candidate_y, candidate_w = crop
+    candidate_h = candidate_w * float(ratio[1]) / float(ratio[0])
+    cx = (candidate_x + candidate_w / 2) / max(1, image_w) * width
+    cy = (candidate_y + candidate_h / 2) / max(1, image_h) * height
+    from .spatial import place_crop
+    return place_crop(width, height, ratio, cx, cy, center_crop(width, height, ratio)[2])
+
+
 def _row(video_id: str, ratio: Sequence[float], selected_frames: Sequence[int],
-         width: int, height: int, model_size_mb: float | None) -> dict[str, Any]:
-    crop = center_crop(width, height, ratio)
-    predictions = [{"frame": int(frame), "bboxes": crop.copy()} for frame in selected_frames]
+         width: int, height: int, model_size_mb: float | None,
+         spatial_mode: str = "center",
+         frame_crops: Mapping[int, Sequence[float]] | None = None) -> dict[str, Any]:
+    center = center_crop(width, height, ratio)
+    predictions = []
+    for frame in selected_frames:
+        crop = list(frame_crops.get(int(frame), center) if frame_crops else center)
+        predictions.append({"frame": int(frame), "bboxes": crop})
     result: dict[str, Any] = {"video_id": video_id, "targetRatioWH": list(ratio)}
     if model_size_mb is not None:
         result["model_size_mb"] = float(model_size_mb)
@@ -59,12 +97,14 @@ def run_inference(index_path: str | Path, output_path: str | Path, *,
                   sample_fps: float = 2.0, threshold: float = .5,
                   device: str = "cpu", stage: str = "preliminary",
                   model_size_mb: float | None = None, dummy: bool = False,
-                  batch_size: int = 16) -> dict[str, Any]:
+                  batch_size: int = 16, spatial_mode: str = "center") -> dict[str, Any]:
     """Run A0 and validate the complete output before replacing output_path."""
     if model_path is None and not dummy:
         raise ContractError("model_path is required unless --dummy is explicit")
     if not np.isfinite(threshold):
         raise ContractError("threshold must be finite")
+    if spatial_mode not in SPATIAL_MODES:
+        raise ContractError(f"spatial_mode must be one of {SPATIAL_MODES}, got {spatial_mode!r}")
     records = load_jsonl(index_path)
     index = load_index(index_path)
     model = None
@@ -102,15 +142,40 @@ def run_inference(index_path: str | Path, output_path: str | Path, *,
                         raise FloatingPointError(f"{video_id}: nonfinite visual features")
                     features.append(encoded)
                 features = __import__("torch").cat(features, dim=0)
-                scores = model(features.unsqueeze(0).to(device))[0].detach().float().cpu().sigmoid().numpy()
+                model_input = features.unsqueeze(0).to(device)
+                model_aux = None
+                if getattr(model, "feature_bank_enabled", False):
+                    # A2's aux is deterministic and must be built from exactly
+                    # the sampled RGB frames used by the backbone.  This keeps
+                    # raw-video inference aligned with feature-cache training.
+                    from .features import compute_feature_bank
+                    aux = compute_feature_bank(np.stack(images, axis=0))
+                    model_aux = __import__("torch").from_numpy(aux).unsqueeze(0).to(device)
+                scores = model(model_input, model_aux)[0].detach().float().cpu().sigmoid().numpy()
                 selected = expand_scores(frame_timeline(path), [x[1] for x in sampled], scores, threshold)
+            frame_crops: dict[int, Sequence[float]] | None = None
+            if not dummy and spatial_mode != "center":
+                # Dense frame selection is expanded from sampled timestamps.
+                # Associate each selected original frame with the nearest
+                # sampled image; this is deterministic and avoids a second
+                # image decode pass while keeping temporal/spatial inputs tied.
+                frame_crops = {}
+                sampled_indices = np.asarray([x[0] for x in sampled], dtype=np.int64)
+                sampled_images = [x[2] for x in sampled]
+                for frame in selected:
+                    nearest = int(np.argmin(np.abs(sampled_indices - int(frame))))
+                    frame_crops[int(frame)] = _spatial_crop(
+                        sampled_images[nearest], spatial_mode,
+                        record["targetRatioWH"], info.width, info.height)
             rows.append(_row(video_id, record["targetRatioWH"], selected,
-                             info.width, info.height, model_size_mb))
+                             info.width, info.height, model_size_mb,
+                             spatial_mode=spatial_mode, frame_crops=frame_crops))
     report = write_submission(output_path, rows, index, stage=stage,
                               actual_model_size_mb=model_size_mb)
     return {"output": str(output_path), "dummy": dummy, "rows": len(rows),
             "selected_predictions": sum(len(r["predictions"]) for r in rows),
-            "model_size_mb": model_size_mb, "validation": report.to_dict()}
+            "model_size_mb": model_size_mb, "spatial_mode": spatial_mode,
+            "validation": report.to_dict()}
 
 
 def main(argv=None) -> int:
@@ -126,6 +191,8 @@ def main(argv=None) -> int:
     parser.add_argument("--model-size-mb", type=float)
     parser.add_argument("--dummy", action="store_true")
     parser.add_argument("--batch-size", type=int, default=16)
+    parser.add_argument("--spatial-mode", choices=SPATIAL_MODES, default="center",
+                        help="center, saliency, or lightweight subject proxy")
     args = parser.parse_args(argv)
     try:
         result = run_inference(index_path=args.index, output_path=args.output,
@@ -133,7 +200,7 @@ def main(argv=None) -> int:
                                sample_fps=args.sample_fps, threshold=args.threshold,
                                device=args.device, stage=args.stage,
                                model_size_mb=args.model_size_mb, dummy=args.dummy,
-                               batch_size=args.batch_size)
+                               batch_size=args.batch_size, spatial_mode=args.spatial_mode)
         print(json.dumps(result, ensure_ascii=False, indent=2))
         return 0
     except (ContractError, OSError, ValueError, FloatingPointError) as error:

@@ -7,7 +7,7 @@ import torch
 
 from aic.features import (FeatureCacheDataset, align_labels, collate_feature_batch,
                           load_feature_cache, save_feature_cache)
-from aic.models import A0Model, TemporalUNet, export_inference, load_inference_model, predict_features
+from aic.models import A0Model, TemporalUNet, export_inference, load_inference_model, predict_features, temporal_shift
 
 
 def test_temporal_unet_variable_short_lengths_and_finite():
@@ -53,3 +53,14 @@ def test_windowed_prediction_covers_all_frames():
     result = predict_features(model, torch.randn(17, 512), window=8, overlap=2)
     assert result.shape == (17,)
     assert torch.isfinite(result).all()
+
+
+def test_temporal_shift_is_parameter_free_and_loader_roundtrips(tmp_path: Path):
+    x = torch.arange(2 * 4 * 8, dtype=torch.float32).reshape(2, 4, 8)
+    shifted = temporal_shift(x, fold_div=4)
+    assert shifted.shape == x.shape and torch.isfinite(shifted).all()
+    model = A0Model(temporal_shift_enabled=True).eval()
+    audit = export_inference(model, tmp_path, {"run_id": "A1_001"}, {"source": "unit"})
+    assert audit["exports"]["fp32"]["parameter_count"] == sum(p.numel() for p in model.parameters())
+    loaded, _ = load_inference_model(tmp_path / "model_fp32.pt")
+    assert loaded.temporal_shift_enabled

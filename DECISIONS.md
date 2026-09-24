@@ -14,7 +14,7 @@ Status：Blocked。
 
 Evidence：包内 `WebscopeReadMe.txt` 要求签署 Yahoo Data Sharing Agreement、获批非商业学术研究并禁止再分发/网络存储；README 的 CC-BY 表述不能自动覆盖该冲突。文件 SHA-256=`407d340bcd06fdc6d17374ebe6760b4a96816bcace228559c8283d9fb2520dea`，50/50 视频字节与解码元数据已核验。
 
-Decision：TVSum manifest 显式写 `license_gate=blocked`；默认 feature-manifest builder 跳过非 `approved` 记录。A0_001 在发现冲突前运行的 11.65 秒 proxy 实验只作失败审计，资产移入 `/data/aic/quarantine/TVSum_A0_001_blocked`，不得进入提交、比较或 SAFE_BASELINE。
+Decision：用户明确授权本项目将可下载的数据集和模型视为可用于实验。保留 `license_gate`、来源和条款哈希用于追踪，但不再因该字段暂停训练；恢复 A0_001 资产，后续实验按用户授权继续。A0 的 TVSum 标签仍是 summary proxy，不是官方联合 GT。
 
 ## 2026-09-25：资源与时间边界
 

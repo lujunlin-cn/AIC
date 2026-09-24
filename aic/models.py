@@ -75,8 +75,23 @@ class TemporalUNet(nn.Module):
         return self.output(d0).squeeze(1)[:, :original_length]
 
 
+def temporal_shift(features: Tensor, fold_div: int = 8) -> Tensor:
+    """Parameter-free TSM channel shift on a cached [B,T,D] sequence."""
+    if features.ndim != 3 or features.shape[1] == 0:
+        raise ValueError(f"Expected nonempty [B,T,D], got {tuple(features.shape)}")
+    fold = features.shape[-1] // fold_div
+    if fold == 0:
+        return features
+    shifted = torch.zeros_like(features)
+    shifted[:, 1:, :fold] = features[:, :-1, :fold]
+    shifted[:, :-1, fold:2 * fold] = features[:, 1:, fold:2 * fold]
+    shifted[:, :, 2 * fold:] = features[:, :, 2 * fold:]
+    return shifted
+
+
 class A0Model(nn.Module):
-    def __init__(self, feature_dim: int = 512, backbone: nn.Module | None = None):
+    def __init__(self, feature_dim: int = 512, backbone: nn.Module | None = None,
+                 temporal_shift_enabled: bool = False):
         super().__init__()
         if backbone is None:
             from torchvision.models import resnet18
@@ -84,6 +99,7 @@ class A0Model(nn.Module):
             backbone.fc = nn.Identity()
         self.backbone = backbone
         self.feature_dim = int(feature_dim)
+        self.temporal_shift_enabled = bool(temporal_shift_enabled)
         self.temporal = TemporalUNet(self.feature_dim)
 
     def encode_frames(self, images: Tensor) -> Tensor:
@@ -99,6 +115,8 @@ class A0Model(nn.Module):
             batch, steps = features.shape[:2]
             features = self.encode_frames(features.reshape(batch * steps, *features.shape[2:]))
             features = features.reshape(batch, steps, -1)
+        if self.temporal_shift_enabled:
+            features = temporal_shift(features)
         return self.temporal(features)
 
 
@@ -164,9 +182,11 @@ def export_inference(model: A0Model, directory: str | Path,
     for name, dtype in [("fp32", torch.float32), ("fp16", torch.float16)]:
         state = {key: value.to(dtype) if value.is_floating_point() else value
                  for key, value in original.items()}
-        bundle = {"format_version": 1, "architecture": "A0_resnet18_tunet",
+        architecture = "A1_resnet18_tsm_tunet" if model.temporal_shift_enabled else "A0_resnet18_tunet"
+        bundle = {"format_version": 1, "architecture": architecture,
                   "state_dict": state, "config": copy.deepcopy(config),
-                  "backbone_provenance": provenance, "persistent_dtype": name}
+                  "backbone_provenance": provenance, "persistent_dtype": name,
+                  "temporal_shift_enabled": model.temporal_shift_enabled}
         path = directory / f"model_{name}.pt"
         torch.save(bundle, path)
         size = path.stat().st_size
@@ -175,7 +195,8 @@ def export_inference(model: A0Model, directory: str | Path,
             "path": str(path), "bytes": size, "MB_decimal": mb,
             "MiB_binary": size / (1024**2), "sha256": sha256_file(path),
             "parameter_count": sum(p.numel() for p in model.parameters()),
-            "components": ["ResNet18 without classifier", "TemporalUNet including adapter"],
+            "components": ["ResNet18 without classifier", "TemporalUNet including adapter"] +
+                          (["parameter-free temporal shift"] if model.temporal_shift_enabled else []),
             "size_tier_decimal_assumption": "S" if mb <= 100 else "M" if mb <= 500 else "L" if mb <= 9216 else "invalid",
             "size_coefficient_decimal_assumption": 1.0 if mb <= 100 else .95 if mb <= 500 else .9 if mb <= 9216 else None,
         }
@@ -188,9 +209,13 @@ def load_inference_model(path: str | Path, device: str | torch.device = "cpu"
                          ) -> tuple[A0Model, dict[str, Any]]:
     """Offline loader: the single file includes all actually used model weights."""
     bundle = torch.load(path, map_location="cpu", weights_only=True)
-    if bundle.get("format_version") != 1 or bundle.get("architecture") != "A0_resnet18_tunet":
+    if bundle.get("format_version") != 1 or bundle.get("architecture") not in {
+        "A0_resnet18_tunet", "A1_resnet18_tsm_tunet"
+    }:
         raise ValueError("Unsupported inference bundle")
-    model = A0Model()
+    model = A0Model(temporal_shift_enabled=bool(
+        bundle.get("temporal_shift_enabled", bundle.get("architecture") == "A1_resnet18_tsm_tunet")
+    ))
     model.load_state_dict(bundle["state_dict"], strict=True)
     # CPU FP16 convolution support is uneven; explicit FP32 runtime conversion
     # does not change the persisted file used for this candidate.

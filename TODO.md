@@ -7,9 +7,9 @@
 - [x] 实现、测试原帧/PTS、旋转、letterbox 逆映射。
 - [x] 完成逐帧 JSONL、严格 validator、官方公式本地 evaluator 数学测试。
 - [x] raw-video dummy 推理输出公共居中 crop 参考（逐原始帧）并通过 validator。
-- [x] 下载 TVSum 原包，记录许可/来源/hash/split/帧对齐；训练闸门因 Webscope 条款阻塞。
-- [x] A0_001 特征缓存、训练、时间代理验证与真实文件审计；结果已因许可闸门隔离，不可作为 baseline。
-- [ ] 取得 TVSum/AIC 书面许可，或换用许可明确数据后重跑 A0。
+- [x] 下载 TVSum 原包，记录许可/来源/hash/split/帧对齐。
+- [x] A0_001 特征缓存、训练、时间代理验证与真实文件审计。
+- [ ] A1 TSM：相同数据、split、时序头和训练预算，单独比较 TSM。
 - [ ] 取得官方样例/evaluator/初赛索引，核对未知契约并生成实际提交。
 - [x] 核对公开 `TempSamp-R1` baseline commit/README/test_index；实现紧凑索引到实际视频元数据的审计转换。
 - [ ] 锁定有证据的 SAFE_BASELINE，备份权重、配置、环境与代码。

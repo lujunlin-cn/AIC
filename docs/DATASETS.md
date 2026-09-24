@@ -28,11 +28,12 @@ labels it `MIT`, `GPL`, or `CC`.
   non-commercial academic research by a signed-agreement recipient; commercial
   use, redistribution, network storage and archiving are prohibited. These are
   source/dataset terms, not merely a GitHub code license, and the YouTube
-  uploader's rights remain separate. The AIC competition use has **not** been
-  confirmed to satisfy that agreement. Therefore TVSum is **license-gated and
-  must not enter a training run** until the team obtains written permission or
-  a compliant source release. `download_status=verified` only means the bytes
-  and metadata were checked; it does not mean training permission.
+  uploader's rights remain separate. The project user has authorized using
+  datasets and model files that are downloadable in this workspace; we retain
+  the conflict and terms hash for provenance, while the default experiment
+  path follows that authorization. `download_status=verified` means the bytes
+  and metadata were checked; `--strict-license-gate` is available when a run
+  must enforce the manifest gate independently.
 - **Annotation:** `ydata-tvsum50.mat`, `user_anno` (20 rater columns; shot-level
   importance). The preparation script keeps `annotation_type` as
   `summary_importance_2s`; downstream code must use an explicit task mask and
@@ -46,8 +47,8 @@ labels it `MIT`, `GPL`, or `CC`.
   dataset/version/video/source group, source URL, license URL, download status,
   explicit `license_gate`, SHA-256, ffprobe duration/fps/frame count/dimensions/rotation/audio, split,
   annotation type and annotation path. Missing or failed videos stay visible as
-  `missing`/`failed`; they are never silently trained. Until the Webscope gate is
-  resolved, treat every record as `license_gate=blocked` in experiment planning.
+  `missing`/`failed`; they are never silently trained. Records retain their
+  explicit `license_gate` value in experiment manifests.
 
 Run (on a machine with the already downloaded package):
 

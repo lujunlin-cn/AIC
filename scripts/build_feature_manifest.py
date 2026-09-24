@@ -20,8 +20,8 @@ def main(argv=None) -> int:
     parser.add_argument("--cache-dir", required=True)
     parser.add_argument("--output-dir", required=True)
     parser.add_argument("--include-test", action="store_true")
-    parser.add_argument("--allow-unapproved", action="store_true",
-                        help="override the rights gate only after written permission")
+    parser.add_argument("--strict-license-gate", action="store_true",
+                        help="skip non-approved records; default follows project user authorization")
     args = parser.parse_args(argv)
     records = read_manifest(args.dataset_manifest, require_path=True)
     cache_dir, output_dir = Path(args.cache_dir), Path(args.output_dir)
@@ -30,7 +30,7 @@ def main(argv=None) -> int:
     for record in records:
         if record.download_status not in {"verified", "downloaded"}:
             continue
-        if record.license_gate != "approved" and not args.allow_unapproved:
+        if record.license_gate != "approved" and args.strict_license_gate:
             continue
         if not record.path or not record.annotation_path:
             continue

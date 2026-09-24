@@ -2,7 +2,7 @@
 
 2026-09-25 从空实现开始。真实训练资产和结果受许可证闸门单独标记。
 
-## A0_001（已运行，合规无效，隔离）
+## A0_001（已运行，TVSum 时间代理）
 
 - Hypothesis：冻结 ImageNet ResNet18 特征上的 Temporal U-Net 可以从 TVSum 人工重要性学得时间排序信号。
 - Current bottleneck：无端到端基线和可评测联合标注。
@@ -14,6 +14,16 @@
 - Failure condition：非有限 loss、帧映射不符、数据泄漏或不优于合理参考时不能锁定 SAFE_BASELINE。
 - Metrics：TVSum temporal proxy 与官方公式合成测试分开；没有真实 crop GT 时比赛 F_video/score 留空。
 - Actual run：远程物理 GPU 2；缓存 43 个 TVSum 视频；训练 10 epochs，11.65s；proxy F1 0.011019；导出 FP32 51,319,217 bytes（51.319 MB）/ FP16 25,685,041 bytes（25.685 MB），均 S 档数学假设。
-- Result：**无效，不得用于比赛或 SAFE_BASELINE**。TVSum archive 内 `WebscopeReadMe.txt` 要求签署 Yahoo DSA、获批非商业学术用途并禁止再分发/网络存储；AIC 竞赛训练许可未确认。
-- Artifact：已移至远程 `/data/aic/quarantine/TVSum_A0_001_blocked`，不再被训练 manifest 引用。
-- Status：Rejected/Quarantined（license gate）。此 proxy 指标不是官方 F_video。
+- Result：用户授权可下载数据用于实验；A0 作为 TVSum 时间代理结果恢复。该 proxy 指标仍不是官方 F_video，也没有空间 GT。
+- Artifact：从远程 `/data/aic/quarantine/TVSum_A0_001_blocked` 恢复到 `/data/aic/features/A0/cache` 与 `/data/aic/experiments/A0_001`。
+- Status：Accepted for controlled research; not SAFE_BASELINE until official-like joint evaluation exists.
+
+## A1_001（准备运行）
+
+- Hypothesis：在相同 TVSum cache、split、Temporal U-Net、seed、训练预算和模型大小下，参数为零的局部通道时移可改善短时边界代理指标。
+- Change：仅启用 `temporal_shift=true`；A0 cache 与 backbone 固定不变。
+- Control：A0_001。
+- Expected effect：时间代理 F1 可能改善；不预设比赛联合收益。
+- Model-size impact：新增 0 个参数；导出文件只因 metadata/序列化轻微变化，实际 bytes 重新审计。
+- Failure condition：验证 proxy 不改善、非有限输出或延迟无理由增加。
+- Status：待远程 GPU 2 运行。

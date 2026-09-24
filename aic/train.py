@@ -177,7 +177,8 @@ def train(config: dict[str, Any]) -> dict[str, Any]:
                    "collate_fn": collate_feature_batch, "pin_memory": device.type == "cuda"}
     train_loader = DataLoader(train_data, shuffle=True, **loader_args)
     val_loader = DataLoader(val_data, shuffle=False, **loader_args)
-    model = A0Model(int(config.get("feature_dim", 512)))
+    model = A0Model(int(config.get("feature_dim", 512)),
+                    temporal_shift_enabled=bool(config.get("temporal_shift", False)))
     backbone_state = config.get("backbone_state")
     if backbone_state:
         state = torch.load(backbone_state, map_location="cpu", weights_only=True)

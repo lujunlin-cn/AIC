@@ -18,12 +18,14 @@
 - Artifact：从远程 `/data/aic/quarantine/TVSum_A0_001_blocked` 恢复到 `/data/aic/features/A0/cache` 与 `/data/aic/experiments/A0_001`。
 - Status：Accepted for controlled research; not SAFE_BASELINE until official-like joint evaluation exists.
 
-## A1_001（准备运行）
+## A1_001（已运行）
 
 - Hypothesis：在相同 TVSum cache、split、Temporal U-Net、seed、训练预算和模型大小下，参数为零的局部通道时移可改善短时边界代理指标。
 - Change：仅启用 `temporal_shift=true`；A0 cache 与 backbone 固定不变。
 - Control：A0_001。
 - Expected effect：时间代理 F1 可能改善；不预设比赛联合收益。
 - Model-size impact：新增 0 个参数；导出文件只因 metadata/序列化轻微变化，实际 bytes 重新审计。
-- Failure condition：验证 proxy 不改善、非有限输出或延迟无理由增加。
-- Status：待远程 GPU 2 运行。
+- Actual run：远程物理 GPU 2；10 epochs，12.22s；proxy F1 0.016484。
+- Result：相对 A0_001 的 proxy F1 提升约 49.6%（单 seed、TVSum summary proxy，不能外推官方 F_video）。新增参数 0；FP32 51,319,281 bytes，FP16 25,685,105 bytes，均 S 档数学假设。
+- Failure condition：后续需多 seed 和联合空间评估确认；当前不锁定 SAFE_BASELINE。
+- Status：Promising proxy result; continue controlled validation.

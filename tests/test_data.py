@@ -34,6 +34,7 @@ def test_tvsum_annotation_audit_preserves_shape_and_protocol():
     assert report["annotator_columns"] == 20
     assert report["rows_equal_nframes"] is False
     assert report["alignment_convention"].startswith("uniform_edges")
+    assert "15_percent" in report["author_evaluator_convention"]
     assert report["binary_target_protocol"].endswith("ge_0.5_v1")
 
 def test_group_split_is_deterministic_and_same_group():

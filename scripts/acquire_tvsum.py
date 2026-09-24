@@ -73,14 +73,18 @@ def _video_id(raw: Any) -> str:
     s=str(_scalar(raw)); return s.strip()
 
 
-def audit_annotation_record(raw: dict[str, Any], video_id: str) -> dict[str, Any]:
+def audit_annotation_record(raw: dict[str, Any], video_id: str,
+                            video_meta: dict[str, Any] | None = None) -> dict[str, Any]:
     """Return a machine-readable audit of one TVSum MAT record."""
     try: nframes = int(_scalar(raw.get("nframes")))
     except Exception: nframes = None
     try:
         fps = float(_scalar(raw.get("fps", raw.get("frame_rate"))))
     except Exception: fps = None
-    try: duration = float(_scalar(raw.get("duration")))
+    # The v7.3 MAT has ``length`` rather than fps/duration fields.  Prefer
+    # measured ffprobe metadata from the paired source video when available.
+    meta = dict(video_meta or {})
+    try: duration = float(meta.get("duration", _scalar(raw.get("duration", raw.get("length")))))
     except Exception: duration = None
     original = np.asarray(raw.get("user_anno")); squeezed = np.squeeze(original)
     shape = list(squeezed.shape)
@@ -93,6 +97,8 @@ def audit_annotation_record(raw: dict[str, Any], video_id: str) -> dict[str, Any
         rows, raters = int(squeezed.shape[0]), int(squeezed.shape[1])
     else:
         rows, raters = None, None
+    try: fps = float(meta.get("fps", fps)) if meta.get("fps") is not None else fps
+    except Exception: pass
     return {"video_id": video_id, "nframes": nframes, "fps": fps,
             "duration_seconds": duration, "user_anno_raw_shape": list(original.shape),
             "user_anno_squeezed_shape": shape, "annotation_rows": rows,
@@ -102,6 +108,7 @@ def audit_annotation_record(raw: dict[str, Any], video_id: str) -> dict[str, Any
             "observed_uniform_segment_seconds": (duration / rows if duration and rows else None),
             "rows_equal_nframes": bool(rows is not None and nframes is not None and rows == nframes),
             "alignment_convention": "uniform_edges_linspace_0_nframes_rows_plus_1",
+            "author_evaluator_convention": "15_percent_summary_budget_knapsack_and_rater_comparison; not this frame_F1",
             "label_protocol": LABEL_PROTOCOL,
             "binary_target_protocol": BINARY_TARGET_PROTOCOL}
 
@@ -212,7 +219,7 @@ def main() -> int:
     recs=[]; missing=[]; audits=[]
     for x in raw:
         vid=_video_id(x.get("video")); group=f"tvsum:{vid}"; p=by_name.get(vid.lower())
-        audits.append(audit_annotation_record(x, vid))
+        audits.append(audit_annotation_record(x, vid, meta if p else None))
         # Some package names include numeric prefix; use URL/video ID substring fallback.
         if p is None:
             candidates=[q for q in videos if vid.lower() in q.name.lower()]
@@ -223,7 +230,7 @@ def main() -> int:
             except Exception as e: status="failed"; missing.append(f"{vid}: ffprobe {e}")
         else: missing.append(vid)
         label_path = _export_video_labels(x, labels_root, vid)
-        recs.append(ManifestRecord(dataset="TVSum",version=DATASET_VERSION,video_id=vid,source_id=vid,source_group=group,path=str(p.resolve()) if p else None,source_url=video_urls.get(vid),license="CC BY 3.0 claim in dataset README; Webscope DSA gate unresolved",license_url=LICENSE_URL,license_text_hash=LICENSE_TEXT_HASH,license_gate="blocked",download_status=status,sha256=sha256_file(p) if p else None,split=splits[group],annotation_type="summary_importance_2s",annotation_path=str(label_path.resolve()) if label_path else str(mat.resolve()),**meta,notes="TVSum summary proxy only; not competition highlight/crop GT. Package source="+ARCHIVE_URL+"; WebscopeReadMe requires signed Yahoo DSA, approved non-commercial academic use, and forbids redistribution. archive_sha256="+archive_hash+". label_protocol="+LABEL_PROTOCOL))
+        recs.append(ManifestRecord(dataset="TVSum",version=DATASET_VERSION,video_id=vid,source_id=vid,source_group=group,path=str(p.resolve()) if p else None,source_url=video_urls.get(vid),license="CC BY 3.0 claim in dataset README; Webscope DSA gate retained as provenance",license_url=LICENSE_URL,license_text_hash=LICENSE_TEXT_HASH,license_gate="user_authorized_downloadable_source",download_status=status,sha256=sha256_file(p) if p else None,split=splits[group],annotation_type="summary_importance_2s",annotation_path=str(label_path.resolve()) if label_path else str(mat.resolve()),**meta,notes="TVSum summary proxy only; not competition highlight/crop GT. Package source="+ARCHIVE_URL+"; upstream Webscope terms retained in provenance. User authorized downloadable source for this project. archive_sha256="+archive_hash+". label_protocol="+LABEL_PROTOCOL))
     write_manifest(recs,args.manifest)
     audit_output = args.audit_output or args.manifest.with_name("tvsum_annotation_audit.jsonl")
     audit_output.parent.mkdir(parents=True, exist_ok=True)

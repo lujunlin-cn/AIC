@@ -57,6 +57,19 @@ def test_temporal_unet_padding_difference_is_detectable_without_lengths():
     assert not torch.allclose(unsafe, standalone, atol=1e-5, rtol=1e-5)
 
 
+def test_feature_bank_short_sequence_aux_padding_is_consistent():
+    torch.manual_seed(8)
+    model = TemporalUNet(8, aux_dim=32).eval()
+    features = torch.randn(1, 2, 8)
+    aux = torch.randn(1, 2, 32)
+    standalone = model(features, aux)
+    padded = torch.cat([features, torch.zeros(1, 5, 8)], dim=1)
+    padded_aux = torch.cat([aux, torch.zeros(1, 5, 32)], dim=1)
+    result = model(padded, padded_aux, lengths=torch.tensor([2]))
+    assert result.shape == (1, 7)
+    assert torch.allclose(result[:, :2], standalone, atol=1e-6, rtol=1e-6)
+
+
 def test_feature_cache_roundtrip_and_label_alignment(tmp_path: Path):
     indices = np.array([0, 5, 9], dtype=np.int64)
     labels, mask = align_labels({"frame_indices": np.array([5, 9]),

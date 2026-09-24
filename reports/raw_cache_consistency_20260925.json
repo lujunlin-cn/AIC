@@ -1,0 +1,32 @@
+{
+  "protocol": "sampled RGB -> ResNet18 headless -> A2 temporal head; raw and cached paths",
+  "video_id": "J0nA4VgnoCo",
+  "sample_fps": 2.0,
+  "sampled_frames": 1170,
+  "decoder_matched": {
+    "environment": "remote training server",
+    "python": "3.12",
+    "torch": "2.9.1+cu128",
+    "torchvision": "0.24.1+cu128",
+    "pyav": "15.1"
+  },
+  "frame_indices": {"max_abs_error": 0, "mean_abs_error": 0, "equal": true},
+  "timestamps": {"max_abs_error": 0.0, "mean_abs_error": 0.0, "equal": true},
+  "features": {"max_abs_error": 2.6702880859375e-05, "mean_abs_error": 1.762010583661322e-06},
+  "aux_32d": {"max_abs_error": 0.0, "mean_abs_error": 0.0, "equal": true},
+  "a2_probability": {
+    "max_abs_error": 2.086162567138672e-07,
+    "mean_abs_error": 4.0755313790441505e-08,
+    "pearson": 0.9999999999995018,
+    "selected_at_threshold_0.5": {"raw": 0, "cache": 0}
+  },
+  "decoder_drift_control": {
+    "local_pyav": "18.1.0",
+    "remote_pyav": "15.1",
+    "features_max_abs_error": 0.39582586,
+    "features_mean_abs_error": 0.016603403,
+    "aux_max_abs_error": 3.4868476,
+    "aux_mean_abs_error": 0.009396134,
+    "note": "Run the two paths under the same PyAV/decoder environment; pin remote PyAV for reproducibility."
+  }
+}

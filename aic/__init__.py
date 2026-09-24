@@ -1,1 +1,1 @@
-"""2026 AIC highlight system. Rule baseline: 01 version 1.0."""
+"""AIC video highlight research package."""

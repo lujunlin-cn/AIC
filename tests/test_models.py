@@ -19,6 +19,44 @@ def test_temporal_unet_variable_short_lengths_and_finite():
         assert torch.isfinite(result).all()
 
 
+def test_temporal_unet_padding_regression_requires_lengths():
+    """Right padding must not change valid logits when true lengths are given.
+
+    The pre-fix path passed a max-length padded batch directly through
+    GroupNorm and the two temporal pooling stages.  Consequently a 5-step
+    sequence produced different valid logits when padded to 8 or 12 steps,
+    and also differed when batched beside a longer video.  ``lengths`` makes
+    the production train/inference path evaluate each sequence at its true
+    geometry and keeps this behavior invariant.
+    """
+    torch.manual_seed(7)
+    model = TemporalUNet(8).eval()
+    valid = torch.randn(1, 5, 8)
+    standalone = model(valid)
+
+    for padded_length in (8, 12, 17):
+        padded = torch.cat([valid, torch.zeros(1, padded_length - 5, 8)], dim=1)
+        result = model(padded, lengths=torch.tensor([5]))
+        assert torch.allclose(result[:, :5], standalone, atol=1e-6, rtol=1e-6)
+        assert torch.count_nonzero(result[:, 5:]) == 0
+
+    longer = torch.randn(1, 12, 8)
+    batch = torch.cat([torch.cat([valid, torch.zeros(1, 7, 8)], dim=1), longer], dim=0)
+    result = model(batch, lengths=torch.tensor([5, 12]))
+    assert torch.allclose(result[0, :5], standalone[0], atol=1e-6, rtol=1e-6)
+
+
+def test_temporal_unet_padding_difference_is_detectable_without_lengths():
+    """Guard the regression fixture: omitted lengths remains observably unsafe."""
+    torch.manual_seed(7)
+    model = TemporalUNet(8).eval()
+    valid = torch.randn(1, 5, 8)
+    padded = torch.cat([valid, torch.zeros(1, 7, 8)], dim=1)
+    standalone = model(valid)
+    unsafe = model(padded)[:, :5]
+    assert not torch.allclose(unsafe, standalone, atol=1e-5, rtol=1e-5)
+
+
 def test_feature_cache_roundtrip_and_label_alignment(tmp_path: Path):
     indices = np.array([0, 5, 9], dtype=np.int64)
     labels, mask = align_labels({"frame_indices": np.array([5, 9]),

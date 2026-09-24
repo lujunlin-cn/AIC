@@ -54,15 +54,42 @@ class TemporalUNet(nn.Module):
         self.decoder0 = ConvBlock(192 + 128, 128)
         self.output = nn.Conv1d(128, 1, 1)
 
-    def forward(self, features: Tensor, aux: Tensor | None = None) -> Tensor:
+    def forward(self, features: Tensor, aux: Tensor | None = None,
+                lengths: Tensor | None = None) -> Tensor:
         if features.ndim != 3 or features.shape[-1] != self.input_dim:
             raise ValueError(f"Expected [B,T,{self.input_dim}], got {features.shape}")
         if features.shape[1] == 0:
             raise ValueError("Cannot process an empty sequence")
+        # A DataLoader batch contains right-padded variable-length videos.  A
+        # GroupNorm layer normalizes over both channels and temporal positions,
+        # so those padding values would otherwise alter every valid timestep.
+        # Process each sequence at its true length when lengths are supplied;
+        # this also keeps pooling/interpolation geometry identical to a
+        # standalone sequence.  The returned tensor retains the padded batch
+        # shape, with zero logits outside each valid sequence.
+        if lengths is not None:
+            if lengths.ndim != 1 or lengths.shape[0] != features.shape[0]:
+                raise ValueError("lengths must be [B] matching features")
+            lengths = lengths.to(device=features.device, dtype=torch.long)
+            if bool((lengths <= 0).any()) or bool((lengths > features.shape[1]).any()):
+                raise ValueError("lengths must be in [1, T]")
+            # Fast path when all samples have identical lengths: there is no
+            # padding to contaminate normalization and batching is cheaper.
+            if bool(torch.all(lengths == features.shape[1])):
+                lengths = None
+            else:
+                outputs = features.new_zeros((features.shape[0], features.shape[1]))
+                for index, length in enumerate(lengths.tolist()):
+                    sample_aux = aux[index:index + 1, :length] if aux is not None else None
+                    sample = self.forward(features[index:index + 1, :length], sample_aux)
+                    outputs[index, :length] = sample[0]
+                return outputs
         original_length = features.shape[1]
         # Two stride-2 reductions require at least four temporal positions.
         if original_length < 4:
             features = F.pad(features, (0, 0, 0, 4 - original_length))
+            if aux is not None:
+                aux = F.pad(aux, (0, 0, 0, 4 - original_length))
         projected = self.adapter(features)
         if self.aux_dim:
             if aux is None or aux.ndim != 3 or aux.shape[:2] != features.shape[:2] or aux.shape[-1] != self.aux_dim:
@@ -118,14 +145,15 @@ class A0Model(nn.Module):
         """Compatibility name used by inference/ablation scripts."""
         return self.temporal
 
-    def forward(self, features: Tensor, aux: Tensor | None = None) -> Tensor:
+    def forward(self, features: Tensor, aux: Tensor | None = None,
+                lengths: Tensor | None = None) -> Tensor:
         if features.ndim == 5:
             batch, steps = features.shape[:2]
             features = self.encode_frames(features.reshape(batch * steps, *features.shape[2:]))
             features = features.reshape(batch, steps, -1)
         if self.temporal_shift_enabled:
             features = temporal_shift(features)
-        return self.temporal(features, aux if self.feature_bank_enabled else None)
+        return self.temporal(features, aux if self.feature_bank_enabled else None, lengths=lengths)
 
 
 # Descriptive aliases retained for scripts/configs that refer to the route by
@@ -169,8 +197,13 @@ def predict_features(model: nn.Module, features: Tensor, window: int = 256,
     for start in window_starts(len(features), window, overlap):
         stop = min(start + window, len(features))
         x = features[start:stop]
+        valid_length = len(x)
         x = F.pad(x, (0, 0, 0, window - len(x)))
-        result = model(x.unsqueeze(0)).float().sigmoid()[0, :stop-start]
+        # Keep the model's temporal geometry tied to the valid portion.  A
+        # right-padded tail must not alter GroupNorm statistics or pooling
+        # behavior for the logits that will be emitted.
+        lengths = torch.tensor([valid_length], dtype=torch.long, device=x.device)
+        result = model(x.unsqueeze(0), lengths=lengths).float().sigmoid()[0, :valid_length]
         if not torch.isfinite(result).all():
             raise FloatingPointError("Non-finite temporal inference output")
         probabilities[start:stop] += result

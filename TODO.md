@@ -11,7 +11,7 @@
 - [x] A0_001 特征缓存、训练、时间代理验证与真实文件审计。
 - [x] A1 TSM：相同数据、split、时序头和训练预算，单独比较 TSM。
 - [x] A2 Feature Bank：motion/quality/audio/composition 总体对照；结果退化，已停止无结构调参。
-- [ ] A3a 固定时间帧集合下比较学习空间候选与最大合法居中 crop。
+- [ ] A3a 固定时间帧集合下比较学习空间候选与最大合法居中 crop（待合法 crop GT）。
 - [ ] 取得官方样例/evaluator/初赛索引，核对未知契约并生成实际提交。
 - [x] 核对公开 `TempSamp-R1` baseline commit/README/test_index；实现紧凑索引到实际视频元数据的审计转换。
 - [ ] 锁定有证据的 SAFE_BASELINE，备份权重、配置、环境与代码。

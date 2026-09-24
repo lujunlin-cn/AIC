@@ -38,3 +38,8 @@
 - Size：12,817,921 parameters；FP32 51,362,293 bytes；FP16 25,707,253 bytes；仍为 S 档数学假设。
 - Conclusion：当前 bank 定义/归一化造成明显代理退化；不继续无结构调参，保留代码供后续错误分析后重开。
 - Status：Rejected for current proxy; A1 remains temporal control.
+
+## A3a（实现完成，待空间 GT）
+
+- Change：新增无权重合法 crop candidate、gradient saliency center、shot-aware EMA smoothing；最大合法居中 crop 仍是固定控制。
+- Evaluation gate：必须在目标比例的人工/合法 crop GT 上固定 temporal frame 集合比较；TVSum 没有 spatial GT，因此暂不训练或宣称空间收益。

@@ -23,7 +23,7 @@
 - Running Experiments：A1 保留为当前时间候选但需要更稳定的标签/指标；A2 Feature Bank 已完成并拒绝，下一步转向空间候选基线/误差分析。
 - Latest Failure：此前的许可证暂停已由用户授权解除；旧 A0 资产从 quarantine 恢复。
 - Next Experiments：A1 TSM → A2 Feature Bank；拿到比赛视频后先用 `scripts/build_video_index.py` 做真实帧数/PTS审计。
-- Remote smoke：在授权 GPU 外的 CPU/临时目录用合成视频跑通 compact index → enriched index → center-crop JSONL；1 行、5 原始帧、validator valid。该结果不作竞赛指标。
+- Remote smoke：合成视频 center-crop pipeline 已通过；A1_002 FP32（51.319345 MB）又在一条真实 TVSum 原视频上完成 raw-video → sampled features → original-frame expansion → JSONL 校验，输出 1 行、0 个高光预测且 validator valid。该结果不作竞赛指标。
 
 ## 时间与外部依赖
 

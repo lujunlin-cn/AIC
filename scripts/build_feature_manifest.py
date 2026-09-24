@@ -20,6 +20,8 @@ def main(argv=None) -> int:
     parser.add_argument("--cache-dir", required=True)
     parser.add_argument("--output-dir", required=True)
     parser.add_argument("--include-test", action="store_true")
+    parser.add_argument("--allow-unapproved", action="store_true",
+                        help="override the rights gate only after written permission")
     args = parser.parse_args(argv)
     records = read_manifest(args.dataset_manifest, require_path=True)
     cache_dir, output_dir = Path(args.cache_dir), Path(args.output_dir)
@@ -27,6 +29,8 @@ def main(argv=None) -> int:
     grouped = {"train": [], "val": [], "test": []}
     for record in records:
         if record.download_status not in {"verified", "downloaded"}:
+            continue
+        if record.license_gate != "approved" and not args.allow_unapproved:
             continue
         if not record.path or not record.annotation_path:
             continue

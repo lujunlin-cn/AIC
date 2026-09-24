@@ -17,6 +17,8 @@ from aic.data import ManifestRecord, grouped_splits, probe_video, sha256_file, w
 ARCHIVE_URL = "https://people.csail.mit.edu/yalesong/tvsum/tvsum50_ver_1_1.tgz"
 README_URL = "https://raw.githubusercontent.com/yalesong/tvsum/master/README.md"
 LICENSE_URL = "https://creativecommons.org/licenses/by/3.0/"
+# SHA-256 of WebscopeReadMe.txt shipped in the pinned archive.
+LICENSE_TEXT_HASH = "341fb9cd2b4f276ae6d497ea5f600b596698627bad1db54af1944171ce1e7eba"
 DATASET_VERSION = "tvsum50_v1.1_2019-11-06"
 
 
@@ -35,31 +37,25 @@ def _mat_records(path: Path) -> list[dict[str, Any]]:
             import h5py
         except ImportError as ie:
             raise RuntimeError("TVSum MAT is MATLAB v7.3; install h5py in an isolated env to parse it") from ie
-        # MATLAB v7.3 stores each struct field as object references. Resolve
-        # refs recursively and normalize byte/string arrays.
+        # MATLAB v7.3 stores each field as a (50,1) dataset of HDF5 refs.
         with h5py.File(path, "r") as h:
             root = h["tvsum50"]
-            def deref(v):
-                if hasattr(v, "shape") and v.dtype == h5py.ref_dtype:
-                    return np.array([deref(h[r]) for r in v.flat], dtype=object).reshape(v.shape)
-                if hasattr(v, "shape"):
-                    a=v[()]
-                    if isinstance(a, bytes): return a.decode(errors="replace")
-                    if np.ndim(a)==0 and isinstance(a.item(), bytes): return a.item().decode(errors="replace")
-                    return a
-                return v
-            names=list(root.dtype.names or [])
-            # Typical orientation is 1x50 references; flatten each field and zip.
-            fields={n:deref(root[n]) for n in names}
-            n=max(np.asarray(v,dtype=object).size for v in fields.values())
-            out=[]
-            for i in range(n):
-                d={}
-                for k,v in fields.items():
-                    a=np.asarray(v,dtype=object).reshape(-1); z=a[i]
-                    while isinstance(z,np.ndarray) and z.size==1: z=z.reshape(-1)[0]
-                    d[k]=z
-                out.append(d)
+            def resolve(ref):
+                a = h[ref][()]
+                if a.dtype.kind in {"u", "i"} and a.size and a.ndim >= 1 and a.size < 1000:
+                    # MATLAB char arrays are uint16 code points, stored as a
+                    # column for IDs/categories/titles.
+                    vals = a.reshape(-1)
+                    try: return "".join(chr(int(v)) for v in vals).rstrip("\x00")
+                    except Exception: pass
+                return np.asarray(a)
+            fields = {}
+            for name in root:
+                refs = root[name][()]
+                fields[name] = [resolve(refs.reshape(-1)[i]) for i in range(refs.size)]
+            out = []
+            for i in range(50):
+                out.append({k: v[i] for k,v in fields.items()})
             return out
 
 
@@ -71,6 +67,17 @@ def _scalar(x: Any) -> Any:
 
 def _video_id(raw: Any) -> str:
     s=str(_scalar(raw)); return s.strip()
+
+
+def _load_info_urls(root: Path) -> dict[str, str]:
+    """Read the author's info TSV, preserving original YouTube URLs."""
+    for p in root.rglob("ydata-tvsum50-info.tsv"):
+        out = {}
+        for line in p.read_text(encoding="utf-8", errors="replace").splitlines():
+            cols = line.split("\t")
+            if len(cols) >= 4 and cols[1].strip() and cols[3].strip(): out[cols[1].strip()] = cols[3].strip()
+        if out: return out
+    return {}
 
 
 def _extract_safe(archive: Path, root: Path) -> list[Path]:
@@ -116,6 +123,8 @@ def _export_video_labels(raw: dict[str, Any], out_dir: Path, video_id: str) -> P
     metadata explicitly names this as summary importance and keeps all raters.
     """
     try:
+        out_dir.mkdir(parents=True, exist_ok=True); path = out_dir / f"{video_id}.npz"
+        if path.exists(): return path
         nframes = int(_scalar(raw.get("nframes")))
         anno = np.asarray(raw.get("user_anno"), dtype=np.float32)
         anno = np.squeeze(anno)
@@ -130,7 +139,6 @@ def _export_video_labels(raw: dict[str, Any], out_dir: Path, video_id: str) -> P
         for i in range(nshots): scores[edges[i]:edges[i+1]] = anno[i]
         labels = (scores.mean(axis=1) - 1.0) / 4.0
         labels = np.clip(labels, 0.0, 1.0)
-        out_dir.mkdir(parents=True, exist_ok=True); path = out_dir / f"{video_id}.npz"
         np.savez_compressed(path, scores=scores, labels=labels, mask=np.ones(nframes,dtype=np.bool_), frame_indices=np.arange(nframes,dtype=np.int64), video_id=np.asarray(video_id), annotation_type=np.asarray("summary_importance_2s"))
         return path
     except Exception:
@@ -145,6 +153,7 @@ def main() -> int:
     mat_candidates=list(root.rglob("ydata-tvsum50.mat")) + list(root.parent.rglob("ydata-tvsum50.mat"))
     if not mat_candidates: raise SystemExit("could not find ydata-tvsum50.mat after extraction")
     mat=mat_candidates[0]; raw=_mat_records(mat)
+    video_urls = _load_info_urls(root)
     if args.limit: raw=raw[:args.limit]
     # Archive paths vary slightly between source releases. Match by basename/id.
     videos=[]
@@ -168,7 +177,7 @@ def main() -> int:
             except Exception as e: status="failed"; missing.append(f"{vid}: ffprobe {e}")
         else: missing.append(vid)
         label_path = _export_video_labels(x, labels_root, vid)
-        recs.append(ManifestRecord(dataset="TVSum",version=DATASET_VERSION,video_id=vid,source_id=vid,source_group=group,path=str(p.resolve()) if p else None,source_url=ARCHIVE_URL,license="CC BY 3.0 (source YouTube videos; retain attribution)",license_url=LICENSE_URL,license_text_hash=None,download_status=status,sha256=sha256_file(p) if p else None,split=splits[group],annotation_type="summary_importance_2s",annotation_path=str(label_path.resolve()) if label_path else str(mat.resolve()),**meta,notes="TVSum summary importance proxy: 20-rater shot scores; not competition highlight/crop GT. archive_sha256="+archive_hash))
+        recs.append(ManifestRecord(dataset="TVSum",version=DATASET_VERSION,video_id=vid,source_id=vid,source_group=group,path=str(p.resolve()) if p else None,source_url=video_urls.get(vid),license="CC BY 3.0 claim in dataset README; Webscope DSA gate unresolved",license_url=LICENSE_URL,license_text_hash=LICENSE_TEXT_HASH,license_gate="blocked",download_status=status,sha256=sha256_file(p) if p else None,split=splits[group],annotation_type="summary_importance_2s",annotation_path=str(label_path.resolve()) if label_path else str(mat.resolve()),**meta,notes="TVSum summary proxy only; not competition highlight/crop GT. Package source="+ARCHIVE_URL+"; WebscopeReadMe requires signed Yahoo DSA, approved non-commercial academic use, and forbids redistribution; AIC training license unresolved. archive_sha256="+archive_hash))
     write_manifest(recs,args.manifest)
     summary={"dataset":"TVSum","version":DATASET_VERSION,"archive":str(archive),"archive_sha256":archive_hash,"archive_url":ARCHIVE_URL,"readme_url":README_URL,"license":"CC BY 3.0","records":len(recs),"verified_videos":sum(r.download_status=="verified" for r in recs),"missing_or_failed":missing,"annotation_type":"summary_importance_2s","spatial_ground_truth":False}
     args.manifest.with_suffix(".summary.json").write_text(json.dumps(summary,ensure_ascii=False,indent=2),encoding="utf-8")

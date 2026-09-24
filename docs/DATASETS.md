@@ -21,11 +21,18 @@ labels it `MIT`, `GPL`, or `CC`.
   The author page reports a 641M package (HTTP `Content-Length` is currently
   671,779,858 bytes); the downloaded file's SHA-256 is recorded in the manifest
   summary after completion.
-- **Source-media statement:** the author README says the collected YouTube
-  videos were released under Creative Commons CC-BY 3.0. We preserve the
-  README/URL and attribution in each manifest record. This statement is a
-  source-level claim, not a blanket license for any re-upload or mirror.
-  Training use remains limited to the stated attribution/research context.
+- **Source-media statement and license gate:** the package README says the
+  collected YouTube videos came with a Creative Commons (CC-BY) license. The
+  same archive includes `WebscopeReadMe.txt`, which is a stricter Yahoo
+  Webscope/Data Sharing Agreement notice: use is only for approved
+  non-commercial academic research by a signed-agreement recipient; commercial
+  use, redistribution, network storage and archiving are prohibited. These are
+  source/dataset terms, not merely a GitHub code license, and the YouTube
+  uploader's rights remain separate. The AIC competition use has **not** been
+  confirmed to satisfy that agreement. Therefore TVSum is **license-gated and
+  must not enter a training run** until the team obtains written permission or
+  a compliant source release. `download_status=verified` only means the bytes
+  and metadata were checked; it does not mean training permission.
 - **Annotation:** `ydata-tvsum50.mat`, `user_anno` (20 rater columns; shot-level
   importance). The preparation script keeps `annotation_type` as
   `summary_importance_2s`; downstream code must use an explicit task mask and
@@ -37,9 +44,10 @@ labels it `MIT`, `GPL`, or `CC`.
   before merging datasets.
 - **Manifest:** JSONL, one record per source video. Required provenance includes
   dataset/version/video/source group, source URL, license URL, download status,
-  SHA-256, ffprobe duration/fps/frame count/dimensions/rotation/audio, split,
+  explicit `license_gate`, SHA-256, ffprobe duration/fps/frame count/dimensions/rotation/audio, split,
   annotation type and annotation path. Missing or failed videos stay visible as
-  `missing`/`failed`; they are never silently trained.
+  `missing`/`failed`; they are never silently trained. Until the Webscope gate is
+  resolved, treat every record as `license_gate=blocked` in experiment planning.
 
 Run (on a machine with the already downloaded package):
 

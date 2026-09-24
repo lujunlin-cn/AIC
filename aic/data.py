@@ -6,14 +6,15 @@ from typing import Any, Iterable, Mapping, Optional
 
 MANIFEST_FIELDS = (
     "dataset", "version", "video_id", "source_id", "source_group", "path",
-    "source_url", "license", "license_url", "license_text_hash",
+    "source_url", "license", "license_url", "license_text_hash", "license_gate",
     "download_status", "sha256", "duration", "fps", "frame_count", "width",
     "height", "rotation", "has_audio", "split", "annotation_type",
     "annotation_path", "notes",
 )
-REQUIRED_FIELDS = ("dataset", "version", "video_id", "source_id", "source_group", "download_status", "split", "annotation_type")
+REQUIRED_FIELDS = ("dataset", "version", "video_id", "source_id", "source_group", "download_status", "license_gate", "split", "annotation_type")
 VALID_STATUS = {"pending", "downloaded", "verified", "missing", "failed", "not_licensed", "metadata_only"}
 VALID_SPLITS = {"train", "val", "test", "unassigned", "excluded"}
+VALID_LICENSE_GATES = {"approved", "blocked", "pending", "unknown"}
 
 @dataclasses.dataclass
 class ManifestRecord:
@@ -27,6 +28,7 @@ class ManifestRecord:
     license: Optional[str] = None
     license_url: Optional[str] = None
     license_text_hash: Optional[str] = None
+    license_gate: str = "unknown"
     download_status: str = "pending"
     sha256: Optional[str] = None
     duration: Optional[float] = None
@@ -45,6 +47,7 @@ class ManifestRecord:
         d = self.as_dict(); missing = [f for f in REQUIRED_FIELDS if d.get(f) in (None, "")]
         if missing: raise ValueError(f"manifest record {self.video_id!r} missing fields: {missing}")
         if self.download_status not in VALID_STATUS: raise ValueError(f"{self.video_id}: invalid download_status={self.download_status!r}")
+        if self.license_gate not in VALID_LICENSE_GATES: raise ValueError(f"{self.video_id}: invalid license_gate={self.license_gate!r}")
         if self.split not in VALID_SPLITS: raise ValueError(f"{self.video_id}: invalid split={self.split!r}")
         if require_path and self.download_status in {"downloaded", "verified"} and not self.path: raise ValueError(f"{self.video_id}: downloaded record has no path")
         if self.path and self.download_status in {"downloaded", "verified"} and not Path(self.path).exists(): raise ValueError(f"{self.video_id}: path does not exist: {self.path}")

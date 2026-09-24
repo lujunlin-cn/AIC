@@ -135,6 +135,8 @@ def save_feature_cache(path: str | Path, features: np.ndarray | Tensor,
     label_mask = np.asarray(label_mask, dtype=np.bool_)
     if labels.shape != (len(features),) or label_mask.shape != labels.shape:
         raise ValueError("labels and label_mask must be [T]")
+    if not np.isfinite(labels).all() or np.any((labels < 0) | (labels > 1)):
+        raise ValueError("labels must be finite values in [0, 1]")
     metadata = dict(metadata or {})
     metadata.update({"cache_version": CACHE_VERSION, "feature_dim": int(features.shape[1]),
                      "length": int(len(features)), "dtype": "float32"})
@@ -246,7 +248,10 @@ def extract_manifest(manifest: str | Path, output_dir: str | Path, model: nn.Mod
         if skip_existing and output.exists():
             results.append({"path": str(output), "video_id": video_id, "skipped": True})
             continue
-        result = extract_video_cache(model, record["path"], output, record.get("labels_path"),
+        # Cache manifests may retain the destination in ``path`` while the
+        # original licensed source is carried as ``video_path``.
+        video_path = record.get("video_path", record["path"])
+        result = extract_video_cache(model, video_path, output, record.get("labels_path"),
                                      device, sample_fps, batch_size,
                                      {key: record.get(key) for key in ("video_id", "split", "source_id", "source_group")})
         result["video_id"] = video_id

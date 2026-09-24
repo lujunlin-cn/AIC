@@ -8,6 +8,14 @@ Evidence：本地只有三份文档，远程项目与数据目录为空，无历
 
 Decision：先实现比赛契约和 A0；TVSum 作者原视频为首个数据源；用显式指标名称区分时间代理与联合比赛指标；无同版本官方脚本时称 official-like，不称官方一致性验证。
 
+## 2026-09-25：TVSum 许可证闸门
+
+Status：Blocked。
+
+Evidence：包内 `WebscopeReadMe.txt` 要求签署 Yahoo Data Sharing Agreement、获批非商业学术研究并禁止再分发/网络存储；README 的 CC-BY 表述不能自动覆盖该冲突。文件 SHA-256=`407d340bcd06fdc6d17374ebe6760b4a96816bcace228559c8283d9fb2520dea`，50/50 视频字节与解码元数据已核验。
+
+Decision：TVSum manifest 显式写 `license_gate=blocked`；默认 feature-manifest builder 跳过非 `approved` 记录。A0_001 在发现冲突前运行的 11.65 秒 proxy 实验只作失败审计，资产移入 `/data/aic/quarantine/TVSum_A0_001_blocked`，不得进入提交、比较或 SAFE_BASELINE。
+
 ## 2026-09-25：资源与时间边界
 
 Status：Accepted（用户硬约束）。

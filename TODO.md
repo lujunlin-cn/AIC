@@ -3,18 +3,19 @@
 ## P0
 
 - [x] 完整阅读 01 / 02 / AGENTS，检查本地与远程。
-- [ ] 初始化可追踪代码状态与隔离可复现环境。
-- [ ] 实现、测试原帧/PTS、旋转、letterbox 逆映射。
-- [ ] 完成逐帧 JSONL、严格 validator、官方公式本地 evaluator 数学测试。
-- [ ] 下载 TVSum 原包，记录许可/来源/hash/split/帧对齐。
-- [ ] A0_001 特征缓存、训练、时间代理验证、原视频推理与真实文件审计。
+- [x] 初始化可追踪代码状态与隔离可复现环境。
+- [x] 实现、测试原帧/PTS、旋转、letterbox 逆映射。
+- [x] 完成逐帧 JSONL、严格 validator、官方公式本地 evaluator 数学测试。
+- [x] 下载 TVSum 原包，记录许可/来源/hash/split/帧对齐；训练闸门因 Webscope 条款阻塞。
+- [x] A0_001 特征缓存、训练、时间代理验证与真实文件审计；结果已因许可闸门隔离，不可作为 baseline。
+- [ ] 取得 TVSum/AIC 书面许可，或换用许可明确数据后重跑 A0。
 - [ ] 取得官方样例/evaluator/初赛索引，核对未知契约并生成实际提交。
 - [ ] 锁定有证据的 SAFE_BASELINE，备份权重、配置、环境与代码。
 
 ## P1
 
 - [ ] 联合 GT 缺口：RetargetVid/DHF1K 空间诊断；不得伪造目标比例 GT。
-- [ ] 合法 VideoXum 训练子集及同源去重。
+- [ ] 合法 VideoXum 训练子集及同源去重（先核实原始媒体授权）。
 - [ ] A1 TSM 受控对照，再依次 A2 motion/quality/audio/composition。
 - [ ] A3a/b/c 固定时间帧集合下比较，保存失败案例。
 

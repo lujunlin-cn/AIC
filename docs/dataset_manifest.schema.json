@@ -3,19 +3,162 @@
   "title": "AIC dataset provenance manifest record",
   "type": "object",
   "additionalProperties": false,
-  "required": ["dataset", "version", "video_id", "source_id", "source_group", "download_status", "split", "annotation_type"],
+  "required": [
+    "dataset",
+    "version",
+    "video_id",
+    "source_id",
+    "source_group",
+    "download_status",
+    "license_gate",
+    "split",
+    "annotation_type"
+  ],
   "properties": {
-    "dataset": {"type":"string"}, "version": {"type":"string"},
-    "video_id": {"type":"string"}, "source_id": {"type":"string"}, "source_group": {"type":"string"},
-    "path": {"type":["string","null"]}, "source_url": {"type":["string","null"],"format":"uri"},
-    "license": {"type":["string","null"]}, "license_url": {"type":["string","null"],"format":"uri"},
-    "license_text_hash": {"type":["string","null"],"pattern":"^[0-9a-f]{64}$"},
-    "download_status": {"enum":["pending","downloaded","verified","missing","failed","not_licensed","metadata_only"]},
-    "sha256": {"type":["string","null"],"pattern":"^[0-9a-f]{64}$"},
-    "duration": {"type":["number","null"],"minimum":0}, "fps": {"type":["number","null"],"exclusiveMinimum":0},
-    "frame_count": {"type":["integer","null"],"minimum":0}, "width": {"type":["integer","null"],"minimum":1}, "height": {"type":["integer","null"],"minimum":1},
-    "rotation": {"type":["integer","null"]}, "has_audio": {"type":["boolean","null"]},
-    "split": {"enum":["train","val","test","unassigned","excluded"]}, "annotation_type": {"type":"string"},
-    "annotation_path": {"type":["string","null"]}, "notes": {"type":["string","null"]}
+    "dataset": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "video_id": {
+      "type": "string"
+    },
+    "source_id": {
+      "type": "string"
+    },
+    "source_group": {
+      "type": "string"
+    },
+    "path": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "source_url": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uri"
+    },
+    "license": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "license_url": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uri"
+    },
+    "license_text_hash": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "download_status": {
+      "enum": [
+        "pending",
+        "downloaded",
+        "verified",
+        "missing",
+        "failed",
+        "not_licensed",
+        "metadata_only"
+      ]
+    },
+    "sha256": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "duration": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "fps": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "exclusiveMinimum": 0
+    },
+    "frame_count": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "width": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 1
+    },
+    "height": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 1
+    },
+    "rotation": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "has_audio": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "split": {
+      "enum": [
+        "train",
+        "val",
+        "test",
+        "unassigned",
+        "excluded"
+      ]
+    },
+    "annotation_type": {
+      "type": "string"
+    },
+    "annotation_path": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "notes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "license_gate": {
+      "enum": [
+        "approved",
+        "blocked",
+        "pending",
+        "unknown"
+      ]
+    }
   }
 }

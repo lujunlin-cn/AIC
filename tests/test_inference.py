@@ -22,5 +22,6 @@ def test_dummy_raw_video_to_valid_jsonl(tmp_path):
     result = run_inference(index, output, dummy=True, stage="preliminary")
     assert result["validation"]["valid"]
     row = load_jsonl(output)[0]
-    assert row["predictions"] == []
+    assert len(row["predictions"]) == 5
+    assert row["predictions"][0]["frame"] == 0
     assert row["targetRatioWH"] == [9, 16]

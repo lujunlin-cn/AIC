@@ -1,8 +1,8 @@
 """Reproducible raw-video -> submission JSONL inference for A0.
 
 The pipeline deliberately expands sampled probabilities back to original decoded
-frame indices before emitting records. A `--dummy` run is only a contract smoke
-test; it is never labelled as a trained baseline.
+frame indices before emitting records. A `--dummy` run is the public center-crop
+format baseline (all decoded frames); it is never labelled as a trained model.
 """
 from __future__ import annotations
 
@@ -85,7 +85,10 @@ def run_inference(index_path: str | Path, output_path: str | Path, *,
             if observed != expected:
                 raise ContractError(f"{video_id}: index dimensions/frame count {expected} != decoded {observed}")
             if dummy:
-                selected = []
+                # Public baseline behavior: every original frame with the
+                # largest legal centered crop. This is a format/reference run,
+                # not a learned competition result.
+                selected = [stamp.index for stamp in frame_timeline(path)]
             else:
                 sampled = list(iter_sampled_frames(path, sample_fps=sample_fps, size=224))
                 if not sampled:

@@ -5,7 +5,7 @@
 ## 当前最佳
 
 - Current Best / Best <=100MB / Best <=500MB / Best Overall：A0_001 时间代理模型已完成；尚无官方联合 F_video。
-- Current Temporal Best：A1_001 TVSum proxy F1=0.016484（A0=0.011019，单 seed）；Current Spatial Best：尚无实测结果。
+- Current Temporal Best：A1_001 TVSum proxy F1=0.016484（A0=0.011019，A2=0.000000；单 seed）；Current Spatial Best：尚无实测结果。
 - SAFE_BASELINE：尚未锁定；当前 A0 仅在 TVSum 时间代理上验证，缺少空间 GT 和官方测试评测。
 
 ## 环境审计
@@ -20,7 +20,7 @@
 ## 当前瓶颈与运行任务
 
 - Current Bottleneck：缺少比赛本地视频、官方 evaluator 和联合空间 GT；已核对公开 baseline 紧凑索引契约。
-- Running Experiments：A1_001 已完成；准备 A2 低成本 Feature Bank 对照。
+- Running Experiments：A1_001 保留为当前时间控制；A2 Feature Bank 已完成并拒绝，下一步转向空间候选基线/误差分析。
 - Latest Failure：此前的许可证暂停已由用户授权解除；旧 A0 资产从 quarantine 恢复。
 - Next Experiments：A1 TSM → A2 Feature Bank；拿到比赛视频后先用 `scripts/build_video_index.py` 做真实帧数/PTS审计。
 - Remote smoke：在授权 GPU 外的 CPU/临时目录用合成视频跑通 compact index → enriched index → center-crop JSONL；1 行、5 原始帧、validator valid。该结果不作竞赛指标。

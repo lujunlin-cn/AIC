@@ -29,3 +29,12 @@
 - Result：相对 A0_001 的 proxy F1 提升约 49.6%（单 seed、TVSum summary proxy，不能外推官方 F_video）。新增参数 0；FP32 51,319,281 bytes，FP16 25,685,105 bytes，均 S 档数学假设。
 - Failure condition：后续需多 seed 和联合空间评估确认；当前不锁定 SAFE_BASELINE。
 - Status：Promising proxy result; continue controlled validation.
+
+## A2_001（已运行，拒绝）
+
+- Hypothesis：固定 32D motion/quality/audio/composition bank 融合到 A1 的 128D 时序投影，可以补充低成本边界与质量线索。
+- Change：仅增加 Feature Bank MLP；A1 backbone/cache、split、训练预算和 TSM 固定。
+- Actual run：物理 GPU 5；6 epochs，7.81s；proxy F1=0.000000。
+- Size：12,817,921 parameters；FP32 51,362,293 bytes；FP16 25,707,253 bytes；仍为 S 档数学假设。
+- Conclusion：当前 bank 定义/归一化造成明显代理退化；不继续无结构调参，保留代码供后续错误分析后重开。
+- Status：Rejected for current proxy; A1 remains temporal control.

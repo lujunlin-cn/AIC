@@ -115,6 +115,7 @@ def video_proxy_metrics(logits: torch.Tensor, labels: torch.Tensor, mask: torch.
     targets = labels.detach().float()[valid].cpu().numpy()
     if not len(scores):
         return {"video_id": video_id, "valid_frames": 0, "f1": None,
+                "tp": 0, "fp": 0, "fn": 0,
                 "precision": None, "recall": None, "prediction_rate": None,
                 "target_rate": None, "empty_prediction": True,
                 "score_quantiles": {}, "continuous_mae": None,
@@ -124,6 +125,7 @@ def video_proxy_metrics(logits: torch.Tensor, labels: torch.Tensor, mask: torch.
     tp = int(np.count_nonzero(pred & truth)); fp = int(np.count_nonzero(pred & ~truth)); fn = int(np.count_nonzero(~pred & truth))
     denom = 2 * tp + fp + fn
     return {"video_id": video_id, "valid_frames": int(len(scores)),
+            "tp": tp, "fp": fp, "fn": fn,
             "f1": float(2 * tp / denom) if denom else 1.0,
             "precision": float(tp / (tp + fp)) if tp + fp else None,
             "recall": float(tp / (tp + fn)) if tp + fn else None,

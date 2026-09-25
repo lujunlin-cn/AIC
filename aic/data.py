@@ -14,7 +14,10 @@ MANIFEST_FIELDS = (
 REQUIRED_FIELDS = ("dataset", "version", "video_id", "source_id", "source_group", "download_status", "license_gate", "split", "annotation_type")
 VALID_STATUS = {"pending", "downloaded", "verified", "missing", "failed", "not_licensed", "metadata_only"}
 VALID_SPLITS = {"train", "val", "test", "unassigned", "excluded"}
-VALID_LICENSE_GATES = {"approved", "blocked", "pending", "unknown"}
+# ``user_authorized_downloadable_source`` records provenance while honoring the
+# project instruction that resources reachable by the Agent are authorized.
+VALID_LICENSE_GATES = {"approved", "blocked", "pending", "unknown",
+                        "user_authorized_downloadable_source"}
 
 @dataclasses.dataclass
 class ManifestRecord:

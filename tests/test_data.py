@@ -22,6 +22,7 @@ def test_unknown_and_invalid_rejected():
 
 def test_license_gate_is_explicit():
     rec(license_gate='blocked').validate()
+    rec(license_gate='user_authorized_downloadable_source').validate()
     with pytest.raises(ValueError, match='license_gate'):
         rec(license_gate='maybe').validate()
 

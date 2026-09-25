@@ -80,6 +80,36 @@ def test_feature_bank_aux_and_spatial_modes_reach_raw_pipeline(tmp_path, monkeyp
             assert 0 <= x <= 80 and 0 <= y <= 40 and w > 0
 
 
+def test_raw_pipeline_accepts_frozen_postprocess_policy(tmp_path, monkeypatch):
+    video = tmp_path / "one.mp4"
+    _video(video)
+    index = tmp_path / "index.jsonl"
+    index.write_text(json.dumps({"video_id": "one", "video_path": str(video),
+                                 "width": 80, "height": 40, "frame_count": 5,
+                                 "targetRatioWH": [9, 16]}) + "\n")
+
+    class FakeModel(torch.nn.Module):
+        feature_bank_enabled = False
+
+        def encode_frames(self, images):
+            return torch.zeros((images.shape[0], 512), dtype=images.dtype)
+
+        def forward(self, features, aux=None):
+            # Two sampled scores; the frozen policy must be applied before
+            # interpolation to decoded original frames.
+            return torch.tensor([[0.0, 10.0]], dtype=features.dtype,
+                                device=features.device)
+
+    monkeypatch.setattr(aic.models, "load_inference_model",
+                        lambda path, device="cpu": (FakeModel(), {"loaded_bytes": 1}))
+    output = tmp_path / "postprocessed.jsonl"
+    policy = {"threshold": 0.5, "smoothing": "none", "smoothing_window": 1}
+    result = run_inference(index, output, model_path=tmp_path / "model.pt",
+                           postprocess_config=policy)
+    assert result["validation"]["valid"]
+    assert result["postprocess_config"]["threshold"] == 0.5
+
+
 def test_spatial_candidates_are_legal_and_saliency_moves_center():
     image = np.zeros((224, 224, 3), dtype=np.uint8)
     image[:, 175:] = 255

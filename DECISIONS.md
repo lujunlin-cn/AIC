@@ -69,3 +69,35 @@ Status：Rejected for current proxy。
 Evidence：A0_012 只替换 loss 为 SmoothL1，fixed-0.5 macro F1=`0.11679`，threshold 0.40=`0.14143`；A0_006 的 BCE 对照为 `0.15188`。
 
 Decision：保留 BCE；ranking loss 和更简单 temporal head 仍是下一轮实验，不把本次结果外推为所有回归损失无效。
+
+## 2026-09-25：冻结 local lockbox 与 zero-parameter policy
+
+Status：Accepted。
+
+Evidence：`splits/local_protocol_v1.json` 固定 27/16/7 source-group partitions。A0 Gaussian window 5 在 DEV 只有 `+0.00287`，在 lockbox 从 raw `0.114304` 降到 `0.112405`；gap/min-duration 也下降。
+
+Decision：保留 raw A0 作为工程 fallback；所有后处理参数必须从 train/dev 产生，lockbox 只做一次冻结比较。当前不升级 smoothing、rank normalization 或 hysteresis。
+
+## 2026-09-25：canonical internal TSM 暂不升级
+
+Status：Accepted for current route prioritization。
+
+Evidence：真实 layer1 feature-map TSM cache 的 chunk/full max error `1.81e-5`，参数增量为 0。五折固定 threshold 0.30：A0 `0.14631±0.03251`，internal TSM `0.13800±0.06299`，paired mean difference `-0.00830`；锁箱 internal TSM `0.175143`，强 A0_006 同 threshold `0.182033`。
+
+Decision：保留实现、cache 和 correctness regression；降低 canonical internal TSM 优先级，不把历史 final-embedding shift A1 与它混称。
+
+## 2026-09-25：DeiT-S/16 进入 S-tier challenger
+
+Status：Promising, not replacement。
+
+Evidence：timm DeiT-S/16 frozen features + 同一 Temporal U-Net，完整 FP16 bundle `46,618,447` bytes、`23,280,257` 参数。DEV median-9/threshold-0.35 为 `0.140241`，同一冻结 policy lockbox 为 `0.291867`；五折为 `0.14389±0.05173`；raw video → JSONL validator 已通过。
+
+Decision：保留为当前最强 S-tier temporal challenger。它仍只有 TVSum temporal proxy 证据，必须经过第二独立 split/OOD 和 AIC 联合 GT 才能替换 fallback。
+
+## 2026-09-25：OOD 与 VLM 暂不阻塞主线
+
+Status：Blocked subtask, mainline continues。
+
+Evidence：SumMe ModelScope 仓库 raw 视频是无进展的 LFS object；本轮停止下载，没有生成 OOD 分数。服务器没有可快速运行的本地 VLM teacher 权重。
+
+Decision：不把下载阻塞或缺 teacher 误写成模型结论；下一轮优先取得可验证的 SumMe/YouTube Highlights raw 子集，再做小规模 VLM pilot。

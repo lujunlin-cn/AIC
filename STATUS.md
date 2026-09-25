@@ -1,13 +1,18 @@
 # 项目状态
 
-更新：2026-09-25（Asia/Shanghai）。本轮完成评估链修复、TVSum 标签审计、修复版 A0/A1、5-fold split 稳定性、Feature Bank 分组、ViT B0 probe 和空间/raw 一致性诊断。
+更新：2026-09-25（Asia/Shanghai）。本轮继续完成 frozen local lockbox、零参数后处理、DeiT-S S-tier probe、canonical internal TSM 端到端 cache 对照和 raw-video JSONL 验证。
 
 ## 当前证据最强的候选
 
-- **开发集时间候选：A0_006 + prediction threshold 0.40**。TVSum temporal proxy video-macro F1=0.151875（threshold 在开发 val 上选择），micro F1=0.161220，平均选中率=0.07397，空预测率=0。它是时间代理候选，不是 AIC `F_video`。
+- **Best S temporal challenger：Bs0 DeiT-S/16 + median window 9 + threshold 0.35**。DEV macro F1=0.140241，frozen lockbox=0.291867，FP16 complete bundle=46,618,447 bytes；五个 source-group folds 的同策略 mean=0.14389±0.05173。它仍是 TVSum-only challenger，不是 AIC `F_video`。
+- **Engineering fallback：A0_006 + raw threshold 0.40**。DEV macro F1=0.151875，lockbox=0.114304；模型 FP16 25,685,169 bytes，center crop raw pipeline 可提交。
+- A0_006 的预注册 fold threshold 0.30 敏感性审计在 lockbox 为 0.185913；该行不覆盖 direct DEV-selected threshold 0.40 的结果。
 - A1_005（feature-level shift，准确命名，不是 backbone-internal TSM）在 threshold 0.35 时 macro F1=0.144745；固定 0.5 时为 0.121079。A0_006 在同一 proxy-v2 split 上更好。
 - 5 个 source-group fold 以固定 threshold 0.30 的结果：A0 mean=0.11457，std=0.07900；A1 mean=0.10787，std=0.07764。按每 fold 单独调阈值的探索值分别为 A0 0.14983±0.03692、A1 0.15422±0.03665，只能作为乐观诊断，不能作为锁箱分数。
 - ViT-B/16 frozen-feature B0 probe：threshold 0.30 时 macro F1=0.15928，FP16 bundle 174,986,447 bytes（M 档假设）；已完成真实视频 JSONL + validator，但仍需更多 split 和正式提交集验证。
+- B0 lockbox（threshold 0.30）macro F1=0.194505，仍为 M-tier reference。
+- canonical internal TSM：中间 `[T,64,H,W]` shift 的 chunk/full 最大差 `1.81e-5`，五折 mean `0.13800±0.06299`，lockbox threshold 0.35 为 `0.175143`；暂无稳定收益，已降级。
+- SumMe raw LFS 下载被阻塞；没有 OOD 分数。没有本地 VLM 权重，未生成 teacher labels。
 - Loss ablation：A0_012 只换 SmoothL1，fixed-0.5 macro F1=0.11679、threshold 0.40=0.14143，低于 BCE A0_006；当前保留 BCE。
 
 ## 评估和标签协议
@@ -27,11 +32,12 @@
 - inference 现在显式支持 `spatial_mode=center|saliency|subject`，A2 raw inference 会构造同定义 32D aux；三种模式真实视频均通过 JSONL validator。空间诊断只报告合法率、速度、加速度、jerk 和可视化，**没有伪造 IoU**。
 - 代表性空间接触表和诊断：`/data/aic/experiments/A1_004/spatial_diagnostics_J0nA4VgnoCo.jpg`、`reports/spatial_diagnostics_20260925.json`。
 
-## Feature Bank / TSM / B0
+## Feature Bank / TSM / B0 / Small ViT
 
 - Feature Bank 维审计：第 11、23–28、31 维恒零；0/8/9 与 5/22、7/16 存在重复或近重复。motion-only F1=0.02724、quality-only=0.01892、composition-only=0.01613、audio-zero=0；当前融合定义没有收益，不能解释成“真实音频无效”。
-- `temporal_shift_feature_map` 已实现并在 ResNet 中间 feature map 上做 canonical TSM probe：mean shift difference=0.12085，GPU batch overhead≈17.8%，参数为零。尚未全量 recache/end-to-end 训练，因此不把它与 A1 embedding shift 混称。
+- `temporal_shift_feature_map` 已在 ResNet layer1 的中间 feature map 上完成真实 recache/end-to-end 对照：chunk/full max feature error `1.81e-5`，无 TSM 与 TSM mean feature difference `0.08127`，参数增量为 0；五折没有稳定收益，因此不替换 A0。历史 A1 仍是 feature-level embedding shift。
 - B0 使用 torchvision ViT-B/16 ImageNet-1K frozen features + 同一 Temporal U-Net；真实 raw-video → JSONL → validator 已通过。bundle 实际 174.99 MB，超过 S 档，暂作为高分参照而非默认 fallback。
+- Bs0 使用 timm DeiT-S/16 ImageNet-1K frozen features + 同一 Temporal U-Net；完整 FP16 bundle 46.62 MB，五折与冻结 lockbox 已跑通。raw-video → DeiT-S → temporal → center crop → JSONL → validator 已通过（7 个 lockbox 视频共 9,325 个预测）。
 
 ## Engineering fallback
 
@@ -47,3 +53,4 @@
 
 - 没有 AIC 联合 temporal+crop GT，不能宣布任何 TVSum 数值为官方 `F_video`，也不能比较空间 IoU 或最终 size-weighted score。
 - 尚未取得官方 evaluator/比赛测试索引；提交流程只完成本地契约和 validator。
+- 尚未取得 SumMe/YouTube Highlights 可用 raw OOD 子集；SumMe ModelScope raw LFS 在本轮下载无进展后停止。

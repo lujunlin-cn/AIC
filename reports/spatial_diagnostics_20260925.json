@@ -1,0 +1,33 @@
+{
+  "video_id": "J0nA4VgnoCo",
+  "model": "A1_004",
+  "sample_fps": 2.0,
+  "selection_threshold": 0.1,
+  "selected_frames": 11158,
+  "ground_truth": null,
+  "note": "Policy diagnostics only; TVSum has no legal crop GT, so no IoU or competition F_video claim.",
+  "policies": {
+    "center": {
+      "x_min": 218.75,
+      "x_max": 218.75,
+      "mean_velocity_px_per_frame": 0.0,
+      "mean_acceleration_px_per_frame2": 0.0,
+      "mean_jerk_px_per_frame3": 0.0
+    },
+    "saliency": {
+      "x_min": 162.81677581922833,
+      "x_max": 265.25330435551837,
+      "mean_velocity_px_per_frame": 0.7446998826792101,
+      "mean_acceleration_px_per_frame2": 1.4895332719705892,
+      "mean_jerk_px_per_frame3": 2.9776404214077736
+    },
+    "subject": {
+      "x_min": 201.0803946915393,
+      "x_max": 233.27488358114363,
+      "mean_velocity_px_per_frame": 0.19232556714695923,
+      "mean_acceleration_px_per_frame2": 0.3846856135996099,
+      "mean_jerk_px_per_frame3": 0.7690848697285314
+    }
+  },
+  "visualization": "/data/aic/experiments/A1_004/spatial_diagnostics_J0nA4VgnoCo.jpg"
+}

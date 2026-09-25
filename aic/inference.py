@@ -98,7 +98,8 @@ def run_inference(index_path: str | Path, output_path: str | Path, *,
                   sample_fps: float = 2.0, threshold: float = .5,
                   device: str = "cpu", stage: str = "preliminary",
                   model_size_mb: float | None = None, dummy: bool = False,
-                  batch_size: int = 16, spatial_mode: str = "center") -> dict[str, Any]:
+                  batch_size: int = 16, spatial_mode: str = "center",
+                  postprocess_config: Mapping[str, Any] | None = None) -> dict[str, Any]:
     """Run A0 and validate the complete output before replacing output_path."""
     if model_path is None and not dummy:
         raise ContractError("model_path is required unless --dummy is explicit")
@@ -153,7 +154,18 @@ def run_inference(index_path: str | Path, output_path: str | Path, *,
                     aux = compute_feature_bank(np.stack(images, axis=0))
                     model_aux = __import__("torch").from_numpy(aux).unsqueeze(0).to(device)
                 scores = model(model_input, model_aux)[0].detach().float().cpu().sigmoid().numpy()
-                selected = expand_scores(frame_timeline(path), [x[1] for x in sampled], scores, threshold)
+                sampled_times = [x[1] for x in sampled]
+                if postprocess_config is None:
+                    selected = expand_scores(frame_timeline(path), sampled_times, scores, threshold)
+                else:
+                    # Apply exactly the versioned score policy used by cached
+                    # validation at sampled timesteps, then interpolate the
+                    # resulting binary path to original decoded frames.
+                    from .postprocess import PostprocessConfig, select_temporal
+                    policy = PostprocessConfig(**dict(postprocess_config))
+                    sampled_mask = select_temporal(scores, policy)
+                    selected = expand_scores(frame_timeline(path), sampled_times,
+                                             sampled_mask.astype(np.float32), .5)
             frame_crops: dict[int, Sequence[float]] | None = None
             if not dummy and spatial_mode != "center":
                 # Dense frame selection is expanded from sampled timestamps.
@@ -176,6 +188,7 @@ def run_inference(index_path: str | Path, output_path: str | Path, *,
     return {"output": str(output_path), "dummy": dummy, "rows": len(rows),
             "selected_predictions": sum(len(r["predictions"]) for r in rows),
             "model_size_mb": model_size_mb, "spatial_mode": spatial_mode,
+            "postprocess_config": dict(postprocess_config) if postprocess_config is not None else None,
             "validation": report.to_dict()}
 
 
@@ -194,14 +207,21 @@ def main(argv=None) -> int:
     parser.add_argument("--batch-size", type=int, default=16)
     parser.add_argument("--spatial-mode", choices=SPATIAL_MODES, default="center",
                         help="center, saliency, or lightweight subject proxy")
+    parser.add_argument("--postprocess-config",
+                        help="JSON object or path to a frozen PostprocessConfig")
     args = parser.parse_args(argv)
     try:
+        postprocess = None
+        if args.postprocess_config:
+            raw = Path(args.postprocess_config).read_text() if Path(args.postprocess_config).is_file() else args.postprocess_config
+            postprocess = json.loads(raw)
         result = run_inference(index_path=args.index, output_path=args.output,
                                model_path=args.model, video_root=args.video_root,
                                sample_fps=args.sample_fps, threshold=args.threshold,
                                device=args.device, stage=args.stage,
                                model_size_mb=args.model_size_mb, dummy=args.dummy,
-                               batch_size=args.batch_size, spatial_mode=args.spatial_mode)
+                               batch_size=args.batch_size, spatial_mode=args.spatial_mode,
+                               postprocess_config=postprocess)
         print(json.dumps(result, ensure_ascii=False, indent=2))
         return 0
     except (ContractError, OSError, ValueError, FloatingPointError) as error:

@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """Zero-shot raw SumMe evaluation: frozen TVSum models, no OOD tuning."""
-import argparse,hashlib,json,time
+import argparse,hashlib,json,time,os,subprocess,sys,shlex
 from pathlib import Path
 import numpy as np,torch
 from scipy.io import loadmat
 from aic.models import load_inference_model
 from aic.features import _letterbox
-from aic.video import probe_video,iter_sampled_frames
+from aic.video import probe_video
+from aic.annotated_video import iter_annotated_cfr_frames, PROTOCOL
 from aic.temporal_metrics import ranking_report,summary_mask
 from aic.contract import VideoMetadata,center_crop,write_submission
 
@@ -14,6 +15,10 @@ def main():
     ap=argparse.ArgumentParser();ap.add_argument("--config",required=True);ap.add_argument("--model",required=True)
     a=ap.parse_args();cfg=json.loads(Path(a.config).read_text());job=cfg["models"][a.model]
     root=Path(cfg["root"]);out=Path(cfg["output"])/a.model;out.mkdir(parents=True,exist_ok=False)
+    (out/"config.json").write_text(json.dumps(cfg,indent=2)+"\n")
+    (out/"command.txt").write_text(shlex.join([sys.executable,*sys.argv])+"\n")
+    (out/"git_commit.txt").write_text(cfg["git_commit"]+"\n")
+    (out/"environment.txt").write_text(sys.version+"\n"+str(torch.__version__)+"\nCUDA_VISIBLE_DEVICES="+os.environ.get("CUDA_VISIBLE_DEVICES","")+"\n"+subprocess.check_output(["nvidia-smi"],text=True))
     torch.set_num_threads(4);model,meta=load_inference_model(job["bundle"],"cuda:0")
     rows=[];audit=[];sub=[];index={};start=time.perf_counter()
     for p in sorted((root/"videos").glob("*.mp4")):
@@ -23,7 +28,8 @@ def main():
             "included":info.frame_count==n,"split":"ood_evaluation_only","dataset":"SumMe","version":"zenodo4884870_subset8_v1"}
         audit.append(record)
         if info.frame_count!=n:continue
-        t=time.perf_counter();sampled=list(iter_sampled_frames(p,sample_fps=2,size=224))
+        t=time.perf_counter();sampled=list(iter_annotated_cfr_frames(p,
+            annotation_fps=float(gt["FPS"].item()),annotation_count=n,sample_fps=2,size=224))
         with torch.inference_mode():
             feats=[]
             for j in range(0,len(sampled),16):
@@ -55,7 +61,9 @@ def main():
         print(json.dumps(row),flush=True)
     val=write_submission(out/"submission.jsonl",sub,index,stage="final",actual_model_size_mb=meta["loaded_bytes"]/1e6)
     keys=["native_mean_user_f1","native_max_user_f1","spearman","kendall_tau_b","ndcg","ndcg_at_15pct"]
-    report={"protocol":"SUMME_RAW_ZERO_SHOT_SUBSET8_V1","model":a.model,"config":cfg,"weights":meta["loaded_bytes"],
+    report={"protocol":"SUMME_RAW_ZERO_SHOT_SUBSET8_V2","decode_protocol":PROTOCOL,
+            "caveat":"Size-selected pilot; exact counts and FPS, broken mirror PTS; decoded-order annotation assumption",
+            "model":a.model,"config":cfg,"weights":meta["loaded_bytes"],
             "bundle_sha256":meta["loaded_sha256"],"parameter_count":sum(p.numel() for p in model.parameters()),
             "strict_video_count":len(rows),"per_video":rows,"manifest":audit,
             "means":{k:float(np.mean([r[k] for r in rows if r[k] is not None])) for k in keys},

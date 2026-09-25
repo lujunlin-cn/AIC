@@ -128,6 +128,26 @@ def temporal_shift(features: Tensor, fold_div: int = 8) -> Tensor:
     return shifted
 
 
+def temporal_shift_feature_map(features: Tensor, fold_div: int = 8) -> Tensor:
+    """Canonical TSM on an intermediate ``[B,T,C,H,W]`` feature map.
+
+    This is deliberately separate from :func:`temporal_shift`, which is the
+    historical feature-level embedding shift used by A1.  The operation moves
+    channels along the video-time axis before the remaining CNN blocks and
+    therefore cannot reuse a final embedding cache as an equivalent encoder.
+    """
+    if features.ndim != 5 or features.shape[1] == 0:
+        raise ValueError(f"Expected nonempty [B,T,C,H,W], got {tuple(features.shape)}")
+    fold = features.shape[2] // fold_div
+    if fold == 0:
+        return features
+    shifted = torch.zeros_like(features)
+    shifted[:, 1:, :fold] = features[:, :-1, :fold]
+    shifted[:, :-1, fold:2 * fold] = features[:, 1:, fold:2 * fold]
+    shifted[:, :, 2 * fold:] = features[:, :, 2 * fold:]
+    return shifted
+
+
 class A0Model(nn.Module):
     def __init__(self, feature_dim: int = 512, backbone: nn.Module | None = None,
                  temporal_shift_enabled: bool = False, feature_bank_enabled: bool = False):
@@ -272,6 +292,9 @@ def load_inference_model(path: str | Path, device: str | torch.device = "cpu"
                          ) -> tuple[A0Model, dict[str, Any]]:
     """Offline loader: the single file includes all actually used model weights."""
     bundle = torch.load(path, map_location="cpu", weights_only=True)
+    if bundle.get("format_version") == 1 and bundle.get("architecture") == "B0_vit_b16_temporal_probe":
+        from .b0 import load_b0_bundle
+        return load_b0_bundle(path, device)
     if bundle.get("format_version") != 1 or bundle.get("architecture") not in {
         "A0_resnet18_tunet", "A1_resnet18_tsm_tunet", "A2_resnet18_featurebank_tunet"
     }:

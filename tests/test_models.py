@@ -7,7 +7,8 @@ import torch
 
 from aic.features import (FeatureCacheDataset, align_labels, collate_feature_batch,
                           load_feature_cache, save_feature_cache)
-from aic.models import A0Model, TemporalUNet, export_inference, load_inference_model, predict_features, temporal_shift
+from aic.models import (A0Model, TemporalUNet, export_inference, load_inference_model,
+                        predict_features, temporal_shift, temporal_shift_feature_map)
 
 
 def test_temporal_unet_variable_short_lengths_and_finite():
@@ -123,6 +124,15 @@ def test_temporal_shift_is_parameter_free_and_loader_roundtrips(tmp_path: Path):
     assert audit["exports"]["fp32"]["parameter_count"] == sum(p.numel() for p in model.parameters())
     loaded, _ = load_inference_model(tmp_path / "model_fp32.pt")
     assert loaded.temporal_shift_enabled
+
+
+def test_internal_tsm_operates_on_spatial_feature_maps():
+    x = torch.arange(1 * 3 * 16 * 2 * 2, dtype=torch.float32).reshape(1, 3, 16, 2, 2)
+    y = temporal_shift_feature_map(x, fold_div=4)
+    assert y.shape == x.shape and torch.isfinite(y).all()
+    assert torch.equal(y[:, 1:, :4], x[:, :-1, :4])
+    assert torch.equal(y[:, :-1, 4:8], x[:, 1:, 4:8])
+    assert torch.equal(y[:, :, 8:], x[:, :, 8:])
 
 
 def test_feature_bank_fusion_has_finite_output_and_extra_head():

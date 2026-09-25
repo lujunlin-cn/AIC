@@ -1,0 +1,23 @@
+{
+  "run_id": "A0_010",
+  "train_manifest": "/data/aic/features/folds/fold3_train.jsonl",
+  "val_manifest": "/data/aic/features/folds/fold3_val.jsonl",
+  "output_dir": "/data/aic/experiments/A0_010",
+  "backbone_state": "/data/aic/pretrained/resnet18_headless.pt",
+  "feature_dim": 512,
+  "freeze_backbone": true,
+  "epochs": 15,
+  "batch_size": 1,
+  "num_workers": 2,
+  "learning_rate": 0.001,
+  "weight_decay": 0.0001,
+  "seed": 20260925,
+  "patience": 5,
+  "min_delta": 0.0001,
+  "prediction_threshold": 0.5,
+  "grad_clip": 1.0,
+  "amp": true,
+  "max_hours": 1.0,
+  "device": "auto",
+  "resume": null
+}

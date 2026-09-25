@@ -1,51 +1,46 @@
 # 实验历史
 
-2026-09-25 从空实现开始。真实训练资产和结果受许可证闸门单独标记。
+本项目所有 TVSum 数值都是 `TVSum temporal proxy`，不是 AIC 官方 `F_video`；没有 crop GT 时 `official_f_video` 和 competition score 保持 null。
 
-## A0_001（已运行，TVSum 时间代理）
+## 本轮评估修复
 
-- Hypothesis：冻结 ImageNet ResNet18 特征上的 Temporal U-Net 可以从 TVSum 人工重要性学得时间排序信号。
-- Current bottleneck：无端到端基线和可评测联合标注。
-- Change：首个 A0，最大合法居中 crop；不启用 TSM/Feature Bank/teacher。
-- Control：相同来源隔离验证视频上的常数选择/均匀预算参考。
-- Expected impact：验证是否存在可重复的时间信号，不预报比赛收益。
-- Model-size impact：完整 backbone + head 预计 FP32 约 51MB，最终以实际导出为准。
-- Compute estimate：单卡物理 GPU 2；先测特征吞吐，训练正常目标远小于 11h。
-- Failure condition：非有限 loss、帧映射不符、数据泄漏或不优于合理参考时不能锁定 SAFE_BASELINE。
-- Metrics：TVSum temporal proxy 与官方公式合成测试分开；没有真实 crop GT 时比赛 F_video/score 留空。
-- Actual run：远程物理 GPU 2；缓存 43 个 TVSum 视频；训练 10 epochs，11.65s；proxy F1 0.011019；导出 FP32 51,319,217 bytes（51.319 MB）/ FP16 25,685,041 bytes（25.685 MB），均 S 档数学假设。
-- Result：用户授权可下载数据用于实验；A0 作为 TVSum 时间代理结果恢复。该 proxy 指标仍不是官方 F_video，也没有空间 GT。
-- Artifact：从远程 `/data/aic/quarantine/TVSum_A0_001_blocked` 恢复到 `/data/aic/features/A0/cache` 与 `/data/aic/experiments/A0_001`。
-- Status：Accepted for controlled research; not SAFE_BASELINE until official-like joint evaluation exists.
+- GT 与 prediction threshold 解耦：固定 `tvsum_summary_mean_norm_ge_0.5_v1`，prediction threshold 单独调节。
+- `run_epoch` 改为 per-video 统计和 video-macro 选模；同时保存 micro、precision、recall、selection rate、empty rate、quantiles、MAE、Spearman。
+- `TemporalUNet` / `A0Model` 接收真实 `lengths`，消除 right-padding 对 GroupNorm、pooling、interpolation 的影响。旧路径实测 5→12 最大差 0.3392、8→12 最大差 0.5733，修复后差为 0。
+- MAT/TSV audit：50 个 `user_anno` 均为 `(20,nframes)`，2 秒是收集协议，发布数据已经重复到帧级；旧均匀展开对现有版本是 identity，最大差 <5e-8。
 
-## A1_001（已运行）
+## 参考基线
 
-- Hypothesis：在相同 TVSum cache、split、Temporal U-Net、seed、训练预算和模型大小下，参数为零的局部通道时移可改善短时边界代理指标。
-- Change：仅启用 `temporal_shift=true`；A0 cache 与 backbone 固定不变。
-- Control：A0_001。
-- Expected effect：时间代理 F1 可能改善；不预设比赛联合收益。
-- Model-size impact：新增 0 个参数；导出文件只因 metadata/序列化轻微变化，实际 bytes 重新审计。
-- Actual run：远程物理 GPU 2；10 epochs，12.22s；proxy F1 0.016484。
-- Result：相对 A0_001 的 proxy F1 提升约 49.6%（单 seed、TVSum summary proxy，不能外推官方 F_video）。新增参数 0；FP32 51,319,281 bytes，FP16 25,685,105 bytes，均 S 档数学假设。
-- Failure condition：后续需多 seed 和联合空间评估确认；当前不锁定 SAFE_BASELINE。
-- Status：Promising proxy result; continue controlled validation.
+`PROXY_BASELINES_001`（16-video val，预算只由 train target rate 推导）：all-negative `0.00000`、all-positive `0.08715`、constant train mean `0.00000`、uniform budget `0.05225`、random budget `0.06708`、linear ridge `0.03383`。linear ridge 的 mean Spearman 为 `0.2866`，但固定 0.5 selection 仍不如 all-positive，说明 calibration 是独立问题。
 
-### A0/A1 paired seed check
+## Repaired A0/A1
 
-- Seeds 20260926/20260927 were run with identical controls on physical GPUs 2/4.
-- A0 proxy F1: `0.000000`, `0.000000`; A1 proxy F1: `0.071770`, `0.000000`.
-- Including seed 20260925, A0 mean is `0.003673`, A1 mean is `0.029418`; variance is very high and one paired difference is zero. This is evidence to retain A1 for further data/metric work, not evidence of a stable competition gain.
+| run | change | fixed-0.5 macro F1 | dev threshold | tuned macro F1 | fp16 bytes | time |
+|---|---|---:|---:|---:|---:|---:|
+| A0_004 | A0, batch=2, lengths-aware | 0.01316 | — | — | 25,685,169 | 10.76s |
+| A0_005 | A0, batch=1, lengths-aware | 0.04828 | 0.40 | 0.15010 | 25,685,169 | 29.81s |
+| A0_006 | A0, proxy-v2 labels, batch=1 | 0.05661 | 0.40 | **0.15188** | 25,685,169 | 29.95s |
+| A1_004 | A0 + feature-level embedding shift | 0.09607 | 0.30 | 0.12685 | 25,685,169 | 27.31s |
+| A1_005 | A1, proxy-v2 labels, batch=1 | 0.12108 | 0.35 | 0.14474 | 25,685,169 | 30.19s |
 
-## A2_001（已运行，拒绝）
+At fixed 0.5, A1_005 looks stronger; after dev-only threshold calibration A0_006 is stronger on the same split. This is a calibration/post-processing result, not proof that feature-level shift is harmful in general.
 
-- Hypothesis：固定 32D motion/quality/audio/composition bank 融合到 A1 的 128D 时序投影，可以补充低成本边界与质量线索。
-- Change：仅增加 Feature Bank MLP；A1 backbone/cache、split、训练预算和 TSM 固定。
-- Actual run：物理 GPU 5；6 epochs，7.81s；proxy F1=0.000000。
-- Size：12,817,921 parameters；FP32 51,362,293 bytes；FP16 25,707,253 bytes；仍为 S 档数学假设。
-- Conclusion：当前 bank 定义/归一化造成明显代理退化；不继续无结构调参，保留代码供后续错误分析后重开。
-- Status：Rejected for current proxy; A1 remains temporal control.
+## Source-group split stability
 
-## A3a（实现完成，待空间 GT）
+Five deterministic source-group folds were trained with the same seed, batch=1 and 15-epoch budget. Fixed threshold 0.30 gives A0 `[0.08529,0.20472,0.11486,0,0.16796]`, mean `0.11457`, std `0.07900`; A1 `[0.09380,0.21172,0.09111,0,0.14274]`, mean `0.10787`, std `0.07764`. Per-fold threshold tuning gives optimistic A0 `0.14983±0.03692` and A1 `0.15422±0.03665`; those thresholds were selected on each validation fold and are not lockbox evidence. Fold variance is large and prevents a stable A1 win claim.
 
-- Change：新增无权重合法 crop candidate、gradient saliency center、shot-aware EMA smoothing；最大合法居中 crop 仍是固定控制。
-- Evaluation gate：必须在目标比例的人工/合法 crop GT 上固定 temporal frame 集合比较；TVSum 没有 spatial GT，因此暂不训练或宣称空间收益。
+## Feature Bank grouped ablation
+
+Before training, dimension audit found恒零 dims 11, 23–28, 31 and duplicate/near-duplicate pairs (0,8), (0,9), (5,22), (7,16). With the same 32D head and repaired batch=1 protocol: motion-only A2_002 `0.02724`, quality-only A2_003 `0.01892`, composition-only A2_004 `0.01613`, audio-zero A2_005 `0.00000`. The current bank is rejected; this does not test real waveform audio.
+
+## Canonical internal TSM probe
+
+`temporal_shift_feature_map` shifts channels on a ResNet intermediate `[B,T,C,H,W]` map. GPU 7 probe: mean output difference `0.12085`, parameter-free, average batch time 2.524ms→2.973ms (`+17.8%`). A full recache/end-to-end training has not yet been run; historical A1 is only final-embedding shift.
+
+## ViT B0
+
+`B0_probe_vit_b16` uses frozen torchvision ViT-B/16 ImageNet-1K features (768D) and the same Temporal U-Net. Fixed-0.5 macro F1 `0.06760`; dev threshold 0.30 `0.15928`. A real raw-video → B0 bundle → saliency crop → JSONL validator run passed. FP16 bundle is `174,986,447` bytes (M tier under current decimal assumption), so it remains a probe until multi-fold and joint AIC evaluation justify the size penalty.
+
+## Spatial and decoder diagnostics
+
+`center|saliency|subject` are now explicit raw inference modes. On one real TVSum video, all modes produced valid JSONL; no crop IoU was claimed. Remote PyAV 15.1 cache/raw features differed by at most ~2.5e-5 and probabilities by ~2.1e-7; local PyAV 18.1 produced larger drift, so the remote environment is the reproducibility target.

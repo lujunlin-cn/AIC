@@ -1,34 +1,46 @@
 # 项目状态
 
-更新：2026-09-25（Asia/Shanghai）。阶段：Phase 0 审计完成，Phase 1 实施中；A0 时间代理已完成，准备 A1。
+更新：2026-09-25（Asia/Shanghai）。本轮完成评估链修复、TVSum 标签审计、修复版 A0/A1、5-fold split 稳定性、Feature Bank 分组、ViT B0 probe 和空间/raw 一致性诊断。
 
-## 当前最佳
+## 当前证据最强的候选
 
-- Current Best / Best <=100MB / Best <=500MB / Best Overall：A0_001 时间代理模型已完成；尚无官方联合 F_video。
-- Current Temporal Best：A1_002 TVSum proxy F1=0.071770；three-seed paired A1 mean=0.029418 vs A0 mean=0.003673, with high variance；Current Spatial Best：尚无实测结果。
-- SAFE_BASELINE：尚未锁定；当前 A0 仅在 TVSum 时间代理上验证，缺少空间 GT 和官方测试评测。
+- **开发集时间候选：A0_006 + prediction threshold 0.40**。TVSum temporal proxy video-macro F1=0.151875（threshold 在开发 val 上选择），micro F1=0.161220，平均选中率=0.07397，空预测率=0。它是时间代理候选，不是 AIC `F_video`。
+- A1_005（feature-level shift，准确命名，不是 backbone-internal TSM）在 threshold 0.35 时 macro F1=0.144745；固定 0.5 时为 0.121079。A0_006 在同一 proxy-v2 split 上更好。
+- 5 个 source-group fold 以固定 threshold 0.30 的结果：A0 mean=0.11457，std=0.07900；A1 mean=0.10787，std=0.07764。按每 fold 单独调阈值的探索值分别为 A0 0.14983±0.03692、A1 0.15422±0.03665，只能作为乐观诊断，不能作为锁箱分数。
+- ViT-B/16 frozen-feature B0 probe：threshold 0.30 时 macro F1=0.15928，FP16 bundle 174,986,447 bytes（M 档假设）；已完成真实视频 JSONL + validator，但仍需更多 split 和正式提交集验证。
 
-## 环境审计
+## 评估和标签协议
 
-- 本地初始仅有 01、02、AGENTS；无 Git、代码、历史实验与数据。
-- SSH 成功；远程 `/home/supie/AIC` 与 `/data/aic` 初始为空。
-- 远程驱动 535.309.01，报告最高 CUDA 12.2；系统 Python 3.10.12 无 PyTorch。实际可用 `/opt/miniconda3/envs/cv`（Python 3.12、PyTorch 2.9.1+cu128、torchvision 0.24.1、PyAV 15.1）。
-- 8 张 V100-SXM2-32GB；授权 1、2、4、5、6、7。00:15 检查 GPU 1 有既存进程，优先 GPU 2；0、3 不使用。启动前必须重查。
-- `/data` 可用约 1.6TB；远程根盘约 148GB；本地约 750GB。
-- 两端 ffmpeg、ffprobe、Git、rsync 可用；远程 tmux 可用。
+- 固定 GT 定义：`tvsum_summary_mean_norm_ge_0.5_v1`；prediction threshold 独立配置，只能在 train/dev 选择。
+- 报告 per-video F1、video-macro、micro 诊断、选中率、GT 比例、空预测率、precision/recall、分数分位数、连续 MAE 和 Spearman。
+- TVSum v1.1 MAT 的 50 条 `user_anno` 全部为 `(20,nframes)`，2 秒是收集评分的片段语义，发布文件已经逐原始帧展开。`published_mat_per_frame_identity` 审计显示旧 `linspace` 对这些视频是恒等映射，标签错位不是接近零 F1 的主要原因。
+- 作者 15% summary/knapsack evaluator 与本项目固定二值 temporal proxy 分开记录；TVSum 没有合法 composition crop GT。
+- 审计产物：`reports/tvsum_annotation_audit_v3.jsonl`、`reports/tvsum_manifest_v3.jsonl`。
 
-## 当前瓶颈与运行任务
+## 一致性和空间状态
 
-- Current Bottleneck：缺少比赛本地视频、官方 evaluator 和联合空间 GT；已核对公开 baseline 紧凑索引契约。
-- Running Experiments：A1 保留为当前时间候选但需要更稳定的标签/指标；A2 Feature Bank 已完成并拒绝，下一步转向空间候选基线/误差分析。
-- Latest Failure：此前的许可证暂停已由用户授权解除；旧 A0 资产从 quarantine 恢复。
-- Next Experiments：A1 TSM → A2 Feature Bank；拿到比赛视频后先用 `scripts/build_video_index.py` 做真实帧数/PTS审计。
-- Remote smoke：合成视频 center-crop pipeline 已通过；A1_002 FP32（51.319345 MB）又在一条真实 TVSum 原视频上完成 raw-video → sampled features → original-frame expansion → JSONL 校验，输出 1 行、0 个高光预测且 validator valid。该结果不作竞赛指标。
+- padding 确有影响：旧实现 5→12 timestep 最大有效 logit 差异 0.3392，8→12 差异 0.5733；`lengths` 路径逐视频计算后回归误差为 0。
+- 远程同环境 PyAV 15.1 的 raw→backbone→temporal 与 cache 路径：frame/timestamp 一致，feature 最大差约 2.5e-5，aux 完全一致，probability 最大差约 2.1e-7。当地 PyAV 18.1 与远程解码会产生明显漂移，正式推理固定远程环境/版本。
+- inference 现在显式支持 `spatial_mode=center|saliency|subject`，A2 raw inference 会构造同定义 32D aux；三种模式真实视频均通过 JSONL validator。空间诊断只报告合法率、速度、加速度、jerk 和可视化，**没有伪造 IoU**。
+- 代表性空间接触表和诊断：`/data/aic/experiments/A1_004/spatial_diagnostics_J0nA4VgnoCo.jpg`、`reports/spatial_diagnostics_20260925.json`。
 
-## 时间与外部依赖
+## Feature Bank / TSM / B0
 
-- 01 中初赛结果截止为 2026-09-30 11:30，报名截止为 11:00；官方文本时区待平台确认。
-- 尚未取得比赛样例、索引、官方 evaluator 与测试视频；不推定已报名。
-- TVSum 无 composition GT；其时间代理指标不得声称是实际比赛 F_video。
-- TVSum manifest 保留 `license_gate` 和条款哈希作 provenance；本项目按用户授权继续使用可下载数据。
-- MB 字节基数、旋转/VFR 官方约定等保留为待核对，代码采用显式本地约定。
+- Feature Bank 维审计：第 11、23–28、31 维恒零；0/8/9 与 5/22、7/16 存在重复或近重复。motion-only F1=0.02724、quality-only=0.01892、composition-only=0.01613、audio-zero=0；当前融合定义没有收益，不能解释成“真实音频无效”。
+- `temporal_shift_feature_map` 已实现并在 ResNet 中间 feature map 上做 canonical TSM probe：mean shift difference=0.12085，GPU batch overhead≈17.8%，参数为零。尚未全量 recache/end-to-end 训练，因此不把它与 A1 embedding shift 混称。
+- B0 使用 torchvision ViT-B/16 ImageNet-1K frozen features + 同一 Temporal U-Net；真实 raw-video → JSONL → validator 已通过。bundle 实际 174.99 MB，超过 S 档，暂作为高分参照而非默认 fallback。
+
+## Engineering fallback
+
+当前可运行 fallback 是 ResNet18 + repaired Temporal U-Net + center crop，模型 FP16 25,685,169 bytes、FP32 51,319,345 bytes；阈值暂用开发集锁定值，拿到官方输入/GT 后必须重新选择。没有官方 evaluator、比赛视频或联合 spatial GT，`official_f_video` 和 competition score 保持 null。
+
+## 远程资源
+
+- 远程代码：`/home/supie/AIC`；大数据/权重/实验在 `/data/aic`。
+- 当前使用的 V100 物理卡仅为 2、4、5、6、7；0、3 未使用，1 保留既有进程。
+- 远程 PyTorch 2.9.1+cu128、torchvision 0.24.1、PyAV 15.1；所有训练均远低于 12 小时并使用外层 timeout。
+
+## 未验证项
+
+- 没有 AIC 联合 temporal+crop GT，不能宣布任何 TVSum 数值为官方 `F_video`，也不能比较空间 IoU 或最终 size-weighted score。
+- 尚未取得官方 evaluator/比赛测试索引；提交流程只完成本地契约和 validator。

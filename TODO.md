@@ -2,30 +2,24 @@
 
 ## P0
 
-- [x] 完整阅读 01 / 02 / AGENTS，检查本地与远程。
-- [x] 初始化可追踪代码状态与隔离可复现环境。
-- [x] 实现、测试原帧/PTS、旋转、letterbox 逆映射。
-- [x] 完成逐帧 JSONL、严格 validator、官方公式本地 evaluator 数学测试。
-- [x] raw-video dummy 推理输出公共居中 crop 参考（逐原始帧）并通过 validator。
-- [x] 下载 TVSum 原包，记录许可/来源/hash/split/帧对齐。
-- [x] A0_001 特征缓存、训练、时间代理验证与真实文件审计。
-- [x] A1 TSM：相同数据、split、时序头和训练预算，单独比较 TSM。
-- [x] A1 paired seeds 20260926/20260927；结果方差很高，暂不宣布稳定增益。
-- [x] A2 Feature Bank：motion/quality/audio/composition 总体对照；结果退化，已停止无结构调参。
-- [ ] A3a 固定时间帧集合下比较学习空间候选与最大合法居中 crop（待合法 crop GT）。
-- [ ] 取得官方样例/evaluator/初赛索引，核对未知契约并生成实际提交。
-- [x] 核对公开 `TempSamp-R1` baseline commit/README/test_index；实现紧凑索引到实际视频元数据的审计转换。
-- [ ] 锁定有证据的 SAFE_BASELINE，备份权重、配置、环境与代码。
+- [x] 固定 TVSum GT/预测阈值，增加 per-video、macro/micro、连续排序诊断。
+- [x] 完成 50 个 TVSum MAT/TSV 记录的 shape、nframes、fps、duration、2 秒收集语义审计。
+- [x] 修复 padding/GroupNorm 变长 batch 一致性并保留回归测试。
+- [x] 验证远程同环境 raw-video 与 cache 路径；固定 PyAV 15.1 推理环境。
+- [x] repaired A0/A1、简单 baseline、5-fold source-group stability、Feature Bank 分组、B0 frozen ViT probe。
+- [ ] 获取官方样例、evaluator、初赛索引和真实联合 GT；拿到后先跑 center-crop fallback。
+- [ ] 锁定官方输入上的可提交 Safe Engineering Baseline，重新在 train/dev 选 threshold。
 
 ## P1
 
-- [ ] 联合 GT 缺口：RetargetVid/DHF1K 空间诊断；不得伪造目标比例 GT。
-- [ ] 合法 VideoXum 训练子集及同源去重（先核实原始媒体授权）。
-- [ ] A1 TSM 受控对照，再依次 A2 motion/quality/audio/composition。
-- [ ] A3a/b/c 固定时间帧集合下比较，保存失败案例。
+- [ ] 真实 backbone-internal TSM 做小规模 recache/end-to-end 对照；当前只完成中间 feature map correctness/throughput probe。
+- [ ] 继续验证 B0 的多 split/multi-seed；若收益覆盖 M 档 size coefficient，再集成完整报告。
+- [ ] 使用合法 crop GT 做固定 temporal frame 集合的 center/saliency/subject IoU 对照；没有 GT 时保持 null。
+- [ ] 解决 Feature Bank 重复/恒零维度后，使用 residual/gated fusion 重开单组实验。
+- [ ] 进行一次本地开源 VLM 小样本 teacher signal pilot；不上传比赛测试视频，不直接启动批量伪标签。
 
 ## P2
 
-- [ ] A 可靠后才做 B0/B1/B2 与一次 B-sem；同数据/预算/后处理。
-- [ ] Teacher 合规与质量 pilot 完成后再进入 C。
-- [ ] 候选三 seed、视频 bootstrap、压缩、干净环境复现与材料准备。
+- [ ] 按官方联合分数做 temporal/spatial oracle、size coefficient 和 latency Pareto。
+- [ ] 候选多 seed、video bootstrap CI、跨场景失败案例和最终干净环境复现。
+- [ ] 备份 fallback checkpoint/config/environment，并准备复赛材料。

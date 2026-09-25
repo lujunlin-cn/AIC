@@ -295,6 +295,9 @@ def load_inference_model(path: str | Path, device: str | torch.device = "cpu"
     if bundle.get("format_version") == 1 and bundle.get("architecture") == "B0_vit_b16_temporal_probe":
         from .b0 import load_b0_bundle
         return load_b0_bundle(path, device)
+    if bundle.get("format_version") == 1 and bundle.get("architecture") == "Bs0_deit_s_temporal":
+        from .smallvit import load_deit_bundle
+        return load_deit_bundle(path, device)
     if bundle.get("format_version") != 1 or bundle.get("architecture") not in {
         "A0_resnet18_tunet", "A1_resnet18_tsm_tunet", "A2_resnet18_featurebank_tunet"
     }:

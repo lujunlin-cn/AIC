@@ -1,0 +1,14 @@
+{
+  "video": "/data/aic/datasets/TVSum/raw/ydata-tvsum50-v1_1/ydata-tvsum50-video/video/XzYM3PfTM4w.mp4",
+  "frames": 222,
+  "chunk_size": 64,
+  "chunk_vs_full_max_abs": 1.811981201171875e-05,
+  "chunk_vs_full_mean_abs": 1.5895781189101399e-06,
+  "baseline_vs_internal_max_abs": 8.365238189697266,
+  "baseline_vs_internal_mean_abs": 0.08127129822969437,
+  "chunk_seconds": 0.5240361890755594,
+  "full_seconds": 0.19853126863017678,
+  "baseline_seconds": 0.22462065890431404,
+  "parameter_free": true,
+  "encoder_variant": "canonical_internal_tsm_layer1_fold8_v1"
+}

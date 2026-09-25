@@ -18,7 +18,8 @@ from .contract import (ContractError, LetterboxTransform, VideoMetadata,
 from .video import expand_scores, frame_timeline, iter_sampled_frames, probe_video
 
 
-SPATIAL_MODES = ("center", "saliency", "subject")
+SPATIAL_MODES = ("center", "saliency", "subject", "subject_proxy",
+                 "subject_proxy_smooth", "true_face", "true_face_smooth")
 
 
 def _normalise(images: Sequence[np.ndarray]):
@@ -99,7 +100,9 @@ def run_inference(index_path: str | Path, output_path: str | Path, *,
                   device: str = "cpu", stage: str = "preliminary",
                   model_size_mb: float | None = None, dummy: bool = False,
                   batch_size: int = 16, spatial_mode: str = "center",
-                  postprocess_config: Mapping[str, Any] | None = None) -> dict[str, Any]:
+                  postprocess_config: Mapping[str, Any] | None = None,
+                  spatial_protocol: str | None = None,
+                  detector_path: str | Path | None = None) -> dict[str, Any]:
     """Run A0 and validate the complete output before replacing output_path."""
     if model_path is None and not dummy:
         raise ContractError("model_path is required unless --dummy is explicit")
@@ -107,15 +110,33 @@ def run_inference(index_path: str | Path, output_path: str | Path, *,
         raise ContractError("threshold must be finite")
     if spatial_mode not in SPATIAL_MODES:
         raise ContractError(f"spatial_mode must be one of {SPATIAL_MODES}, got {spatial_mode!r}")
+    if spatial_protocol is None:
+        spatial_protocol = ("legacy_sampled_v1" if spatial_mode in ("center", "saliency", "subject")
+                            else "dense_v1")
+    if spatial_protocol not in ("legacy_sampled_v1", "dense_v1"):
+        raise ContractError("unknown spatial protocol")
+    if spatial_protocol == "legacy_sampled_v1" and spatial_mode not in ("center", "saliency", "subject"):
+        raise ContractError("new spatial modes require dense_v1")
+    detector_bytes = 0
+    if spatial_mode.startswith("true_face"):
+        if detector_path is None or not Path(detector_path).is_file():
+            raise ContractError("true_face modes require a detector weight file")
+        detector_bytes = Path(detector_path).stat().st_size
     records = load_jsonl(index_path)
     index = load_index(index_path)
     model = None
+    actual_model_size_mb = None
+    loaded_bytes = detector_bytes
     if model_path is not None:
         from .models import load_inference_model
         model, metadata = load_inference_model(model_path, device=device)
+        loaded_bytes += metadata["loaded_bytes"]
+    if model_path is not None or detector_bytes:
+        actual_model_size_mb = loaded_bytes / 1_000_000
         if model_size_mb is None:
-            model_size_mb = float(metadata["loaded_bytes"]) / 1_000_000
+            model_size_mb = actual_model_size_mb
     rows: list[dict[str, Any]] = []
+    spatial_diagnostics = []
     with __import__("torch").inference_mode():
         for record in records:
             video_id = record["video_id"]
@@ -167,7 +188,24 @@ def run_inference(index_path: str | Path, output_path: str | Path, *,
                     selected = expand_scores(frame_timeline(path), sampled_times,
                                              sampled_mask.astype(np.float32), .5)
             frame_crops: dict[int, Sequence[float]] | None = None
-            if not dummy and spatial_mode != "center":
+            if spatial_protocol == "dense_v1" and spatial_mode != "center":
+                from .spatial_pipeline import SpatialPath
+                from .video import _decoded
+                mode = "subject_proxy" if spatial_mode == "subject" else spatial_mode
+                spatial = SpatialPath(mode, record["targetRatioWH"], detector_path)
+                selected_set = set(selected)
+                frame_crops = {}
+                # Observe every original frame, including unselected ones, so
+                # temporal selection cannot distort tracking or smoothing.
+                for stamp, frame in _decoded(path):
+                    crop, _ = spatial.step(frame.to_ndarray(format="rgb24"))
+                    if stamp.index in selected_set:
+                        frame_crops[stamp.index] = crop
+                if set(frame_crops) != selected_set:
+                    raise ContractError("dense spatial path missed selected frames")
+                spatial_diagnostics.append({"video_id":video_id,"observations":spatial.observations,
+                    "resets":spatial.resets,"face_detections":spatial.detections})
+            elif not dummy and spatial_mode != "center":
                 # Dense frame selection is expanded from sampled timestamps.
                 # Associate each selected original frame with the nearest
                 # sampled image; this is deterministic and avoids a second
@@ -184,10 +222,12 @@ def run_inference(index_path: str | Path, output_path: str | Path, *,
                              info.width, info.height, model_size_mb,
                              spatial_mode=spatial_mode, frame_crops=frame_crops))
     report = write_submission(output_path, rows, index, stage=stage,
-                              actual_model_size_mb=model_size_mb)
+                              actual_model_size_mb=actual_model_size_mb if actual_model_size_mb is not None else model_size_mb)
     return {"output": str(output_path), "dummy": dummy, "rows": len(rows),
             "selected_predictions": sum(len(r["predictions"]) for r in rows),
             "model_size_mb": model_size_mb, "spatial_mode": spatial_mode,
+            "loaded_weight_bytes":loaded_bytes, "detector_weight_bytes":detector_bytes,
+            "spatial_protocol":spatial_protocol,"spatial_diagnostics":spatial_diagnostics,
             "postprocess_config": dict(postprocess_config) if postprocess_config is not None else None,
             "validation": report.to_dict()}
 
@@ -206,7 +246,9 @@ def main(argv=None) -> int:
     parser.add_argument("--dummy", action="store_true")
     parser.add_argument("--batch-size", type=int, default=16)
     parser.add_argument("--spatial-mode", choices=SPATIAL_MODES, default="center",
-                        help="center, saliency, or lightweight subject proxy")
+                        help="Explicit center, saliency proxy, or real face detector path")
+    parser.add_argument("--spatial-protocol", choices=["legacy_sampled_v1","dense_v1"])
+    parser.add_argument("--detector", help="YuNet ONNX; bytes added to all temporal weights")
     parser.add_argument("--postprocess-config",
                         help="JSON object or path to a frozen PostprocessConfig")
     args = parser.parse_args(argv)
@@ -221,6 +263,7 @@ def main(argv=None) -> int:
                                device=args.device, stage=args.stage,
                                model_size_mb=args.model_size_mb, dummy=args.dummy,
                                batch_size=args.batch_size, spatial_mode=args.spatial_mode,
+                               spatial_protocol=args.spatial_protocol, detector_path=args.detector,
                                postprocess_config=postprocess)
         print(json.dumps(result, ensure_ascii=False, indent=2))
         return 0

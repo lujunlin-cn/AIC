@@ -3,7 +3,6 @@
 from __future__ import annotations
 import argparse, hashlib, json, time
 from pathlib import Path
-import h5py
 import numpy as np
 import torch
 from aic.features import FeatureCacheDataset
@@ -17,6 +16,7 @@ def write(path,obj):
     Path(path).parent.mkdir(parents=True,exist_ok=True)
     Path(path).write_text(json.dumps(obj,indent=2,allow_nan=False)+"\n")
 def read_tvsum(mat):
+    import h5py
     with h5py.File(mat) as f:
         g=f["tvsum50"]; records={}
         for i in range(g["video"].size):

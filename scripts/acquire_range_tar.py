@@ -20,8 +20,13 @@ def main():
     ap.add_argument("--index-only",action="store_true");ap.add_argument("--include",default="summe");ap.add_argument("--max-mb",type=int,default=900)
     a=ap.parse_args();root=Path(a.root);root.mkdir(parents=True,exist_ok=True);r=Remote(a.url);offset=0;rows=[];pending=None
     index=root/"tar_index.json"
-    if index.exists():rows=json.loads(index.read_text())["members"]
+    cached=json.loads(index.read_text()) if index.exists() else None
+    if cached and cached.get("source")!=a.url:
+        raise ValueError("existing index belongs to a different source")
+    if cached and cached.get("complete"):rows=cached["members"]
     else:
+        # Rebuild interrupted indexes from byte zero: a partial member list is
+        # not a completed archive and may end within a GNU long-name pair.
         while True:
             block=r.get(offset,512)
             if block==b"\0"*512:break

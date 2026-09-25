@@ -38,6 +38,14 @@ Evidence：修复前 A0/A1 在 0.5 threshold 的空预测率分别约 0.938/0.75
 
 Decision：候选必须保存 threshold 来源；禁止用评估视频真实正例数量决定预算。拿到官方 lockbox 后重新锁 threshold，当前数值不得称 AIC F_video。
 
+## 2026-09-25：冻结 TVSum local validation protocol v1
+
+Status：Accepted for local temporal-proxy model selection。
+
+Evidence：`reports/tvsum_manifest_v3.jsonl` 已有 source-group 隔离的 27 train / 16 dev / 7 test 分区；远程五个历史 fold 覆盖 43 条非 test 视频。机器可读协议为 `splits/local_protocol_v1.json`，并由 `scripts/validate_local_protocol.py` 校验 manifest/assignment hash、分区覆盖、source-group 隔离和五折互斥。
+
+Decision：把原 manifest test 的 7 条视频永久作为 LOCAL LOCKBOX；不得用其调 prediction threshold、smoothing、top-k、segment、checkpoint、模型或超参。候选冻结后才可一次性比较 lockbox。TVSum 无可靠 category metadata，v1 不宣称 category-stratified；协议变更必须新建 v2，保留 v1 历史。
+
 ## 2026-09-25：Feature Bank 当前降级
 
 Status：Rejected for current definition; route remains open。

@@ -7,6 +7,7 @@
 - [x] 修复 padding/GroupNorm 变长 batch 一致性并保留回归测试。
 - [x] 验证远程同环境 raw-video 与 cache 路径；固定 PyAV 15.1 推理环境。
 - [x] repaired A0/A1、简单 baseline、5-fold source-group stability、Feature Bank 分组、B0 frozen ViT probe。
+- [x] 冻结 `splits/local_protocol_v1.json`（TRAIN/DEV/LOCAL LOCKBOX）并加入 hash/分区回归校验。
 - [ ] 获取官方样例、evaluator、初赛索引和真实联合 GT；拿到后先跑 center-crop fallback。
 - [ ] 锁定官方输入上的可提交 Safe Engineering Baseline，重新在 train/dev 选 threshold。
 

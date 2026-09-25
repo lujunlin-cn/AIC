@@ -13,6 +13,8 @@
 ## 评估和标签协议
 
 - 固定 GT 定义：`tvsum_summary_mean_norm_ge_0.5_v1`；prediction threshold 独立配置，只能在 train/dev 选择。
+- 已冻结 `splits/local_protocol_v1.json`：TRAIN=27、DEV=16、LOCAL LOCKBOX=7（原 manifest 的 test 划分）；manifest SHA-256=`b8db2bb3f1e36e2ecc32a1c307531e43d69bae3f74605c9112b8eda8b679e565`。Lockbox 禁止 threshold、checkpoint、模型、后处理和超参选择，只有候选冻结后比较使用。
+- v1 另记录 5 个 source-group development folds（验证集规模 8/9/10/7/9），并校验每折只覆盖 43 条非 lockbox 视频；TVSum 当前没有可靠 category metadata，因此不宣称 category-stratified。
 - 报告 per-video F1、video-macro、micro 诊断、选中率、GT 比例、空预测率、precision/recall、分数分位数、连续 MAE 和 Spearman。
 - TVSum v1.1 MAT 的 50 条 `user_anno` 全部为 `(20,nframes)`，2 秒是收集评分的片段语义，发布文件已经逐原始帧展开。`published_mat_per_frame_identity` 审计显示旧 `linspace` 对这些视频是恒等映射，标签错位不是接近零 F1 的主要原因。
 - 作者 15% summary/knapsack evaluator 与本项目固定二值 temporal proxy 分开记录；TVSum 没有合法 composition crop GT。

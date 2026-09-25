@@ -50,3 +50,12 @@
 远程 `/home/supie/AIC`；数据/模型/结果 `/data/aic`；Python `/opt/miniconda3/envs/cv/bin/python`，PyTorch2.9.1+cu128、PyAV15.1。仅使用空闲授权物理 GPU2/4/5；GPU1既有任务保留，0/3未使用。
 
 下一步：不同来源highlight训练/验证小子集与时轴核验 → 独立空间协议下的多人主体选择 → 有界loss/head验证。已有TVSum/14条SumMe均已开发暴露；不能重新称未见lockbox。TSM、旧bank、无结构threshold sweep不重开。
+
+## Pairwise ranking continuation（2026-09-25）
+
+- `RG_RANK_001` 已完成 60 个 nested outer evaluations（A0/DeiT-S，各 30；2 repeats×5 folds×3 seeds），使用 `BCE + 0.1*pairwise_logistic`，不增加推理权重。
+- Pairwise A0：proxy F1 `.155797±.042412`，Spearman `.426467±.108241`，NDCG@15 `.651274±.064576`，summary `.217504±.028750`。
+- Pairwise DeiT-S：proxy F1 `.172148±.031270`，Spearman `.424183±.065153`，NDCG@15 `.669796±.045305`，summary `.233615±.013983`。
+- Per-video paired DeiT−A0：F1 `+.01635`、Spearman `-.00228`、NDCG@15 `+.01852`、summary `+.01611`；正增益视频比例约 `52/44/52/50%`；200k paired bootstrap CI 分别为 F1 `[-.00684,.04461]`、Spearman `[-.06504,.06303]`、NDCG15 `[-.01741,.05856]`、summary `[-.00573,.04064]`，均跨 0。保留为 exploratory，A0 fallback 不变。
+- 远程 GPU 2/4 已释放；YouTube Highlights 代理索引到358成员，DHF1K 021–030 RAR恢复但7z不支持 AVI 压缩方法，暂无新增 OOD/spatial 分数。
+- 新报告：`reports/20260925_pairwise_ranking_and_proxy_ood.md`。

@@ -181,3 +181,19 @@ Status：Rejected for this fixed observation rule; spatial route remains open。
 Evidence：`SPATIAL_GROUP_003` 在同一20条DHF1K/RetargetVid source、2 ratios、6 raters、无GT调参下运行；top-3 area×confidence group center 的 IoU 为 1:3 `.48004`、3:1 `.75115`，group+EMA 为 `.48106/.75216`。相对 single-face+EMA 的 paired delta `-.00264`、95% bootstrap CI `[-.00726,0]`，20/20 source 没有正 delta；多人样例020由 `.48228` 降至 `.44026`。
 
 Decision：不启用 `true_face_group*` 为默认空间候选；接口、raw-video path、JSONL validator 和 E2E 回归保留。后续只研究有明确主体关联/互动覆盖机制的假设，不继续该 top-3 规则 sweep。
+
+## 2026-09-25：pairwise ranking objective remains exploratory
+
+Status：Promising branch, not accepted default。
+
+Evidence：`RG_RANK_001` completed 60 nested outer evaluations with identical folds/seeds and zero inference-weight increase. DeiT-S pairwise summary F1 `.233615` and NDCG@15 `.669796` exceeded A0 pairwise `.217504`/`.651274`, but paired per-video positive fractions were only 50–52%, Spearman delta was `-.00228`, and no independent new raw-video OOD benchmark was available.
+
+Decision：保留 pairwise loss、诊断和 checkpoints；不替换 A0 fallback，不继续 DeiT 超参 sweep。下一步只在独立 OOD/native summary 数据取得后验证，或对预注册 loss 做 paired bootstrap CI。
+
+## 2026-09-25：代理下载可用但媒体证据未完成
+
+Status：Acquisition partial / benchmark blocked。
+
+Evidence：算力服务器 Clash/Mihomo `127.0.0.1:7890` 可完成 Hugging Face Range 请求；YouTube Highlights 索引到358个成员但9.9GB tar未完成；DHF1K 021–030 RAR已恢复，7z对 `video/021.AVI` 报 `Unsupported Method`。
+
+Decision：代理包装脚本作为后续下载入口；未完成媒体解码、帧对齐和native evaluator前，不把两者记为OOD或空间transfer证据。

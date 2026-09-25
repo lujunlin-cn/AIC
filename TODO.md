@@ -35,3 +35,8 @@
 - [ ] Feature Bank v2仅修复恒零/重复后做独立残差门控组；真实音频需实际波形。
 - [ ] 只有新OOD机制证据时才重开canonical TSM；保留代码/cache/tests。
 - [ ] 官方联合数据到位后研究size-score Pareto、压缩；不把proxy加权冒充competition score。
+
+- [x] `RG_RANK_001` 完成预注册 pairwise loss nested 对照并登记结果；不升级候选。
+- [ ] 对 `RG_RANK_001` 的 50-video paired vectors 生成正式 bootstrap CI，并与 BCE 控制做同协议 paired comparison。
+- [ ] 用 Clash 代理恢复 YouTube Highlights 有界人工标注视频；完成 native frame/alignment 后才纳入 OOD。
+- [ ] 处理 DHF1K 021–030 RAR Unsupported Method（寻找兼容 unrar/恢复工具），成功解码后只做冻结空间 transfer check。

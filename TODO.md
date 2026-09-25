@@ -21,6 +21,8 @@
 - [ ] 继续验证 B0 的多 split/multi-seed；若收益覆盖 M 档 size coefficient，再集成完整报告。
 - [ ] 对 DeiT-S challenger 做第二独立 split、额外 seed 和可用 OOD 数据验证。
 - [ ] 获取 SumMe/YouTube Highlights 可用 raw 子集，建立 dataset-native OOD ranking/summary 指标。
+- [ ] 对 A0/DeiT-S/ViT-B 现有缓存运行 `aic.temporal_metrics`，输出统一 threshold-free 表。
+- [ ] 取得有界 DHF1K/RetargetVid 原视频子集，固定 temporal frames 后测 center/saliency/subject_proxy IoU。
 - [ ] 使用合法 crop GT 做固定 temporal frame 集合的 center/saliency/subject IoU 对照；没有 GT 时保持 null。
 - [ ] 解决 Feature Bank 重复/恒零维度后，使用 residual/gated fusion 重开单组实验。
 - [ ] 进行一次本地开源 VLM 小样本 teacher signal pilot；不上传比赛测试视频，不直接启动批量伪标签。

@@ -55,3 +55,11 @@
 - 没有 AIC 联合 temporal+crop GT，不能宣布任何 TVSum 数值为官方 `F_video`，也不能比较空间 IoU 或最终 size-weighted score。
 - 尚未取得官方 evaluator/比赛测试索引；提交流程只完成本地契约和 validator。
 - 尚未取得 SumMe/YouTube Highlights 可用 raw OOD 子集；SumMe ModelScope raw LFS 在本轮下载无进展后停止。
+
+## 2026-09-25 继续推进：表示泛化与空间基准
+
+- 原 7-video split 现在只称 `TVSum comparison_holdout_v1`；后续模型选择改用 repeated/nested source-group CV。
+- 新增 `aic/temporal_metrics.py`：Spearman、Kendall tau、NDCG、NDCG@15%、top-budget relevance，均不依赖 prediction threshold。
+- 新增 `scripts/audit_retargetvid.py` 并在远程运行：RetargetVid annotation-only audit = 200 videos、6 annotators、1:3/3:1 各 200；结果 `/data/aic/experiments/retargetvid_annotation_audit.json`。
+- DHF1K 原视频仍未取得，因此真实 spatial IoU 继续为 null；当前空间结论限于合法性与轨迹诊断。
+- 新报告：`reports/20260925_representation_generalization.md`、`reports/spatial_benchmark_status.md`。

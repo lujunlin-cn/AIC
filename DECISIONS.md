@@ -94,6 +94,22 @@ Evidence：timm DeiT-S/16 frozen features + 同一 Temporal U-Net，完整 FP16 
 
 Decision：保留为当前最强 S-tier temporal challenger。它仍只有 TVSum temporal proxy 证据，必须经过第二独立 split/OOD 和 AIC 联合 GT 才能替换 fallback。
 
+## 2026-09-25：TVSum comparison holdout v1 不再作为 pristine lockbox
+
+Status：Accepted。
+
+Evidence：原 7 条视频已经被 A0、DeiT-S、ViT-B、internal TSM 和多 seed temporal-head 实验反复比较，结果已影响路线选择。
+
+Decision：将 `splits/local_protocol_v1.json` 的 7 条记录称为 `comparison_holdout_v1`。保留历史结果，但新模型、loss、postprocess、threshold 和 feature 不得用它调参。TVSum 后续使用 nested/repeated source-group CV，独立泛化证据必须来自新数据集。
+
+## 2026-09-25：RetargetVid annotation-only 接入
+
+Status：Accepted for spatial benchmark preparation。
+
+Evidence：远程 `/data/aic/datasets/RetargetVid` 已包含 200 个视频、6 个 annotator、1:3/3:1 的逐帧 crop 标注和官方 evaluator。审计脚本输出 200 个 video pairs，帧数一致。
+
+Decision：先完成标注格式和 evaluator 接入；在取得 DHF1K 原视频前，`spatial_iou` 保持 null，不把合法率、轨迹平滑或 saliency 分数称为 IoU。
+
 ## 2026-09-25：OOD 与 VLM 暂不阻塞主线
 
 Status：Blocked subtask, mainline continues。

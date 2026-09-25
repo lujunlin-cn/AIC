@@ -1,0 +1,17 @@
+{
+  "run_id": "TSM_internal_full_001",
+  "encoder_variant": "canonical_internal_tsm_layer1_fold8_v1",
+  "tsm_location": "ResNet18 layer1 feature map before layer2",
+  "feature_dim": 512,
+  "train_manifest": "/data/aic/features/internal_tsm_v2/train_features.jsonl",
+  "dev_manifest": "/data/aic/features/internal_tsm_v2/val_features.jsonl",
+  "lockbox_manifest": "/data/aic/features/internal_tsm_v2/lockbox_features.jsonl",
+  "loss": "binary_cross_entropy_with_logits",
+  "seed": 20260925,
+  "epochs": 20,
+  "batch_size": 1,
+  "prediction_threshold": 0.35,
+  "source_group_folds": 5,
+  "parameter_increment": 0,
+  "lockbox_protocol": "tvsum_local_validation_v1"
+}

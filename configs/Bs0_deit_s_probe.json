@@ -1,0 +1,24 @@
+{
+  "run_id": "Bs0_deit_s_probe",
+  "backbone": "deit_small_patch16_224",
+  "pretrained_state": "/data/aic/pretrained/deit_small_patch16_224_headless.pt",
+  "feature_dim": 384,
+  "feature_protocol": "letterbox224_imagenet_norm",
+  "train_manifest": "/data/aic/features/DeiT-S/train_features.jsonl",
+  "dev_manifest": "/data/aic/features/DeiT-S/val_features.jsonl",
+  "lockbox_manifest": "/data/aic/features/DeiT-S/test_features.jsonl",
+  "temporal_head": "TemporalUNet",
+  "loss": "binary_cross_entropy_with_logits",
+  "seed": 20260925,
+  "epochs": 20,
+  "batch_size": 1,
+  "learning_rate": 0.001,
+  "weight_decay": 0.0001,
+  "dev_postprocess": {
+    "threshold": 0.35,
+    "smoothing": "median",
+    "smoothing_window": 9
+  },
+  "bundle": "/data/aic/experiments/Bs0_deit_s_probe/model_fp16.pt",
+  "lockbox_protocol": "tvsum_local_validation_v1"
+}

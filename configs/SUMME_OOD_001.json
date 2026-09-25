@@ -1,0 +1,22 @@
+{
+  "hypothesis": "Representation gains on TVSum should agree on untouched SumMe human summaries",
+  "selection": "8 smallest MP4 entries by compressed bytes before reading human labels; exclude any decoded/GT count mismatch",
+  "training": "none: frozen existing TVSum models",
+  "postprocess": "no tuning, fixed 60-frame deterministic 15% knapsack; report mean and max human-summary F1 separately",
+  "root": "/data/aic/datasets/SumMe/zenodo_range_v1/extracted",
+  "output": "/data/aic/experiments/SUMME_OOD_001",
+  "models": {
+    "A0": {
+      "bundle": "/data/aic/experiments/A0_006/export/model_fp16.pt",
+      "threshold": 0.4
+    },
+    "DeiT_S": {
+      "bundle": "/data/aic/experiments/Bs0_deit_s_probe/model_fp16.pt",
+      "threshold": 0.35
+    },
+    "ViT_B": {
+      "bundle": "/data/aic/experiments/B0_probe_vit_b16/model_fp16.pt",
+      "threshold": 0.3
+    }
+  }
+}

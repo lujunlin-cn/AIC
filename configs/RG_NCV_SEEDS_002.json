@@ -1,5 +1,5 @@
 {
-  "hypothesis": "DeiT-S or ViT-B may improve ranking on paired outer videos when inner selection is isolated",
+  "hypothesis": "Confirm paired representation deltas under independent initialization; unchanged splits and hyperparameters",
   "control": "same head BCE epochs optimizer splits seeds preprocessing",
   "failure_condition": "paired delta CI crosses zero or summary/OOD degrades: keep challenger only",
   "size_impact": "backbone only; full bundles audited separately",
@@ -11,7 +11,8 @@
   "learning_rate": 0.001,
   "weight_decay": 0.0001,
   "seeds": [
-    20260925
+    20260926,
+    20260927
   ],
   "max_seconds": 3600,
   "thresholds": [

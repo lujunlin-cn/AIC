@@ -1,0 +1,66 @@
+{
+  "engine": "GNU Octave, version 10.3.0",
+  "author_sources": [
+    {
+      "path": "/data/aic/datasets/TVSum/author_code_7bf3fb8/matlab/solve_knapsack.m",
+      "sha256": "5fc2f5cd9d0c42db7b0e100fbc372428918f7b47bdb28abe32cb92b32d6fd5af"
+    },
+    {
+      "path": "/data/aic/datasets/TVSum/author_code_7bf3fb8/matlab/knapsack/knapsack.m",
+      "sha256": "ff5b9140f8fc2a2269a590d1059a7060aa17dc8f8572a5f1da6d4267c632731d"
+    }
+  ],
+  "cases": [
+    {
+      "case": 0,
+      "nframes": 600,
+      "different_frames": 0
+    },
+    {
+      "case": 1,
+      "nframes": 600,
+      "different_frames": 0
+    },
+    {
+      "case": 2,
+      "nframes": 20,
+      "different_frames": 0
+    },
+    {
+      "case": 3,
+      "nframes": 130,
+      "different_frames": 0
+    },
+    {
+      "case": 4,
+      "nframes": 10597,
+      "different_frames": 0
+    },
+    {
+      "case": 5,
+      "nframes": 10597,
+      "different_frames": 0
+    },
+    {
+      "case": 6,
+      "nframes": 10597,
+      "different_frames": 0
+    },
+    {
+      "case": 7,
+      "nframes": 4688,
+      "different_frames": 0
+    },
+    {
+      "case": 8,
+      "nframes": 4688,
+      "different_frames": 0
+    },
+    {
+      "case": 9,
+      "nframes": 4688,
+      "different_frames": 0
+    }
+  ],
+  "all_exact": true
+}

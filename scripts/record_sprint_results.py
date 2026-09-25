@@ -9,20 +9,23 @@ def main():
     ap=argparse.ArgumentParser();ap.add_argument('--root',default='artifacts');ap.add_argument('--registry',default='experiments/registry.jsonl');a=ap.parse_args()
     root=Path(a.root);path=Path(a.registry);old=[json.loads(x) for x in path.read_text().splitlines()];seen={x['run_id'] for x in old};new=[]
     base={'date':'2026-09-25','host':'supie','official_f_video':None,'competition_score':None}
-    for p in sorted((root/'RG_NCV_001').glob('*/*_outer/metrics.json')):
+    training_metrics=sorted(p for group in ['RG_NCV_001','RG_LINEAR_001'] for p in (root/group).glob('*/*_outer/metrics.json'))
+    for p in training_metrics:
         d=json.loads(p.read_text());job=d['job'];run=p.parent.parent.name;cfg=json.loads((p.parent.parent/'config.json').read_text());model=job['model']
         metrics={k:v['mean'] if v else None for k,v in d['statistics'].items()}
         new.append({**base,'run_id':run,'dataset':'TVSum','dataset_version':'proxy-v2 + TVSUM_SUMMARY_V1_FIXED + TVSUM_RANKING_V2',
-            'architecture':model+' frozen encoder + shared TemporalUNet','config':str(p.parent.parent/'config.json'),
-            'config_sha256':sha(p.parent.parent/'config.json'),'git_commit':cfg['git_commit'],'gpu_ids':{'A0':[2],'DeiT_S':[4],'ViT_B':[5]}[model],
+            'architecture':model+' frozen encoder + '+job.get('head_type','temporal_unet'),'config':str(p.parent.parent/'config.json'),
+            'config_sha256':sha(p.parent.parent/'config.json'),'git_commit':cfg['git_commit'],
+            'implementation_commit':'7e10f6c' if job.get('head_type')=='linear' else '04090ff',
+            'gpu_ids':{'A0':[2],'DeiT_S':[4],'ViT_B':[5]}[model],
             'seed':job['seed'],'split':cfg['fold'],'batch_size':1,'optimizer':'AdamW','learning_rate':cfg['learning_rate'],
             'scheduler':None,'epochs':cfg['epochs'],'checkpoint_rule':'minimum inner-dev continuous BCE','threshold':job['threshold'],
             'threshold_source':'inner_dev only','training_time_seconds':job['training_seconds'],'best_checkpoint':job['checkpoint'],
             'checkpoint_sha256':d['checkpoint_sha256'],'manifest_sha256':d['manifest_sha256'],'metrics':metrics,
             'head_fp16_bytes':job['head_weight_bytes'],'full_bundle_bytes':None,
             'bundle_note':'head experiment; full deployment bundles separately audited; head alone is NOT total inference size',
-            'environment':f'/data/aic/experiments/RG_NCV_001/{run}/environment.txt',
-            'command':f'/data/aic/experiments/RG_NCV_001/{run}/command.txt',
+            'environment':f'/data/aic/experiments/{p.parent.parent.parent.name}/{run}/environment.txt',
+            'command':f'/data/aic/experiments/{p.parent.parent.parent.name}/{run}/command.txt',
             'result':'completed_paired_nested_cv','decision':'aggregate source-paired evidence; no individual outer-fold winner selection'})
     for group in ['SUMME_OOD_002','SUMME_OOD_003','SUMME_CV_OOD_001','SUMME_CV_OOD_002']:
         for p in sorted((root/group).glob('*/metrics.json')):
@@ -70,6 +73,16 @@ def main():
                     'gpu_ids':[],'seed':d['config']['random_seed'],'weight_bytes':0,
                     'source_metrics_sha256':sha(p),'metrics':d['means'],'runtime_seconds':d['elapsed_seconds'],
                     'decision':'A0 positive paired margin over random; current DeiT/ViT margins uncertain'})
+    for p in sorted((root/'SUMME_LINEAR_OOD_001').glob('*/metrics.json')):
+        import numpy as np
+        d=json.loads(p.read_text());model=d['model']
+        keys=['native_mean_user_f1','native_max_user_f1','spearman','ndcg_at_15pct']
+        metrics={k:float(np.mean([v[k] for run in d['runs'] for v in run['per_video'] if v[k] is not None])) for k in keys}
+        new.append({**base,'run_id':'SUMME_LINEAR_OOD_001_'+model,'result':'completed_frozen_head_external_comparison',
+                    'dataset':'SumMe exposed comparison subset14','config':d['config'],'git_commit':'7e10f6c',
+                    'gpu_ids':{'A0':[2],'DeiT_S':[4]}[model],'training_time_seconds':0,'heads':30,
+                    'source_metrics_sha256':sha(p),'metrics':metrics,'full_bundle_bytes':None,
+                    'decision':'Linear head does not rescue current OOD performance; no full-system candidate promotion'})
     for group in ['SPATIAL_GT_001','SPATIAL_GT_NATIVE_002','DENSE_E2E_001']:
         p=root/group/'metrics.json'
         if p.exists():

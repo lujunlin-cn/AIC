@@ -24,8 +24,9 @@ def main():
     (out/'pip_freeze.txt').write_text(subprocess.check_output([sys.executable,'-m','pip','freeze'],text=True))
     (out/'nvidia_smi.txt').write_text(subprocess.check_output(['nvidia-smi'],text=True))
     roots=[];eroot=Path(a.experiments_root)
-    for p in eroot.glob('RG_NCV_001/RG_NCV_*/config.json'):roots.append(p.parent)
-    for group in ['SUMME_OOD_001','SUMME_OOD_002','SUMME_OOD_003','SUMME_CV_OOD_001','SUMME_CV_OOD_002']:
+    for group in ['RG_NCV_001','RG_LINEAR_001']:
+        roots.extend(p.parent for p in (eroot/group).glob('*/config.json'))
+    for group in ['SUMME_OOD_001','SUMME_OOD_002','SUMME_OOD_003','SUMME_CV_OOD_001','SUMME_CV_OOD_002','SUMME_LINEAR_OOD_001']:
         roots.extend(p.parent for p in (eroot/group).glob('*/config.json'))
     for group in ['SPATIAL_GT_001','SPATIAL_GT_NATIVE_002','DENSE_E2E_001','ENGINEERING_RELEASE_001','ENGINEERING_RELEASE_002','ENGINEERING_RELEASE_003','SUMME_BASELINES_001','CROSS_DATASET_DUPLICATE_001']:
         if (eroot/group).is_dir():roots.append(eroot/group)
@@ -39,7 +40,7 @@ def main():
                 'recorded_after_run':True,'source_snapshot_commit':a.source_commit,
                 'snapshot_directory':str(out),
                 'limitation':'Captured after completion, not a contemporaneous launch snapshot. Historical config/command/environment preserved unchanged; code hashes describe verification-time files.'}
-        sidecar=run/'provenance_audit_v1.json'
+        sidecar=run/(out.name.lower()+'.json')
         if sidecar.exists():raise FileExistsError(sidecar)
         sidecar.write_text(json.dumps(report,indent=2)+'\n');runs.append(report)
     summary={'date':datetime.datetime.now(datetime.timezone.utc).isoformat(),'host':platform.node(),

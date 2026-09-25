@@ -1,0 +1,49 @@
+{
+  "hypothesis": "DeiT-S or ViT-B may improve ranking on paired outer videos when inner selection is isolated",
+  "control": "same head BCE epochs optimizer splits seeds preprocessing",
+  "failure_condition": "paired delta CI crosses zero or summary/OOD degrades: keep challenger only",
+  "size_impact": "backbone only; full bundles audited separately",
+  "compute_estimate": "30 head fits, typically <2 minutes each; 3 parallel GPUs",
+  "protocol": "splits/tvsum_nested_cv_v1.json",
+  "output": "/data/aic/experiments/RG_NCV_001",
+  "gt_root": "/data/aic/datasets/TVSum/summary_gt_v1",
+  "epochs": 20,
+  "learning_rate": 0.001,
+  "weight_decay": 0.0001,
+  "seeds": [
+    20260925
+  ],
+  "max_seconds": 3600,
+  "thresholds": [
+    0.2,
+    0.25,
+    0.3,
+    0.35,
+    0.4,
+    0.45,
+    0.5
+  ],
+  "models": {
+    "A0": {
+      "manifests": [
+        "/data/aic/features/A0_proxy_v2/train_features.jsonl",
+        "/data/aic/features/A0_proxy_v2/val_features.jsonl",
+        "/data/aic/features/A0_proxy_v2/lockbox_manifests/test.jsonl"
+      ]
+    },
+    "DeiT_S": {
+      "manifests": [
+        "/data/aic/features/DeiT-S/train_features.jsonl",
+        "/data/aic/features/DeiT-S/val_features.jsonl",
+        "/data/aic/features/DeiT-S/test_features.jsonl"
+      ]
+    },
+    "ViT_B": {
+      "manifests": [
+        "/data/aic/features/B0/train_features.jsonl",
+        "/data/aic/features/B0/val_features.jsonl",
+        "/data/aic/features/B0_vit_b16/test_features.jsonl"
+      ]
+    }
+  }
+}

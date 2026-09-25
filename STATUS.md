@@ -8,6 +8,7 @@
 - A1_005（feature-level shift，准确命名，不是 backbone-internal TSM）在 threshold 0.35 时 macro F1=0.144745；固定 0.5 时为 0.121079。A0_006 在同一 proxy-v2 split 上更好。
 - 5 个 source-group fold 以固定 threshold 0.30 的结果：A0 mean=0.11457，std=0.07900；A1 mean=0.10787，std=0.07764。按每 fold 单独调阈值的探索值分别为 A0 0.14983±0.03692、A1 0.15422±0.03665，只能作为乐观诊断，不能作为锁箱分数。
 - ViT-B/16 frozen-feature B0 probe：threshold 0.30 时 macro F1=0.15928，FP16 bundle 174,986,447 bytes（M 档假设）；已完成真实视频 JSONL + validator，但仍需更多 split 和正式提交集验证。
+- Loss ablation：A0_012 只换 SmoothL1，fixed-0.5 macro F1=0.11679、threshold 0.40=0.14143，低于 BCE A0_006；当前保留 BCE。
 
 ## 评估和标签协议
 

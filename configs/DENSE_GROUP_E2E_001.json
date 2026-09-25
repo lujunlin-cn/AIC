@@ -1,0 +1,23 @@
+{
+  "run_id": "DENSE_GROUP_E2E_001",
+  "hypothesis": "Dense observation and smoothing must give exactly the same crops in the deployed raw-video path and the fixed-frame GT benchmark",
+  "output": "/data/aic/experiments/DENSE_GROUP_E2E_001",
+  "video": "/data/aic/datasets/DHF1K/subset20/020.AVI",
+  "detector": "/data/aic/pretrained/yunet/face_detection_yunet_2023mar.onnx",
+  "spatial_benchmark": "/data/aic/experiments/SPATIAL_GROUP_003/supplement",
+  "jobs": [
+    {
+      "id": "true_face_group",
+      "spatial_mode": "true_face_group",
+      "threshold": 0.0,
+      "bundle": "/data/aic/experiments/A0_006/export/model_fp16.pt"
+    },
+    {
+      "id": "true_face_group_smooth",
+      "spatial_mode": "true_face_group_smooth",
+      "threshold": 0.0,
+      "bundle": "/data/aic/experiments/A0_006/export/model_fp16.pt"
+    }
+  ],
+  "device": "cpu"
+}

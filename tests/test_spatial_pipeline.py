@@ -42,3 +42,30 @@ def test_detector_missing_is_not_silent_center_fallback(tmp_path):
     from aic.contract import ContractError
     with pytest.raises(ContractError,match='detector weight'):
         run_inference(tmp_path/'index.jsonl',tmp_path/'out',dummy=True,spatial_mode='true_face')
+
+def test_group_face_observation_ema_reset_and_no_face_fallback(tmp_path,monkeypatch):
+    import cv2
+    from aic.spatial_pipeline import SpatialPath
+    detector=tmp_path/'face.onnx';detector.write_bytes(b'x')
+    class Detector:
+        faces=None
+        def setInputSize(self, size):pass
+        def detect(self, image):return None,self.faces
+    observer=Detector()
+    monkeypatch.setattr(cv2.FaceDetectorYN,'create',lambda *args: observer)
+    monkeypatch.setattr(spatial,'gradient_saliency_center',lambda image:(.5,.5,1.))
+    path=SpatialPath('true_face_group_smooth',[1,3],detector_path=detector)
+    rgb=np.zeros((100,200,3),np.uint8)
+    # Equal-area faces centered at x=.2 and .8: the group retains both,
+    # whereas an argmax observer must choose a single one.
+    observer.faces=np.array([[30,40,20,20,1.],[150,40,20,20,1.]],dtype=float)
+    path.step(rgb)
+    assert path.center == pytest.approx([.5,.5])
+    observer.faces=observer.faces[:1]
+    path.step(rgb)
+    assert path.center == pytest.approx([.425,.5])
+    _,reset=path.step(np.full_like(rgb,255))
+    assert reset and path.center[0] == pytest.approx(.2)
+    observer.faces=None
+    path.step(np.full_like(rgb,255))
+    assert path.center[0] == pytest.approx(.275)

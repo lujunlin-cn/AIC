@@ -19,7 +19,8 @@ from .video import expand_scores, frame_timeline, iter_sampled_frames, probe_vid
 
 
 SPATIAL_MODES = ("center", "saliency", "subject", "subject_proxy",
-                 "subject_proxy_smooth", "true_face", "true_face_smooth")
+                 "subject_proxy_smooth", "true_face", "true_face_smooth",
+                 "true_face_group", "true_face_group_smooth")
 
 
 def _normalise(images: Sequence[np.ndarray]):

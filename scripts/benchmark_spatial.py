@@ -12,14 +12,18 @@ def iou(a,b):
 def main():
     ap=argparse.ArgumentParser();ap.add_argument("--videos",required=True);ap.add_argument("--annotations",required=True)
     ap.add_argument("--output",required=True);ap.add_argument("--detector");ap.add_argument("--upstream",required=True)
+    ap.add_argument('--video-ids',nargs='+',help='Explicit source IDs; default all available videos')
+    ap.add_argument('--methods',nargs='+',help='Explicit modes; default historical methods plus group controls')
     a=ap.parse_args();out=Path(a.output);out.mkdir(parents=True,exist_ok=False);cv2.setNumThreads(2)
     # Isolate the exact upstream pure function, avoiding its CLI side effects.
     tree=ast.parse(Path(a.upstream).read_text());node=next(x for x in tree.body if isinstance(x,ast.FunctionDef) and x.name=="bb_intersection_over_union")
     ns={};exec(compile(ast.Module(body=[node],type_ignores=[]),"upstream_iou","exec"),ns)
     methods=["center","saliency","subject_proxy","subject_proxy_smooth"]
-    if a.detector:methods+=["true_face","true_face_smooth"]
+    if a.detector:methods+=["true_face","true_face_smooth","true_face_group","true_face_group_smooth"]
+    if a.methods:methods=a.methods
     results=[];manifest=[];cross_errors=[];start=time.perf_counter()
     for p in sorted(Path(a.videos).glob("*.AVI")):
+        if a.video_ids and p.stem not in a.video_ids:continue
         vid=p.stem;annotations={}
         for ratio in ["1-3","3-1"]:
             annotations[ratio]=[np.loadtxt(Path(a.annotations)/f"annotator_{i}"/f"{vid}_{ratio}.txt",delimiter=",").astype(float) for i in range(1,7)]
@@ -38,7 +42,8 @@ def main():
                 resets.append(reset)
                 if frame_count in [0,60,150,300,450]:
                     im=Image.fromarray(rgb).resize((320,180));draw=ImageDraw.Draw(im)
-                    for m,col in [("center","white"),("saliency","cyan"),("subject_proxy_smooth","orange")]:
+                    for m,col in [("center","white"),("saliency","cyan"),("subject_proxy_smooth","orange"),("true_face_group_smooth","red")]:
+                        if ("1-3",m) not in preds: continue
                         b=preds[("1-3",m)][-1]*np.array([320/w,180/h,320/w,180/h]);draw.rectangle(b.tolist(),outline=col,width=2)
                     thumbs.append(im)
                 frame_count+=1
@@ -69,6 +74,7 @@ def main():
             for i,im in enumerate(thumbs):sheet.paste(im,(320*i,0))
             sheet.save(out/(vid+"_crops.jpg"))
         print("SPATIAL_DONE",vid,frame_count,flush=True)
+        (out/(vid+'_result.json')).write_text(json.dumps({'per_video':[r for r in results if r['video_id']==vid], 'manifest':manifest[-1]},indent=2)+'\n')
     summary={}
     for mode in methods:
         summary[mode]={r:float(np.mean([x["iou"] for x in results if x["mode"]==mode and x["ratio"]==r])) for r in ["1-3","3-1"]}

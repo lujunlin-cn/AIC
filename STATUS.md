@@ -9,6 +9,7 @@
 - **Best M / semantic reference：ViT-B/16**，完整 FP16 **174,986,447 bytes**。TVSum 摘要与 DeiT-S 近乎持平，目前无证据证明额外体积值得。
 - **Current Temporal Best：没有同时在全部指标/数据集可靠胜出的单一模型。** TVSum summary 均值 DeiT-S 略高，Spearman ViT-B 略高，首批 SumMe OOD A0 较好。
 - **Current Spatial Best：true_face_smooth 是本地均值最高的探索配置，非已确认胜者。** Center 保持默认；YuNet 是人脸观察器，不是完整主体理解；新增权重 232,589 bytes。
+- **最新多人主体对照：`SPATIAL_GROUP_003` 未通过升级门槛。** 固定 top-3 人脸面积/置信度群体中心相对 `true_face_smooth` 双比例 IoU `-0.00264`，20/20 视频没有正增益；相对 center `+0.00590` 但 CI `[-0.01690, +0.02739]` 跨 0。保留接口与负结果，不改默认。
 - **Best Overall / official_f_video / competition_score：null**，尚无 AIC 联合 GT/官方反馈，不能用 temporal 与 spatial 两个不同数据集的分数拼接出比赛成绩。
 
 ## 已完成的最新证据
@@ -40,7 +41,7 @@
 ## Current Bottleneck / Running Experiments / Latest Failure
 
 - **主要证据缺口**：OOD 样本少且镜像时轴有局限；没有赛事联合标签。技术上同时存在 ranking/domain shift、过选校准和多人主体选择错误，不能跨 benchmark 排名谁是比赛最大瓶颈。
-- **Running**：本阶段全部150次训练、原视频OOD、固定候选和线性头外部复核已完成，无后台训练。独立Git代码副本3候选与既有JSONL逐项相同；本阶段记录、配置和代码已整理，后续按TODO的新数据/主体错误队列推进。
+- **Running**：无 AIC 训练；`YTH_ACQUIRE_001` 在本地对 YouTube Highlights 9.9GB tar 做可断点 Range 索引，已取得人工/弱标签 metadata；`SPATIAL_CONFIRM_001` 尝试恢复 DHF1K 021–030 作为固定参数空间确认集。GPU 2/4/5/6/7 空闲，GPU1既有任务保留。
 - **Latest Failure**：ENGINEERING_RELEASE_001在CUDA初始化前请求显存统计失败；修复后新ID002/003全部完成。SUMME_OOD_001非递增PTS失败仍保留；比赛reader不放宽。RetargetVid负坐标clamp已补齐，重计分v2保留v1，自有分数不变。
 
 ## 资源与下一任务

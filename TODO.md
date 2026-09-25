@@ -22,6 +22,9 @@
 - [ ] 扩大可靠 raw OOD 覆盖并核对源视频版本/近重复；模型参数冻结，不能用新增 OOD 反复调参。
 - [ ] 取得 AIC 样例/index/同版本 evaluator；先复现 A0 center；有联合GT才做oracle和官方大小加权。
 - [ ] 独立空间DEV/评估划分后，针对多人选错主体做一个受控 observation/association 实验；保持center控制和全权重计量。
+- [x] `SPATIAL_GROUP_003` 完成固定 top-3 人脸群体中心对照；相对单脸/center 均未形成稳定增益，降级该具体假设，保留后续真正主体关联研究。
+- [ ] 完成 DHF1K/RetargetVid 021–030 固定参数确认，若原视频与标注恢复成功则只做一次性 transfer check，不再用其调参。
+- [ ] 继续 `YTH_ACQUIRE_001` Range tar 索引；先取得所有小 metadata，再决定是否仅恢复有界人工标注视频 subset。
 - [ ] 基于 native summary/ranking 错误提出单一 loss/head 假设，通过nested inner选择；不进行DeiT超参扫。
 - [ ] 仅在teacher能快速本地部署时，50–200训练/开发clip pilot，用human correlation测质量；暂无收益证据，不蒸馏扩量。
 - [x] 保存fallback发行配置、环境、权重SHA和完整提交入口；严格官方环境仍待公布，不能声称已官方验收。

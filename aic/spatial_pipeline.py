@@ -6,7 +6,7 @@ from .spatial import gradient_saliency_center, place_crop
 class SpatialPath:
     """Largest legal crop; face mode is a face detector, not generic subject understanding."""
     def __init__(self, mode, ratio, detector_path=None, alpha=.25):
-        valid={"center","saliency","subject_proxy","subject_proxy_smooth","true_face","true_face_smooth"}
+        valid={"center","saliency","subject_proxy","subject_proxy_smooth","true_face","true_face_smooth","true_face_group","true_face_group_smooth"}
         if mode not in valid:raise ValueError(f"mode must be {valid}")
         self.mode,self.ratio,self.alpha=mode,ratio,alpha
         self.previous_image=None;self.center=None;self.face=None;self.detector=None
@@ -34,9 +34,17 @@ class SpatialPath:
             if faces is not None and len(faces):
                 centers=(faces[:,:2]+faces[:,2:4]/2)/np.array([small.shape[1],small.shape[0]])
                 importance=faces[:,2]*faces[:,3]*faces[:,-1]
-                if self.face is not None:
-                    importance=importance/(1+8*np.linalg.norm(centers-self.face,axis=1))
-                point=centers[int(np.argmax(importance))];self.face=point;self.detections+=1
+                if "group" in self.mode:
+                    # Fixed top-three area/confidence group observation. This
+                    # tests multi-person coverage without fitting to crop GT.
+                    order=np.argsort(importance)[::-1][:3]
+                    weights=np.maximum(importance[order],1e-8)
+                    point=np.average(centers[order],axis=0,weights=weights)
+                else:
+                    if self.face is not None:
+                        importance=importance/(1+8*np.linalg.norm(centers-self.face,axis=1))
+                    point=centers[int(np.argmax(importance))]
+                self.face=point;self.detections+=1
         if self.mode.endswith("_smooth") and self.center is not None:
             point=self.alpha*point+(1-self.alpha)*self.center
         self.center=np.clip(point,0,1);self.observations+=1

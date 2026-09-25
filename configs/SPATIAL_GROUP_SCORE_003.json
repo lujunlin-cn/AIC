@@ -1,0 +1,25 @@
+{
+  "manifest": "/data/aic/experiments/SPATIAL_GT_001/manifest.json",
+  "annotations": "/data/aic/datasets/RetargetVid/annotations_all",
+  "upstream": "/data/aic/datasets/RetargetVid/retargetvid_eval.py",
+  "output": "/data/aic/experiments/SPATIAL_GROUP_003/metrics.json",
+  "prediction_roots": {
+    "center": [
+      "/data/aic/experiments/SPATIAL_GT_001"
+    ],
+    "true_face": [
+      "/data/aic/experiments/SPATIAL_GT_001"
+    ],
+    "true_face_smooth": [
+      "/data/aic/experiments/SPATIAL_GT_001"
+    ],
+    "true_face_group": [
+      "/data/aic/experiments/SPATIAL_GROUP_002",
+      "/data/aic/experiments/SPATIAL_GROUP_003/supplement"
+    ],
+    "true_face_group_smooth": [
+      "/data/aic/experiments/SPATIAL_GROUP_002",
+      "/data/aic/experiments/SPATIAL_GROUP_003/supplement"
+    ]
+  }
+}

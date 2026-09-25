@@ -4,6 +4,7 @@ import argparse,concurrent.futures,hashlib,json,struct,urllib.request
 from pathlib import Path
 def main():
     ap=argparse.ArgumentParser();ap.add_argument("--url",required=True);ap.add_argument("--root",required=True);ap.add_argument("--count",type=int,default=20)
+    ap.add_argument('--after-index',help='Continue after the last member of a preserved index')
     a=ap.parse_args();root=Path(a.root);root.mkdir(parents=True,exist_ok=True)
     def fetch(offset,size):
         for attempt in range(3):
@@ -19,6 +20,10 @@ def main():
     prefix=fetch(0,20)
     if prefix[:7]!=b"Rar!\x1a\x07\x00":raise ValueError("only RAR4 supported")
     pos=20;rows=[]
+    if a.after_index:
+        previous=json.loads(Path(a.after_index).read_text())
+        if previous['url']!=a.url:raise ValueError('archive source changed')
+        last=previous['members'][-1];pos=last['data_offset']+last['packed']
     while len(rows)<a.count:
         h=fetch(pos,7);crc,typ,flags,n=struct.unpack("<HBHH",h)
         h=fetch(pos,n)

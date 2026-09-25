@@ -173,3 +173,11 @@ Status：Rejected for this matched-budget linear-head hypothesis。
 Evidence：60次2×5fold×3seed对照，仅替换head。A0 Spearman delta−.10286 CI[−.14801,−.05926]；DeiT summary delta−.01292 CI[−.02128,−.00475]。既有SumMe14外部comparison，A0 summary delta−.06485 CI[−.10564,−.02562]，DeiT无改善。
 
 Decision：保留U-Net，停止此线性头扩搜；本轮不导出/升级表现退化的完整候选。不能把结果泛化为所有简单head无效，后续loss/head须有新的错误机制依据。
+
+## 2026-09-25：固定多人群体脸中心假设降级
+
+Status：Rejected for this fixed observation rule; spatial route remains open。
+
+Evidence：`SPATIAL_GROUP_003` 在同一20条DHF1K/RetargetVid source、2 ratios、6 raters、无GT调参下运行；top-3 area×confidence group center 的 IoU 为 1:3 `.48004`、3:1 `.75115`，group+EMA 为 `.48106/.75216`。相对 single-face+EMA 的 paired delta `-.00264`、95% bootstrap CI `[-.00726,0]`，20/20 source 没有正 delta；多人样例020由 `.48228` 降至 `.44026`。
+
+Decision：不启用 `true_face_group*` 为默认空间候选；接口、raw-video path、JSONL validator 和 E2E 回归保留。后续只研究有明确主体关联/互动覆盖机制的假设，不继续该 top-3 规则 sweep。

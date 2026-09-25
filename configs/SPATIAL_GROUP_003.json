@@ -1,0 +1,29 @@
+{
+  "run_id": "SPATIAL_GROUP_003",
+  "hypothesis": "Area-confidence weighted top-three face centers can reduce single-face fixation in multi-person scenes",
+  "control": [
+    "center",
+    "true_face",
+    "true_face_smooth"
+  ],
+  "change": "group observation only; detector/EMA/crop size fixed",
+  "dataset": "RetargetVid/DHF1K exposed sources 001-020",
+  "split": "development_comparison_only; no independent test claim",
+  "reuse_sources": "SPATIAL_GROUP_002 sources 001-012; supplemental 013-020",
+  "alpha": 0.25,
+  "max_faces": 3,
+  "score_threshold": 0.8,
+  "model_size_increment_bytes": 0,
+  "detector_bytes": 232589,
+  "seed": 20260925,
+  "training_seconds": 0,
+  "budget_minutes": 20,
+  "git_commit": "81d59f32ab53ed526cc8276c131a667b9106ebc0",
+  "source_sha256": {
+    "aic/spatial_pipeline.py": "bd4505d10b1e070b14554a64a255ff198071dae3260672a033817fce27090023",
+    "scripts/benchmark_spatial.py": "ff66f6d2e6ba98f7bdc10a683e964213672e100bcdc1c20299d91b6c4ef70e6d",
+    "aic/inference.py": "e547a153ef65592705a965549d4ffb94bc48f6975a4d8c8a28652b8d2bece58d"
+  },
+  "official_f_video": null,
+  "competition_score": null
+}

@@ -1,0 +1,57 @@
+[
+  {
+    "run_id": "RG_DEV_A0_001",
+    "model": "A0",
+    "checkpoint": "/data/aic/experiments/A0_006/best.pt",
+    "manifest": "/data/aic/features/A0_proxy_v2/val_features.jsonl",
+    "threshold": 0.4,
+    "split_role": "historical_development_diagnostic",
+    "hypothesis": "Separate representation ranking from binary calibration without retraining",
+    "official_f_video": null,
+    "competition_score": null
+  },
+  {
+    "run_id": "RG_DEV_A1_feature_shift_001",
+    "model": "A1_feature_shift",
+    "checkpoint": "/data/aic/experiments/A1_005/best.pt",
+    "manifest": "/data/aic/features/A0_proxy_v2/val_features.jsonl",
+    "threshold": 0.35,
+    "split_role": "historical_development_diagnostic",
+    "hypothesis": "Separate representation ranking from binary calibration without retraining",
+    "official_f_video": null,
+    "competition_score": null
+  },
+  {
+    "run_id": "RG_DEV_DeiT_S_001",
+    "model": "DeiT_S",
+    "checkpoint": "/data/aic/experiments/Bs0_deit_s_probe.pt",
+    "manifest": "/data/aic/features/DeiT-S/val_features.jsonl",
+    "threshold": 0.35,
+    "split_role": "historical_development_diagnostic",
+    "hypothesis": "Separate representation ranking from binary calibration without retraining",
+    "official_f_video": null,
+    "competition_score": null
+  },
+  {
+    "run_id": "RG_DEV_ViT_B_001",
+    "model": "ViT_B",
+    "checkpoint": "/data/aic/experiments/B0_probe_vit_b16.pt",
+    "manifest": "/data/aic/features/B0/val_features.jsonl",
+    "threshold": 0.3,
+    "split_role": "historical_development_diagnostic",
+    "hypothesis": "Separate representation ranking from binary calibration without retraining",
+    "official_f_video": null,
+    "competition_score": null
+  },
+  {
+    "run_id": "RG_DEV_Internal_TSM_001",
+    "model": "Internal_TSM",
+    "checkpoint": "/data/aic/experiments/TSM_internal_full_001/metrics.pt",
+    "manifest": "/data/aic/features/internal_tsm_v2/val_features.jsonl",
+    "threshold": 0.35,
+    "split_role": "historical_development_diagnostic",
+    "hypothesis": "Separate representation ranking from binary calibration without retraining",
+    "official_f_video": null,
+    "competition_score": null
+  }
+]

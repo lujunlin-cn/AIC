@@ -53,3 +53,11 @@ Status：Promising probe, not default fallback。
 Evidence：ViT-B/16 frozen features + 同一 Temporal U-Net 在 threshold 0.30 的 TVSum proxy macro F1 `0.15928`，真实 raw-video JSONL 通过 validator；FP16 bundle `174,986,447` bytes，约 M 档。
 
 Decision：继续做多 split/seed 和联合 GT 前的工程复现；在没有证明 raw F_video 增益足以覆盖 size coefficient 前，不替换 S 档 ResNet fallback。
+
+## 2026-09-25：SmoothL1 不替换 BCE
+
+Status：Rejected for current proxy。
+
+Evidence：A0_012 只替换 loss 为 SmoothL1，fixed-0.5 macro F1=`0.11679`，threshold 0.40=`0.14143`；A0_006 的 BCE 对照为 `0.15188`。
+
+Decision：保留 BCE；ranking loss 和更简单 temporal head 仍是下一轮实验，不把本次结果外推为所有回归损失无效。

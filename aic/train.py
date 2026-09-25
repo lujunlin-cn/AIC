@@ -68,6 +68,23 @@ def masked_bce(logits: torch.Tensor, labels: torch.Tensor, mask: torch.Tensor) -
     return loss
 
 
+def masked_regression(logits: torch.Tensor, labels: torch.Tensor,
+                      mask: torch.Tensor, kind: str = "smooth_l1") -> torch.Tensor:
+    valid = mask.bool()
+    if not valid.any():
+        return logits.sum() * 0.0
+    scores = logits.sigmoid()[valid]
+    target = labels[valid]
+    if kind == "mse":
+        loss = nn.functional.mse_loss(scores, target)
+    elif kind in {"smooth_l1", "huber"}:
+        loss = nn.functional.smooth_l1_loss(scores, target)
+    else:
+        raise ValueError(f"Unknown regression loss: {kind}")
+    finite_or_raise("loss", loss)
+    return loss
+
+
 def frame_f1(logits: torch.Tensor, labels: torch.Tensor, mask: torch.Tensor,
              threshold: float = .5) -> tuple[float, int, int, int]:
     valid = mask.bool()
@@ -226,7 +243,8 @@ def _move(batch: dict[str, Any], device: torch.device) -> tuple[torch.Tensor, ..
 
 def run_epoch(model: A0Model, loader: DataLoader, optimizer: torch.optim.Optimizer | None,
               scaler: torch.cuda.amp.GradScaler, device: torch.device, amp: bool,
-              grad_clip: float = 0.0, threshold: float = .5) -> dict[str, Any]:
+              grad_clip: float = 0.0, threshold: float = .5,
+              loss_name: str = "bce") -> dict[str, Any]:
     train = optimizer is not None
     model.train(train)
     if train and model.backbone is not None:
@@ -246,7 +264,8 @@ def run_epoch(model: A0Model, loader: DataLoader, optimizer: torch.optim.Optimiz
             logits = model(features, aux if model.feature_bank_enabled else None,
                            lengths=lengths)
             finite_or_raise("logits", logits)
-            loss = masked_bce(logits, labels, mask)
+            loss = (masked_bce(logits, labels, mask) if loss_name == "bce"
+                    else masked_regression(logits, labels, mask, loss_name))
         if train:
             scaler.scale(loss).backward()
             scaler.unscale_(optimizer)
@@ -341,10 +360,11 @@ def train(config: dict[str, Any]) -> dict[str, Any]:
         if elapsed + (time.monotonic() - started) >= max_seconds:
             break
         prediction_threshold = float(config.get("prediction_threshold", config.get("threshold", .5)))
+        loss_name = str(config.get("loss", "bce"))
         train_metrics = run_epoch(model, train_loader, optimizer, scaler, device, amp,
-                                  float(config["grad_clip"]), prediction_threshold)
+                                  float(config["grad_clip"]), prediction_threshold, loss_name)
         val_metrics = run_epoch(model, val_loader, None, scaler, device, amp,
-                                0.0, prediction_threshold)
+                                0.0, prediction_threshold, loss_name)
         scheduler.step()
         epoch_elapsed = elapsed + time.monotonic() - started
         metric = val_metrics["temporal_proxy_f1"]

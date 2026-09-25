@@ -38,6 +38,7 @@
 - `temporal_shift_feature_map` 已在 ResNet layer1 的中间 feature map 上完成真实 recache/end-to-end 对照：chunk/full max feature error `1.81e-5`，无 TSM 与 TSM mean feature difference `0.08127`，参数增量为 0；五折没有稳定收益，因此不替换 A0。历史 A1 仍是 feature-level embedding shift。
 - B0 使用 torchvision ViT-B/16 ImageNet-1K frozen features + 同一 Temporal U-Net；真实 raw-video → JSONL → validator 已通过。bundle 实际 174.99 MB，超过 S 档，暂作为高分参照而非默认 fallback。
 - Bs0 使用 timm DeiT-S/16 ImageNet-1K frozen features + 同一 Temporal U-Net；完整 FP16 bundle 46.62 MB，五折与冻结 lockbox 已跑通。raw-video → DeiT-S → temporal → center crop → JSONL → validator 已通过（7 个 lockbox 视频共 9,325 个预测）。
+- DeiT-S 固定 median-9/threshold-0.35 的三 seed lockbox 为 `0.29187/0.22378/0.28128`，mean `0.26565±0.03664`；因此是最强 S-tier challenger，但初始化方差仍需继续验证。
 
 ## Engineering fallback
 

@@ -90,7 +90,7 @@ Decision：保留实现、cache 和 correctness regression；降低 canonical in
 
 Status：Promising, not replacement。
 
-Evidence：timm DeiT-S/16 frozen features + 同一 Temporal U-Net，完整 FP16 bundle `46,618,447` bytes、`23,280,257` 参数。DEV median-9/threshold-0.35 为 `0.140241`，同一冻结 policy lockbox 为 `0.291867`；五折为 `0.14389±0.05173`；raw video → JSONL validator 已通过。
+Evidence：timm DeiT-S/16 frozen features + 同一 Temporal U-Net，完整 FP16 bundle `46,618,447` bytes、`23,280,257` 参数。DEV median-9/threshold-0.35 为 `0.140241`，同一冻结 policy lockbox 为 `0.291867`；五折为 `0.14389±0.05173`；三个 seed 的 lockbox 为 `0.29187/0.22378/0.28128`，mean `0.26565±0.03664`；raw video → JSONL validator 已通过。
 
 Decision：保留为当前最强 S-tier temporal challenger。它仍只有 TVSum temporal proxy 证据，必须经过第二独立 split/OOD 和 AIC 联合 GT 才能替换 fallback。
 

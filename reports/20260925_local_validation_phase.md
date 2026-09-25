@@ -25,6 +25,8 @@ The internal TSM CI is not repeated in this table because its report was produce
 
 The DeiT-S bundle has 23,280,257 parameters and was exported as one complete FP16 file. A raw-video run over all seven lockbox videos produced 9,325 predictions and passed the local JSONL validator. A one-video center-crop run took 15.16 s with 1,324,096 KB maximum resident memory on the remote V100 environment. The raw inference path now accepts the same frozen postprocess config used by cache evaluation.
 
+The fixed median-9/threshold-0.35 policy was repeated with two additional temporal-head seeds. Seed 20260925/20260926/20260927 gave DEV macro F1 `0.14024/0.10558/0.13890` and lockbox macro F1 `0.29187/0.22378/0.28128`. The lockbox mean across these three seeds is `0.26565` with sample standard deviation `0.03664`; this is positive evidence for the route, but also shows enough initialization variance that the single seed must not be called a stable winner yet.
+
 ## Zero-parameter postprocess
 
 For A0_006, Gaussian smoothing (window 5, sigma 1, threshold 0.40) improved DEV from 0.151875 to 0.154742 but fell to 0.112405 on lockbox. Gap filling and minimum run length also fell on lockbox. Rank normalization reached 0.115942 on lockbox but was lower on DEV and is not promoted. Raw thresholding remains the conservative fallback. A1 Gaussian was similarly not selected because it was not the DEV winner; its lockbox value is recorded only as an exploratory diagnostic.

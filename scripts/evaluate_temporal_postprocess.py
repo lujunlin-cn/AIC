@@ -118,7 +118,11 @@ def main() -> int:
     parser.add_argument("--output", required=True)
     parser.add_argument("--device", default="cpu")
     parser.add_argument("--config-json", help="single frozen PostprocessConfig JSON; no sweep")
+    parser.add_argument("--protocol-role", choices=("dev", "lockbox"), default="dev",
+                        help="lockbox requires --config-json and never runs the dev sweep")
     args = parser.parse_args()
+    if args.protocol_role == "lockbox" and not args.config_json:
+        parser.error("--protocol-role lockbox requires --config-json; lockbox is not tunable")
     if args.config_json:
         config = PostprocessConfig(**json.loads(Path(args.config_json).read_text()
                                                  if Path(args.config_json).is_file()
@@ -127,6 +131,7 @@ def main() -> int:
     else:
         configs = _default_configs()
     report = evaluate(args.model, args.manifest, configs, args.device)
+    report["protocol_role"] = args.protocol_role
     Path(args.output).parent.mkdir(parents=True, exist_ok=True)
     Path(args.output).write_text(json.dumps(report, indent=2, allow_nan=False) + "\n")
     print(json.dumps({"output": args.output, "video_count": report["video_count"],

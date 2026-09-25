@@ -1,0 +1,10 @@
+{
+  "run_id": "SUMME_EXPANSION_ACQUIRE_001",
+  "hypothesis": "Six size-biased videos are insufficient to assess representation generalization; expand using the next fixed compressed-size ranks without inspecting labels or retuning models",
+  "selection": "compressed-size ranks 9-16, all complete count-and-FPS aligned videos; report separately from first pilot",
+  "max_download_seconds": 900,
+  "max_compressed_bytes": 357065921,
+  "root": "/data/aic/datasets/SumMe/zenodo_range_v2",
+  "model_policy": "same 30 frozen heads per representation, same ordinal decode and fixed 15% summary; no OOD model selection",
+  "git_commit": "476b0d6ed4e6fec5819fe5590d5f6a475ab64471"
+}

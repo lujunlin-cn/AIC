@@ -1,0 +1,16 @@
+{
+  "output": "/data/aic/experiments/RG_FAILURE_FIGURES_001",
+  "tvsum_manifest": "/data/aic/datasets/TVSum/tvsum_manifest_v3.jsonl",
+  "temporal_ids": [
+    "XzYM3PfTM4w",
+    "xwqBXPGE9pQ",
+    "VuWGsYPqAX8",
+    "qqR6AEXwxoQ",
+    "xxdtq8mxegs",
+    "JgHubY5Vw3Y"
+  ],
+  "spatial_results": "/data/aic/experiments/SPATIAL_GT_001/metrics.json",
+  "spatial_output": "/data/aic/experiments/SPATIAL_GT_001",
+  "spatial_annotations": "/data/aic/datasets/RetargetVid/annotations_all",
+  "spatial_videos": "/data/aic/datasets/DHF1K/subset20"
+}

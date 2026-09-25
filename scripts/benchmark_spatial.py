@@ -47,6 +47,9 @@ def main():
         manifest.append({"dataset":"DHF1K/RetargetVid","video_id":vid,"path":str(p),"sha256":hashlib.sha256(p.read_bytes()).hexdigest(),"frame_count":frame_count,"fps":fps,"width":w,"height":h,"split":"public_benchmark_only"})
         for (ratio,mode),pred in preds.items():
             pred=np.asarray(pred);truth=np.asarray(annotations[ratio])
+            # The upstream evaluator clamps all negative GT/pred coordinates
+            # before calling its inclusive-pixel IoU function.
+            truth=np.maximum(truth,0)
             overlap=iou(pred[None],truth);center=(pred[:,:2]+pred[:,2:])/2
             gtcenter=(truth[:,:,:2]+truth[:,:,2:])/2
             center_error=np.linalg.norm(gtcenter-center[None],axis=-1)/np.hypot(w,h)
@@ -69,7 +72,7 @@ def main():
     summary={}
     for mode in methods:
         summary[mode]={r:float(np.mean([x["iou"] for x in results if x["mode"]==mode and x["ratio"]==r])) for r in ["1-3","3-1"]}
-    report={"protocol":"RETARGETVID_DENSE_NATIVE_IOU_V1","hypothesis":"Gradient/face observations and fixed EMA may improve human crop overlap over center","tuning":"none; first 20 source IDs fixed before GT measurement","video_count":len(manifest),"methods":summary,"per_video":results,"upstream_iou_max_error":max(cross_errors),"detector_bytes":Path(a.detector).stat().st_size if a.detector else 0,"elapsed_seconds":time.perf_counter()-start,"official_f_video":None,"competition_score":None}
+    report={"protocol":"RETARGETVID_DENSE_NATIVE_IOU_V2","hypothesis":"Gradient/face observations and fixed EMA may improve human crop overlap over center","tuning":"none; first 20 source IDs fixed before GT measurement","video_count":len(manifest),"methods":summary,"per_video":results,"upstream_iou_max_error":max(cross_errors),"detector_bytes":Path(a.detector).stat().st_size if a.detector else 0,"elapsed_seconds":time.perf_counter()-start,"official_f_video":None,"competition_score":None}
     (out/"metrics.json").write_text(json.dumps(report,indent=2)+"\n")
     (out/"manifest.json").write_text(json.dumps(manifest,indent=2)+"\n")
     print(json.dumps({k:v for k,v in report.items() if k!="per_video"},indent=2))

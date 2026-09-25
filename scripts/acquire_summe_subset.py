@@ -21,13 +21,13 @@ class Slice(io.RawIOBase):
         self.pos+=n
         return b"".join(chunks)
 def main():
-    ap=argparse.ArgumentParser();ap.add_argument("--root",required=True);ap.add_argument("--count",type=int,default=8);ap.add_argument("--index-only",action="store_true")
+    ap=argparse.ArgumentParser();ap.add_argument("--root",required=True);ap.add_argument("--count",type=int,default=8);ap.add_argument("--offset",type=int,default=0);ap.add_argument("--index-only",action="store_true")
     a=ap.parse_args();root=Path(a.root);meta=json.loads((root/"tar_index.json").read_text());row=next(x for x in meta["members"] if x["name"].endswith("SumMe.zip"))
     remote=Remote(meta["source"]);remote.start=-1;remote.data=b""
     archive=zipfile.ZipFile(Slice(remote,row["offset"],row["size"]))
     info=[dict(name=x.filename,size=x.file_size,compressed=x.compress_size) for x in archive.infolist()]
     (root/"summe_zip_index.json").write_text(json.dumps(info,indent=2))
-    videos=sorted([x for x in archive.infolist() if x.filename.lower().endswith((".mp4",".avi",".mov"))],key=lambda x:(x.compress_size,x.filename))[:a.count]
+    videos=sorted([x for x in archive.infolist() if x.filename.lower().endswith((".mp4",".avi",".mov"))],key=lambda x:(x.compress_size,x.filename))[a.offset:a.offset+a.count]
     selected=videos+[x for x in archive.infolist() if x.filename.lower().endswith((".mat",".m",".txt",".pdf"))]
     print(json.dumps({"selected":[(v.filename,v.file_size) for v in videos],"total_bytes":sum(v.compress_size for v in selected)}),flush=True)
     if a.index_only:return
@@ -39,7 +39,7 @@ def main():
         if not dest.exists() or dest.stat().st_size!=item.file_size:
             data=archive.read(item) # zipfile verifies member CRC.
             dest.write_bytes(data)
-        manifest.append(dict(path=str(dest),bytes=dest.stat().st_size,sha256=hashlib.sha256(dest.read_bytes()).hexdigest(),zip_member=item.filename,source=meta["source"],selection="8_smallest_compressed_videos_no_label_inspection"))
+        manifest.append(dict(path=str(dest),bytes=dest.stat().st_size,sha256=hashlib.sha256(dest.read_bytes()).hexdigest(),zip_member=item.filename,source=meta["source"],selection=f"compressed_size_rank_{a.offset+1}_through_{a.offset+a.count}_before_new_label_inspection"))
         (root/"subset_manifest.json").write_text(json.dumps(manifest,indent=2)+"\n")
         print("EXTRACTED",item.filename,item.file_size,flush=True)
 if __name__=="__main__":main()

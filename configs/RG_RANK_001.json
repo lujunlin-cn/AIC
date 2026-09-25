@@ -1,0 +1,31 @@
+{
+  "run_id": "RG_RANK_001",
+  "hypothesis": "BCE fits absolute importance means but may underweight within-video ordering; bounded pairwise ranking may improve summary selection.",
+  "control": "RG_NCV_001 U-Net runs; same 30 split/seed combinations per representation",
+  "failure_condition": "Reject if summary/ranking fails paired confirmation or exposed SumMe comparison deteriorates",
+  "size_impact": "Zero new inference weights",
+  "compute_estimate": "60 fits below 12h",
+  "protocol": "splits/tvsum_nested_cv_v1.json",
+  "output": "/data/aic/experiments/RG_RANK_001",
+  "gt_root": "/data/aic/datasets/TVSum/summary_gt_v1",
+  "epochs": 20,
+  "learning_rate": 0.001,
+  "weight_decay": 0.0001,
+  "seeds": [20260925, 20260926, 20260927],
+  "max_seconds": 600,
+  "thresholds": [0.2,0.25,0.3,0.35,0.4,0.45,0.5],
+  "objective": "bce_pairwise",
+  "pair_weight": 0.1,
+  "pair_draws": 1024,
+  "pair_min_gap": 0.1,
+  "pair_sampling": "uniform ordered timestep draws with replacement; filter abs human gap >= .1; isolated CPU generator",
+  "head_type": "temporal_unet",
+  "run_prefix": "RG_RANK",
+  "models": {
+    "A0": {"manifests": ["/data/aic/features/A0_proxy_v2/train_features.jsonl","/data/aic/features/A0_proxy_v2/val_features.jsonl","/data/aic/features/A0_proxy_v2/lockbox_manifests/test.jsonl"]},
+    "DeiT_S": {"manifests": ["/data/aic/features/DeiT-S/train_features.jsonl","/data/aic/features/DeiT-S/val_features.jsonl","/data/aic/features/DeiT-S/test_features.jsonl"]}
+  },
+  "git_commit": "pending_rank_commit",
+  "official_f_video": null,
+  "competition_score": null
+}

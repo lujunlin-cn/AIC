@@ -37,20 +37,34 @@ def train_one(cfg,fold,model_name,seed,out,device,records):
     else:raise ValueError('Unsupported preregistered head type')
     opt=torch.optim.AdamW(model.parameters(),lr=cfg["learning_rate"],weight_decay=cfg["weight_decay"])
     best=float("inf");best_epoch=None;history=[];start=time.monotonic()
+    objective=cfg.get("objective","bce")
+    if objective not in ("bce","bce_pairwise"):raise ValueError("unknown objective")
+    pair_generator=torch.Generator(device="cpu").manual_seed(seed)
+    rank_seconds=0.;pair_total=0;zero_pair_steps=0
     for epoch in range(cfg["epochs"]):
         model.train(); order=np.random.permutation(len(data["train"])); tl=[]
+        tb=[];tr=[]
         for i in order:
             _,x,y,m=data["train"][i];opt.zero_grad(set_to_none=True)
-            z=model(x)[0];loss=torch.nn.functional.binary_cross_entropy_with_logits(z[m],y[m])
+            z=model(x)[0];bce=torch.nn.functional.binary_cross_entropy_with_logits(z[m],y[m]);loss=bce
+            if objective=="bce_pairwise":
+                from aic.ranking_loss import pairwise_logistic
+                tick=time.monotonic()
+                rank,n=pairwise_logistic(z,y,m,pair_generator,cfg["pair_draws"],cfg["pair_min_gap"])
+                rank_seconds+=time.monotonic()-tick;pair_total+=n;zero_pair_steps+=int(n==0)
+                loss=bce+cfg["pair_weight"]*rank;tr.append(rank.item())
+            tb.append(bce.item())
             if not torch.isfinite(loss):raise RuntimeError("non-finite loss")
             loss.backward();torch.nn.utils.clip_grad_norm_(model.parameters(),1);opt.step();tl.append(loss.item())
         model.eval();vl=[]
         with torch.inference_mode():
             for _,x,y,m in data["inner_dev"]:
                 z=model(x)[0];vl.append(torch.nn.functional.binary_cross_entropy_with_logits(z[m],y[m]).item())
-        v=float(np.mean(vl));history.append({"epoch":epoch,"train_bce":float(np.mean(tl)),"inner_dev_bce":v})
+        v=float(np.mean(vl));history.append({"epoch":epoch,"train_bce":float(np.mean(tb)),
+            "train_objective":float(np.mean(tl)),"train_pairwise":float(np.mean(tr)) if tr else None,"inner_dev_bce":v})
         bundle={"model":copy.deepcopy(model.cpu().state_dict()),"input_dim":model.input_dim,"seed":seed,
-                "run_id":out.name,"config":config,"epoch":epoch,"optimizer":opt.state_dict()}
+                "run_id":out.name,"config":config,"epoch":epoch,"optimizer":opt.state_dict(),
+                "pair_generator_state":pair_generator.get_state()}
         torch.save(bundle,out/"last.pt");model.to(device)
         if v < best:
             best=v;best_epoch=epoch;torch.save(bundle,out/"best.pt")
@@ -68,6 +82,10 @@ def train_one(cfg,fold,model_name,seed,out,device,records):
     write(out/"selection.json",{"checkpoint_rule":"minimum_inner_dev_continuous_BCE",
         "best_epoch":best_epoch,"best_inner_bce":best,"thresholds":threshold_scores,
         "chosen_threshold":chosen,"training_seconds":elapsed,"outer_inspected":False})
+    write(out/"history.json",history)
+    write(out/"objective_diagnostics.json",{"objective":objective,"accepted_pair_draws":pair_total,
+        "zero_pair_steps":zero_pair_steps,"pair_forward_wall_seconds":rank_seconds,
+        "note":"CPU sampling and GPU forward synchronization; excludes ranking backward cost"})
     torch.save({"model":{k:v.detach().cpu().half() for k,v in model.state_dict().items()}},out/"head_fp16.pt")
     job={"run_id":out.name+"_outer","checkpoint":str(out/"best.pt"),"manifest":str(out/"outer_test.jsonl"),
          "threshold":chosen,"model":model_name,"fold_id":fold["fold_id"],"repeat":fold["repeat"],"seed":seed,

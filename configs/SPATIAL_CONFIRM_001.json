@@ -1,0 +1,35 @@
+{
+  "run_id": "SPATIAL_CONFIRM_001",
+  "hypothesis": "Frozen single-face EMA improvement over center may transfer to the next unseen source IDs; group control retained without retuning",
+  "source_ids": [
+    "021",
+    "022",
+    "023",
+    "024",
+    "025",
+    "026",
+    "027",
+    "028",
+    "029",
+    "030"
+  ],
+  "selection": "next sequential archive IDs before reading their human crop annotations",
+  "methods": [
+    "center",
+    "true_face_smooth",
+    "true_face_group_smooth"
+  ],
+  "parameters": {
+    "face_score_threshold": 0.8,
+    "ema_alpha": 0.25,
+    "group_top_n": 3,
+    "crop_width": "maximum legal"
+  },
+  "tuning": "none; single fixed evaluation, thereafter exposed comparison",
+  "training_seconds": 0,
+  "weight_bytes": 25917758,
+  "detector_bytes": 232589,
+  "max_download_bytes": 150000000,
+  "official_f_video": null,
+  "competition_score": null
+}

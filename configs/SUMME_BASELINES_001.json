@@ -1,0 +1,18 @@
+{
+  "run_id": "SUMME_BASELINES_001",
+  "hypothesis": "A0's relative OOD lead may still fail to exceed simple fixed-budget selectors; measure absolute signal against controls before calling it generalization",
+  "training": "none",
+  "selection": "all 14 previously fixed strict-alignment SumMe videos; no video or seed selection",
+  "baselines": ["constant_first_budget", "uniform_segments", "random_sample_scores"],
+  "random_seed": 20260925,
+  "random_repeats": 32,
+  "summary_budget": 0.15,
+  "segment_policy": "TVSUM_SUMMARY_V1_FIXED, 60 original frames with tail merge",
+  "output": "/data/aic/experiments/SUMME_BASELINES_001",
+  "cohorts": [
+    {"root": "/data/aic/datasets/SumMe/zenodo_range_v1/extracted", "predictions": "/data/aic/experiments/SUMME_OOD_002/A0"},
+    {"root": "/data/aic/datasets/SumMe/zenodo_range_v2/extracted", "predictions": "/data/aic/experiments/SUMME_OOD_003/A0"}
+  ],
+  "official_f_video": null,
+  "competition_score": null
+}

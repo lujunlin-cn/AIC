@@ -106,6 +106,14 @@ def test_windowed_prediction_covers_all_frames():
     assert torch.isfinite(result).all()
 
 
+def test_windowed_feature_bank_prediction_accepts_aligned_aux():
+    model = A0Model(feature_bank_enabled=True).eval()
+    result = predict_features(model, torch.randn(9, 512), window=5, overlap=2,
+                              aux=torch.randn(9, 32))
+    assert result.shape == (9,)
+    assert torch.isfinite(result).all()
+
+
 def test_temporal_shift_is_parameter_free_and_loader_roundtrips(tmp_path: Path):
     x = torch.arange(2 * 4 * 8, dtype=torch.float32).reshape(2, 4, 8)
     shifted = temporal_shift(x, fold_div=4)

@@ -192,10 +192,18 @@ def window_starts(length: int, window: int, overlap: int) -> list[int]:
 
 @torch.inference_mode()
 def predict_features(model: nn.Module, features: Tensor, window: int = 256,
-                     overlap: int = 64) -> Tensor:
-    """Fixed-length windows, uniform overlap probability averaging, no threshold."""
+                     overlap: int = 64, aux: Tensor | None = None) -> Tensor:
+    """Fixed-length windows, uniform overlap probability averaging, no threshold.
+
+    ``aux`` is optional for A0/A1 and required for a feature-bank model.  It
+    follows the same ``[T,F]`` frame alignment as ``features`` and is padded
+    with each window so A2 cached inference uses exactly the training-side
+    auxiliary definition.
+    """
     if features.ndim != 2 or len(features) == 0:
         raise ValueError("Expected nonempty [T,D] feature sequence")
+    if aux is not None and (aux.ndim != 2 or aux.shape[0] != features.shape[0]):
+        raise ValueError("Expected aux [T,F] aligned with feature sequence")
     model.eval()
     probabilities = torch.zeros(len(features), device=features.device, dtype=torch.float32)
     counts = torch.zeros_like(probabilities)
@@ -204,11 +212,17 @@ def predict_features(model: nn.Module, features: Tensor, window: int = 256,
         x = features[start:stop]
         valid_length = len(x)
         x = F.pad(x, (0, 0, 0, window - len(x)))
+        aux_window = None
+        if aux is not None:
+            aux_window = aux[start:stop]
+            aux_window = F.pad(aux_window, (0, 0, 0, window - valid_length))
         # Keep the model's temporal geometry tied to the valid portion.  A
         # right-padded tail must not alter GroupNorm statistics or pooling
         # behavior for the logits that will be emitted.
         lengths = torch.tensor([valid_length], dtype=torch.long, device=x.device)
-        result = model(x.unsqueeze(0), lengths=lengths).float().sigmoid()[0, :valid_length]
+        result = model(x.unsqueeze(0),
+                       aux_window.unsqueeze(0) if aux_window is not None else None,
+                       lengths=lengths).float().sigmoid()[0, :valid_length]
         if not torch.isfinite(result).all():
             raise FloatingPointError("Non-finite temporal inference output")
         probabilities[start:stop] += result

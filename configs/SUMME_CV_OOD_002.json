@@ -1,0 +1,32 @@
+{
+  "hypothesis": "The historical OOD gap may be checkpoint-specific; average every matched CV head, never pick a SumMe winner",
+  "selection": "fixed compressed-size ranks 9-16 expansion, no new label-based selection or parameter tuning",
+  "training": "none: frozen existing TVSum models",
+  "postprocess": "no tuning, fixed 60-frame deterministic 15% knapsack; report mean and max human-summary F1 separately",
+  "root": "/data/aic/datasets/SumMe/zenodo_range_v2/extracted",
+  "output": "/data/aic/experiments/SUMME_CV_OOD_002",
+  "models": {
+    "A0": {
+      "bundle": "/data/aic/experiments/A0_006/export/model_fp16.pt",
+      "threshold": 0.4,
+      "backbone_weights": "/data/aic/pretrained/resnet18_headless.pt"
+    },
+    "DeiT_S": {
+      "bundle": "/data/aic/experiments/Bs0_deit_s_probe/model_fp16.pt",
+      "threshold": 0.35,
+      "backbone_weights": "/data/aic/pretrained/deit_small_patch16_224_headless.pt"
+    },
+    "ViT_B": {
+      "bundle": "/data/aic/experiments/B0_probe_vit_b16/model_fp16.pt",
+      "threshold": 0.3,
+      "backbone_weights": "/data/aic/pretrained/vit_b_16-c867db91.pth"
+    }
+  },
+  "git_commit": "d088c3146513ebb1157e21e5a8538007f3fe0c5c",
+  "implementation_note": "commit plus source hashes in provenance.json",
+  "decode_protocol": "ANNOTATED_CFR_DECODE_ORDINAL_V1",
+  "failed_predecessor": "SUMME_OOD_001 non-increasing source PTS; no scores produced",
+  "features": "/data/aic/features/SumMe_representation_v2",
+  "cv_root": "/data/aic/experiments/RG_NCV_001",
+  "cohort": "SumMe independent expansion batch v2; report separately from size ranks1-8"
+}

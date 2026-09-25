@@ -6,11 +6,19 @@ import numpy as np
 from scripts.analyze_nested_cv import paired_bootstrap,stats
 
 def ood(root):
+    roots=[root] if isinstance(root,(str,Path)) else root
     models={};files=[];keys=['native_mean_user_f1','native_max_user_f1','spearman','kendall_tau_b','ndcg_at_15pct']
-    for p in sorted(Path(root).glob('*/metrics.json')):
-        d=json.loads(p.read_text());runs=d.get('runs',[{'per_video':d.get('per_video',[])}]);files.append(str(p));models[d['model']]={}
+    head_ids={}
+    for p in sorted(p for root in roots for p in Path(root).glob('*/metrics.json')):
+        d=json.loads(p.read_text());runs=d.get('runs',[{'per_video':d.get('per_video',[])}]);files.append(str(p))
+        model=d['model'];models.setdefault(model,{})
+        heads=sorted((r.get('run_id','bundle'),r.get('checkpoint_sha256',d.get('bundle_sha256'))) for r in runs)
+        if model in head_ids and heads!=head_ids[model]:raise ValueError('OOD batches must use identical frozen heads')
+        head_ids[model]=heads
         for vid in sorted(r['video_id'] for r in runs[0]['per_video']):
-            models[d['model']][vid]={k:float(np.mean([v[k] for r in runs for v in r['per_video'] if v['video_id']==vid and v[k] is not None])) for k in keys}
+            if vid in models[model]:raise ValueError('duplicate source video across OOD batches: '+vid)
+            if any(sum(v['video_id']==vid for v in r['per_video'])!=1 for r in runs):raise ValueError('unpaired OOD head coverage')
+            models[model][vid]={k:float(np.mean([v[k] for r in runs for v in r['per_video'] if v['video_id']==vid and v[k] is not None])) for k in keys}
     if set(models)!=set(['A0','DeiT_S','ViT_B']):raise ValueError('all three completed models required')
     ids=sorted(models['A0'])
     assert all(sorted(m)==ids for m in models.values())
@@ -33,7 +41,7 @@ def spatial(path):
     return out
 
 def main():
-    ap=argparse.ArgumentParser();ap.add_argument('--ood');ap.add_argument('--spatial');ap.add_argument('--output',required=True);a=ap.parse_args()
+    ap=argparse.ArgumentParser();ap.add_argument('--ood',action='append');ap.add_argument('--spatial');ap.add_argument('--output',required=True);a=ap.parse_args()
     d=ood(a.ood) if a.ood else spatial(a.spatial);Path(a.output).write_text(json.dumps(d,indent=2,allow_nan=False)+'\n')
     print(json.dumps(d.get('means',d.get('comparisons')),indent=2))
 if __name__=='__main__':main()

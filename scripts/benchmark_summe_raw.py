@@ -25,7 +25,8 @@ def main():
         info=probe_video(p);gt=loadmat(root/"GT"/(p.stem+".mat"));n=int(gt["nFrames"].item())
         record={"video_id":p.stem,"path":str(p),"sha256":hashlib.sha256(p.read_bytes()).hexdigest(),
             **info.to_dict(),"gt_nframes":n,"gt_sha256":hashlib.sha256((root/"GT"/(p.stem+".mat")).read_bytes()).hexdigest(),
-            "included":info.frame_count==n,"split":"ood_evaluation_only","dataset":"SumMe","version":"zenodo4884870_subset8_v1"}
+            "included":info.frame_count==n,"split":"ood_evaluation_only","dataset":"SumMe",
+            "version":cfg.get("dataset_version","zenodo4884870_subset8_v1")}
         audit.append(record)
         if info.frame_count!=n:continue
         t=time.perf_counter();sampled=list(iter_annotated_cfr_frames(p,
@@ -61,7 +62,7 @@ def main():
         print(json.dumps(row),flush=True)
     val=write_submission(out/"submission.jsonl",sub,index,stage="final",actual_model_size_mb=meta["loaded_bytes"]/1e6)
     keys=["native_mean_user_f1","native_max_user_f1","spearman","kendall_tau_b","ndcg","ndcg_at_15pct"]
-    report={"protocol":"SUMME_RAW_ZERO_SHOT_SUBSET8_V2","decode_protocol":PROTOCOL,
+    report={"protocol":"SUMME_RAW_ZERO_SHOT_SUBSET8_V2","cohort":cfg.get("cohort"),"decode_protocol":PROTOCOL,
             "caveat":"Size-selected pilot; exact counts and FPS, broken mirror PTS; decoded-order annotation assumption",
             "model":a.model,"config":cfg,"weights":meta["loaded_bytes"],
             "bundle_sha256":meta["loaded_sha256"],"parameter_count":sum(p.numel() for p in model.parameters()),

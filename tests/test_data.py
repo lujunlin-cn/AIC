@@ -33,9 +33,17 @@ def test_tvsum_annotation_audit_preserves_shape_and_protocol():
     assert report["annotation_rows"] == 20
     assert report["annotator_columns"] == 20
     assert report["rows_equal_nframes"] is False
-    assert report["alignment_convention"].startswith("uniform_edges")
+    assert report["alignment_convention"].endswith("fallback")
     assert "15_percent" in report["author_evaluator_convention"]
     assert report["binary_target_protocol"].endswith("ge_0.5_v1")
+
+
+def test_tvsum_annotation_audit_marks_published_frame_identity():
+    import numpy as np
+    report = audit_annotation_record({"nframes": 1000, "length": 40,
+                                      "user_anno": np.zeros((20, 1000))}, "vid")
+    assert report["mat_already_frame_aligned"] is True
+    assert report["alignment_convention"] == "published_mat_per_frame_identity"
 
 def test_group_split_is_deterministic_and_same_group():
     groups=['source:a','source:b','source:a']

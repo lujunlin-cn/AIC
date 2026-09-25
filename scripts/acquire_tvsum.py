@@ -22,7 +22,7 @@ LICENSE_TEXT_HASH = "341fb9cd2b4f276ae6d497ea5f600b596698627bad1db54af1944171ce1
 # Keep the archive version and proxy-label version explicit.  A new label
 # protocol writes new filenames instead of silently reusing older NPZs.
 DATASET_VERSION = "tvsum50_v1.1_2019-11-06_proxy-v2"
-LABEL_PROTOCOL = "tvsum_summary_mean_norm_frame_expand_uniform_v1"
+LABEL_PROTOCOL = "tvsum_per_frame_summary_mean_norm_v1"
 BINARY_TARGET_PROTOCOL = "tvsum_summary_mean_norm_ge_0.5_v1"
 
 
@@ -89,7 +89,7 @@ def audit_annotation_record(raw: dict[str, Any], video_id: str,
     original = np.asarray(raw.get("user_anno")); squeezed = np.squeeze(original)
     shape = list(squeezed.shape)
     if squeezed.ndim == 1: squeezed = squeezed[:, None]
-    orientation = "rows_are_shots"
+    orientation = "rows_are_frame_samples"
     if squeezed.ndim == 2 and squeezed.shape[0] == 20 and squeezed.shape[1] != 20:
         orientation = "transposed_20_raters"
         rows, raters = int(squeezed.shape[1]), int(squeezed.shape[0])
@@ -103,11 +103,13 @@ def audit_annotation_record(raw: dict[str, Any], video_id: str,
             "duration_seconds": duration, "user_anno_raw_shape": list(original.shape),
             "user_anno_squeezed_shape": shape, "annotation_rows": rows,
             "annotator_columns": raters, "orientation": orientation,
-            "row_semantics": "TVSum summary-importance shot/segment score; not AIC frame GT",
+            "row_semantics": "TVSum per-frame samples repeating 2-second shot scores; not AIC frame GT",
+            "source_collection_semantics": "crowd scores were collected on 2-second shots and published expanded to frame count",
             "nominal_segment_seconds": 2.0,
             "observed_uniform_segment_seconds": (duration / rows if duration and rows else None),
             "rows_equal_nframes": bool(rows is not None and nframes is not None and rows == nframes),
-            "alignment_convention": "uniform_edges_linspace_0_nframes_rows_plus_1",
+            "mat_already_frame_aligned": bool(rows is not None and nframes is not None and rows == nframes),
+            "alignment_convention": ("published_mat_per_frame_identity" if rows is not None and nframes is not None and rows == nframes else "uniform_edges_linspace_0_nframes_rows_plus_1_fallback"),
             "author_evaluator_convention": "15_percent_summary_budget_knapsack_and_rater_comparison; not this frame_F1",
             "label_protocol": LABEL_PROTOCOL,
             "binary_target_protocol": BINARY_TARGET_PROTOCOL}
@@ -174,13 +176,22 @@ def _export_video_labels(raw: dict[str, Any], out_dir: Path, video_id: str) -> P
         anno = np.squeeze(anno)
         if anno.ndim == 1: anno = anno[:, None]
         if anno.ndim != 2 or nframes <= 0: return None
-        # TVSum convention is shots x 20; accept the transposed representation.
+        # The released MAT/TSV is 20 raters x nframes: each 2-second shot
+        # score has already been repeated over its source video frames.
+        # Accept the transposed representation without resampling it.
         if anno.shape[0] == 20 and anno.shape[1] != 20: anno = anno.T
         if anno.shape[0] > nframes and anno.shape[1] <= nframes: anno = anno.T
         nshots = anno.shape[0]
-        edges = np.linspace(0, nframes, nshots + 1, dtype=np.int64)
-        scores = np.empty((nframes, anno.shape[1]), dtype=np.float32)
-        for i in range(nshots): scores[edges[i]:edges[i+1]] = anno[i]
+        if nshots == nframes:
+            scores = anno.astype(np.float32, copy=True)
+            alignment = "published_mat_per_frame_identity"
+        else:
+            # Defensive fallback for an alternate release that retains only
+            # shot rows. This branch is expected to be unused for tvsum50 v1.1.
+            edges = np.linspace(0, nframes, nshots + 1, dtype=np.int64)
+            scores = np.empty((nframes, anno.shape[1]), dtype=np.float32)
+            for i in range(nshots): scores[edges[i]:edges[i+1]] = anno[i]
+            alignment = "uniform_edges_linspace_0_nframes_rows_plus_1_fallback"
         labels = (scores.mean(axis=1) - 1.0) / 4.0
         labels = np.clip(labels, 0.0, 1.0)
         np.savez_compressed(path, scores=scores, labels=labels,
@@ -191,7 +202,8 @@ def _export_video_labels(raw: dict[str, Any], out_dir: Path, video_id: str) -> P
                             label_protocol=np.asarray(LABEL_PROTOCOL),
                             binary_target_protocol=np.asarray(BINARY_TARGET_PROTOCOL),
                             source_annotation_rows=np.asarray(nshots, dtype=np.int64),
-                            source_nframes=np.asarray(nframes, dtype=np.int64))
+                            source_nframes=np.asarray(nframes, dtype=np.int64),
+                            alignment_convention=np.asarray(alignment))
         return path
     except Exception:
         return None
@@ -219,7 +231,6 @@ def main() -> int:
     recs=[]; missing=[]; audits=[]
     for x in raw:
         vid=_video_id(x.get("video")); group=f"tvsum:{vid}"; p=by_name.get(vid.lower())
-        audits.append(audit_annotation_record(x, vid, meta if p else None))
         # Some package names include numeric prefix; use URL/video ID substring fallback.
         if p is None:
             candidates=[q for q in videos if vid.lower() in q.name.lower()]
@@ -229,6 +240,7 @@ def main() -> int:
             try: meta=probe_video(p)
             except Exception as e: status="failed"; missing.append(f"{vid}: ffprobe {e}")
         else: missing.append(vid)
+        audits.append(audit_annotation_record(x, vid, meta if p else None))
         label_path = _export_video_labels(x, labels_root, vid)
         recs.append(ManifestRecord(dataset="TVSum",version=DATASET_VERSION,video_id=vid,source_id=vid,source_group=group,path=str(p.resolve()) if p else None,source_url=video_urls.get(vid),license="CC BY 3.0 claim in dataset README; Webscope DSA gate retained as provenance",license_url=LICENSE_URL,license_text_hash=LICENSE_TEXT_HASH,license_gate="user_authorized_downloadable_source",download_status=status,sha256=sha256_file(p) if p else None,split=splits[group],annotation_type="summary_importance_2s",annotation_path=str(label_path.resolve()) if label_path else str(mat.resolve()),**meta,notes="TVSum summary proxy only; not competition highlight/crop GT. Package source="+ARCHIVE_URL+"; upstream Webscope terms retained in provenance. User authorized downloadable source for this project. archive_sha256="+archive_hash+". label_protocol="+LABEL_PROTOCOL))
     write_manifest(recs,args.manifest)

@@ -1,0 +1,15 @@
+{
+  "run_id": "SUMME_LINEAR_OOD_001",
+  "cv_root": "/data/aic/experiments/RG_LINEAR_001",
+  "run_prefix": "RG_LINEAR",
+  "expected_heads": 30,
+  "feature_roots": [
+    "/data/aic/features/SumMe_representation_v1",
+    "/data/aic/features/SumMe_representation_v2"
+  ],
+  "output": "/data/aic/experiments/SUMME_LINEAR_OOD_001",
+  "head_config": "configs/RG_LINEAR_001.json",
+  "selection": "all 30 TVSum-inner-selected heads, no SumMe parameter or head choice",
+  "official_f_video": null,
+  "competition_score": null
+}

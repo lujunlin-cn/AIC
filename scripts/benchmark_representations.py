@@ -44,9 +44,13 @@ def load_head(checkpoint,device):
     if weights is None: raise ValueError("checkpoint lacks model state")
     full=any(k.startswith("temporal.") for k in weights)
     if full:weights={k.removeprefix("temporal."):v for k,v in weights.items() if k.startswith("temporal.")}
-    dim=int(weights["adapter.weight"].shape[1])
-    aux=int(weights["aux_adapter.0.weight"].shape[1]) if "aux_adapter.0.weight" in weights else 0
-    model=TemporalUNet(dim,aux).to(device)
+    if 'score.weight' in weights:
+        from aic.linear_head import LinearScorer
+        model=LinearScorer(int(weights['score.weight'].shape[1])).to(device)
+    else:
+        dim=int(weights["adapter.weight"].shape[1])
+        aux=int(weights["aux_adapter.0.weight"].shape[1]) if "aux_adapter.0.weight" in weights else 0
+        model=TemporalUNet(dim,aux).to(device)
     model.load_state_dict(weights,strict=True);model.eval()
     shift=bool(state.get("config",{}).get("temporal_shift",False))
     return model,shift,state

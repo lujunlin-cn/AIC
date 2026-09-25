@@ -28,7 +28,13 @@ def train_one(cfg,fold,model_name,seed,out,device,records):
                             torch.from_numpy(x["labels"]).float().to(device),
                             torch.from_numpy(x["mask"]).bool().to(device)))
     random.seed(seed);np.random.seed(seed);torch.manual_seed(seed);torch.cuda.manual_seed_all(seed)
-    model=TemporalUNet(data["train"][0][1].shape[-1]).to(device)
+    head_type=cfg.get('head_type','temporal_unet')
+    if head_type=='linear':
+        from aic.linear_head import LinearScorer
+        model=LinearScorer(data['train'][0][1].shape[-1]).to(device)
+    elif head_type=='temporal_unet':
+        model=TemporalUNet(data["train"][0][1].shape[-1]).to(device)
+    else:raise ValueError('Unsupported preregistered head type')
     opt=torch.optim.AdamW(model.parameters(),lr=cfg["learning_rate"],weight_decay=cfg["weight_decay"])
     best=float("inf");best_epoch=None;history=[];start=time.monotonic()
     for epoch in range(cfg["epochs"]):
@@ -65,7 +71,8 @@ def train_one(cfg,fold,model_name,seed,out,device,records):
     torch.save({"model":{k:v.detach().cpu().half() for k,v in model.state_dict().items()}},out/"head_fp16.pt")
     job={"run_id":out.name+"_outer","checkpoint":str(out/"best.pt"),"manifest":str(out/"outer_test.jsonl"),
          "threshold":chosen,"model":model_name,"fold_id":fold["fold_id"],"repeat":fold["repeat"],"seed":seed,
-         "split_role":"outer_cv_evaluation_only","training_seconds":elapsed,"head_weight_bytes":(out/"head_fp16.pt").stat().st_size}
+         "split_role":"outer_cv_evaluation_only","training_seconds":elapsed,"head_weight_bytes":(out/"head_fp16.pt").stat().st_size,
+         'head_type':head_type,'head_parameter_count':sum(p.numel() for p in model.parameters())}
     del data,predictions,model,opt,bundle
     torch.cuda.empty_cache()
     evaluate(job,cfg["gt_root"],str(out),device)
@@ -82,7 +89,7 @@ def main():
     assert set(records)==set(protocol["video_ids"])
     for fold in protocol["folds"]:
         for seed in cfg["seeds"]:
-            run_id=f"RG_NCV_{a.model}_r{fold['repeat']}_f{fold['fold_id']}_s{seed}"
+            run_id=f"{cfg.get('run_prefix','RG_NCV')}_{a.model}_r{fold['repeat']}_f{fold['fold_id']}_s{seed}"
             out=Path(cfg["output"])/run_id
             if (out/(run_id+"_outer")/"metrics.json").exists():continue
             train_one(cfg,fold,a.model,seed,out,torch.device("cuda:0"),records)

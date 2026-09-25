@@ -9,6 +9,7 @@ TRAIN/DEV; this module never looks at labels.
 from __future__ import annotations
 
 from dataclasses import dataclass, asdict
+import math
 from typing import Iterable, Sequence
 
 import numpy as np
@@ -35,6 +36,18 @@ class PostprocessConfig:
     min_duration: int = 1
     max_duration: int | None = None
     shot_reset: bool = False
+
+    def __post_init__(self) -> None:
+        for name in ("threshold", "gaussian_sigma", "ema_alpha"):
+            value = float(getattr(self, name))
+            if not math.isfinite(value):
+                raise ValueError(f"{name} must be finite")
+        if self.low_threshold is not None and not math.isfinite(float(self.low_threshold)):
+            raise ValueError("low_threshold must be finite")
+        if self.smoothing_window < 1:
+            raise ValueError("smoothing_window must be positive")
+        if self.gap < 0 or self.min_duration < 1:
+            raise ValueError("gap must be nonnegative and min_duration positive")
 
     def as_dict(self) -> dict[str, object]:
         return asdict(self)

@@ -36,3 +36,5 @@ def test_select_temporal_gap_and_min_duration():
 def test_invalid_smoothing_window():
     with pytest.raises(ValueError):
         smooth_scores([1., 2.], "median", 2)
+    with pytest.raises(ValueError):
+        PostprocessConfig(threshold=float("nan"))

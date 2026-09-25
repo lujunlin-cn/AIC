@@ -42,6 +42,7 @@
 
 - **主要证据缺口**：OOD 样本少且镜像时轴有局限；没有赛事联合标签。技术上同时存在 ranking/domain shift、过选校准和多人主体选择错误，不能跨 benchmark 排名谁是比赛最大瓶颈。
 - **Running**：无 AIC 训练；`YTH_ACQUIRE_001` 在本地对 YouTube Highlights 9.9GB tar 做可断点 Range 索引，已取得人工/弱标签 metadata；`SPATIAL_CONFIRM_001` 尝试恢复 DHF1K 021–030 作为固定参数空间确认集。GPU 2/4/5/6/7 空闲，GPU1既有任务保留。
+- **Latest blocker**：本地 YouTube Highlights tar Range 连接在 metadata 之后出现 TLS EOF/timeout；远程 DHF1K 021–030 Drive Range 也在启动阶段 TLS timeout，未生成新视频。两条路径均保留失败日志，不影响已完成证据。
 - **Latest Failure**：ENGINEERING_RELEASE_001在CUDA初始化前请求显存统计失败；修复后新ID002/003全部完成。SUMME_OOD_001非递增PTS失败仍保留；比赛reader不放宽。RetargetVid负坐标clamp已补齐，重计分v2保留v1，自有分数不变。
 
 ## 资源与下一任务

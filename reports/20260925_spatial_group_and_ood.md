@@ -21,7 +21,7 @@ The group raw path was checked on video 020: both group modes emitted 566 legal 
 
 ## New temporal OOD acquisition
 
-A Range-capable indexer `scripts/index_youtube_highlights.py` is running against the published `jhanglee/youtube-highlights-full` tar. The archive metadata reports 417 MP4s, 315 human MTurk and 102 weak-match sources, plus explicit alignment warnings. Only small metadata files are being extracted during indexing; no model selection or training has used this data. The 9.9GB media tar is not silently downloaded wholesale.
+A Range-capable indexer `scripts/index_youtube_highlights.py` reached the small README/annotation metadata (417 MP4s, 315 human MTurk, 102 weak-match sources, explicit alignment warnings), then the remote TLS connection produced EOF/timeouts before further indexing. A bounded DHF1K 021–030 recovery attempt hit the same TLS timeout before any archive was created. No model selection or training used either source; neither is counted as OOD evidence. The 9.9GB media tar is not silently downloaded wholesale.
 
 The data source is a domain-specific highlight benchmark, so any future result will use its native segment/MTurk protocol and a frozen model comparison. It will not be relabeled as TVSum F1 or AIC F_video. If acquisition exceeds its bounded time budget, the failure and partial index stay recorded.
 

@@ -44,6 +44,13 @@ lockbox, internal TSM scores `0.17455` (0.30) / `0.17514` (0.35), while the A0
 control scores `0.21113` (0.30) / `0.21068` (0.35). The lockbox result does not
 support replacing the ResNet18 fallback.
 
+For an additional comparison against the strongest previously retained A0
+checkpoint (`A0_006`, trained with the project trainer rather than the small
+probe trainer), lockbox macro F1 is `0.18591` at threshold 0.30 and `0.18203`
+at 0.35. Internal TSM remains lower (`0.17455`/`0.17514`). This comparison is
+reported as a separate checkpoint audit because its optimizer/training loop is
+not identical to the controlled fold trainer.
+
 Artifacts:
 
 - `reports/internal_tsm_correctness_20260925.json`

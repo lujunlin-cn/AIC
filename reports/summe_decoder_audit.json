@@ -1,0 +1,242 @@
+[
+  {
+    "video": "Cooking",
+    "gt_fps": 15.0,
+    "gt_keys": [
+      "all_userIDs",
+      "segments",
+      "nFrames",
+      "video_duration",
+      "FPS",
+      "gt_score",
+      "user_score"
+    ],
+    "codec": "h264",
+    "fps": 15.0,
+    "declared_n": 1287,
+    "decoded": 1280,
+    "gt_n": 1286,
+    "nonincreasing": 568,
+    "opencv_prefix_max_error": 0.0,
+    "pts_prefix": [
+      0.13333333333333333,
+      0.2,
+      0.3333333333333333,
+      0.26666666666666666,
+      0.4666666666666667,
+      0.4,
+      0.6,
+      0.5333333333333333
+    ]
+  },
+  {
+    "video": "Fire Domino",
+    "gt_fps": 30.0,
+    "gt_keys": [
+      "all_userIDs",
+      "segments",
+      "nFrames",
+      "video_duration",
+      "FPS",
+      "gt_score",
+      "user_score"
+    ],
+    "codec": "h264",
+    "fps": 30.0,
+    "declared_n": 1612,
+    "decoded": 1612,
+    "gt_n": 1612,
+    "nonincreasing": 235,
+    "opencv_prefix_max_error": 0.0,
+    "pts_prefix": [
+      0.03333333333333333,
+      0.13333333333333333,
+      0.1,
+      0.16666666666666666,
+      0.06666666666666667,
+      0.26666666666666666,
+      0.23333333333333334,
+      0.3
+    ]
+  },
+  {
+    "video": "Jumps",
+    "gt_fps": 25.0,
+    "gt_keys": [
+      "all_userIDs",
+      "segments",
+      "nFrames",
+      "video_duration",
+      "FPS",
+      "gt_score",
+      "user_score"
+    ],
+    "codec": "h264",
+    "fps": 25.0,
+    "declared_n": 950,
+    "decoded": 950,
+    "gt_n": 950,
+    "nonincreasing": 471,
+    "opencv_prefix_max_error": 0.0,
+    "pts_prefix": [
+      0.04,
+      0.16,
+      0.12,
+      0.2,
+      0.08,
+      0.32,
+      0.28,
+      0.24
+    ]
+  },
+  {
+    "video": "Playing_on_water_slide",
+    "gt_fps": 29.97002997002997,
+    "gt_keys": [
+      "all_userIDs",
+      "segments",
+      "nFrames",
+      "video_duration",
+      "FPS",
+      "gt_score",
+      "user_score"
+    ],
+    "codec": "h264",
+    "fps": 29.97002997002997,
+    "declared_n": 3065,
+    "decoded": 3065,
+    "gt_n": 3065,
+    "nonincreasing": 956,
+    "opencv_prefix_max_error": 0.0,
+    "pts_prefix": [
+      0.03336666666666667,
+      0.13346666666666668,
+      0.1001,
+      0.06673333333333334,
+      0.23356666666666667,
+      0.2002,
+      0.16683333333333333,
+      0.33366666666666667
+    ]
+  },
+  {
+    "video": "St Maarten Landing",
+    "gt_fps": 25.0,
+    "gt_keys": [
+      "all_userIDs",
+      "segments",
+      "nFrames",
+      "video_duration",
+      "FPS",
+      "gt_score",
+      "user_score"
+    ],
+    "codec": "h264",
+    "fps": 25.0,
+    "declared_n": 1751,
+    "decoded": 1751,
+    "gt_n": 1751,
+    "nonincreasing": 677,
+    "opencv_prefix_max_error": 0.0,
+    "pts_prefix": [
+      0.04,
+      0.08,
+      0.12,
+      0.16,
+      0.2,
+      0.24,
+      0.32,
+      0.28
+    ]
+  },
+  {
+    "video": "car_over_camera",
+    "gt_fps": 29.97002997002997,
+    "gt_keys": [
+      "all_userIDs",
+      "segments",
+      "nFrames",
+      "video_duration",
+      "FPS",
+      "gt_score",
+      "user_score"
+    ],
+    "codec": "h264",
+    "fps": 29.97002997002997,
+    "declared_n": 4382,
+    "decoded": 4382,
+    "gt_n": 4382,
+    "nonincreasing": 1446,
+    "opencv_prefix_max_error": 0.0,
+    "pts_prefix": [
+      0.03336666666666667,
+      0.13346666666666668,
+      0.1001,
+      0.06673333333333334,
+      0.23356666666666667,
+      0.2002,
+      0.16683333333333333,
+      0.33366666666666667
+    ]
+  },
+  {
+    "video": "paluma_jump",
+    "gt_fps": 29.97002997002997,
+    "gt_keys": [
+      "all_userIDs",
+      "segments",
+      "nFrames",
+      "video_duration",
+      "FPS",
+      "gt_score",
+      "user_score"
+    ],
+    "codec": "h264",
+    "fps": 29.97002997002997,
+    "declared_n": 2574,
+    "decoded": 2574,
+    "gt_n": 2574,
+    "nonincreasing": 1238,
+    "opencv_prefix_max_error": 0.0,
+    "pts_prefix": [
+      0.03336666666666667,
+      0.1001,
+      0.06673333333333334,
+      0.16683333333333333,
+      0.13346666666666668,
+      0.23356666666666667,
+      0.2002,
+      0.3003
+    ]
+  },
+  {
+    "video": "playing_ball",
+    "gt_fps": 30.0,
+    "gt_keys": [
+      "all_userIDs",
+      "segments",
+      "nFrames",
+      "video_duration",
+      "FPS",
+      "gt_score",
+      "user_score"
+    ],
+    "codec": "h264",
+    "fps": 30.0,
+    "declared_n": 3119,
+    "decoded": 3119,
+    "gt_n": 3120,
+    "nonincreasing": 1061,
+    "opencv_prefix_max_error": 0.0,
+    "pts_prefix": [
+      0.03333333333333333,
+      0.1,
+      0.06666666666666667,
+      0.16666666666666666,
+      0.13333333333333333,
+      0.23333333333333334,
+      0.2,
+      0.3
+    ]
+  }
+]

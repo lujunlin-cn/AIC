@@ -117,3 +117,59 @@ Status：Blocked subtask, mainline continues。
 Evidence：SumMe ModelScope 仓库 raw 视频是无进展的 LFS object；本轮停止下载，没有生成 OOD 分数。服务器没有可快速运行的本地 VLM teacher 权重。
 
 Decision：不把下载阻塞或缺 teacher 误写成模型结论；下一轮优先取得可验证的 SumMe/YouTube Highlights raw 子集，再做小规模 VLM pilot。
+
+## 2026-09-25：真实category与nested CV替代已消费holdout
+
+Status：Accepted；修正早期metadata不可得判断，不覆盖旧实验。
+
+Evidence：实际MAT包含10类各5视频。90次配对训练完成；2×5外fold、3seed，每fold30train/10inner-dev/10outer；600组跨backbone外层frame/label/timestamp/mask精确相同。
+
+Decision：原7条只作comparison_holdout_v1历史解释，不再调参；保留原JSON，新增status sidecar。TVSum全体已开发暴露，nestedCV不是全新独立test。只用inner-dev挑checkpoint与threshold。
+
+## 2026-09-25：DeiT-S保留challenger，不提升Primary
+
+Status：Accepted for current evidence；不是否定ViT路线。
+
+Evidence：DeiT−A0 nested summary delta+.01552，95% CI[−.00653,.04070]；Spearman delta−.01777，CI跨0。ViT-B summary近乎等于DeiT。首批6条strict-alignment SumMe上30 matched heads平均summary为A0 .25752、DeiT .15345、ViT-B .12961。
+
+Decision：A0继续工程fallback/保守S方案；DeiT是TVSum summary challenger；ViT-B保留M参照，不扩大模型。不能把7条高分或一次seed当泛化胜出。
+
+## 2026-09-25：SumMe原视频恢复，时间轴协议显式隔离
+
+Status：Accepted as bounded OOD pilot with limitations。
+
+Evidence：Zenodo嵌套ZIP经Range+CRC恢复8视频；6条decoded count和GT/FPS相符，另2条排除。PTS确实非单调，PyAV/OpenCV前30帧像素完全一致。原生作者MATLAB evaluator经Octave与18项Python mean/max F1误差≤1.12e-16。
+
+Decision：使用显式annotation-ordinal CFR benchmark，保留镜像时轴局限；不改变比赛严格PTS reader，不拉伸GT。第二批按预注册大小顺序扩展，冻结模型/摘要规则，独立报告；旧LFS失败保留。
+
+## 2026-09-25：空间首次真实GT证据，不把微小均值收益升级
+
+Status：Accepted for benchmark and deployment; candidate gain uncertain。
+
+Evidence：20条DHF1K×2ratio×6human。Center IoU .48190/.73951，face+EMA .48634/.75214，pair delta+.00854 CI[−.01054,.02855]；890280次原IoU函数比较误差0，前置负坐标clamp已复刻。8条raw E2E/3600预测有效，crop与benchmark完全一致。
+
+Decision：center保留默认；face/proxy+EMA仅候选，不能称成熟A3。YuNet232589bytes计入总模型。优先解决多人主体错误，再研究复杂路径/大小。无AIC联合GT，不制造oracle/官方得分。
+
+## 2026-09-25：第二批OOD确认与预算参照
+
+Status：Accepted for bounded frozen-model evidence，不外推整个架构。
+
+Evidence：新增8条在冻结配置下CV-head summary A0/DeiT/ViT=.17883/.11955/.15411；合并14条=.21255/.13408/.14361，DeiT−A0 CI[−.13175,−.02734]。A0−32draw随机预算+.07501 CI[.02407,.13841]，其余表示对随机CI跨0。历史完整bundle方向一致。
+
+Decision：A0继续fallback，DeiT只保留TVSum challenger，ViT-B只保留M reference；不继续扩大backbone或重新扫旧阈值。14条SumMe已用于模型比较，后续不得称pristine lockbox。近重复700对筛查无flag只是有限覆盖证据。
+
+## 2026-09-25：冻结三种可运行工程候选
+
+Status：Accepted for engineering release, no official acceptance claim。
+
+Evidence：完整权重SHA在本地/远程匹配；真实DEV两视频A0center1263/DeiTcenter2297/A0faceEMA1263条预测全valid；A0center33.01s、faceEMA157.78s。DHF1K三视频A0全空保留，无temporal GT不判错。
+
+Decision：统一hash-audited离线入口，默认A0center。FaceEMA空间探索虽然权重仅增加232589bytes，dense CPU代价明显，不能只因小权重就替换默认。DeiT raw .35与历史median9/.35分开命名。保留首次CUDA统计失败及修复后新run_id；不覆盖历史。
+
+## 2026-09-25：不以线性头替换当前U-Net
+
+Status：Rejected for this matched-budget linear-head hypothesis。
+
+Evidence：60次2×5fold×3seed对照，仅替换head。A0 Spearman delta−.10286 CI[−.14801,−.05926]；DeiT summary delta−.01292 CI[−.02128,−.00475]。既有SumMe14外部comparison，A0 summary delta−.06485 CI[−.10564,−.02562]，DeiT无改善。
+
+Decision：保留U-Net，停止此线性头扩搜；本轮不导出/升级表现退化的完整候选。不能把结果泛化为所有简单head无效，后续loss/head须有新的错误机制依据。

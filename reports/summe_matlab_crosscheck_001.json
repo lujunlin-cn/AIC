@@ -1,0 +1,115 @@
+{
+  "cases": [
+    {
+      "model": "A0",
+      "video_id": "Fire Domino",
+      "mean_error": 0.0,
+      "max_error": 5.551115123125783e-17
+    },
+    {
+      "model": "A0",
+      "video_id": "Jumps",
+      "mean_error": 5.551115123125783e-17,
+      "max_error": 0.0
+    },
+    {
+      "model": "A0",
+      "video_id": "Playing_on_water_slide",
+      "mean_error": 0.0,
+      "max_error": 0.0
+    },
+    {
+      "model": "A0",
+      "video_id": "St Maarten Landing",
+      "mean_error": 5.551115123125783e-17,
+      "max_error": 0.0
+    },
+    {
+      "model": "A0",
+      "video_id": "car_over_camera",
+      "mean_error": 0.0,
+      "max_error": 1.1102230246251565e-16
+    },
+    {
+      "model": "A0",
+      "video_id": "paluma_jump",
+      "mean_error": 0.0,
+      "max_error": 5.551115123125783e-17
+    },
+    {
+      "model": "DeiT_S",
+      "video_id": "Fire Domino",
+      "mean_error": 0.0,
+      "max_error": 0.0
+    },
+    {
+      "model": "DeiT_S",
+      "video_id": "Jumps",
+      "mean_error": 0.0,
+      "max_error": 0.0
+    },
+    {
+      "model": "DeiT_S",
+      "video_id": "Playing_on_water_slide",
+      "mean_error": 0.0,
+      "max_error": 0.0
+    },
+    {
+      "model": "DeiT_S",
+      "video_id": "St Maarten Landing",
+      "mean_error": 0.0,
+      "max_error": 0.0
+    },
+    {
+      "model": "DeiT_S",
+      "video_id": "car_over_camera",
+      "mean_error": 0.0,
+      "max_error": 2.7755575615628914e-17
+    },
+    {
+      "model": "DeiT_S",
+      "video_id": "paluma_jump",
+      "mean_error": 1.3877787807814457e-17,
+      "max_error": 0.0
+    },
+    {
+      "model": "ViT_B",
+      "video_id": "Fire Domino",
+      "mean_error": 0.0,
+      "max_error": 0.0
+    },
+    {
+      "model": "ViT_B",
+      "video_id": "Jumps",
+      "mean_error": 2.7755575615628914e-17,
+      "max_error": 1.1102230246251565e-16
+    },
+    {
+      "model": "ViT_B",
+      "video_id": "Playing_on_water_slide",
+      "mean_error": 0.0,
+      "max_error": 5.551115123125783e-17
+    },
+    {
+      "model": "ViT_B",
+      "video_id": "St Maarten Landing",
+      "mean_error": 0.0,
+      "max_error": 1.1102230246251565e-16
+    },
+    {
+      "model": "ViT_B",
+      "video_id": "car_over_camera",
+      "mean_error": 0.0,
+      "max_error": 0.0
+    },
+    {
+      "model": "ViT_B",
+      "video_id": "paluma_jump",
+      "mean_error": 0.0,
+      "max_error": 0.0
+    }
+  ],
+  "max_error": 1.1102230246251565e-16,
+  "upstream": "unmodified summe_evaluateSummary.m",
+  "interpreter": "GNU Octave"
+}

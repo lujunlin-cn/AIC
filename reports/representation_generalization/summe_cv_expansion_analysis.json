@@ -1,0 +1,385 @@
+{
+  "means": {
+    "A0": {
+      "native_mean_user_f1": 0.17883194900985452,
+      "native_max_user_f1": 0.4492214207040479,
+      "spearman": 0.11308074688637404,
+      "kendall_tau_b": 0.08208781191141401,
+      "ndcg_at_15pct": 0.3914724803419459
+    },
+    "DeiT_S": {
+      "native_mean_user_f1": 0.11954651683861994,
+      "native_max_user_f1": 0.33868406099927967,
+      "spearman": -0.019108717021180867,
+      "kendall_tau_b": -0.015326110123543143,
+      "ndcg_at_15pct": 0.262238392894684
+    },
+    "ViT_B": {
+      "native_mean_user_f1": 0.1541132544960529,
+      "native_max_user_f1": 0.3996657812512174,
+      "spearman": 0.04365567704960211,
+      "kendall_tau_b": 0.03167848717124607,
+      "ndcg_at_15pct": 0.32164544903730186
+    }
+  },
+  "per_video": {
+    "A0": {
+      "Air_Force_One": {
+        "native_mean_user_f1": 0.24005088349255593,
+        "native_max_user_f1": 0.5183567762842058,
+        "spearman": 0.07231369012784242,
+        "kendall_tau_b": 0.05216141461017452,
+        "ndcg_at_15pct": 0.48286865714263105
+      },
+      "Base jumping": {
+        "native_mean_user_f1": 0.10569572500003237,
+        "native_max_user_f1": 0.286522615387417,
+        "spearman": -0.020018166457487708,
+        "kendall_tau_b": -0.011803533563555126,
+        "ndcg_at_15pct": 0.2511401113190622
+      },
+      "Bike Polo": {
+        "native_mean_user_f1": 0.11706418849804454,
+        "native_max_user_f1": 0.33467177656838604,
+        "spearman": 0.24266904842327613,
+        "kendall_tau_b": 0.1793131960192561,
+        "ndcg_at_15pct": 0.21583928609903424
+      },
+      "Bus_in_Rock_Tunnel": {
+        "native_mean_user_f1": 0.19627926806211807,
+        "native_max_user_f1": 0.4578111691165651,
+        "spearman": 0.044135406269235386,
+        "kendall_tau_b": 0.03248148930242204,
+        "ndcg_at_15pct": 0.4778069323356542
+      },
+      "Car_railcrossing": {
+        "native_mean_user_f1": 0.1816796526803648,
+        "native_max_user_f1": 0.4524365836620606,
+        "spearman": 0.12071482987789121,
+        "kendall_tau_b": 0.08929713446081947,
+        "ndcg_at_15pct": 0.32823886712032896
+      },
+      "Kids_playing_in_leaves": {
+        "native_mean_user_f1": 0.245523814860474,
+        "native_max_user_f1": 0.542519439781269,
+        "spearman": 0.28682898344942687,
+        "kendall_tau_b": 0.20881577713377272,
+        "ndcg_at_15pct": 0.46662441266664617
+      },
+      "Scuba": {
+        "native_mean_user_f1": 0.21753262713418664,
+        "native_max_user_f1": 0.502777469605903,
+        "spearman": 0.1429379078626466,
+        "kendall_tau_b": 0.09458931079326888,
+        "ndcg_at_15pct": 0.5759302306385871
+      },
+      "Statue of Liberty": {
+        "native_mean_user_f1": 0.12682943235105987,
+        "native_max_user_f1": 0.4986755352265766,
+        "spearman": 0.015064275538161458,
+        "kendall_tau_b": 0.01184770653515344,
+        "ndcg_at_15pct": 0.3333313454136232
+      }
+    },
+    "DeiT_S": {
+      "Air_Force_One": {
+        "native_mean_user_f1": 0.07611440354790149,
+        "native_max_user_f1": 0.23098679500621971,
+        "spearman": -0.20689141296125754,
+        "kendall_tau_b": -0.1514733464469171,
+        "ndcg_at_15pct": 0.13686362690932513
+      },
+      "Base jumping": {
+        "native_mean_user_f1": 0.0912201558382728,
+        "native_max_user_f1": 0.2597762274602172,
+        "spearman": -0.06262691766150982,
+        "kendall_tau_b": -0.04202534408584765,
+        "ndcg_at_15pct": 0.21030516008882189
+      },
+      "Bike Polo": {
+        "native_mean_user_f1": 0.19607170101720664,
+        "native_max_user_f1": 0.42219514290766,
+        "spearman": 0.24137302738726465,
+        "kendall_tau_b": 0.1689630379281512,
+        "ndcg_at_15pct": 0.3607874154155217
+      },
+      "Bus_in_Rock_Tunnel": {
+        "native_mean_user_f1": 0.07152684249549854,
+        "native_max_user_f1": 0.228853794358508,
+        "spearman": -0.2885819158730491,
+        "kendall_tau_b": -0.21338658685480813,
+        "ndcg_at_15pct": 0.18344144512773222
+      },
+      "Car_railcrossing": {
+        "native_mean_user_f1": 0.07120701484974103,
+        "native_max_user_f1": 0.21310096656100494,
+        "spearman": -0.10256499274852351,
+        "kendall_tau_b": -0.07535105317042237,
+        "ndcg_at_15pct": 0.12435950638649694
+      },
+      "Kids_playing_in_leaves": {
+        "native_mean_user_f1": 0.16656125798501317,
+        "native_max_user_f1": 0.3777464982179766,
+        "spearman": 0.08835150849259572,
+        "kendall_tau_b": 0.06115279485868476,
+        "ndcg_at_15pct": 0.34523810277224565
+      },
+      "Scuba": {
+        "native_mean_user_f1": 0.16808314029243332,
+        "native_max_user_f1": 0.5320743921001898,
+        "spearman": 0.11685612240121221,
+        "kendall_tau_b": 0.08897968439135635,
+        "ndcg_at_15pct": 0.42441939466123285
+      },
+      "Statue of Liberty": {
+        "native_mean_user_f1": 0.11558761868289254,
+        "native_max_user_f1": 0.4447386713824609,
+        "spearman": 0.06121484479382049,
+        "kendall_tau_b": 0.04053193239145778,
+        "ndcg_at_15pct": 0.3124924917960954
+      }
+    },
+    "ViT_B": {
+      "Air_Force_One": {
+        "native_mean_user_f1": 0.19329858672861602,
+        "native_max_user_f1": 0.3721148305935,
+        "spearman": 0.18601082121668586,
+        "kendall_tau_b": 0.13713706347526136,
+        "ndcg_at_15pct": 0.33399365848286533
+      },
+      "Base jumping": {
+        "native_mean_user_f1": 0.08168990490769742,
+        "native_max_user_f1": 0.2534480117101469,
+        "spearman": -0.12966788349563632,
+        "kendall_tau_b": -0.09335616049969821,
+        "ndcg_at_15pct": 0.17078312587388725
+      },
+      "Bike Polo": {
+        "native_mean_user_f1": 0.20707505246544,
+        "native_max_user_f1": 0.519262542651306,
+        "spearman": 0.2513022264379608,
+        "kendall_tau_b": 0.17976248021024815,
+        "ndcg_at_15pct": 0.4239909053645064
+      },
+      "Bus_in_Rock_Tunnel": {
+        "native_mean_user_f1": 0.09258019040351208,
+        "native_max_user_f1": 0.2713627156869563,
+        "spearman": -0.13776971467214535,
+        "kendall_tau_b": -0.09535216069285658,
+        "ndcg_at_15pct": 0.22852558918791918
+      },
+      "Car_railcrossing": {
+        "native_mean_user_f1": 0.17438396793854893,
+        "native_max_user_f1": 0.38238001540141536,
+        "spearman": 0.10637102011866752,
+        "kendall_tau_b": 0.07830798491782148,
+        "ndcg_at_15pct": 0.291574744250993
+      },
+      "Kids_playing_in_leaves": {
+        "native_mean_user_f1": 0.17272422345351604,
+        "native_max_user_f1": 0.4405089944157477,
+        "spearman": 0.12708446619603028,
+        "kendall_tau_b": 0.09252888813933005,
+        "ndcg_at_15pct": 0.35224257593253494
+      },
+      "Scuba": {
+        "native_mean_user_f1": 0.13364393506343758,
+        "native_max_user_f1": 0.5355237541767057,
+        "spearman": -0.08420915451870853,
+        "kendall_tau_b": -0.056656974145789754,
+        "ndcg_at_15pct": 0.32148383882771053
+      },
+      "Statue of Liberty": {
+        "native_mean_user_f1": 0.17751017500765515,
+        "native_max_user_f1": 0.42272538537396126,
+        "spearman": 0.03012363511396262,
+        "kendall_tau_b": 0.011056775965652072,
+        "ndcg_at_15pct": 0.4505691543779984
+      }
+    }
+  },
+  "paired": {
+    "DeiT_S-A0": {
+      "native_mean_user_f1": {
+        "delta": -0.05928543217123459,
+        "ci95": [
+          -0.1072547507486584,
+          -0.00785783172652318
+        ],
+        "n_videos": 8,
+        "positive_video_fraction": 0.125,
+        "bootstrap_replicates": 20000,
+        "seed": 20260925
+      },
+      "native_max_user_f1": {
+        "delta": -0.11053735970476825,
+        "ci95": [
+          -0.19819829102654377,
+          -0.02207356965384733
+        ],
+        "n_videos": 8,
+        "positive_video_fraction": 0.25,
+        "bootstrap_replicates": 20000,
+        "seed": 20260925
+      },
+      "spearman": {
+        "delta": -0.1321894639075549,
+        "ci95": [
+          -0.2248601709964929,
+          -0.041187045624459885
+        ],
+        "n_videos": 8,
+        "positive_video_fraction": 0.125,
+        "bootstrap_replicates": 20000,
+        "seed": 20260925
+      },
+      "kendall_tau_b": {
+        "delta": -0.09741392203495715,
+        "ci95": [
+          -0.16596653052019525,
+          -0.030337692638878394
+        ],
+        "n_videos": 8,
+        "positive_video_fraction": 0.125,
+        "bootstrap_replicates": 20000,
+        "seed": 20260925
+      },
+      "ndcg_at_15pct": {
+        "delta": -0.12923408744726192,
+        "ci95": [
+          -0.2287494922663693,
+          -0.024451371163462535
+        ],
+        "n_videos": 8,
+        "positive_video_fraction": 0.125,
+        "bootstrap_replicates": 20000,
+        "seed": 20260925
+      }
+    },
+    "ViT_B-A0": {
+      "native_mean_user_f1": {
+        "delta": -0.024718694513801622,
+        "ci95": [
+          -0.06575412955532482,
+          0.02136442667888657
+        ],
+        "n_videos": 8,
+        "positive_video_fraction": 0.25,
+        "bootstrap_replicates": 20000,
+        "seed": 20260925
+      },
+      "native_max_user_f1": {
+        "delta": -0.049555639452830494,
+        "ci95": [
+          -0.11710953026421556,
+          0.030298069445903693
+        ],
+        "n_videos": 8,
+        "positive_video_fraction": 0.25,
+        "bootstrap_replicates": 20000,
+        "seed": 20260925
+      },
+      "spearman": {
+        "delta": -0.06942506983677194,
+        "ci95": [
+          -0.1450764722261893,
+          0.006842129349777688
+        ],
+        "n_videos": 8,
+        "positive_video_fraction": 0.375,
+        "bootstrap_replicates": 20000,
+        "seed": 20260925
+      },
+      "kendall_tau_b": {
+        "delta": -0.050409324740167925,
+        "ci95": [
+          -0.10182590584577585,
+          0.0028464300010426873
+        ],
+        "n_videos": 8,
+        "positive_video_fraction": 0.25,
+        "bootstrap_replicates": 20000,
+        "seed": 20260925
+      },
+      "ndcg_at_15pct": {
+        "delta": -0.06982703130464402,
+        "ci95": [
+          -0.16980066254538723,
+          0.041695130470758526
+        ],
+        "n_videos": 8,
+        "positive_video_fraction": 0.25,
+        "bootstrap_replicates": 20000,
+        "seed": 20260925
+      }
+    },
+    "ViT_B-DeiT_S": {
+      "native_mean_user_f1": {
+        "delta": 0.03456673765743297,
+        "ci95": [
+          0.0009496288287126446,
+          0.07072634536447589
+        ],
+        "n_videos": 8,
+        "positive_video_fraction": 0.75,
+        "bootstrap_replicates": 20000,
+        "seed": 20260925
+      },
+      "native_max_user_f1": {
+        "delta": 0.06098172025193775,
+        "ci95": [
+          0.016700200361074617,
+          0.10739273226596852
+        ],
+        "n_videos": 8,
+        "positive_video_fraction": 0.75,
+        "bootstrap_replicates": 20000,
+        "seed": 20260925
+      },
+      "spearman": {
+        "delta": 0.06276439407078296,
+        "ci95": [
+          -0.052363448213166575,
+          0.18551736073286434
+        ],
+        "n_videos": 8,
+        "positive_video_fraction": 0.625,
+        "bootstrap_replicates": 20000,
+        "seed": 20260925
+      },
+      "kendall_tau_b": {
+        "delta": 0.047004597294789216,
+        "ci95": [
+          -0.037934342913875985,
+          0.13758162815144281
+        ],
+        "n_videos": 8,
+        "positive_video_fraction": 0.625,
+        "bootstrap_replicates": 20000,
+        "seed": 20260925
+      },
+      "ndcg_at_15pct": {
+        "delta": 0.05940705614261791,
+        "ci95": [
+          -0.008849928633483512,
+          0.12575572765727253
+        ],
+        "n_videos": 8,
+        "positive_video_fraction": 0.75,
+        "bootstrap_replicates": 20000,
+        "seed": 20260925
+      }
+    }
+  },
+  "n_videos": 8,
+  "heads_per_model": 30,
+  "sources": [
+    "artifacts/SUMME_CV_OOD_002/A0/metrics.json",
+    "artifacts/SUMME_CV_OOD_002/DeiT_S/metrics.json",
+    "artifacts/SUMME_CV_OOD_002/ViT_B/metrics.json"
+  ],
+  "unit": "average all TVSum-frozen heads per source, then bootstrap source videos; not an ensemble",
+  "caveat": "size-selected raw videos, annotation-ordinal clock, excludes frame-count mismatch; not full SumMe population",
+  "official_f_video": null,
+  "competition_score": null
+}

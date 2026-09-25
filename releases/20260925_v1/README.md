@@ -51,3 +51,5 @@ SumMe 镜像专用 annotation-ordinal 解码不进入此部署入口。
 `official_f_video` 和 `competition_score` 保持 null。
 当前 face observer 只处理人脸，不是完整 person/object detector；没有可变 crop size 学习。
 模型来源、实验指标与局限见 `reports/20260925_representation_generalization.md`。
+
+代码快照 `f776342` 的独立目录复现已在历史DEV视频37rzWOQsNIw上通过：三个候选分别332/1080/332帧，JSONL与原运行精确一致。该验证使用既有固定cv环境，不是重新安装全部依赖。详见 `reports/representation_generalization/clean_release_reproduction.json`。

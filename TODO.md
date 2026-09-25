@@ -1,34 +1,33 @@
 # 近期任务
 
-## P0
+## P0 — 本轮收口
 
-- [x] 固定 TVSum GT/预测阈值，增加 per-video、macro/micro、连续排序诊断。
-- [x] 完成 50 个 TVSum MAT/TSV 记录的 shape、nframes、fps、duration、2 秒收集语义审计。
-- [x] 修复 padding/GroupNorm 变长 batch 一致性并保留回归测试。
-- [x] 验证远程同环境 raw-video 与 cache 路径；固定 PyAV 15.1 推理环境。
-- [x] repaired A0/A1、简单 baseline、5-fold source-group stability、Feature Bank 分组、B0 frozen ViT probe。
-- [x] 冻结 `splits/local_protocol_v1.json`（TRAIN/DEV/LOCAL LOCKBOX）并加入 hash/分区回归校验。
-- [x] 在冻结 lockbox 上完成 A0/A1/B0/DeiT-S/internal-TSM 对照，保存 bootstrap/per-video 诊断。
-- [x] 完成零参数 temporal postprocess dev sweep、lockbox 单配置评估和 raw inference 接口。
-- [x] 完成 DeiT-S/16 S-tier frozen feature、bundle 导出和 raw-video JSONL validator。
-- [x] 完成 canonical internal TSM layer1 cache、correctness、5-fold 和 lockbox 对照。
-- [ ] 获取官方样例、evaluator、初赛索引和真实联合 GT；拿到后先跑 center-crop fallback。
-- [ ] 锁定官方输入上的可提交 Safe Engineering Baseline，重新在 train/dev 选 threshold。
+- [x] 重新读取协议和实际本地/远程状态；保留旧失败和checkpoint。
+- [x] 原7条降级为 comparison_holdout_v1，不伪造 TVSum 新 lockbox。
+- [x] ranking/author-style 15% summary实现和 MATLAB/Octave 数值交叉验证。
+- [x] 真实 MAT category + repeated nested source-group CV：90次训练、3seed、2×5fold。
+- [x] 视频级配对 delta CI、逐视频/类别/FP/FN/过选分析、timeline/contact sheets。
+- [x] SumMe替代 raw 路径恢复、严格帧数筛选、原生 evaluator 交叉验证。
+- [x] 三个历史完整bundle OOD + 三条表示各30个匹配CV heads的OOD。
+- [x] RetargetVid annotations、20条DHF1K原视频、6方法真实IoU、native前置clamp核对。
+- [x] dense spatial raw inference/EMA/真实face observer/权重计量/JSONL一致性验证。
+- [x] 完成有界 SumMe 独立第二批8条固定配置评测；两批14条分开报告并合并，全部CV heads与完整bundle均完成。
+- [x] 加入固定预算常量/均匀/32次随机非学习对照，视频级paired CI；700对SHA/稀疏pHash筛查。
+- [x] 冻结3个候选的完整权重SHA/bytes、离线运行入口；本地备份、真实阈值raw JSONL验证。
+- [x] 完成A0/DeiT线性head容量控制60次nested训练及已有OOD复核，结果拒绝当前线性替换。
+- [x] 最终报告、registry、provenance、状态与干净代码副本复现；本地回归通过，Git/远程同步留审计。
 
-## P1
+## P1 — 按当前证据排序
 
-- [x] 真实 backbone-internal TSM 做小规模 recache/end-to-end 对照；证据不足，已降低优先级。
-- [ ] 继续验证 B0 的多 split/multi-seed；若收益覆盖 M 档 size coefficient，再集成完整报告。
-- [ ] 对 DeiT-S challenger 做第二独立 split、额外 seed 和可用 OOD 数据验证。
-- [ ] 获取 SumMe/YouTube Highlights 可用 raw 子集，建立 dataset-native OOD ranking/summary 指标。
-- [ ] 对 A0/DeiT-S/ViT-B 现有缓存运行 `aic.temporal_metrics`，输出统一 threshold-free 表。
-- [ ] 取得有界 DHF1K/RetargetVid 原视频子集，固定 temporal frames 后测 center/saliency/subject_proxy IoU。
-- [ ] 使用合法 crop GT 做固定 temporal frame 集合的 center/saliency/subject IoU 对照；没有 GT 时保持 null。
-- [ ] 解决 Feature Bank 重复/恒零维度后，使用 residual/gated fusion 重开单组实验。
-- [ ] 进行一次本地开源 VLM 小样本 teacher signal pilot；不上传比赛测试视频，不直接启动批量伪标签。
+- [ ] 扩大可靠 raw OOD 覆盖并核对源视频版本/近重复；模型参数冻结，不能用新增 OOD 反复调参。
+- [ ] 取得 AIC 样例/index/同版本 evaluator；先复现 A0 center；有联合GT才做oracle和官方大小加权。
+- [ ] 独立空间DEV/评估划分后，针对多人选错主体做一个受控 observation/association 实验；保持center控制和全权重计量。
+- [ ] 基于 native summary/ranking 错误提出单一 loss/head 假设，通过nested inner选择；不进行DeiT超参扫。
+- [ ] 仅在teacher能快速本地部署时，50–200训练/开发clip pilot，用human correlation测质量；暂无收益证据，不蒸馏扩量。
+- [x] 保存fallback发行配置、环境、权重SHA和完整提交入口；严格官方环境仍待公布，不能声称已官方验收。
 
-## P2
+## P2 — 当前明确低优先级
 
-- [ ] 按官方联合分数做 temporal/spatial oracle、size coefficient 和 latency Pareto。
-- [ ] 候选多 seed、video bootstrap CI、跨场景失败案例和最终干净环境复现。
-- [ ] 备份 fallback checkpoint/config/environment，并准备复赛材料。
+- [ ] Feature Bank v2仅修复恒零/重复后做独立残差门控组；真实音频需实际波形。
+- [ ] 只有新OOD机制证据时才重开canonical TSM；保留代码/cache/tests。
+- [ ] 官方联合数据到位后研究size-score Pareto、压缩；不把proxy加权冒充competition score。

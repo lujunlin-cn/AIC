@@ -1,0 +1,343 @@
+{
+  "means": {
+    "A0": {
+      "native_mean_user_f1": 0.2877854621357905,
+      "native_max_user_f1": 0.5358439364720775,
+      "spearman": 0.1055501748441106,
+      "kendall_tau_b": 0.08058602231580735,
+      "ndcg_at_15pct": 0.4283909985476217
+    },
+    "DeiT_S": {
+      "native_mean_user_f1": 0.21339994852053282,
+      "native_max_user_f1": 0.45171770695191,
+      "spearman": 0.11065395032139624,
+      "kendall_tau_b": 0.06719561828952215,
+      "ndcg_at_15pct": 0.3210075194454098
+    },
+    "ViT_B": {
+      "native_mean_user_f1": 0.1726399860359322,
+      "native_max_user_f1": 0.3895820937513348,
+      "spearman": 0.1281042672308505,
+      "kendall_tau_b": 0.09812013056644715,
+      "ndcg_at_15pct": 0.27911039342980287
+    }
+  },
+  "per_video": {
+    "A0": {
+      "Fire Domino": {
+        "native_mean_user_f1": 0.08392909800078649,
+        "native_max_user_f1": 0.256198347107438,
+        "spearman": -0.13572028594031513,
+        "kendall_tau_b": -0.09130514244826034,
+        "ndcg_at_15pct": 0.07259383248621422
+      },
+      "Jumps": {
+        "native_mean_user_f1": 0.4906931041124952,
+        "native_max_user_f1": 0.6333333333333333,
+        "spearman": 0.38291216301741426,
+        "kendall_tau_b": 0.28976692707095625,
+        "ndcg_at_15pct": 0.48228778186984206
+      },
+      "Playing_on_water_slide": {
+        "native_mean_user_f1": 0.18849531327015706,
+        "native_max_user_f1": 0.583554376657825,
+        "spearman": -0.12692492936662803,
+        "kendall_tau_b": -0.0940351535947652,
+        "ndcg_at_15pct": 0.393875394454202
+      },
+      "St Maarten Landing": {
+        "native_mean_user_f1": 0.40248996559783007,
+        "native_max_user_f1": 0.6393088552915767,
+        "spearman": 0.19042292385287812,
+        "kendall_tau_b": 0.1582028743996798,
+        "ndcg_at_15pct": 0.6123091027415166
+      },
+      "car_over_camera": {
+        "native_mean_user_f1": 0.35830800140000313,
+        "native_max_user_f1": 0.7567567567567568,
+        "spearman": 0.34366595136557526,
+        "kendall_tau_b": 0.241740725331874,
+        "ndcg_at_15pct": 0.7373243895409629
+      },
+      "paluma_jump": {
+        "native_mean_user_f1": 0.20279729043347092,
+        "native_max_user_f1": 0.34591194968553457,
+        "spearman": -0.021054773864261026,
+        "kendall_tau_b": -0.020854096864640397,
+        "ndcg_at_15pct": 0.27195549019299203
+      }
+    },
+    "DeiT_S": {
+      "Fire Domino": {
+        "native_mean_user_f1": 0.041761154025958355,
+        "native_max_user_f1": 0.2751540041067762,
+        "spearman": 0.06264245105815115,
+        "kendall_tau_b": -0.010838345869025835,
+        "ndcg_at_15pct": 0.057535361007698044
+      },
+      "Jumps": {
+        "native_mean_user_f1": 0.5249359581583531,
+        "native_max_user_f1": 0.9056603773584906,
+        "spearman": 0.406201142650533,
+        "kendall_tau_b": 0.2757098089056668,
+        "ndcg_at_15pct": 0.7676117195358106
+      },
+      "Playing_on_water_slide": {
+        "native_mean_user_f1": 0.0695455390343056,
+        "native_max_user_f1": 0.32272727272727275,
+        "spearman": 0.26336177762883123,
+        "kendall_tau_b": 0.1802178795592035,
+        "ndcg_at_15pct": 0.23406412679585067
+      },
+      "St Maarten Landing": {
+        "native_mean_user_f1": 0.5450847388375002,
+        "native_max_user_f1": 0.8018018018018018,
+        "spearman": 0.5129928302501561,
+        "kendall_tau_b": 0.3863349908120942,
+        "ndcg_at_15pct": 0.7543985109013589
+      },
+      "car_over_camera": {
+        "native_mean_user_f1": 0.018579580028721145,
+        "native_max_user_f1": 0.14526129317980513,
+        "spearman": -0.43983893705918753,
+        "kendall_tau_b": -0.32751021573217626,
+        "ndcg_at_15pct": 0.02720211209479338
+      },
+      "paluma_jump": {
+        "native_mean_user_f1": 0.08049272103835863,
+        "native_max_user_f1": 0.25970149253731345,
+        "spearman": -0.1414355626001065,
+        "kendall_tau_b": -0.10074040793862955,
+        "ndcg_at_15pct": 0.08523328633694688
+      }
+    },
+    "ViT_B": {
+      "Fire Domino": {
+        "native_mean_user_f1": 0.26207756223956846,
+        "native_max_user_f1": 0.4315352697095436,
+        "spearman": 0.30944987169952387,
+        "kendall_tau_b": 0.20671681484742005,
+        "ndcg_at_15pct": 0.24080929454829003
+      },
+      "Jumps": {
+        "native_mean_user_f1": 0.1865017544436857,
+        "native_max_user_f1": 0.556390977443609,
+        "spearman": 0.4743983257308707,
+        "kendall_tau_b": 0.3859671323898915,
+        "ndcg_at_15pct": 0.32911063941440283
+      },
+      "Playing_on_water_slide": {
+        "native_mean_user_f1": 0.09245574597989942,
+        "native_max_user_f1": 0.28771929824561404,
+        "spearman": -0.27760985024721363,
+        "kendall_tau_b": -0.20166182352303713,
+        "ndcg_at_15pct": 0.22369306257044377
+      },
+      "St Maarten Landing": {
+        "native_mean_user_f1": 0.30784042183859384,
+        "native_max_user_f1": 0.6024096385542169,
+        "spearman": 0.33689588588810493,
+        "kendall_tau_b": 0.25219125592724756,
+        "ndcg_at_15pct": 0.6226504879967077
+      },
+      "car_over_camera": {
+        "native_mean_user_f1": 0.0319780530561367,
+        "native_max_user_f1": 0.19554848966613672,
+        "spearman": -0.09044125767225517,
+        "kendall_tau_b": -0.06494088176570828,
+        "ndcg_at_15pct": 0.07440878013922558
+      },
+      "paluma_jump": {
+        "native_mean_user_f1": 0.15498637865770912,
+        "native_max_user_f1": 0.2638888888888889,
+        "spearman": 0.015932627986072364,
+        "kendall_tau_b": 0.010448285522869097,
+        "ndcg_at_15pct": 0.18399009590974752
+      }
+    }
+  },
+  "paired": {
+    "DeiT_S-A0": {
+      "native_mean_user_f1": {
+        "delta": -0.07438551361525765,
+        "ci95": [
+          -0.1947791867205022,
+          0.03956637424137894
+        ],
+        "n_videos": 6,
+        "positive_video_fraction": 0.3333333333333333,
+        "bootstrap_replicates": 20000,
+        "seed": 20260925
+      },
+      "native_max_user_f1": {
+        "delta": -0.08412622952016739,
+        "ci95": [
+          -0.3313252746713265,
+          0.13373086348698032
+        ],
+        "n_videos": 6,
+        "positive_video_fraction": 0.5,
+        "bootstrap_replicates": 20000,
+        "seed": 20260925
+      },
+      "spearman": {
+        "delta": 0.005103775477285646,
+        "ci95": [
+          -0.34288662789692603,
+          0.27456082390284325
+        ],
+        "n_videos": 6,
+        "positive_video_fraction": 0.6666666666666666,
+        "bootstrap_replicates": 20000,
+        "seed": 20260925
+      },
+      "kendall_tau_b": {
+        "delta": -0.013390404026285205,
+        "ci95": [
+          -0.2545738698795768,
+          0.17852999625778523
+        ],
+        "n_videos": 6,
+        "positive_video_fraction": 0.5,
+        "bootstrap_replicates": 20000,
+        "seed": 20260925
+      },
+      "ndcg_at_15pct": {
+        "delta": -0.10738347910221187,
+        "ci95": [
+          -0.38464999324922816,
+          0.12797522382529733
+        ],
+        "n_videos": 6,
+        "positive_video_fraction": 0.3333333333333333,
+        "bootstrap_replicates": 20000,
+        "seed": 20260925
+      }
+    },
+    "ViT_B-A0": {
+      "native_mean_user_f1": {
+        "delta": -0.11514547609985827,
+        "ci95": [
+          -0.2419552845124743,
+          0.014632264585423055
+        ],
+        "n_videos": 6,
+        "positive_video_fraction": 0.16666666666666666,
+        "bootstrap_replicates": 20000,
+        "seed": 20260925
+      },
+      "native_max_user_f1": {
+        "delta": -0.14626184272074252,
+        "ci95": [
+          -0.3486574717024198,
+          0.019651665840520288
+        ],
+        "n_videos": 6,
+        "positive_video_fraction": 0.16666666666666666,
+        "bootstrap_replicates": 20000,
+        "seed": 20260925
+      },
+      "spearman": {
+        "delta": 0.022554092386739933,
+        "ci95": [
+          -0.20250790387423226,
+          0.22804765265408192
+        ],
+        "n_videos": 6,
+        "positive_video_fraction": 0.6666666666666666,
+        "bootstrap_replicates": 20000,
+        "seed": 20260925
+      },
+      "kendall_tau_b": {
+        "delta": 0.01753410825063978,
+        "ci95": [
+          -0.13958048406241932,
+          0.16273684804739444
+        ],
+        "n_videos": 6,
+        "positive_video_fraction": 0.6666666666666666,
+        "bootstrap_replicates": 20000,
+        "seed": 20260925
+      },
+      "ndcg_at_15pct": {
+        "delta": -0.1492806051178187,
+        "ci95": [
+          -0.37275886151950394,
+          0.02925640919404987
+        ],
+        "n_videos": 6,
+        "positive_video_fraction": 0.3333333333333333,
+        "bootstrap_replicates": 20000,
+        "seed": 20260925
+      }
+    },
+    "ViT_B-DeiT_S": {
+      "native_mean_user_f1": {
+        "delta": -0.04075996248460065,
+        "ci95": [
+          -0.19471415836874065,
+          0.1043214686064884
+        ],
+        "n_videos": 6,
+        "positive_video_fraction": 0.6666666666666666,
+        "bootstrap_replicates": 20000,
+        "seed": 20260925
+      },
+      "native_max_user_f1": {
+        "delta": -0.06213561320057514,
+        "ci95": [
+          -0.2053201901645928,
+          0.06375272434135244
+        ],
+        "n_videos": 6,
+        "positive_video_fraction": 0.5,
+        "bootstrap_replicates": 20000,
+        "seed": 20260925
+      },
+      "spearman": {
+        "delta": 0.017450316909454287,
+        "ci95": [
+          -0.24214431637534406,
+          0.23628455852896235
+        ],
+        "n_videos": 6,
+        "positive_video_fraction": 0.6666666666666666,
+        "bootstrap_replicates": 20000,
+        "seed": 20260925
+      },
+      "kendall_tau_b": {
+        "delta": 0.030924512276924984,
+        "ci95": [
+          -0.15866172665514966,
+          0.19679393938904619
+        ],
+        "n_videos": 6,
+        "positive_video_fraction": 0.6666666666666666,
+        "bootstrap_replicates": 20000,
+        "seed": 20260925
+      },
+      "ndcg_at_15pct": {
+        "delta": -0.041897126015606835,
+        "ci95": [
+          -0.21688129760860697,
+          0.10014951500763508
+        ],
+        "n_videos": 6,
+        "positive_video_fraction": 0.5,
+        "bootstrap_replicates": 20000,
+        "seed": 20260925
+      }
+    }
+  },
+  "n_videos": 6,
+  "heads_per_model": 1,
+  "sources": [
+    "artifacts/SUMME_OOD_002/A0/metrics.json",
+    "artifacts/SUMME_OOD_002/DeiT_S/metrics.json",
+    "artifacts/SUMME_OOD_002/ViT_B/metrics.json"
+  ],
+  "unit": "average all TVSum-frozen heads per source, then bootstrap source videos; not an ensemble",
+  "caveat": "size-selected raw videos, annotation-ordinal clock, excludes frame-count mismatch; not full SumMe population",
+  "official_f_video": null,
+  "competition_score": null
+}

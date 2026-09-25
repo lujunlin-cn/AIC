@@ -1,0 +1,514 @@
+{
+  "means": {
+    "A0": {
+      "native_mean_user_f1": 0.20727103829622923,
+      "native_max_user_f1": 0.46237867122485043,
+      "spearman": 0.07510020144449733,
+      "kendall_tau_b": 0.05523374591626929,
+      "ndcg_at_15pct": 0.3491927368898881
+    },
+    "DeiT_S": {
+      "native_mean_user_f1": 0.16073728417775332,
+      "native_max_user_f1": 0.39019531150887415,
+      "spearman": 0.07252729035652176,
+      "kendall_tau_b": 0.045996846415207494,
+      "ndcg_at_15pct": 0.2872322058028548
+    },
+    "ViT_B": {
+      "native_mean_user_f1": 0.15915926988773227,
+      "native_max_user_f1": 0.3589332523894277,
+      "spearman": 0.08052657444449751,
+      "kendall_tau_b": 0.06052668088588451,
+      "ndcg_at_15pct": 0.27643595215234695
+    }
+  },
+  "per_video": {
+    "A0": {
+      "Fire Domino": {
+        "native_mean_user_f1": 0.08392909800078649,
+        "native_max_user_f1": 0.256198347107438,
+        "spearman": -0.13572028594031513,
+        "kendall_tau_b": -0.09130514244826034,
+        "ndcg_at_15pct": 0.07259383248621422
+      },
+      "Jumps": {
+        "native_mean_user_f1": 0.4906931041124952,
+        "native_max_user_f1": 0.6333333333333333,
+        "spearman": 0.38291216301741426,
+        "kendall_tau_b": 0.28976692707095625,
+        "ndcg_at_15pct": 0.48228778186984206
+      },
+      "Playing_on_water_slide": {
+        "native_mean_user_f1": 0.18849531327015706,
+        "native_max_user_f1": 0.583554376657825,
+        "spearman": -0.12692492936662803,
+        "kendall_tau_b": -0.0940351535947652,
+        "ndcg_at_15pct": 0.393875394454202
+      },
+      "St Maarten Landing": {
+        "native_mean_user_f1": 0.40248996559783007,
+        "native_max_user_f1": 0.6393088552915767,
+        "spearman": 0.19042292385287812,
+        "kendall_tau_b": 0.1582028743996798,
+        "ndcg_at_15pct": 0.6123091027415166
+      },
+      "car_over_camera": {
+        "native_mean_user_f1": 0.35830800140000313,
+        "native_max_user_f1": 0.7567567567567568,
+        "spearman": 0.34366595136557526,
+        "kendall_tau_b": 0.241740725331874,
+        "ndcg_at_15pct": 0.7373243895409629
+      },
+      "paluma_jump": {
+        "native_mean_user_f1": 0.20279729043347092,
+        "native_max_user_f1": 0.34591194968553457,
+        "spearman": -0.021054773864261026,
+        "kendall_tau_b": -0.020854096864640397,
+        "ndcg_at_15pct": 0.27195549019299203
+      },
+      "Air_Force_One": {
+        "native_mean_user_f1": 0.22107617871215843,
+        "native_max_user_f1": 0.5367316341829086,
+        "spearman": 0.2023011048373313,
+        "kendall_tau_b": 0.15163754689429348,
+        "ndcg_at_15pct": 0.35225553209732663
+      },
+      "Base jumping": {
+        "native_mean_user_f1": 0.19149577617925548,
+        "native_max_user_f1": 0.3394027676620539,
+        "spearman": -0.040129470741272856,
+        "kendall_tau_b": -0.023874432623372726,
+        "ndcg_at_15pct": 0.3896103339734414
+      },
+      "Bike Polo": {
+        "native_mean_user_f1": 0.20427140022142487,
+        "native_max_user_f1": 0.6049046321525886,
+        "spearman": 0.2736880277456712,
+        "kendall_tau_b": 0.2042901849495928,
+        "ndcg_at_15pct": 0.3644849462334135
+      },
+      "Bus_in_Rock_Tunnel": {
+        "native_mean_user_f1": 0.08608516638441908,
+        "native_max_user_f1": 0.26594301221166894,
+        "spearman": -0.0898806721705124,
+        "kendall_tau_b": -0.062009320990510264,
+        "ndcg_at_15pct": 0.2157657898772495
+      },
+      "Car_railcrossing": {
+        "native_mean_user_f1": 0.12353793234421527,
+        "native_max_user_f1": 0.38200692041522494,
+        "spearman": -0.03782111584415167,
+        "kendall_tau_b": -0.02904256226416595,
+        "ndcg_at_15pct": 0.17551033089882817
+      },
+      "Kids_playing_in_leaves": {
+        "native_mean_user_f1": 0.12045515363588283,
+        "native_max_user_f1": 0.405997693194925,
+        "spearman": 0.148418565257235,
+        "kendall_tau_b": 0.087490579891982,
+        "ndcg_at_15pct": 0.21751885365395424
+      },
+      "Scuba": {
+        "native_mean_user_f1": 0.1663782686282279,
+        "native_max_user_f1": 0.48180242634315423,
+        "spearman": -0.0634843449634327,
+        "kendall_tau_b": -0.05215439842531074,
+        "ndcg_at_15pct": 0.39725748172720415
+      },
+      "Statue of Liberty": {
+        "native_mean_user_f1": 0.06178188722688249,
+        "native_max_user_f1": 0.2414486921529175,
+        "spearman": 0.02500967703743122,
+        "kendall_tau_b": 0.013418711500417244,
+        "ndcg_at_15pct": 0.20594905671128705
+      }
+    },
+    "DeiT_S": {
+      "Fire Domino": {
+        "native_mean_user_f1": 0.041761154025958355,
+        "native_max_user_f1": 0.2751540041067762,
+        "spearman": 0.06264245105815115,
+        "kendall_tau_b": -0.010838345869025835,
+        "ndcg_at_15pct": 0.057535361007698044
+      },
+      "Jumps": {
+        "native_mean_user_f1": 0.5249359581583531,
+        "native_max_user_f1": 0.9056603773584906,
+        "spearman": 0.406201142650533,
+        "kendall_tau_b": 0.2757098089056668,
+        "ndcg_at_15pct": 0.7676117195358106
+      },
+      "Playing_on_water_slide": {
+        "native_mean_user_f1": 0.0695455390343056,
+        "native_max_user_f1": 0.32272727272727275,
+        "spearman": 0.26336177762883123,
+        "kendall_tau_b": 0.1802178795592035,
+        "ndcg_at_15pct": 0.23406412679585067
+      },
+      "St Maarten Landing": {
+        "native_mean_user_f1": 0.5450847388375002,
+        "native_max_user_f1": 0.8018018018018018,
+        "spearman": 0.5129928302501561,
+        "kendall_tau_b": 0.3863349908120942,
+        "ndcg_at_15pct": 0.7543985109013589
+      },
+      "car_over_camera": {
+        "native_mean_user_f1": 0.018579580028721145,
+        "native_max_user_f1": 0.14526129317980513,
+        "spearman": -0.43983893705918753,
+        "kendall_tau_b": -0.32751021573217626,
+        "ndcg_at_15pct": 0.02720211209479338
+      },
+      "paluma_jump": {
+        "native_mean_user_f1": 0.08049272103835863,
+        "native_max_user_f1": 0.25970149253731345,
+        "spearman": -0.1414355626001065,
+        "kendall_tau_b": -0.10074040793862955,
+        "ndcg_at_15pct": 0.08523328633694688
+      },
+      "Air_Force_One": {
+        "native_mean_user_f1": 0.06281168187377209,
+        "native_max_user_f1": 0.13793103448275862,
+        "spearman": -0.2654390063067231,
+        "kendall_tau_b": -0.19850819652066487,
+        "ndcg_at_15pct": 0.09620050911939547
+      },
+      "Base jumping": {
+        "native_mean_user_f1": 0.15873624275948217,
+        "native_max_user_f1": 0.34167893961708395,
+        "spearman": 0.10431717926421397,
+        "kendall_tau_b": 0.07264736512019916,
+        "ndcg_at_15pct": 0.3530170557196464
+      },
+      "Bike Polo": {
+        "native_mean_user_f1": 0.117528247352579,
+        "native_max_user_f1": 0.4550625711035267,
+        "spearman": 0.17032397676753272,
+        "kendall_tau_b": 0.10610474307776413,
+        "ndcg_at_15pct": 0.15203891377849457
+      },
+      "Bus_in_Rock_Tunnel": {
+        "native_mean_user_f1": 0.11803677967498141,
+        "native_max_user_f1": 0.5107238605898123,
+        "spearman": -0.13952325958930212,
+        "kendall_tau_b": -0.07864717379626976,
+        "ndcg_at_15pct": 0.29413334343168346
+      },
+      "Car_railcrossing": {
+        "native_mean_user_f1": 0.10557860208515235,
+        "native_max_user_f1": 0.33793103448275863,
+        "spearman": -0.2032323490070448,
+        "kendall_tau_b": -0.14761710786117652,
+        "ndcg_at_15pct": 0.24818280874662332
+      },
+      "Kids_playing_in_leaves": {
+        "native_mean_user_f1": 0.1856030243906196,
+        "native_max_user_f1": 0.2904761904761905,
+        "spearman": 0.16664744098181908,
+        "kendall_tau_b": 0.1278637062901829,
+        "ndcg_at_15pct": 0.31745619035706607
+      },
+      "Scuba": {
+        "native_mean_user_f1": 0.12255115968734259,
+        "native_max_user_f1": 0.2839756592292089,
+        "spearman": 0.2909642884736309,
+        "kendall_tau_b": 0.2087947927466176,
+        "ndcg_at_15pct": 0.3485952052263156
+      },
+      "Statue of Liberty": {
+        "native_mean_user_f1": 0.09907654954142045,
+        "native_max_user_f1": 0.39464882943143814,
+        "spearman": 0.22740009247880075,
+        "kendall_tau_b": 0.15014401101911948,
+        "ndcg_at_15pct": 0.28558173818828414
+      }
+    },
+    "ViT_B": {
+      "Fire Domino": {
+        "native_mean_user_f1": 0.26207756223956846,
+        "native_max_user_f1": 0.4315352697095436,
+        "spearman": 0.30944987169952387,
+        "kendall_tau_b": 0.20671681484742005,
+        "ndcg_at_15pct": 0.24080929454829003
+      },
+      "Jumps": {
+        "native_mean_user_f1": 0.1865017544436857,
+        "native_max_user_f1": 0.556390977443609,
+        "spearman": 0.4743983257308707,
+        "kendall_tau_b": 0.3859671323898915,
+        "ndcg_at_15pct": 0.32911063941440283
+      },
+      "Playing_on_water_slide": {
+        "native_mean_user_f1": 0.09245574597989942,
+        "native_max_user_f1": 0.28771929824561404,
+        "spearman": -0.27760985024721363,
+        "kendall_tau_b": -0.20166182352303713,
+        "ndcg_at_15pct": 0.22369306257044377
+      },
+      "St Maarten Landing": {
+        "native_mean_user_f1": 0.30784042183859384,
+        "native_max_user_f1": 0.6024096385542169,
+        "spearman": 0.33689588588810493,
+        "kendall_tau_b": 0.25219125592724756,
+        "ndcg_at_15pct": 0.6226504879967077
+      },
+      "car_over_camera": {
+        "native_mean_user_f1": 0.0319780530561367,
+        "native_max_user_f1": 0.19554848966613672,
+        "spearman": -0.09044125767225517,
+        "kendall_tau_b": -0.06494088176570828,
+        "ndcg_at_15pct": 0.07440878013922558
+      },
+      "paluma_jump": {
+        "native_mean_user_f1": 0.15498637865770912,
+        "native_max_user_f1": 0.2638888888888889,
+        "spearman": 0.015932627986072364,
+        "kendall_tau_b": 0.010448285522869097,
+        "ndcg_at_15pct": 0.18399009590974752
+      },
+      "Air_Force_One": {
+        "native_mean_user_f1": 0.24893971882491492,
+        "native_max_user_f1": 0.37223493516399697,
+        "spearman": 0.3350114675974687,
+        "kendall_tau_b": 0.25236109618019364,
+        "ndcg_at_15pct": 0.33697408223248765
+      },
+      "Base jumping": {
+        "native_mean_user_f1": 0.05315238296025892,
+        "native_max_user_f1": 0.24468864468864468,
+        "spearman": 0.06362261282285123,
+        "kendall_tau_b": 0.033887655864502673,
+        "ndcg_at_15pct": 0.10756064134367656
+      },
+      "Bike Polo": {
+        "native_mean_user_f1": 0.2518140936767689,
+        "native_max_user_f1": 0.4664391353811149,
+        "spearman": 0.36483344155435754,
+        "kendall_tau_b": 0.2710821539493394,
+        "ndcg_at_15pct": 0.4519394908044611
+      },
+      "Bus_in_Rock_Tunnel": {
+        "native_mean_user_f1": 0.1438971232986818,
+        "native_max_user_f1": 0.3042895442359249,
+        "spearman": -0.05107356596698547,
+        "kendall_tau_b": -0.033944974344233915,
+        "ndcg_at_15pct": 0.2825106094948232
+      },
+      "Car_railcrossing": {
+        "native_mean_user_f1": 0.11839167642715881,
+        "native_max_user_f1": 0.30303030303030304,
+        "spearman": 0.012892139611476726,
+        "kendall_tau_b": 0.0069129933574789216,
+        "ndcg_at_15pct": 0.14791022406946072
+      },
+      "Kids_playing_in_leaves": {
+        "native_mean_user_f1": 0.08727563837673111,
+        "native_max_user_f1": 0.2870478413068845,
+        "spearman": -0.1384478608630912,
+        "kendall_tau_b": -0.0990513361764941,
+        "ndcg_at_15pct": 0.20258335146829567
+      },
+      "Scuba": {
+        "native_mean_user_f1": 0.05819490530749231,
+        "native_max_user_f1": 0.2766295707472178,
+        "spearman": -0.3039800979293674,
+        "kendall_tau_b": -0.22470263669444462,
+        "ndcg_at_15pct": 0.1721129220992248
+      },
+      "Statue of Liberty": {
+        "native_mean_user_f1": 0.23072432334065182,
+        "native_max_user_f1": 0.4332129963898917,
+        "spearman": 0.07588830201115199,
+        "kendall_tau_b": 0.05210779686735856,
+        "ndcg_at_15pct": 0.4938496480416106
+      }
+    }
+  },
+  "paired": {
+    "DeiT_S-A0": {
+      "native_mean_user_f1": {
+        "delta": -0.04653375411847589,
+        "ci95": [
+          -0.10882475196381176,
+          0.008850085420797458
+        ],
+        "n_videos": 14,
+        "positive_video_fraction": 0.35714285714285715,
+        "bootstrap_replicates": 20000,
+        "seed": 20260925
+      },
+      "native_max_user_f1": {
+        "delta": -0.0721833597159763,
+        "ci95": [
+          -0.19964080122598896,
+          0.047544178133650986
+        ],
+        "n_videos": 14,
+        "positive_video_fraction": 0.42857142857142855,
+        "bootstrap_replicates": 20000,
+        "seed": 20260925
+      },
+      "spearman": {
+        "delta": -0.0025729110879755606,
+        "ci95": [
+          -0.1750614284213875,
+          0.15050145698197953
+        ],
+        "n_videos": 14,
+        "positive_video_fraction": 0.5714285714285714,
+        "bootstrap_replicates": 20000,
+        "seed": 20260925
+      },
+      "kendall_tau_b": {
+        "delta": -0.009236899501061786,
+        "ci95": [
+          -0.1317132393738232,
+          0.10050460434489403
+        ],
+        "n_videos": 14,
+        "positive_video_fraction": 0.5,
+        "bootstrap_replicates": 20000,
+        "seed": 20260925
+      },
+      "ndcg_at_15pct": {
+        "delta": -0.06196053108703335,
+        "ci95": [
+          -0.19108639122425092,
+          0.04848459270833621
+        ],
+        "n_videos": 14,
+        "positive_video_fraction": 0.42857142857142855,
+        "bootstrap_replicates": 20000,
+        "seed": 20260925
+      }
+    },
+    "ViT_B-A0": {
+      "native_mean_user_f1": {
+        "delta": -0.048111768408496965,
+        "ci95": [
+          -0.12451568168412765,
+          0.025088319191813466
+        ],
+        "n_videos": 14,
+        "positive_video_fraction": 0.35714285714285715,
+        "bootstrap_replicates": 20000,
+        "seed": 20260925
+      },
+      "native_max_user_f1": {
+        "delta": -0.10344541883542276,
+        "ci95": [
+          -0.2015054899511146,
+          -0.012720027778699001
+        ],
+        "n_videos": 14,
+        "positive_video_fraction": 0.21428571428571427,
+        "bootstrap_replicates": 20000,
+        "seed": 20260925
+      },
+      "spearman": {
+        "delta": 0.005426373000000183,
+        "ci95": [
+          -0.10670751597015082,
+          0.11353056830692798
+        ],
+        "n_videos": 14,
+        "positive_video_fraction": 0.7142857142857143,
+        "bootstrap_replicates": 20000,
+        "seed": 20260925
+      },
+      "kendall_tau_b": {
+        "delta": 0.0052929349696152405,
+        "ci95": [
+          -0.0730170134845336,
+          0.07961855738797967
+        ],
+        "n_videos": 14,
+        "positive_video_fraction": 0.7142857142857143,
+        "bootstrap_replicates": 20000,
+        "seed": 20260925
+      },
+      "ndcg_at_15pct": {
+        "delta": -0.0727567847375412,
+        "ci95": [
+          -0.1949043975211983,
+          0.034389838868744214
+        ],
+        "n_videos": 14,
+        "positive_video_fraction": 0.35714285714285715,
+        "bootstrap_replicates": 20000,
+        "seed": 20260925
+      }
+    },
+    "ViT_B-DeiT_S": {
+      "native_mean_user_f1": {
+        "delta": -0.0015780142900210692,
+        "ci95": [
+          -0.08590013022563603,
+          0.0734683502067613
+        ],
+        "n_videos": 14,
+        "positive_video_fraction": 0.6428571428571429,
+        "bootstrap_replicates": 20000,
+        "seed": 20260925
+      },
+      "native_max_user_f1": {
+        "delta": -0.031262059119446434,
+        "ci95": [
+          -0.1073846070383601,
+          0.039886444728739937
+        ],
+        "n_videos": 14,
+        "positive_video_fraction": 0.42857142857142855,
+        "bootstrap_replicates": 20000,
+        "seed": 20260925
+      },
+      "spearman": {
+        "delta": 0.007999284087975738,
+        "ci95": [
+          -0.16458769982864935,
+          0.17267108334655248
+        ],
+        "n_videos": 14,
+        "positive_video_fraction": 0.5714285714285714,
+        "bootstrap_replicates": 20000,
+        "seed": 20260925
+      },
+      "kendall_tau_b": {
+        "delta": 0.01452983447067702,
+        "ci95": [
+          -0.11348415835032737,
+          0.13784116559213405
+        ],
+        "n_videos": 14,
+        "positive_video_fraction": 0.5714285714285714,
+        "bootstrap_replicates": 20000,
+        "seed": 20260925
+      },
+      "ndcg_at_15pct": {
+        "delta": -0.010796253650507848,
+        "ci95": [
+          -0.11686580284796884,
+          0.09008038252207133
+        ],
+        "n_videos": 14,
+        "positive_video_fraction": 0.42857142857142855,
+        "bootstrap_replicates": 20000,
+        "seed": 20260925
+      }
+    }
+  },
+  "n_videos": 14,
+  "heads_per_model": 1,
+  "sources": [
+    "artifacts/SUMME_OOD_002/A0/metrics.json",
+    "artifacts/SUMME_OOD_002/DeiT_S/metrics.json",
+    "artifacts/SUMME_OOD_002/ViT_B/metrics.json",
+    "artifacts/SUMME_OOD_003/A0/metrics.json",
+    "artifacts/SUMME_OOD_003/DeiT_S/metrics.json",
+    "artifacts/SUMME_OOD_003/ViT_B/metrics.json"
+  ],
+  "unit": "average all TVSum-frozen heads per source, then bootstrap source videos; not an ensemble",
+  "caveat": "size-selected raw videos, annotation-ordinal clock, excludes frame-count mismatch; not full SumMe population",
+  "official_f_video": null,
+  "competition_score": null
+}

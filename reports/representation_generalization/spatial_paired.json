@@ -1,0 +1,122 @@
+{
+  "source": "artifacts/SPATIAL_GT_NATIVE_002/metrics.json",
+  "unit": "source video after equal average of two ratios",
+  "comparisons": {
+    "center": {
+      "delta": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_videos": 20,
+      "positive_video_fraction": 0.0,
+      "bootstrap_replicates": 20000,
+      "seed": 20260925
+    },
+    "saliency": {
+      "delta": -0.011928142220895499,
+      "ci95": [
+        -0.059920522369083414,
+        0.04197818178714993
+      ],
+      "n_videos": 20,
+      "positive_video_fraction": 0.3,
+      "bootstrap_replicates": 20000,
+      "seed": 20260925
+    },
+    "subject_proxy": {
+      "delta": 0.005195434114318889,
+      "ci95": [
+        -0.003910912940921218,
+        0.016413201536846094
+      ],
+      "n_videos": 20,
+      "positive_video_fraction": 0.6,
+      "bootstrap_replicates": 20000,
+      "seed": 20260925
+    },
+    "subject_proxy_smooth": {
+      "delta": 0.005282089921891003,
+      "ci95": [
+        -0.0038079685386043774,
+        0.016505857860632984
+      ],
+      "n_videos": 20,
+      "positive_video_fraction": 0.6,
+      "bootstrap_replicates": 20000,
+      "seed": 20260925
+    },
+    "true_face": {
+      "delta": 0.00766229744097435,
+      "ci95": [
+        -0.01057096674090036,
+        0.027246995393433306
+      ],
+      "n_videos": 20,
+      "positive_video_fraction": 0.65,
+      "bootstrap_replicates": 20000,
+      "seed": 20260925
+    },
+    "true_face_smooth": {
+      "delta": 0.008537351742430834,
+      "ci95": [
+        -0.01053656185523743,
+        0.02854753913244258
+      ],
+      "n_videos": 20,
+      "positive_video_fraction": 0.65,
+      "bootstrap_replicates": 20000,
+      "seed": 20260925
+    }
+  },
+  "kinematics": {
+    "center": {
+      "center_error_normalized": 0.06325019402391117,
+      "velocity": 0.0,
+      "acceleration": 0.0,
+      "jerk": 0.0,
+      "legality": 1.0,
+      "face_detection_rate": 0.0
+    },
+    "saliency": {
+      "center_error_normalized": 0.06274392817382882,
+      "velocity": 0.0517828907947962,
+      "acceleration": 2.2076904082422066,
+      "jerk": 118.20629752034145,
+      "legality": 1.0,
+      "face_detection_rate": 0.0
+    },
+    "subject_proxy": {
+      "center_error_normalized": 0.06157033982567304,
+      "velocity": 0.008803420229328748,
+      "acceleration": 0.4757430270318717,
+      "jerk": 26.57077689758758,
+      "legality": 1.0,
+      "face_detection_rate": 0.0
+    },
+    "subject_proxy_smooth": {
+      "center_error_normalized": 0.06155552332022125,
+      "velocity": 0.003971614625353231,
+      "acceleration": 0.20506002829725573,
+      "jerk": 12.019837079751735,
+      "legality": 1.0,
+      "face_detection_rate": 0.0
+    },
+    "true_face": {
+      "center_error_normalized": 0.0626834127863603,
+      "velocity": 0.045888607592310296,
+      "acceleration": 2.4902082158829275,
+      "jerk": 140.40302901763607,
+      "legality": 1.0,
+      "face_detection_rate": 0.11828334097866326
+    },
+    "true_face_smooth": {
+      "center_error_normalized": 0.062288748253525,
+      "velocity": 0.026113757894921173,
+      "acceleration": 0.6393072347354247,
+      "jerk": 32.16325937312088,
+      "legality": 1.0,
+      "face_detection_rate": 0.11828334097866326
+    }
+  }
+}

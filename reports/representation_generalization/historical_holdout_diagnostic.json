@@ -1,0 +1,89 @@
+{
+  "caveat": "Historical outputs only; unequal postprocess policies; no tuning and no pristine test claim",
+  "categories": {
+    "VT": 1,
+    "GA": 1,
+    "MS": 1,
+    "PR": 3,
+    "FM": 1
+  },
+  "per_video": [
+    {
+      "video_id": "98MoyGZKHXc",
+      "category": "VT",
+      "title": "How to use a tyre repair kit - Which? guide",
+      "A0_F1": 0.18604651162790697,
+      "DeiT_F1": 0.35051546391752575,
+      "delta": 0.16446895228961877,
+      "A0_selection": 0.112,
+      "DeiT_selection": 0.14133333333333334,
+      "gt_rate": 0.11733333333333333
+    },
+    {
+      "video_id": "xxdtq8mxegs",
+      "category": "GA",
+      "title": "How to Clean Your Dog's Ears - Vetoquinol USA",
+      "A0_F1": 0.2909090909090909,
+      "DeiT_F1": 0.7868852459016393,
+      "delta": 0.49597615499254843,
+      "A0_selection": 0.10726643598615918,
+      "DeiT_selection": 0.12802768166089964,
+      "gt_rate": 0.08304498269896193
+    },
+    {
+      "video_id": "Yi4Ij2NM7U4",
+      "category": "MS",
+      "title": "Poor Man's Meals: Spicy Sausage Sandwich",
+      "A0_F1": 0.15151515151515152,
+      "DeiT_F1": 0.23880597014925373,
+      "delta": 0.08729081863410221,
+      "A0_selection": 0.12330456226880394,
+      "DeiT_selection": 0.20838471023427868,
+      "gt_rate": 0.03945745992601726
+    },
+    {
+      "video_id": "z_6gVvQb2d0",
+      "category": "PR",
+      "title": "LA Kings Stanley Cup South Bay Parade 2014",
+      "A0_F1": 0.0,
+      "DeiT_F1": 0.0,
+      "delta": 0.0,
+      "A0_selection": 0.007233273056057866,
+      "DeiT_selection": 0.06148282097649186,
+      "gt_rate": 0.07956600361663653
+    },
+    {
+      "video_id": "fWutDQy1nnY",
+      "category": "PR",
+      "title": "Chinatown Parade",
+      "A0_F1": 0.03636363636363636,
+      "DeiT_F1": 0.09056603773584905,
+      "delta": 0.05420240137221269,
+      "A0_selection": 0.10665529010238908,
+      "DeiT_selection": 0.19197952218430034,
+      "gt_rate": 0.034129692832764506
+    },
+    {
+      "video_id": "4wU_LUjG5Ic",
+      "category": "PR",
+      "title": "Southend-on-Sea and Kortrijk Bike Friendly Cities Parades",
+      "A0_F1": 0.03773584905660377,
+      "DeiT_F1": 0.18823529411764706,
+      "delta": 0.1504994450610433,
+      "A0_selection": 0.11044776119402985,
+      "DeiT_selection": 0.20597014925373133,
+      "gt_rate": 0.04776119402985075
+    },
+    {
+      "video_id": "xmEERLqJ2kU",
+      "category": "FM",
+      "title": "Bluffton Teachers Flash Mob Dance (A Staff that Cares About Their Students)",
+      "A0_F1": 0.0975609756097561,
+      "DeiT_F1": 0.3880597014925373,
+      "delta": 0.29049872588278125,
+      "A0_selection": 0.033632286995515695,
+      "DeiT_selection": 0.09192825112107623,
+      "gt_rate": 0.05829596412556054
+    }
+  ]
+}

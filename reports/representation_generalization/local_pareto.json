@@ -1,0 +1,56 @@
+{
+  "rows": [
+    {
+      "model": "A0",
+      "weight_bytes": 25685169,
+      "parameter_count": 12807489,
+      "size_tier": "S",
+      "tvsum_nested_summary_mean": 0.21520953694368553,
+      "tvsum_nested_summary_std": 0.024519040620573185,
+      "tvsum_spearman": 0.43215929431929745,
+      "summe14_summary_mean_cvheads": 0.21255443411969388,
+      "summe14_spearman_cvheads": 0.11474390214271844,
+      "raw_bundle_mean_seconds_per_ood_video": 15.986104723631538,
+      "peak_vram_bytes": 176704000,
+      "spatial_status": "center deployable; independent RetargetVid 20 source benchmark; no joint AIC GT",
+      "role": "engineering_fallback",
+      "official_f_video": null,
+      "competition_score": null
+    },
+    {
+      "model": "DeiT_S",
+      "weight_bytes": 46618447,
+      "parameter_count": 23280257,
+      "size_tier": "S",
+      "tvsum_nested_summary_mean": 0.23073019179424006,
+      "tvsum_nested_summary_std": 0.015408068246503126,
+      "tvsum_spearman": 0.4143868010894463,
+      "summe14_summary_mean_cvheads": 0.13407736118298677,
+      "summe14_spearman_cvheads": 0.012593070031410343,
+      "raw_bundle_mean_seconds_per_ood_video": 16.554704223127505,
+      "peak_vram_bytes": 272421888,
+      "spatial_status": "center deployable; independent RetargetVid 20 source benchmark; no joint AIC GT",
+      "role": "TVSum promising challenger",
+      "official_f_video": null,
+      "competition_score": null
+    },
+    {
+      "model": "ViT_B",
+      "weight_bytes": 174986447,
+      "parameter_count": 87462401,
+      "size_tier": "M",
+      "tvsum_nested_summary_mean": 0.23063627766640157,
+      "tvsum_nested_summary_std": 0.021273492357420362,
+      "tvsum_spearman": 0.4412661533018403,
+      "summe14_summary_mean_cvheads": 0.14361025375919909,
+      "summe14_spearman_cvheads": 0.03758924556103054,
+      "raw_bundle_mean_seconds_per_ood_video": 16.993223169419384,
+      "peak_vram_bytes": 698634752,
+      "spatial_status": "center deployable; independent RetargetVid 20 source benchmark; no joint AIC GT",
+      "role": "M reference",
+      "official_f_video": null,
+      "competition_score": null
+    }
+  ],
+  "notes": "Temporal head population and frozen deployment bundles are separately named; not a single best model. Latency includes decode/scoring/serialization and CPU contention; no scalar composite score."
+}

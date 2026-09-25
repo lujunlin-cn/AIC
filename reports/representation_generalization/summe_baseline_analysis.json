@@ -1,0 +1,725 @@
+{
+  "baselines": {
+    "config": {
+      "run_id": "SUMME_BASELINES_001",
+      "hypothesis": "A0's relative OOD lead may still fail to exceed simple fixed-budget selectors; measure absolute signal against controls before calling it generalization",
+      "training": "none",
+      "selection": "all 14 previously fixed strict-alignment SumMe videos; no video or seed selection",
+      "baselines": [
+        "constant_first_budget",
+        "uniform_segments",
+        "random_sample_scores"
+      ],
+      "random_seed": 20260925,
+      "random_repeats": 32,
+      "summary_budget": 0.15,
+      "segment_policy": "TVSUM_SUMMARY_V1_FIXED, 60 original frames with tail merge",
+      "output": "/data/aic/experiments/SUMME_BASELINES_001",
+      "cohorts": [
+        {
+          "root": "/data/aic/datasets/SumMe/zenodo_range_v1/extracted",
+          "predictions": "/data/aic/experiments/SUMME_OOD_002/A0"
+        },
+        {
+          "root": "/data/aic/datasets/SumMe/zenodo_range_v2/extracted",
+          "predictions": "/data/aic/experiments/SUMME_OOD_003/A0"
+        }
+      ],
+      "official_f_video": null,
+      "competition_score": null
+    },
+    "per_video": [
+      {
+        "video_id": "Fire Domino",
+        "cohort": 1,
+        "method": "constant_first_budget",
+        "native_mean_user_f1": 0.003634391575821378,
+        "native_max_user_f1": 0.03805496828752643,
+        "selection_rate": 0.1501240694789082,
+        "spearman": null,
+        "ndcg_at_15pct": null
+      },
+      {
+        "video_id": "Fire Domino",
+        "cohort": 1,
+        "method": "uniform_segments",
+        "native_mean_user_f1": 0.06343027796568343,
+        "native_max_user_f1": 0.2553191489361702,
+        "selection_rate": 0.14392059553349876,
+        "spearman": null,
+        "ndcg_at_15pct": null
+      },
+      {
+        "video_id": "Fire Domino",
+        "cohort": 1,
+        "method": "random_sample_scores",
+        "native_mean_user_f1": 0.1604741519803331,
+        "native_max_user_f1": 0.37735331198225097,
+        "spearman": 0.024103240437800266,
+        "ndcg_at_15pct": 0.23523808244902025,
+        "selection_rate": 0.1488833746898263,
+        "repeats": 32,
+        "seed": 218283272,
+        "random_summary_std": 0.09090302634899042
+      },
+      {
+        "video_id": "Jumps",
+        "cohort": 1,
+        "method": "constant_first_budget",
+        "native_mean_user_f1": 0.17416002744510778,
+        "native_max_user_f1": 0.5121107266435986,
+        "selection_rate": 0.15052631578947367,
+        "spearman": null,
+        "ndcg_at_15pct": null
+      },
+      {
+        "video_id": "Jumps",
+        "cohort": 1,
+        "method": "uniform_segments",
+        "native_mean_user_f1": 0.05054363610452677,
+        "native_max_user_f1": 0.1553398058252427,
+        "selection_rate": 0.06315789473684211,
+        "spearman": null,
+        "ndcg_at_15pct": null
+      },
+      {
+        "video_id": "Jumps",
+        "cohort": 1,
+        "method": "random_sample_scores",
+        "native_mean_user_f1": 0.188052736063332,
+        "native_max_user_f1": 0.43435356310286244,
+        "spearman": 0.05154378612026984,
+        "ndcg_at_15pct": 0.2487234995071303,
+        "selection_rate": 0.12631578947368421,
+        "repeats": 32,
+        "seed": 1293146523,
+        "random_summary_std": 0.14998656188713508
+      },
+      {
+        "video_id": "Playing_on_water_slide",
+        "cohort": 1,
+        "method": "constant_first_budget",
+        "native_mean_user_f1": 0.17436590463703397,
+        "native_max_user_f1": 0.7108695652173913,
+        "selection_rate": 0.1500815660685155,
+        "spearman": null,
+        "ndcg_at_15pct": null
+      },
+      {
+        "video_id": "Playing_on_water_slide",
+        "cohort": 1,
+        "method": "uniform_segments",
+        "native_mean_user_f1": 0.10236537172517478,
+        "native_max_user_f1": 0.26237054085155354,
+        "selection_rate": 0.13866231647634583,
+        "spearman": null,
+        "ndcg_at_15pct": null
+      },
+      {
+        "video_id": "Playing_on_water_slide",
+        "cohort": 1,
+        "method": "random_sample_scores",
+        "native_mean_user_f1": 0.12290324048707438,
+        "native_max_user_f1": 0.31896234309735627,
+        "spearman": 0.0007815812144957319,
+        "ndcg_at_15pct": 0.3334496725177596,
+        "selection_rate": 0.13728588907014683,
+        "repeats": 32,
+        "seed": 687335463,
+        "random_summary_std": 0.04226749765829012
+      },
+      {
+        "video_id": "St Maarten Landing",
+        "cohort": 1,
+        "method": "constant_first_budget",
+        "native_mean_user_f1": 0.039554838360625066,
+        "native_max_user_f1": 0.24045801526717558,
+        "selection_rate": 0.15019988577955454,
+        "spearman": null,
+        "ndcg_at_15pct": null
+      },
+      {
+        "video_id": "St Maarten Landing",
+        "cohort": 1,
+        "method": "uniform_segments",
+        "native_mean_user_f1": 0.06883419063188669,
+        "native_max_user_f1": 0.24411134903640258,
+        "selection_rate": 0.1433466590519703,
+        "spearman": null,
+        "ndcg_at_15pct": null
+      },
+      {
+        "video_id": "St Maarten Landing",
+        "cohort": 1,
+        "method": "random_sample_scores",
+        "native_mean_user_f1": 0.1348608248403983,
+        "native_max_user_f1": 0.31801564309741903,
+        "spearman": -0.009244468045110673,
+        "ndcg_at_15pct": 0.20045571597302192,
+        "selection_rate": 0.13863506567675615,
+        "repeats": 32,
+        "seed": 224148951,
+        "random_summary_std": 0.10409041933039404
+      },
+      {
+        "video_id": "car_over_camera",
+        "cohort": 1,
+        "method": "constant_first_budget",
+        "native_mean_user_f1": 0.03835494211743262,
+        "native_max_user_f1": 0.29182582123758594,
+        "selection_rate": 0.1501597444089457,
+        "spearman": null,
+        "ndcg_at_15pct": null
+      },
+      {
+        "video_id": "car_over_camera",
+        "cohort": 1,
+        "method": "uniform_segments",
+        "native_mean_user_f1": 0.07508612898220177,
+        "native_max_user_f1": 0.2003257328990228,
+        "selection_rate": 0.13738019169329074,
+        "spearman": null,
+        "ndcg_at_15pct": null
+      },
+      {
+        "video_id": "car_over_camera",
+        "cohort": 1,
+        "method": "random_sample_scores",
+        "native_mean_user_f1": 0.12444045291447546,
+        "native_max_user_f1": 0.2769317523618021,
+        "spearman": -0.010976481867676517,
+        "ndcg_at_15pct": 0.23183292098327296,
+        "selection_rate": 0.1369380419899589,
+        "repeats": 32,
+        "seed": 2275027238,
+        "random_summary_std": 0.05563294302638591
+      },
+      {
+        "video_id": "paluma_jump",
+        "cohort": 1,
+        "method": "constant_first_budget",
+        "native_mean_user_f1": 0.047128257532064545,
+        "native_max_user_f1": 0.30113636363636365,
+        "selection_rate": 0.15034965034965034,
+        "spearman": null,
+        "ndcg_at_15pct": null
+      },
+      {
+        "video_id": "paluma_jump",
+        "cohort": 1,
+        "method": "uniform_segments",
+        "native_mean_user_f1": 0.04475729614377085,
+        "native_max_user_f1": 0.1892744479495268,
+        "selection_rate": 0.11655011655011654,
+        "spearman": null,
+        "ndcg_at_15pct": null
+      },
+      {
+        "video_id": "paluma_jump",
+        "cohort": 1,
+        "method": "random_sample_scores",
+        "native_mean_user_f1": 0.13727533409626597,
+        "native_max_user_f1": 0.3122965609297217,
+        "spearman": -0.01210080300652679,
+        "ndcg_at_15pct": 0.19254639806392435,
+        "selection_rate": 0.13986013986013987,
+        "repeats": 32,
+        "seed": 229563224,
+        "random_summary_std": 0.08542874173117411
+      },
+      {
+        "video_id": "Air_Force_One",
+        "cohort": 2,
+        "method": "constant_first_budget",
+        "native_mean_user_f1": 0.06499888032312884,
+        "native_max_user_f1": 0.20759493670886076,
+        "selection_rate": 0.15020026702269693,
+        "spearman": null,
+        "ndcg_at_15pct": null
+      },
+      {
+        "video_id": "Air_Force_One",
+        "cohort": 2,
+        "method": "uniform_segments",
+        "native_mean_user_f1": 0.11271913564700105,
+        "native_max_user_f1": 0.2073469387755102,
+        "selection_rate": 0.13351134846461948,
+        "spearman": null,
+        "ndcg_at_15pct": null
+      },
+      {
+        "video_id": "Air_Force_One",
+        "cohort": 2,
+        "method": "random_sample_scores",
+        "native_mean_user_f1": 0.14643995930340797,
+        "native_max_user_f1": 0.29215333181160763,
+        "spearman": -0.016964792528637626,
+        "ndcg_at_15pct": 0.24458501864394022,
+        "selection_rate": 0.14686248331108145,
+        "repeats": 32,
+        "seed": 4064857746,
+        "random_summary_std": 0.04563395854301662
+      },
+      {
+        "video_id": "Base jumping",
+        "cohort": 2,
+        "method": "constant_first_budget",
+        "native_mean_user_f1": 0.0832376027156641,
+        "native_max_user_f1": 0.31674842326559216,
+        "selection_rate": 0.15013744977796575,
+        "spearman": null,
+        "ndcg_at_15pct": null
+      },
+      {
+        "video_id": "Base jumping",
+        "cohort": 2,
+        "method": "uniform_segments",
+        "native_mean_user_f1": 0.13670394744771575,
+        "native_max_user_f1": 0.2536997885835095,
+        "selection_rate": 0.14992598858109538,
+        "spearman": null,
+        "ndcg_at_15pct": null
+      },
+      {
+        "video_id": "Base jumping",
+        "cohort": 2,
+        "method": "random_sample_scores",
+        "native_mean_user_f1": 0.14781131606581704,
+        "native_max_user_f1": 0.31306724723773627,
+        "spearman": 0.0014720872523198343,
+        "ndcg_at_15pct": 0.29831957492752514,
+        "selection_rate": 0.14021198984986255,
+        "repeats": 32,
+        "seed": 2784659917,
+        "random_summary_std": 0.04446879838870727
+      },
+      {
+        "video_id": "Bike Polo",
+        "cohort": 2,
+        "method": "constant_first_budget",
+        "native_mean_user_f1": 0.07898615833871728,
+        "native_max_user_f1": 0.346782988004362,
+        "selection_rate": 0.15013054830287206,
+        "spearman": null,
+        "ndcg_at_15pct": null
+      },
+      {
+        "video_id": "Bike Polo",
+        "cohort": 2,
+        "method": "uniform_segments",
+        "native_mean_user_f1": 0.0932814612171629,
+        "native_max_user_f1": 0.2746987951807229,
+        "selection_rate": 0.13838120104438642,
+        "spearman": null,
+        "ndcg_at_15pct": null
+      },
+      {
+        "video_id": "Bike Polo",
+        "cohort": 2,
+        "method": "random_sample_scores",
+        "native_mean_user_f1": 0.12067804397735106,
+        "native_max_user_f1": 0.2910414283358942,
+        "spearman": 0.0021884652452687304,
+        "ndcg_at_15pct": 0.23005946217524395,
+        "selection_rate": 0.1373204960835509,
+        "repeats": 32,
+        "seed": 1167869156,
+        "random_summary_std": 0.055988800940301967
+      },
+      {
+        "video_id": "Bus_in_Rock_Tunnel",
+        "cohort": 2,
+        "method": "constant_first_budget",
+        "native_mean_user_f1": 0.02931829789903384,
+        "native_max_user_f1": 0.12722170252572498,
+        "selection_rate": 0.15006821282401092,
+        "spearman": null,
+        "ndcg_at_15pct": null
+      },
+      {
+        "video_id": "Bus_in_Rock_Tunnel",
+        "cohort": 2,
+        "method": "uniform_segments",
+        "native_mean_user_f1": 0.14750617098639296,
+        "native_max_user_f1": 0.26156941649899396,
+        "selection_rate": 0.14636523094913273,
+        "spearman": null,
+        "ndcg_at_15pct": null
+      },
+      {
+        "video_id": "Bus_in_Rock_Tunnel",
+        "cohort": 2,
+        "method": "random_sample_scores",
+        "native_mean_user_f1": 0.13625365731025357,
+        "native_max_user_f1": 0.2970695252504528,
+        "spearman": 0.01154422894198091,
+        "ndcg_at_15pct": 0.33257969764983647,
+        "selection_rate": 0.14070113038394075,
+        "repeats": 32,
+        "seed": 2284961530,
+        "random_summary_std": 0.037485268102256074
+      },
+      {
+        "video_id": "Car_railcrossing",
+        "cohort": 2,
+        "method": "constant_first_budget",
+        "native_mean_user_f1": 0.38680942882872127,
+        "native_max_user_f1": 0.6185010128291695,
+        "selection_rate": 0.15014778325123151,
+        "spearman": null,
+        "ndcg_at_15pct": null
+      },
+      {
+        "video_id": "Car_railcrossing",
+        "cohort": 2,
+        "method": "uniform_segments",
+        "native_mean_user_f1": 0.0853444108099243,
+        "native_max_user_f1": 0.2,
+        "selection_rate": 0.14876847290640394,
+        "spearman": null,
+        "ndcg_at_15pct": null
+      },
+      {
+        "video_id": "Car_railcrossing",
+        "cohort": 2,
+        "method": "random_sample_scores",
+        "native_mean_user_f1": 0.13869751506447586,
+        "native_max_user_f1": 0.26066669984056545,
+        "spearman": 0.0031419980416746715,
+        "ndcg_at_15pct": 0.24600890919891194,
+        "selection_rate": 0.14294950738916257,
+        "repeats": 32,
+        "seed": 3025627121,
+        "random_summary_std": 0.050906322021666325
+      },
+      {
+        "video_id": "Kids_playing_in_leaves",
+        "cohort": 2,
+        "method": "constant_first_budget",
+        "native_mean_user_f1": 0.4238848157020115,
+        "native_max_user_f1": 0.9058693244739756,
+        "selection_rate": 0.15029808597427047,
+        "spearman": null,
+        "ndcg_at_15pct": null
+      },
+      {
+        "video_id": "Kids_playing_in_leaves",
+        "cohort": 2,
+        "method": "uniform_segments",
+        "native_mean_user_f1": 0.0878996594096737,
+        "native_max_user_f1": 0.257847533632287,
+        "selection_rate": 0.13398180106683402,
+        "spearman": null,
+        "ndcg_at_15pct": null
+      },
+      {
+        "video_id": "Kids_playing_in_leaves",
+        "cohort": 2,
+        "method": "random_sample_scores",
+        "native_mean_user_f1": 0.13170773858456114,
+        "native_max_user_f1": 0.3063324637716237,
+        "spearman": -0.007416623891679939,
+        "ndcg_at_15pct": 0.2677032089676652,
+        "selection_rate": 0.13212856918732352,
+        "repeats": 32,
+        "seed": 2089341642,
+        "random_summary_std": 0.07126038089470019
+      },
+      {
+        "video_id": "Scuba",
+        "cohort": 2,
+        "method": "constant_first_budget",
+        "native_mean_user_f1": 0.14549979650280884,
+        "native_max_user_f1": 0.40249609984399376,
+        "selection_rate": 0.15038271049076993,
+        "spearman": null,
+        "ndcg_at_15pct": null
+      },
+      {
+        "video_id": "Scuba",
+        "cohort": 2,
+        "method": "uniform_segments",
+        "native_mean_user_f1": 0.22910653030522599,
+        "native_max_user_f1": 0.486815415821501,
+        "selection_rate": 0.1355245384961729,
+        "spearman": null,
+        "ndcg_at_15pct": null
+      },
+      {
+        "video_id": "Scuba",
+        "cohort": 2,
+        "method": "random_sample_scores",
+        "native_mean_user_f1": 0.12014251724550333,
+        "native_max_user_f1": 0.3446830549323017,
+        "spearman": -0.005071163095226632,
+        "ndcg_at_15pct": 0.31858186626418894,
+        "selection_rate": 0.135130571814498,
+        "repeats": 32,
+        "seed": 1437098992,
+        "random_summary_std": 0.042652414717127246
+      },
+      {
+        "video_id": "Statue of Liberty",
+        "cohort": 2,
+        "method": "constant_first_budget",
+        "native_mean_user_f1": 0.0710388601890413,
+        "native_max_user_f1": 0.3536480686695279,
+        "selection_rate": 0.15014237639140565,
+        "spearman": null,
+        "ndcg_at_15pct": null
+      },
+      {
+        "video_id": "Statue of Liberty",
+        "cohort": 2,
+        "method": "uniform_segments",
+        "native_mean_user_f1": 0.10066072031899458,
+        "native_max_user_f1": 0.23209876543209876,
+        "selection_rate": 0.1457416515661403,
+        "spearman": null,
+        "ndcg_at_15pct": null
+      },
+      {
+        "video_id": "Statue of Liberty",
+        "cohort": 2,
+        "method": "random_sample_scores",
+        "native_mean_user_f1": 0.11593693784004516,
+        "native_max_user_f1": 0.3044393470684321,
+        "spearman": 0.00020340032362245778,
+        "ndcg_at_15pct": 0.31294914908705773,
+        "selection_rate": 0.14015984985762361,
+        "repeats": 32,
+        "seed": 1219720350,
+        "random_summary_std": 0.04319069245769964
+      }
+    ],
+    "means": {
+      "constant_first_budget": {
+        "native_mean_user_f1": 0.12578372872622942,
+        "native_max_user_f1": 0.38380842975791774,
+        "spearman": null,
+        "ndcg_at_15pct": null,
+        "selection_rate": 0.15021061899359078
+      },
+      "uniform_segments": {
+        "native_mean_user_f1": 0.0998742098353811,
+        "native_max_user_f1": 0.2486298342444673,
+        "spearman": null,
+        "ndcg_at_15pct": null,
+        "selection_rate": 0.13394414336548924
+      },
+      "random_sample_scores": {
+        "native_mean_user_f1": 0.137548173269521,
+        "native_max_user_f1": 0.31766901948714477,
+        "spearman": 0.002371746795898161,
+        "ndcg_at_15pct": 0.2637880840291785,
+        "selection_rate": 0.13881306418839684
+      }
+    },
+    "elapsed_seconds": 22.32867865404114,
+    "note": "No GT count used to select frames. Constant native fallback uses ceil budget. Random means average 32 fixed draws, never choose best seed.",
+    "official_f_video": null,
+    "competition_score": null
+  },
+  "paired": {
+    "cv_A0-minus-constant_first_budget": {
+      "delta": 0.08677070539346446,
+      "ci95": [
+        -0.0038608129290835656,
+        0.18026125045559716
+      ],
+      "n_videos": 14,
+      "positive_video_fraction": 0.7142857142857143,
+      "bootstrap_replicates": 20000,
+      "seed": 20260925
+    },
+    "cv_A0-minus-uniform_segments": {
+      "delta": 0.11268022428431279,
+      "ci95": [
+        0.05232836521983185,
+        0.18408952780218005
+      ],
+      "n_videos": 14,
+      "positive_video_fraction": 0.7857142857142857,
+      "bootstrap_replicates": 20000,
+      "seed": 20260925
+    },
+    "cv_A0-minus-random_sample_scores": {
+      "delta": 0.0750062608501729,
+      "ci95": [
+        0.0240662703036576,
+        0.13841471250892268
+      ],
+      "n_videos": 14,
+      "positive_video_fraction": 0.7142857142857143,
+      "bootstrap_replicates": 20000,
+      "seed": 20260925
+    },
+    "cv_DeiT_S-minus-constant_first_budget": {
+      "delta": 0.008293632456757323,
+      "ci95": [
+        -0.06901934285725242,
+        0.07322050742422853
+      ],
+      "n_videos": 14,
+      "positive_video_fraction": 0.7142857142857143,
+      "bootstrap_replicates": 20000,
+      "seed": 20260925
+    },
+    "cv_DeiT_S-minus-uniform_segments": {
+      "delta": 0.03420315134760567,
+      "ci95": [
+        -0.002352672388427769,
+        0.07117455770524005
+      ],
+      "n_videos": 14,
+      "positive_video_fraction": 0.6428571428571429,
+      "bootstrap_replicates": 20000,
+      "seed": 20260925
+    },
+    "cv_DeiT_S-minus-random_sample_scores": {
+      "delta": -0.0034708120865342487,
+      "ci95": [
+        -0.030674600579056667,
+        0.025603309906853933
+      ],
+      "n_videos": 14,
+      "positive_video_fraction": 0.42857142857142855,
+      "bootstrap_replicates": 20000,
+      "seed": 20260925
+    },
+    "cv_ViT_B-minus-constant_first_budget": {
+      "delta": 0.01782652503296966,
+      "ci95": [
+        -0.05037161543935062,
+        0.07824756040681605
+      ],
+      "n_videos": 14,
+      "positive_video_fraction": 0.5714285714285714,
+      "bootstrap_replicates": 20000,
+      "seed": 20260925
+    },
+    "cv_ViT_B-minus-uniform_segments": {
+      "delta": 0.043736043923818003,
+      "ci95": [
+        0.0070660669721111635,
+        0.07742440626385227
+      ],
+      "n_videos": 14,
+      "positive_video_fraction": 0.7857142857142857,
+      "bootstrap_replicates": 20000,
+      "seed": 20260925
+    },
+    "cv_ViT_B-minus-random_sample_scores": {
+      "delta": 0.006062080489678083,
+      "ci95": [
+        -0.019672663325549598,
+        0.03195660999740638
+      ],
+      "n_videos": 14,
+      "positive_video_fraction": 0.5714285714285714,
+      "bootstrap_replicates": 20000,
+      "seed": 20260925
+    },
+    "frozen_A0-minus-constant_first_budget": {
+      "delta": 0.08148730956999979,
+      "ci95": [
+        -0.02061701348741766,
+        0.17493965290088936
+      ],
+      "n_videos": 14,
+      "positive_video_fraction": 0.7857142857142857,
+      "bootstrap_replicates": 20000,
+      "seed": 20260925
+    },
+    "frozen_A0-minus-uniform_segments": {
+      "delta": 0.10739682846084812,
+      "ci95": [
+        0.03657842913380963,
+        0.18752807522951306
+      ],
+      "n_videos": 14,
+      "positive_video_fraction": 0.7857142857142857,
+      "bootstrap_replicates": 20000,
+      "seed": 20260925
+    },
+    "frozen_A0-minus-random_sample_scores": {
+      "delta": 0.0697228650267082,
+      "ci95": [
+        0.013237103151670525,
+        0.13356630234424377
+      ],
+      "n_videos": 14,
+      "positive_video_fraction": 0.6428571428571429,
+      "bootstrap_replicates": 20000,
+      "seed": 20260925
+    },
+    "frozen_DeiT_S-minus-constant_first_budget": {
+      "delta": 0.034953555451523885,
+      "ci95": [
+        -0.060897494097431705,
+        0.14062199331207526
+      ],
+      "n_videos": 14,
+      "positive_video_fraction": 0.5714285714285714,
+      "bootstrap_replicates": 20000,
+      "seed": 20260925
+    },
+    "frozen_DeiT_S-minus-uniform_segments": {
+      "delta": 0.060863074342372224,
+      "ci95": [
+        -0.018954926003283794,
+        0.16364229685318069
+      ],
+      "n_videos": 14,
+      "positive_video_fraction": 0.5,
+      "bootstrap_replicates": 20000,
+      "seed": 20260925
+    },
+    "frozen_DeiT_S-minus-random_sample_scores": {
+      "delta": 0.023189110908232318,
+      "ci95": [
+        -0.04508603473148442,
+        0.11143928702027514
+      ],
+      "n_videos": 14,
+      "positive_video_fraction": 0.35714285714285715,
+      "bootstrap_replicates": 20000,
+      "seed": 20260925
+    },
+    "frozen_ViT_B-minus-constant_first_budget": {
+      "delta": 0.03337554116150282,
+      "ci95": [
+        -0.06318906536089405,
+        0.12069121704081823
+      ],
+      "n_videos": 14,
+      "positive_video_fraction": 0.5714285714285714,
+      "bootstrap_replicates": 20000,
+      "seed": 20260925
+    },
+    "frozen_ViT_B-minus-uniform_segments": {
+      "delta": 0.059285060052351166,
+      "ci95": [
+        -0.0013924183900716526,
+        0.11626424943786594
+      ],
+      "n_videos": 14,
+      "positive_video_fraction": 0.5714285714285714,
+      "bootstrap_replicates": 20000,
+      "seed": 20260925
+    },
+    "frozen_ViT_B-minus-random_sample_scores": {
+      "delta": 0.02161109661821125,
+      "ci95": [
+        -0.020984366571722597,
+        0.06593349728572918
+      ],
+      "n_videos": 14,
+      "positive_video_fraction": 0.5,
+      "bootstrap_replicates": 20000,
+      "seed": 20260925
+    }
+  },
+  "official_f_video": null,
+  "competition_score": null
+}

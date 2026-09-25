@@ -1,0 +1,215 @@
+{
+  "checks": [
+    {
+      "candidate": "A0_center",
+      "source_commit": "f776342",
+      "output_exact_equal": true,
+      "selected_frames": 332,
+      "report": {
+        "output": "/data/aic/experiments/RELEASE_CLEAN_001/A0_center.jsonl",
+        "dummy": false,
+        "rows": 1,
+        "selected_predictions": 332,
+        "model_size_mb": 25.685169,
+        "spatial_mode": "center",
+        "loaded_weight_bytes": 25685169,
+        "detector_weight_bytes": 0,
+        "spatial_protocol": "dense_v1",
+        "spatial_diagnostics": [],
+        "postprocess_config": null,
+        "validation": {
+          "valid": true,
+          "issues": [],
+          "video_count": 1,
+          "prediction_count": 332,
+          "model_size_mb": 25.685169,
+          "stage": "final",
+          "validator": "local_rules_2026-09-24_not_official"
+        },
+        "release_id": "ENGINEERING_RELEASE_20260925_V1",
+        "candidate_id": "A0_center",
+        "candidate": {
+          "sample_fps": 2.0,
+          "batch_size": 16,
+          "postprocess_config": null,
+          "spatial_protocol": "dense_v1",
+          "temporal_weight": "a0",
+          "threshold": 0.4,
+          "spatial_mode": "center",
+          "expected_loaded_bytes": 25685169,
+          "role": "engineering_fallback"
+        },
+        "inventory": {
+          "a0": {
+            "path": "/data/aic/weights/engineering_release_20260925/a0_fp16.pt",
+            "bytes": 25685169,
+            "sha256": "aa9ed2e68e87113fdc8088cf03ed8282d93112d3d75f675a34cfab37f1dede5f"
+          }
+        },
+        "manifest_sha256": "2bb6b11859d375e90c18dc175d24b2b881da1ab22a8bda025cefb0953b3f86cf",
+        "index_sha256": "1016cede40111764ed2e79b10cafcdce9a17c87994b2428bc41ff95b58ac28bc",
+        "elapsed_seconds": 13.027503088116646,
+        "peak_vram_bytes": 165777920,
+        "per_video": [
+          {
+            "video_id": "37rzWOQsNIw",
+            "selected_frames": 332,
+            "frame_count": 5742,
+            "selection_rate": 0.05781957506095437
+          }
+        ],
+        "empty_prediction_rate": 0.0,
+        "official_f_video": null,
+        "competition_score": null,
+        "status": "engineering_verified_candidate_not_officially_scored"
+      }
+    },
+    {
+      "candidate": "A0_face_ema",
+      "source_commit": "f776342",
+      "output_exact_equal": true,
+      "selected_frames": 332,
+      "report": {
+        "output": "/data/aic/experiments/RELEASE_CLEAN_001/A0_face_ema.jsonl",
+        "dummy": false,
+        "rows": 1,
+        "selected_predictions": 332,
+        "model_size_mb": 25.917758,
+        "spatial_mode": "true_face_smooth",
+        "loaded_weight_bytes": 25917758,
+        "detector_weight_bytes": 232589,
+        "spatial_protocol": "dense_v1",
+        "spatial_diagnostics": [
+          {
+            "video_id": "37rzWOQsNIw",
+            "observations": 5742,
+            "resets": 7,
+            "face_detections": 263
+          }
+        ],
+        "postprocess_config": null,
+        "validation": {
+          "valid": true,
+          "issues": [],
+          "video_count": 1,
+          "prediction_count": 332,
+          "model_size_mb": 25.917758,
+          "stage": "final",
+          "validator": "local_rules_2026-09-24_not_official"
+        },
+        "release_id": "ENGINEERING_RELEASE_20260925_V1",
+        "candidate_id": "A0_face_ema",
+        "candidate": {
+          "sample_fps": 2.0,
+          "batch_size": 16,
+          "postprocess_config": null,
+          "spatial_protocol": "dense_v1",
+          "temporal_weight": "a0",
+          "detector_weight": "yunet",
+          "threshold": 0.4,
+          "spatial_mode": "true_face_smooth",
+          "expected_loaded_bytes": 25917758,
+          "role": "exploratory_spatial_candidate"
+        },
+        "inventory": {
+          "a0": {
+            "path": "/data/aic/weights/engineering_release_20260925/a0_fp16.pt",
+            "bytes": 25685169,
+            "sha256": "aa9ed2e68e87113fdc8088cf03ed8282d93112d3d75f675a34cfab37f1dede5f"
+          },
+          "yunet": {
+            "path": "/data/aic/weights/engineering_release_20260925/yunet.onnx",
+            "bytes": 232589,
+            "sha256": "8f2383e4dd3cfbb4553ea8718107fc0423210dc964f9f4280604804ed2552fa4"
+          }
+        },
+        "manifest_sha256": "2bb6b11859d375e90c18dc175d24b2b881da1ab22a8bda025cefb0953b3f86cf",
+        "index_sha256": "1016cede40111764ed2e79b10cafcdce9a17c87994b2428bc41ff95b58ac28bc",
+        "elapsed_seconds": 52.92450813995674,
+        "peak_vram_bytes": 165777920,
+        "per_video": [
+          {
+            "video_id": "37rzWOQsNIw",
+            "selected_frames": 332,
+            "frame_count": 5742,
+            "selection_rate": 0.05781957506095437
+          }
+        ],
+        "empty_prediction_rate": 0.0,
+        "official_f_video": null,
+        "competition_score": null,
+        "status": "engineering_verified_candidate_not_officially_scored"
+      }
+    },
+    {
+      "candidate": "DeiT_center",
+      "source_commit": "f776342",
+      "output_exact_equal": true,
+      "selected_frames": 1080,
+      "report": {
+        "output": "/data/aic/experiments/RELEASE_CLEAN_001/DeiT_center.jsonl",
+        "dummy": false,
+        "rows": 1,
+        "selected_predictions": 1080,
+        "model_size_mb": 46.618447,
+        "spatial_mode": "center",
+        "loaded_weight_bytes": 46618447,
+        "detector_weight_bytes": 0,
+        "spatial_protocol": "dense_v1",
+        "spatial_diagnostics": [],
+        "postprocess_config": null,
+        "validation": {
+          "valid": true,
+          "issues": [],
+          "video_count": 1,
+          "prediction_count": 1080,
+          "model_size_mb": 46.618447,
+          "stage": "final",
+          "validator": "local_rules_2026-09-24_not_official"
+        },
+        "release_id": "ENGINEERING_RELEASE_20260925_V1",
+        "candidate_id": "DeiT_center",
+        "candidate": {
+          "sample_fps": 2.0,
+          "batch_size": 16,
+          "postprocess_config": null,
+          "spatial_protocol": "dense_v1",
+          "temporal_weight": "deit_s",
+          "threshold": 0.35,
+          "spatial_mode": "center",
+          "expected_loaded_bytes": 46618447,
+          "role": "promising_challenger_not_primary"
+        },
+        "inventory": {
+          "deit_s": {
+            "path": "/data/aic/weights/engineering_release_20260925/deit_s_fp16.pt",
+            "bytes": 46618447,
+            "sha256": "665afea5b0b742f979e948738d05dc6b0ee32b68a120ca552b335aa8b1d3e343"
+          }
+        },
+        "manifest_sha256": "2bb6b11859d375e90c18dc175d24b2b881da1ab22a8bda025cefb0953b3f86cf",
+        "index_sha256": "1016cede40111764ed2e79b10cafcdce9a17c87994b2428bc41ff95b58ac28bc",
+        "elapsed_seconds": 14.116450225934386,
+        "peak_vram_bytes": 170750976,
+        "per_video": [
+          {
+            "video_id": "37rzWOQsNIw",
+            "selected_frames": 1080,
+            "frame_count": 5742,
+            "selection_rate": 0.18808777429467086
+          }
+        ],
+        "empty_prediction_rate": 0.0,
+        "official_f_video": null,
+        "competition_score": null,
+        "status": "engineering_verified_candidate_not_officially_scored"
+      }
+    }
+  ],
+  "all_equal": true,
+  "code_archive_sha256": "10f91aed4b11ed2daa67128d86273edb3cbd8bd2480181d73ee54701f79b9262",
+  "environment": "existing pinned cv environment, clean code archive; not a newly installed isolated environment",
+  "offline": "HF_HUB_OFFLINE and TRANSFORMERS_OFFLINE enabled; no network weights required",
+  "official_f_video": null,
+  "competition_score": null
+}

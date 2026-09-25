@@ -1,0 +1,146 @@
+[
+  {
+    "video_id": "XzYM3PfTM4w",
+    "category": "VT",
+    "title": "When to Replace Your Tires GMC",
+    "outer_repeat": 0,
+    "seed": 20260925,
+    "records": [
+      {
+        "model": "A0",
+        "prediction_path": "artifacts/RG_NCV_001/RG_NCV_A0_r0_f0_s20260925/RG_NCV_A0_r0_f0_s20260925_outer/XzYM3PfTM4w.npz",
+        "threshold": 0.25
+      },
+      {
+        "model": "DeiT_S",
+        "prediction_path": "artifacts/RG_NCV_001/RG_NCV_DeiT_S_r0_f0_s20260925/RG_NCV_DeiT_S_r0_f0_s20260925_outer/XzYM3PfTM4w.npz",
+        "threshold": 0.3
+      },
+      {
+        "model": "ViT_B",
+        "prediction_path": "artifacts/RG_NCV_001/RG_NCV_ViT_B_r0_f0_s20260925/RG_NCV_ViT_B_r0_f0_s20260925_outer/XzYM3PfTM4w.npz",
+        "threshold": 0.3
+      }
+    ]
+  },
+  {
+    "video_id": "xwqBXPGE9pQ",
+    "category": "VU",
+    "title": "Smart Electric Vehicle Balances on Two Wheels",
+    "outer_repeat": 0,
+    "seed": 20260925,
+    "records": [
+      {
+        "model": "A0",
+        "prediction_path": "artifacts/RG_NCV_001/RG_NCV_A0_r0_f0_s20260925/RG_NCV_A0_r0_f0_s20260925_outer/xwqBXPGE9pQ.npz",
+        "threshold": 0.25
+      },
+      {
+        "model": "DeiT_S",
+        "prediction_path": "artifacts/RG_NCV_001/RG_NCV_DeiT_S_r0_f0_s20260925/RG_NCV_DeiT_S_r0_f0_s20260925_outer/xwqBXPGE9pQ.npz",
+        "threshold": 0.3
+      },
+      {
+        "model": "ViT_B",
+        "prediction_path": "artifacts/RG_NCV_001/RG_NCV_ViT_B_r0_f0_s20260925/RG_NCV_ViT_B_r0_f0_s20260925_outer/xwqBXPGE9pQ.npz",
+        "threshold": 0.3
+      }
+    ]
+  },
+  {
+    "video_id": "VuWGsYPqAX8",
+    "category": "FM",
+    "title": "\"Flash mob protest for Syria | Sydney, Australia, May 2012 | #Silenceisbetrayal\"",
+    "outer_repeat": 0,
+    "seed": 20260925,
+    "records": [
+      {
+        "model": "A0",
+        "prediction_path": "artifacts/RG_NCV_001/RG_NCV_A0_r0_f1_s20260925/RG_NCV_A0_r0_f1_s20260925_outer/VuWGsYPqAX8.npz",
+        "threshold": 0.3
+      },
+      {
+        "model": "DeiT_S",
+        "prediction_path": "artifacts/RG_NCV_001/RG_NCV_DeiT_S_r0_f1_s20260925/RG_NCV_DeiT_S_r0_f1_s20260925_outer/VuWGsYPqAX8.npz",
+        "threshold": 0.3
+      },
+      {
+        "model": "ViT_B",
+        "prediction_path": "artifacts/RG_NCV_001/RG_NCV_ViT_B_r0_f1_s20260925/RG_NCV_ViT_B_r0_f1_s20260925_outer/VuWGsYPqAX8.npz",
+        "threshold": 0.3
+      }
+    ]
+  },
+  {
+    "video_id": "qqR6AEXwxoQ",
+    "category": "BT",
+    "title": "Motocross Tips & Tricks : How to Whip a Motocross Bike",
+    "outer_repeat": 0,
+    "seed": 20260925,
+    "records": [
+      {
+        "model": "A0",
+        "prediction_path": "artifacts/RG_NCV_001/RG_NCV_A0_r0_f1_s20260925/RG_NCV_A0_r0_f1_s20260925_outer/qqR6AEXwxoQ.npz",
+        "threshold": 0.3
+      },
+      {
+        "model": "DeiT_S",
+        "prediction_path": "artifacts/RG_NCV_001/RG_NCV_DeiT_S_r0_f1_s20260925/RG_NCV_DeiT_S_r0_f1_s20260925_outer/qqR6AEXwxoQ.npz",
+        "threshold": 0.3
+      },
+      {
+        "model": "ViT_B",
+        "prediction_path": "artifacts/RG_NCV_001/RG_NCV_ViT_B_r0_f1_s20260925/RG_NCV_ViT_B_r0_f1_s20260925_outer/qqR6AEXwxoQ.npz",
+        "threshold": 0.3
+      }
+    ]
+  },
+  {
+    "video_id": "xxdtq8mxegs",
+    "category": "GA",
+    "title": "How to Clean Your Dog's Ears - Vetoquinol USA",
+    "outer_repeat": 0,
+    "seed": 20260925,
+    "records": [
+      {
+        "model": "A0",
+        "prediction_path": "artifacts/RG_NCV_001/RG_NCV_A0_r0_f1_s20260925/RG_NCV_A0_r0_f1_s20260925_outer/xxdtq8mxegs.npz",
+        "threshold": 0.3
+      },
+      {
+        "model": "DeiT_S",
+        "prediction_path": "artifacts/RG_NCV_001/RG_NCV_DeiT_S_r0_f1_s20260925/RG_NCV_DeiT_S_r0_f1_s20260925_outer/xxdtq8mxegs.npz",
+        "threshold": 0.3
+      },
+      {
+        "model": "ViT_B",
+        "prediction_path": "artifacts/RG_NCV_001/RG_NCV_ViT_B_r0_f1_s20260925/RG_NCV_ViT_B_r0_f1_s20260925_outer/xxdtq8mxegs.npz",
+        "threshold": 0.3
+      }
+    ]
+  },
+  {
+    "video_id": "JgHubY5Vw3Y",
+    "category": "BT",
+    "title": "How to lock your bike. The RIGHT way!",
+    "outer_repeat": 0,
+    "seed": 20260925,
+    "records": [
+      {
+        "model": "A0",
+        "prediction_path": "artifacts/RG_NCV_001/RG_NCV_A0_r0_f3_s20260925/RG_NCV_A0_r0_f3_s20260925_outer/JgHubY5Vw3Y.npz",
+        "threshold": 0.2
+      },
+      {
+        "model": "DeiT_S",
+        "prediction_path": "artifacts/RG_NCV_001/RG_NCV_DeiT_S_r0_f3_s20260925/RG_NCV_DeiT_S_r0_f3_s20260925_outer/JgHubY5Vw3Y.npz",
+        "threshold": 0.3
+      },
+      {
+        "model": "ViT_B",
+        "prediction_path": "artifacts/RG_NCV_001/RG_NCV_ViT_B_r0_f3_s20260925/RG_NCV_ViT_B_r0_f3_s20260925_outer/JgHubY5Vw3Y.npz",
+        "threshold": 0.3
+      }
+    ]
+  }
+]

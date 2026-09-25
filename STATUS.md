@@ -1,65 +1,50 @@
 # 项目状态
 
-更新：2026-09-25（Asia/Shanghai）。本轮继续完成 frozen local lockbox、零参数后处理、DeiT-S S-tier probe、canonical internal TSM 端到端 cache 对照和 raw-video JSONL 验证。
+更新：2026-09-25，representation generalization 阶段。最新完整证据见 `reports/20260925_representation_generalization.md`、`reports/spatial_benchmark_status.md`；旧报告保留为历史快照。
 
-## 当前证据最强的候选
+## 当前候选
 
-- **Best S temporal challenger：Bs0 DeiT-S/16 + median window 9 + threshold 0.35**。DEV macro F1=0.140241，frozen lockbox=0.291867，FP16 complete bundle=46,618,447 bytes；五个 source-group folds 的同策略 mean=0.14389±0.05173。它仍是 TVSum-only challenger，不是 AIC `F_video`。
-- **Engineering fallback：A0_006 + raw threshold 0.40**。DEV macro F1=0.151875，lockbox=0.114304；模型 FP16 25,685,169 bytes，center crop raw pipeline 可提交。
-- A0_006 的预注册 fold threshold 0.30 敏感性审计在 lockbox 为 0.185913；该行不覆盖 direct DEV-selected threshold 0.40 的结果。
-- A1_005（feature-level shift，准确命名，不是 backbone-internal TSM）在 threshold 0.35 时 macro F1=0.144745；固定 0.5 时为 0.121079。A0_006 在同一 proxy-v2 split 上更好。
-- 5 个 source-group fold 以固定 threshold 0.30 的结果：A0 mean=0.11457，std=0.07900；A1 mean=0.10787，std=0.07764。按每 fold 单独调阈值的探索值分别为 A0 0.14983±0.03692、A1 0.15422±0.03665，只能作为乐观诊断，不能作为锁箱分数。
-- ViT-B/16 frozen-feature B0 probe：threshold 0.30 时 macro F1=0.15928，FP16 bundle 174,986,447 bytes（M 档假设）；已完成真实视频 JSONL + validator，但仍需更多 split 和正式提交集验证。
-- B0 lockbox（threshold 0.30）macro F1=0.194505，仍为 M-tier reference。
-- canonical internal TSM：中间 `[T,64,H,W]` shift 的 chunk/full 最大差 `1.81e-5`，五折 mean `0.13800±0.06299`，lockbox threshold 0.35 为 `0.175143`；暂无稳定收益，已降级。
-- SumMe raw LFS 下载被阻塞；没有 OOD 分数。没有本地 VLM 权重，未生成 teacher labels。
-- Loss ablation：A0_012 只换 SmoothL1，fixed-0.5 macro F1=0.11679、threshold 0.40=0.14143，低于 BCE A0_006；当前保留 BCE。
+- **Engineering Fallback / 当前保守 Best S：A0_006**，ResNet18 + repaired Temporal U-Net，raw threshold 0.40（历史 DEV 选择）+ center，完整 FP16 文件 **25,685,169 bytes**。原视频到 JSONL 可运行。
+- **S-tier Promising Challenger：DeiT-S/16**，完整 FP16 **46,618,447 bytes**。nested CV 的摘要均值较好，但配对区间跨 0，SumMe 小样本 OOD 没有复现优势；不升级 Primary。
+- **Best M / semantic reference：ViT-B/16**，完整 FP16 **174,986,447 bytes**。TVSum 摘要与 DeiT-S 近乎持平，目前无证据证明额外体积值得。
+- **Current Temporal Best：没有同时在全部指标/数据集可靠胜出的单一模型。** TVSum summary 均值 DeiT-S 略高，Spearman ViT-B 略高，首批 SumMe OOD A0 较好。
+- **Current Spatial Best：true_face_smooth 是本地均值最高的探索配置，非已确认胜者。** Center 保持默认；YuNet 是人脸观察器，不是完整主体理解；新增权重 232,589 bytes。
+- **Best Overall / official_f_video / competition_score：null**，尚无 AIC 联合 GT/官方反馈，不能用 temporal 与 spatial 两个不同数据集的分数拼接出比赛成绩。
 
-## 评估和标签协议
+## 已完成的最新证据
 
-- 固定 GT 定义：`tvsum_summary_mean_norm_ge_0.5_v1`；prediction threshold 独立配置，只能在 train/dev 选择。
-- 已冻结 `splits/local_protocol_v1.json`：TRAIN=27、DEV=16、LOCAL LOCKBOX=7（原 manifest 的 test 划分）；manifest SHA-256=`b8db2bb3f1e36e2ecc32a1c307531e43d69bae3f74605c9112b8eda8b679e565`。Lockbox 禁止 threshold、checkpoint、模型、后处理和超参选择，只有候选冻结后比较使用。
-- v1 另记录 5 个 source-group development folds（验证集规模 8/9/10/7/9），并校验每折只覆盖 43 条非 lockbox 视频；TVSum 当前没有可靠 category metadata，因此不宣称 category-stratified。
-- 报告 per-video F1、video-macro、micro 诊断、选中率、GT 比例、空预测率、precision/recall、分数分位数、连续 MAE 和 Spearman。
-- TVSum v1.1 MAT 的 50 条 `user_anno` 全部为 `(20,nframes)`，2 秒是收集评分的片段语义，发布文件已经逐原始帧展开。`published_mat_per_frame_identity` 审计显示旧 `linspace` 对这些视频是恒等映射，标签错位不是接近零 F1 的主要原因。
-- 作者 15% summary/knapsack evaluator 与本项目固定二值 temporal proxy 分开记录；TVSum 没有合法 composition crop GT。
-- 审计产物：`reports/tvsum_annotation_audit_v3.jsonl`、`reports/tvsum_manifest_v3.jsonl`。
+- TVSum `TVSUM_RANKING_V2`：Spearman、Kendall tau-b、线性增益 tie-aware NDCG/NDCG@15%、固定 GT AP、明确命名的 top15 relevance。
+- `TVSUM_SUMMARY_V1_FIXED`：作者 60 原帧分段（尾段合并）、15% 预算、0/1 knapsack、20 annotator F1 宏平均；预测分段确定性替代作者随机示例。10 个合成/真实案例与未修改 MATLAB 函数经 Octave 核对，mask 零差异。
+- **90 次真实配对 nested-CV 训练已完成**：3 representations × 2 repeats × 5 outer folds × 3 seeds；每折 30 train / 10 inner-dev / 10 outer。每次 20 epochs，checkpoint/threshold 只使用 inner-dev。总登记训练 1032.39 秒，单次最大 14.73 秒。
+- A0 / DeiT-S / ViT-B 的 TVSum summary F1：**0.21521 / 0.23073 / 0.23064**；Spearman：**0.43216 / 0.41439 / 0.44127**；binary proxy F1：**0.16084 / 0.16869 / 0.17301**。
+- DeiT−A0 summary 配对 delta **+0.01552，95% CI [-0.00653, 0.04070]**；Spearman delta **-0.01777，CI [-0.07939, 0.04530]**。50 source-video 为单位，先平均 repeat/seed，不把重复观测当独立样本。
+- 600 组配对外层记录的 frame indices、timestamps、labels、mask 完全一致；逐视频/类别表、FP/FN/空输出/过选清单和图像已保存。
+- **SumMe raw 已取得**。首批 8 个预先按压缩大小选取的视频，6 条帧数/FPS 严格匹配，Cooking / playing_ball 排除。镜像 PTS 破损，使用显式 annotation-ordinal CFR 协议；比赛 PTS 校验保持严格。Python native mean/max summary F1 与 SumMe 未修改 MATLAB evaluator 的 18 个案例误差 ≤1.12e-16。
+- SumMe 已完成两批14条原视频、每模型全部30个matched CV heads：mean human summary F1 **A0 .21255 / DeiT-S .13408 / ViT-B .14361**；第二批8条单列为 **.17883/.11955/.15411**。DeiT−A0合并paired delta **−.07848，95%CI[−.13175,−.02734]**。镜像对齐与size-biased抽样限制保留，不代表完整SumMe。
+- 固定随机预算32draw对照mean F1 **.13755**；A0 matched-head相对delta **+.07501 [+.02407,+.13841]**，DeiT/ViT-B相对随机CI跨0。50TVSum×14SumMe=700对SHA/pHash筛查无flag；不能排除所有近重复或预训练重叠。
+- 历史完整FP16 bundle合并14条OOD mean F1 **.20727/.16074/.15916**；三路全部JSONL验证通过。Native摘要mask和实际threshold JSONL是两种不同输出，不能混用指标。
+- **RetargetVid 已进入真实 GT 阶段**：DHF1K 001–020，12,365 原帧 ×2比例 ×6标注者；6方法，完整原函数 890,280 次 IoU 核对误差为0。Center IoU 1:3 **0.48190**、3:1 **0.73951**；face+EMA **0.48634 / 0.75214**。平均增益 CI 跨0。
+- `spatial_protocol=dense_v1` 接入原始帧 observation→association→shot reset→EMA→最大合法 crop，6种显式模式保留旧接口。8 个 raw-video E2E 检查通过，3600条预测，crop 与 GT benchmark 保存结果完全相同；detector bytes 计入。
+- 固定发行清单/入口 `releases/20260925_v1`、`python -m aic.release`：三种候选完整权重在本地/远程双份保存，加载前校验SHA和bytes；历史DEV两原视频真实阈值输出1263/2297/1263帧，均valid。DHF1K三样例A0全空也如实保留，无temporal GT不解释成FN。
+- 本地与远程均72 tests passed；远程运行代码与本地核心代码哈希逐一核验。FP16指存储文件，实际加载为FP32标准kernel。
 
-## 一致性和空间状态
+- **追加60次线性head对照**已完成：A0/DeiT summary .21324/.21781、Spearman .32930/.33129；SumMe14 .14771/.12230。当前线性替换无收益，保留U-Net；只淘汰这个固定预算假设。
 
-- padding 确有影响：旧实现 5→12 timestep 最大有效 logit 差异 0.3392，8→12 差异 0.5733；`lengths` 路径逐视频计算后回归误差为 0。
-- 远程同环境 PyAV 15.1 的 raw→backbone→temporal 与 cache 路径：frame/timestamp 一致，feature 最大差约 2.5e-5，aux 完全一致，probability 最大差约 2.1e-7。当地 PyAV 18.1 与远程解码会产生明显漂移，正式推理固定远程环境/版本。
-- inference 现在显式支持 `spatial_mode=center|saliency|subject`，A2 raw inference 会构造同定义 32D aux；三种模式真实视频均通过 JSONL validator。空间诊断只报告合法率、速度、加速度、jerk 和可视化，**没有伪造 IoU**。
-- 代表性空间接触表和诊断：`/data/aic/experiments/A1_004/spatial_diagnostics_J0nA4VgnoCo.jpg`、`reports/spatial_diagnostics_20260925.json`。
+## 协议与历史边界
 
-## Feature Bank / TSM / B0 / Small ViT
+- TVSum MAT 的 `user_anno` 是 20×nframes；已完成的标签/padding/raw-cache审计不重做。MAT **有真实 category metadata**：10类，每类5视频；旧文档“不可取得 category”已过时。
+- 原7条只称 **comparison_holdout_v1**；原协议文件不改写，状态另记 `splits/local_protocol_v1_status.json`。TVSum 50条均为开发暴露数据，没有新 pristine test。后续使用 `splits/tvsum_nested_cv_v1.json`。
+- feature-level shift、canonical internal TSM、SmoothL1、Feature Bank v1、A0首轮 smoothing 均保留历史并暂停 sweep。
+- VLM pilot 尚未运行，没有 teacher ranking/蒸馏收益证据。
 
-- Feature Bank 维审计：第 11、23–28、31 维恒零；0/8/9 与 5/22、7/16 存在重复或近重复。motion-only F1=0.02724、quality-only=0.01892、composition-only=0.01613、audio-zero=0；当前融合定义没有收益，不能解释成“真实音频无效”。
-- `temporal_shift_feature_map` 已在 ResNet layer1 的中间 feature map 上完成真实 recache/end-to-end 对照：chunk/full max feature error `1.81e-5`，无 TSM 与 TSM mean feature difference `0.08127`，参数增量为 0；五折没有稳定收益，因此不替换 A0。历史 A1 仍是 feature-level embedding shift。
-- B0 使用 torchvision ViT-B/16 ImageNet-1K frozen features + 同一 Temporal U-Net；真实 raw-video → JSONL → validator 已通过。bundle 实际 174.99 MB，超过 S 档，暂作为高分参照而非默认 fallback。
-- Bs0 使用 timm DeiT-S/16 ImageNet-1K frozen features + 同一 Temporal U-Net；完整 FP16 bundle 46.62 MB，五折与冻结 lockbox 已跑通。raw-video → DeiT-S → temporal → center crop → JSONL → validator 已通过（7 个 lockbox 视频共 9,325 个预测）。
-- DeiT-S 固定 median-9/threshold-0.35 的三 seed lockbox 为 `0.29187/0.22378/0.28128`，mean `0.26565±0.03664`；因此是最强 S-tier challenger，但初始化方差仍需继续验证。
+## Current Bottleneck / Running Experiments / Latest Failure
 
-## Engineering fallback
+- **主要证据缺口**：OOD 样本少且镜像时轴有局限；没有赛事联合标签。技术上同时存在 ranking/domain shift、过选校准和多人主体选择错误，不能跨 benchmark 排名谁是比赛最大瓶颈。
+- **Running**：本阶段全部150次训练、原视频OOD、固定候选和线性头外部复核已完成，无后台训练。独立Git代码副本3候选与既有JSONL逐项相同；本阶段记录、配置和代码已整理，后续按TODO的新数据/主体错误队列推进。
+- **Latest Failure**：ENGINEERING_RELEASE_001在CUDA初始化前请求显存统计失败；修复后新ID002/003全部完成。SUMME_OOD_001非递增PTS失败仍保留；比赛reader不放宽。RetargetVid负坐标clamp已补齐，重计分v2保留v1，自有分数不变。
 
-当前可运行 fallback 是 ResNet18 + repaired Temporal U-Net + center crop，模型 FP16 25,685,169 bytes、FP32 51,319,345 bytes；阈值暂用开发集锁定值，拿到官方输入/GT 后必须重新选择。没有官方 evaluator、比赛视频或联合 spatial GT，`official_f_video` 和 competition score 保持 null。
+## 资源与下一任务
 
-## 远程资源
+远程 `/home/supie/AIC`；数据/模型/结果 `/data/aic`；Python `/opt/miniconda3/envs/cv/bin/python`，PyTorch2.9.1+cu128、PyAV15.1。仅使用空闲授权物理 GPU2/4/5；GPU1既有任务保留，0/3未使用。
 
-- 远程代码：`/home/supie/AIC`；大数据/权重/实验在 `/data/aic`。
-- 当前使用的 V100 物理卡仅为 2、4、5、6、7；0、3 未使用，1 保留既有进程。
-- 远程 PyTorch 2.9.1+cu128、torchvision 0.24.1、PyAV 15.1；所有训练均远低于 12 小时并使用外层 timeout。
-
-## 未验证项
-
-- 没有 AIC 联合 temporal+crop GT，不能宣布任何 TVSum 数值为官方 `F_video`，也不能比较空间 IoU 或最终 size-weighted score。
-- 尚未取得官方 evaluator/比赛测试索引；提交流程只完成本地契约和 validator。
-- 尚未取得 SumMe/YouTube Highlights 可用 raw OOD 子集；SumMe ModelScope raw LFS 在本轮下载无进展后停止。
-
-## 2026-09-25 继续推进：表示泛化与空间基准
-
-- 原 7-video split 现在只称 `TVSum comparison_holdout_v1`；后续模型选择改用 repeated/nested source-group CV。
-- 新增 `aic/temporal_metrics.py`：Spearman、Kendall tau、NDCG、NDCG@15%、top-budget relevance，均不依赖 prediction threshold。
-- 新增 `scripts/audit_retargetvid.py` 并在远程运行：RetargetVid annotation-only audit = 200 videos、6 annotators、1:3/3:1 各 200；结果 `/data/aic/experiments/retargetvid_annotation_audit.json`。
-- DHF1K 原视频仍未取得，因此真实 spatial IoU 继续为 null；当前空间结论限于合法性与轨迹诊断。
-- 新报告：`reports/20260925_representation_generalization.md`、`reports/spatial_benchmark_status.md`。
+下一步：不同来源highlight训练/验证小子集与时轴核验 → 独立空间协议下的多人主体选择 → 有界loss/head验证。已有TVSum/14条SumMe均已开发暴露；不能重新称未见lockbox。TSM、旧bank、无结构threshold sweep不重开。

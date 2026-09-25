@@ -1,0 +1,8 @@
+{
+  "pairs": 600,
+  "frame_indices": "exact",
+  "timestamps": "exact",
+  "labels": "exact",
+  "mask": "exact",
+  "description": "paired outer video records across all 90 nested-CV runs"
+}

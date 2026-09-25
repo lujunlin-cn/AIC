@@ -1,0 +1,222 @@
+[
+  {
+    "dataset": "DHF1K/RetargetVid",
+    "video_id": "001",
+    "path": "/data/aic/datasets/DHF1K/subset20/001.AVI",
+    "sha256": "6cfd934a908fba3ec872bef59550341507469e58adbc9f448e8590341d38b13d",
+    "frame_count": 450,
+    "fps": 30.0,
+    "width": 640,
+    "height": 360,
+    "split": "public_benchmark_only"
+  },
+  {
+    "dataset": "DHF1K/RetargetVid",
+    "video_id": "002",
+    "path": "/data/aic/datasets/DHF1K/subset20/002.AVI",
+    "sha256": "2b30564bf1e3e43296a8e943385a1bd7d712d88b992b497639abbabbd462b6fe",
+    "frame_count": 783,
+    "fps": 30.0,
+    "width": 640,
+    "height": 360,
+    "split": "public_benchmark_only"
+  },
+  {
+    "dataset": "DHF1K/RetargetVid",
+    "video_id": "003",
+    "path": "/data/aic/datasets/DHF1K/subset20/003.AVI",
+    "sha256": "1df66b8bdf6096d0118e4389507561f9cf1934dd00c64fae24b7ae4a9ece5c2e",
+    "frame_count": 448,
+    "fps": 30.0,
+    "width": 640,
+    "height": 360,
+    "split": "public_benchmark_only"
+  },
+  {
+    "dataset": "DHF1K/RetargetVid",
+    "video_id": "004",
+    "path": "/data/aic/datasets/DHF1K/subset20/004.AVI",
+    "sha256": "630f07646d3f1d3001a2175f31cf54ea9cb4330fac8438d3aa5b0e3f5117ed21",
+    "frame_count": 892,
+    "fps": 30.0,
+    "width": 640,
+    "height": 360,
+    "split": "public_benchmark_only"
+  },
+  {
+    "dataset": "DHF1K/RetargetVid",
+    "video_id": "005",
+    "path": "/data/aic/datasets/DHF1K/subset20/005.AVI",
+    "sha256": "44bc9fc674d857acf264fccb13fb796c8e7fde82a0811dd3b5ed36ddcd0f649a",
+    "frame_count": 459,
+    "fps": 30.0,
+    "width": 640,
+    "height": 360,
+    "split": "public_benchmark_only"
+  },
+  {
+    "dataset": "DHF1K/RetargetVid",
+    "video_id": "006",
+    "path": "/data/aic/datasets/DHF1K/subset20/006.AVI",
+    "sha256": "892b34e20310c201742b86c91394aea640dafd28b1a1735fc9c4b51b6dd67d74",
+    "frame_count": 594,
+    "fps": 30.0,
+    "width": 640,
+    "height": 360,
+    "split": "public_benchmark_only"
+  },
+  {
+    "dataset": "DHF1K/RetargetVid",
+    "video_id": "007",
+    "path": "/data/aic/datasets/DHF1K/subset20/007.AVI",
+    "sha256": "2e38a20d361e7025f3814c7bb520d52db47a27db175c9c0a94f29768250c5b57",
+    "frame_count": 533,
+    "fps": 30.0,
+    "width": 640,
+    "height": 360,
+    "split": "public_benchmark_only"
+  },
+  {
+    "dataset": "DHF1K/RetargetVid",
+    "video_id": "008",
+    "path": "/data/aic/datasets/DHF1K/subset20/008.AVI",
+    "sha256": "e1bb97905205708bd940e99fd57137af363db628fae1b6cc201c4c660f6bfdc3",
+    "frame_count": 560,
+    "fps": 30.0,
+    "width": 640,
+    "height": 360,
+    "split": "public_benchmark_only"
+  },
+  {
+    "dataset": "DHF1K/RetargetVid",
+    "video_id": "009",
+    "path": "/data/aic/datasets/DHF1K/subset20/009.AVI",
+    "sha256": "416f0aa311a11e0dd84492920879b5b0288a53b35b307dd99cf4b9a04950f253",
+    "frame_count": 230,
+    "fps": 30.0,
+    "width": 640,
+    "height": 360,
+    "split": "public_benchmark_only"
+  },
+  {
+    "dataset": "DHF1K/RetargetVid",
+    "video_id": "010",
+    "path": "/data/aic/datasets/DHF1K/subset20/010.AVI",
+    "sha256": "1a79b57d1d787e09770a93372bd4e7c6031a7273ac74da7a2c73587015b84806",
+    "frame_count": 596,
+    "fps": 30.0,
+    "width": 640,
+    "height": 360,
+    "split": "public_benchmark_only"
+  },
+  {
+    "dataset": "DHF1K/RetargetVid",
+    "video_id": "011",
+    "path": "/data/aic/datasets/DHF1K/subset20/011.AVI",
+    "sha256": "9ca9819cae93aae6bfeb1446af2bd937abd15fcd97dec14a832963dad22eb2db",
+    "frame_count": 693,
+    "fps": 30.0,
+    "width": 640,
+    "height": 360,
+    "split": "public_benchmark_only"
+  },
+  {
+    "dataset": "DHF1K/RetargetVid",
+    "video_id": "012",
+    "path": "/data/aic/datasets/DHF1K/subset20/012.AVI",
+    "sha256": "bff23ca691329b1d3aa6437873814474774a9ec616a65ef0549f8b6a4fb4ae6c",
+    "frame_count": 967,
+    "fps": 30.0,
+    "width": 640,
+    "height": 360,
+    "split": "public_benchmark_only"
+  },
+  {
+    "dataset": "DHF1K/RetargetVid",
+    "video_id": "013",
+    "path": "/data/aic/datasets/DHF1K/subset20/013.AVI",
+    "sha256": "6a1c4187f2ab5d1cb2d893242fd16f7b9dcd2832ab7b8ea95c4f89bb5853e102",
+    "frame_count": 339,
+    "fps": 30.0,
+    "width": 640,
+    "height": 360,
+    "split": "public_benchmark_only"
+  },
+  {
+    "dataset": "DHF1K/RetargetVid",
+    "video_id": "014",
+    "path": "/data/aic/datasets/DHF1K/subset20/014.AVI",
+    "sha256": "25048ee108f7b18ead1dfb3926ddaa692e4ad80280e68b83d80c777ad5bf4fb1",
+    "frame_count": 399,
+    "fps": 30.0,
+    "width": 640,
+    "height": 360,
+    "split": "public_benchmark_only"
+  },
+  {
+    "dataset": "DHF1K/RetargetVid",
+    "video_id": "015",
+    "path": "/data/aic/datasets/DHF1K/subset20/015.AVI",
+    "sha256": "2230c158a2be8c33e6cabe9a8e4ed8dda924152410aa3d0759a07deb7c8a80f6",
+    "frame_count": 999,
+    "fps": 30.0,
+    "width": 640,
+    "height": 360,
+    "split": "public_benchmark_only"
+  },
+  {
+    "dataset": "DHF1K/RetargetVid",
+    "video_id": "016",
+    "path": "/data/aic/datasets/DHF1K/subset20/016.AVI",
+    "sha256": "f91cc4cf0d548ff41c6bd203a1e53b319050cbd1f4e750416075067c3165acc9",
+    "frame_count": 646,
+    "fps": 30.0,
+    "width": 640,
+    "height": 360,
+    "split": "public_benchmark_only"
+  },
+  {
+    "dataset": "DHF1K/RetargetVid",
+    "video_id": "017",
+    "path": "/data/aic/datasets/DHF1K/subset20/017.AVI",
+    "sha256": "3afd2ef25af9ee3e79f0f9f2b50fe0ee5712f83738ef795209d89096380bd29a",
+    "frame_count": 663,
+    "fps": 30.0,
+    "width": 640,
+    "height": 360,
+    "split": "public_benchmark_only"
+  },
+  {
+    "dataset": "DHF1K/RetargetVid",
+    "video_id": "018",
+    "path": "/data/aic/datasets/DHF1K/subset20/018.AVI",
+    "sha256": "108b7dee1c91bf11fa5f349c03bb11a5d9b696f6025df4ec56b7ba812f8e2f62",
+    "frame_count": 648,
+    "fps": 30.0,
+    "width": 640,
+    "height": 360,
+    "split": "public_benchmark_only"
+  },
+  {
+    "dataset": "DHF1K/RetargetVid",
+    "video_id": "019",
+    "path": "/data/aic/datasets/DHF1K/subset20/019.AVI",
+    "sha256": "cadd23f130e6300f18fefed94b8d081ad6a5d1a674eb4d54f43825976973596d",
+    "frame_count": 900,
+    "fps": 30.0,
+    "width": 640,
+    "height": 360,
+    "split": "public_benchmark_only"
+  },
+  {
+    "dataset": "DHF1K/RetargetVid",
+    "video_id": "020",
+    "path": "/data/aic/datasets/DHF1K/subset20/020.AVI",
+    "sha256": "3859fda70fe412295d1df868c8294101d5f52422588a2a303361d5f0d2c12646",
+    "frame_count": 566,
+    "fps": 30.0,
+    "width": 640,
+    "height": 360,
+    "split": "public_benchmark_only"
+  }
+]

@@ -1,3 +1,5 @@
+> 历史阶段快照：后续进展以 `20260925_representation_generalization.md` 为准。原 7 视频已改称 comparison_holdout_v1；MAT category 已核实，SumMe 原视频与 RetargetVid crop GT 已取得。保留本报告原始结果，不作为当前状态。
+
 # 2026-09-25 local validation phase
 
 本报告只记录本地可复现证据。由于尚未取得 AIC 联合 temporal/crop GT、官方 evaluator 或排行榜反馈，本文所有 TVSum 数值都是 `TVSum temporal proxy`；`official_f_video` 与 `competition_score` 保持 `null`。

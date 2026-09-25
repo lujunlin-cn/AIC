@@ -1,0 +1,10 @@
+{
+  "protocol_file": "splits/local_protocol_v1.json",
+  "status": "comparison_holdout_v1_not_pristine",
+  "effective_date": "2026-09-25",
+  "reason": "Repeated model and seed comparisons influenced route selection",
+  "original_protocol_immutable": true,
+  "new_development_protocol": "splits/tvsum_nested_cv_v1.json",
+  "independent_evidence": "SumMe public raw OOD pilot; RetargetVid spatial GT benchmark",
+  "category_correction": "Original file records metadata unavailable at that time; actual MAT category has since been verified in reports/tvsum_category_metadata.json"
+}

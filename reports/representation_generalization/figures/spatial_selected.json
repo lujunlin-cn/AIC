@@ -1,0 +1,18 @@
+[
+  {
+    "video_id": "020",
+    "paired_iou_delta": -0.10307615112673785
+  },
+  {
+    "video_id": "002",
+    "paired_iou_delta": -0.048755059216181174
+  },
+  {
+    "video_id": "016",
+    "paired_iou_delta": 0.08811420217464444
+  },
+  {
+    "video_id": "003",
+    "paired_iou_delta": 0.13888273669740503
+  }
+]

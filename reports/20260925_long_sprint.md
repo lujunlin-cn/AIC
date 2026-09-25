@@ -1,3 +1,5 @@
+> 历史阶段快照：后续进展以 `20260925_representation_generalization.md` 为准。原 7 视频已改称 comparison_holdout_v1；MAT category 已核实，SumMe 原视频与 RetargetVid crop GT 已取得。保留本报告原始结果，不作为当前状态。
+
 # 2026-09-25 自主研究 sprint 记录
 
 本轮在本地和远程实际执行，代码提交为 `6b9a00b`、`bdf0f3f`、`7aef227`、`3424baa`；本地 `pytest -q` 为 46 passed。远程训练使用物理 GPU 2、4、5、6、7，未使用 0、3，物理 1 保留既有进程。

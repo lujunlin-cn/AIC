@@ -1,0 +1,17 @@
+{
+  "local_tests": {
+    "passed": 72,
+    "seconds": 3.35
+  },
+  "remote_tests": {
+    "passed": 72,
+    "seconds": 9.03,
+    "python": "/opt/miniconda3/envs/cv/bin/python",
+    "test_tools": "/data/aic/envs/pytest_v1"
+  },
+  "source_hashes_equal": 66,
+  "registry_count": 217,
+  "registry_unique": true,
+  "official_values_null": true,
+  "original_protocol_hash_unchanged": true
+}

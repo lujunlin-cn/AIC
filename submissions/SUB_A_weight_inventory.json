@@ -1,0 +1,17 @@
+{
+  "files": [
+    {
+      "path": "/home/hajimi2025/AIC/artifacts/engineering_release_20260925/weights/a0_fp16.pt",
+      "bytes": 25685169,
+      "sha256": "aa9ed2e68e87113fdc8088cf03ed8282d93112d3d75f675a34cfab37f1dede5f"
+    }
+  ],
+  "total_bytes": 25685169,
+  "decimal_mb": 25.685169,
+  "binary_mib": 24.495285987854004,
+  "binary_mb": 24.495285987854004,
+  "coefficient_decimal_mb": 1.0,
+  "coefficient_binary_mb": 1.0,
+  "mb_base_status": "official_MB_byte_base_unconfirmed",
+  "measurement": "sum_of_explicit_unpacked_inference_weight_files"
+}

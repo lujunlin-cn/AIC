@@ -1,0 +1,17 @@
+{
+  "files": [
+    {
+      "path": "/home/hajimi2025/AIC/artifacts/engineering_release_20260925/weights/deit_s_fp16.pt",
+      "bytes": 46618447,
+      "sha256": "665afea5b0b742f979e948738d05dc6b0ee32b68a120ca552b335aa8b1d3e343"
+    }
+  ],
+  "total_bytes": 46618447,
+  "decimal_mb": 46.618447,
+  "binary_mib": 44.458815574645996,
+  "binary_mb": 44.458815574645996,
+  "coefficient_decimal_mb": 1.0,
+  "coefficient_binary_mb": 1.0,
+  "mb_base_status": "official_MB_byte_base_unconfirmed",
+  "measurement": "sum_of_explicit_unpacked_inference_weight_files"
+}

@@ -1,0 +1,105 @@
+{
+  "release_id": "ENGINEERING_RELEASE_20260925_V1",
+  "status": "frozen_engineering_candidates_without_official_score",
+  "weights": {
+    "a0": {
+      "filename": "a0_fp16.pt",
+      "bytes": 25685169,
+      "sha256": "aa9ed2e68e87113fdc8088cf03ed8282d93112d3d75f675a34cfab37f1dede5f",
+      "remote_source": "/data/aic/experiments/A0_006/export/model_fp16.pt"
+    },
+    "deit_s": {
+      "filename": "deit_s_fp16.pt",
+      "bytes": 46618447,
+      "sha256": "665afea5b0b742f979e948738d05dc6b0ee32b68a120ca552b335aa8b1d3e343",
+      "remote_source": "/data/aic/experiments/Bs0_deit_s_probe/model_fp16.pt"
+    },
+    "yunet": {
+      "filename": "yunet.onnx",
+      "bytes": 232589,
+      "sha256": "8f2383e4dd3cfbb4553ea8718107fc0423210dc964f9f4280604804ed2552fa4",
+      "remote_source": "/data/aic/pretrained/yunet/face_detection_yunet_2023mar.onnx"
+    }
+  },
+  "candidates": {
+    "A0_center": {
+      "sample_fps": 2.0,
+      "batch_size": 16,
+      "postprocess_config": null,
+      "spatial_protocol": "dense_v1",
+      "temporal_weight": "a0",
+      "threshold": 0.4,
+      "spatial_mode": "center",
+      "expected_loaded_bytes": 25685169,
+      "role": "engineering_fallback",
+      "submission_id": "SUB_A",
+      "checkpoint_path": "/data/aic/experiments/A0_006/export/model_fp16.pt",
+      "checkpoint_sha256": "aa9ed2e68e87113fdc8088cf03ed8282d93112d3d75f675a34cfab37f1dede5f",
+      "weight_files": [
+        "a0_fp16.pt"
+      ],
+      "precision": "FP16 persistent weights / standard kernels"
+    },
+    "DeiT_center": {
+      "sample_fps": 2.0,
+      "batch_size": 16,
+      "postprocess_config": null,
+      "spatial_protocol": "dense_v1",
+      "temporal_weight": "deit_s",
+      "threshold": 0.35,
+      "spatial_mode": "center",
+      "expected_loaded_bytes": 46618447,
+      "role": "promising_challenger_not_primary",
+      "submission_id": "SUB_B",
+      "checkpoint_path": "/data/aic/experiments/Bs0_deit_s_probe/model_fp16.pt",
+      "checkpoint_sha256": "665afea5b0b742f979e948738d05dc6b0ee32b68a120ca552b335aa8b1d3e343",
+      "weight_files": [
+        "deit_s_fp16.pt"
+      ],
+      "precision": "FP16 persistent weights / standard kernels"
+    },
+    "A0_face_ema": {
+      "sample_fps": 2.0,
+      "batch_size": 16,
+      "postprocess_config": null,
+      "spatial_protocol": "dense_v1",
+      "temporal_weight": "a0",
+      "detector_weight": "yunet",
+      "threshold": 0.4,
+      "spatial_mode": "true_face_smooth",
+      "expected_loaded_bytes": 25917758,
+      "role": "exploratory_spatial_candidate"
+    },
+    "DeiT_face_ema": {
+      "sample_fps": 2.0,
+      "batch_size": 16,
+      "postprocess_config": null,
+      "spatial_protocol": "dense_v1",
+      "temporal_weight": "deit_s",
+      "threshold": 0.35,
+      "spatial_mode": "true_face_smooth",
+      "expected_loaded_bytes": 46851036,
+      "role": "spatial_differential_candidate",
+      "detector_weight": "yunet",
+      "submission_id": "SUB_C",
+      "checkpoint_path": "/data/aic/experiments/Bs0_deit_s_probe/model_fp16.pt",
+      "checkpoint_sha256": "665afea5b0b742f979e948738d05dc6b0ee32b68a120ca552b335aa8b1d3e343",
+      "weight_files": [
+        "deit_s_fp16.pt",
+        "yunet.onnx"
+      ],
+      "precision": "FP16 persistent weights / standard kernels"
+    }
+  },
+  "threshold_source": "historical TVSum DEV; A0 raw .40, DeiT .35 retained from historical DEV policy, no OOD tuning",
+  "deit_policy_note": "raw .35 here is distinct from historical median9 .35; it is the frozen raw OOD comparator, not a new DEV optimum",
+  "size_unit": "decimal bytes/1000000; explicit file bytes retained",
+  "official_f_video": null,
+  "competition_score": null,
+  "freeze_version": "AIC_OFFICIAL_TEST_FREEZE_V1",
+  "frozen_at_utc": "2026-09-26T10:36:40.202711+00:00",
+  "git_commit": "0430bbf",
+  "source_manifest": "releases/20260925_v1/manifest.json",
+  "source_manifest_sha256": "2bb6b11859d375e90c18dc175d24b2b881da1ab22a8bda025cefb0953b3f86cf",
+  "testset_policy": "inference_only_no_test_tuning"
+}

@@ -47,9 +47,9 @@ def main(argv=None) -> int:
     for candidate in candidates:
         output = run_dir / f"{candidate}.jsonl"
         report = run_dir / f"{candidate}.report.json"
-        command = [sys.executable, "-m", "aic.release", "--manifest", args.manifest,
-                   "--candidate", candidate, "--weights-dir", args.weights_dir,
-                   "--index", args.index, "--output", str(output), "--report", str(report),
+        command = [str(sys.executable), "-m", "aic.release", "--manifest", str(args.manifest),
+                   "--candidate", candidate, "--weights-dir", str(args.weights_dir),
+                   "--index", str(args.index), "--output", str(output), "--report", str(report),
                    "--device", args.device, "--stage", args.stage]
         (run_dir / f"{candidate}.command.txt").write_text(
             " ".join(command) + "\n", encoding="utf-8")

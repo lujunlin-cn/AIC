@@ -45,7 +45,7 @@
 
 - [x] 建立 `AIC_EVAL_INTAKE_V1`：真实解码、PTS、尺寸/帧数、SHA 和 intake manifest。
 - [x] 建立多候选 frozen release batch 入口，防止覆盖输出并核对 intake/release hash。
-- [x] 用短视频完成 compact index 到 A0 raw JSONL 的端到端演练，83 个本地测试通过。
+- [x] 用短视频完成 compact index 到 A0 raw JSONL 的端到端演练，84 个本地测试通过。
 - [x] 远程 `/data/aic` 完成资产 inventory：权重/代码哈希，数据 metadata，symlink 和异常状态审计。
 - [ ] 评测集到手后先保存原始 index/压缩包并生成 intake manifest；禁止直接在原始目录改名或覆盖。
 - [ ] A0 center 首轮运行并完成逐视频耗时、空输出率、selected-frame 比例和 validator 审计；随后再运行 DeiT center / A0 face EMA。

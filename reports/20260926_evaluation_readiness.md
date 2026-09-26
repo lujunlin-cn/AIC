@@ -23,7 +23,7 @@ loaded weight bytes before writing JSONL.
 - Local compact index → real 5-frame video → PTS/SHA intake → final dummy JSONL → validator: valid.
 - Local A0 real-weight inference: `loaded_weight_bytes=25,685,169`, final JSONL validator valid, exit 0.
 - Remote `/data/aic` A0 release smoke under the V100 environment: same loaded bytes and validator valid, exit 0.
-- Local regression suite: `83 passed`.
+- Local regression suite: `84 passed`.
 - Remote source compilation and `prepare_eval_set.py --help`: passed. Remote environment does not have pytest installed, so only the local full suite is authoritative for tests.
 - Remote asset inventory: `/data/aic/asset_inventory/asset_manifest_20260926.jsonl`; 11,038 records, 7,293 hashed regular files, 3,702 metadata-only dataset files, 43 valid feature symlinks, no missing/error/changed records.
 

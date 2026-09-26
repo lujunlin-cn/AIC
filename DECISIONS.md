@@ -240,3 +240,7 @@ Weak-label position prior outranks all tested encoders, so do not scale weak-sup
 ## D/E candidate freeze gate
 
 Do not consume official test until native DEV supports representation ranking, not merely calibration F1. Train a matched DeiT control because old SUB_C uses TVSum. Do not call weak/native saliency a local AIC score. Keep .35 threshold and original dense_v1 YuNet. All candidates require immutable weight+code hashes, complete 174-video coverage, independent schema check, project validator and ZIP regression before READY. GitHub synchronization authorized; no platform upload.
+
+## 2026-09-26：Video foundation candidate gate
+
+Decision：VideoMAEv2-Base 不进入官方候选；其 matched native DEV ranking 低于 DeiT-S。InternVideo2-1B 只保留为 promising exploratory engineering candidate，因为 paired Spearman/NDCG CIs 均跨零。SUB_E 可以完成冻结的 raw-video/JSONL/validator/ZIP 闭环，但不自动上传、不宣称已优于 SUB_C。

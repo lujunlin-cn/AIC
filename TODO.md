@@ -97,3 +97,11 @@
 - [ ] Finish three matched representations and paired DEV analysis.
 - [ ] Only evidence-supported D/E: freeze -> raw smoke -> 174-video JSONL -> validators -> ZIP.
 - [ ] Publish final READY/NOT READY, weight accounting and size break-even; do not upload.
+
+## Native foundation candidates
+
+- [x] Complete matched DeiT / VideoMAEv2 / InternVideo2 native-QVH DEV training and paired analysis.
+- [x] Reject VideoMAEv2 candidate on ranking gate; preserve probe report.
+- [x] Freeze InternVideo2 manifest with checkpoint/code/index hashes and YuNet weight accounting.
+- [ ] Finish SUB_E raw 174-video release, independent validation, ZIP regression, and final candidate report.
+- [ ] Do not upload SUB_E unless the user later requests it and accepts its exploratory evidence status.

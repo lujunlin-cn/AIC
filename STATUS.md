@@ -124,3 +124,10 @@ Cache provenance bug fixed for future extraction: explicit encoder identity no l
 ## Candidate D/E controlled build in progress
 
 GitHub main synchronized through prior evidence; native training code frozen at c1156e7. No official upload. `NATIVE_CANDIDATE_V1` runs 96 train / 24 dev only with a matched retrained DeiT control. Original holdout is not materialized. Masked query-averaged human saliency /4; target binary threshold .75; prediction threshold fixed at SUB_C .35. Same U-Net family, original PTS interpolation and YuNet dense_v1. Explicit additional variables versus SUB_C: native supervision and 2-second feature anchors; VideoMAE16/InternVideo8 temporal context. These are not pure backbone-only comparisons against historical SUB_C. Candidate export waits for DEV evidence. Current regression 97 passed.
+
+## Native foundation candidate gate (2026-09-26)
+
+- Matched native-QVH DEV control: DeiT-S F1 `.76543`, Spearman `.11364`, NDCG `.96287`.
+- VideoMAEv2-Base: F1 `.76543`, Spearman `.06824`, NDCG `.96109`; paired ranking deltas are non-positive/uncertain. **SUB_D NOT READY; no official inference.**
+- InternVideo2-Stage1-1B: F1 `.76609`, Spearman `.23474`, NDCG `.96763`; paired deltas Spearman `+.12111`, NDCG `+.00476`, but bootstrap CIs cross zero. **SUB_E promising engineering candidate, not proven replacement.**
+- SUB_E frozen manifest is `/data/aic/experiments/NATIVE_CANDIDATE_V1/SUB_E_frozen_manifest.json`; its 174-video raw release is running with unchanged threshold `.35`, 2 FPS, and YuNet `true_face_smooth`. Official score remains null and no upload is authorized.

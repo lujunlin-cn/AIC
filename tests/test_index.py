@@ -41,6 +41,20 @@ def test_compact_index_rejects_nonfinite_ratio_duplicate_keys_and_blank_lines(tm
         load_compact_index(blank)
 
 
+def test_enrich_index_rejects_stale_supplied_dimensions(tmp_path):
+    video_dir = tmp_path / "video"
+    video_dir.mkdir()
+    video = video_dir / "v.mp4"
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "lavfi",
+                    "-i", "testsrc=size=64x32:rate=4:duration=1", "-c:v", "libx264",
+                    "-threads", "1", "-pix_fmt", "yuv420p", str(video)], check=True)
+    compact = tmp_path / "stale.json"
+    compact.write_text(json.dumps([{"video_id": "v", "width": 99,
+                                    "targetRatioWH": [16, 9]}]))
+    with pytest.raises(ValueError, match="width"):
+        enrich_index(compact, video_dir, tmp_path / "index.jsonl")
+
+
 def test_contract_load_index_accepts_json_array_and_batch_validator(tmp_path):
     index = tmp_path / "index.json"
     index.write_text(json.dumps([{"video_id": "v", "width": 10, "height": 10,

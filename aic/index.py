@@ -88,6 +88,14 @@ def enrich_index(compact_index: str | Path, video_dir: str | Path,
         if not path.is_file():
             raise FileNotFoundError(f"missing video for {video_id}: {path}")
         info = probe_video(path)
+        for key, actual in (("width", info.width), ("height", info.height),
+                            ("frame_count", info.frame_count)):
+            if key in row:
+                expected = row[key]
+                if type(expected) is not int or expected <= 0:
+                    raise ValueError(f"{video_id}: supplied {key} must be a positive integer")
+                if expected != actual:
+                    raise ValueError(f"{video_id}: index {key}={expected} != decoded {actual}")
         enriched.append({**row, "index_schema_version": "aic.input_index.v1",
                          "video_path": str(path.resolve()),
                          "width": info.width, "height": info.height,

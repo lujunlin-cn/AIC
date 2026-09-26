@@ -76,3 +76,11 @@
 - [ ] Complete corrected VideoMAEv2 V2 and matched clip-target controls before comparing representations.
 - [ ] Use native human QVH labels for confirmation; current seed-label agreement cannot establish human highlight quality.
 - [ ] Evaluate a genuine 100–500M-parameter encoder; VideoMAEv2-Base and ViT-B are below that parameter range.
+
+## P0 continuation after corrected probe
+
+- [x] Correct VideoMAEv2 preprocessing/cache and run matched clip-mean controls.
+- [x] Acquire public native QVHighlights annotation JSONL without sending videos to a third party.
+- [ ] Validate raw-video/annotation segment alignment for a bounded native QVH subset before using it.
+- [ ] Only then run a source-disjoint native temporal benchmark; keep `official_f_video=null`.
+- [ ] If pursuing user-requested 100–500M parameter sweet spot, audit a genuinely 100–500M-parameter encoder separately from byte-based VideoMAEv2/ViT-B references.

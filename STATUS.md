@@ -105,3 +105,10 @@
 - 模型档位按用户最新参数量口径探索：≤100M / 100–500M / 500M–9B；同时保留附件中的文件bytes口径作双重审计，不能把86M参数VideoMAEv2称为100–500M参数候选。
 - 最新远程核验：VideoMAEv2源权重344,924,592B；InternVideo2 Stage1-1B K700文件2,042,600,861B，已下载并可读取state dict。下载完成不等于已验证泛化。
 - VideoMAE旧probe发现归一化与模型配置不一致、缓存缺timestamps，结果无效并保留；修正run由实验进程继续。
+
+## 2026-09-26 model-base continuation
+
+- Corrected `VIDEOMAE_QVH_PROBE_V2_20260926` completed on a source-disjoint 40/10 local QVH weak-label split. VideoMAEv2-Base (86,227,200 params; source 344,924,592 B) achieved weak validation clip F1 `.54444`, Spearman `.41459`, empty rate `.30`; matched clip-mean controls A0 `.33571/.42129/.00`, DeiT-S `.40000/.38757/.90`, ViT-B `.46667/.42070/.70`. VideoMAE−DeiT paired F1 CI `[-.15569,+.38889]`, so no promotion. The train-mean position baseline Spearman `.55405` demonstrates strong weak-label position bias.
+- The first VideoMAE run had wrong normalization/cache schema and is quarantined; it is not evidence.
+- InternVideo2 Stage1-1B K700 compatibility passed on V100 FP16: 1,020,710,144 loaded encoder parameters, 2,042,600,861 B source file, 8-frame `.2095s`/2267 MiB and 16-frame `.5385s`/3084 MiB. Compatibility only; no temporal head or quality score.
+- Public native QVHighlights annotations were acquired locally (7,218 train / 1,550 val query rows). 7,738 `vid` stems intersect the local extracted archive, but no alignment/training has been done; duration/source semantics still need validation. This is a future OOD/native temporal route, not AIC joint GT.

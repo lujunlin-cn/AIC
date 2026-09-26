@@ -189,14 +189,55 @@ def write_jsonl(path: str | Path, rows: Iterable[Mapping[str, Any]]) -> None:
 
 
 def load_index(path: str | Path) -> dict[str, VideoMetadata]:
-    """Load an enriched index with verified dimensions and decoded frame counts."""
+    """Load an enriched index with verified dimensions and decoded frame counts.
+
+    Competition material is normally JSONL, but some release bundles provide a
+    JSON array (or one JSON object). Both representations are accepted here;
+    malformed/blank JSONL lines are still rejected by :func:`load_jsonl`.
+    """
+    path = Path(path)
+    if path.suffix.lower() == ".json":
+        text = path.read_text(encoding="utf-8")
+        value = json.loads(text, parse_constant=_reject_constant,
+                           object_pairs_hook=_unique_object)
+        _assert_finite_tree(value)
+        if isinstance(value, dict):
+            records = [value]
+        elif isinstance(value, list):
+            records = value
+        else:
+            raise ContractError("JSON index must contain an object or array of objects")
+        if not records or any(not isinstance(row, Mapping) for row in records):
+            raise ContractError("JSON index must contain one or more object records")
+    else:
+        records = load_jsonl(path)
     result: dict[str, VideoMetadata] = {}
-    for row in load_jsonl(path):
+    for row in records:
         metadata = VideoMetadata.from_record(row)
         if metadata.video_id in result:
             raise ContractError(f"duplicate index video_id: {metadata.video_id}")
         result[metadata.video_id] = metadata
     return result
+
+
+def validate_submission_file(
+    submission_path: str | Path,
+    index_path: str | Path,
+    *,
+    stage: str = "preliminary",
+    actual_model_size_mb: float | None = None,
+    require_sorted: bool = True,
+) -> ValidationReport:
+    """Batch validator entry point for an index and a submission file.
+
+    Keeping file loading here prevents callers from accidentally validating a
+    compact input index (without dimensions/frame counts) or silently dropping
+    malformed JSONL lines before validation.
+    """
+    return validate_submission(
+        load_jsonl(submission_path), load_index(index_path), stage=stage,
+        actual_model_size_mb=actual_model_size_mb, require_sorted=require_sorted,
+    )
 
 
 def crop_to_xywh(crop: Sequence[float], target_ratio: Sequence[float]) -> tuple[float, ...]:

@@ -59,3 +59,16 @@
 - Per-video paired DeiT−A0：F1 `+.01635`、Spearman `-.00228`、NDCG@15 `+.01852`、summary `+.01611`；正增益视频比例约 `52/44/52/50%`；200k paired bootstrap CI 分别为 F1 `[-.00684,.04461]`、Spearman `[-.06504,.06303]`、NDCG15 `[-.01741,.05856]`、summary `[-.00573,.04064]`，均跨 0。保留为 exploratory，A0 fallback 不变。
 - 远程 GPU 2/4 已释放；YouTube Highlights 代理索引到358成员，DHF1K 021–030 RAR恢复但7z不支持 AVI 压缩方法，暂无新增 OOD/spatial 分数。
 - 新报告：`reports/20260925_pairwise_ranking_and_proxy_ood.md`。
+
+## Evaluation-set readiness（2026-09-26）
+
+- 新增 `AIC_EVAL_INTAKE_V1`：`scripts/prepare_eval_set.py` 对 compact index 中每个视频做真实 probe、完整 PTS/帧数核对、SHA-256 和 coded-pixel 坐标记录，生成不可覆盖的 enriched index 与 intake manifest。
+- `scripts/run_eval_candidates.py` 可在 intake SHA 与 release manifest 核对后，按新 run 目录依次运行 A0/DeiT-S/face candidate，并保留 command、report 和 JSONL；不读取训练 cache，不调参。
+- `scripts/release_batch.py` 支持直接给原始视频建立临时 index，已用真实短视频完成 A0 raw inference；loaded weight bytes `25,685,169`、JSONL validator 均通过。
+- 本地演练结果：compact index → 5 帧真实解码/PTS/SHA → final dummy JSONL → final validator valid；A0 真实权重 release smoke 也 exit 0。SMOKE 不代表比赛成绩。当前回归测试 `83 passed`。
+- 评测集接入手册：`EVAL_HANDOFF.md`。官方 `F_video`/competition score 仍保持 `null`。
+
+## Remote asset audit（2026-09-26）
+
+- 远程 `/data/aic/asset_inventory/asset_manifest_20260926.jsonl` 已完成：11,038 条记录，7,293 个 regular files 已 SHA-256，3,702 个 dataset 文件 metadata-only，43 个 features symlink；无 missing/error/changed 条目。
+- 已核对 A0 `25,685,169` bytes、DeiT-S `46,618,447` bytes、YuNet `232,589` bytes 以及 code snapshot SHA；资产清单不进入 Git，原始数据仍留在 `/data/aic`。

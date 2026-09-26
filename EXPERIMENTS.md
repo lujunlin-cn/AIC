@@ -109,3 +109,10 @@ The SumMe ModelScope repository cloned metadata and five sample MAT files, but i
 - Result: 30 A0 and 30 DeiT-S outer evaluations completed remotely. A0: proxy F1 `.155797±.042412`, Spearman `.426467±.108241`, NDCG@15 `.651274±.064576`, summary F1 `.217504±.028750`. DeiT-S: `.172148±.031270`, `.424183±.065153`, `.669796±.045305`, `.233615±.013983`; empty prediction `.0300/.0033`.
 - Paired per-video deltas DeiT-S−A0: F1 `+.01635`, Spearman `-.00228`, NDCG@15 `+.01852`, summary `+.01611`; positive video fractions `52/44/52/50%`. No replacement decision; no AIC official score.
 - Reproducibility: remote code hash synchronized at commit `e9788a4`; Python `/data/miniconda3/bin/python`; GPU physical 2/4; results `/data/aic/experiments/RG_RANK_001`.
+
+## EVAL_INTAKE_001（2026-09-26）
+
+- Hypothesis: a strict intake manifest and frozen release runner prevent frame/PTS/path/model-size mistakes when the private evaluation set arrives.
+- Change: added `AIC_EVAL_INTAKE_V1`, `prepare_eval_set.py`, `run_eval_candidates.py`, and direct raw-video `release_batch.py`; no training, labels, threshold search, or official score.
+- Evidence: local and remote A0 release smoke exit 0; loaded bytes `25,685,169`; final JSONL validator valid; local tests `83 passed`.
+- Decision: accepted as the only entry path for a new evaluation set. Preserve original index/archive and never overwrite intake or prediction runs.

@@ -24,7 +24,7 @@ FP16 指持久化权重文件，加载后标准 FP32 运算；不宣称实际 FP
 在 repo 根目录执行；GPU 启动前运行 `nvidia-smi`，选择空闲授权物理卡：
 
 ```bash
-CUDA_VISIBLE_DEVICES=2 timeout --signal=TERM --kill-after=3m 11h50m \
+CUDA_VISIBLE_DEVICES=2 timeout --signal=TERM --kill-after=3m 42600s \
   /opt/miniconda3/envs/cv/bin/python -m aic.release \
   --manifest releases/20260925_v1/manifest.json \
   --candidate A0_center \
@@ -44,6 +44,33 @@ CUDA_VISIBLE_DEVICES=2 timeout --signal=TERM --kill-after=3m 11h50m \
 另外两个候选只替换 `--candidate` 和新输出路径。Index 的宽高/总帧数必须与真实解码一致；PTS 仍严格检查。
 SumMe 镜像专用 annotation-ordinal 解码不进入此部署入口。
 输出包含全部被选原始帧；dense spatial 在全部原始帧更新轨迹后才提取被选帧，检测器 bytes 一并填报。
+
+### 新评测视频批处理与离线 smoke
+
+若平台尚未提供 enriched index，可直接给一批新原始视频；脚本只读取视频和冻结权重，自动用实际解码元数据建立临时 index，不读取训练 cache、labels 或训练 manifest：
+
+```bash
+python scripts/release_batch.py \
+  --manifest releases/20260925_v1/manifest.json \
+  --candidate A0_center \
+  --weights-dir artifacts/engineering_release_20260925/weights \
+  --video /path/to/eval_a.mp4 --video /path/to/eval_b.mp4 \
+  --ratio 9 16 \
+  --output /path/to/a0_batch.jsonl \
+  --report /path/to/a0_batch.report.json \
+  --device cpu --stage final
+```
+
+在无任何比赛视频和训练数据时，可以生成本地 `ffmpeg testsrc` 做完整入口冒烟测试：
+
+```bash
+python scripts/release_batch.py --smoke \
+  --manifest releases/20260925_v1/manifest.json \
+  --candidate A0_center \
+  --weights-dir artifacts/engineering_release_20260925/weights
+```
+
+smoke 的输出只证明原始视频解码、权重核验、模型推理和本地 JSONL 校验链路可运行；它不提供比赛指标，也不能替代真实评测集结果。
 
 ## 验证边界
 

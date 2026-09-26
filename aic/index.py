@@ -132,8 +132,9 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--extension", default=".mp4")
     args = parser.parse_args(argv)
     try:
+        extension = args.extension if args.extension.startswith(".") else f".{args.extension}"
         print(json.dumps(enrich_index(args.compact_index, args.video_dir, args.output,
-                                      extension=args.extension), ensure_ascii=False,
+                                      extension=extension), ensure_ascii=False,
                          indent=2))
         return 0
     except (OSError, ValueError, subprocess.SubprocessError) as error:

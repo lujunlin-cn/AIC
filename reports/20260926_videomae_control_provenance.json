@@ -1,0 +1,1541 @@
+{
+  "audit_version": "qvh_control_provenance_v1",
+  "created_unix": 1790432008.1684732,
+  "source_root": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT",
+  "v2_output": "/data/aic/experiments/VIDEOMAE_QVH_PROBE_V2_20260926",
+  "device": "CPU only; CUDA disabled",
+  "official_test_accessed": false,
+  "feature_arrays_modified": false,
+  "metrics_modified": false,
+  "source_manifest": {
+    "train": {
+      "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/train_features.jsonl",
+      "sha256": "fa1e18f44b016377fab01df1ce081deae48445f01048196e14e24fefcec4029b",
+      "rows": 40,
+      "declared_backbone_values": [
+        "vit_b_16"
+      ],
+      "declared_feature_dim_values": [
+        768
+      ],
+      "split_values": [
+        "train"
+      ]
+    },
+    "val": {
+      "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/val_features.jsonl",
+      "sha256": "2522feb497b7dd7b633f842ead1b0c1c3b7852f273d516648878aecf610013c2",
+      "rows": 10,
+      "declared_backbone_values": [
+        "vit_b_16"
+      ],
+      "declared_feature_dim_values": [
+        768
+      ],
+      "split_values": [
+        "val"
+      ]
+    }
+  },
+  "youtube_source_overlap": 0,
+  "control_variants": {
+    "a0_clip_mean": {
+      "source_cache_directory": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_a0",
+      "expected_feature_dim": 512,
+      "observed_feature_dims": [
+        512
+      ],
+      "source_cache_metadata_backbone_values": [
+        "ResNet18_without_classifier"
+      ],
+      "source_weight": {
+        "path": "/data/aic/pretrained/resnet18_headless.pt",
+        "bytes": 44782331,
+        "sha256": "6c7ffe78d04b535ddec532f57837a216c2cf9c5289757bb91aa1cfba2085acfb",
+        "matches_existing_run_manifest": true
+      },
+      "cache_file_count": 50,
+      "cache_total_bytes": 27733678,
+      "cache_set_sha256": "54ecf427881cb0b614e8b91969b883d1eb29f8895e0b90868f3090d00655e7d0",
+      "cache_set_hash_definition": "SHA256 UTF8 sorted(split,video_id) lines: split TAB video_id TAB individual_npz_sha256 LF",
+      "cache_files": [
+        {
+          "split": "train",
+          "video_id": "qvh_000001_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_a0/qvh_000001_9x16.npz",
+          "bytes": 556637,
+          "sha256": "fce8a9fdff03ee08414af6069f65a4e66cbe99ebb927dff720b38baf80339de5",
+          "timesteps": 300,
+          "dimension": 512
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000002_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_a0/qvh_000002_9x16.npz",
+          "bytes": 556609,
+          "sha256": "83f912800c3abe19db0be24e661c020745f9f771842cea6b4fe0d373f25cc114",
+          "timesteps": 300,
+          "dimension": 512
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000003_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_a0/qvh_000003_9x16.npz",
+          "bytes": 544902,
+          "sha256": "16b9d3bfc9b88d0bef38152ae7693bfa763285ccef5fb5aa781629280a1585d6",
+          "timesteps": 300,
+          "dimension": 512
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000004_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_a0/qvh_000004_9x16.npz",
+          "bytes": 556731,
+          "sha256": "d03fd29a0d917664766366da3a111abbecf87f3e7d629e7821cd353ca5a26c48",
+          "timesteps": 300,
+          "dimension": 512
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000005_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_a0/qvh_000005_9x16.npz",
+          "bytes": 558985,
+          "sha256": "a2fae822d0033eb2c8211d97f96b6936d0140f2452604f32d2afdb406a08b9bc",
+          "timesteps": 300,
+          "dimension": 512
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000007_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_a0/qvh_000007_9x16.npz",
+          "bytes": 556509,
+          "sha256": "a35b1fc3a90e929c4ba3fad61eeb12c1ac8219d6be0aba2bbbda855ee4e0c24a",
+          "timesteps": 300,
+          "dimension": 512
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000008_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_a0/qvh_000008_9x16.npz",
+          "bytes": 557831,
+          "sha256": "9aeb751de9ffc5bda8ddee04a967c783e411e5b77e065585e15cd76b2fd99f2e",
+          "timesteps": 300,
+          "dimension": 512
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000009_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_a0/qvh_000009_9x16.npz",
+          "bytes": 556597,
+          "sha256": "ea4304367c899b002209d70fc2a70c1011eae7770f9f3d1b7be8715dc1e0f454",
+          "timesteps": 300,
+          "dimension": 512
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000011_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_a0/qvh_000011_9x16.npz",
+          "bytes": 555429,
+          "sha256": "22c6ca8373ed1febc02a4b90bb5f72779cbc4521ec4e858df5321116ca0fe48d",
+          "timesteps": 300,
+          "dimension": 512
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000012_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_a0/qvh_000012_9x16.npz",
+          "bytes": 557710,
+          "sha256": "563b313a846316eb1365b19a6d9d0ace1375f541e9c7a969a1a92e6949770972",
+          "timesteps": 300,
+          "dimension": 512
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000013_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_a0/qvh_000013_9x16.npz",
+          "bytes": 556830,
+          "sha256": "e6faec57cdec8b78b206f3c8b07f613b67786798dfb22b917710429ce7087b52",
+          "timesteps": 300,
+          "dimension": 512
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000014_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_a0/qvh_000014_9x16.npz",
+          "bytes": 558045,
+          "sha256": "577bf27c3238aec06cb946f7ddc3e24c475fd80ca8a98df9c40dc83a70a07845",
+          "timesteps": 300,
+          "dimension": 512
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000015_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_a0/qvh_000015_9x16.npz",
+          "bytes": 557057,
+          "sha256": "fb4641fe26cbb18197dbbd698bbb776762858384661d4446a78caa3aff9977d7",
+          "timesteps": 300,
+          "dimension": 512
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000016_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_a0/qvh_000016_9x16.npz",
+          "bytes": 557709,
+          "sha256": "b043aaacd0125ae0a914cc376b0e9c899fda7c16b6ddabb116657865ea18127c",
+          "timesteps": 300,
+          "dimension": 512
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000017_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_a0/qvh_000017_9x16.npz",
+          "bytes": 557552,
+          "sha256": "b0f52c3ce924bbfb421662bf3a105ca8befe27fe23f59d4b6aa1ffda11669cb1",
+          "timesteps": 300,
+          "dimension": 512
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000018_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_a0/qvh_000018_9x16.npz",
+          "bytes": 542766,
+          "sha256": "1d7dca7c52dca3c805beb8a287fe6676a1a9aab9dbd833798602668e34fbdd4c",
+          "timesteps": 300,
+          "dimension": 512
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000021_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_a0/qvh_000021_9x16.npz",
+          "bytes": 555004,
+          "sha256": "66a6aca7dc3f467b3539368807d303f70de0fd1a8d2902cac7ddfee634176148",
+          "timesteps": 300,
+          "dimension": 512
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000022_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_a0/qvh_000022_9x16.npz",
+          "bytes": 556253,
+          "sha256": "2742aba83fe67ac4a7a87b6cab0de71c21a6b9f3aaf92868ec06c88346f24939",
+          "timesteps": 300,
+          "dimension": 512
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000024_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_a0/qvh_000024_9x16.npz",
+          "bytes": 557936,
+          "sha256": "25caa7428abad658b8d467154b854e6c0f976c1812f09addf5ad5a6dd98b9a28",
+          "timesteps": 300,
+          "dimension": 512
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000025_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_a0/qvh_000025_9x16.npz",
+          "bytes": 557366,
+          "sha256": "4190d3d5849080c6283c29876221d84aeb87b1f90f81a13036ebb73175c5b7f3",
+          "timesteps": 300,
+          "dimension": 512
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000027_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_a0/qvh_000027_9x16.npz",
+          "bytes": 555808,
+          "sha256": "68981d01be2bcd555656eef7a37c10f25dded2a659440d8088354e9bf7af9731",
+          "timesteps": 300,
+          "dimension": 512
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000028_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_a0/qvh_000028_9x16.npz",
+          "bytes": 558196,
+          "sha256": "77b1f967fe16a9d72c787adb766f7d5986946fdc3d52a8c61e81a7acf0ddc75b",
+          "timesteps": 300,
+          "dimension": 512
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000029_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_a0/qvh_000029_9x16.npz",
+          "bytes": 556780,
+          "sha256": "0b3fa80cd24062d513e6b8a50f2d0546a6bdb8214c8903d6e0f82d4dbf9644ce",
+          "timesteps": 300,
+          "dimension": 512
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000030_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_a0/qvh_000030_9x16.npz",
+          "bytes": 555984,
+          "sha256": "2c75bf51690ffaf896a94b307de7ac743a2931fcb521cda7d7d9693d81fbf3b8",
+          "timesteps": 300,
+          "dimension": 512
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000031_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_a0/qvh_000031_9x16.npz",
+          "bytes": 530624,
+          "sha256": "c8411e70cb2dc0255faeb8073db1aef2397b7a7be506f3ada77a14695341d967",
+          "timesteps": 300,
+          "dimension": 512
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000033_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_a0/qvh_000033_9x16.npz",
+          "bytes": 557387,
+          "sha256": "7ccef44c7e25493f4477e269ca4ed9d5ab2f87ac70d2b0faacceeabb5a36513f",
+          "timesteps": 300,
+          "dimension": 512
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000034_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_a0/qvh_000034_9x16.npz",
+          "bytes": 555173,
+          "sha256": "e2cf94ea7eecc0c3e99925dcf91140a4c8c323c44c436825110dc280344a5d72",
+          "timesteps": 300,
+          "dimension": 512
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000035_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_a0/qvh_000035_9x16.npz",
+          "bytes": 557131,
+          "sha256": "b60649c0b7d1eb39454731fde22ec051aaae56a0222c64c182e2aedf83da8559",
+          "timesteps": 300,
+          "dimension": 512
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000036_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_a0/qvh_000036_9x16.npz",
+          "bytes": 556886,
+          "sha256": "8b0e26a178268eabe89d78d91caf3c0939da029995d90282c7932d901c3f782b",
+          "timesteps": 300,
+          "dimension": 512
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000037_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_a0/qvh_000037_9x16.npz",
+          "bytes": 556117,
+          "sha256": "4de3e11d92e42ab0bb06b66ba2153a6e8d60c0792e662f8ec176d3ef563ede61",
+          "timesteps": 300,
+          "dimension": 512
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000038_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_a0/qvh_000038_9x16.npz",
+          "bytes": 557820,
+          "sha256": "d61d936e0a41b1912545afece662c6037718d0f82d52ef554f55a79d2c631a7e",
+          "timesteps": 300,
+          "dimension": 512
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000039_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_a0/qvh_000039_9x16.npz",
+          "bytes": 556194,
+          "sha256": "587fa0abfc8be18f0ffc40fc811ad1b8737f83efd503cc10e9320612a9d365aa",
+          "timesteps": 300,
+          "dimension": 512
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000040_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_a0/qvh_000040_9x16.npz",
+          "bytes": 557460,
+          "sha256": "b3fa36e7a48a8649827f2b063ca240d0d47751e8ec9ee0cc32fbeb05ed2c955b",
+          "timesteps": 300,
+          "dimension": 512
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000041_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_a0/qvh_000041_9x16.npz",
+          "bytes": 557243,
+          "sha256": "726c317cea1f4ae00681edd26f74bd4842dfd1fa4b4840e9ce7f1d70bfe760cb",
+          "timesteps": 300,
+          "dimension": 512
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000042_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_a0/qvh_000042_9x16.npz",
+          "bytes": 558079,
+          "sha256": "315ad3c086a0321b82885780a33d494247daf06473269d73b624b1b5144e4af3",
+          "timesteps": 300,
+          "dimension": 512
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000043_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_a0/qvh_000043_9x16.npz",
+          "bytes": 557923,
+          "sha256": "30fe83392ddc4eefbd6ad760080eacb2356a3ab0280e80c95339140596aa55c9",
+          "timesteps": 300,
+          "dimension": 512
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000044_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_a0/qvh_000044_9x16.npz",
+          "bytes": 558226,
+          "sha256": "80322999936ca3611147670709da84bee5c07423b67adca945aef7956a20957e",
+          "timesteps": 300,
+          "dimension": 512
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000045_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_a0/qvh_000045_9x16.npz",
+          "bytes": 558072,
+          "sha256": "d38b56140bb3d3f4206b5b158badf81b348f627e1119c12efae5acb8acfc65f2",
+          "timesteps": 300,
+          "dimension": 512
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000046_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_a0/qvh_000046_9x16.npz",
+          "bytes": 558091,
+          "sha256": "17b35d2665ebd7c4e4a2e72cb3c94abea98ad458167ac8804885f8210d233576",
+          "timesteps": 300,
+          "dimension": 512
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000047_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_a0/qvh_000047_9x16.npz",
+          "bytes": 556964,
+          "sha256": "28f91d57242e1e00375e01e672345fb673ecab14494dc3b42045f3a33cfa1c9f",
+          "timesteps": 300,
+          "dimension": 512
+        },
+        {
+          "split": "val",
+          "video_id": "qvh_000019_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_a0/qvh_000019_9x16.npz",
+          "bytes": 546407,
+          "sha256": "f93f16241272f83138380dbd3404002f20a1e2e45ac66180984d16646d5eb4fb",
+          "timesteps": 300,
+          "dimension": 512
+        },
+        {
+          "split": "val",
+          "video_id": "qvh_000020_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_a0/qvh_000020_9x16.npz",
+          "bytes": 501754,
+          "sha256": "3571d1d5921624dc9a4d82ac034c176848800520cf6c6139c139a231b15241d0",
+          "timesteps": 300,
+          "dimension": 512
+        },
+        {
+          "split": "val",
+          "video_id": "qvh_000032_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_a0/qvh_000032_9x16.npz",
+          "bytes": 557856,
+          "sha256": "40e04824b42b53846e689a63526c4e222d1af9196f6ac8fc0419e814ece4ece4",
+          "timesteps": 300,
+          "dimension": 512
+        },
+        {
+          "split": "val",
+          "video_id": "qvh_000070_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_a0/qvh_000070_9x16.npz",
+          "bytes": 556746,
+          "sha256": "c2e3241240e81335292d97cbcb1eb2f48c5c709707e7bce55d580705787c480a",
+          "timesteps": 300,
+          "dimension": 512
+        },
+        {
+          "split": "val",
+          "video_id": "qvh_000071_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_a0/qvh_000071_9x16.npz",
+          "bytes": 556404,
+          "sha256": "c7c6e351e2eabb806bf47f8fee2b1c685678f83173db003b54648bf577ae371a",
+          "timesteps": 300,
+          "dimension": 512
+        },
+        {
+          "split": "val",
+          "video_id": "qvh_000095_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_a0/qvh_000095_9x16.npz",
+          "bytes": 556757,
+          "sha256": "cf101b99a416b7931dd4511924bc3e758554d2345677cd6820a7294dbc9fd114",
+          "timesteps": 300,
+          "dimension": 512
+        },
+        {
+          "split": "val",
+          "video_id": "qvh_000096_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_a0/qvh_000096_9x16.npz",
+          "bytes": 557817,
+          "sha256": "6af0576142da878d1787c9b5d8952f159d6a1672bb2220086281bc928de50012",
+          "timesteps": 300,
+          "dimension": 512
+        },
+        {
+          "split": "val",
+          "video_id": "qvh_000106_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_a0/qvh_000106_9x16.npz",
+          "bytes": 556455,
+          "sha256": "3d6cbd99fe5fca5156e5e8305a856defe13f92ee2ce2d8ea4e84b086f396ec3e",
+          "timesteps": 300,
+          "dimension": 512
+        },
+        {
+          "split": "val",
+          "video_id": "qvh_000107_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_a0/qvh_000107_9x16.npz",
+          "bytes": 556835,
+          "sha256": "d78c17cd0da94c578df7019a1c52c0e14044fa9c5b3ef9c5172823f4039d1a68",
+          "timesteps": 300,
+          "dimension": 512
+        },
+        {
+          "split": "val",
+          "video_id": "qvh_000121_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_a0/qvh_000121_9x16.npz",
+          "bytes": 556031,
+          "sha256": "664246c90672f01c33245c3676dd73d579364b4d859b9089e4db6952dd278c7e",
+          "timesteps": 300,
+          "dimension": 512
+        }
+      ],
+      "cpu_first_frame_identity_check": {
+        "video_id": "qvh_000001_9x16",
+        "source_frame_index": 0,
+        "timestamp": 0.0,
+        "cpu_recomputed": true,
+        "max_abs_error": 9.5367431640625e-06,
+        "mean_abs_error": 1.5214462791846017e-06,
+        "rtol_1e_4_atol_1e_4_pass": true
+      },
+      "sample_generated_v2_metadata": {
+        "backbone": "a0_clip_mean",
+        "cache_version": 2,
+        "clip_mean_target": true,
+        "dtype": "float32",
+        "feature_dim": 512,
+        "feature_protocol": "qvh_clip16_stride4_2fps_mean_seed_v2",
+        "label_protocol": "qvh_seed_timeline_linear_v1",
+        "length": 72,
+        "official_aic_gt": false,
+        "source_label_sha256": "7ce532ec68f1fed958a5fa45467083477992d4d328f7103be25e658e3c4fa3d9",
+        "spatial_preprocessing": "letterbox224_imagenet_norm"
+      }
+    },
+    "deits_clip_mean": {
+      "source_cache_directory": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features",
+      "expected_feature_dim": 384,
+      "observed_feature_dims": [
+        384
+      ],
+      "source_cache_metadata_backbone_values": [
+        "ResNet18_without_classifier"
+      ],
+      "source_weight": {
+        "path": "/data/aic/pretrained/deit_small_patch16_224_headless.pt",
+        "bytes": 86722803,
+        "sha256": "9b41e3c86dc32baeaadb382657c66fa5c920aba01ca56fd8cf598d1db68751d5",
+        "matches_existing_run_manifest": true
+      },
+      "cache_file_count": 50,
+      "cache_total_bytes": 21431293,
+      "cache_set_sha256": "6cac1b39504f2cf9acde031faf659388fa2eb754591159eae4d2ac048bade20a",
+      "cache_set_hash_definition": "SHA256 UTF8 sorted(split,video_id) lines: split TAB video_id TAB individual_npz_sha256 LF",
+      "cache_files": [
+        {
+          "split": "train",
+          "video_id": "qvh_000001_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features/qvh_000001_9x16.npz",
+          "bytes": 429563,
+          "sha256": "e9403159a2a67b9c4a471d740dfc1298304c520bf75838e4a46a93bc20ca913b",
+          "timesteps": 300,
+          "dimension": 384
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000002_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features/qvh_000002_9x16.npz",
+          "bytes": 429970,
+          "sha256": "d82c76f56ead0f7890899b1e094d135f0f8f766316bc4af6b923e17df2957042",
+          "timesteps": 300,
+          "dimension": 384
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000003_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features/qvh_000003_9x16.npz",
+          "bytes": 421622,
+          "sha256": "1978a981b15e9955b9f71f359489260b99a6a0e76737ac0182cfc1f12c5e130c",
+          "timesteps": 300,
+          "dimension": 384
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000004_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features/qvh_000004_9x16.npz",
+          "bytes": 429993,
+          "sha256": "b5a79292fa0e616dd17b7ae8ea1011cc2cd703d24d83689b87542d011bdf46c4",
+          "timesteps": 300,
+          "dimension": 384
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000005_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features/qvh_000005_9x16.npz",
+          "bytes": 431108,
+          "sha256": "6068f41dbb9cc3bf9feede8c8db3fbd32c578a8a1567a265448d2edb9bcecabc",
+          "timesteps": 300,
+          "dimension": 384
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000007_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features/qvh_000007_9x16.npz",
+          "bytes": 429756,
+          "sha256": "2ee2e91ed083fca33c42b0a6e49b2b6981d4052d4266f3916adacb14b981d02e",
+          "timesteps": 300,
+          "dimension": 384
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000008_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features/qvh_000008_9x16.npz",
+          "bytes": 431154,
+          "sha256": "df9e93d71b29476aa4010749248e0eefe0fad72ed3306ff1b760aa0ca67867ea",
+          "timesteps": 300,
+          "dimension": 384
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000009_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features/qvh_000009_9x16.npz",
+          "bytes": 429920,
+          "sha256": "b44ec66b5da91d5b0fc886079ee1f0c0fa0e9ae3453e06d3ab2f5d9a90cf9d08",
+          "timesteps": 300,
+          "dimension": 384
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000011_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features/qvh_000011_9x16.npz",
+          "bytes": 429619,
+          "sha256": "2580a4144d0c9a17f9c4896a8f5faabbbbcd809115858d055c55fb2f61cfda4f",
+          "timesteps": 300,
+          "dimension": 384
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000012_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features/qvh_000012_9x16.npz",
+          "bytes": 431053,
+          "sha256": "d0e5e416d922f6b0d96afed936de0ec9ac7d2ca398487a228ad8871b5fedf192",
+          "timesteps": 300,
+          "dimension": 384
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000013_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features/qvh_000013_9x16.npz",
+          "bytes": 429906,
+          "sha256": "1c8e2cf1da7a1e4b79ec26d1ab3d4aec02ebaa95a190c2770334278858d50d31",
+          "timesteps": 300,
+          "dimension": 384
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000014_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features/qvh_000014_9x16.npz",
+          "bytes": 431274,
+          "sha256": "4c6b099989f75a8c0417e5039a71d3a2fd8f11e144511c45d6a04ad932186ee9",
+          "timesteps": 300,
+          "dimension": 384
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000015_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features/qvh_000015_9x16.npz",
+          "bytes": 430216,
+          "sha256": "6fc248aa47a5f78f37ee5f27cb003a44dd227d6cfe6a3eb3aaad75fa8ba3394e",
+          "timesteps": 300,
+          "dimension": 384
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000016_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features/qvh_000016_9x16.npz",
+          "bytes": 431419,
+          "sha256": "ad9e1be40eeba1bbc68bfcf7efbdf94718578b4bed3a7c0c3fc9690c5f04398c",
+          "timesteps": 300,
+          "dimension": 384
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000017_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features/qvh_000017_9x16.npz",
+          "bytes": 430973,
+          "sha256": "ce9be59969254ebb0e0faead9f4a1bbf82d7e22a3c00f7271d0b7882a934451d",
+          "timesteps": 300,
+          "dimension": 384
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000018_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features/qvh_000018_9x16.npz",
+          "bytes": 419830,
+          "sha256": "c7190f59347f7528371baa8d3fc59814d57724f5d8c2a7ac781d2075c73d4c06",
+          "timesteps": 300,
+          "dimension": 384
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000021_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features/qvh_000021_9x16.npz",
+          "bytes": 429909,
+          "sha256": "047202f6f86e6c034aa6d7fb39a8f5f3f91167ce5a814e00727554ddec3f2696",
+          "timesteps": 300,
+          "dimension": 384
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000022_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features/qvh_000022_9x16.npz",
+          "bytes": 429912,
+          "sha256": "03cd3b6a89b27d1b2fe3c66d53b68782d1fd01b2b121eec5ff839ebde33b54fc",
+          "timesteps": 300,
+          "dimension": 384
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000024_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features/qvh_000024_9x16.npz",
+          "bytes": 431011,
+          "sha256": "222ca19f2fca875f79b30618985682a89ba2d92219f56b94be2be086073c43cf",
+          "timesteps": 300,
+          "dimension": 384
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000025_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features/qvh_000025_9x16.npz",
+          "bytes": 429921,
+          "sha256": "de83f5aeb595fe9747325833ae423d24700f2f053e97bbed718ff0c8fc45e88f",
+          "timesteps": 300,
+          "dimension": 384
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000027_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features/qvh_000027_9x16.npz",
+          "bytes": 430038,
+          "sha256": "fb4bfab6b60d3d58cb15f018404e3a0ffa90df4c8469fe73b8348e67c90c9d4e",
+          "timesteps": 300,
+          "dimension": 384
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000028_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features/qvh_000028_9x16.npz",
+          "bytes": 431177,
+          "sha256": "5303bebcb2bf0d85f9df6885edec68bd6719eb87cb019c6bf46f80de04b079c5",
+          "timesteps": 300,
+          "dimension": 384
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000029_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features/qvh_000029_9x16.npz",
+          "bytes": 429670,
+          "sha256": "9c98ee8ec6a5c1f78a8680418464725fca54f80cd9241f51d96401f295eaa191",
+          "timesteps": 300,
+          "dimension": 384
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000030_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features/qvh_000030_9x16.npz",
+          "bytes": 429850,
+          "sha256": "4fc0d6c8cc0f724c54afea1f091f597842101ae910bb69a0fd72b8de9ec9cdfd",
+          "timesteps": 300,
+          "dimension": 384
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000031_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features/qvh_000031_9x16.npz",
+          "bytes": 409995,
+          "sha256": "9c9e3e9afb1e3026948b703ec5f9502003ae27012de640e65d5b9867cceda74a",
+          "timesteps": 300,
+          "dimension": 384
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000033_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features/qvh_000033_9x16.npz",
+          "bytes": 431064,
+          "sha256": "c818e38b357ca0eba63c93d2618266f5ad1c67afcd77d5fc025d67c1ddb6fa68",
+          "timesteps": 300,
+          "dimension": 384
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000034_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features/qvh_000034_9x16.npz",
+          "bytes": 429512,
+          "sha256": "5b3726e17cee0c607b976b9e7dd5f15e4f0e0cb79bde381d3f69a376a64e2696",
+          "timesteps": 300,
+          "dimension": 384
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000035_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features/qvh_000035_9x16.npz",
+          "bytes": 429999,
+          "sha256": "67d1afd17d57319413393cce9dbf2b0a7642a2e868c2dc5858d72de511ef7e4e",
+          "timesteps": 300,
+          "dimension": 384
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000036_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features/qvh_000036_9x16.npz",
+          "bytes": 430120,
+          "sha256": "838ad8cb050e51c8a9dd75385b8548e5b261c28d34c3f9a6f236b2191d68dbe1",
+          "timesteps": 300,
+          "dimension": 384
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000037_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features/qvh_000037_9x16.npz",
+          "bytes": 429727,
+          "sha256": "72c5166dd63bda695a2fcc2c483f2f3b2fec8cabb4809f26de1f653d68b0a85c",
+          "timesteps": 300,
+          "dimension": 384
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000038_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features/qvh_000038_9x16.npz",
+          "bytes": 431138,
+          "sha256": "1cb5dd5bf6d05831c5052acfa64c87f7a96f7906d018c74c31b76da1fbab6c21",
+          "timesteps": 300,
+          "dimension": 384
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000039_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features/qvh_000039_9x16.npz",
+          "bytes": 430748,
+          "sha256": "aeda1407d7ece322c80658b138df7027269a32ecb9ec368d3ceb776c911661d6",
+          "timesteps": 300,
+          "dimension": 384
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000040_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features/qvh_000040_9x16.npz",
+          "bytes": 431017,
+          "sha256": "f434ad159457956dd6ca0aaf3c79c893e6ec3965d58ca59b99a340f78e25a619",
+          "timesteps": 300,
+          "dimension": 384
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000041_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features/qvh_000041_9x16.npz",
+          "bytes": 431181,
+          "sha256": "003973f644a32545d766ee6a352304fbc2e9ce2c5cd6f1ed07309b2834d3845b",
+          "timesteps": 300,
+          "dimension": 384
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000042_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features/qvh_000042_9x16.npz",
+          "bytes": 431051,
+          "sha256": "cb5d692c422f2ca8e808d4fab833c789d94a67518597b64213abae0af5647201",
+          "timesteps": 300,
+          "dimension": 384
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000043_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features/qvh_000043_9x16.npz",
+          "bytes": 431049,
+          "sha256": "ba3be1d4a035150862e5e4d861208e2bc81d5e71cc44b041ae10f7122acb17ed",
+          "timesteps": 300,
+          "dimension": 384
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000044_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features/qvh_000044_9x16.npz",
+          "bytes": 431197,
+          "sha256": "1648152f71a734b790c205b4e21e260123a9e5328595d3a678ca8f808cca3dc6",
+          "timesteps": 300,
+          "dimension": 384
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000045_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features/qvh_000045_9x16.npz",
+          "bytes": 431365,
+          "sha256": "b65e295696ec5a5781ee0940221a1648bdcb5ebaecfe8120b7787462be9932c2",
+          "timesteps": 300,
+          "dimension": 384
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000046_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features/qvh_000046_9x16.npz",
+          "bytes": 430960,
+          "sha256": "331c7d6e9011dd5c99ed70de2eafc4e57e7086144e7f88ecf6e6422a1cc7f65a",
+          "timesteps": 300,
+          "dimension": 384
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000047_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features/qvh_000047_9x16.npz",
+          "bytes": 429897,
+          "sha256": "8709e4235ea9685f502589e2e05a5f5a6f6ec855910cc6be753c500c995de874",
+          "timesteps": 300,
+          "dimension": 384
+        },
+        {
+          "split": "val",
+          "video_id": "qvh_000019_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features/qvh_000019_9x16.npz",
+          "bytes": 422676,
+          "sha256": "e8a07c942eedcf0921e53574d27a9224338be027ae5e16cdd196bb24f8a7f7de",
+          "timesteps": 300,
+          "dimension": 384
+        },
+        {
+          "split": "val",
+          "video_id": "qvh_000020_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features/qvh_000020_9x16.npz",
+          "bytes": 389025,
+          "sha256": "e3e13d7c52f62131975cc13b713b8aca378383499918f7d71e95b9556f5cf268",
+          "timesteps": 300,
+          "dimension": 384
+        },
+        {
+          "split": "val",
+          "video_id": "qvh_000032_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features/qvh_000032_9x16.npz",
+          "bytes": 430732,
+          "sha256": "8c9cbd369034ba53eba438d16b076d89194fc970404af0f544c9bb56343bd6a9",
+          "timesteps": 300,
+          "dimension": 384
+        },
+        {
+          "split": "val",
+          "video_id": "qvh_000070_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features/qvh_000070_9x16.npz",
+          "bytes": 429814,
+          "sha256": "a26b1957cf8576e116e63c55378d2676a39a83d78699ac1369f1cd099a84c6d1",
+          "timesteps": 300,
+          "dimension": 384
+        },
+        {
+          "split": "val",
+          "video_id": "qvh_000071_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features/qvh_000071_9x16.npz",
+          "bytes": 429787,
+          "sha256": "8906bb4a55eb96b93744af3ddcfc8c4d3b4742e15a05a62926c23fb3e7113c3c",
+          "timesteps": 300,
+          "dimension": 384
+        },
+        {
+          "split": "val",
+          "video_id": "qvh_000095_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features/qvh_000095_9x16.npz",
+          "bytes": 429937,
+          "sha256": "b68649188c4f78d2a9efcd7680e8d6af42d990fdefc5261c2224eb93410061a6",
+          "timesteps": 300,
+          "dimension": 384
+        },
+        {
+          "split": "val",
+          "video_id": "qvh_000096_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features/qvh_000096_9x16.npz",
+          "bytes": 430840,
+          "sha256": "e77f87779c5bf473ee52040b7843325f4a90e8fbd7d404cc2621af12ebe75875",
+          "timesteps": 300,
+          "dimension": 384
+        },
+        {
+          "split": "val",
+          "video_id": "qvh_000106_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features/qvh_000106_9x16.npz",
+          "bytes": 429933,
+          "sha256": "71e5e280fff6f9a22c70e2d8ce9f3de8b61f772878d1648ab9fdf5df34bada25",
+          "timesteps": 300,
+          "dimension": 384
+        },
+        {
+          "split": "val",
+          "video_id": "qvh_000107_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features/qvh_000107_9x16.npz",
+          "bytes": 429635,
+          "sha256": "cd9f7e8164f61d99535e1220fdb14b52bcfee531bc86b3fc3b8b01c70a1a7be9",
+          "timesteps": 300,
+          "dimension": 384
+        },
+        {
+          "split": "val",
+          "video_id": "qvh_000121_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features/qvh_000121_9x16.npz",
+          "bytes": 430030,
+          "sha256": "e53b1f2837a5149c6c0dcadd86b876258aa7dcb2272cf609ead93ed2d47efad8",
+          "timesteps": 300,
+          "dimension": 384
+        }
+      ],
+      "cpu_first_frame_identity_check": {
+        "video_id": "qvh_000001_9x16",
+        "source_frame_index": 0,
+        "timestamp": 0.0,
+        "cpu_recomputed": true,
+        "max_abs_error": 6.377696990966797e-06,
+        "mean_abs_error": 1.6838772580740624e-06,
+        "rtol_1e_4_atol_1e_4_pass": true
+      },
+      "sample_generated_v2_metadata": {
+        "backbone": "deits_clip_mean",
+        "cache_version": 2,
+        "clip_mean_target": true,
+        "dtype": "float32",
+        "feature_dim": 384,
+        "feature_protocol": "qvh_clip16_stride4_2fps_mean_seed_v2",
+        "label_protocol": "qvh_seed_timeline_linear_v1",
+        "length": 72,
+        "official_aic_gt": false,
+        "source_label_sha256": "7ce532ec68f1fed958a5fa45467083477992d4d328f7103be25e658e3c4fa3d9",
+        "spatial_preprocessing": "letterbox224_imagenet_norm"
+      }
+    },
+    "vitb_clip_mean": {
+      "source_cache_directory": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_b0",
+      "expected_feature_dim": 768,
+      "observed_feature_dims": [
+        768
+      ],
+      "source_cache_metadata_backbone_values": [
+        "ResNet18_without_classifier"
+      ],
+      "source_weight": {
+        "path": "/data/aic/pretrained/vit_b_16-c867db91.pth",
+        "bytes": 346328529,
+        "sha256": "c867db91d3e12c6cbadabb610d73c24a546bf82d8c03a9fea34f43a712ddb0e9",
+        "matches_existing_run_manifest": true
+      },
+      "cache_file_count": 50,
+      "cache_total_bytes": 42796858,
+      "cache_set_sha256": "4025b02bfdf3f616799c403eaa5b294f784e68a791239f51b9a9e439ff1ad772",
+      "cache_set_hash_definition": "SHA256 UTF8 sorted(split,video_id) lines: split TAB video_id TAB individual_npz_sha256 LF",
+      "cache_files": [
+        {
+          "split": "train",
+          "video_id": "qvh_000001_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_b0/qvh_000001_9x16.npz",
+          "bytes": 858419,
+          "sha256": "f23d96955d72243649c349af450b788c7a2cc34754f05b7562c2b8e663c771b0",
+          "timesteps": 300,
+          "dimension": 768
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000002_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_b0/qvh_000002_9x16.npz",
+          "bytes": 858375,
+          "sha256": "4e744a22ec7677c7613c71b427676ca7dc61308c138fda9cfc84b9986915bd95",
+          "timesteps": 300,
+          "dimension": 768
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000003_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_b0/qvh_000003_9x16.npz",
+          "bytes": 840790,
+          "sha256": "e27072ae1d7eb6eb144160a46764b36509afa6a73de29ee48c0e89eef06e9f87",
+          "timesteps": 300,
+          "dimension": 768
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000004_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_b0/qvh_000004_9x16.npz",
+          "bytes": 859220,
+          "sha256": "53b92b5858600c50bdbad9e5ce051fd6653038ae66915e1a8f78d9648d0f39e1",
+          "timesteps": 300,
+          "dimension": 768
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000005_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_b0/qvh_000005_9x16.npz",
+          "bytes": 860638,
+          "sha256": "d40b876554a042d617a02e26d8bf9453881db952f2459977e506f900e12ab201",
+          "timesteps": 300,
+          "dimension": 768
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000007_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_b0/qvh_000007_9x16.npz",
+          "bytes": 858752,
+          "sha256": "f63d10871cfb68b86577f08a6b029baa557d56bace778ba8a953c2bad843190a",
+          "timesteps": 300,
+          "dimension": 768
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000008_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_b0/qvh_000008_9x16.npz",
+          "bytes": 860911,
+          "sha256": "c9badf46646695b6d340586da8ab47f1f49e266f11476fd835f23e06c82a5432",
+          "timesteps": 300,
+          "dimension": 768
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000009_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_b0/qvh_000009_9x16.npz",
+          "bytes": 858910,
+          "sha256": "d03d67e89d06ea8c3de347e57d95c1102672ab44f73ec691cbcb36ad362e42e8",
+          "timesteps": 300,
+          "dimension": 768
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000011_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_b0/qvh_000011_9x16.npz",
+          "bytes": 857160,
+          "sha256": "2874612241e4a48df0063c85ead574520df10bbecc7fce2301d2f6ceeeca81b5",
+          "timesteps": 300,
+          "dimension": 768
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000012_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_b0/qvh_000012_9x16.npz",
+          "bytes": 860558,
+          "sha256": "b1f9c5058d1d9cbb9df32ab9e651c365f5055d6b5f44e63e587fcae6b265e490",
+          "timesteps": 300,
+          "dimension": 768
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000013_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_b0/qvh_000013_9x16.npz",
+          "bytes": 858915,
+          "sha256": "501dd819b26bc0fec762cbc17bdb646fa3501ec5f9e8b27413c2373512c195b1",
+          "timesteps": 300,
+          "dimension": 768
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000014_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_b0/qvh_000014_9x16.npz",
+          "bytes": 860593,
+          "sha256": "2b440bb8075846c2d19426486341483182eafe289b384ddc1d806e6359fe3676",
+          "timesteps": 300,
+          "dimension": 768
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000015_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_b0/qvh_000015_9x16.npz",
+          "bytes": 859999,
+          "sha256": "27b812820d28352b94bba9a32c1ad78b15c7809ddd14fe53ac434e718dce75c3",
+          "timesteps": 300,
+          "dimension": 768
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000016_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_b0/qvh_000016_9x16.npz",
+          "bytes": 860402,
+          "sha256": "7016be6588332776fea99d96a8853d66851ec1947d13dc3efe4a2fa6f2f7a224",
+          "timesteps": 300,
+          "dimension": 768
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000017_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_b0/qvh_000017_9x16.npz",
+          "bytes": 860309,
+          "sha256": "0a2eb414f388531792989d3b90b439a9475cb60c1b03fb7a35527d84a0cf2c0a",
+          "timesteps": 300,
+          "dimension": 768
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000018_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_b0/qvh_000018_9x16.npz",
+          "bytes": 837656,
+          "sha256": "db2a008d0bf827f1c2012081a9fd0429483bf7557bf3d1e06652166a91236604",
+          "timesteps": 300,
+          "dimension": 768
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000021_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_b0/qvh_000021_9x16.npz",
+          "bytes": 859150,
+          "sha256": "3151b73600ab070b6c9693ac72066af3fbaa87839fe45c5552e196e8729866e0",
+          "timesteps": 300,
+          "dimension": 768
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000022_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_b0/qvh_000022_9x16.npz",
+          "bytes": 858810,
+          "sha256": "5d239291d7990fe3ca318e073716d201b68699b7b642049e39fab574da9f3301",
+          "timesteps": 300,
+          "dimension": 768
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000024_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_b0/qvh_000024_9x16.npz",
+          "bytes": 859794,
+          "sha256": "5af07de8464c5b5da539c1b663a1dbddd200952a0b38653979cb4f67db1b4aa9",
+          "timesteps": 300,
+          "dimension": 768
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000025_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_b0/qvh_000025_9x16.npz",
+          "bytes": 858311,
+          "sha256": "6cc783cec7803dad65a94f96da60d8475690542067f14f1e00b9a29f0daa4911",
+          "timesteps": 300,
+          "dimension": 768
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000027_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_b0/qvh_000027_9x16.npz",
+          "bytes": 858944,
+          "sha256": "8c6398749d79adf7fc15b73d6e2d95f4596ecfdb18a508536a35d4bb4a50f6bf",
+          "timesteps": 300,
+          "dimension": 768
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000028_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_b0/qvh_000028_9x16.npz",
+          "bytes": 860785,
+          "sha256": "27888741fa244e0395d0912d05b8c28373703fc79cc5ad3945d486ad9ab134cb",
+          "timesteps": 300,
+          "dimension": 768
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000029_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_b0/qvh_000029_9x16.npz",
+          "bytes": 859188,
+          "sha256": "32e478418c433e19758600edbcdaa4a4b20b5c8620456cc49b2d0043b3d65e98",
+          "timesteps": 300,
+          "dimension": 768
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000030_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_b0/qvh_000030_9x16.npz",
+          "bytes": 859026,
+          "sha256": "a0268e61cb279e91149bf233e5724ece88f22710c8a9c342b75ccf5a6340398f",
+          "timesteps": 300,
+          "dimension": 768
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000031_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_b0/qvh_000031_9x16.npz",
+          "bytes": 817700,
+          "sha256": "20a6441fbc1fc85ad40e8ca25630b98f67bc9fba4eefbd909aa5cde027c5b55e",
+          "timesteps": 300,
+          "dimension": 768
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000033_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_b0/qvh_000033_9x16.npz",
+          "bytes": 860123,
+          "sha256": "406af92676d185e0794279c9db726d165021130d69c23cef5689c09550e0cb9a",
+          "timesteps": 300,
+          "dimension": 768
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000034_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_b0/qvh_000034_9x16.npz",
+          "bytes": 859493,
+          "sha256": "b872df8e1c3d5af58064d00cb86bd490f3a3ab495408bf09cdfa3e4fbdb187d0",
+          "timesteps": 300,
+          "dimension": 768
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000035_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_b0/qvh_000035_9x16.npz",
+          "bytes": 859022,
+          "sha256": "4052c97639cc84bb2487fde48353c56b040798ee7d3afc820680f55a884f423a",
+          "timesteps": 300,
+          "dimension": 768
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000036_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_b0/qvh_000036_9x16.npz",
+          "bytes": 858780,
+          "sha256": "467f638af1df1609c063cf9e7f014edc6fa89cbb8a65823ed5848b1b2e1eff67",
+          "timesteps": 300,
+          "dimension": 768
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000037_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_b0/qvh_000037_9x16.npz",
+          "bytes": 857557,
+          "sha256": "1f8f91d162386700c235ee7fa215088f9d99597055609e8217c386652c0819bc",
+          "timesteps": 300,
+          "dimension": 768
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000038_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_b0/qvh_000038_9x16.npz",
+          "bytes": 859480,
+          "sha256": "2df5942ba820b001326aff38bc6486111a8424a5265fd32793dd11bf1bbfa82f",
+          "timesteps": 300,
+          "dimension": 768
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000039_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_b0/qvh_000039_9x16.npz",
+          "bytes": 860660,
+          "sha256": "c379674b31e4e53f5c7a5c388f636a8760d5a2cc179950e021441f100fd39043",
+          "timesteps": 300,
+          "dimension": 768
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000040_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_b0/qvh_000040_9x16.npz",
+          "bytes": 859853,
+          "sha256": "09638f985f0a6e348ed0f8aa38ba8dd69219e85ff69208998bdbc5ad333b645b",
+          "timesteps": 300,
+          "dimension": 768
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000041_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_b0/qvh_000041_9x16.npz",
+          "bytes": 860403,
+          "sha256": "ef9c9d8d35ff6a0711cf79952f54526ea4d44f3c6ab600ca04b172c862bd8e70",
+          "timesteps": 300,
+          "dimension": 768
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000042_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_b0/qvh_000042_9x16.npz",
+          "bytes": 860801,
+          "sha256": "47269486a9b7fc434fffe90e756e45547c8fcb956e86464e092f7f0c7581e201",
+          "timesteps": 300,
+          "dimension": 768
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000043_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_b0/qvh_000043_9x16.npz",
+          "bytes": 860795,
+          "sha256": "276f62a27840238f1fdac6ec54ad77fcf6cfa712f55ac55ab1eb6dde80581f0c",
+          "timesteps": 300,
+          "dimension": 768
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000044_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_b0/qvh_000044_9x16.npz",
+          "bytes": 861364,
+          "sha256": "ab2e470e1cede5c7694ec6d816835f8ada436f38846b265598e0a96f992486d0",
+          "timesteps": 300,
+          "dimension": 768
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000045_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_b0/qvh_000045_9x16.npz",
+          "bytes": 861055,
+          "sha256": "9d12867418c7a659d0c07fb1ab17f4e39083d9dfcfa8dfec3e33ca87e7f169d6",
+          "timesteps": 300,
+          "dimension": 768
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000046_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_b0/qvh_000046_9x16.npz",
+          "bytes": 860682,
+          "sha256": "410f5b179d1b55ba9a4d65a2003b9ca2ffc7492878a1aed349499714effe3d74",
+          "timesteps": 300,
+          "dimension": 768
+        },
+        {
+          "split": "train",
+          "video_id": "qvh_000047_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_b0/qvh_000047_9x16.npz",
+          "bytes": 859265,
+          "sha256": "cd6f8c358c0794144052eec010021f0d9bf46d562c0bbe6d63a1200202bee9a7",
+          "timesteps": 300,
+          "dimension": 768
+        },
+        {
+          "split": "val",
+          "video_id": "qvh_000019_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_b0/qvh_000019_9x16.npz",
+          "bytes": 843168,
+          "sha256": "a9aa13b657b202b3fd65e73210852be52fc5582ed400799a242d3fc43ffd0a1e",
+          "timesteps": 300,
+          "dimension": 768
+        },
+        {
+          "split": "val",
+          "video_id": "qvh_000020_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_b0/qvh_000020_9x16.npz",
+          "bytes": 775539,
+          "sha256": "f8220a9f22e4850c9c872cf92c0b4021360c5d97cd0a21c90f70aa5868153598",
+          "timesteps": 300,
+          "dimension": 768
+        },
+        {
+          "split": "val",
+          "video_id": "qvh_000032_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_b0/qvh_000032_9x16.npz",
+          "bytes": 860571,
+          "sha256": "0c2a7d48cd2cff0a86d3392f42d3670666e47d585e50ac87144c31b95459be5a",
+          "timesteps": 300,
+          "dimension": 768
+        },
+        {
+          "split": "val",
+          "video_id": "qvh_000070_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_b0/qvh_000070_9x16.npz",
+          "bytes": 858759,
+          "sha256": "dfbba61f048833352a1acba98f7b1224908bf30c3301c7f994e5fa8c14bb904c",
+          "timesteps": 300,
+          "dimension": 768
+        },
+        {
+          "split": "val",
+          "video_id": "qvh_000071_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_b0/qvh_000071_9x16.npz",
+          "bytes": 859411,
+          "sha256": "45416eadea015866349b56cf516b3090bcd0a403903d5636a6f3e3f3f39b1887",
+          "timesteps": 300,
+          "dimension": 768
+        },
+        {
+          "split": "val",
+          "video_id": "qvh_000095_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_b0/qvh_000095_9x16.npz",
+          "bytes": 858539,
+          "sha256": "ad45e64452982ada5acc301fab450c705397cdebc6de226ede69c96b287fbe86",
+          "timesteps": 300,
+          "dimension": 768
+        },
+        {
+          "split": "val",
+          "video_id": "qvh_000096_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_b0/qvh_000096_9x16.npz",
+          "bytes": 861245,
+          "sha256": "f1fe1f88543a6922d23349a8650eba417340999a4a1ed2934de0cff9fd54189e",
+          "timesteps": 300,
+          "dimension": 768
+        },
+        {
+          "split": "val",
+          "video_id": "qvh_000106_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_b0/qvh_000106_9x16.npz",
+          "bytes": 859126,
+          "sha256": "6e9facb4c4cf834cdfa2ad59c7db1056963b0cd35748c15dc48c7a5ce4c1b2ba",
+          "timesteps": 300,
+          "dimension": 768
+        },
+        {
+          "split": "val",
+          "video_id": "qvh_000107_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_b0/qvh_000107_9x16.npz",
+          "bytes": 858927,
+          "sha256": "4285347f79e803d5deb9265a621b83da9145d98b106eed17d41da0cc1e259683",
+          "timesteps": 300,
+          "dimension": 768
+        },
+        {
+          "split": "val",
+          "video_id": "qvh_000121_9x16",
+          "path": "/data/aic/experiments/QVH_DEITS_QUICK_5PCT/features_b0/qvh_000121_9x16.npz",
+          "bytes": 858925,
+          "sha256": "07ebc92aa0b8ea7e677c4465e5843d474052bdd1cb0a442ed4fe1be32738430b",
+          "timesteps": 300,
+          "dimension": 768
+        }
+      ],
+      "cpu_first_frame_identity_check": {
+        "video_id": "qvh_000001_9x16",
+        "source_frame_index": 0,
+        "timestamp": 0.0,
+        "cpu_recomputed": true,
+        "max_abs_error": 8.463859558105469e-06,
+        "mean_abs_error": 1.922763431139174e-06,
+        "rtol_1e_4_atol_1e_4_pass": true
+      },
+      "sample_generated_v2_metadata": {
+        "backbone": "vitb_clip_mean",
+        "cache_version": 2,
+        "clip_mean_target": true,
+        "dtype": "float32",
+        "feature_dim": 768,
+        "feature_protocol": "qvh_clip16_stride4_2fps_mean_seed_v2",
+        "label_protocol": "qvh_seed_timeline_linear_v1",
+        "length": 72,
+        "official_aic_gt": false,
+        "source_label_sha256": "7ce532ec68f1fed958a5fa45467083477992d4d328f7103be25e658e3c4fa3d9",
+        "spatial_preprocessing": "letterbox224_imagenet_norm"
+      }
+    }
+  },
+  "issues": [
+    {
+      "type": "stale_shared_input_manifest",
+      "detail": "All shared input rows were last overwritten by ViT-B extraction and declare backbone=vit_b_16 and feature_dim=768. V2 training reads each actual cache matrix, not inherited dimension fields."
+    },
+    {
+      "type": "incorrect_source_cache_backbone_metadata",
+      "detail": "aic.features.extract_video_cache overwrites caller backbone with ResNet18_without_classifier. This string is false for DeiT-S and ViT-B; cache matrix dimensions and source extraction scripts/weights are independently audited below."
+    }
+  ],
+  "interpretation": "Control identity combines existing run manifest + extractor architecture/load logic + source weight hashes + per-cache hashes/dimensions + CPU numerical check on first training frame. First-frame recomputation is an integrity spot check, not exhaustive proof of every feature row. V2 output metadata_json stores accurate variant identity; shared manifest header fields need explicit provenance correction only.",
+  "source_extraction_scripts": {
+    "/home/supie/AIC/scripts/extract_deit_features.py": "a6ac68cb3b8532b5a4c71f76268664030b39beca44d4336e970c78181915cfdf",
+    "/home/supie/AIC/scripts/extract_vit_features.py": "9b95bb78c4cc6c40c66ba1991258af830c25c46ba49e442449b9c63ae45b16a0",
+    "/home/supie/AIC/aic/features.py": "c331444f87a3ffea0a02bc7d5205343bc1a4d2e9d286f5fe2ac441c5891108cc"
+  }
+}

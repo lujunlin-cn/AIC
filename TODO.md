@@ -45,7 +45,7 @@
 
 - [x] 建立 `AIC_EVAL_INTAKE_V1`：真实解码、PTS、尺寸/帧数、SHA 和 intake manifest。
 - [x] 建立多候选 frozen release batch 入口，防止覆盖输出并核对 intake/release hash。
-- [x] 用短视频完成 compact index 到 A0 raw JSONL 的端到端演练，84 个本地测试通过。
+- [x] 用短视频完成 compact index 到 A0 raw JSONL 的端到端演练，当前本地回归 86 个测试通过。
 - [x] 远程 `/data/aic` 完成资产 inventory：权重/代码哈希，数据 metadata，symlink 和异常状态审计。
 - [x] 评测集到手后保留原始压缩包，生成 intake manifest，并在独立目录完成 174/174 解码核验；禁止直接覆盖原始目录。
 - [x] A0 center、DeiT-S center、DeiT-S + YuNet spatial 均完成全量冻结推理，记录逐候选运行时间、空输出率、权重清单和 validator 审计。

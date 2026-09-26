@@ -27,7 +27,7 @@
 - **RetargetVid 已进入真实 GT 阶段**：DHF1K 001–020，12,365 原帧 ×2比例 ×6标注者；6方法，完整原函数 890,280 次 IoU 核对误差为0。Center IoU 1:3 **0.48190**、3:1 **0.73951**；face+EMA **0.48634 / 0.75214**。平均增益 CI 跨0。
 - `spatial_protocol=dense_v1` 接入原始帧 observation→association→shot reset→EMA→最大合法 crop，6种显式模式保留旧接口。8 个 raw-video E2E 检查通过，3600条预测，crop 与 GT benchmark 保存结果完全相同；detector bytes 计入。
 - 固定发行清单/入口 `releases/20260925_v1`、`python -m aic.release`：三种候选完整权重在本地/远程双份保存，加载前校验SHA和bytes；历史DEV两原视频真实阈值输出1263/2297/1263帧，均valid。DHF1K三样例A0全空也如实保留，无temporal GT不解释成FN。
-- 本地与远程均72 tests passed；远程运行代码与本地核心代码哈希逐一核验。FP16指存储文件，实际加载为FP32标准kernel。
+- 本地与远程核心代码哈希已逐一核验；当前本地回归为 86 tests passed。FP16 指存储文件，实际加载为 FP32 标准 kernel。
 
 - **追加60次线性head对照**已完成：A0/DeiT summary .21324/.21781、Spearman .32930/.33129；SumMe14 .14771/.12230。当前线性替换无收益，保留U-Net；只淘汰这个固定预算假设。
 
@@ -65,7 +65,7 @@
 - 新增 `AIC_EVAL_INTAKE_V1`：`scripts/prepare_eval_set.py` 对 compact index 中每个视频做真实 probe、完整 PTS/帧数核对、SHA-256 和 coded-pixel 坐标记录，生成不可覆盖的 enriched index 与 intake manifest。
 - `scripts/run_eval_candidates.py` 可在 intake SHA 与 release manifest 核对后，按新 run 目录依次运行 A0/DeiT-S/face candidate，并保留 command、report 和 JSONL；不读取训练 cache，不调参。
 - `scripts/release_batch.py` 支持直接给原始视频建立临时 index，已用真实短视频完成 A0 raw inference；loaded weight bytes `25,685,169`、JSONL validator 均通过。
-- 本地演练结果：compact index → 5 帧真实解码/PTS/SHA → final dummy JSONL → final validator valid；A0 真实权重 release smoke 也 exit 0。SMOKE 不代表比赛成绩。当前回归测试 `84 passed`。
+- 本地演练结果：compact index → 5 帧真实解码/PTS/SHA → final dummy JSONL → final validator valid；A0 真实权重 release smoke 也 exit 0。SMOKE 不代表比赛成绩。当前回归测试 `86 passed`。
 - 评测集接入手册：`EVAL_HANDOFF.md`。官方 `F_video`/competition score 仍保持 `null`。
 
 ## Remote asset audit（2026-09-26）

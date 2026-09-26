@@ -1,6 +1,16 @@
 # 项目状态
 
-更新：2026-09-26，正式评测集冻结推理已完成。研究证据仍见 `reports/20260925_representation_generalization.md`、`reports/spatial_benchmark_status.md`；旧报告保留为历史快照。
+更新：2026-09-26，正式评测集冻结推理已完成，且已收到首轮官方 raw 分数。研究证据仍见 `reports/20260925_representation_generalization.md`、`reports/spatial_benchmark_status.md`；旧报告保留为历史快照。
+
+## 最新官方反馈（2026-09-26）
+
+- `SUB_A` A0/ResNet18 + center：raw **1.01**。
+- `SUB_B` DeiT-S/16 + center：raw **6.08**。
+- `SUB_C` DeiT-S/16 + YuNet `true_face_smooth`：raw **6.64**。
+- 三者均低于当前 S 档边界，`k_size=1.00`；相对 C，M 档需 raw `>6.98947`，L 档需 raw `>7.37778`。
+- A→B 是近控制 frozen-representation 对照；backbone、threshold 与 AMP/trainer implementation 仍有差异，不能把分数差全归因参数量。
+- B→C 的 temporal frame list 174/174 完全相同，8,130/8,133 bbox 改变；`+0.56` 是 YuNet 空间替换的独立官方差分证据。
+- 诊断详情：`reports/20260926_official_score_diagnosis.md`。
 
 ## 当前候选
 
@@ -11,6 +21,8 @@
 - **Current Spatial Best：true_face_smooth 是本地均值最高的探索配置，非已确认胜者。** Center 保持默认；YuNet 是人脸观察器，不是完整主体理解；新增权重 232,589 bytes。
 - **最新多人主体对照：`SPATIAL_GROUP_003` 未通过升级门槛。** 固定 top-3 人脸面积/置信度群体中心相对 `true_face_smooth` 双比例 IoU `-0.00264`，20/20 视频没有正增益；相对 center `+0.00590` 但 CI `[-0.01690, +0.02739]` 跨 0。保留接口与负结果，不改默认。
 - **Best Overall / official_f_video / competition_score：null**，尚无 AIC 联合 GT/官方反馈，不能用 temporal 与 spatial 两个不同数据集的分数拼接出比赛成绩。
+
+官方平台 raw 反馈已记录为外部证据；本地 `official_f_video` 字段仍只表示有无可复现联合 evaluator，不能用代理指标冒充官方 F_video。
 
 ## 已完成的最新证据
 
@@ -79,3 +91,10 @@
 - 三个候选均只做冻结推理：SUB_A=A0 ResNet18+Temporal U-Net+center，SUB_B=DeiT-S+center，SUB_C=DeiT-S+YuNet `true_face_smooth`。没有测试集训练、标注、逐视频调参或第三方 API。
 - SUB_A：25,685,169 bytes，1,809 predictions，空输出率 `.862069`，742.213 s；SUB_B：46,618,447 bytes，8,133，`.557471`，742.764 s；SUB_C：46,851,036 bytes，8,133，`.557471`，1,959.029 s。
 - 根目录上传包均 `READY_TO_UPLOAD=yes`，并通过项目 validator、独立 checker、解压回归；官方 `F_video` 和 `competition_score` 保持 `null`。上传顺序：SUB_A → SUB_B → SUB_C。完整记录见 `reports/20260926_official_test_inference.md`。
+
+## Official train package audit（2026-09-26）
+
+- 本地挑战训练包包含 33 个 QVHighlights-derived shard，压缩 129.308 GB、解压 129.988 GB；11,245 个视频文件中只有 987 条标注记录，889 条已匹配、98 条缺失。
+- 标注全部携带 `seed_weak_training_label_v1`、Doubao seed provenance；624 条有 seed crop observations，363 条为 `dropped_center_default`。当前没有 native human temporal/crop GT，不能将其写成官方 AIC 标签。
+- `scripts/prepare_qvh_training_manifest.py` 已生成外部可复现 manifest v3：800 verified train / 89 verified val，33.208 h / 3.703 h，标签协议 `qvh_seed_timeline_linear_v1`；canonical dataset manifest 与 cache manifests 均已通过生成和 schema 检查。
+- 当前 A0/DeiT 冻结模型使用的是 27 条 TVSum train 视频，未使用该 130 GB 包。首批 QVHighlights frozen/finetune 仅为有界弱标签诊断，结果和协议见 `reports/20260926_scaling_experiments.md`；不得与 TVSum proxy 或官方 F_video 混称。

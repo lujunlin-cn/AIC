@@ -1,0 +1,24 @@
+{
+  "protocol": "QVH_NATIVE_MEDIA_AUDIT_V1",
+  "official_aic_gt": false,
+  "annotation_scope": "query-conditioned human saliency and relevant windows; no crop GT",
+  "cross_split_original_sources": 0,
+  "splits": {
+    "train": {
+      "query_rows": 7218,
+      "unique_videos": 7100,
+      "raw_id_matches": 6384,
+      "audited": 5,
+      "passed": 5,
+      "annotation_sha256": "fd28404187468f57cf99242be2963127dc9b4aef26c7de3cb9469569801f2625"
+    },
+    "val": {
+      "query_rows": 1550,
+      "unique_videos": 1519,
+      "raw_id_matches": 1354,
+      "audited": 5,
+      "passed": 5,
+      "annotation_sha256": "f668a1eaea156ec5315e14718999cea043a8cf948d3cafbd8e8d655318c3cd02"
+    }
+  }
+}

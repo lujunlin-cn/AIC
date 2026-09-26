@@ -21,7 +21,7 @@ The first VideoMAE run used 0.5 normalization and an incomplete cache schema; it
 
 ## InternVideo2 compatibility
 
-`InternVideo2 Stage1-1B-224p-K700` loaded on an authorized V100 with standard PyTorch FP16 after an explicit LayerScale name adapter. The source file is 2,042,600,861 B, SHA256 `a615568ca9f386509373e4943a5924adfb36f640c2e7c460930c2770720a29dee1c0fee6`, and the loaded headless encoder has 1,020,710,144 parameters. Eight-frame forward mean latency was 0.2095 s at 2,267 MiB; 16-frame interpolated positional mode was 0.5385 s at 3,084 MiB. Both outputs were finite. This is compatibility only: no temporal head, human labels, local score, or AIC submission bundle exists.
+`InternVideo2 Stage1-1B-224p-K700` loaded on an authorized V100 with standard PyTorch FP16 after an explicit LayerScale name adapter. The source file is 2,042,600,861 B, SHA256 `a615568ca9f386509373e4943a5924adfb36f640c2e7c460930c277072e48caf`, and the loaded headless encoder has 1,020,710,144 parameters. Eight-frame forward mean latency was 0.2095 s at 2,267 MiB; 16-frame interpolated positional mode was 0.5385 s at 3,084 MiB. Both outputs were finite. This is compatibility only: no temporal head, human labels, local score, or AIC submission bundle exists.
 
 ## Decision
 

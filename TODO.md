@@ -84,3 +84,8 @@
 - [ ] Validate raw-video/annotation segment alignment for a bounded native QVH subset before using it.
 - [ ] Only then run a source-disjoint native temporal benchmark; keep `official_f_video=null`.
 - [ ] If pursuing user-requested 100–500M parameter sweet spot, audit a genuinely 100–500M-parameter encoder separately from byte-based VideoMAEv2/ViT-B references.
+
+- [x] Native QVH bounded full-decode audit: 10/10 pass; 7,738 raw ID matches.
+- [x] Frozen-checkpoint human-saliency sanity on exposed videos; CI crosses zero.
+- [x] Freeze source-disjoint native 96/24/40 protocol, exclude historical weak sources from holdout.
+- [ ] Build query-aware or explicitly masked native-human training targets; compare frozen/partial FT on train/dev without opening holdout metrics.

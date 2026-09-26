@@ -43,7 +43,7 @@ with 95% CI `[-0.15569, 0.38889]`, and Spearman `+0.02701` with CI
 
 VideoMAEv2 has 86,227,200 parameters and a 344,924,592-byte source FP32
 checkpoint (about 172.5 MB if exported to FP16, before the temporal head), so
-it is an M-tier reference. Encoder extraction took 325.48 s; total run time
+it is S under the user parameter-count tiers and an estimated M under FP16 file-size tiers; no complete FP16 bundle has yet been exported. Encoder extraction took 325.48 s; total run time
 was 370.14 s. The recorded 2,552,064,000-byte peak is the encoder extraction
 peak only, not a full end-to-end peak after temporal-head fitting.
 

@@ -112,3 +112,11 @@
 - The first VideoMAE run had wrong normalization/cache schema and is quarantined; it is not evidence.
 - InternVideo2 Stage1-1B K700 compatibility passed on V100 FP16: 1,020,710,144 loaded encoder parameters, 2,042,600,861 B source file, 8-frame `.2095s`/2267 MiB and 16-frame `.5385s`/3084 MiB. Compatibility only; no temporal head or quality score.
 - Public native QVHighlights annotations were acquired locally (7,218 train / 1,550 val query rows). 7,738 `vid` stems intersect the local extracted archive, but no alignment/training has been done; duration/source semantics still need validation. This is a future OOD/native temporal route, not AIC joint GT.
+
+## Native human QVH continuation (2026-09-26)
+
+Native public annotations now match 6,384 train / 1,354 val raw videos; first 5/5 per split pass full decode, duration, monotonic PTS and saliency schema audits. Official native train/val original source intersection is zero. A new bounded protocol `splits/qvh_native_bounded_v1.json` freezes 96 train / 24 dev / 40 holdout, one clip per original source, excluding prior weak-data/audited sources from holdout. This is QVH query-conditioned human supervision, not AIC joint GT.
+
+Frozen weak-trained clip heads evaluated on human-rated clips in the previously exposed ten-video weak validation set: Spearman VideoMAE .23530 / DeiT .17771 / A0 .12251 / ViT-B .02553. VideoMAE−DeiT delta +.05759, paired 95%CI [-.21716,+.33909]; no upgrade. Nine queries belong to native TRAIN and one native VAL: this is a label sanity check, not native validation or OOD. No human labels were used to change checkpoints or thresholds. Reports: `reports/qvh_human_sanity_20260926/`.
+
+Cache provenance bug fixed for future extraction: explicit encoder identity no longer overwritten by ResNet18. Existing caches preserved with external provenance audit.

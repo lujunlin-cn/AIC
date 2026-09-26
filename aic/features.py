@@ -309,8 +309,9 @@ def extract_video_cache(model: nn.Module, video_path: str | Path, output_path: s
     frames_array = np.stack([item[2] for item in sampled])
     aux = compute_feature_bank(frames_array) if (metadata or {}).get("feature_bank", False) else None
     meta = dict(metadata or {})
+    meta.setdefault("backbone", "ResNet18_without_classifier")
     meta.update({"video_path": str(video_path), "sample_fps": sample_fps,
-                 "backbone": "ResNet18_without_classifier", "label_source": str(labels_path) if labels_path else None,
+                 "label_source": str(labels_path) if labels_path else None,
                  "feature_bank_version": FEATURE_BANK_VERSION if aux is not None else None})
     save_feature_cache(output_path, features, frame_indices, timestamps, labels, mask, meta, aux=aux)
     return {"path": str(output_path), "frames": len(features), "feature_dim": features.shape[1],

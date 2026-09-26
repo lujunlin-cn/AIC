@@ -164,3 +164,11 @@ The SumMe ModelScope repository cloned metadata and five sample MAT files, but i
 `INTERNVIDEO2_SMOKE_8F/16F_20260926`: loaded checkpoint and FP16 standard kernels pass V100; 8f .209517s / 2267.245MiB, 16f .538493s / 3084.064MiB. Engineering-only; no score.
 
 `VIDEOMAE_QVH_PROBE_20260926`: invalid normalization and incomplete cache schema; preserved, excluded from comparisons. Corrected V2 uses ImageNet normalization, timestamps, tie-aware ranking, and identical clip-mean targets for image controls.
+
+## Native human QVH continuation (2026-09-26)
+
+Native public annotations now match 6,384 train / 1,354 val raw videos; first 5/5 per split pass full decode, duration, monotonic PTS and saliency schema audits. Official native train/val original source intersection is zero. A new bounded protocol `splits/qvh_native_bounded_v1.json` freezes 96 train / 24 dev / 40 holdout, one clip per original source, excluding prior weak-data/audited sources from holdout. This is QVH query-conditioned human supervision, not AIC joint GT.
+
+Frozen weak-trained clip heads evaluated on human-rated clips in the previously exposed ten-video weak validation set: Spearman VideoMAE .23530 / DeiT .17771 / A0 .12251 / ViT-B .02553. VideoMAE−DeiT delta +.05759, paired 95%CI [-.21716,+.33909]; no upgrade. Nine queries belong to native TRAIN and one native VAL: this is a label sanity check, not native validation or OOD. No human labels were used to change checkpoints or thresholds. Reports: `reports/qvh_human_sanity_20260926/`.
+
+Cache provenance bug fixed for future extraction: explicit encoder identity no longer overwritten by ResNet18. Existing caches preserved with external provenance audit.

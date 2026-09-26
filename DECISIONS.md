@@ -232,3 +232,7 @@ Decision：不根据单次弱标签分数升级候选。完成 frozen vs last-bl
 ## 2026-09-26：来源与参数口径纠正
 
 用户明确赛方不提供训练数据。本地130GB资产只能称local QVHighlights-derived weak-label asset，供应方未核实；保留既有审计数值但撤回官方提供的描述。100–500M参数为本轮重点，不等同100–500MB权重；所有候选同时记录参数和实际bytes。VideoMAEv2-Base约86M参数不满足该参数甜点区，InternVideo2-1B属于L参考。无效VideoMAE归一化run不得进入模型排名；修复使用新run并匹配clip target对照。
+
+## Native QVH next-stage gate
+
+Weak-label position prior outranks all tested encoders, so do not scale weak-supervision claims alone. Native human saliency is query-conditioned and only partially rated: no silent conversion of missing scores to negative generic highlights. QVH_NATIVE_BOUNDED_V1 freezes 96/24/40 distinct sources; holdout only for frozen candidates. The ten exposed-video human sanity result is exploratory and cannot promote VideoMAE.

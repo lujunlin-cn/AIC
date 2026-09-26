@@ -1,0 +1,319 @@
+{
+  "protocol": "QVH_HUMAN_ANNOTATED_CLIPS_SANITY_V1",
+  "scope": "previously exposed weak-label validation videos; query-free scores; native human annotated clips only; not native QVH AP or independent OOD",
+  "official_f_video": null,
+  "models": {
+    "videomaev2": {
+      "queries": 10,
+      "defined_queries": 10,
+      "spearman_query_macro": 0.23529728515951426,
+      "per_query": [
+        {
+          "video_id": "qvh_000019_9x16",
+          "qid": 9561,
+          "native_split": "train",
+          "annotated_clips": 13,
+          "spearman": 0.9028335099615379
+        },
+        {
+          "video_id": "qvh_000020_9x16",
+          "qid": 9521,
+          "native_split": "train",
+          "annotated_clips": 7,
+          "spearman": 0.3742405942825599
+        },
+        {
+          "video_id": "qvh_000032_9x16",
+          "qid": 4350,
+          "native_split": "train",
+          "annotated_clips": 23,
+          "spearman": -0.18021874074987304
+        },
+        {
+          "video_id": "qvh_000070_9x16",
+          "qid": 8322,
+          "native_split": "train",
+          "annotated_clips": 9,
+          "spearman": 0.46096990594008075
+        },
+        {
+          "video_id": "qvh_000071_9x16",
+          "qid": 586,
+          "native_split": "train",
+          "annotated_clips": 8,
+          "spearman": 0.7165410061057311
+        },
+        {
+          "video_id": "qvh_000095_9x16",
+          "qid": 5560,
+          "native_split": "train",
+          "annotated_clips": 9,
+          "spearman": -0.3761920624312232
+        },
+        {
+          "video_id": "qvh_000096_9x16",
+          "qid": 43,
+          "native_split": "train",
+          "annotated_clips": 11,
+          "spearman": 0.1868168355569106
+        },
+        {
+          "video_id": "qvh_000106_9x16",
+          "qid": 7666,
+          "native_split": "val",
+          "annotated_clips": 18,
+          "spearman": 0.17740177894309803
+        },
+        {
+          "video_id": "qvh_000107_9x16",
+          "qid": 5370,
+          "native_split": "train",
+          "annotated_clips": 9,
+          "spearman": 0.49793018881613604
+        },
+        {
+          "video_id": "qvh_000121_9x16",
+          "qid": 2774,
+          "native_split": "train",
+          "annotated_clips": 19,
+          "spearman": -0.40735016482981523
+        }
+      ],
+      "checkpoint_sha256": "5ebd414ac54063f1906bacd0097457af4b6c5c6949cc5b78771786ce116aaf8d"
+    },
+    "deits_clip_mean": {
+      "queries": 10,
+      "defined_queries": 10,
+      "spearman_query_macro": 0.17770929074445427,
+      "per_query": [
+        {
+          "video_id": "qvh_000019_9x16",
+          "qid": 9561,
+          "native_split": "train",
+          "annotated_clips": 13,
+          "spearman": 0.2666831290963312
+        },
+        {
+          "video_id": "qvh_000020_9x16",
+          "qid": 9521,
+          "native_split": "train",
+          "annotated_clips": 7,
+          "spearman": -0.22454435656953595
+        },
+        {
+          "video_id": "qvh_000032_9x16",
+          "qid": 4350,
+          "native_split": "train",
+          "annotated_clips": 23,
+          "spearman": 0.35365809313297975
+        },
+        {
+          "video_id": "qvh_000070_9x16",
+          "qid": 8322,
+          "native_split": "train",
+          "annotated_clips": 9,
+          "spearman": 0.46096990594008075
+        },
+        {
+          "video_id": "qvh_000071_9x16",
+          "qid": 586,
+          "native_split": "train",
+          "annotated_clips": 8,
+          "spearman": 0.7165410061057311
+        },
+        {
+          "video_id": "qvh_000095_9x16",
+          "qid": 5560,
+          "native_split": "train",
+          "annotated_clips": 9,
+          "spearman": 0.30779350562554625
+        },
+        {
+          "video_id": "qvh_000096_9x16",
+          "qid": 43,
+          "native_split": "train",
+          "annotated_clips": 11,
+          "spearman": -0.47422735179831144
+        },
+        {
+          "video_id": "qvh_000106_9x16",
+          "qid": 7666,
+          "native_split": "val",
+          "annotated_clips": 18,
+          "spearman": 0.1338881350513947
+        },
+        {
+          "video_id": "qvh_000107_9x16",
+          "qid": 5370,
+          "native_split": "train",
+          "annotated_clips": 9,
+          "spearman": 0.7764335147641444
+        },
+        {
+          "video_id": "qvh_000121_9x16",
+          "qid": 2774,
+          "native_split": "train",
+          "annotated_clips": 19,
+          "spearman": -0.5401026739038176
+        }
+      ],
+      "checkpoint_sha256": "74dfe03bb7c0c2213e6960af832fbacb5e8701e40326748e85c6037b67260af2"
+    },
+    "a0_clip_mean": {
+      "queries": 10,
+      "defined_queries": 10,
+      "spearman_query_macro": 0.12251072474551314,
+      "per_query": [
+        {
+          "video_id": "qvh_000019_9x16",
+          "qid": 9561,
+          "native_split": "train",
+          "annotated_clips": 13,
+          "spearman": -0.2666831290963312
+        },
+        {
+          "video_id": "qvh_000020_9x16",
+          "qid": 9521,
+          "native_split": "train",
+          "annotated_clips": 7,
+          "spearman": -0.22454435656953595
+        },
+        {
+          "video_id": "qvh_000032_9x16",
+          "qid": 4350,
+          "native_split": "train",
+          "annotated_clips": 23,
+          "spearman": -0.1208990925406672
+        },
+        {
+          "video_id": "qvh_000070_9x16",
+          "qid": 8322,
+          "native_split": "train",
+          "annotated_clips": 9,
+          "spearman": 0.46096990594008075
+        },
+        {
+          "video_id": "qvh_000071_9x16",
+          "qid": 586,
+          "native_split": "train",
+          "annotated_clips": 8,
+          "spearman": 0.7165410061057311
+        },
+        {
+          "video_id": "qvh_000095_9x16",
+          "qid": 5560,
+          "native_split": "train",
+          "annotated_clips": 9,
+          "spearman": -0.17954621161490197
+        },
+        {
+          "video_id": "qvh_000096_9x16",
+          "qid": 43,
+          "native_split": "train",
+          "annotated_clips": 11,
+          "spearman": -0.4167452485500313
+        },
+        {
+          "video_id": "qvh_000106_9x16",
+          "qid": 7666,
+          "native_split": "val",
+          "annotated_clips": 18,
+          "spearman": 0.04686084726798815
+        },
+        {
+          "video_id": "qvh_000107_9x16",
+          "qid": 5370,
+          "native_split": "train",
+          "annotated_clips": 9,
+          "spearman": 0.6835990727814749
+        },
+        {
+          "video_id": "qvh_000121_9x16",
+          "qid": 2774,
+          "native_split": "train",
+          "annotated_clips": 19,
+          "spearman": 0.5255544537313241
+        }
+      ],
+      "checkpoint_sha256": "87676cd0bb539cff29dfe5cd65e9776bea44c0d28cf27b311c06cf9498f675d3"
+    },
+    "vitb_clip_mean": {
+      "queries": 10,
+      "defined_queries": 10,
+      "spearman_query_macro": 0.025533637160156587,
+      "per_query": [
+        {
+          "video_id": "qvh_000019_9x16",
+          "qid": 9561,
+          "native_split": "train",
+          "annotated_clips": 13,
+          "spearman": 0.6139267867738457
+        },
+        {
+          "video_id": "qvh_000020_9x16",
+          "qid": 9521,
+          "native_split": "train",
+          "annotated_clips": 7,
+          "spearman": -0.22454435656953595
+        },
+        {
+          "video_id": "qvh_000032_9x16",
+          "qid": 4350,
+          "native_split": "train",
+          "annotated_clips": 23,
+          "spearman": 0.04293612632285377
+        },
+        {
+          "video_id": "qvh_000070_9x16",
+          "qid": 8322,
+          "native_split": "train",
+          "annotated_clips": 9,
+          "spearman": 0.46096990594008075
+        },
+        {
+          "video_id": "qvh_000071_9x16",
+          "qid": 586,
+          "native_split": "train",
+          "annotated_clips": 8,
+          "spearman": 0.7165410061057311
+        },
+        {
+          "video_id": "qvh_000095_9x16",
+          "qid": 5560,
+          "native_split": "train",
+          "annotated_clips": 9,
+          "spearman": -0.3676422428305135
+        },
+        {
+          "video_id": "qvh_000096_9x16",
+          "qid": 43,
+          "native_split": "train",
+          "annotated_clips": 11,
+          "spearman": -0.47422735179831144
+        },
+        {
+          "video_id": "qvh_000106_9x16",
+          "qid": 7666,
+          "native_split": "val",
+          "annotated_clips": 18,
+          "spearman": -0.2577346599739348
+        },
+        {
+          "video_id": "qvh_000107_9x16",
+          "qid": 5370,
+          "native_split": "train",
+          "annotated_clips": 9,
+          "spearman": 0.37977726265637496
+        },
+        {
+          "video_id": "qvh_000121_9x16",
+          "qid": 2774,
+          "native_split": "train",
+          "annotated_clips": 19,
+          "spearman": -0.6346661050250247
+        }
+      ],
+      "checkpoint_sha256": "234f69af39c16f27e4d79ffe979c283016f9d6e8f869e3c3e003d010a8a05f59"
+    }
+  }
+}

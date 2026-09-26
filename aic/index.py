@@ -76,6 +76,10 @@ def enrich_index(compact_index: str | Path, video_dir: str | Path,
                  output: str | Path, *, extension: str = ".mp4") -> dict[str, Any]:
     rows = load_compact_index(compact_index)
     root = Path(video_dir)
+    compact_path = Path(compact_index).resolve()
+    output_path = Path(output)
+    if output_path.resolve() == compact_path:
+        raise ValueError("enriched output must not overwrite the compact input index")
     enriched: list[dict[str, Any]] = []
     for row in rows:
         video_id = row["video_id"]
@@ -103,7 +107,7 @@ def enrich_index(compact_index: str | Path, video_dir: str | Path,
                          "duration": info.duration, "rotation": info.rotation,
                          "has_audio": info.has_audio, "time_base": info.time_base,
                          "coordinate_convention": info.coordinate_convention})
-    output = Path(output); output.parent.mkdir(parents=True, exist_ok=True)
+    output = output_path; output.parent.mkdir(parents=True, exist_ok=True)
     temporary: Path | None = None
     try:
         with tempfile.NamedTemporaryFile("w", encoding="utf-8", dir=output.parent,

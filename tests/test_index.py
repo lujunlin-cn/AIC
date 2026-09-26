@@ -55,6 +55,13 @@ def test_enrich_index_rejects_stale_supplied_dimensions(tmp_path):
         enrich_index(compact, video_dir, tmp_path / "index.jsonl")
 
 
+def test_enrich_index_does_not_overwrite_compact_source(tmp_path):
+    compact = tmp_path / "compact.json"
+    compact.write_text(json.dumps([{"video_id": "missing", "targetRatioWH": [1, 1]}]))
+    with pytest.raises(ValueError, match="overwrite"):
+        enrich_index(compact, tmp_path, compact)
+
+
 def test_contract_load_index_accepts_json_array_and_batch_validator(tmp_path):
     index = tmp_path / "index.json"
     index.write_text(json.dumps([{"video_id": "v", "width": 10, "height": 10,

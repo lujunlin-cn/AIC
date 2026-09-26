@@ -36,3 +36,14 @@ def test_eval_intake_writes_decode_verified_index_and_manifest(tmp_path):
     assert row["targetRatioWH"] == [9, 16]
     assert row["index_schema_version"] == "aic.input_index.v1"
     assert row["pts_verified"] is True
+
+
+def test_eval_intake_refuses_raw_index_or_same_output_overwrite(tmp_path):
+    compact = tmp_path / "compact.json"
+    compact.write_text(json.dumps([{"video_id": "v", "targetRatioWH": [1, 1]}]))
+    from aic.eval_intake import prepare_eval_set
+    import pytest
+    with pytest.raises(ValueError, match="raw compact index"):
+        prepare_eval_set(compact, tmp_path, compact, tmp_path / "manifest.json")
+    with pytest.raises(ValueError, match="different files"):
+        prepare_eval_set(compact, tmp_path, tmp_path / "same", tmp_path / "same")

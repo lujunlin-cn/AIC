@@ -67,6 +67,11 @@ def prepare_eval_set(compact_index: str | Path, video_root: str | Path,
     """
     compact = Path(compact_index)
     out_index, out_manifest = Path(output_index), Path(output_manifest)
+    compact_resolved = compact.resolve()
+    if out_index.resolve() == compact_resolved or out_manifest.resolve() == compact_resolved:
+        raise ValueError("intake outputs must not overwrite the raw compact index")
+    if out_index.resolve() == out_manifest.resolve():
+        raise ValueError("output index and intake manifest must be different files")
     if not force and (out_index.exists() or out_manifest.exists()):
         raise FileExistsError("evaluation intake outputs already exist; use --force for a new version")
     root = Path(video_root).resolve()

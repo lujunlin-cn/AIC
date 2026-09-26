@@ -18,7 +18,7 @@ def main():
     out=Path(a.output); out.parent.mkdir(parents=True,exist_ok=False)
     report=write_submission(out,rows,index,stage='preliminary',actual_model_size_mb=a.weight_bytes/1_000_000).to_dict()
     independent=check(a.index,out,a.weight_bytes)
-    z=Path(a.zip); z.parent.mkdir(parents=True,exist_ok=False)
+    z=Path(a.zip); z.parent.mkdir(parents=True,exist_ok=True)
     with zipfile.ZipFile(z,'w',compression=zipfile.ZIP_DEFLATED) as f: f.write(out,'predictions.jsonl')
     print(json.dumps({'validator':report,'independent':independent,'video_count':len(rows),'prediction_count':sum(len(r['predictions']) for r in rows),'zip_bytes':z.stat().st_size},indent=2))
 if __name__=='__main__': main()

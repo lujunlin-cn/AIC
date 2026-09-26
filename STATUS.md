@@ -1,6 +1,6 @@
 # 项目状态
 
-更新：2026-09-25，representation generalization 阶段。最新完整证据见 `reports/20260925_representation_generalization.md`、`reports/spatial_benchmark_status.md`；旧报告保留为历史快照。
+更新：2026-09-26，正式评测集冻结推理已完成。研究证据仍见 `reports/20260925_representation_generalization.md`、`reports/spatial_benchmark_status.md`；旧报告保留为历史快照。
 
 ## 当前候选
 
@@ -72,3 +72,10 @@
 
 - 远程 `/data/aic/asset_inventory/asset_manifest_20260926.jsonl` 已完成：11,038 条记录，7,293 个 regular files 已 SHA-256，3,702 个 dataset 文件 metadata-only，43 个 features symlink；无 missing/error/changed 条目。
 - 已核对 A0 `25,685,169` bytes、DeiT-S `46,618,447` bytes、YuNet `232,589` bytes 以及 code snapshot SHA；资产清单不进入 Git，原始数据仍留在 `/data/aic`。
+
+## Official test inference closure（2026-09-26）
+
+- 正式包已保留原 ZIP（`757,234,263` bytes，SHA256 `130bdceb2574ef3ca853f6937fdf5f24c3fb1f054c92477f0c2d075e53efe0b6`），174/174 视频完整解码；16:9=119、9:16=55；标签不存在；官方联合评测仍不可用。
+- 三个候选均只做冻结推理：SUB_A=A0 ResNet18+Temporal U-Net+center，SUB_B=DeiT-S+center，SUB_C=DeiT-S+YuNet `true_face_smooth`。没有测试集训练、标注、逐视频调参或第三方 API。
+- SUB_A：25,685,169 bytes，1,809 predictions，空输出率 `.862069`，742.213 s；SUB_B：46,618,447 bytes，8,133，`.557471`，742.764 s；SUB_C：46,851,036 bytes，8,133，`.557471`，1,959.029 s。
+- 根目录上传包均 `READY_TO_UPLOAD=yes`，并通过项目 validator、独立 checker、解压回归；官方 `F_video` 和 `competition_score` 保持 `null`。上传顺序：SUB_A → SUB_B → SUB_C。完整记录见 `reports/20260926_official_test_inference.md`。

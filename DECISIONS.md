@@ -197,3 +197,11 @@ Status：Acquisition partial / benchmark blocked。
 Evidence：算力服务器 Clash/Mihomo `127.0.0.1:7890` 可完成 Hugging Face Range 请求；YouTube Highlights 索引到358个成员但9.9GB tar未完成；DHF1K 021–030 RAR已恢复，7z对 `video/021.AVI` 报 `Unsupported Method`。
 
 Decision：代理包装脚本作为后续下载入口；未完成媒体解码、帧对齐和native evaluator前，不把两者记为OOD或空间transfer证据。
+
+## 2026-09-26：正式评测集只做冻结推理
+
+Status：Accepted for upload preparation; no official score claim。
+
+Evidence：正式包 174/174 视频完整解码，16:9=119、9:16=55，未提供标签；SUB_A、SUB_B、SUB_C 均使用已冻结 checkpoint、DEV-derived threshold 和固定 spatial policy，在物理 GPU 2/4/5 完成全量推理。三个根目录 ZIP 只有 `predictions.jsonl`，项目 validator、独立 checker 和解压回归均为 zero errors。SUB_C 是 DeiT-S + YuNet `true_face_smooth` spatial differential candidate，不称为 A0_face_ema 或官方优胜。
+
+Decision：保留 SUB_A 作为第一上传的 engineering fallback，随后上传 SUB_B（DeiT-S temporal 对照）和 SUB_C（空间差异对照）。正式测试集没有训练、人工修正、逐视频调参或第三方 API 使用；`official_f_video` 和 `competition_score` 保持 `null`。等待用户在平台上传，不由 Agent 自动提交。

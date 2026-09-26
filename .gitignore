@@ -21,3 +21,8 @@ data/
 *.mov
 *.tgz
 *.zip
+submissions/20260926/
+reports/official_testset_manifest.jsonl
+reports/official_testset_intake_manifest_20260926.json
+reports/official_test_inference.md
+reports/official_test_inference_summary.json

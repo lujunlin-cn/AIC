@@ -2,6 +2,18 @@
 
 本项目所有TVSum数值均按binary proxy、ranking或author-style summary单独命名，不是AIC官方F_video。当前虽已取得RetargetVid crop GT，仍没有AIC联合GT；`official_f_video`和`competition_score`保持null。早期章节保留为历史，最新证据见末节。
 
+## OFFICIAL_TEST_20260926（冻结推理闭环）
+
+正式评测集只用于 intake、完整解码核验和冻结候选推理；没有训练、微调、人工标注、逐视频调参、teacher 伪标签或第三方 API。三候选均在同一 174-video index 上运行，输出通过项目 validator、独立 checker 和 ZIP 解压回归。官方联合 GT 不可用，因此不登记官方分数。
+
+| run_id | candidate | weight bytes | threshold | predictions | empty rate | runtime | result |
+|---|---|---:|---:|---:|---:|---:|---|
+| `OFFICIAL_TEST_20260926_SUB_A_001` | A0 ResNet18 + repaired Temporal U-Net + center | 25,685,169 | 0.40 | 1,809 | 0.862069 | 742.213 s | completed, READY_TO_UPLOAD |
+| `OFFICIAL_TEST_20260926_SUB_B_001` | DeiT-S/16 + repaired Temporal U-Net + center | 46,618,447 | 0.35 | 8,133 | 0.557471 | 742.764 s | completed, READY_TO_UPLOAD |
+| `OFFICIAL_TEST_20260926_SUB_C_001` | DeiT-S/16 + repaired Temporal U-Net + YuNet `true_face_smooth` | 46,851,036 | 0.35 | 8,133 | 0.557471 | 1,959.029 s | completed, READY_TO_UPLOAD |
+
+Canonical archives and hashes are recorded in `reports/20260926_official_test_inference.md`; per-candidate manifests and weight inventories are under `submissions/20260926/SUB_A|SUB_B|SUB_C/` and remain ignored from Git.
+
 ## SPATIAL_GROUP_003（2026-09-25）
 
 - Hypothesis: area/confidence weighted top-three face centers reduce single-face fixation in multi-person crops.

@@ -131,3 +131,10 @@ GitHub main synchronized through prior evidence; native training code frozen at 
 - VideoMAEv2-Base: F1 `.76543`, Spearman `.06824`, NDCG `.96109`; paired ranking deltas are non-positive/uncertain. **SUB_D NOT READY; no official inference.**
 - InternVideo2-Stage1-1B: F1 `.76609`, Spearman `.23474`, NDCG `.96763`; paired deltas Spearman `+.12111`, NDCG `+.00476`, but bootstrap CIs cross zero. **SUB_E promising engineering candidate, not proven replacement.**
 - SUB_E frozen manifest is `/data/aic/experiments/NATIVE_CANDIDATE_V1/SUB_E_frozen_manifest.json`; its 174-video raw release is running with unchanged threshold `.35`, 2 FPS, and YuNet `true_face_smooth`. Official score remains null and no upload is authorized.
+
+## SUB_E engineering release completed (2026-09-26)
+
+- InternVideo2-1B native-QVH candidate completed frozen raw inference for 174/174 official videos using fixed parity shards on physical GPUs 2 and 4; no test-specific tuning or content inspection.
+- Merged output: 87,637 predictions, zero empty videos. Project validator, independent checker, and unzip regression all valid with zero errors.
+- Weight bytes `2,049,501,387`; parameters `1,022,373,889`; L tier, expected `k_size=0.90`. ZIP SHA256 `342d36e229f2502d863e8944a4906030050e16282cc94f5cb81138bc9a0d419a`.
+- ZIP path: `/data/aic/official_test_20260926/submissions/SUB_E_INTERNVIDEO2_NATIVE_V1_FINAL/upload.zip`. Official score remains null; do not auto-upload.

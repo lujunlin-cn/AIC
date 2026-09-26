@@ -105,3 +105,6 @@
 - [x] Freeze InternVideo2 manifest with checkpoint/code/index hashes and YuNet weight accounting.
 - [ ] Finish SUB_E raw 174-video release, independent validation, ZIP regression, and final candidate report.
 - [ ] Do not upload SUB_E unless the user later requests it and accepts its exploratory evidence status.
+
+- [x] Complete SUB_E frozen 174-video raw inference, merge, validator, independent checker, and unzip regression.
+- [ ] Decide whether to upload SUB_E after weighing its positive but CI-crossing native ranking signal against the L-tier raw break-even `7.3778`.

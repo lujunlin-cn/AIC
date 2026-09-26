@@ -244,3 +244,7 @@ Do not consume official test until native DEV supports representation ranking, n
 ## 2026-09-26：Video foundation candidate gate
 
 Decision：VideoMAEv2-Base 不进入官方候选；其 matched native DEV ranking 低于 DeiT-S。InternVideo2-1B 只保留为 promising exploratory engineering candidate，因为 paired Spearman/NDCG CIs 均跨零。SUB_E 可以完成冻结的 raw-video/JSONL/validator/ZIP 闭环，但不自动上传、不宣称已优于 SUB_C。
+
+## 2026-09-26：SUB_E release artifact
+
+Decision：InternVideo2-1B native candidate is READY_TO_UPLOAD as a frozen engineering artifact. It has 174/174 coverage and zero validation errors, but remains exploratory because paired DEV CIs cross zero and its L-tier penalty requires raw `>7.3778` to exceed SUB_C weighted score. No automatic platform upload.

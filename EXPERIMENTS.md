@@ -180,3 +180,7 @@ Hypothesis: native-human QVH supervised heads on frozen video encoders improve r
 ### NATIVE_FOUNDATION_CANDIDATES_V1 gate (2026-09-26)
 
 VideoMAEv2-Base did not beat the matched retrained DeiT-S control on native-QVH DEV ranking (Spearman `.06824` vs `.11364`; NDCG `.96109` vs `.96287`) and is rejected for release. InternVideo2-1B reached Spearman `.23474` and NDCG `.96763`, with paired deltas `+.12111` and `+.00476`; both CIs cross zero. It is retained as a promising L-tier engineering candidate only. Full release uses an immutable manifest and never reads the 40-video holdout.
+
+### SUB_E_INTERNVIDEO2_NATIVE_V1 release (2026-09-26)
+
+InternVideo2-1B + native-QVH Temporal U-Net + unchanged YuNet `true_face_smooth` completed frozen 174-video inference. Two fixed parity shards were merged in index order; project/independent/unzip checks all passed. 2,049,501,387 loaded bytes, 1,022,373,889 parameters, 87,637 predictions, zero empty videos. ZIP is READY_TO_UPLOAD; official score remains null.

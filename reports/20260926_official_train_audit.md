@@ -39,6 +39,8 @@ The frozen A0/DeiT experiments used 27 TVSum train videos (366,499,017 B, 6,732.
 The remote `/data/aic` inventory does not contain these 130 GB of shards; it contains the older TVSum/SumMe/DHF1K/RetargetVid assets and cached features. Any full-data experiment must explicitly import this package (preserving `train`/`val` source isolation and the weak-label version) before training.
 
 Machine-readable details are in [`official_train_inventory.jsonl`](official_train_inventory.jsonl).
+The source-to-capability mapping is versioned in
+[`official_train_capability_matrix.json`](official_train_capability_matrix.json).
 
 ## Reproducible importer output
 

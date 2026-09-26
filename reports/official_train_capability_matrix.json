@@ -1,0 +1,37 @@
+{
+  "protocol": "official_train_capability_matrix_v1",
+  "package": "challenge-provided QVHighlights-derived training package",
+  "label_warning": "seed weak labels; not native human ground truth",
+  "sources": [
+    {
+      "dataset": "QVHighlights-derived",
+      "records": 987,
+      "verified_video_files": 889,
+      "missing_video_files": 98,
+      "splits": {"train_records": 887, "val_records": 100,
+                 "verified_train": 800, "verified_val": 89},
+      "capabilities": {
+        "generic_highlight": "weak teacher timeline and segments",
+        "temporal_grounding": "weak teacher timeline; no native human span GT",
+        "summary": "not established; do not equate with TVSum summary importance",
+        "spatial_crop": "seed cropRois/crop_keyframes for 624 records; dropped_center_default for 363",
+        "tracking": "seed crop keyframes only where present; no independent tracker GT",
+        "quality": "annotation quality metadata only; no independent quality labels",
+        "audio_event": "audio stream is present in verified clips; no audio-event targets",
+        "query_text": "no supervised query/text target in the importer",
+        "native_aic_gt": false
+      },
+      "target_protocols": {
+        "temporal": "qvh_seed_timeline_linear_v1",
+        "spatial": "seed crop observations with dropped_center_default mask",
+        "official_metric": null
+      },
+      "leakage_controls": [
+        "annotation dataset_split preserved",
+        "source_vid used as source_group",
+        "train/val manifests contain only verified files",
+        "official test package is not read by importer"
+      ]
+    }
+  ]
+}

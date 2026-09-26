@@ -89,3 +89,11 @@
 - [x] Frozen-checkpoint human-saliency sanity on exposed videos; CI crosses zero.
 - [x] Freeze source-disjoint native 96/24/40 protocol, exclude historical weak sources from holdout.
 - [ ] Build query-aware or explicitly masked native-human training targets; compare frozen/partial FT on train/dev without opening holdout metrics.
+
+## Current narrowed task
+
+- [x] Push historical official scores/probe/native protocol evidence to GitHub main.
+- [x] Freeze native 96/24 masked-label D/E training controls; no holdout.
+- [ ] Finish three matched representations and paired DEV analysis.
+- [ ] Only evidence-supported D/E: freeze -> raw smoke -> 174-video JSONL -> validators -> ZIP.
+- [ ] Publish final READY/NOT READY, weight accounting and size break-even; do not upload.

@@ -236,3 +236,7 @@ Decision：不根据单次弱标签分数升级候选。完成 frozen vs last-bl
 ## Native QVH next-stage gate
 
 Weak-label position prior outranks all tested encoders, so do not scale weak-supervision claims alone. Native human saliency is query-conditioned and only partially rated: no silent conversion of missing scores to negative generic highlights. QVH_NATIVE_BOUNDED_V1 freezes 96/24/40 distinct sources; holdout only for frozen candidates. The ten exposed-video human sanity result is exploratory and cannot promote VideoMAE.
+
+## D/E candidate freeze gate
+
+Do not consume official test until native DEV supports representation ranking, not merely calibration F1. Train a matched DeiT control because old SUB_C uses TVSum. Do not call weak/native saliency a local AIC score. Keep .35 threshold and original dense_v1 YuNet. All candidates require immutable weight+code hashes, complete 174-video coverage, independent schema check, project validator and ZIP regression before READY. GitHub synchronization authorized; no platform upload.

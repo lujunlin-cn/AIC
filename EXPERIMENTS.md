@@ -172,3 +172,7 @@ Native public annotations now match 6,384 train / 1,354 val raw videos; first 5/
 Frozen weak-trained clip heads evaluated on human-rated clips in the previously exposed ten-video weak validation set: Spearman VideoMAE .23530 / DeiT .17771 / A0 .12251 / ViT-B .02553. VideoMAE−DeiT delta +.05759, paired 95%CI [-.21716,+.33909]; no upgrade. Nine queries belong to native TRAIN and one native VAL: this is a label sanity check, not native validation or OOD. No human labels were used to change checkpoints or thresholds. Reports: `reports/qvh_human_sanity_20260926/`.
 
 Cache provenance bug fixed for future extraction: explicit encoder identity no longer overwritten by ResNet18. Existing caches preserved with external provenance audit.
+
+## NATIVE_CANDIDATE_V1 (running)
+
+Hypothesis: native-human QVH supervised heads on frozen video encoders improve ranking over matched DeiT without changing spatial pipeline. Frozen protocol: `configs/NATIVE_FOUNDATION_CANDIDATES_V1.json`; 96 train/24 dev, no holdout, 20 epochs, seed 20260926, BCE on rated clips only, fixed .35 prediction threshold. Physical GPUs6/5 for DeiT/VideoMAE; 2/4 independent InternVideo shards. Outputs `/data/aic/experiments/NATIVE_CANDIDATE_V1`. Per-job timeout7200s. New data/anchor context confounds vs old SUB_C explicitly retained; no model upgrade while running.

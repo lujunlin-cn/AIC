@@ -120,3 +120,7 @@ Native public annotations now match 6,384 train / 1,354 val raw videos; first 5/
 Frozen weak-trained clip heads evaluated on human-rated clips in the previously exposed ten-video weak validation set: Spearman VideoMAE .23530 / DeiT .17771 / A0 .12251 / ViT-B .02553. VideoMAE−DeiT delta +.05759, paired 95%CI [-.21716,+.33909]; no upgrade. Nine queries belong to native TRAIN and one native VAL: this is a label sanity check, not native validation or OOD. No human labels were used to change checkpoints or thresholds. Reports: `reports/qvh_human_sanity_20260926/`.
 
 Cache provenance bug fixed for future extraction: explicit encoder identity no longer overwritten by ResNet18. Existing caches preserved with external provenance audit.
+
+## Candidate D/E controlled build in progress
+
+GitHub main synchronized through prior evidence; native training code frozen at c1156e7. No official upload. `NATIVE_CANDIDATE_V1` runs 96 train / 24 dev only with a matched retrained DeiT control. Original holdout is not materialized. Masked query-averaged human saliency /4; target binary threshold .75; prediction threshold fixed at SUB_C .35. Same U-Net family, original PTS interpolation and YuNet dense_v1. Explicit additional variables versus SUB_C: native supervision and 2-second feature anchors; VideoMAE16/InternVideo8 temporal context. These are not pure backbone-only comparisons against historical SUB_C. Candidate export waits for DEV evidence. Current regression 97 passed.

@@ -1,0 +1,17 @@
+{
+ "hypothesis": "Frozen video representations improve human saliency ranking relative to a matched DeiT control while retaining SUB_C head family and spatial exporter",
+ "split": "splits/qvh_native_bounded_v1.json",
+ "training": "96 train / 24 dev only; 40 holdout not materialized",
+ "target": "mean supplied human query-conditioned saliency /4; unannotated 2-second bins masked; not generic negative labels",
+ "heads": "same TemporalUNet family; input adapter width depends on representation",
+ "sampling": "2 FPS decoded frames, output anchor every 4 samples; DeiT single frame, VideoMAE 16-frame centered context, InternVideo2 8-frame centered context; boundary replicate",
+ "confounds_vs_SUB_C": ["TVSum to QVH supervision", "2-second rather than 0.5-second feature anchors", "clip temporal context", "representation pretraining"],
+ "threshold": 0.35,
+ "prediction_construction": "existing linear probability interpolation on original PTS",
+ "spatial": "unchanged dense_v1 YuNet true_face_smooth alpha .25",
+ "epochs": 20, "seed": 20260926, "learning_rate": 0.001, "weight_decay": 0.0001,
+ "selection": "DEV macro Spearman, tie NDCG; no threshold sweep",
+ "submission_gate": "positive ranking/native signal vs matched DeiT, no F1-only upgrade; then immutable weights/config and raw E2E technical gate",
+ "max_training_seconds": 7200,
+ "official_f_video": null
+}

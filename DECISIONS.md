@@ -205,3 +205,30 @@ Status：Accepted for upload preparation; no official score claim。
 Evidence：正式包 174/174 视频完整解码，16:9=119、9:16=55，未提供标签；SUB_A、SUB_B、SUB_C 均使用已冻结 checkpoint、DEV-derived threshold 和固定 spatial policy，在物理 GPU 2/4/5 完成全量推理。三个根目录 ZIP 只有 `predictions.jsonl`，项目 validator、独立 checker 和解压回归均为 zero errors。SUB_C 是 DeiT-S + YuNet `true_face_smooth` spatial differential candidate，不称为 A0_face_ema 或官方优胜。
 
 Decision：保留 SUB_A 作为第一上传的 engineering fallback，随后上传 SUB_B（DeiT-S temporal 对照）和 SUB_C（空间差异对照）。正式测试集没有训练、人工修正、逐视频调参或第三方 API 使用；`official_f_video` 和 `competition_score` 保持 `null`。等待用户在平台上传，不由 Agent 自动提交。
+# 2026-09-26：官方 raw 反馈改变模型规模优先级
+
+Status：Accepted for next search; not a claim about local proxy generalization。
+
+Evidence：平台反馈 `SUB_A=1.01`、`SUB_B=6.08`、`SUB_C=6.64`。B/C temporal outputs are identical and YuNet changes 8,130/8,133 boxes, giving an isolated `+0.56` raw spatial differential. Relative to C, M and L raw break-even values are `6.98947` and `7.37778`。
+
+Decision：保留 A0 作为工程 fallback，优先测试更强 S/M 组件；不因 0.95 系数放弃 100–500M 甜点区。每个候选同时记录参数量、实际加载权重 bytes 及两种 size interpretation。ViT-B 是第一个 bounded capacity reference；在没有官方新分数前不把它升级为 winner。
+
+# 2026-09-26：130GB package 的正确语义
+
+Status：Accepted。
+
+Evidence：本地发现 `/home/hajimi2025/datasets/data-challenge-2026/video_highlight`，129.308GB 压缩 shards、11,245 MP4、987 条 QVHighlights-derived seed weak labels；889 个标注 clip 可匹配，98 个缺失。记录的 seed model/prompt 是自动弱标签，包内没有独立 license/readme/manifest。
+
+Decision：将其版本化为 `aic_qvh_seed_weak_training_v1`，与 TVSum summary proxy 分开；所有结果标明 `official_aic_gt=false`。先做有界 5% ingestion/head/finetune pilot，再决定是否迁移更多数据；不把该包称为原生 QVHighlights human GT。
+
+# 2026-09-26：首轮数据规模与微调诊断
+
+Status：Exploratory。
+
+Evidence：TVSum DeiT frozen-head D25/D50/D100 macro F1@0.5 为 `.0528/.0422/.1214`，单 split 非单调；QVHighlights weak-label 37/9 frozen DeiT pilot validation macro F1 `.67846`、Spearman约`.393`，仅说明新域 pipeline 可运行。
+
+Decision：不根据单次弱标签分数升级候选。完成 frozen vs last-block raw-video control 后，若收益在第二个 source-group split 保持，再考虑扩大 QVHighlights 抽取；否则停止无边界全量特征化。
+
+## 2026-09-26：来源与参数口径纠正
+
+用户明确赛方不提供训练数据。本地130GB资产只能称local QVHighlights-derived weak-label asset，供应方未核实；保留既有审计数值但撤回官方提供的描述。100–500M参数为本轮重点，不等同100–500MB权重；所有候选同时记录参数和实际bytes。VideoMAEv2-Base约86M参数不满足该参数甜点区，InternVideo2-1B属于L参考。无效VideoMAE归一化run不得进入模型排名；修复使用新run并匹配clip target对照。

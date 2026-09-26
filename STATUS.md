@@ -14,13 +14,13 @@
 
 ## 当前候选
 
-- **Engineering Fallback / 当前保守 Best S：A0_006**，ResNet18 + repaired Temporal U-Net，raw threshold 0.40（历史 DEV 选择）+ center，完整 FP16 文件 **25,685,169 bytes**。原视频到 JSONL 可运行。
-- **S-tier Promising Challenger：DeiT-S/16**，完整 FP16 **46,618,447 bytes**。nested CV 的摘要均值较好，但配对区间跨 0，SumMe 小样本 OOD 没有复现优势；不升级 Primary。
+- **Engineering Fallback：A0_006**，ResNet18 + repaired Temporal U-Net，raw threshold 0.40（历史 DEV 选择）+ center，完整 FP16 文件 **25,685,169 bytes**。原视频到 JSONL 可运行。
+- **TVSum/OOD challenger：DeiT-S/16**，完整 FP16 **46,618,447 bytes**。nested CV 的摘要均值较好，但配对区间跨 0，SumMe 小样本 OOD 没有复现优势；不升级 Primary。
 - **Best M / semantic reference：ViT-B/16**，完整 FP16 **174,986,447 bytes**。TVSum 摘要与 DeiT-S 近乎持平，目前无证据证明额外体积值得。
 - **Current Temporal Best：没有同时在全部指标/数据集可靠胜出的单一模型。** TVSum summary 均值 DeiT-S 略高，Spearman ViT-B 略高，首批 SumMe OOD A0 较好。
 - **Current Spatial Best：true_face_smooth 是本地均值最高的探索配置，非已确认胜者。** Center 保持默认；YuNet 是人脸观察器，不是完整主体理解；新增权重 232,589 bytes。
 - **最新多人主体对照：`SPATIAL_GROUP_003` 未通过升级门槛。** 固定 top-3 人脸面积/置信度群体中心相对 `true_face_smooth` 双比例 IoU `-0.00264`，20/20 视频没有正增益；相对 center `+0.00590` 但 CI `[-0.01690, +0.02739]` 跨 0。保留接口与负结果，不改默认。
-- **Best Overall / official_f_video / competition_score：null**，尚无 AIC 联合 GT/官方反馈，不能用 temporal 与 spatial 两个不同数据集的分数拼接出比赛成绩。
+- **Best measured official candidate：SUB_C，raw 6.64**。官方反馈来自用户，未获得本地联合 GT；local proxy 不能冒充官方成绩。A0 仅保留工程 fallback。
 
 官方平台 raw 反馈已记录为外部证据；本地 `official_f_video` 字段仍只表示有无可复现联合 evaluator，不能用代理指标冒充官方 F_video。
 
@@ -98,3 +98,10 @@
 - 标注全部携带 `seed_weak_training_label_v1`、Doubao seed provenance；624 条有 seed crop observations，363 条为 `dropped_center_default`。当前没有 native human temporal/crop GT，不能将其写成官方 AIC 标签。
 - `scripts/prepare_qvh_training_manifest.py` 已生成外部可复现 manifest v3：800 verified train / 89 verified val，33.208 h / 3.703 h，标签协议 `qvh_seed_timeline_linear_v1`；canonical dataset manifest 与 cache manifests 均已通过生成和 schema 检查。
 - 当前 A0/DeiT 冻结模型使用的是 27 条 TVSum train 视频，未使用该 130 GB 包。首批 QVHighlights frozen/finetune 仅为有界弱标签诊断，结果和协议见 `reports/20260926_scaling_experiments.md`；不得与 TVSum proxy 或官方 F_video 混称。
+
+## Continuation correction (2026-09-26)
+
+- 用户确认赛方不提供130GB训练集；本地QVH资产来源供应方未独立核实，不能因目录名称其官方提供。它包含自动seed弱标签，不是人工赛事GT。
+- 模型档位按用户最新参数量口径探索：≤100M / 100–500M / 500M–9B；同时保留附件中的文件bytes口径作双重审计，不能把86M参数VideoMAEv2称为100–500M参数候选。
+- 最新远程核验：VideoMAEv2源权重344,924,592B；InternVideo2 Stage1-1B K700文件2,042,600,861B，已下载并可读取state dict。下载完成不等于已验证泛化。
+- VideoMAE旧probe发现归一化与模型配置不一致、缓存缺timestamps，结果无效并保留；修正run由实验进程继续。

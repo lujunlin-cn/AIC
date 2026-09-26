@@ -51,3 +51,28 @@
 - [x] A0 center、DeiT-S center、DeiT-S + YuNet spatial 均完成全量冻结推理，记录逐候选运行时间、空输出率、权重清单和 validator 审计。
 - [x] 三个正式 JSONL 通过项目 validator、独立 checker、ZIP 解压回归；根目录上传 ZIP 已生成并记录 SHA256，见 `reports/20260926_official_test_inference.md`。
 - [ ] 等待用户按 SUB_A → SUB_B → SUB_C 上传；官方平台字段/联合 evaluator 仍待确认，禁止 Agent 自动提交。
+# P0 — Official score driven next experiments
+
+- [ ] Finish and archive `QVH_FINETUNE_PROBE_20260926` frozen vs DeiT-S last-block controls on the matched 37/9 weak-label subset.
+- [ ] Build a fair ViT-B + YuNet official inference candidate; audit both parameter count and loaded bytes before any submission.
+- [ ] Re-run A0/DeiT temporal heads with one identical trainer/AMP/checkpoint rule to reduce the A→B causal confound.
+
+# P1 — Public data and model scaling
+
+- [ ] Expand QVHighlights-derived extraction only after the 5% pilot passes label/time-axis checks; keep `official_aic_gt=false`.
+- [ ] Add a bounded VideoMAE-V2/InternVideo2/UniVTG candidate inventory with V100 compatibility, license, parameter count and weight bytes. Start with one downloadable M-tier reference.
+- [ ] Test 4 FPS against the frozen DeiT/SUB_C protocol on a source-group validation subset before increasing backbone scale.
+- [ ] Use the official raw break-even values: M `>6.98947`, L `>7.37778` relative to C=6.64.
+
+# P2 — Spatial and multi-task
+
+- [ ] Train/evaluate a generic subject/crop head on the 624 weak crop-labelled QVHighlights rows only after temporal controls are stable.
+- [ ] Add low-cost audio features only with decoded waveform evidence; do not revive the zero audio proxy.
+
+## Continuation P0
+
+- [x] Audit original source IDs: 23 shared sources in 800/89, emit train-purged 775/89 protocol.
+- [x] InternVideo2 Stage1-1B V100 FP16 compatibility (8f/16f); no highlight quality claim.
+- [ ] Complete corrected VideoMAEv2 V2 and matched clip-target controls before comparing representations.
+- [ ] Use native human QVH labels for confirmation; current seed-label agreement cannot establish human highlight quality.
+- [ ] Evaluate a genuine 100–500M-parameter encoder; VideoMAEv2-Base and ViT-B are below that parameter range.

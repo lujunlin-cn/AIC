@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Prepare a provenance-first manifest for the supplied QVHighlights train set.
 
-The AIC training package contains 150 s QVHighlights clips and weak temporal /
+The locally discovered QVH-derived asset contains 150 s QVHighlights clips and weak temporal /
 spatial annotations.  This utility does not decode frames or train a model. It
 indexes the clips, creates frame-indexed soft temporal labels from the supplied
 1 Hz timeline, and writes an extractor-compatible manifest. Missing source
@@ -205,7 +205,7 @@ def main() -> int:
             "annotation_type": "qvh_seed_temporal_spatial_weak",
             "annotation_path": str(label_path),
             "notes": (
-                "Challenge-provided QVHighlights-derived seed weak labels; "
+                "Local QVHighlights-derived seed weak labels; supplier unverified; "
                 "linear timeline interpolation v1; not native human GT; "
                 "official_aic_gt=false"
             ),

@@ -1,6 +1,6 @@
 {
   "protocol": "official_train_capability_matrix_v1",
-  "package": "challenge-provided QVHighlights-derived training package",
+  "package": "local QVHighlights-derived weak-label asset; supplier unverified",
   "label_warning": "seed weak labels; not native human ground truth",
   "sources": [
     {
@@ -8,8 +8,12 @@
       "records": 987,
       "verified_video_files": 889,
       "missing_video_files": 98,
-      "splits": {"train_records": 887, "val_records": 100,
-                 "verified_train": 800, "verified_val": 89},
+      "splits": {
+        "train_records": 887,
+        "val_records": 100,
+        "verified_train": 800,
+        "verified_val": 89
+      },
       "capabilities": {
         "generic_highlight": "weak teacher timeline and segments",
         "temporal_grounding": "weak teacher timeline; no native human span GT",
@@ -27,11 +31,12 @@
         "official_metric": null
       },
       "leakage_controls": [
-        "annotation dataset_split preserved",
-        "source_vid used as source_group",
-        "train/val manifests contain only verified files",
-        "official test package is not read by importer"
+        "original source extracted by removing clip timestamps",
+        "full original split has 23 shared original sources; QVH_SOURCE_PURGE_V1 removes 25 train clips",
+        "775 train / 89 val after purge",
+        "official test package excluded"
       ]
     }
-  ]
+  ],
+  "correction": "User confirmed no organizer training dataset. Historical protocol name retained for traceability."
 }

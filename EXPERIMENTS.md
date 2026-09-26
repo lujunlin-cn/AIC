@@ -128,3 +128,39 @@ The SumMe ModelScope repository cloned metadata and five sample MAT files, but i
 - Change: added `AIC_EVAL_INTAKE_V1`, `prepare_eval_set.py`, `run_eval_candidates.py`, and direct raw-video `release_batch.py`; no training, labels, threshold search, or official score.
 - Evidence: local and remote A0 release smoke exit 0; loaded bytes `25,685,169`; final JSONL validator valid; local tests `83 passed`.
 - Decision: accepted as the only entry path for a new evaluation set. Preserve original index/archive and never overwrite intake or prediction runs.
+## 2026-09-26 official-score diagnosis and scaling
+
+### OFFICIAL_SCORE_DIAG_20260926
+
+- **Hypothesis:** the official gap is caused by a combination of visual representation, calibration, and spatial crop quality; the B/C pair can isolate the spatial contribution.
+- **Change:** compare frozen release manifests and platform feedback without touching the official test set.
+- **Result:** A0/center `1.01`, DeiT-S/center `6.08`, DeiT-S/YuNet `6.64`; B/C selected-frame lists are identical and 8,130/8,133 bboxes differ.
+- **Conclusion:** YuNet contributes `+0.56` raw in this controlled official differential. A→B is system-level evidence, not a pure parameter intervention.
+- **Record:** `reports/20260926_official_score_diagnosis.md`.
+
+### DATA_SCALE_20260926
+
+- **Hypothesis:** the 27-video TVSum training set is too small for the current DeiT temporal head.
+- **Control:** DeiT-S frozen features, same 16-video validation set, Temporal U-Net, BCE, seed `20260926`, 20 epochs; deterministic train prefixes of 7/14/27 videos.
+- **Result:** D25 `.0527846` (epoch 16, 10.95s), D50 `.0421875` (epoch 17, 13.78s), D100 `.1214247` (epoch 11, 19.43s) video-macro F1@0.5.
+- **Conclusion:** one TVSum split is too noisy for a monotonic curve; D100 is higher but this is not a promotion or an AIC score.
+
+### QVH_DEITS_QUICK_5PCT
+
+- **Hypothesis:** QVHighlights-derived weak temporal supervision can provide a different-domain temporal signal.
+- **Change:** deterministic 40/10 matched clip pilot, 2 FPS DeiT-S frozen features, same Temporal U-Net and 20-epoch budget.
+- **Result:** 37/9 clips after missing-source filtering; best weak-label validation macro F1 `.67846`, Spearman about `.393`, 29.25s.
+- **Conclusion:** ingestion and head training work on the new domain. The labels are seed weak labels, not human GT or AIC F_video; no backbone finetune has been claimed.
+
+### QVH_FINETUNE_PROBE_20260926
+
+- **Hypothesis:** unfreezing the final DeiT-S block can improve task adaptation at no inference parameter-count increase.
+- **Status:** bounded 2-epoch raw-video last-block and frozen-head controls are running on the same 37/9 weak-label subset. Results will be added when both runs finish.
+
+## 2026-09-26 continuation: integrity before scaling
+
+`QVH_SOURCE_AUDIT_20260926`: 23 original source IDs cross the full 800/89 split. Purge 25 train clips, keep 89 val unchanged, producing versioned 775/89 protocol. Current 40/10 timeline pilot has no shared source IDs.
+
+`INTERNVIDEO2_SMOKE_8F/16F_20260926`: loaded checkpoint and FP16 standard kernels pass V100; 8f .209517s / 2267.245MiB, 16f .538493s / 3084.064MiB. Engineering-only; no score.
+
+`VIDEOMAE_QVH_PROBE_20260926`: invalid normalization and incomplete cache schema; preserved, excluded from comparisons. Corrected V2 uses ImageNet normalization, timestamps, tie-aware ranking, and identical clip-mean targets for image controls.

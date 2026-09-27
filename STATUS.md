@@ -150,3 +150,9 @@ GitHub main synchronized through prior evidence; native training code frozen at 
 - SUB_F InternVideo2 Stage2-1B native-QVH head + unchanged YuNet completed frozen 174-video inference. Output is 174/174, 87,781 predictions, zero empty videos; project merge validator, independent checker, and post-unzip checker all valid.
 - SUB_F loaded weight bytes `2,827,511,457`, parameters `1,020,930,561`, L tier, expected `k_size=0.90`. ZIP SHA256 `a7622bae7b78712549a344f5b5d61fd1762c395a734d82a2c85173bc344a6537`; it is READY_TO_UPLOAD and has not been uploaded.
 - Full K710 native-QVH extraction and fit-only completed on 96/24 without holdout access. Best epoch 12: F1 `.76543`, Spearman `.19818`, NDCG `.96576`; this is below Stage2 ranking and remains a diagnostic result, not a submission candidate.
+
+## K710 official submission package（2026-09-27）
+
+- K710 frozen candidate `SUB_G_INTERNVIDEO2_K710_NATIVE_V1` completed full official-test inference: 174/174 videos, 87,585 predictions, zero empty videos.
+- Loaded weights `2,049,516,187` bytes, `1,022,373,889` parameters, L tier (`k_size=0.90`). Merge validator, independent checker, and fresh unzip regression all passed.
+- ZIP: `/data/aic/official_test_20260926/submissions/SUB_G_INTERNVIDEO2_K710_NATIVE_V1_FINAL/upload.zip`; SHA256 `a5be193b72e0f18d4a91aabc94f3fd237aa229803db74abc6086100527f61366`. Official score is null until platform evaluation.

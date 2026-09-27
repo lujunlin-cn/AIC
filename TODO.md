@@ -124,3 +124,6 @@
 - [ ] Obtain official feedback for SUB_F if user uploads it; do not auto-upload.
 - [ ] On positive Stage2 feedback, run controlled post-training/adaptation on Stage1/Stage2 using train/dev only; preserve SUB_E 34.43 control.
 - [ ] Keep K710 out of official submission queue unless a new adaptation produces independent positive ranking evidence.
+
+- [x] Produce K710 frozen official JSONL and ZIP package on request.
+- [ ] Wait for user/platform feedback on K710; compare against SUB_E K700 and SUB_F Stage2 without inferring raw score decomposition.

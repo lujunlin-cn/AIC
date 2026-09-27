@@ -193,3 +193,7 @@ The frozen InternVideo2 Stage1-1B K700 candidate received official platform scor
 
 - `INTERNVIDEO2_STAGE2_NATIVE_V1`: fixed threshold `.35`, 2 FPS, native QVH 96/24 head, YuNet `true_face_smooth`; official test was used only for frozen inference. 174/174 videos, 87,781 predictions, zero empty videos. Loaded bytes `2,827,511,457`, parameters `1,020,930,561`, L tier. Project validator, independent checker, and unzip regression passed. ZIP `/data/aic/official_test_20260926/submissions/SUB_F_INTERNVIDEO2_STAGE2_NATIVE_V1_FINAL/upload.zip`, SHA256 `a7622bae7b78712549a344f5b5d61fd1762c395a734d82a2c85173bc344a6537`; official score remains null.
 - `INTERNVIDEO2_K710_NATIVE_V1`: full 96/24 fit-only after 120/120 feature extraction, no holdout access. Best epoch 12 F1 `.76543`, Spearman `.19818`, NDCG `.96576`; lower than Stage2 (`.21433/.96962`), so no official inference and no candidate promotion.
+
+## 2026-09-27 — K710 official package
+
+- `SUB_G_INTERNVIDEO2_K710_NATIVE_V1`: fixed K710 encoder, native-QVH head checkpoint, threshold `.35`, 2 FPS, YuNet `true_face_smooth`; no test-specific tuning. Full output has 174/174 videos, 87,585 predictions, zero empty videos. Weight bytes `2,049,516,187`; L tier; ZIP SHA256 `a5be193b72e0f18d4a91aabc94f3fd237aa229803db74abc6086100527f61366`. All validators and unzip regression passed. Official score remains null.

@@ -262,3 +262,9 @@ Decision：将 InternVideo2 Stage2-1B 冻结为 `SUB_F_INTERNVIDEO2_STAGE2_NATIV
 Evidence：174/174 coverage，87,781 predictions，zero empty videos；weight bytes `2,827,511,457`，L-tier `k_size=0.90`；ZIP SHA256 `a7622bae7b78712549a344f5b5d61fd1762c395a734d82a2c85173bc344a6537`。解压后 independent checker valid。
 
 Decision：K710 完整 native 96/24 结果不升级。其 best Spearman `.19818` / NDCG `.96576` 低于 Stage2 `.21433/.96962`，且只是 native-QVH proxy，停止其官方推理，保留作为 action-pretraining 对照。
+
+## 2026-09-27：按请求制作 K710 提交包
+
+Decision：虽然 K710 native DEV ranking 低于 Stage2，但按用户要求制作独立冻结官方提交包，命名 `SUB_G_INTERNVIDEO2_K710_NATIVE_V1`。它与 Stage1 K700 形成 action-pretraining 差异对照；不将其 DEV proxy 结果写成官方成绩。
+
+Evidence：174/174、87,585 predictions、zero empty videos；2,049,516,187 loaded bytes；ZIP 与解压回归 validator 全部 valid。正式测试只用于推理和格式检查。

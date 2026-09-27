@@ -45,7 +45,12 @@ def load_encoder(kind, root, device):
         state=torch.load(root/'internvideo2_stage1_1b/1B_ft_k710_ft_k700_f8.pth',map_location='cpu',weights_only=True)['module']
     state={k.replace('.ls1.gamma','.ls1.weight').replace('.ls2.gamma','.ls2.weight'):v for k,v in state.items()}
     missing,extra=m.load_state_dict(state,strict=False)
-    if missing or set(extra)!={'fc_norm.weight','fc_norm.bias','head.weight','head.bias'}:raise ValueError((missing,extra))
+    allowed_extra={'fc_norm.weight','fc_norm.bias','head.weight','head.bias'}
+    if stage2:
+        # Stage2 checkpoints also carry clip position/decoder heads that are
+        # irrelevant for frame-level representation extraction.
+        allowed_extra |= {k for k in extra if k.startswith(('img_pos_embed','clip_pos_embed','clip_img_pos_embed','clip_decoder.','final_clip_decoder.'))}
+    if missing or set(extra)-allowed_extra:raise ValueError((missing,extra))
     norm=None if stage2 else nn.LayerNorm(768,eps=1e-6)
     if norm is not None: norm.load_state_dict({k.removeprefix('fc_norm.'):v for k,v in state.items() if k.startswith('fc_norm.')})
     class Encoder(nn.Module):

@@ -254,3 +254,11 @@ Decision：InternVideo2-1B native candidate is READY_TO_UPLOAD as a frozen engin
 Evidence：SUB_E（InternVideo2 Stage1-1B K700 + native-QVH head + YuNet）获得官方平台分数 `34.43`，显著高于 SUB_C `6.64`。平台没有提供 raw/size 分解，因此只记录平台分数，不反推 F_video。
 
 Decision：确认视频原生 foundation 是当前主线。下一步优先测试 Stage2-1B 和 M-tier VideoMAE-Large，再进行后训练；不继续在 DeiT 上做小修小补。
+
+## 2026-09-27：Stage2 release与K710 gate
+
+Decision：将 InternVideo2 Stage2-1B 冻结为 `SUB_F_INTERNVIDEO2_STAGE2_NATIVE_V1` READY_TO_UPLOAD 工程候选，等待用户决定上传，不自动提交。其完整 JSONL/ZIP 闭环已通过，正式测试集只用于冻结推理和格式验证。
+
+Evidence：174/174 coverage，87,781 predictions，zero empty videos；weight bytes `2,827,511,457`，L-tier `k_size=0.90`；ZIP SHA256 `a7622bae7b78712549a344f5b5d61fd1762c395a734d82a2c85173bc344a6537`。解压后 independent checker valid。
+
+Decision：K710 完整 native 96/24 结果不升级。其 best Spearman `.19818` / NDCG `.96576` 低于 Stage2 `.21433/.96962`，且只是 native-QVH proxy，停止其官方推理，保留作为 action-pretraining 对照。

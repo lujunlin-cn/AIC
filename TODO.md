@@ -116,3 +116,11 @@
 - [x] Complete native-QVH DEV probes for VideoMAE-Large and Stage2-1B.
 - [ ] Finish Stage2-1B official frozen inference and validator/ZIP release.
 - [ ] If Stage2 official score is positive, begin controlled post-training on the stronger base.
+
+## 2026-09-27 foundation release
+
+- [x] Complete SUB_F Stage2-1B frozen 174-video inference, merge, validator, independent checker, unzip regression, and manifest.
+- [x] Complete full K710 96/24 extraction and fit-only gate without holdout access.
+- [ ] Obtain official feedback for SUB_F if user uploads it; do not auto-upload.
+- [ ] On positive Stage2 feedback, run controlled post-training/adaptation on Stage1/Stage2 using train/dev only; preserve SUB_E 34.43 control.
+- [ ] Keep K710 out of official submission queue unless a new adaptation produces independent positive ranking evidence.

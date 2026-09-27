@@ -144,3 +144,9 @@ GitHub main synchronized through prior evidence; native training code frozen at 
 - The InternVideo2 Stage1-1B K700 submission received official platform score **34.43**. This is recorded as the platform-reported score; no raw/size decomposition is inferred without an official breakdown.
 - This materially validates video-native foundation scaling over the previous SUB_C score 6.64. Next priority is higher-ceiling foundation candidates, followed by controlled post-training.
 - VideoMAE-Large native DEV: Spearman `.17574`, NDCG `.96752`; InternVideo2 Stage2-1B native DEV: Spearman `.21433`, NDCG `.96962`. Stage2 is the current next submission candidate; both remain selected without official-test tuning.
+
+## Foundation scaling continuation（2026-09-27）
+
+- SUB_F InternVideo2 Stage2-1B native-QVH head + unchanged YuNet completed frozen 174-video inference. Output is 174/174, 87,781 predictions, zero empty videos; project merge validator, independent checker, and post-unzip checker all valid.
+- SUB_F loaded weight bytes `2,827,511,457`, parameters `1,020,930,561`, L tier, expected `k_size=0.90`. ZIP SHA256 `a7622bae7b78712549a344f5b5d61fd1762c395a734d82a2c85173bc344a6537`; it is READY_TO_UPLOAD and has not been uploaded.
+- Full K710 native-QVH extraction and fit-only completed on 96/24 without holdout access. Best epoch 12: F1 `.76543`, Spearman `.19818`, NDCG `.96576`; this is below Stage2 ranking and remains a diagnostic result, not a submission candidate.

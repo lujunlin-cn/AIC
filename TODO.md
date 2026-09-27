@@ -114,8 +114,8 @@
 - [x] Record official SUB_E platform score `34.43`.
 - [x] Download and adapt public VideoMAE-Large (M-tier) and InternVideo2 Stage2-1B (L-tier) with V100-safe inference.
 - [x] Complete native-QVH DEV probes for VideoMAE-Large and Stage2-1B.
-- [ ] Finish Stage2-1B official frozen inference and validator/ZIP release.
-- [ ] If Stage2 official score is positive, begin controlled post-training on the stronger base.
+- [x] Finish Stage2-1B official frozen inference and validator/ZIP release.
+- [ ] With Stage2 official score `34.42`, begin controlled post-training/adaptation on the stronger base using train/dev only.
 
 ## 2026-09-27 foundation release
 
@@ -127,3 +127,10 @@
 
 - [x] Produce K710 frozen official JSONL and ZIP package on request.
 - [ ] Wait for user/platform feedback on K710; compare against SUB_E K700 and SUB_F Stage2 without inferring raw score decomposition.
+
+## Official score discrepancy follow-up
+
+- [x] Audit E/G shard and FINAL ZIP coverage against the 174-entry index.
+- [x] Write root-cause report for G/E01 17.46 versus Stage2 34.42.
+- [ ] Confirm platform-side uploaded-file SHA for G and E01; if shard was uploaded, resubmit only the corresponding FINAL ZIP when allowed.
+- [ ] Do not conclude K710 underperforms until a 174-video FINAL upload is scored.

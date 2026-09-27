@@ -196,4 +196,10 @@ The frozen InternVideo2 Stage1-1B K700 candidate received official platform scor
 
 ## 2026-09-27 — K710 official package
 
-- `SUB_G_INTERNVIDEO2_K710_NATIVE_V1`: fixed K710 encoder, native-QVH head checkpoint, threshold `.35`, 2 FPS, YuNet `true_face_smooth`; no test-specific tuning. Full output has 174/174 videos, 87,585 predictions, zero empty videos. Weight bytes `2,049,516,187`; L tier; ZIP SHA256 `a5be193b72e0f18d4a91aabc94f3fd237aa229803db74abc6086100527f61366`. All validators and unzip regression passed. Official score remains null.
+- `SUB_G_INTERNVIDEO2_K710_NATIVE_V1`: fixed K710 encoder, native-QVH head checkpoint, threshold `.35`, 2 FPS, YuNet `true_face_smooth`; no test-specific tuning. Full output has 174/174 videos, 87,585 predictions, zero empty videos. Weight bytes `2,049,516,187`; L tier; ZIP SHA256 `a5be193b72e0f18d4a91aabc94f3fd237aa229803db74abc6086100527f61366`. All validators and unzip regression passed. Official platform score was subsequently reported as `34.42`; raw/size decomposition remains unavailable.
+
+## 2026-09-27 — Official score root-cause diagnosis
+
+- New feedback: G `17.46`, E01 `17.46`, Stage2 `34.42`. The remote artifact audit shows shard0 packages are 87-line even-ID subsets and FINAL packages are 174-line merged outputs. This explains the exact near-half score pattern far better than a representation failure.
+- K700/K710/Stage2 full outputs use the same spatial policy and have nearly identical selected-frame sets; K700↔K710 changes occur in only 3 videos. No model conclusion is made from G=17.46 until the uploaded file hash is confirmed.
+- Report: `reports/20260927_official_score_root_cause.md`.

@@ -13,4 +13,4 @@ Artifacts:
 
 The K710 comparison completed full 96/24 feature extraction and fit-only training. Its best native-QVH DEV values were F1 `.76543`, Spearman `.19818`, and NDCG `.96576`, below Stage2 `.21433/.96962`; it is therefore retained as a diagnostic control and was not released for official inference.
 
-Official platform score for SUB_F is still `null`; uploading remains a user action.
+Official platform score for SUB_F was subsequently reported as `34.42`; the raw/size decomposition was not provided.

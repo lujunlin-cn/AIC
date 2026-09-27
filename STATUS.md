@@ -143,7 +143,7 @@ GitHub main synchronized through prior evidence; native training code frozen at 
 
 - The InternVideo2 Stage1-1B K700 submission received official platform score **34.43**. This is recorded as the platform-reported score; no raw/size decomposition is inferred without an official breakdown.
 - This materially validates video-native foundation scaling over the previous SUB_C score 6.64. Next priority is higher-ceiling foundation candidates, followed by controlled post-training.
-- VideoMAE-Large native DEV: Spearman `.17574`, NDCG `.96752`; InternVideo2 Stage2-1B native DEV: Spearman `.21433`, NDCG `.96962`. Stage2 is the current next submission candidate; both remain selected without official-test tuning.
+- VideoMAE-Large native DEV: Spearman `.17574`, NDCG `.96752`; InternVideo2 Stage2-1B native DEV: Spearman `.21433`, NDCG `.96962`. Stage2 full package subsequently received official platform score **34.42**; no raw/size decomposition is inferred.
 
 ## Foundation scaling continuation（2026-09-27）
 
@@ -155,4 +155,11 @@ GitHub main synchronized through prior evidence; native training code frozen at 
 
 - K710 frozen candidate `SUB_G_INTERNVIDEO2_K710_NATIVE_V1` completed full official-test inference: 174/174 videos, 87,585 predictions, zero empty videos.
 - Loaded weights `2,049,516,187` bytes, `1,022,373,889` parameters, L tier (`k_size=0.90`). Merge validator, independent checker, and fresh unzip regression all passed.
-- ZIP: `/data/aic/official_test_20260926/submissions/SUB_G_INTERNVIDEO2_K710_NATIVE_V1_FINAL/upload.zip`; SHA256 `a5be193b72e0f18d4a91aabc94f3fd237aa229803db74abc6086100527f61366`. Official score is null until platform evaluation.
+- ZIP: `/data/aic/official_test_20260926/submissions/SUB_G_INTERNVIDEO2_K710_NATIVE_V1_FINAL/upload.zip`; SHA256 `a5be193b72e0f18d4a91aabc94f3fd237aa229803db74abc6086100527f61366`. Official score was subsequently reported as **34.42**; raw/size decomposition remains unavailable.
+
+## Official score root-cause analysis（2026-09-27）
+
+- New platform feedback: G `17.46`, E01 `17.46`, Stage2 `34.42`.
+- Audit found the parallel-release trap: `SUB_G_shard0` and `SUB_E_shard0` each contain only 87 even-ID videos, while the corresponding `*_FINAL` packages contain all 174 videos. The 17.46 value is approximately half of the 34.42–34.43 full-coverage score range.
+- K710 full JSONL differs from K700 on only 3 videos / 340 net frame-set changes, with identical YuNet boxes on common frames; model quality cannot explain a 2x score drop. Treat G=17.46 as a package-coverage/upload-file issue until the platform-side uploaded SHA is confirmed.
+- Full report: `reports/20260927_official_score_root_cause.md`.

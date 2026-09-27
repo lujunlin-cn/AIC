@@ -268,3 +268,9 @@ Decision：K710 完整 native 96/24 结果不升级。其 best Spearman `.19818`
 Decision：虽然 K710 native DEV ranking 低于 Stage2，但按用户要求制作独立冻结官方提交包，命名 `SUB_G_INTERNVIDEO2_K710_NATIVE_V1`。它与 Stage1 K700 形成 action-pretraining 差异对照；不将其 DEV proxy 结果写成官方成绩。
 
 Evidence：174/174、87,585 predictions、zero empty videos；2,049,516,187 loaded bytes；ZIP 与解压回归 validator 全部 valid。正式测试只用于推理和格式检查。
+
+## 2026-09-27：17.46 分数先按单 shard 上传错误处理
+
+Evidence：`SUB_G_shard0` 和 `SUB_E_shard0` 都是 87/174 个视频、偶数 video_id；对应 FINAL 包是 174/174。17.46 约为 Stage2/K700 完整包 34.42/34.43 的一半。K710 与 K700 完整 JSONL 共同帧 bbox 完全一致，只有 3 个视频少量帧集合变化。
+
+Decision：在平台侧确认上传文件 SHA 前，不把 G 的 17.46 解释为 K710 模型能力。后续只上传 `*_FINAL/upload.zip`，上传前检查 ZIP 内 JSONL 行数必须为174，并记录 SHA256。

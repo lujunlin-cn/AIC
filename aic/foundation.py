@@ -24,9 +24,10 @@ def load_encoder(kind, root, device):
         m=timm.create_model('deit_small_patch16_224',pretrained=False,num_classes=0)
         m.load_state_dict(torch.load(root/'deit_small_patch16_224_headless.pt',map_location='cpu',weights_only=True))
         return m.to(device).eval(),1
-    if kind=='videomae':
+    if kind in ('videomae','videomae_large'):
         from transformers import AutoModel
-        return AutoModel.from_pretrained(str(root/'videomaev2'),trust_remote_code=True,local_files_only=True).to(device).eval(),16
+        model_dir=root/('videomae_large' if kind=='videomae_large' else 'videomaev2')
+        return AutoModel.from_pretrained(str(model_dir),trust_remote_code=True,local_files_only=True).to(device).eval(),16
     if kind!='internvideo': raise ValueError(kind)
     src=Path('/data/aic/tmp/InternVideo2/llava-train_videochat/llava/model/multimodal_encoder/internvideo2')
     pkg=types.ModuleType('aic_iv2');pkg.__path__=[str(src)];sys.modules[pkg.__name__]=pkg
@@ -50,7 +51,7 @@ def load_encoder(kind, root, device):
 @torch.inference_mode()
 def encode_video(model, kind, path, device, batch=4):
     samples=list(iter_sampled_frames(path,sample_fps=2,size=224))
-    n=len(samples);length={'deit':1,'videomae':16,'internvideo':8}[kind]
+    n=len(samples);length={'deit':1,'videomae':16,'videomae_large':16,'internvideo':8}[kind]
     anchors,win=anchor_windows(n,length)
     images=_normalise([r[2] for r in samples])
     features=[]

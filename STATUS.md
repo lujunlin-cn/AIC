@@ -163,3 +163,9 @@ GitHub main synchronized through prior evidence; native training code frozen at 
 - Audit found the parallel-release trap: `SUB_G_shard0` and `SUB_E_shard0` each contain only 87 even-ID videos, while the corresponding `*_FINAL` packages contain all 174 videos. The 17.46 value is approximately half of the 34.42–34.43 full-coverage score range.
 - K710 full JSONL differs from K700 on only 3 videos / 340 net frame-set changes, with identical YuNet boxes on common frames; model quality cannot explain a 2x score drop. Treat G=17.46 as a package-coverage/upload-file issue until the platform-side uploaded SHA is confirmed.
 - Full report: `reports/20260927_official_score_root_cause.md`.
+
+## Official score correction（2026-09-27）
+
+- 用户确认 K710 完整 174-video FINAL 包的官方平台分数为 **34.38**。因此此前 G=`17.46` 已确认是单 shard 覆盖问题，而不是 K710 模型质量。
+- 完整包官方结果：K700 `34.43`、Stage2 `34.42`、K710 `34.38`。三者最大差异 `0.05`，均使用相同 L-tier 规则、threshold、2 FPS、Temporal U-Net 和 YuNet spatial；当前没有证据证明 Stage2/K710 超过 K700。
+- 最新报告：`reports/20260927_official_score_root_cause_v2.md`。

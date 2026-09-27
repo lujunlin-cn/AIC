@@ -134,3 +134,10 @@
 - [x] Write root-cause report for G/E01 17.46 versus Stage2 34.42.
 - [ ] Confirm platform-side uploaded-file SHA for G and E01; if shard was uploaded, resubmit only the corresponding FINAL ZIP when allowed.
 - [ ] Do not conclude K710 underperforms until a 174-video FINAL upload is scored.
+
+## Official score correction
+
+- [x] Confirm K710 full FINAL official score `34.38`.
+- [x] Reclassify G/E01 `17.46` as shard coverage failure.
+- [ ] Build a submission preflight that rejects any ZIP whose JSONL coverage is not exactly 174 IDs before upload.
+- [ ] Move next official candidate design from frozen foundation swap to temporal/spatial adaptation with train/dev evidence.

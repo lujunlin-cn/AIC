@@ -274,3 +274,9 @@ Evidence：174/174、87,585 predictions、zero empty videos；2,049,516,187 load
 Evidence：`SUB_G_shard0` 和 `SUB_E_shard0` 都是 87/174 个视频、偶数 video_id；对应 FINAL 包是 174/174。17.46 约为 Stage2/K700 完整包 34.42/34.43 的一半。K710 与 K700 完整 JSONL 共同帧 bbox 完全一致，只有 3 个视频少量帧集合变化。
 
 Decision：在平台侧确认上传文件 SHA 前，不把 G 的 17.46 解释为 K710 模型能力。后续只上传 `*_FINAL/upload.zip`，上传前检查 ZIP 内 JSONL 行数必须为174，并记录 SHA256。
+
+## 2026-09-27：K710 完整包分数修正
+
+Evidence：用户确认 K710 完整 174-video FINAL 包得分 `34.38`；K700 `34.43`、Stage2 `34.42`。此前 G/E01 的 `17.46` 是 87-video shard 上传造成的覆盖问题，不能归因于模型。
+
+Decision：将 K700、Stage2、K710 视为当前冻结 protocol 下同一官方分数窄区间；停止继续只换 foundation 的同构提交。下一轮优先改变 temporal adaptation、采样或 spatial head，并保留 K700 作为 tie-break fallback。

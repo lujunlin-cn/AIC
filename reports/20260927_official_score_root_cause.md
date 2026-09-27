@@ -83,3 +83,7 @@ JSONL: 174 lines / 87,585 predictions
 - E01：`17.46` 与 E shard0 的 87 视频结构一致，暂按“单 shard 误提交”处理；若 E01 实际是另一文件，需用平台侧上传文件 SHA 重新归因。
 
 这份分析没有使用测试视频内容进行调参，也没有改变任何 checkpoint、threshold 或 spatial policy。
+
+## Correction (2026-09-27)
+
+The user subsequently confirmed that the complete 174-video K710 FINAL package scored **34.38**. The earlier 17.46 was therefore a confirmed single-shard upload/coverage result. See `reports/20260927_official_score_root_cause_v2.md` for the final comparison against K700=34.43 and Stage2=34.42.

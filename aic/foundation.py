@@ -63,7 +63,13 @@ def encode_video(model, kind, path, device, batch=4):
             # VideoMAEv2 adapter expects [B,C,T,H,W].
             x=clips if kind=='videomae_large' else clips.permute(0,2,1,3,4)
         x=x.to(device=device,dtype=next(model.parameters()).dtype)
-        y=model(x).float().cpu()
+        out=model(x)
+        if hasattr(out,'last_hidden_state'):
+            # Standard Transformers VideoMAE returns token features; use the
+            # mean token embedding as the clip representation.
+            y=out.last_hidden_state.mean(dim=1).float().cpu()
+        else:
+            y=out.float().cpu()
         if not torch.isfinite(y).all():raise FloatingPointError('encoder output not finite')
         features.append(y.numpy())
     return np.concatenate(features),np.asarray([samples[i][1] for i in anchors]),np.asarray([samples[i][0] for i in anchors])

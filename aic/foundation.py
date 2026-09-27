@@ -28,7 +28,7 @@ def load_encoder(kind, root, device):
         from transformers import AutoModel
         model_dir=root/('videomae_large' if kind=='videomae_large' else 'videomaev2')
         return AutoModel.from_pretrained(str(model_dir),trust_remote_code=True,local_files_only=True).to(device).eval(),16
-    if kind not in ('internvideo','internvideo_stage2'): raise ValueError(kind)
+    if kind not in ('internvideo','internvideo_k710','internvideo_stage2'): raise ValueError(kind)
     src=Path('/data/aic/tmp/InternVideo2/llava-train_videochat/llava/model/multimodal_encoder/internvideo2')
     pkg=types.ModuleType('aic_iv2');pkg.__path__=[str(src)];sys.modules[pkg.__name__]=pkg
     stub=types.ModuleType('aic_iv2.flash_attention_class')
@@ -42,7 +42,9 @@ def load_encoder(kind, root, device):
         raw=torch.load(root/'internvideo2_stage2_1b/InternVideo2-stage2_1b-224p-f4.pt',map_location='cpu',weights_only=False)['module']
         state={k.removeprefix('vision_encoder.'):v for k,v in raw.items() if k.startswith('vision_encoder.')}
     else:
-        state=torch.load(root/'internvideo2_stage1_1b/1B_ft_k710_ft_k700_f8.pth',map_location='cpu',weights_only=True)['module']
+        ck_name='1B_ft_k710_f8.pth' if kind=='internvideo_k710' else '1B_ft_k710_ft_k700_f8.pth'
+        ck_dir='internvideo2_stage1_1b_k710' if kind=='internvideo_k710' else 'internvideo2_stage1_1b'
+        state=torch.load(root/ck_dir/ck_name,map_location='cpu',weights_only=True)['module']
     state={k.replace('.ls1.gamma','.ls1.weight').replace('.ls2.gamma','.ls2.weight'):v for k,v in state.items()}
     missing,extra=m.load_state_dict(state,strict=False)
     allowed_extra={'fc_norm.weight','fc_norm.bias','head.weight','head.bias'}
@@ -64,7 +66,7 @@ def load_encoder(kind, root, device):
 @torch.inference_mode()
 def encode_video(model, kind, path, device, batch=4):
     samples=list(iter_sampled_frames(path,sample_fps=2,size=224))
-    n=len(samples);length={'deit':1,'videomae':16,'videomae_large':16,'internvideo':8,'internvideo_stage2':4}[kind]
+    n=len(samples);length={'deit':1,'videomae':16,'videomae_large':16,'internvideo':8,'internvideo_k710':8,'internvideo_stage2':4}[kind]
     anchors,win=anchor_windows(n,length)
     images=_normalise([r[2] for r in samples])
     features=[]

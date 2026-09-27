@@ -37,7 +37,7 @@ def load_encoder(kind, root, device):
     stub.FlashAttention=Disabled;sys.modules[stub.__name__]=stub
     from aic_iv2.vit_scale_clean import PretrainVisionTransformer_clean
     stage2=kind=='internvideo_stage2'
-    m=PretrainVisionTransformer_clean(in_chans=3,img_size=224,patch_size=14,embed_dim=1408,depth=40,num_heads=16,mlp_ratio=48/11,qkv_bias=False,drop_path_rate=.25,init_values=1e-5,qk_normalization=True,use_flash_attn=False,use_fused_rmsnorm=False,use_fused_mlp=False,attn_pool_num_heads=16,clip_embed_dim=768 if stage2 else None,layerscale_no_force_fp32=False,num_frames=4 if stage2 else 8,tubelet_size=1,sep_pos_embed=False,sep_image_video_pos_embed=False,use_checkpoint=False,checkpoint_num=0,x_vis_return_idx=-1,x_vis_only=False)
+    m=PretrainVisionTransformer_clean(in_chans=3,img_size=224,patch_size=14,embed_dim=1408,depth=40,num_heads=16,mlp_ratio=48/11,qkv_bias=False,drop_path_rate=.25,init_values=1e-5,qk_normalization=True,use_flash_attn=False,use_fused_rmsnorm=False,use_fused_mlp=False,attn_pool_num_heads=16,clip_embed_dim=768,layerscale_no_force_fp32=False,num_frames=4 if stage2 else 8,tubelet_size=1,sep_pos_embed=False,sep_image_video_pos_embed=False,use_checkpoint=False,checkpoint_num=0,x_vis_return_idx=-1,x_vis_only=False)
     if stage2:
         raw=torch.load(root/'internvideo2_stage2_1b/InternVideo2-stage2_1b-224p-f4.pt',map_location='cpu',weights_only=False)['module']
         state={k.removeprefix('vision_encoder.'):v for k,v in raw.items() if k.startswith('vision_encoder.')}

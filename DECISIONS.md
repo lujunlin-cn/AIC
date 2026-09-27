@@ -248,3 +248,9 @@ Decision：VideoMAEv2-Base 不进入官方候选；其 matched native DEV rankin
 ## 2026-09-26：SUB_E release artifact
 
 Decision：InternVideo2-1B native candidate is READY_TO_UPLOAD as a frozen engineering artifact. It has 174/174 coverage and zero validation errors, but remains exploratory because paired DEV CIs cross zero and its L-tier penalty requires raw `>7.3778` to exceed SUB_C weighted score. No automatic platform upload.
+
+## 2026-09-27：InternVideo2 K700 official feedback
+
+Evidence：SUB_E（InternVideo2 Stage1-1B K700 + native-QVH head + YuNet）获得官方平台分数 `34.43`，显著高于 SUB_C `6.64`。平台没有提供 raw/size 分解，因此只记录平台分数，不反推 F_video。
+
+Decision：确认视频原生 foundation 是当前主线。下一步优先测试 Stage2-1B 和 M-tier VideoMAE-Large，再进行后训练；不继续在 DeiT 上做小修小补。

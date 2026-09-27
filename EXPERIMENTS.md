@@ -184,3 +184,7 @@ VideoMAEv2-Base did not beat the matched retrained DeiT-S control on native-QVH 
 ### SUB_E_INTERNVIDEO2_NATIVE_V1 release (2026-09-26)
 
 InternVideo2-1B + native-QVH Temporal U-Net + unchanged YuNet `true_face_smooth` completed frozen 174-video inference. Two fixed parity shards were merged in index order; project/independent/unzip checks all passed. 2,049,501,387 loaded bytes, 1,022,373,889 parameters, 87,637 predictions, zero empty videos. ZIP is READY_TO_UPLOAD; official score remains null.
+
+### Official SUB_E score (2026-09-27)
+
+The frozen InternVideo2 Stage1-1B K700 candidate received official platform score `34.43`. This is a platform score only; official raw/size decomposition was not supplied. It validates the video-native foundation direction and changes the next search toward higher-ceiling bases and controlled post-training.

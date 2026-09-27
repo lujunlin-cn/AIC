@@ -108,3 +108,11 @@
 
 - [x] Complete SUB_E frozen 174-video raw inference, merge, validator, independent checker, and unzip regression.
 - [ ] Decide whether to upload SUB_E after weighing its positive but CI-crossing native ranking signal against the L-tier raw break-even `7.3778`.
+
+## 2026-09-27 foundation scaling
+
+- [x] Record official SUB_E platform score `34.43`.
+- [x] Download and adapt public VideoMAE-Large (M-tier) and InternVideo2 Stage2-1B (L-tier) with V100-safe inference.
+- [x] Complete native-QVH DEV probes for VideoMAE-Large and Stage2-1B.
+- [ ] Finish Stage2-1B official frozen inference and validator/ZIP release.
+- [ ] If Stage2 official score is positive, begin controlled post-training on the stronger base.

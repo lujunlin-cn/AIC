@@ -138,3 +138,9 @@ GitHub main synchronized through prior evidence; native training code frozen at 
 - Merged output: 87,637 predictions, zero empty videos. Project validator, independent checker, and unzip regression all valid with zero errors.
 - Weight bytes `2,049,501,387`; parameters `1,022,373,889`; L tier, expected `k_size=0.90`. ZIP SHA256 `342d36e229f2502d863e8944a4906030050e16282cc94f5cb81138bc9a0d419a`.
 - ZIP path: `/data/aic/official_test_20260926/submissions/SUB_E_INTERNVIDEO2_NATIVE_V1_FINAL/upload.zip`. Official score remains null; do not auto-upload.
+
+## Official SUB_E feedback (2026-09-27)
+
+- The InternVideo2 Stage1-1B K700 submission received official platform score **34.43**. This is recorded as the platform-reported score; no raw/size decomposition is inferred without an official breakdown.
+- This materially validates video-native foundation scaling over the previous SUB_C score 6.64. Next priority is higher-ceiling foundation candidates, followed by controlled post-training.
+- VideoMAE-Large native DEV: Spearman `.17574`, NDCG `.96752`; InternVideo2 Stage2-1B native DEV: Spearman `.21433`, NDCG `.96962`. Stage2 is the current next submission candidate; both remain selected without official-test tuning.

@@ -38,7 +38,7 @@ def main():
   for r in records:
    t0=time.time();path=_record_path(r,None);info=probe_video(path);meta=index[r['video_id']]
    if (info.width,info.height,info.frame_count)!=(meta.width,meta.height,meta.frame_count):raise ValueError('metadata mismatch')
-   feat,times,idx=encode_video(encoder,frozen['kind'],path,'cuda',batch=2 if frozen['kind']=='internvideo' else 8)
+   feat,times,idx=encode_video(encoder,frozen['kind'],path,'cuda',batch=2 if frozen['kind'] in ('internvideo','internvideo_stage2') else 8)
    scores=head(torch.tensor(feat,device='cuda')[None])[0].sigmoid().float().cpu().numpy()
    if not np.isfinite(scores).all():raise FloatingPointError('scores')
    selected=expand_scores(frame_timeline(path),times,scores,frozen['threshold']);wanted=set(selected)

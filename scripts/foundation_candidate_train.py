@@ -41,13 +41,13 @@ def evaluate(head, items, device):
 
 
 def main():
- p=argparse.ArgumentParser();p.add_argument('--kind',choices=['deit','videomae','videomae_large','internvideo'],required=True);p.add_argument('--records',required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--part',type=int,default=0);p.add_argument('--parts',type=int,default=1);p.add_argument('--extract-only',action='store_true');p.add_argument('--fit-only',action='store_true');p.add_argument('--seed',type=int,default=20260926);a=p.parse_args()
+ p=argparse.ArgumentParser();p.add_argument('--kind',choices=['deit','videomae','videomae_large','internvideo','internvideo_stage2'],required=True);p.add_argument('--records',required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--part',type=int,default=0);p.add_argument('--parts',type=int,default=1);p.add_argument('--extract-only',action='store_true');p.add_argument('--fit-only',action='store_true');p.add_argument('--seed',type=int,default=20260926);a=p.parse_args()
  torch.set_num_threads(4);torch.manual_seed(a.seed);np.random.seed(a.seed);random.seed(a.seed)
  a.output.mkdir(parents=True,exist_ok=True);cache=a.output/'features';cache.mkdir(exist_ok=True)
  records=list(map(json.loads,Path(a.records).read_text().splitlines()))
  if {r['split'] for r in records}!={'train','dev'}:raise ValueError('train/dev only')
  device='cuda';start=time.time()
- config={**vars(a),'output':str(a.output),'threshold':.35,'target_binary_threshold':.75,'sample_fps':2,'anchor_stride_samples':4,'clip_frames':{'deit':1,'videomae':16,'videomae_large':16,'internvideo':8}[a.kind],'target':'mean human saliency /4 among supplied query ratings; unannotated clips masked, not negatives','official_f_video':None,'selection':'dev video-macro Spearman; tie dev NDCG','epochs':20,'lr':.001,'weight_decay':.0001,'records_sha256':sha256_file(a.records),'script_sha256':sha256_file(__file__),'adapter_sha256':sha256_file('aic/foundation.py'),'environment':{'python':platform.python_version(),'torch':torch.__version__},'physical_gpu':os.environ.get('CUDA_VISIBLE_DEVICES')}
+ config={**vars(a),'output':str(a.output),'threshold':.35,'target_binary_threshold':.75,'sample_fps':2,'anchor_stride_samples':4,'clip_frames':{'deit':1,'videomae':16,'videomae_large':16,'internvideo':8,'internvideo_stage2':4}[a.kind],'target':'mean human saliency /4 among supplied query ratings; unannotated clips masked, not negatives','official_f_video':None,'selection':'dev video-macro Spearman; tie dev NDCG','epochs':20,'lr':.001,'weight_decay':.0001,'records_sha256':sha256_file(a.records),'script_sha256':sha256_file(__file__),'adapter_sha256':sha256_file('aic/foundation.py'),'environment':{'python':platform.python_version(),'torch':torch.__version__},'physical_gpu':os.environ.get('CUDA_VISIBLE_DEVICES')}
  (a.output/f'config_part{a.part}.json').write_text(json.dumps(config,indent=2)+'\n')
  if not a.fit_only:
   model,_=load_encoder(a.kind,'/data/aic/pretrained',device)
@@ -55,7 +55,7 @@ def main():
    if i%a.parts!=a.part:continue
    dest=cache/(r['vid']+'.npz')
    if dest.exists():continue
-   feat,t,idx=encode_video(model,a.kind,r['video_path'],device,batch=2 if a.kind=='internvideo' else 4)
+   feat,t,idx=encode_video(model,a.kind,r['video_path'],device,batch=2 if a.kind in ('internvideo','internvideo_stage2') else 4)
    np.savez_compressed(dest,features=feat,timestamps=t,frame_indices=idx)
    print(json.dumps({'stage':'extract','kind':a.kind,'index':i,'total':len(records),'timesteps':len(t),'seconds':time.time()-start}),flush=True)
   (a.output/f'extraction_part{a.part}.json').write_text(json.dumps({'seconds':time.time()-start,'peak_vram':torch.cuda.max_memory_allocated(),'parameters':sum(p.numel() for p in model.parameters())})+'\n')

@@ -57,7 +57,11 @@ def encode_video(model, kind, path, device, batch=4):
     features=[]
     for start in range(0,len(anchors),batch):
         if kind=='deit':x=images[anchors[start:start+batch]]
-        else:x=images[win[start:start+batch]].permute(0,2,1,3,4)
+        else:
+            clips=images[win[start:start+batch]]
+            # HuggingFace VideoMAE expects [B,T,C,H,W]; the custom
+            # VideoMAEv2 adapter expects [B,C,T,H,W].
+            x=clips if kind=='videomae_large' else clips.permute(0,2,1,3,4)
         x=x.to(device=device,dtype=next(model.parameters()).dtype)
         y=model(x).float().cpu()
         if not torch.isfinite(y).all():raise FloatingPointError('encoder output not finite')

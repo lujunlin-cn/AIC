@@ -261,3 +261,26 @@ The frozen InternVideo2 Stage1-1B K700 candidate received official platform scor
 - `T5_CROPHEAD_V3`：LIVE-YT-VC 1,800 视频观测缓存（GPU2）与 1 s Qwen 点（val 178 / train 1,622）；RetargetVid 关键帧候选表。结果见 probe 报告。
 - `OFFICIAL_SCORE_20260928_DENSE_TEMP_V3`：DT_V3 平台 47.88（用户 22:33），相对 TEMP +1.04，交互 +0.11。新最高已知成绩。
 - `T5_CROPHEAD_V3`：H1（x a=.85 b=+.025；y a=.65 b=+.025）dev 选中；LIVE-YT-VC val +0.0062 [+.0034,+.0093]，RV confirm2 +0.0148 [+.0097,+.0200]；H2 MLP 更弱且随 seed 波动。PROMOTED，包 `519a718a…`（174v/78,992f，identity 复现 N0 0 差，keys==TEMP）。探针墙钟 72 s（CPU），LIVE 点推理 178+1,622 视频。
+
+## 2026-09-29 V4 十小时周期（母本 DT_V3 47.88）
+
+公共集数字都不是 AIC 官方分。RV = RetargetVid 6 名标注者；dev2 与 confirm2 均为复用验证集。
+
+- `V4_R0_H1_XONLY`：诊断包。55 个 x 轴视频取 T5 行，119 个 y 轴视频取 TEMP 行。`6ecb766e…`，官方分 null。
+- `V4_H1_AUDIT`：按轴、点位置、人数、有脸分层。见 `reports/20260929_h1_transfer_audit.csv`。
+- `V4_E1_OBS025`：d4 关键帧（官方 11,753 个，新增 5,765 个）。
+  - dev2 +.0067 [.0044,.0091]；confirm2 +.0063 [.0041,.0087]。ADAPT 为 +.0039，未选。
+  - 晋级，包 `f575c9ba…`。
+- `V4_S1_KEYFRAME_INTERP`：同镜头线性插值，无查询。
+  - dev2 +.0110 [.0079,.0145]；confirm2 +.0119 [.0084,.0160]；LIVE val（仅报告）+.0150。
+  - 晋级，包 `501cebce…`。
+- `V4_S2_KEYFRAME_MEDIAN3`：三点中值。
+  - dev2 +.0053 [.0036,.0072]；confirm2 +.0044 [.0028,.0062]。在插值之上只多 +.0005。
+  - 晋级，包 `d62ed910…`（可选）。
+- `V4_E2_CONTEXT_POINT`：dev2 −.0277 [−.0379,−.0178]，12 好 / 55 差。
+  - 主要错误是向中心拉，以及与邻帧混淆。
+  - 否决；未跑 confirm2 与官方推理。
+- `V4_E3_EVENT_TEMP`：片段角色判断。
+  - YTH val 人工 −.0009 [−.0100,+.0076]；YTH train（新）+.0014 [−.011,+.012]。否决。
+- `V4_E3B_EVENT_DROP_ONLY`：在 dev 结果之后预注册，只在 YTH train 上检验：人工 −.0037 [−.0152,+.0051]。否决。
+- `V4_E4_VISUAL_RERANK`：pilot，见报告第 8 节。

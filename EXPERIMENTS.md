@@ -283,4 +283,7 @@ The frozen InternVideo2 Stage1-1B K700 candidate received official platform scor
 - `V4_E3_EVENT_TEMP`：片段角色判断。
   - YTH val 人工 −.0009 [−.0100,+.0076]；YTH train（新）+.0014 [−.011,+.012]。否决。
 - `V4_E3B_EVENT_DROP_ONLY`：在 dev 结果之后预注册，只在 YTH train 上检验：人工 −.0037 [−.0152,+.0051]。否决。
-- `V4_E4_VISUAL_RERANK`：pilot，见报告第 8 节。
+- `V4_E4_VISUAL_RERANK`：pilot，32B 看实际裁剪从 3–5 个同尺寸候选中选一个，正序、倒序两问一致才采纳（10,448 次查询，3,414 s）。
+  - dev2 +.0093 [.0019,.0173]；x +.0174，y +.0012。
+  - 关键帧层面：DENSE .704，选中 .712，候选 oracle .778。选择器只拿到 oracle 增益的约 11%，y 轴为负。
+  - dev2 通过；confirm2 与官方推理进行中。

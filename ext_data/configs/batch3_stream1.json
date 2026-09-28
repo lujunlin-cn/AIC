@@ -1,0 +1,37 @@
+[
+ {
+  "dataset": "ClipShots",
+  "dest": "ClipShots/raw/archives/ClipShots-a",
+  "gdrive": "1iESqNwFTG9f-HXH9ghiv3W-HCa279hfb",
+  "expected_size": 18874368000,
+  "note": "split data.tar.gz part a; Drive folder 1AAhTbNroSFsygHBXa88emCU7f50MxI8t (Tangshitao/ClipShots README)"
+ },
+ {
+  "dataset": "ClipShots",
+  "dest": "ClipShots/raw/archives/ClipShots-c",
+  "gdrive": "1WSIAZ1XJi5-ojKcydgb3Xc_wcTAb8I4j",
+  "expected_size": 10555027769,
+  "note": "split data.tar.gz part c"
+ },
+ {
+  "dataset": "DAVSOD",
+  "dest": "DAVSOD/raw/archives/Easy-35.zip",
+  "gdrive": "1hwlb1t7S_Zahp6GSKW9qlRMQh7lMUhph",
+  "expected_size": 2236362741,
+  "note": "DAVSOD test Easy-35 (CVPR19 test set)"
+ },
+ {
+  "dataset": "DAVSOD",
+  "dest": "DAVSOD/raw/archives/Normal-25.zip",
+  "gdrive": "1bclC888a-3yXc-yTVB5PPnwyPiPi2hNJ",
+  "expected_size": 1535830992,
+  "note": "DAVSOD test Normal-25"
+ },
+ {
+  "dataset": "DAVSOD",
+  "dest": "DAVSOD/raw/archives/Difficult-20.zip",
+  "gdrive": "1ZHf3y96tF7m92L08DnctI3uRh7h-gZo9",
+  "expected_size": 1488447205,
+  "note": "DAVSOD test Difficult-20"
+ }
+]

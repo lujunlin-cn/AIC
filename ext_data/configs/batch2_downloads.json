@@ -1,0 +1,22 @@
+[
+  {"dataset": "GAICD", "dest": "GAICD/raw/archives/GAIC_conference.zip", "gdrive": "1KhmyjoimsQVXqPnLjKZiU4iXNKNyyxqW",
+   "expected_size": 122582995, "note": "GAIC conference release (CVPR19), link from HuiZeng/Grid-Anchor-based-Image-Cropping README"},
+  {"dataset": "GAICD", "dest": "GAICD/raw/archives/GAIC_journal.zip", "gdrive": "1tDdQqDe8dMoMIVi9Z0WWI5vtRViy01nR",
+   "expected_size": 322484500, "note": "GAICD journal release (TPAMI), link from HuiZeng/Grid-Anchor-based-Image-Cropping-Pytorch README"},
+  {"dataset": "DAVSOD", "dest": "DAVSOD/raw/archives/DAVSOD-TrainingSet.zip", "gdrive": "1DnkirrC5R16DSrqEPkMMwY516GudVnYX",
+   "expected_size": 3275931542, "note": "DAVSOD README Google Drive folder 1_seEomJRkLWipHyEl28FQfmjbma-v0_8 (updated 2021-02-18)"},
+  {"dataset": "DAVSOD", "dest": "DAVSOD/raw/archives/DAVSOD-ValidationSet.zip", "gdrive": "1loE9_f947tpkrmM3MkRR04VFi7plJFUN",
+   "expected_size": 2476015874, "note": "DAVSOD README Google Drive folder 1nJ3LhgKOE-Dy73sslxTlD8aSxufC3eQw (updated 2021-02-18)"},
+  {"dataset": "DAVSOD", "dest": "DAVSOD/raw/archives/Easy-35.zip", "gdrive": "1hwlb1t7S_Zahp6GSKW9qlRMQh7lMUhph",
+   "expected_size": 2236362741, "note": "DAVSOD test Easy-35 (CVPR19 test set)"},
+  {"dataset": "DAVSOD", "dest": "DAVSOD/raw/archives/Normal-25.zip", "gdrive": "1bclC888a-3yXc-yTVB5PPnwyPiPi2hNJ",
+   "expected_size": 1535830992, "note": "DAVSOD test Normal-25"},
+  {"dataset": "DAVSOD", "dest": "DAVSOD/raw/archives/Difficult-20.zip", "gdrive": "1ZHf3y96tF7m92L08DnctI3uRh7h-gZo9",
+   "expected_size": 1488447205, "note": "DAVSOD test Difficult-20"},
+  {"dataset": "ClipShots", "dest": "ClipShots/raw/archives/ClipShots-a", "gdrive": "1iESqNwFTG9f-HXH9ghiv3W-HCa279hfb",
+   "expected_size": 18874368000, "note": "split data.tar.gz part a; Drive folder 1AAhTbNroSFsygHBXa88emCU7f50MxI8t (Tangshitao/ClipShots README)"},
+  {"dataset": "ClipShots", "dest": "ClipShots/raw/archives/ClipShots-b", "gdrive": "1TPkjQSTgPCTrfTbn4YPINuocK5l1zLb9",
+   "expected_size": 18874368000, "note": "split data.tar.gz part b"},
+  {"dataset": "ClipShots", "dest": "ClipShots/raw/archives/ClipShots-c", "gdrive": "1WSIAZ1XJi5-ojKcydgb3Xc_wcTAb8I4j",
+   "expected_size": 10555027769, "note": "split data.tar.gz part c"}
+]

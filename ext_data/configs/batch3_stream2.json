@@ -1,0 +1,9 @@
+[
+ {
+  "dataset": "ClipShots",
+  "dest": "ClipShots/raw/archives/ClipShots-b",
+  "gdrive": "1TPkjQSTgPCTrfTbn4YPINuocK5l1zLb9",
+  "expected_size": 18874368000,
+  "note": "split data.tar.gz part b"
+ }
+]

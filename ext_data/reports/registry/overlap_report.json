@@ -1,0 +1,169 @@
+{
+  "generated": "2026-09-28T19:21:55+08:00",
+  "cross_dataset_group_overlap": {
+    "DHF1K & RetargetVid": {
+      "groups": 200,
+      "examples": [
+        "dhf1k:043",
+        "dhf1k:056",
+        "dhf1k:064",
+        "dhf1k:066",
+        "dhf1k:079"
+      ]
+    },
+    "DAVSOD & DHF1K": {
+      "groups": 60,
+      "examples": [
+        "dhf1k:043",
+        "dhf1k:056",
+        "dhf1k:064",
+        "dhf1k:066",
+        "dhf1k:079"
+      ]
+    },
+    "ClipShots & MrHiSum": {
+      "groups": 12,
+      "examples": [
+        "yt:9_sWgIWWLLM",
+        "yt:P3zH2Jr6LNw",
+        "yt:T6jEy0Sw5n8",
+        "yt:i9Ibr3rUj9g",
+        "yt:uBuoYlunOS0"
+      ]
+    },
+    "DAVSOD & RetargetVid": {
+      "groups": 5,
+      "examples": [
+        "dhf1k:043",
+        "dhf1k:056",
+        "dhf1k:064",
+        "dhf1k:066",
+        "dhf1k:079"
+      ]
+    },
+    "MrHiSum & TVSum(in-house)": {
+      "groups": 1,
+      "examples": [
+        "yt:JgHubY5Vw3Y"
+      ]
+    }
+  },
+  "within_dataset": {
+    "ClipShots": {
+      "media": 5917,
+      "groups": 5917,
+      "groups_with_multiple_media": 0
+    },
+    "DAVSOD": {
+      "media": 61,
+      "groups": 60,
+      "groups_with_multiple_media": 1
+    },
+    "DHF1K": {
+      "media": 1000,
+      "groups": 1000,
+      "groups_with_multiple_media": 0
+    },
+    "GAICD": {
+      "media": 3336,
+      "groups": 3336,
+      "groups_with_multiple_media": 0
+    },
+    "LIVE_YT_VC": {
+      "media": 1800,
+      "groups": 1800,
+      "groups_with_multiple_media": 0
+    },
+    "LaSOT": {
+      "media": 40,
+      "groups": 40,
+      "groups_with_multiple_media": 0
+    },
+    "MrHiSum": {
+      "media": 31892,
+      "groups": 31886,
+      "groups_with_multiple_media": 6
+    },
+    "RetargetVid": {
+      "media": 200,
+      "groups": 200,
+      "groups_with_multiple_media": 0
+    },
+    "SA_V": {
+      "media": 1,
+      "groups": 1,
+      "groups_with_multiple_media": 0
+    },
+    "YouTubeHighlights": {
+      "media": 550,
+      "groups": 550,
+      "groups_with_multiple_media": 0
+    }
+  },
+  "aic_official_test_byte_identical_hits": 0,
+  "aic_official_test_note": "official test IDs are platform-native (0..173) without YouTube IDs; only SHA-256 byte identity can be checked; they are never ingested as training data",
+  "split_policy": {
+    "eval_like_official_splits": [
+      "TestLooseL",
+      "TestTightL",
+      "test",
+      "test_difficult20",
+      "test_easy35",
+      "test_normal25",
+      "testing",
+      "val",
+      "validation"
+    ],
+    "val_fraction_hash": 0.1,
+    "inhouse_eval_groups_quarantined": 1,
+    "inhouse_train_groups_seen_externally": 0
+  },
+  "official_train_items_moved_out_of_train": {
+    "MrHiSum->val": 8,
+    "MrHiSum->quarantine": 1
+  },
+  "official_eval_items_assigned_train": {},
+  "aic_split_counts": {
+    "ClipShots": {
+      "train": 5417,
+      "val": 500
+    },
+    "DAVSOD": {
+      "train": 61
+    },
+    "DHF1K": {
+      "train": 600,
+      "val": 100,
+      "test_nolabel": 300
+    },
+    "GAICD": {
+      "val": 700,
+      "train": 2636
+    },
+    "LIVE_YT_VC": {
+      "val": 178,
+      "train": 1622
+    },
+    "LaSOT": {
+      "val": 8,
+      "train": 32
+    },
+    "MrHiSum": {
+      "train": 27883,
+      "val": 4008,
+      "quarantine": 1
+    },
+    "RetargetVid": {
+      "train": 100,
+      "val": 100
+    },
+    "SA_V": {
+      "train": 1
+    },
+    "YouTubeHighlights": {
+      "train": 354,
+      "val": 196
+    }
+  },
+  "groups_with_conflicting_split": []
+}

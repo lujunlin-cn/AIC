@@ -1,0 +1,315 @@
+{
+  "generated": "2026-09-28T19:22:03+08:00",
+  "root": "/data/aic/external_datasets",
+  "datasets": {
+    "ClipShots": {
+      "readiness": "labels_only",
+      "trainable_as": [
+        "shot_boundary"
+      ],
+      "blockers": [
+        "videos: Drive parts not yet complete/extracted"
+      ],
+      "release": "labels 8d033e2591c23b00806179676e0a0b7461468281; videos https://drive.google.com/drive/folders/1AAhTbNroSFsygHBXa88emCU7f50MxI8t",
+      "media": 5917,
+      "media_ready": 0,
+      "bytes": 0,
+      "download_status": {
+        "pending": 5917
+      },
+      "official_split": {
+        "train": 3657,
+        "test": 500,
+        "only_gradual": 1760
+      },
+      "aic_split": {
+        "train": 5417,
+        "val": 500
+      },
+      "annotation_types": {
+        "shot_boundary": 5917
+      },
+      "annotations": 5917,
+      "anomalies": {
+        "odd_transitions": 72,
+        "zero_frame_num": 1
+      }
+    },
+    "DAVSOD": {
+      "readiness": "partial",
+      "trainable_as": [
+        "salient_object_mask",
+        "fixation_points",
+        "saliency_map"
+      ],
+      "blockers": [
+        "missing ['DAVSOD-ValidationSet.zip', 'Difficult-20.zip', 'Easy-35.zip', 'Normal-25.zip']"
+      ],
+      "release": "Drive packages (updated 2021-02-18)",
+      "media": 61,
+      "media_ready": 61,
+      "bytes": 0,
+      "download_status": {
+        "verified": 61
+      },
+      "official_split": {
+        "train": 61
+      },
+      "aic_split": {
+        "train": 61
+      },
+      "annotation_types": {
+        "salient_object_mask": 122,
+        "fixation_points": 61,
+        "saliency_map": 61
+      },
+      "annotations": 244,
+      "anomalies": {}
+    },
+    "DHF1K": {
+      "readiness": "raw_video_trainable",
+      "trainable_as": [
+        "saliency_map",
+        "fixation_points"
+      ],
+      "blockers": [],
+      "release": "author release: video.rar + annotation.rar (Google Drive)",
+      "media": 1000,
+      "media_ready": 1000,
+      "bytes": 4117756894,
+      "download_status": {
+        "verified": 1000
+      },
+      "official_split": {
+        "train": 600,
+        "val": 100,
+        "test": 300
+      },
+      "aic_split": {
+        "train": 600,
+        "val": 100,
+        "test_nolabel": 300
+      },
+      "annotation_types": {
+        "fixation_points": 700,
+        "saliency_map": 700
+      },
+      "annotations": 1400,
+      "anomalies": {}
+    },
+    "GAICD": {
+      "readiness": "image_trainable",
+      "trainable_as": [
+        "image_crop_candidates"
+      ],
+      "blockers": [],
+      "release": "journal + conference packages (Google Drive, author READMEs)",
+      "media": 3336,
+      "media_ready": 3336,
+      "bytes": 323573280,
+      "download_status": {
+        "verified": 3336
+      },
+      "official_split": {
+        "test": 500,
+        "train": 2636,
+        "val": 200
+      },
+      "aic_split": {
+        "val": 700,
+        "train": 2636
+      },
+      "annotation_types": {
+        "image_crop_candidates": 4572
+      },
+      "annotations": 4572,
+      "anomalies": {}
+    },
+    "LIVE_YT_VC": {
+      "readiness": "raw_video_trainable",
+      "trainable_as": [
+        "crop_box_sparse",
+        "crop_box_derived"
+      ],
+      "blockers": [],
+      "release": "LIVE-YT-VC base release via Box; repo 2a91e9492c092c966b10fdc9b369b057d92e8ffb",
+      "media": 1800,
+      "media_ready": 1800,
+      "bytes": 8590656328,
+      "download_status": {
+        "verified": 1800
+      },
+      "official_split": {
+        "none_published": 1800
+      },
+      "aic_split": {
+        "val": 178,
+        "train": 1622
+      },
+      "annotation_types": {
+        "crop_box_sparse": 1800,
+        "crop_box_derived": 1566
+      },
+      "annotations": 3366,
+      "anomalies": {
+        "out_of_bounds_boxes": 72
+      }
+    },
+    "LaSOT": {
+      "readiness": "sample_only",
+      "trainable_as": [
+        "object_track_box (sample)"
+      ],
+      "blockers": [
+        "full set = 70 category zips, ~248 GB; only a sample downloaded this round"
+      ],
+      "release": "LaSOT (1,400 seq, 70 categories); sample categories only",
+      "media": 40,
+      "media_ready": 40,
+      "bytes": 0,
+      "download_status": {
+        "sample_only": 40
+      },
+      "official_split": {
+        "test": 8,
+        "train": 32
+      },
+      "aic_split": {
+        "val": 8,
+        "train": 32
+      },
+      "annotation_types": {
+        "object_track_box": 40
+      },
+      "annotations": 40,
+      "anomalies": {
+        "repacked_archive": 2
+      }
+    },
+    "MrHiSum": {
+      "readiness": "feature_head_trainable",
+      "trainable_as": [
+        "temporal_score_1d (feature head on YT-8M features)"
+      ],
+      "blockers": [
+        "YT-8M features for 23839 videos pending"
+      ],
+      "release": "mr_hisum.h5 + metadata.csv (author Drive), repo aeb667f71239887034c2974062a341d312762867",
+      "media": 31892,
+      "media_ready": 0,
+      "bytes": 0,
+      "download_status": {
+        "metadata_only": 31892
+      },
+      "official_split": {
+        "train": 27892,
+        "val": 2000,
+        "test": 2000
+      },
+      "aic_split": {
+        "train": 27883,
+        "val": 4008,
+        "quarantine": 1
+      },
+      "annotation_types": {
+        "temporal_score_1d": 31892,
+        "temporal_summary_derived": 31892
+      },
+      "annotations": 63784,
+      "anomalies": {
+        "duplicate_source_video": 6
+      }
+    },
+    "RetargetVid": {
+      "readiness": "raw_video_trainable",
+      "trainable_as": [
+        "crop_box_dense"
+      ],
+      "blockers": [],
+      "release": "github bmezaris/RetargetVid@43673dd83b279c4aedeeea22f32d03582ac45194",
+      "media": 200,
+      "media_ready": 200,
+      "bytes": 859741142,
+      "download_status": {
+        "verified": 200
+      },
+      "official_split": {
+        "train": 100,
+        "val": 100
+      },
+      "aic_split": {
+        "train": 100,
+        "val": 100
+      },
+      "annotation_types": {
+        "crop_box_dense": 2400
+      },
+      "annotations": 2400,
+      "anomalies": {}
+    },
+    "SA_V": {
+      "readiness": "blocked",
+      "trainable_as": [
+        "object_masklet (1 example video only)"
+      ],
+      "blockers": [
+        "full download requires clicking through the SA-V license on the Meta download page, which issues an expiring link list (manual browser step); once links.txt is provided, scripts/fetch_many.py can take a manifest built from it"
+      ],
+      "release": "SA-V (CC BY 4.0); indexed: official example only",
+      "media": 1,
+      "media_ready": 1,
+      "bytes": 5725431,
+      "download_status": {
+        "sample_only": 1
+      },
+      "official_split": {
+        "train": 1
+      },
+      "aic_split": {
+        "train": 1
+      },
+      "annotation_types": {
+        "object_masklet": 2
+      },
+      "annotations": 2,
+      "anomalies": {}
+    },
+    "YouTubeHighlights": {
+      "readiness": "raw_video_trainable",
+      "trainable_as": [
+        "temporal_segment_label"
+      ],
+      "blockers": [
+        "131 author-list videos unavailable (not in mirror; yt-dlp: removed/private, see logs/missing_media.json)"
+      ],
+      "release": "author repo 29083d2dc8ee951986f6fb436f1be8f92c8937fd; media hf:jhanglee/youtube-highlights-full@b28d0207471f8baf445dccb10c5e074a717f3b1d",
+      "media": 550,
+      "media_ready": 419,
+      "bytes": 9962051177,
+      "download_status": {
+        "verified": 419,
+        "missing": 131
+      },
+      "official_split": {
+        "TraiLooseL": 299,
+        "TestLooseL": 162,
+        "TestTightL": 34,
+        "TraiTightL": 55
+      },
+      "aic_split": {
+        "train": 354,
+        "val": 196
+      },
+      "annotation_types": {
+        "temporal_segment_label": 963
+      },
+      "annotations": 963,
+      "anomalies": {
+        "missing_media": 133,
+        "misaligned_suspect": 14
+      }
+    }
+  },
+  "schema_errors": [],
+  "schema_error_count": 0
+}

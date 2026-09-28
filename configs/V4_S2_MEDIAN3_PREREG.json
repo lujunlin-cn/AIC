@@ -1,0 +1,12 @@
+{
+ "experiment": "V4_S2_KEYFRAME_MEDIAN3",
+ "written_before_results": "2026-09-29 02:20 CST, no median result computed",
+ "motivation": "10-12% of Qwen keyframe points miss the GT subject (teacher_diag_eval subject_miss, dev2 .095 / confirm2 .125); an isolated wrong subject between two agreeing neighbours can be rejected without new teacher calls",
+ "parent": "DT_V3 (official 47.88): DENSE 0.5 s points, hold within shot, NOFACE gate, B0 EMA alpha .25 / resets, TEMP mask",
+ "single_change": "each valid DENSE keyframe point whose previous and next DENSE keyframes are in the same shot and valid gets its free-axis coordinate replaced by the median of (prev, own, next) free-axis coordinates; everything else unchanged (hold, face gate, EMA, resets, width, mask). No new teacher call.",
+ "evaluation": "RetargetVid 6 annotators, v4_e1_obs_eval protocol; primary MEDIAN3 - DENSENF; report-only MEDIAN3+INTERP - INTERP (overlap with S1)",
+ "splits": {"dev2": "031-100 reused - decision", "confirm2": "601-700 reused - one confirmation"},
+ "promote": "dev2 mean > 0 and CI95 lower > 0; confirm2 mean > 0 and CI95 lower > 0; neither axis mean < -.002 on confirm2",
+ "package": "QWEN32B_DT_MEDIAN3_V4_FINAL",
+ "official_f_video": null
+}

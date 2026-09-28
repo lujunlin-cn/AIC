@@ -1,0 +1,41 @@
+{
+ "submission_id": "QWEN32B_NOFACE_OBS025_V4_SPATIAL",
+ "status": "frozen_exploratory",
+ "release_status": "INTERMEDIATE_SPATIAL_ALL_FRAMES_NOT_FOR_UPLOAD",
+ "frozen_at": "2026-09-29",
+ "policy": "QWEN_POINT_NOFACE",
+ "parent_baseline": "DENSE = QWEN32B_NOFACE_DENSE_V2_FINAL (official 43.76 all-select; spatial source of DT_V3 47.88)",
+ "primary_changed_factor": "E1: keyframe density 4x inside shots (0.25 s grid + shot starts, superset of DENSE keyframes; DENSE 5,988 replies reused byte-identically, 5,765 added keyframes queried); same point prompt (md5 998c3de9), 640 px, NOFACE gate, B0 EMA/resets, all-select, max width",
+ "fixed_conditions": {
+  "temporal": "all decoded frames",
+  "width": "largest legal",
+  "path": "B0 EMA alpha .25 on free axis, B0 thumbnail-diff resets",
+  "fallback": "B0 observation on parse failure / uncertain / before first keyframe"
+ },
+ "alpha": 0.25,
+ "prompt_script": "/home/supie/AIC/scripts/qwen_subject_point.py (md5 998c3de9dfc8474a9f3cf10a75a8296c)",
+ "keyframe_step_s": 0.25,
+ "image_long_side": 640,
+ "dev_evidence": "see configs/V4_E1_OBS025_PREREG.json and /data/aic/experiments/V4_E1_OBS025/eval_*",
+ "index_sha256": "9a59316e97f5a80fc2c22f43f38ebd72130d20109d17954efa3dde9f86d404d5",
+ "b0_predictions": "/data/aic/official_test_20260926/submissions/B0_ALL_SELECT_YUNET_V1_FINAL/predictions.jsonl",
+ "obs_cache": "/data/aic/experiments/OBS_CACHE_OFFICIAL_V1/cache",
+ "qwen_points": "/data/aic/experiments/V4_E1_OBS025/off_points_d4",
+ "components": [
+  {
+   "name": "Qwen3-VL-32B-Instruct (FP16, vLLM TP=4)",
+   "parameters": 33357390064,
+   "bytes": 66714912872
+  },
+  {
+   "name": "YuNet 2023mar",
+   "parameters": 53104,
+   "bytes": 232589
+  }
+ ],
+ "declared_model_size_mb": null,
+ "declared_size_note": "Qwen3-VL-32B total 33,357,443,168 params / 66,715,145,461 B exceeds both 9B-param and 9216 MB limits; no placeholder is written, JSONL omits model_size_mb (preliminary format allows omission). SUB_Q/Q2 with the same teacher and omitted/placeholder size were scored by the platform (31.20 / 27.40) in the preliminary stage; rule-compliance of >9B teachers at test time beyond the preliminary stage is unconfirmed. The FasterRCNN detections in the obs cache are NOT used by this policy.",
+ "official_platform_score": null,
+ "parent_predictions": "/data/aic/official_test_20260926/submissions/QWEN32B_NOFACE_DENSE_V2_FINAL/predictions.jsonl",
+ "hypothesis": "0.5 s held points still lag the subject; fresh 0.25 s points recover part of it"
+}

@@ -1,0 +1,12 @@
+{
+ "experiment": "V4_S1_KEYFRAME_INTERP",
+ "written_before_results": "2026-09-29 01:30 CST, no interpolation result computed",
+ "motivation": "held-vs-fresh at added keyframes: fresh 0.25 s point beats the held 0.5 s point by +.010 IoU on no-face keyframes (E1 dev2/confirm2); part of that gap may be recoverable without new teacher calls by moving the point linearly between two valid keyframes of the same shot",
+ "parent": "DT_V3 (official 47.88): DENSE 0.5 s points, hold within shot, NOFACE gate, B0 EMA alpha .25 / resets, TEMP mask",
+ "single_change": "Qwen centre between consecutive valid (not None, not uncertain) keyframes k0<k1 of the same shot = linear interpolation p0 + (p1-p0)(t-k0)/(k1-k0) instead of holding p0; spans with an invalid end, the last span of a shot and face frames unchanged (hold / B0 fallback / YuNet raw). Same replies, EMA, resets, width, mask. No new teacher call.",
+ "evaluation": "RetargetVid 6 annotators, scripts/v4_e1_obs_eval.py protocol; primary INTERP_D2 - DENSENF; report-only INTERP_D4 - OBS025 (additivity with E1, not a package)",
+ "splits": {"dev2": "031-100 reused - decision", "confirm2": "601-700 reused - one confirmation"},
+ "promote": "dev2 mean > 0 and CI95 lower > 0; confirm2 mean > 0 and CI95 lower > 0; neither axis mean < -.002 on confirm2",
+ "package": "QWEN32B_DT_INTERP_V4_FINAL = DENSE-interp all-frame spatial (point_d2) filtered by the TEMP mask",
+ "official_f_video": null
+}

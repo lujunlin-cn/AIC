@@ -172,6 +172,23 @@ def region_points(regions, axis, win, mode='fit'):
     return out
 
 
+def qwen_centres_interp(points, keyframes, reset, b0_raw_c, axis):
+    """qwen_centres, but between two valid keyframes of the same shot the centre
+    moves linearly from one point to the next instead of holding the first.
+
+    Spans ending at an invalid keyframe, at a shot cut or at the video end keep
+    the hold behaviour, so every frame whose span has no valid right end is
+    identical to qwen_centres.
+    """
+    out, src = qwen_centres(points, keyframes, reset, b0_raw_c, axis)
+    shot = np.cumsum(np.asarray(reset, bool)); kf = sorted(zip(keyframes, points))
+    ok = lambda p: p is not None and not p[2]
+    for (k0, p0), (k1, p1) in zip(kf[:-1], kf[1:]):
+        if k1 <= k0 + 1 or not (ok(p0) and ok(p1)) or k1 >= len(reset) or shot[k0] != shot[k1]: continue
+        t = np.arange(k0, k1); out[k0:k1] = p0[axis] + (p1[axis] - p0[axis]) * (t - k0) / (k1 - k0)
+    return out, src
+
+
 def qwen_centres(points, keyframes, reset, b0_raw_c, axis):
     """Hold each keyframe's subject point within its shot until the next keyframe.
 

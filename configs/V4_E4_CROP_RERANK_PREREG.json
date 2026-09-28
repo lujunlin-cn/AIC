@@ -1,0 +1,14 @@
+{
+ "experiment": "V4_E4_VISUAL_CROP_RERANK_PILOT",
+ "written_before_results": "2026-09-29 02:35 CST, no rerank reply exists",
+ "origin": "guide section 9 optional pilot (after the E2 main experiment finished; E2 rejected). Looks at the actual candidate crops instead of coordinates.",
+ "parent": "DT_V3 (official 47.88): DENSE points, hold, NOFACE gate, B0 EMA/resets, TEMP mask",
+ "single_change": "at DENSE keyframes whose DENSE point is valid and whose hold span contains a no-face frame: fixed-size legal windows c0 + d*win, d in (-.8,-.4,0,.4,.8), clipped, de-duplicated (< .15 win), c0 = DENSE window centre always kept; 32B sees the full 640 px frame + the crops (native pixels) and picks one; asked twice (spatial order and reversed); accepted only if both orders pick the same window and neither is uncertain; otherwise DENSE point. Window size never changes.",
+ "script": "scripts/qwen_crop_rerank.py",
+ "evaluation": "scripts/v4_e4_rerank_eval.py: RetargetVid dev2 RERANKNF vs DENSENF (pipeline, video macro, bootstrap); keyframe level: candidate oracle (best single candidate by mean-annotator IoU; one window per frame, never per annotator) vs selector vs DENSE; order agreement; position bias (share of picks = c0, = first label)",
+ "splits": {"dev2": "031-100 reused - decision"},
+ "promote": "dev2 RERANKNF-DENSENF mean > 0 and CI95 lower > 0, neither axis < -.002; confirmation on confirm2 (reused) only if promoted and time allows (must finish before 07:22), same rule; otherwise no package",
+ "stop": "oracle gain without selector gain -> bottleneck is the selector, report and stop",
+ "package": "QWEN32B_DT_VISUAL_RERANK_V4_FINAL",
+ "official_f_video": null
+}

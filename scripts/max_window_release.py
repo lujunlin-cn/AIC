@@ -18,9 +18,10 @@ import argparse,json,zipfile,tempfile
 from pathlib import Path
 import numpy as np
 from aic.contract import load_jsonl,load_index,write_submission
-from aic.max_window_path import geometry,to_crops,ema_offsets,qwen_centres,coverage_centre,region_points
+from aic.max_window_path import geometry,to_crops,ema_offsets,qwen_centres,qwen_centres_interp,coverage_centre,region_points
 from scripts.independent_submission_check import check
 from scripts.all_select_yunet_release import sha256_file
+from scripts.v4_s2_median_eval import median3
 
 
 def main():
@@ -46,7 +47,8 @@ def main():
     if policy=='QWEN_REGION_NOFACE':
      L,s=(W,w) if axis==0 else (H,h);pts=region_points(qq['regions'],comp,s/L,fz['region_mode'])
     else:pts=qq['points']
-    c,src=qwen_centres(pts,q['keyframes'],reset,raw,comp)
+    if fz.get('point_filter')=='median3':pts=median3(pts,q['keyframes'],reset,comp)
+    c,src=(qwen_centres_interp if fz.get('centre_mode','hold')=='interp' else qwen_centres)(pts,q['keyframes'],reset,raw,comp)
     if policy in ('QWEN_POINT_NOFACE','QWEN_REGION_NOFACE'):
      face=z['chosen']>=0;c=np.where(face,raw,c);src=np.where(face,'b0_face',src)
    else:

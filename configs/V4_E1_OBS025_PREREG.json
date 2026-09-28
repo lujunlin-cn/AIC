@@ -1,0 +1,21 @@
+{
+ "experiment": "V4_E1_OBS025",
+ "written_before_results": "2026-09-28 23:55 CST, RV dev2 d4 inference running, no d4 reply read",
+ "parent": "DT_V3 = QWEN32B_NOFACE_DENSE_TEMP_V3_FINAL (official 47.88): DENSE spatial (0.5 s grid + shot starts, NOFACE gate, B0 EMA alpha .25 / resets, largest window) filtered by the TEMP mask",
+ "parent_keyframe_step_verified": "configs/QWEN32B_NOFACE_DENSE_V2.json keyframe_step_s .5, densify 2; official d2 keyframes 5,988, d4 11,753 (d2 subset of d4 for all 174 videos, checked)",
+ "single_change": "more spatial observations: keyframes at the 0.25 s grid (densify 4) inside shots; the 0.5 s replies are reused byte-identically (--reuse), only added keyframes are queried; prompt script md5 998c3de9, prompt_sha256 unchanged, 640 px, same parser, same hold/face gate/EMA/resets; temporal mask = TEMP (identical to DT_V3)",
+ "strategies": {
+  "OBS025": "all 0.25 s keyframes (global midpoints)",
+  "ADAPT": "0.5 s keyframes + a 0.25 s keyframe t only if the held 0.5 s point before t (same shot) is missing/uncertain, or the next 0.5 s keyframe is in the same shot, both points are valid and |p_prev - p_next| on the free axis exceeds TAU = 0.10 of the movable range (L - s); movable range 0 -> never. TAU fixed here, not scanned."
+ },
+ "evaluation": "RetargetVid 6 annotators, native protocol of scripts/teacher_diag_eval.py (rounded inclusive boxes, max legal window); per-video mean over both ratios, video macro average, video bootstrap 5000 (seed 20260928); strata axis (1:3 x / 3:1 y), GT motion (threshold .001483 = used-split median, frozen in T1_T2_TEACHER_DIAG_V2), edge subject (GT window rel offset <.1 or >.9 on >=50% frames), face rate",
+ "splits": {
+  "dev2": "031-100 (reused: T2 dev in the V2 round) - selection",
+  "confirm2": "601-700 (reused: T2 confirmation and T5 confirmation) - one confirmation of the chosen strategy only; reported as reused validation, not independent",
+  "used": "001-030 not used"
+ },
+ "selection_on_dev2": "strategy with the larger mean gain vs DENSENF; eligible only if mean > 0 and CI95 lower bound > 0; if both eligible and ADAPT mean >= .8 x OBS025 mean, ADAPT (fewer calls)",
+ "promote": "chosen strategy on confirm2: mean gain vs DENSENF > 0 and CI95 lower bound > 0, and neither axis mean < -.002. Otherwise E1 stops (no 0.125 s), negative result recorded",
+ "official": "the official d4 inference runs after the RV run in the same chain (cheap, ~20 min) but is packaged only if promoted; package = max_window_release(QWEN_POINT_NOFACE, chosen keyframes) -> mask_combo_release(TEMP mask); name QWEN32B_DT_OBS025_V4_FINAL or QWEN32B_DT_ADAPTIVE_OBS_V4_FINAL",
+ "official_f_video": null
+}

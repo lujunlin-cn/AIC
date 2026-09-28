@@ -1,0 +1,37 @@
+{
+ "manifest": "V4 cycle baseline and split freeze",
+ "cycle_t0": "2026-09-28 23:22:11 CST (1790608931, /data/aic/experiments/V4_CYCLE/t0); new-direction stop 07:22, delivery by 09:22",
+ "official_index": {"path": "/data/aic/official_test_20260926/intake/index.enriched.jsonl", "sha256": "9a59316e97f5a80fc2c22f43f38ebd72130d20109d17954efa3dde9f86d404d5", "videos": 174, "frames": 87781, "geometry": "rotation 0; 119 videos slide on y (portrait -> 16:9, window .316 H); 55 on x (45 at .316, 9 at .297, 1 at .562)"},
+ "scored_packages": {
+  "B0_ALL_SELECT_YUNET_V1_FINAL": {"score": 34.42, "zip": "ab6e7c0ff2841742fa53a8a0ec609cc09e1e036adc53f068a869a3138d6bc31b", "pred": "5dc398d90af1781bb313b6b81bc537a25a8d4418c7caad7ce57add3bb30863dd"},
+  "MAX_WINDOW_QWEN_NOFACE_V1 (N0)": {"score": 42.83, "zip": "f73c399f28879de12c3b3a2e796970221c8abd9265ceda48b087190e94b3a96c", "pred": "fcdd98dc4f75d7529c4eae5172f4eb6ce1ceb50befffbe9a5ba4d79c2a5070f8"},
+  "QWEN32B_NOFACE_DENSE_V2_FINAL (DENSE)": {"score": 43.76, "zip": "972b3ed176621398025a8e930d817ae66d2e6090821c5d314581d0a4c1e288c2", "pred": "e26c68fdd5ec7468cfbdfd563f89961bdbb18b87bcffa574f7bb8a1b2aad97be"},
+  "QWEN32B_NOFACE_TEMPORAL_V2_FINAL (TEMP)": {"score": 46.84, "zip": "631d01042c42e26877dde16fc619fbc9041bd68b6e44b0c412ee5285004b01f4", "pred": "730d341edd6c5d894b54250fbe35cb62a4d554defd28e7fc416e5c1fa3e9e158"},
+  "QWEN32B_NOFACE_DENSE_TEMP_V3_FINAL (DT_V3, current best, new-method parent)": {"score": 47.88, "zip": "c702de926450717ff3c18c4a11aabeee9f3ad3a49ab28f0f512768b14722cf67", "pred": "eab552b37bbd0556572b3b7577b0c3daa0a1141fcf31d8578d0b314618d2cc64"},
+  "QWEN32B_NOFACE_TEMP_CROPHEAD_V3_FINAL (T5/H1)": {"score": 45.00, "zip": "519a718a2f16d499cf0a2b99bd8c5525bed34440d5e8b0a3dad40a27f63eaade", "pred": "fe68e2a125459835dc467582109d960a7f99cb699cf5a5e549049c1694a1145a"}
+ },
+ "teacher": {"model": "/data/aic/pretrained/qwen3_vl_32b_instruct (FP16, vLLM 0.13.0, transformers 5.4.0, TP=4 on GPUs 4-7)", "point_prompt_script_md5": "998c3de9dfc8474a9f3cf10a75a8296c", "temporal_removal_script_md5": "c6521f2ceb8afeb892d7857d2d617f73"},
+ "official_caches": {
+  "obs_cache": "/data/aic/experiments/OBS_CACHE_OFFICIAL_V1/cache",
+  "points_d1": "/data/aic/experiments/QWEN_SUBJECT_POINT_OFFICIAL_V1/points",
+  "points_d2": "/data/aic/experiments/QWEN32B_OFFICIAL_V2/point_d2/points (5,988 keyframes)",
+  "points_d4": "/data/aic/experiments/V4_E1_OBS025/off_points_d4 (11,753 keyframes, V4 E1)",
+  "temp_anchors_removal": "/data/aic/experiments/QWEN32B_OFFICIAL_V2/temporal/{anchors,removal}"
+ },
+ "public_data": {
+  "RetargetVid": {"annotations": "/data/aic/datasets/RetargetVid/annotations_all (6 annotators; concatenated-file sha256 b3503ca11fbb92924a973bd36e7c5c96053cbb4fb1237200c9039132786fe9d6)", "videos": "/data/aic/datasets/DHF1K/rv_all200", "label_type": "human dense per-frame crop boxes (1:3 x-axis win .188, 3:1 y-axis win .593)"},
+  "LIVE-YT-VC": {"val_index_sha256": "0ab96832c5407a368683efbb2df4069cefbfaeb633c5c3d366b1b7fa74d28b0d", "train_index_sha256": "e9a7d2c6adf46813dcb3e8b2bca7fef287951055ba8929d1c62cc82f7ec76a8d", "label_type": "human sparse boxes (1 annotator, ~30 frames/video, variable size); x axis only (win .316); no interpolated frames used"},
+  "YouTubeHighlights": {"annotations_sha256": "be8206bf14fe6a5d9e2e79d15986b19193e04b7d0022b29d059b2ea81edfa375", "media_sha256": "a3397888300ba39bf29cc3aa0eae8897a5b4e3c6ce589d7e7375af1b32c23e87", "label_type": "human = mturk soft votes (relative within video, 413 videos); weak = match_label (-1 = not reused, NOT human negative); unlabelled frames masked", "release": "author repo 29083d2; media hf:jhanglee/youtube-highlights-full@b28d0207 (419/550 verified)"}
+ },
+ "split_status": {
+  "RetargetVid used 001-030": "exposed (earlier dev/confirm); not used in V4",
+  "RetargetVid dev2 031-100": "reused validation (T2 dev) -> V4 E1/E2 decision set",
+  "RetargetVid 001-080 / 081-100": "T5 H1/H2 train / dev",
+  "RetargetVid confirm2 601-700": "reused validation (T2 confirm, T5 confirm) -> V4 E1 confirmation; labelled 'reused', not independent",
+  "LIVE val 178": "reused validation (T5 confirm3); not used for V4 decisions",
+  "LIVE train 1,622": "H1 fit (4 scalars) and H2 train/dev fold (sha1 % 10 == 0)",
+  "YTH val 124 (Test*L, <=120 s)": "reused videos (T3/T4 with weak labels); V4 E3 dev with human votes",
+  "YTH train 130 (Trai*L, human votes, verified, not misaligned, <=120 s)": "fresh for V4 E3 confirmation (records sha 081ebceb...; no group overlap with val)"
+ },
+ "rules": "official test only through frozen policies (no training, no per-video tuning); one main change per package; unknown official scores null"
+}

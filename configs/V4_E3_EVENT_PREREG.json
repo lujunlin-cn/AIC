@@ -1,0 +1,19 @@
+{
+ "experiment": "V4_E3_EVENT_TEMP",
+ "written_before_results": "2026-09-29 00:40 CST, no event reply exists yet",
+ "parent": "DT_V3 (official 47.88); E3 changes only the temporal mask, every kept bbox = DENSE all-frame cache (QWEN32B_NOFACE_DENSE_V2_FINAL predictions) byte-for-byte",
+ "what_is_new_vs_TEMP": "TEMP judges each 1 s cell against 'clearly worthless' (black/titles/unrelated) with 2 context cells. E3 adds event structure: 2 s segments on a 24 s timeline window (12 TARGET segments, 1 CONTEXT segment each side, 2 anchors per segment = TEMP anchors, 448 px) with TEMP's own stage-1 summary; each segment gets a role MAIN/SETUP/RESULT (keep, restores TEMP-removed cells), IDLE/JUNK (drop), UNSURE (TEMP decision). Guard: > 50% dropped -> TEMP mask. No boundary search, no keep-rate target, no per-video policy.",
+ "script": "scripts/qwen_event_segments.py (WIN 12, CTX_SEG 1, GUARD .5), same 32B, temperature 0",
+ "labels": {
+  "human": "YTH mturk soft votes (AMT, relative within a video): frame positive if max covering-clip vote > 0, negative if all covering clips have 0 votes; uncovered frames ignored",
+  "weak": "match_label (uploader-edit reuse; -1 NOT a human negative) - reported only"
+ },
+ "splits": {
+  "dev": "YTH TEMP val set (124 videos, official Test*L, <=120 s) - videos reused by T3/T4 with WEAK labels; human votes used for a decision for the first time here -> 'reused videos'",
+  "confirm": "YTH official train split Trai*L with human votes, verified media, not misaligned, <=120 s: 130 videos (no group overlap with dev), never used for any evaluation; TEMP is run on them first with the frozen T3 script so the baseline exists"
+ },
+ "metric": "F proxy with perfect boxes over labelled frames, video macro average, bootstrap 5000 seed 20260928; EVENT-TEMP primary; EVENT-KEEP_ALL, EVENT-RANDOM(same removed-cell count), restored/dropped human positive share vs base",
+ "promote": "human labels: dev EVENT-TEMP mean > 0 and CI95 lower > 0; confirm EVENT-TEMP mean > 0 and CI95 lower > -.002; restored-frame positive share >= base share and dropped-frame positive share <= base share on dev+confirm pooled. Otherwise no package; negative result recorded",
+ "official": "event roles are also computed on the official TEMP anchors in the same GPU chain (cheap) but packaged only if promoted: removal = event removed_cells -> temporal-mask release on the DENSE all-frame predictions; package QWEN32B_DENSE_EVENT_TEMP_V4_FINAL",
+ "official_f_video": null
+}

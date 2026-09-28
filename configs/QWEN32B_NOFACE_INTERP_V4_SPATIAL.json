@@ -1,0 +1,42 @@
+{
+ "submission_id": "QWEN32B_NOFACE_INTERP_V4_SPATIAL",
+ "status": "frozen_exploratory",
+ "release_status": "INTERMEDIATE_SPATIAL_ALL_FRAMES_NOT_FOR_UPLOAD",
+ "frozen_at": "2026-09-29",
+ "policy": "QWEN_POINT_NOFACE",
+ "parent_baseline": "DENSE = QWEN32B_NOFACE_DENSE_V2_FINAL (official 43.76 all-select; spatial source of DT_V3 47.88)",
+ "primary_changed_factor": "S1: same DENSE replies (point_d2, 5,988 keyframes, no new teacher call); between two valid keyframes of the same shot the Qwen centre moves linearly instead of being held (aic.max_window_path.qwen_centres_interp); spans with an invalid end / at a cut / at the video end, face frames, EMA, resets, width, all-select unchanged",
+ "fixed_conditions": {
+  "temporal": "all decoded frames",
+  "width": "largest legal",
+  "path": "B0 EMA alpha .25 on free axis, B0 thumbnail-diff resets",
+  "fallback": "B0 observation on parse failure / uncertain / before first keyframe"
+ },
+ "alpha": 0.25,
+ "prompt_script": "/data/aic/experiments/QWEN32B_OFFICIAL_V2/qwen_subject_point.frozen_v3.py",
+ "keyframe_step_s": 0.5,
+ "image_long_side": 640,
+ "dev_evidence": "configs/V4_S1_INTERP_PREREG.json; RetargetVid INTERP_D2-DENSENF dev2 +.0110 [.0079,.0145] 54/14, confirm2 (reused) +.0119 [.0084,.0160] 76/16; x +.0205, y +.0033",
+ "index_sha256": "9a59316e97f5a80fc2c22f43f38ebd72130d20109d17954efa3dde9f86d404d5",
+ "b0_predictions": "/data/aic/official_test_20260926/submissions/B0_ALL_SELECT_YUNET_V1_FINAL/predictions.jsonl",
+ "obs_cache": "/data/aic/experiments/OBS_CACHE_OFFICIAL_V1/cache",
+ "qwen_points": "/data/aic/experiments/QWEN32B_OFFICIAL_V2/point_d2/points",
+ "components": [
+  {
+   "name": "Qwen3-VL-32B-Instruct (FP16, vLLM TP=4)",
+   "parameters": 33357390064,
+   "bytes": 66714912872
+  },
+  {
+   "name": "YuNet 2023mar",
+   "parameters": 53104,
+   "bytes": 232589
+  }
+ ],
+ "declared_model_size_mb": null,
+ "declared_size_note": "Qwen3-VL-32B total 33,357,443,168 params / 66,715,145,461 B exceeds both 9B-param and 9216 MB limits; no placeholder is written, JSONL omits model_size_mb (preliminary format allows omission). SUB_Q/Q2 with the same teacher and omitted/placeholder size were scored by the platform (31.20 / 27.40) in the preliminary stage; rule-compliance of >9B teachers at test time beyond the preliminary stage is unconfirmed. The FasterRCNN detections in the obs cache are NOT used by this policy.",
+ "official_platform_score": null,
+ "parent_predictions": "/data/aic/official_test_20260926/submissions/QWEN32B_NOFACE_DENSE_V2_FINAL/predictions.jsonl",
+ "hypothesis": "held 0.5 s points lag a moving subject; linear motion between two observations recovers part of the gap without new observations",
+ "centre_mode": "interp"
+}

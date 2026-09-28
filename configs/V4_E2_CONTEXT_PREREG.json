@@ -1,0 +1,14 @@
+{
+ "experiment": "V4_E2_CONTEXT_POINT",
+ "written_before_results": "2026-09-29 00:20 CST, no context reply exists yet",
+ "parent": "DT_V3 (official 47.88) = DENSE spatial (0.5 s keyframes + shot starts, NOFACE gate, hold within shot, B0 EMA alpha .25 / resets, largest window) filtered by the TEMP mask",
+ "single_change": "at the SAME DENSE keyframes, the Qwen3-VL-32B subject point is asked with up to 2 earlier + 2 later same-shot DENSE keyframes (<=1.05 s away, ~2 s clip) as labelled CONTEXT images (320 px) plus the unchanged 640 px TARGET image; same SYSTEM, same point instruction + one context sentence, same JSON/parser; point in target-frame coordinates. Only keyframes whose hold span contains a no-face frame and that have a same-shot neighbour are queried; all others keep the DENSE reply byte-identically. Parse failure / uncertain -> DENSE reply. Face branch, hold, EMA, resets, width, temporal mask (TEMP) unchanged. No E1 keyframes, no H1.",
+ "script": "scripts/qwen_context_point.py (CTX_S 1.05, CTX_SIDE 2, CTX_PX 320)",
+ "evaluation": "scripts/v4_e2_context_eval.py: RetargetVid 6 annotators, CTXNF vs DENSENF, per-video mean of both ratios, video macro, bootstrap 5000 seed 20260928; strata axis, GT motion (frozen threshold .001483), persons; keyframe decomposition subject_miss (point outside GT window of >=half the annotators) dense vs context, parse/fallback counts, prompt tokens",
+ "splits": {"dev2": "031-100, reused (T2 dev, E1 dev) - decision set", "confirm2": "601-700, reused - optional extra run if GPU time allows; can only veto (mean < 0 -> no package)"},
+ "variants": "one configuration, no selection on dev2",
+ "promote": "dev2 CTXNF-DENSENF mean > 0 and CI95 lower bound > 0, neither axis mean < -.002, fallback (parse fail/uncertain) share < 10% of queried keyframes",
+ "stop": "if the first 10 dev2 videos show fallback share > 25% or target-index errors, stop this configuration and record error types",
+ "official": "only if promoted: same script on the official DENSE keyframes (keyframes_d2, point_d2), then max_window_release (QWEN_POINT_NOFACE on the context points) -> mask_combo_release (TEMP mask); package QWEN32B_DT_CONTEXT_POINT_V4_FINAL",
+ "official_f_video": null
+}

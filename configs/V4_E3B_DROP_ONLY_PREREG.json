@@ -1,0 +1,13 @@
+{
+ "experiment": "V4_E3B_EVENT_DROP_ONLY",
+ "written_before_results": "2026-09-29 02:10 CST, after the E3 dev (YTH val) result, BEFORE any YTH-train event reply or train evaluation was read (train event run in progress)",
+ "origin": "post-hoc on E3 dev: E3 (roles keep+restore) failed its prereg (human EVENT-TEMP -.0009 [-.0100,+.0076]; restored-frame positive share .316 < base .436). Role diagnostics on dev: human positive share MAIN .519, SETUP .415, RESULT .362, IDLE .312, JUNK .125 (base .436) - restoration hurts, IDLE/JUNK drops carry signal. This is a hypothesis formed on dev; the test is the fresh YTH train split only.",
+ "parent": "DT_V3 (official 47.88); spatial = DENSE all-frame cache byte-for-byte",
+ "single_change": "temporal mask = TEMP effective removal UNION cells of segments labelled IDLE or JUNK by the same E3 replies (no restoration: MAIN/SETUP/RESULT/UNSURE leave TEMP's decision); guard > 50% dropped -> TEMP mask. No new teacher call beyond the E3 run.",
+ "evaluation": "scripts/v4_e3_yth_eval.py --mode drop_only, human mturk labels primary, weak match labels secondary",
+ "confirm": "YTH train 130 (fresh, no group overlap with val)",
+ "promote": "train human DROP-TEMP mean > 0 and CI95 lower > 0, and train weak DROP-TEMP mean >= 0; otherwise no package",
+ "limits": "YTH human votes do not reproduce TEMP's official gain (val: TEMP-KEEP_ALL human -.0033, weak +.0031; official +4.01 over N0), so the proxy measures sports/animal highlight semantics, not AIC end-screen/promo removal; any package is an exploration candidate",
+ "package": "QWEN32B_DENSE_EVENT_DROP_V4_FINAL",
+ "official_f_video": null
+}

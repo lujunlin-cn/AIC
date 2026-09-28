@@ -1,0 +1,42 @@
+{
+ "submission_id": "QWEN32B_NOFACE_MEDIAN3_V4_SPATIAL",
+ "status": "frozen_exploratory",
+ "release_status": "INTERMEDIATE_SPATIAL_ALL_FRAMES_NOT_FOR_UPLOAD",
+ "frozen_at": "2026-09-29",
+ "policy": "QWEN_POINT_NOFACE",
+ "parent_baseline": "DENSE = QWEN32B_NOFACE_DENSE_V2_FINAL (official 43.76 all-select; spatial source of DT_V3 47.88)",
+ "primary_changed_factor": "S2: same DENSE replies (point_d2, no new teacher call); each valid keyframe point with valid same-shot previous and next keyframes takes the median of the three free-axis coordinates (scripts.v4_s2_median_eval.median3); hold, face gate, EMA, resets, width, all-select unchanged",
+ "fixed_conditions": {
+  "temporal": "all decoded frames",
+  "width": "largest legal",
+  "path": "B0 EMA alpha .25 on free axis, B0 thumbnail-diff resets",
+  "fallback": "B0 observation on parse failure / uncertain / before first keyframe"
+ },
+ "alpha": 0.25,
+ "prompt_script": "/data/aic/experiments/QWEN32B_OFFICIAL_V2/qwen_subject_point.frozen_v3.py",
+ "keyframe_step_s": 0.5,
+ "image_long_side": 640,
+ "dev_evidence": "configs/V4_S2_MEDIAN3_PREREG.json; RetargetVid MEDIAN3-DENSENF dev2 +.0053 [.0036,.0072] 55/12, confirm2 (reused) +.0044 [.0028,.0062] 65/25; x +.0066, y +.0022",
+ "index_sha256": "9a59316e97f5a80fc2c22f43f38ebd72130d20109d17954efa3dde9f86d404d5",
+ "b0_predictions": "/data/aic/official_test_20260926/submissions/B0_ALL_SELECT_YUNET_V1_FINAL/predictions.jsonl",
+ "obs_cache": "/data/aic/experiments/OBS_CACHE_OFFICIAL_V1/cache",
+ "qwen_points": "/data/aic/experiments/QWEN32B_OFFICIAL_V2/point_d2/points",
+ "components": [
+  {
+   "name": "Qwen3-VL-32B-Instruct (FP16, vLLM TP=4)",
+   "parameters": 33357390064,
+   "bytes": 66714912872
+  },
+  {
+   "name": "YuNet 2023mar",
+   "parameters": 53104,
+   "bytes": 232589
+  }
+ ],
+ "declared_model_size_mb": null,
+ "declared_size_note": "Qwen3-VL-32B total 33,357,443,168 params / 66,715,145,461 B exceeds both 9B-param and 9216 MB limits; no placeholder is written, JSONL omits model_size_mb (preliminary format allows omission). SUB_Q/Q2 with the same teacher and omitted/placeholder size were scored by the platform (31.20 / 27.40) in the preliminary stage; rule-compliance of >9B teachers at test time beyond the preliminary stage is unconfirmed. The FasterRCNN detections in the obs cache are NOT used by this policy.",
+ "official_platform_score": null,
+ "parent_predictions": "/data/aic/official_test_20260926/submissions/QWEN32B_NOFACE_DENSE_V2_FINAL/predictions.jsonl",
+ "hypothesis": "isolated wrong-subject keyframe replies between two agreeing neighbours are outliers; a 3-point median rejects them without new observations",
+ "point_filter": "median3"
+}

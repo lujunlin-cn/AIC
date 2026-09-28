@@ -1,0 +1,28 @@
+{
+ "submission_id": "QWEN32B_DENSE_EVENT_TEMP_V4_FINAL",
+ "status": "frozen_exploratory",
+ "release_status": "READY_TO_UPLOAD_EXPLORATORY_INTERNAL_TEACHER",
+ "frozen_at": "2026-09-29",
+ "parent_baseline": "DT_V3 = QWEN32B_NOFACE_DENSE_TEMP_V3_FINAL (official 47.88, zip c702de926450717ff3c18c4a11aabeee9f3ad3a49ab28f0f512768b14722cf67); spatial = DENSE all-frame predictions",
+ "parent_predictions": "/data/aic/official_test_20260926/submissions/QWEN32B_NOFACE_DENSE_V2_FINAL/predictions.jsonl",
+ "parent_predictions_sha256": "e26c68fdd5ec7468cfbdfd563f89961bdbb18b87bcffa574f7bb8a1b2aad97be",
+ "removal": "/data/aic/experiments/V4_E3_EVENT/official_event",
+ "anchors": "/data/aic/experiments/QWEN32B_OFFICIAL_V2/temporal/anchors",
+ "index_sha256": "9a59316e97f5a80fc2c22f43f38ebd72130d20109d17954efa3dde9f86d404d5",
+ "primary_changed_factor": "E3 vs DT_V3: temporal mask only. 2 s segment event roles (MAIN/SETUP/RESULT keep and restore, IDLE/JUNK drop, UNSURE = TEMP) from the same 32B on a 24 s timeline window with TEMP summary; guard > 50% -> TEMP. Every kept bbox == DENSE all-frame cache byte-for-byte (restored frames take DENSE bboxes).",
+ "hypothesis": "event structure (setup/main/result vs idle) separates highlight from non-highlight better than per-cell worthless-content removal",
+ "components": [
+  {
+   "name": "Qwen3-VL-32B-Instruct (FP16, vLLM TP=4)",
+   "parameters": 33357390064,
+   "bytes": 66714912872
+  },
+  {
+   "name": "YuNet 2023mar",
+   "parameters": 53104,
+   "bytes": 232589
+  }
+ ],
+ "declared_model_size_mb": null,
+ "official_platform_score": null
+}

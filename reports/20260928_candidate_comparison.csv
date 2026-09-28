@@ -1,0 +1,36 @@
+experiment,split,policy,changed_factor,iou_mean,iou_1-3,iou_3-1,vs_B0_mean,vs_B0_ci_low_video,vs_B0_ci_high_video,improved_pairs,worse_pairs,worst_pair
+P1A_PATH,dev,B0,baseline,0.61924,0.48634,0.75214,,,,,,
+P1A_PATH,dev,CENTER,observation=none,0.61071,0.4819,0.73951,-0.00854,-0.0293,0.01007,11,29,-0.2154
+P1A_PATH,dev,RAW,path=no smoothing,0.61837,0.48548,0.75126,-0.00088,-0.0025,0.00059,10,15,-0.0244
+P1A_PATH,dev,DP_l4.0_sw1.0,path=shot L1 DP (dev-chosen),0.61905,0.48579,0.7523,-0.0002,-0.00234,0.00184,19,20,-0.0244
+P1A_PATH,dev,DP_l8.0_sw1.0,path=shot L1 DP,0.61892,0.48437,0.75347,-0.00032,-0.00242,0.00169,20,18,-0.0288
+P1A_PATH,dev,STATIC_sw1.0,path=one window per shot,0.61697,0.48061,0.75332,-0.00227,-0.00513,8e-05,12,26,-0.0508
+P1B_P2_OBS,dev,COV_m1.1,observation=COCO+face coverage (dev-chosen),0.61183,0.45741,0.76626,-0.00741,-0.0502,0.03513,18,15,-0.3948
+P1B_P2_OBS,dev,COVNF_m1.1,observation=coverage on no-face frames,0.60765,0.45422,0.76108,-0.01159,-0.05244,0.03073,18,14,-0.3948
+P1B_P2_OBS,dev,QWEN,observation=Qwen subject point,0.64823,0.5319,0.76456,0.02899,-0.01351,0.07705,17,23,-0.2426
+P1B_P2_OBS,dev,QWENNF,observation=Qwen on no-face frames,0.65078,0.52935,0.77222,0.03154,-0.00817,0.07892,19,19,-0.2426
+P1B_P2_OBS,dev,ORACLE_SHOT[B0+CENTER],oracle per shot (diagnostic),0.63045,0.49794,0.76295,0.01121,0.00235,0.02334,15,0,-0.0
+P1B_P2_OBS,dev,ORACLE_SHOT[B0+COV_m1.1],oracle per shot (diagnostic),0.65565,0.52522,0.78608,0.03641,0.01684,0.06105,19,0,-0.0
+P1B_P2_OBS,dev,ORACLE_SHOT[B0+CENTER+COV_m1.1],oracle per shot (diagnostic),0.66137,0.5332,0.78955,0.04213,0.02197,0.06753,27,0,-0.0
+P1A_PATH,confirm,B0,baseline,0.57919,0.40364,0.75474,,,,,,
+P1A_PATH,confirm,CENTER,observation=none,0.61903,0.47328,0.76479,0.03984,-0.02178,0.11111,13,7,-0.2022
+P1A_PATH,confirm,RAW,path=no smoothing,0.57648,0.40096,0.752,-0.00271,-0.00845,0.00113,6,11,-0.0404
+P1A_PATH,confirm,DP_l4.0_sw1.0,path=shot L1 DP (dev-chosen),0.57989,0.40585,0.75393,0.0007,-0.00311,0.00514,7,12,-0.0114
+P1A_PATH,confirm,DP_l8.0_sw1.0,path=shot L1 DP,0.58337,0.40987,0.75687,0.00418,-0.00177,0.01303,10,9,-0.0138
+P1A_PATH,confirm,STATIC_sw1.0,path=one window per shot,0.57383,0.39374,0.75393,-0.00536,-0.03311,0.01985,8,12,-0.1375
+P1B_P2_OBS,confirm,COV_m1.1,observation=COCO+face coverage (dev-chosen),0.61011,0.46514,0.75508,0.03092,-0.01417,0.08115,12,7,-0.0871
+P1B_P2_OBS,confirm,COVNF_m1.1,observation=coverage on no-face frames,0.5905,0.43185,0.74914,0.01131,-0.01954,0.05475,7,8,-0.0917
+P1B_P2_OBS,confirm,QWEN,observation=Qwen subject point,0.64617,0.52584,0.76651,0.06698,0.01254,0.1273,15,5,-0.1158
+P1B_P2_OBS,confirm,QWENNF,observation=Qwen on no-face frames,0.59978,0.44716,0.7524,0.02059,-0.0002,0.04985,10,6,-0.0283
+P1B_P2_OBS,confirm,ORACLE_SHOT[B0+CENTER],oracle per shot (diagnostic),0.64528,0.51369,0.77688,0.06609,0.02206,0.12693,14,0,-0.0
+P1B_P2_OBS,confirm,ORACLE_SHOT[B0+COV_m1.1],oracle per shot (diagnostic),0.62697,0.47808,0.77586,0.04778,0.01449,0.08892,12,0,0.0
+P1B_P2_OBS,confirm,ORACLE_SHOT[B0+CENTER+COV_m1.1],oracle per shot (diagnostic),0.66949,0.555,0.78398,0.0903,0.04346,0.14618,18,0,0.0
+POOLED_30,dev+confirm,CENTER,pooled video bootstrap,,,,0.00759,-0.01743,0.03603,13,17,
+POOLED_30,dev+confirm,COVNF_m1.0,pooled video bootstrap,,,,-0.00402,-0.03467,0.02638,11,14,
+POOLED_30,dev+confirm,COVNF_m1.1,pooled video bootstrap,,,,-0.00396,-0.03395,0.02594,13,12,
+POOLED_30,dev+confirm,COVNF_m1.3,pooled video bootstrap,,,,-0.00297,-0.03141,0.02494,11,12,
+POOLED_30,dev+confirm,COV_m1.0,pooled video bootstrap,,,,0.00156,-0.03302,0.03455,13,15,
+POOLED_30,dev+confirm,COV_m1.1,pooled video bootstrap,,,,0.00537,-0.02809,0.03895,16,12,
+POOLED_30,dev+confirm,COV_m1.3,pooled video bootstrap,,,,0.00071,-0.0275,0.02874,14,11,
+POOLED_30,dev+confirm,QWEN,pooled video bootstrap,,,,0.04165,0.00596,0.07879,18,12,
+POOLED_30,dev+confirm,QWENNF,pooled video bootstrap,,,,0.02789,-0.00082,0.06023,15,12,

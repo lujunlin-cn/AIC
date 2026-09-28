@@ -209,3 +209,55 @@ The frozen InternVideo2 Stage1-1B K700 candidate received official platform scor
 - User feedback confirms the K710 174-video FINAL package scored `34.38`. The earlier G=`17.46` was a single-shard coverage failure; E01=`17.46` shows the same near-half pattern.
 - Full official scores are now K700 `34.43`, Stage2 `34.42`, K710 `34.38`. The three frozen systems have nearly identical selected-frame sets and identical YuNet boxes on common frames, so further same-protocol foundation swaps are low-information.
 - Report: `reports/20260927_official_score_root_cause_v2.md`.
+
+## 2026-09-27/28 — 全选诊断、时间对照与空间裁剪候选
+
+- `B0_ALL_SELECT_YUNET_V1`：全选 + YuNet，不加载编码器。与 V0 174/174 个视频、87,781/87,781 个框完全一致。53,104 参数，232,589 B。ZIP `ab6e7c0ff2841742fa53a8a0ec609cc09e1e036adc53f068a869a3138d6bc31b`。
+- `ALL_SELECT_DIAG_V1`（native QVH dev，裁剪固定，2 s 片段集合 F1 代理）：
+  - 全选 .2997（hi）/ .4171（rel）。
+  - V0 用 train 阈值 .65 得 .3166，CI [−.023, +.054]。
+  - E1 未标注=0 重训 .1916，CI [−.196, −.015]；E2 为 .1520。
+  - 不冻结时间选择。见 `reports/20260927_temporal_ablation_results.csv`。
+- `TIME_MAPPING_CHECK_V1`：训练用 floor(t/2) 对应标签，推理把分数放在锚点时刻，存在 +0.99 s 系统偏移，与 2 s 分辨率是两回事。+1 s 修正后 Spearman .1757 → .1601，登记为缺陷。
+- `SPATIAL_SUBJECT_002`（RetargetVid，真值都是最大窗口）：face_scaled − true_face_smooth 平均 −.0488，CI [−.081, −.023]，最差 −.406。这是平均估计，不是上界。
+- `SUBJECT_SCALE_DEVCHECK_V1`（QVH dev）：9:16 与 3:4 下 100% 合法且位于 B0 窗口内，平均尺度 .970 / .962，中心抖动中位数约 .001/帧。
+- `SUBJECT_SCALE_V1`：12 分片跑在 GPU 1/2/4/5/6/7，最长 2,265 s，基础窗口与 B0 差值为 0。产出：
+  - S2：`4d39831ad9c1b3ec652c97f2bb52429d084fdeb7c7196d62dc2ce16e8e1a5420`，19,463,858 参数 / 78,077,396 B，平均尺度 .916。
+  - S1：`7c4ef54a49e76823c11ce827f3a541a8a9188671a44f370d167276980099f976`，0 参数。
+  - Q2 内部探针：`9c9460fb760c88ff626e07c71d6f3b375149f41bdd639fde44ec53b96a12d235`。
+- `QWEN_QVH_DEV_AUDIT_V1`：阻塞，GPU 4–7 被非本项目服务占用。
+
+## 2026-09-28 晚 — 教师 T0/T1/T2（指南 v2）
+
+- `OFFICIAL_SCORE_20260928_QWEN_POINT_BATCH`：登记 NOFACE 42.83、POINT 40.09（绑定 zip f73c399f/684e566f），N0/P0/B0 冻结。
+- `OBS_CACHE_RETARGET_ALL200`：170 个新视频（dev2=031-100 + confirm2=601-700）的观测缓存；与旧 30 个合成全部 200 个 RetargetVid 可用集。
+- `T0_N0_GATE_AUDIT_V1`：门控/关键帧/坐标审计，重建与已评分包逐帧一致（max_abs 0）。
+- `QWEN_RV200_POINT_D1`（1 s 点）、`QWEN_RV200_POINT_D2`（0.5 s 加密，共享帧复用）、`QWEN_RV200_REGION_D1`（区域提示）：分别为 7,266/8,162/8,514 次推理。
+- `T0_T2_TEACHER_DIAG_V1` / `T1_T2_TEACHER_DIAG_V2`：confirm2 首次使用。DENSENF−N0 +0.0135 [+.0096,+.0176]；REGIONNF_fit−N0 −0.0239 [−.034,−.015]。
+- `QWEN32B_OFFICIAL_V2`：region_d1 因 T1 在公共集被否定在 23/174 中止；point_d2 官方加密推理进行中。
+- `T3_YTH_VAL_PROXY_V1` / `QWEN32B_OFFICIAL_V2/temporal`：只删不增时间判断的弱标签代理与官方推理，进行中。
+
+## 2026-09-28 — 平台反馈与最大窗口位置实验
+
+- 平台分数：B0 34.42、S2 30.37、S1 30.13、Q2 27.40（12:46）。
+- `OBS_CACHE_RETARGET_V1` / `OBS_CACHE_OFFICIAL_V1`：逐帧缓存 YuNet 观测与 COCO 检测，B0 可从缓存逐帧复现（max_abs 0）。
+- 新增确认集 DHF1K 021–030：从 RAR 用 bsdtar 解开，这是首次使用。
+- `MAX_WINDOW_PATH_P1A_V1`：L1 DP / 每镜头固定窗口 / 不平滑，都与 B0 持平。REJECTED。
+- `MAX_WINDOW_CAND_P1B_P2_V1`（PyAV 15 复核版为 `_V2_PYAV15`）：
+  - COV m1.1：confirm +.031，CI [−.014, +.081]，不交付。
+  - QWEN：dev +.029，confirm +.067 [+.015, +.125]，合并 30 视频 +.042 [+.007, +.081]。
+  - QWENNF：合并 +.028 [−.001, +.061]。
+- `QWEN_SUBJECT_POINT_OFFICIAL_V1`：官方 3,106 个关键帧解析全部成功，模型时间 729 s。第 1 次运行在视频 97 上因 PyAV 17 的 trc 问题崩溃；之后全部 174 个视频改用 PyAV 15 的 PNG 重跑。
+- 候选包：
+  - `MAX_WINDOW_QWEN_POINT_V1`：`684e566f801d2ed4e7b07f4f362d03dad20213631b75a79fc9d213a9a0151e7c`，改动 174 个视频 / 83,483 帧。
+  - `MAX_WINDOW_QWEN_NOFACE_V1`：`f73c399f28879de12c3b3a2e796970221c8abd9265ceda48b087190e94b3a96c`，改动 168 个视频 / 75,688 帧。
+- `TEMPORAL_CONTRACT_V1`：对齐契约与标签状态盘点。
+
+## 2026-09-28 夜 — 46.84 之后（指南 v3）
+
+- `OFFICIAL_SCORE_20260928_TEACHER_V2_BATCH`：TEMP 46.84（`631d0104…`）、dense 43.76（`972b3ed1…`），SHA 从文件重算。
+- `PACKAGE_DENSE_TEMP_V3_20260928`：DENSE bbox × TEMP 掩码，`c702de92…`，174v/78,992f，契约 0 差；DENSE 改动 91.6% 在 TEMP 保留帧。`scripts/mask_combo_release.py`、`scripts/verify_combo_zip.py`。
+- `T4_TEMP_BOUNDARY_V3`：转换边界 0.25 s 复核（YTH val 193 次、官方 122 次 32B 查询，模型时间 239 s / 158 s）。YTH F 代理 −0.0014 [−.0034,+.0003]，恢复帧正例率 43.9% < 基线 51.3%。REJECTED，不出包。
+- `T5_CROPHEAD_V3`：LIVE-YT-VC 1,800 视频观测缓存（GPU2）与 1 s Qwen 点（val 178 / train 1,622）；RetargetVid 关键帧候选表。结果见 probe 报告。
+- `OFFICIAL_SCORE_20260928_DENSE_TEMP_V3`：DT_V3 平台 47.88（用户 22:33），相对 TEMP +1.04，交互 +0.11。新最高已知成绩。
+- `T5_CROPHEAD_V3`：H1（x a=.85 b=+.025；y a=.65 b=+.025）dev 选中；LIVE-YT-VC val +0.0062 [+.0034,+.0093]，RV confirm2 +0.0148 [+.0097,+.0200]；H2 MLP 更弱且随 seed 波动。PROMOTED，包 `519a718a…`（174v/78,992f，identity 复现 N0 0 差，keys==TEMP）。探针墙钟 72 s（CPU），LIVE 点推理 178+1,622 视频。

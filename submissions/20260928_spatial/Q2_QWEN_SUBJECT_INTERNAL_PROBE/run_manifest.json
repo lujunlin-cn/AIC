@@ -1,0 +1,95 @@
+{
+  "submission_id": "Q2_QWEN_SUBJECT",
+  "status": "INTERNAL_TEACHER_PROBE_NOT_FOR_UPLOAD",
+  "uploaded": false,
+  "official_submission": "NOT_SUBMITTED",
+  "official_f_video": null,
+  "frozen_sha256": "715b09cae874b0c8175695dbed559ee655689ae58846f071489c49bc5e7ade8a",
+  "temporal": "qwen",
+  "crop": "scaled",
+  "weights": [
+    {
+      "path": "/data/aic/pretrained/torchvision/hub/checkpoints/fasterrcnn_mobilenet_v3_large_fpn-fb6a3cc7.pth",
+      "bytes": 77844807,
+      "sha256": "fb6a3cc702b1df54c18a44b26708cd083614211062d0c36d2ca7bf9270df3533",
+      "parameters": 19410754
+    },
+    {
+      "path": "/data/aic/pretrained/yunet/face_detection_yunet_2023mar.onnx",
+      "bytes": 232589,
+      "sha256": "8f2383e4dd3cfbb4553ea8718107fc0423210dc964f9f4280604804ed2552fa4",
+      "parameters": 53104
+    },
+    {
+      "path": "/data/aic/pretrained/qwen3_vl_32b_instruct/model-000{01..14}-of-00014.safetensors",
+      "files": 14,
+      "bytes": 66714912872,
+      "parameters": 33357390064
+    }
+  ],
+  "model_size_mb": null,
+  "model_size_is_placeholder": false,
+  "true_parameters": 33376853922,
+  "true_weight_bytes": 66792990268,
+  "video_count": 174,
+  "prediction_count": 55214,
+  "empty_videos": [
+    "22",
+    "26",
+    "27",
+    "28",
+    "29",
+    "30",
+    "33",
+    "39",
+    "52",
+    "80"
+  ],
+  "base_vs_b0_max_abs": 0.0,
+  "scale_mean": 0.909762104740227,
+  "scaled_frame_rate": 0.5341036693592205,
+  "scale_p10": 0.6630009865065757,
+  "scale_min": 0.6,
+  "shard_wall_seconds": [
+    1629.1823518276215,
+    2031.771561384201,
+    1833.8951680660248,
+    1081.376498222351,
+    2032.5253944396973,
+    1839.091564655304,
+    1736.7970700263977,
+    2264.7383844852448,
+    2201.2021408081055,
+    1851.7580091953278,
+    1823.2558648586273,
+    2028.4434859752655
+  ],
+  "peak_vram_bytes": 1943122944,
+  "detector_parameters": 19410754,
+  "validator": {
+    "valid": true,
+    "issues": [],
+    "video_count": 174,
+    "prediction_count": 55214,
+    "model_size_mb": null,
+    "stage": "preliminary",
+    "validator": "local_rules_2026-09-24_not_official"
+  },
+  "independent": {
+    "valid": true,
+    "videos": 174,
+    "predictions": 55214,
+    "model_size_mb": null,
+    "checker": "independent_submission_check_v1"
+  },
+  "unzip_independent": {
+    "valid": true,
+    "videos": 174,
+    "predictions": 55214,
+    "model_size_mb": null,
+    "checker": "independent_submission_check_v1"
+  },
+  "predictions_sha256": "b9673b07e794f95643ee6098cd6ebb6eba945ed17e8ce8e83af59ef2c66fc16f",
+  "zip_sha256": "9c9460fb760c88ff626e07c71d6f3b375149f41bdd639fde44ec53b96a12d235",
+  "zip_bytes": 1187837
+}

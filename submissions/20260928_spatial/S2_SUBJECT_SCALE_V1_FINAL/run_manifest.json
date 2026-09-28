@@ -1,0 +1,74 @@
+{
+  "submission_id": "S2_SUBJECT_SCALE",
+  "status": "READY_TO_SUBMIT_EXPLORATORY",
+  "uploaded": false,
+  "official_submission": "NOT_SUBMITTED",
+  "official_f_video": null,
+  "frozen_sha256": "fd7923f26e2f6b663c294e9ff5b11985fc2fe588d62ce8bd9efb72357c8ede9a",
+  "temporal": "all",
+  "crop": "scaled",
+  "weights": [
+    {
+      "path": "/data/aic/pretrained/torchvision/hub/checkpoints/fasterrcnn_mobilenet_v3_large_fpn-fb6a3cc7.pth",
+      "bytes": 77844807,
+      "sha256": "fb6a3cc702b1df54c18a44b26708cd083614211062d0c36d2ca7bf9270df3533"
+    },
+    {
+      "path": "/data/aic/pretrained/yunet/face_detection_yunet_2023mar.onnx",
+      "bytes": 232589,
+      "sha256": "8f2383e4dd3cfbb4553ea8718107fc0423210dc964f9f4280604804ed2552fa4"
+    }
+  ],
+  "model_size_mb": 78.077396,
+  "model_size_is_placeholder": false,
+  "video_count": 174,
+  "prediction_count": 87781,
+  "empty_videos": [],
+  "base_vs_b0_max_abs": 0.0,
+  "scale_mean": 0.915880194947491,
+  "scaled_frame_rate": 0.47076246568163954,
+  "scale_p10": 0.6622240811020556,
+  "scale_min": 0.6,
+  "shard_wall_seconds": [
+    1629.1823518276215,
+    2031.771561384201,
+    1833.8951680660248,
+    1081.376498222351,
+    2032.5253944396973,
+    1839.091564655304,
+    1736.7970700263977,
+    2264.7383844852448,
+    2201.2021408081055,
+    1851.7580091953278,
+    1823.2558648586273,
+    2028.4434859752655
+  ],
+  "peak_vram_bytes": 1943122944,
+  "detector_parameters": 19410754,
+  "validator": {
+    "valid": true,
+    "issues": [],
+    "video_count": 174,
+    "prediction_count": 87781,
+    "model_size_mb": 78.077396,
+    "stage": "final",
+    "validator": "local_rules_2026-09-24_not_official"
+  },
+  "independent": {
+    "valid": true,
+    "videos": 174,
+    "predictions": 87781,
+    "model_size_mb": 78.077396,
+    "checker": "independent_submission_check_v1"
+  },
+  "unzip_independent": {
+    "valid": true,
+    "videos": 174,
+    "predictions": 87781,
+    "model_size_mb": 78.077396,
+    "checker": "independent_submission_check_v1"
+  },
+  "predictions_sha256": "927fc6134f44af165bfb9ab58fbe01aacbb590ae8a6edeba81bcabab31aa8755",
+  "zip_sha256": "4d39831ad9c1b3ec652c97f2bb52429d084fdeb7c7196d62dc2ce16e8e1a5420",
+  "zip_bytes": 1781588
+}

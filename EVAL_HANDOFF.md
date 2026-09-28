@@ -47,3 +47,25 @@ A0 成功并通过本地 validator 后，再对 `DeiT_center` 和 `A0_face_ema` 
 - 只有官方评测器和规则明确后，才另建官方结果目录；不要覆盖本地工程证据。
 
 无真实评测集时，可用 `python scripts/release_batch.py --smoke ...` 或现有短视频 smoke 检查入口，但 smoke 不代表比赛分数。
+
+## 2026-09-28 交接：初赛候选
+
+- 可上传：
+  - `submissions/20260928_spatial/S2_SUBJECT_SCALE_V1_FINAL/S2_SUBJECT_SCALE.zip`
+  - `submissions/20260928_spatial/S1_CENTER_MAX_V1_FINAL/S1_CENTER_MAX.zip`
+  - 远端同名目录：`/data/aic/official_test_20260926/submissions/*_FINAL`。
+- 上传前核对 ZIP SHA-256，以及 JSONL 为 174 行。
+- 重放全量：`python -m scripts.subject_crop_release run --part P --parts 12 --frozen configs/SUBJECT_SCALE_V1.json ...`，打包用 `finalize --variant S1_CENTER_MAX|S2_SUBJECT_SCALE`。命令见 `/data/aic/experiments/SUBJECT_SCALE_V1/command.txt`。
+- Qwen dev 审计：GPU 4–7 空闲后，按 `reports/20260927_qwen_temporal_audit.md` 中的命令运行。
+
+## 2026-09-28 下午交接：Qwen 主体点候选
+
+- 可上传：
+  - `submissions/MAX_WINDOW_QWEN_POINT_V1/MAX_WINDOW_QWEN_POINT_V1.zip`（先传）
+  - `submissions/MAX_WINDOW_QWEN_NOFACE_V1/MAX_WINDOW_QWEN_NOFACE_V1.zip`
+- 复现步骤：
+  1. `scripts.build_obs_cache --index ...`：观测缓存。
+  2. `scripts.qwen_subject_point --extract-only`：在 cv 环境（PyAV 15）下提取关键帧。
+  3. `scripts/qwen_subject_point.py --frames-dir ...`：在 vLLM 环境、GPU 4–7 上推理。
+  4. `scripts.max_window_release --frozen configs/MAX_WINDOW_QWEN_{POINT,NOFACE}_V1.json`：打包。
+  - 命令见 `/data/aic/experiments/QWEN_SUBJECT_POINT_OFFICIAL_V1/command*.txt`。

@@ -1,0 +1,71 @@
+{
+  "submission_id": "SUB_Q_QWEN3VL32B_TEACHER_V1",
+  "status": "READY_TO_UPLOAD_TEACHER_EVAL_ONLY",
+  "uploaded": false,
+  "purpose": "teacher score probe; not a rule-compliant final submission",
+  "model_size_mb_declared": 350.5,
+  "model_size_mb_is_placeholder": true,
+  "true_weight_bytes": 66715145461,
+  "true_model_size_mb": 66715.145461,
+  "rule_limit_mb": 9216,
+  "exceeds_rule_limit": true,
+  "sources": {
+    "base": "/data/aic/experiments/qwen_official_174/predictions.jsonl",
+    "base_sha256": "dd152974026b09ce47f534e42ca49d12a68168845af5959cb39ffb10b817ca4a",
+    "rerun_dir": "/data/aic/experiments/qwen_official_174_rerun_vllm/shards",
+    "rerun_backend": "vllm 0.13.0 TP=4 fp16 greedy, GPUs 4-7",
+    "replaced_videos": {
+      "99": {
+        "before": 0,
+        "after": 211
+      },
+      "104": {
+        "before": 0,
+        "after": 152
+      }
+    }
+  },
+  "index_sha256": "9a59316e97f5a80fc2c22f43f38ebd72130d20109d17954efa3dde9f86d404d5",
+  "prompt_version": "qwen_temporal_v1",
+  "video_count": 174,
+  "prediction_count": 55214,
+  "empty_videos": [
+    "22",
+    "26",
+    "27",
+    "28",
+    "29",
+    "30",
+    "33",
+    "39",
+    "52",
+    "80"
+  ],
+  "validator": {
+    "valid": true,
+    "issues": [],
+    "video_count": 174,
+    "prediction_count": 55214,
+    "model_size_mb": 350.5,
+    "stage": "final",
+    "validator": "local_rules_2026-09-24_not_official"
+  },
+  "independent": {
+    "valid": true,
+    "videos": 174,
+    "predictions": 55214,
+    "model_size_mb": 350.5,
+    "checker": "independent_submission_check_v1"
+  },
+  "unzip_independent": {
+    "valid": true,
+    "videos": 174,
+    "predictions": 55214,
+    "model_size_mb": 350.5,
+    "checker": "independent_submission_check_v1"
+  },
+  "predictions_sha256": "96d134e957c19e43253e128d6bd15b51148d2026537e9555488e9b8a8f2509f8",
+  "zip_sha256": "c5f486b80c038708e8d6e3464363fd158b1d3b1e8552ffb173974795ae912c1c",
+  "zip_bytes": 674524,
+  "official_score": null
+}

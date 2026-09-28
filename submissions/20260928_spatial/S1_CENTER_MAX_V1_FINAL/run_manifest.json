@@ -1,0 +1,63 @@
+{
+  "submission_id": "S1_CENTER_MAX",
+  "status": "READY_TO_SUBMIT_EXPLORATORY",
+  "uploaded": false,
+  "official_submission": "NOT_SUBMITTED",
+  "official_f_video": null,
+  "frozen_sha256": "fd7923f26e2f6b663c294e9ff5b11985fc2fe588d62ce8bd9efb72357c8ede9a",
+  "temporal": "all",
+  "crop": "center",
+  "weights": [],
+  "model_size_mb": 0.001,
+  "model_size_is_placeholder": true,
+  "video_count": 174,
+  "prediction_count": 87781,
+  "empty_videos": [],
+  "base_vs_b0_max_abs": 0.0,
+  "scale_mean": 1.0,
+  "scaled_frame_rate": 0.0,
+  "scale_p10": 1.0,
+  "scale_min": 1.0,
+  "shard_wall_seconds": [
+    1629.1823518276215,
+    2031.771561384201,
+    1833.8951680660248,
+    1081.376498222351,
+    2032.5253944396973,
+    1839.091564655304,
+    1736.7970700263977,
+    2264.7383844852448,
+    2201.2021408081055,
+    1851.7580091953278,
+    1823.2558648586273,
+    2028.4434859752655
+  ],
+  "peak_vram_bytes": 1943122944,
+  "detector_parameters": 19410754,
+  "validator": {
+    "valid": true,
+    "issues": [],
+    "video_count": 174,
+    "prediction_count": 87781,
+    "model_size_mb": 0.001,
+    "stage": "final",
+    "validator": "local_rules_2026-09-24_not_official"
+  },
+  "independent": {
+    "valid": true,
+    "videos": 174,
+    "predictions": 87781,
+    "model_size_mb": 0.001,
+    "checker": "independent_submission_check_v1"
+  },
+  "unzip_independent": {
+    "valid": true,
+    "videos": 174,
+    "predictions": 87781,
+    "model_size_mb": 0.001,
+    "checker": "independent_submission_check_v1"
+  },
+  "predictions_sha256": "729d79f94a626ecdad257b77e2816f783fe607b895309ed65df4fb6225310cd8",
+  "zip_sha256": "7c4ef54a49e76823c11ce827f3a541a8a9188671a44f370d167276980099f976",
+  "zip_bytes": 178897
+}

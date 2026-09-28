@@ -1,0 +1,69 @@
+{
+  "submission_id": "B0_ALL_SELECT_YUNET_V1",
+  "status": "READY_TO_SUBMIT_BASELINE",
+  "uploaded": false,
+  "official_submission": "NOT_SUBMITTED",
+  "official_f_video": null,
+  "frozen_sha256": "5d1eb36b63d66755f7d9c92132574d3f981ad94b4b2d6d634840308d7fd6b4d3",
+  "weight_bytes": 232589,
+  "model_size_mb": 0.232589,
+  "size_coefficient": 1.0,
+  "weights": [
+    {
+      "path": "/data/aic/pretrained/yunet/face_detection_yunet_2023mar.onnx",
+      "bytes": 232589,
+      "sha256": "8f2383e4dd3cfbb4553ea8718107fc0423210dc964f9f4280604804ed2552fa4",
+      "parameters": "YuNet ONNX (OpenCV DNN, CPU)"
+    }
+  ],
+  "encoder_loaded": false,
+  "heavy_modules_loaded": [],
+  "gpu_used": false,
+  "peak_vram_bytes": 0,
+  "video_count": 174,
+  "prediction_count": 87781,
+  "index_frame_count": 87781,
+  "empty_videos": 0,
+  "shard_wall_seconds": [
+    1003.4807553291321,
+    883.9356067180634,
+    1094.055805683136,
+    1240.9336729049683,
+    1164.890674829483,
+    1104.9596314430237,
+    968.8327739238739,
+    926.3304455280304
+  ],
+  "sum_video_seconds": 8386.276541233063,
+  "cpu_maxrss_kib": 177080,
+  "validator": {
+    "valid": true,
+    "issues": [],
+    "video_count": 174,
+    "prediction_count": 87781,
+    "model_size_mb": 0.232589,
+    "stage": "preliminary",
+    "validator": "local_rules_2026-09-24_not_official"
+  },
+  "independent": {
+    "valid": true,
+    "videos": 174,
+    "predictions": 87781,
+    "model_size_mb": 0.232589,
+    "checker": "independent_submission_check_v1"
+  },
+  "unzip_independent": {
+    "valid": true,
+    "videos": 174,
+    "predictions": 87781,
+    "model_size_mb": 0.232589,
+    "checker": "independent_submission_check_v1"
+  },
+  "predictions_sha256": "5dc398d90af1781bb313b6b81bc537a25a8d4418c7caad7ce57add3bb30863dd",
+  "zip_name": "B0_ALL_SELECT_YUNET_V1.zip",
+  "zip_sha256": "ab6e7c0ff2841742fa53a8a0ec609cc09e1e036adc53f068a869a3138d6bc31b",
+  "zip_bytes": 1054657,
+  "v0_prediction_content_identical": true,
+  "v0_videos_with_differences": 0,
+  "score_note": "equivalence inference only: identical prediction content implies same raw F_video as V0 (34.42 feedback at k=0.90); not a new official score"
+}

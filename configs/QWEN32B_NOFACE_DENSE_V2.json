@@ -1,0 +1,41 @@
+{
+ "submission_id": "QWEN32B_NOFACE_DENSE_V2_FINAL",
+ "status": "frozen_exploratory",
+ "release_status": "READY_TO_UPLOAD_EXPLORATORY_INTERNAL_TEACHER",
+ "frozen_at": "2026-09-28",
+ "policy": "QWEN_POINT_NOFACE",
+ "parent_baseline": "N0 = MAX_WINDOW_QWEN_NOFACE_V1 (official 42.83, zip f73c399f28879de12c3b3a2e796970221c8abd9265ceda48b087190e94b3a96c)",
+ "primary_changed_factor": "T2: keyframe density 2x inside shots (0.5 s grid + shot starts, superset of N0's 1 s grid; N0's 3,106 replies reused byte-identically, only added keyframes queried); same point prompt, 640 px, NOFACE gate, B0 EMA/resets, all-select, max width",
+ "fixed_conditions": {
+  "temporal": "all decoded frames",
+  "width": "largest legal",
+  "path": "B0 EMA alpha .25 on free axis, B0 thumbnail-diff resets",
+  "fallback": "B0 observation on parse failure / uncertain / before first keyframe"
+ },
+ "alpha": 0.25,
+ "prompt_script": "/data/aic/experiments/QWEN32B_OFFICIAL_V2/qwen_subject_point.frozen_v3.py",
+ "keyframe_step_s": 0.5,
+ "image_long_side": 640,
+ "dev_evidence": "RetargetVid (6 annotators) DENSENF-N0: dev2 031-100 +.0128 CI[+.0085,+.0173] 50/16 videos; confirm2 601-700 (first use) +.0135 CI[+.0096,+.0176] 72/22 videos; used 001-030 +.0129 CI[+.0067,+.0202]. Prereg configs/TEACHER_V2_PREREG.json sha 4a85d8a8.",
+ "index_sha256": "9a59316e97f5a80fc2c22f43f38ebd72130d20109d17954efa3dde9f86d404d5",
+ "b0_predictions": "/data/aic/official_test_20260926/submissions/B0_ALL_SELECT_YUNET_V1_FINAL/predictions.jsonl",
+ "obs_cache": "/data/aic/experiments/OBS_CACHE_OFFICIAL_V1/cache",
+ "qwen_points": "/data/aic/experiments/QWEN32B_OFFICIAL_V2/point_d2/points",
+ "components": [
+  {
+   "name": "Qwen3-VL-32B-Instruct (FP16, vLLM TP=4)",
+   "parameters": 33357390064,
+   "bytes": 66714912872
+  },
+  {
+   "name": "YuNet 2023mar",
+   "parameters": 53104,
+   "bytes": 232589
+  }
+ ],
+ "declared_model_size_mb": null,
+ "declared_size_note": "Qwen3-VL-32B total 33,357,443,168 params / 66,715,145,461 B exceeds both 9B-param and 9216 MB limits; no placeholder is written, JSONL omits model_size_mb (preliminary format allows omission). SUB_Q/Q2 with the same teacher and omitted/placeholder size were scored by the platform (31.20 / 27.40) in the preliminary stage; rule-compliance of >9B teachers at test time beyond the preliminary stage is unconfirmed. The FasterRCNN detections in the obs cache are NOT used by this policy.",
+ "official_platform_score": null,
+ "parent_predictions": "/data/aic/official_test_20260926/submissions/MAX_WINDOW_QWEN_NOFACE_V1/predictions.jsonl",
+ "hypothesis": "sparse 1 s subject points lose IoU between keyframes; fresh 0.5 s points recover part of it (held-vs-fresh at 0.5 s: +.024..+.029 IoU on public data)"
+}

@@ -38,7 +38,7 @@ def read_jsonl(path):
     return rows
 
 
-def check(index_path, submission_path, expected_bytes=None):
+def check(index_path, submission_path, expected_bytes=None, require_size=True):
     index_rows = read_jsonl(index_path)
     index = {r["video_id"]: r for r in index_rows}
     if len(index) != len(index_rows):
@@ -55,11 +55,13 @@ def check(index_path, submission_path, expected_bytes=None):
         meta = index[vid]
         if row.get("targetRatioWH") != meta.get("targetRatioWH"):
             raise ValueError(f"targetRatioWH mismatch for {vid}")
-        if "model_size_mb" not in row or not isinstance(row["model_size_mb"], (int, float)):
-            raise ValueError(f"missing model_size_mb for {vid}")
-        sizes.append(float(row["model_size_mb"]))
-        if not 0.0 < sizes[-1] <= 9216.0 or not math.isfinite(sizes[-1]):
-            raise ValueError(f"invalid model_size_mb for {vid}")
+        # preliminary-stage packages may omit the field entirely (rules 6.1)
+        if "model_size_mb" in row or require_size:
+            if "model_size_mb" not in row or not isinstance(row["model_size_mb"], (int, float)):
+                raise ValueError(f"missing model_size_mb for {vid}")
+            sizes.append(float(row["model_size_mb"]))
+            if not 0.0 < sizes[-1] <= 9216.0 or not math.isfinite(sizes[-1]):
+                raise ValueError(f"invalid model_size_mb for {vid}")
         rw, rh = map(float, meta["targetRatioWH"])
         last = None
         frames = set()
@@ -85,6 +87,11 @@ def check(index_path, submission_path, expected_bytes=None):
     missing = sorted(set(index) - seen_ids)
     if missing:
         raise ValueError(f"missing video IDs: {missing[:5]} (total {len(missing)})")
+    if not require_size and not sizes:
+        return {"valid": True, "videos": len(rows), "predictions": predictions,
+                "model_size_mb": None, "checker": "independent_submission_check_v1"}
+    if len(sizes) != len(rows):
+        raise ValueError("model_size_mb present on some rows only")
     if max(sizes) - min(sizes) > 1e-9:
         raise ValueError("model_size_mb differs across rows")
     if expected_bytes is not None and not math.isclose(sizes[0], expected_bytes / 1_000_000, abs_tol=1e-9):

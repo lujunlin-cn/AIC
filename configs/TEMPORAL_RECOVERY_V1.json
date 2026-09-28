@@ -1,0 +1,22 @@
+{
+ "config_id": "TEMPORAL_RECOVERY_V1",
+ "status": "not_frozen_no_promotion",
+ "date": "2026-09-28",
+ "decision": "keep all-select temporal policy; no temporal selector beat all-select on native QVH dev with CI lower bound > 0",
+ "evidence": {
+  "diagnosis": "reports/20260927_all_select_diagnosis.md",
+  "ablation_csv": "reports/20260927_temporal_ablation_results.csv",
+  "qwen_audit": "reports/20260927_qwen_temporal_audit.md (blocked: GPUs 4-7 occupied by a non-project service)"
+ },
+ "failed_explorations": {
+  "E1_FULLNEG_THR": "unannotated clips as 0 targets; dev F .1916 vs all-select .2997 (hi), CI [-.196,-.015]; unannotated clips are not valid negatives; do not scale",
+  "E2_FULLNEG_TOPQ": "E1 + per-video top-q; dev F .1520, CI [-.230,-.070]"
+ },
+ "known_defects_for_restart": {
+  "time_mapping_offset": "training pairs anchor t with bin floor(t/2) (anchor at bin start, bin centre = +0.99 s), eval/expand_scores place score at anchor; systematic 1 s offset distinct from 2 s anchor resolution; +1 s correction did not improve V0 dev ranking (Spearman .1757 -> .1601)",
+  "label_mask": "loss only on query-relevant clips (mask coverage .31 train), 72% of targets >= .75 -> near-constant high head"
+ },
+ "gated": {"E3_QWEN_DISTILL": "only if QWEN_QVH_DEV_AUDIT_V1 admit_distillation=true"},
+ "test_content_used": false,
+ "official_f_video": null
+}

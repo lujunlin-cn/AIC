@@ -1,0 +1,35 @@
+{
+ "config_id": "SUBJECT_SCALE_V1",
+ "status": "frozen_exploratory",
+ "frozen_at": "2026-09-27",
+ "tuning": "none on official test content; parameters fixed before RetargetVid SPATIAL_SUBJECT_002 and QVH dev engineering checks",
+ "hypothesis": "AIC GT windows may be tighter than the max legal window; a subject-aware sub-window nested inside the B0 face window can raise IoU when GT is tight, at a bounded cost (RetargetVid max-size GT: -0.049 IoU) when GT is max-size",
+ "variants": {
+  "S1_CENTER_MAX": "all frames; largest centered legal window; factor vs B0 = no face tracking",
+  "S2_SUBJECT_SCALE": "all frames; B0 face window, then variable-scale subject sub-window inside it; factor vs B0 = crop scale",
+  "Q2_QWEN_SUBJECT": "SUB_Q Qwen frame selection; crops identical to S2 per frame; factor vs SUB_Q = crop scale"
+ },
+ "index_sha256": "9a59316e97f5a80fc2c22f43f38ebd72130d20109d17954efa3dde9f86d404d5",
+ "spatial_mode": "true_face_smooth",
+ "base_alpha": 0.25,
+ "face": "/data/aic/pretrained/yunet/face_detection_yunet_2023mar.onnx",
+ "detector": "/data/aic/pretrained/torchvision/hub/checkpoints/fasterrcnn_mobilenet_v3_large_fpn-fb6a3cc7.pth",
+ "detector_score": 0.5,
+ "min_scale": 0.6,
+ "margin": 1.25,
+ "alpha": 0.25,
+ "scale_alpha": 0.1,
+ "batch": 16,
+ "weights": [
+  {"path": "/data/aic/pretrained/torchvision/hub/checkpoints/fasterrcnn_mobilenet_v3_large_fpn-fb6a3cc7.pth", "bytes": 77844807, "sha256": "fb6a3cc702b1df54c18a44b26708cd083614211062d0c36d2ca7bf9270df3533"},
+  {"path": "/data/aic/pretrained/yunet/face_detection_yunet_2023mar.onnx", "bytes": 232589, "sha256": "8f2383e4dd3cfbb4553ea8718107fc0423210dc964f9f4280604804ed2552fa4"}
+ ],
+ "b0_predictions": "/data/aic/official_test_20260926/submissions/B0_ALL_SELECT_YUNET_V1_FINAL/predictions.jsonl",
+ "qwen_predictions": "/data/aic/official_test_20260926/submissions/SUB_Q_QWEN3VL32B_TEACHER_V1_FINAL/predictions.jsonl",
+ "qwen_declared_model_size_mb": 350.5,
+ "qwen_model_size_note": "Q2 keeps SUB_Q's declared 350.5 (placeholder; true Qwen weights 66,715 MB exceed 9216 MB) so the platform k is unchanged and crop is the only factor; teacher probe, not rule-compliant final",
+ "no_weight_model_size_mb": 0.001,
+ "no_weight_note": "S1 loads no weights; validator requires 0 < M, so a 1 KB nominal value is declared (same k=1.00 tier)",
+ "official_f_video": null,
+ "official_submission": "NOT_SUBMITTED"
+}

@@ -1,0 +1,46 @@
+{
+ "id": "TEACHER_V2_PREREG",
+ "written_at": "2026-09-28T16:55+08:00",
+ "written_before": "any T1 region reply or T2 dense reply on RetargetVid was read",
+ "baselines_frozen": {
+  "N0": {"id": "MAX_WINDOW_QWEN_NOFACE_V1", "official": 42.83, "zip_sha256": "f73c399f28879de12c3b3a2e796970221c8abd9265ceda48b087190e94b3a96c"},
+  "P0": {"id": "MAX_WINDOW_QWEN_POINT_V1", "official": 40.09, "zip_sha256": "684e566f801d2ed4e7b07f4f362d03dad20213631b75a79fc9d213a9a0151e7c"},
+  "B0": {"id": "B0_ALL_SELECT_YUNET_V1", "official": 34.42, "zip_sha256": "ab6e7c0ff2841742fa53a8a0ec609cc09e1e036adc53f068a869a3138d6bc31b"}
+ },
+ "splits": {
+  "used": "RetargetVid/DHF1K 001-030 (seen last round; diagnostic only)",
+  "dev2": "031-100 (70 videos)",
+  "confirm2": "601-700 (100 videos, first use, evaluated once)",
+  "dedup": "RetargetVid videos are the DHF1K source files themselves (byte-identical, checked on 001/025); each source id appears in exactly one split; no frames or derived crops cross splits"
+ },
+ "experiments": {
+  "T1": {
+   "parent": "N0",
+   "single_change": "Qwen output = target-ratio-aware subject_box + context_box (prompt states window size and slide axis); deterministic mapping 'fit' to a legal max-window centre; same keyframes (1 s + shot starts), 640 px, NOFACE gate, B0 EMA/resets, all-select, max width",
+   "primary_policy": "REGIONNF_fit",
+   "diagnostic_policies": ["REGIONNF_subject", "REGIONNF_context", "REGION_fit"],
+   "hypothesis": "Telling the teacher the window constraint and asking for a region to keep (incl. interaction/action objects) places the window better than a subject point",
+   "falsified_if": "confirm2 paired REGIONNF_fit - N0 CI95 upper bound < 0"
+  },
+  "T2": {
+   "parent": "N0",
+   "single_change": "keyframe density 2x inside shots (0.5 s grid, superset of the 1 s grid; shared keyframe replies reused byte-identically from the parent run); same point prompt, 640 px, gate, path",
+   "primary_policy": "DENSENF",
+   "hypothesis": "Sparse 1 s points lose IoU on interpolated frames; fresh points at 0.5 s improve IoU",
+   "falsified_if": "confirm2 paired DENSENF - N0 CI95 upper bound < 0, or propagation analysis shows fresh vs held IoU difference < .005"
+  },
+  "T3": {
+   "parent": "N0 (bbox on every kept frame byte-identical to N0)",
+   "single_change": "temporal keep mask from 32B removal-only judgement with whole-video overview + local context; default keep-all",
+   "status": "hypothesis; package only as diagnostic after public proxy audit"
+  }
+ },
+ "package_rule": {
+  "supported": "confirm2 CI95 lower bound > 0",
+  "reject_no_package": "confirm2 CI95 upper bound < 0",
+  "inconclusive": "otherwise; package as a diagnostic only if dev2+confirm2 pooled mean >= 0 and official predictions change >= 10% of frames vs N0",
+  "no_dense_threshold_scan": true,
+  "scores_null_until_official": true
+ },
+ "size_policy": "record loaded params and weight bytes; params tier 100-500M x0.95, 500M-9B x0.90; 32B teacher is a research teacher result (raw score), not a compliant student"
+}

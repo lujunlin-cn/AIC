@@ -1,0 +1,34 @@
+{
+ "submission_id": "QWEN32B_NOFACE_TEMPORAL_V2_FINAL",
+ "status": "frozen_exploratory",
+ "release_status": "READY_TO_UPLOAD_EXPLORATORY_INTERNAL_TEACHER_HYPOTHESIS",
+ "frozen_at": "2026-09-28",
+ "policy": "N0 spatial policy unchanged; temporal mask from Qwen3-VL-32B removal-only judgement",
+ "parent_baseline": "N0 = MAX_WINDOW_QWEN_NOFACE_V1 (official 42.83, zip f73c399f28879de12c3b3a2e796970221c8abd9265ceda48b087190e94b3a96c)",
+ "primary_changed_factor": "T3: removal-only temporal selection by 32B (overview <=16 anchors + per-block judge, 8 target cells + <=2 context each side, default KEEP, JSON {remove:[ids]}, guard: keep-all if >50% removed). Kept frames carry N0 bboxes byte-for-byte; no re-smoothing.",
+ "hypothesis": "HYPOTHESIS ONLY, not validated: public YouTube Highlights weak-label proxy showed removal-vs-keep-all +0.0031 CI95[-.0047,+.0108] (inconclusive), removal-vs-random +0.0208 CI[+.011,+.031] (selective, not random). Packaged per prereg rule (pooled mean >=0 AND >=10% official frames differ; actual removal 10.01% frames). NOT a confirmed improvement - official feedback needed.",
+ "fixed_conditions": {
+  "spatial": "identical to N0 (keyframe 1 s point, 640 px, NOFACE gate, B0 EMA/resets, max width) - only frame mask changes",
+  "removal_rule": {"cell_s": 1.0, "anchor": "nearest to k+0.5s", "block": 8, "context": 2, "overview": 16, "guard": 0.5}
+ },
+ "index_sha256": "9a59316e97f5a80fc2c22f43f38ebd72130d20109d17954efa3dde9f86d404d5",
+ "parent_predictions": "/data/aic/official_test_20260926/submissions/MAX_WINDOW_QWEN_NOFACE_V1/predictions.jsonl",
+ "parent_predictions_sha256": "fcdd98dc4f75d7529c4eae5172f4eb6ce1ceb50befffbe9a5ba4d79c2a5070f8",
+ "removal": "/data/aic/experiments/QWEN32B_OFFICIAL_V2/temporal/removal",
+ "anchors": "/data/aic/experiments/QWEN32B_OFFICIAL_V2/temporal/anchors",
+ "components": [
+  {
+   "name": "Qwen3-VL-32B-Instruct (FP16, vLLM TP=4)",
+   "parameters": 33357390064,
+   "bytes": 66714912872
+  },
+  {
+   "name": "YuNet 2023mar",
+   "parameters": 53104,
+   "bytes": 232589
+  }
+ ],
+ "declared_model_size_mb": null,
+ "declared_size_note": "same teacher size disclosure as DENSE_V2 / N0; preliminary-stage >9B teachers with omitted size were scored before (SUB_Q 31.20).",
+ "official_platform_score": null
+}

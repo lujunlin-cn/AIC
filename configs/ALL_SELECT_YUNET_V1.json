@@ -1,0 +1,18 @@
+{
+ "submission_id": "B0_ALL_SELECT_YUNET_V1",
+ "status": "frozen_baseline",
+ "hypothesis": "VideoMAE-L V0 (ad947f41, 34.42) selected every decoded frame; an encoder-free all-select + identical stateful YuNet path reproduces its predictions",
+ "temporal": "all_select: every decoded frame of the verified index; no encoder, no temporal head",
+ "spatial_mode": "true_face_smooth",
+ "alpha": 0.25,
+ "spatial_state": "SpatialPath stepped over every decoded frame in PTS order (same as V0 release)",
+ "detector": "/data/aic/pretrained/yunet/face_detection_yunet_2023mar.onnx",
+ "detector_bytes": 232589,
+ "detector_sha256": "8f2383e4dd3cfbb4553ea8718107fc0423210dc964f9f4280604804ed2552fa4",
+ "index_sha256": "9a59316e97f5a80fc2c22f43f38ebd72130d20109d17954efa3dde9f86d404d5",
+ "reference_predictions": "/data/aic/official_test_20260926/submissions/SUB_VML_VIDEOMAE_LARGE_NATIVE_V1_FINAL/predictions.jsonl",
+ "reference_zip_sha256": "ad947f4144859585d453626b4518760c865f564c620b70af59a505e83d515171",
+ "model_size_rule": "model_size_mb = YuNet ONNX bytes / 1e6 (only deployed weight)",
+ "official_f_video": null,
+ "official_submission": "NOT_SUBMITTED"
+}

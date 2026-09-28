@@ -1,0 +1,13 @@
+{
+ "experiment_id": "T4_TEMP_BOUNDARY_V3",
+ "date": "2026-09-28",
+ "parent": "TEMP = QWEN32B_NOFACE_TEMPORAL_V2_FINAL (official 46.84, zip 631d01042c42e26877dde16fc619fbc9041bd68b6e44b0c412ee5285004b01f4)",
+ "fixed": "N0 all-frame spatial predictions (fcdd98dc...), TEMP coarse removal replies and summaries (not re-run), teacher Qwen3-VL-32B-Instruct FP16 TP=4, system prompt and removal criteria of scripts/qwen_temporal_removal.py, 448 px anchors, greedy decoding",
+ "changed": "only frames inside 2 s zones around TEMP keep/drop transitions may flip: 8 sub-cells at 0.25 s + <=2 TEMP anchors context each side, monotone split, flip only if every covering zone agrees; parse failure -> TEMP; video guard >50% removed -> TEMP",
+ "hypothesis": "TEMP removes whole 1 s cells; 81/105 official removed segments are end screens and 96/122 interior transitions lie within 1 s of a detected cut, so the true keep/drop change usually falls inside a cell. Denser observation at the transition recovers content frames on the kept side and removes the end-screen remainder, changing <=~1 s per transition.",
+ "risk": "default-keep prompt may systematically restore TEMP-removed frames (undoing the scored gain); weak YTH labels (100-frame segments, 47-frame stride) cannot resolve 0.25 s boundaries.",
+ "fixed_params_not_tuned": {"sub_per_cell": 4, "zone_cells": 2, "context_anchors_each_side": 2, "guard": 0.5},
+ "dev_proxy": "YouTube Highlights val (T3_YTH_VAL_PROXY_V1, 124 videos, weak labels: 1 = reused by uploader edit, -1 = not reused). Metrics: F proxy vs TEMP-coarse (paired, video bootstrap), share of flipped labelled frames whose label agrees with the flip.",
+ "promotion_rule": "Package one TEMP_BOUNDARY_V3 as 'diagnostic candidate' if YTH-val proxy mean(F_refined - F_TEMP) >= 0 and flip-agreement on labelled frames >= base rate; otherwise report and do not package. No sweep of sub/context/guard; no platform threshold scanning.",
+ "official_platform_score": null
+}

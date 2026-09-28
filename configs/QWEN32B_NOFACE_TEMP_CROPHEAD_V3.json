@@ -1,0 +1,60 @@
+{
+ "submission_id": "QWEN32B_NOFACE_TEMP_CROPHEAD_V3_FINAL",
+ "status": "frozen_exploratory",
+ "release_status": "READY_TO_UPLOAD_EXPLORATORY_INTERNAL_TEACHER",
+ "frozen_at": "2026-09-28",
+ "policy": "TEMP mask x (N0 recipe with H1 point->window calibration)",
+ "primary_changed_factor": "T5: every valid Qwen keyframe point on the free axis becomes clip(a*p+(1-a)*.5+b*win,0,1), H1 per axis fitted on public human crops (RetargetVid 001-080 + LIVE-YT-VC train). Held keyframe values feed no-face frames only; face frames, 1 s keyframes, EMA, resets, width and the TEMP frame mask are unchanged.",
+ "hypothesis": "public human crops prefer windows pulled toward the frame centre relative to a window centred on the Qwen point, with a small positive offset along the free axis",
+ "dev_evidence": "prereg configs/T5_CROPHEAD_V3_PREREG.json (sha 584d751a...). H1 chosen on dev (dataset-equal gain .0125 vs H2 .0118 seed0 / .0092 seed1). Confirmation, full N0 pipeline, video bootstrap: LIVE-YT-VC val (178, never used, x axis) +.0062 [+.0034,+.0093]; RetargetVid confirm2 (100, previously used for T1/T2, never used to fit/select this) +.0148 [+.0097,+.0200], x +.0118 [+.0057,+.0185], y +.0179 [+.0094,+.0264]. H1 is deterministic; seed1 rerun gives identical H1 and selection.",
+ "mask_parent": {
+  "name": "QWEN32B_NOFACE_TEMPORAL_V2_FINAL",
+  "platform_name": "TEMP",
+  "official_platform_score": 46.84,
+  "zip_sha256": "631d01042c42e26877dde16fc619fbc9041bd68b6e44b0c412ee5285004b01f4",
+  "predictions": "/data/aic/official_test_20260926/submissions/QWEN32B_NOFACE_TEMPORAL_V2_FINAL/predictions.jsonl",
+  "predictions_sha256": "730d341edd6c5d894b54250fbe35cb62a4d554defd28e7fc416e5c1fa3e9e158"
+ },
+ "mask_parent_spatial_source": {
+  "name": "MAX_WINDOW_QWEN_NOFACE_V1",
+  "platform_name": "NOFACE",
+  "official_platform_score": 42.83,
+  "zip_sha256": "f73c399f28879de12c3b3a2e796970221c8abd9265ceda48b087190e94b3a96c",
+  "predictions": "/data/aic/official_test_20260926/submissions/MAX_WINDOW_QWEN_NOFACE_V1/predictions.jsonl",
+  "predictions_sha256": "fcdd98dc4f75d7529c4eae5172f4eb6ce1ceb50befffbe9a5ba4d79c2a5070f8"
+ },
+ "spatial_parent": {
+  "name": "N0_H1_ALLFRAMES (intermediate, scripts/crophead_release.py)",
+  "predictions": "/data/aic/experiments/T5_CROPHEAD_V3/release_spatial/predictions.jsonl",
+  "predictions_sha256": "25861ad3f74b6c6fc360c9d64d899ff2042718f70cca858dabd0f2bd1e4f98f7"
+ },
+ "n0_predictions": "/data/aic/official_test_20260926/submissions/MAX_WINDOW_QWEN_NOFACE_V1/predictions.jsonl",
+ "n0_predictions_sha256": "fcdd98dc4f75d7529c4eae5172f4eb6ce1ceb50befffbe9a5ba4d79c2a5070f8",
+ "obs_cache": "/data/aic/experiments/OBS_CACHE_OFFICIAL_V1/cache",
+ "qwen_points": "/data/aic/experiments/QWEN_SUBJECT_POINT_OFFICIAL_V1/points",
+ "probe_metrics": "/data/aic/experiments/T5_CROPHEAD_V3/probe_seed0/metrics.json",
+ "probe_metrics_sha256": "f66ec53c37a6dcfc453ab9c5d3008534cc5c30e64aa5fcd32c19dc6901b6fe9d",
+ "removal": "/data/aic/experiments/QWEN32B_OFFICIAL_V2/temporal/removal",
+ "anchors": "/data/aic/experiments/QWEN32B_OFFICIAL_V2/temporal/anchors",
+ "index_sha256": "9a59316e97f5a80fc2c22f43f38ebd72130d20109d17954efa3dde9f86d404d5",
+ "components": [
+  {
+   "name": "Qwen3-VL-32B-Instruct (FP16, vLLM TP=4)",
+   "parameters": 33357390064,
+   "bytes": 66714912872
+  },
+  {
+   "name": "YuNet 2023mar",
+   "parameters": 53104,
+   "bytes": 232589
+  },
+  {
+   "name": "H1 calibration (2 axes x 2 scalars)",
+   "parameters": 4,
+   "bytes": 0
+  }
+ ],
+ "declared_model_size_mb": null,
+ "declared_size_note": "same teacher size disclosure as N0 / TEMP / DT_V3; JSONL omits model_size_mb (preliminary format).",
+ "official_platform_score": null
+}

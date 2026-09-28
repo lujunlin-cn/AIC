@@ -1,0 +1,26 @@
+{
+ "experiment_id": "T5_CROPHEAD_V3",
+ "date": "2026-09-28",
+ "parent": "TEMP = QWEN32B_NOFACE_TEMPORAL_V2_FINAL (official 46.84); spatial parent N0 (42.83)",
+ "fixed": "TEMP frame mask, N0 observation protocol (1 s keyframes + shot starts, 640 px, frozen point prompt md5 998c3de9), face branch (YuNet raw on face frames), hold-within-shot, B0 EMA alpha .25, B0 resets, largest legal window",
+ "changed": "the point->window mapping: every valid Qwen keyframe point is replaced by the window centre chosen by a candidate scorer instead of centring the window on the point. The held keyframe value feeds only no-face frames (face frames keep YuNet raw), so only no-face frames can change. (Clarified 20:55 before any T5 result was computed: a face keyframe's point is still held onto later no-face frames of the shot.)",
+ "hypothesis": "confirm2 shows the teacher usually finds the subject but the point-centred window trails the per-frame grid oracle (placement ~49% of the keyframe gap, pooled). If part of that is a learnable, source-general mapping from inference-time observations (point, person box around it, saliency, edges, neighbouring points) to the human-preferred window, a small scorer trained on public human crops raises IoU on unseen sources.",
+ "candidates": "65 legal positions on the free axis (np.linspace(0, L-s, 65)) + the N0 point-centred position; same rounding/inclusive-pixel IoU as scripts/teacher_diag_eval.py",
+ "target": "y(c) = mean over annotators of IoU(B(c), GT_r) at the keyframe; GT never enters features",
+ "features": "inference-time only: axis, window fraction, source aspect, Qwen point (both coords), candidate-point offset /window, edge slack, saliency centre/conf offset, person/COCO box containing or nearest to the point (extent vs candidate, covered fraction), prior-weighted detection coverage (relative to best candidate), previous/next keyframe point shift in the same shot. No video id, split or dataset name.",
+ "models": {
+  "H0": "N0 point-centred window",
+  "H1": "per-axis 2-parameter calibration centre = clip(a*p + (1-a)*0.5 + b*win), grid-fitted on train keyframes",
+  "H2": "MLP 2x64 ReLU on standardised features -> y(c), MSE per keyframe over candidates, frames averaged per (video,ratio) unit; AdamW lr 3e-4, wd 1e-3 on matrices only, clip 1, 5% warmup + cosine, 3000 steps, batch 16 units x 8 keyframes, 50/50 RetargetVid/LIVE units per batch, FP32, seed 0; checkpoint chosen on dev keyframe IoU every 250 steps"
+ },
+ "splits": {
+  "train": "RetargetVid DHF1K 001-080 (both ratios) + LIVE-YT-VC aic_split=train minus dev hash fold",
+  "dev": "RetargetVid 081-100 + LIVE-YT-VC train videos with sha1(video_id) % 10 == 0",
+  "confirm3_primary_x_axis": "LIVE-YT-VC aic_split=val (178 source videos, never used; 1920x1080 -> 9:16, window fraction .316 = official landscape->9:16 geometry)",
+  "confirm2_secondary": "RetargetVid 601-700 (previously used for T1/T2 decisions; never used to fit or select this scorer). Only public human-crop source for the y-axis case; weaker evidence, reported as such."
+ },
+ "primary_metric": "full-pipeline per-video IoU vs N0 (hold + EMA, face gate), paired video bootstrap 5000, seed 20260928; LIVE evaluated on its 30 annotated frames per video, single annotator",
+ "selection_rule": "on dev: choose H1 or H2 (higher dev pipeline gain); per axis, the scorer is applied only if its dev gain on that axis > 0",
+ "promotion_rule": "package TEMP_CROPHEAD_V3 if the chosen model has confirm3 mean > 0 with CI lower > 0 (x axis), and for each applied axis its confirmation (x: confirm3, y: confirm2) mean > 0 with CI lower > 0; second seed rerun only for the promoted version. Otherwise report, no package.",
+ "official_platform_score": null
+}

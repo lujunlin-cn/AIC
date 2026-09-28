@@ -1,0 +1,51 @@
+{
+ "submission_id": "QWEN32B_NOFACE_DENSE_TEMP_V3_FINAL",
+ "status": "frozen_exploratory",
+ "release_status": "READY_TO_UPLOAD_EXPLORATORY_INTERNAL_TEACHER_COMBO",
+ "frozen_at": "2026-09-28",
+ "policy": "DENSE_V2 all-frame bboxes filtered by the scored TEMP_V2 (video_id, frame) set",
+ "primary_changed_factor": "2x2 cell: combine two scored components only. Frame keys == TEMP (46.84) exactly; every kept bbox == DENSE (43.76) byte-for-byte. No re-smoothing, interpolation, shot reset or coordinate regeneration on the kept sequence; no teacher call.",
+ "additive_reference_not_prediction": "46.84+43.76-42.83=47.77 is an arithmetic no-interaction reference, not a forecast. After scoring: interaction=S_DT-47.77, gain_vs_TEMP=S_DT-46.84.",
+ "spatial_parent": {
+  "name": "QWEN32B_NOFACE_DENSE_V2_FINAL",
+  "platform_name": "dense",
+  "official_platform_score": 43.76,
+  "zip_sha256": "972b3ed176621398025a8e930d817ae66d2e6090821c5d314581d0a4c1e288c2",
+  "predictions": "/data/aic/official_test_20260926/submissions/QWEN32B_NOFACE_DENSE_V2_FINAL/predictions.jsonl",
+  "predictions_sha256": "e26c68fdd5ec7468cfbdfd563f89961bdbb18b87bcffa574f7bb8a1b2aad97be"
+ },
+ "mask_parent": {
+  "name": "QWEN32B_NOFACE_TEMPORAL_V2_FINAL",
+  "platform_name": "TEMP",
+  "official_platform_score": 46.84,
+  "zip_sha256": "631d01042c42e26877dde16fc619fbc9041bd68b6e44b0c412ee5285004b01f4",
+  "predictions": "/data/aic/official_test_20260926/submissions/QWEN32B_NOFACE_TEMPORAL_V2_FINAL/predictions.jsonl",
+  "predictions_sha256": "730d341edd6c5d894b54250fbe35cb62a4d554defd28e7fc416e5c1fa3e9e158"
+ },
+ "mask_parent_spatial_source": {
+  "name": "MAX_WINDOW_QWEN_NOFACE_V1",
+  "platform_name": "NOFACE",
+  "official_platform_score": 42.83,
+  "zip_sha256": "f73c399f28879de12c3b3a2e796970221c8abd9265ceda48b087190e94b3a96c",
+  "predictions": "/data/aic/official_test_20260926/submissions/MAX_WINDOW_QWEN_NOFACE_V1/predictions.jsonl",
+  "predictions_sha256": "fcdd98dc4f75d7529c4eae5172f4eb6ce1ceb50befffbe9a5ba4d79c2a5070f8"
+ },
+ "removal": "/data/aic/experiments/QWEN32B_OFFICIAL_V2/temporal/removal",
+ "anchors": "/data/aic/experiments/QWEN32B_OFFICIAL_V2/temporal/anchors",
+ "index_sha256": "9a59316e97f5a80fc2c22f43f38ebd72130d20109d17954efa3dde9f86d404d5",
+ "components": [
+  {
+   "name": "Qwen3-VL-32B-Instruct (FP16, vLLM TP=4)",
+   "parameters": 33357390064,
+   "bytes": 66714912872
+  },
+  {
+   "name": "YuNet 2023mar",
+   "parameters": 53104,
+   "bytes": 232589
+  }
+ ],
+ "declared_model_size_mb": null,
+ "declared_size_note": "same teacher size disclosure as DENSE_V2 / TEMPORAL_V2 / N0; JSONL omits model_size_mb (preliminary format).",
+ "official_platform_score": null
+}

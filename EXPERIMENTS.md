@@ -286,4 +286,4 @@ The frozen InternVideo2 Stage1-1B K700 candidate received official platform scor
 - `V4_E4_VISUAL_RERANK`：pilot，32B 看实际裁剪从 3–5 个同尺寸候选中选一个，正序、倒序两问一致才采纳（10,448 次查询，3,414 s）。
   - dev2 +.0093 [.0019,.0173]；x +.0174，y +.0012。
   - 关键帧层面：DENSE .704，选中 .712，候选 oracle .778。选择器只拿到 oracle 增益的约 11%，y 轴为负。
-  - dev2 通过；confirm2 与官方推理进行中。
+  - confirm2 +.0072 [−.0011,+.0161]，x +.0179，y −.0034，否决（7,078 次查询，4,528 s）；官方推理已中止，不出包。

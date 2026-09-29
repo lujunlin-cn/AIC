@@ -1,0 +1,5385 @@
+{
+ "name": "portrait_reframe_pilot_v1",
+ "created": "2026-09-29",
+ "seed": 20260929,
+ "license": "CC BY-NC-SA 4.0, non-commercial research only (bytedance/Portrait-Mode-Video DATA.md); usage registered here",
+ "source_groups": "pm_video_id; clips from one source never straddle pilot splits",
+ "split_rule": "sha256(\"portrait_pilot_v1:\"+pm_video_id)/1e6 < 2/3 train, < 5/6 dev, else confirm",
+ "media": {
+  "direct_links_tested": "12 links x 3 header sets on 2026-09-29, all HTTP 502 (dead)",
+  "active_channel": "community AVE-PM cache, Google Drive id 1zXOeVE9xaMprd1O_Xec65Wn7B5VWelLT, 68067427328 B, background download started 2026-09-29"
+ },
+ "gt_policy": "no crop GT exists in PM-400/AVE-PM; human 16:9 window annotation per ANNOTATION_SCHEMA is the only future GT; event/BGM/class fields are context only",
+ "counts": {
+  "sources": 320,
+  "with_clip_context": 240,
+  "splits": {
+   "train": 215,
+   "dev": 51,
+   "confirm": 54
+  },
+  "categories_covered": 86
+ },
+ "sources": [
+  {
+   "pm_video_id": "v0d00fg10000cdpl3j3c77u54jq333bg",
+   "pilot_split": "confirm",
+   "category": 349,
+   "category_name": "playing suona",
+   "source_duration_s": 57.07,
+   "clip_context": {
+    "sample_id": 24364,
+    "start_s": 47.07,
+    "end_s": 57.07,
+    "event_start_s": 47.5,
+    "event_end_s": 57.06,
+    "have_bgm": 0,
+    "event_label": 349,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cdcd70bc77u0a8vf4jag",
+   "pilot_split": "train",
+   "category": 310,
+   "category_name": "skateboarding",
+   "source_duration_s": 30.28,
+   "clip_context": {
+    "sample_id": 8097,
+    "start_s": 3.3200000000000003,
+    "end_s": 13.32,
+    "event_start_s": 6.6,
+    "event_end_s": 10.04,
+    "have_bgm": 0,
+    "event_label": 310,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cdqetkjc77u6iu70k570",
+   "pilot_split": "train",
+   "category": 359,
+   "category_name": "singing",
+   "source_duration_s": 21.8,
+   "clip_context": {
+    "sample_id": 8520,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 21.79,
+    "have_bgm": 0,
+    "event_label": 359,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000c8i83k3c77u7fajtdtq0",
+   "pilot_split": "train",
+   "category": 312,
+   "category_name": "playing badminton",
+   "source_duration_s": 17.9,
+   "clip_context": {
+    "sample_id": 24482,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 16.98,
+    "have_bgm": 1,
+    "event_label": 312,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cd1l1m3c77u7sv0lkdv0",
+   "pilot_split": "train",
+   "category": 84,
+   "category_name": "playing hang (instrument)",
+   "source_duration_s": 32.6,
+   "clip_context": {
+    "sample_id": 20709,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.58,
+    "event_end_s": 28.21,
+    "have_bgm": 0,
+    "event_label": 84,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cb4euprc77ue5h5e2fgg",
+   "pilot_split": "dev",
+   "category": 228,
+   "category_name": "mowing a lawn",
+   "source_duration_s": 24.2,
+   "clip_context": {
+    "sample_id": 3381,
+    "start_s": 2.369999999999999,
+    "end_s": 12.37,
+    "event_start_s": 3.38,
+    "event_end_s": 21.36,
+    "have_bgm": 1,
+    "event_label": 228,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cad35ljc77udqv98hhp0",
+   "pilot_split": "train",
+   "category": 353,
+   "category_name": "watching a concert",
+   "source_duration_s": 13.47,
+   "clip_context": {
+    "sample_id": 4792,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 13.46,
+    "have_bgm": 0,
+    "event_label": 353,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000ce10oubc77ufsbfi5m5g",
+   "pilot_split": "confirm",
+   "category": 240,
+   "category_name": "laser beam welding",
+   "source_duration_s": 23.31,
+   "clip_context": {
+    "sample_id": 4427,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 1.94,
+    "event_end_s": 23.14,
+    "have_bgm": 1,
+    "event_label": 240,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000c9v3btbc77u093lvod0g",
+   "pilot_split": "train",
+   "category": 235,
+   "category_name": "using a vacuum cleaner",
+   "source_duration_s": 40.13,
+   "clip_context": {
+    "sample_id": 4913,
+    "start_s": 9.44,
+    "end_s": 19.44,
+    "event_start_s": 9.87,
+    "event_end_s": 29.01,
+    "have_bgm": 1,
+    "event_label": 235,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000cdlfvpjc77u0g7g2smpg",
+   "pilot_split": "dev",
+   "category": 398,
+   "category_name": "setting off fireworks and firecrackers",
+   "source_duration_s": 35.03,
+   "clip_context": {
+    "sample_id": 9802,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 35.03,
+    "have_bgm": 1,
+    "event_label": 398,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000cdqnsj3c77u9cj3qfkog",
+   "pilot_split": "confirm",
+   "category": 352,
+   "category_name": "performing traditional Chinese opera",
+   "source_duration_s": 20.39,
+   "clip_context": {
+    "sample_id": 7802,
+    "start_s": 0.2200000000000006,
+    "end_s": 10.22,
+    "event_start_s": 0.27,
+    "event_end_s": 20.17,
+    "have_bgm": 0,
+    "event_label": 352,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000cdvkukbc77ub1f4125tg",
+   "pilot_split": "confirm",
+   "category": 32,
+   "category_name": "washing car",
+   "source_duration_s": 30.86,
+   "clip_context": {
+    "sample_id": 19851,
+    "start_s": 7.199999999999999,
+    "end_s": 17.2,
+    "event_start_s": 8.54,
+    "event_end_s": 25.86,
+    "have_bgm": 1,
+    "event_label": 32,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000ce4u8grc77u6o9jhlgh0",
+   "pilot_split": "train",
+   "category": 319,
+   "category_name": "wrestling",
+   "source_duration_s": 14.73,
+   "clip_context": {
+    "sample_id": 22358,
+    "start_s": 4.73,
+    "end_s": 14.73,
+    "event_start_s": 11.62,
+    "event_end_s": 14.7,
+    "have_bgm": 1,
+    "event_label": 319,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000cdhj553c77udqlsqhdv0",
+   "pilot_split": "train",
+   "category": 57,
+   "category_name": "scraping putty/cement",
+   "source_duration_s": 33.14,
+   "clip_context": {
+    "sample_id": 14395,
+    "start_s": 6.800000000000001,
+    "end_s": 16.8,
+    "event_start_s": 7.46,
+    "event_end_s": 26.14,
+    "have_bgm": 1,
+    "event_label": 57,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cdnfpobc77uehkrpjmeg",
+   "pilot_split": "dev",
+   "category": 343,
+   "category_name": "plane taking off",
+   "source_duration_s": 45.5,
+   "clip_context": {
+    "sample_id": 20314,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 45.47,
+    "have_bgm": 1,
+    "event_label": 343,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000cdbps4jc77ufg0533vkg",
+   "pilot_split": "train",
+   "category": 333,
+   "category_name": "practicing archery",
+   "source_duration_s": 18.27,
+   "clip_context": {
+    "sample_id": 3857,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 5.44,
+    "have_bgm": 1,
+    "event_label": 333,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cdkh74jc77u3bht9tejg",
+   "pilot_split": "train",
+   "category": 231,
+   "category_name": "cleaning with a robot vacuum",
+   "source_duration_s": 29.05,
+   "clip_context": {
+    "sample_id": 13999,
+    "start_s": 0.1600000000000001,
+    "end_s": 10.16,
+    "event_start_s": 1.27,
+    "event_end_s": 19.05,
+    "have_bgm": 1,
+    "event_label": 231,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000ce1fjh3c77ub6113kld0",
+   "pilot_split": "confirm",
+   "category": 241,
+   "category_name": "moving with forklift",
+   "source_duration_s": 59.1,
+   "clip_context": {
+    "sample_id": 8944,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 6.94,
+    "have_bgm": 0,
+    "event_label": 241,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cbnk5rjc77uda4535410",
+   "pilot_split": "train",
+   "category": 360,
+   "category_name": "shaving head",
+   "source_duration_s": 34.55,
+   "clip_context": {
+    "sample_id": 7021,
+    "start_s": 2.99,
+    "end_s": 12.99,
+    "event_start_s": 4.96,
+    "event_end_s": 11.02,
+    "have_bgm": 1,
+    "event_label": 360,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000c95dngbc77u3ks286lbg",
+   "pilot_split": "dev",
+   "category": 37,
+   "category_name": "laser engraving",
+   "source_duration_s": 27.12,
+   "clip_context": {
+    "sample_id": 21486,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 5.68,
+    "have_bgm": 1,
+    "event_label": 37,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cdorlvbc77udk706dv90",
+   "pilot_split": "train",
+   "category": 338,
+   "category_name": "scratching on a cat scratching board",
+   "source_duration_s": 30.81,
+   "clip_context": {
+    "sample_id": 21101,
+    "start_s": 18.485,
+    "end_s": 28.485,
+    "event_start_s": 22.43,
+    "event_end_s": 24.54,
+    "have_bgm": 1,
+    "event_label": 338,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000c71inujc77u3pbfvuvig",
+   "pilot_split": "train",
+   "category": 397,
+   "category_name": "clubbing",
+   "source_duration_s": 15.1,
+   "clip_context": {
+    "sample_id": 16758,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 15.03,
+    "have_bgm": 0,
+    "event_label": 397,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cb2ir3rc77uasodflsd0",
+   "pilot_split": "train",
+   "category": 346,
+   "category_name": "playing drum",
+   "source_duration_s": 14.07,
+   "clip_context": {
+    "sample_id": 24279,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 11.08,
+    "have_bgm": 1,
+    "event_label": 346,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cdsbvfrc77u4j0p9jhjg",
+   "pilot_split": "dev",
+   "category": 20,
+   "category_name": "cutting with a circular saw",
+   "source_duration_s": 29.88,
+   "clip_context": {
+    "sample_id": 4922,
+    "start_s": 2.109999999999999,
+    "end_s": 12.11,
+    "event_start_s": 4.36,
+    "event_end_s": 29.86,
+    "have_bgm": 0,
+    "event_label": 20,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cdtc89jc77u199gl6qgg",
+   "pilot_split": "train",
+   "category": 81,
+   "category_name": "playing erhu",
+   "source_duration_s": 34.77,
+   "clip_context": {
+    "sample_id": 23088,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 34.76,
+    "have_bgm": 1,
+    "event_label": 81,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000cebfm63c77ueegiqc6kg",
+   "pilot_split": "confirm",
+   "category": 108,
+   "category_name": "playing fingerstyle guitar",
+   "source_duration_s": 64.41,
+   "clip_context": {
+    "sample_id": 23031,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 64.4,
+    "have_bgm": 0,
+    "event_label": 108,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v03033g10000cdtd0t3c77u1q09efa60",
+   "pilot_split": "train",
+   "category": 232,
+   "category_name": "cleaning a washing machine",
+   "source_duration_s": 17.86,
+   "clip_context": {
+    "sample_id": 22325,
+    "start_s": 2.7300000000000004,
+    "end_s": 12.73,
+    "event_start_s": 7.6,
+    "event_end_s": 17.86,
+    "have_bgm": 1,
+    "event_label": 232,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cdnm2abc77uak8clndm0",
+   "pilot_split": "confirm",
+   "category": 344,
+   "category_name": "launching a racket",
+   "source_duration_s": 17.48,
+   "clip_context": {
+    "sample_id": 15105,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 17.48,
+    "have_bgm": 1,
+    "event_label": 344,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cdo610jc77u7cpbj0jd0",
+   "pilot_split": "train",
+   "category": 307,
+   "category_name": "playing tennis",
+   "source_duration_s": 32.65,
+   "clip_context": {
+    "sample_id": 242,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 26.17,
+    "have_bgm": 0,
+    "event_label": 307,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000cccoesbc77u7u1jvkjg0",
+   "pilot_split": "confirm",
+   "category": 106,
+   "category_name": "playing djembe",
+   "source_duration_s": 22.36,
+   "clip_context": {
+    "sample_id": 5077,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 22.28,
+    "have_bgm": 1,
+    "event_label": 106,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000c72o8obc77u6lcv6fi90",
+   "pilot_split": "train",
+   "category": 342,
+   "category_name": "feeding a cat",
+   "source_duration_s": 22.57,
+   "clip_context": {
+    "sample_id": 6365,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 18.6,
+    "have_bgm": 1,
+    "event_label": 342,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000ceasttbc77ufrpto27r0",
+   "pilot_split": "confirm",
+   "category": 348,
+   "category_name": "playing piano",
+   "source_duration_s": 24.08,
+   "clip_context": {
+    "sample_id": 22625,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.25,
+    "event_end_s": 24.08,
+    "have_bgm": 0,
+    "event_label": 348,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000c900dqjc77u6slisp350",
+   "pilot_split": "train",
+   "category": 322,
+   "category_name": "boxing",
+   "source_duration_s": 42.2,
+   "clip_context": {
+    "sample_id": 17470,
+    "start_s": 2.200000000000003,
+    "end_s": 12.200000000000005,
+    "event_start_s": 3.0,
+    "event_end_s": 42.2,
+    "have_bgm": 1,
+    "event_label": 322,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000c5t93qbc77uc1s7dfkk0",
+   "pilot_split": "confirm",
+   "category": 203,
+   "category_name": "using a sewing machine",
+   "source_duration_s": 22.39,
+   "clip_context": {
+    "sample_id": 3007,
+    "start_s": 3.725,
+    "end_s": 13.725,
+    "event_start_s": 4.85,
+    "event_end_s": 12.6,
+    "have_bgm": 1,
+    "event_label": 203,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000cdag3erc77udlddcj08g",
+   "pilot_split": "train",
+   "category": 56,
+   "category_name": "mixing cement/concrete",
+   "source_duration_s": 15.37,
+   "clip_context": {
+    "sample_id": 15793,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 15.25,
+    "have_bgm": 1,
+    "event_label": 56,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cdgech3c77ucn0k9mvfg",
+   "pilot_split": "train",
+   "category": 199,
+   "category_name": "arc welding",
+   "source_duration_s": 45.23,
+   "clip_context": {
+    "sample_id": 6991,
+    "start_s": 34.775000000000006,
+    "end_s": 44.775000000000006,
+    "event_start_s": 37.38,
+    "event_end_s": 42.17,
+    "have_bgm": 1,
+    "event_label": 199,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cd8bufjc77u6486fdr20",
+   "pilot_split": "train",
+   "category": 12,
+   "category_name": "carving with hand tools",
+   "source_duration_s": 62.59,
+   "clip_context": {
+    "sample_id": 5252,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 3.64,
+    "have_bgm": 0,
+    "event_label": 12,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000cdmt253c77udvlv33q9g",
+   "pilot_split": "confirm",
+   "category": 14,
+   "category_name": "operating a remote control car (excluding drifting/racing)",
+   "source_duration_s": 15.57,
+   "clip_context": {
+    "sample_id": 3632,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 15.56,
+    "have_bgm": 1,
+    "event_label": 14,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000ccrq9l3c77ua46p9f0rg",
+   "pilot_split": "train",
+   "category": 71,
+   "category_name": "freeskating",
+   "source_duration_s": 14.88,
+   "clip_context": {
+    "sample_id": 18410,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 3.0,
+    "have_bgm": 1,
+    "event_label": 71,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cdsqdebc77u7cf2k57l0",
+   "pilot_split": "confirm",
+   "category": 76,
+   "category_name": "feeding dogs",
+   "source_duration_s": 33.2,
+   "clip_context": {
+    "sample_id": 18956,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.06,
+    "event_end_s": 33.19,
+    "have_bgm": 1,
+    "event_label": 76,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cccribjc77u2sqmofedg",
+   "pilot_split": "train",
+   "category": 358,
+   "category_name": "performing a duet",
+   "source_duration_s": 47.1,
+   "clip_context": {
+    "sample_id": 4159,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 45.51,
+    "have_bgm": 0,
+    "event_label": 358,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300ccf0000c080dcji78l0gvu45vig",
+   "pilot_split": "train",
+   "category": 10,
+   "category_name": "playing ukulele",
+   "source_duration_s": 39.09,
+   "clip_context": {
+    "sample_id": 1353,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 39.08,
+    "have_bgm": 0,
+    "event_label": 10,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000ce02d23c77u1c07ktd10",
+   "pilot_split": "train",
+   "category": 341,
+   "category_name": "panda eating bamboo",
+   "source_duration_s": 30.05,
+   "clip_context": {
+    "sample_id": 15768,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 3.0,
+    "have_bgm": 1,
+    "event_label": 341,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cbh64bjc77u26i0hnf0g",
+   "pilot_split": "confirm",
+   "category": 326,
+   "category_name": "diving (sports)",
+   "source_duration_s": 49.88,
+   "clip_context": {
+    "sample_id": 10655,
+    "start_s": 3.890000000000001,
+    "end_s": 13.89,
+    "event_start_s": 7.92,
+    "event_end_s": 49.86,
+    "have_bgm": 1,
+    "event_label": 326,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cdnm8pbc77u2jrqn4k1g",
+   "pilot_split": "confirm",
+   "category": 388,
+   "category_name": "whistling",
+   "source_duration_s": 22.57,
+   "clip_context": {
+    "sample_id": 10401,
+    "start_s": 2.5700000000000003,
+    "end_s": 12.57,
+    "event_start_s": 6.16,
+    "event_end_s": 22.56,
+    "have_bgm": 1,
+    "event_label": 388,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cd4ea2bc77u8kq4vlbfg",
+   "pilot_split": "train",
+   "category": 105,
+   "category_name": "using a massage gun",
+   "source_duration_s": 22.77,
+   "clip_context": {
+    "sample_id": 21920,
+    "start_s": 10.71,
+    "end_s": 20.71,
+    "event_start_s": 13.74,
+    "event_end_s": 17.68,
+    "have_bgm": 1,
+    "event_label": 105,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000cbvk5b3c77ubov0hevi0",
+   "pilot_split": "confirm",
+   "category": 92,
+   "category_name": "playing konghou",
+   "source_duration_s": 30.65,
+   "clip_context": {
+    "sample_id": 10774,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 1.41,
+    "event_end_s": 28.57,
+    "have_bgm": 0,
+    "event_label": 92,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000c70ofujc77u1fjcbgct0",
+   "pilot_split": "train",
+   "category": 306,
+   "category_name": "playing volleyball",
+   "source_duration_s": 21.5,
+   "clip_context": {
+    "sample_id": 16740,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 21.5,
+    "have_bgm": 1,
+    "event_label": 306,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cdviu6rc77u3gsalpbng",
+   "pilot_split": "train",
+   "category": 5,
+   "category_name": "playing bamboo flute",
+   "source_duration_s": 44.58,
+   "clip_context": {
+    "sample_id": 21956,
+    "start_s": 4.579999999999998,
+    "end_s": 14.579999999999998,
+    "event_start_s": 9.52,
+    "event_end_s": 44.25,
+    "have_bgm": 0,
+    "event_label": 5,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000cdpirsjc77u3nhnf4d40",
+   "pilot_split": "confirm",
+   "category": 86,
+   "category_name": "playing guzheng",
+   "source_duration_s": 86.6,
+   "clip_context": {
+    "sample_id": 4726,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 86.41,
+    "have_bgm": 0,
+    "event_label": 86,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000ce21pabc77uacg07g5fg",
+   "pilot_split": "train",
+   "category": 102,
+   "category_name": "playing hulusi",
+   "source_duration_s": 14.33,
+   "clip_context": {
+    "sample_id": 737,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 1.0,
+    "event_end_s": 14.33,
+    "have_bgm": 1,
+    "event_label": 102,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000c65ia53c77u0hmtcjhrg",
+   "pilot_split": "confirm",
+   "category": 93,
+   "category_name": "playing guqin",
+   "source_duration_s": 14.3,
+   "clip_context": {
+    "sample_id": 20410,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 1.84,
+    "event_end_s": 14.3,
+    "have_bgm": 0,
+    "event_label": 93,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cdhmffrc77u3cgu0u3t0",
+   "pilot_split": "train",
+   "category": 305,
+   "category_name": "playing table tennis",
+   "source_duration_s": 22.87,
+   "clip_context": {
+    "sample_id": 20068,
+    "start_s": 7.285,
+    "end_s": 17.285,
+    "event_start_s": 11.61,
+    "event_end_s": 12.96,
+    "have_bgm": 1,
+    "event_label": 305,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cdevtnjc77u43urn2k4g",
+   "pilot_split": "train",
+   "category": 334,
+   "category_name": "shooting with a slingshot",
+   "source_duration_s": 25.77,
+   "clip_context": {
+    "sample_id": 17374,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 5.97,
+    "have_bgm": 1,
+    "event_label": 334,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000cb98q3jc77ueshq44j9g",
+   "pilot_split": "train",
+   "category": 4,
+   "category_name": "playing flute",
+   "source_duration_s": 32.6,
+   "clip_context": {
+    "sample_id": 21802,
+    "start_s": 2.6000000000000014,
+    "end_s": 12.6,
+    "event_start_s": 5.32,
+    "event_end_s": 32.6,
+    "have_bgm": 1,
+    "event_label": 4,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300c980000bsu9t0nnpso0colsv9ig",
+   "pilot_split": "train",
+   "category": 13,
+   "category_name": "twisting balloons",
+   "source_duration_s": 14.0,
+   "clip_context": {
+    "sample_id": 15099,
+    "start_s": 2.18,
+    "end_s": 12.18,
+    "event_start_s": 4.09,
+    "event_end_s": 10.27,
+    "have_bgm": 1,
+    "event_label": 13,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000ce0tkprc77u7iejoc4j0",
+   "pilot_split": "train",
+   "category": 19,
+   "category_name": "riding a motorcycle (excluding drifting)",
+   "source_duration_s": 39.87,
+   "clip_context": {
+    "sample_id": 19669,
+    "start_s": 29.87,
+    "end_s": 39.87,
+    "event_start_s": 33.43,
+    "event_end_s": 39.86,
+    "have_bgm": 1,
+    "event_label": 19,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000ccvbpujc77u1pa3fas70",
+   "pilot_split": "confirm",
+   "category": 100,
+   "category_name": "carving wood",
+   "source_duration_s": 25.52,
+   "clip_context": {
+    "sample_id": 17857,
+    "start_s": 2.539999999999999,
+    "end_s": 12.54,
+    "event_start_s": 3.51,
+    "event_end_s": 21.57,
+    "have_bgm": 1,
+    "event_label": 100,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300cef0000buhcrennvfelelijbsm0",
+   "pilot_split": "confirm",
+   "category": 145,
+   "category_name": "baby drinking milk",
+   "source_duration_s": 14.6,
+   "clip_context": {
+    "sample_id": 1562,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 14.59,
+    "have_bgm": 1,
+    "event_label": 145,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000c7ck6hbc77u59bf2c6m0",
+   "pilot_split": "train",
+   "category": 49,
+   "category_name": "drifting car",
+   "source_duration_s": 54.1,
+   "clip_context": {
+    "sample_id": 1257,
+    "start_s": 21.41,
+    "end_s": 31.41,
+    "event_start_s": 22.15,
+    "event_end_s": 50.67,
+    "have_bgm": 1,
+    "event_label": 49,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000ccukpu3c77u3922t59kg",
+   "pilot_split": "train",
+   "category": 36,
+   "category_name": "modifying car",
+   "source_duration_s": 31.49,
+   "clip_context": {
+    "sample_id": 10841,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 15.14,
+    "have_bgm": 1,
+    "event_label": 36,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000cc27ivrc77ufpqensucg",
+   "pilot_split": "train",
+   "category": 78,
+   "category_name": "harvesting rice",
+   "source_duration_s": 59.08,
+   "clip_context": {
+    "sample_id": 847,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.02,
+    "event_end_s": 59.08,
+    "have_bgm": 0,
+    "event_label": 78,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000c9d9mjbc77ue0er13jp0",
+   "pilot_split": "train",
+   "category": 104,
+   "category_name": "fingerboarding",
+   "source_duration_s": 30.43,
+   "clip_context": {
+    "sample_id": 25189,
+    "start_s": 8.225000000000001,
+    "end_s": 18.225,
+    "event_start_s": 13.14,
+    "event_end_s": 23.31,
+    "have_bgm": 0,
+    "event_label": 104,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000ccl61ubc77u19qi4ui80",
+   "pilot_split": "train",
+   "category": 116,
+   "category_name": "train running",
+   "source_duration_s": 52.24,
+   "clip_context": {
+    "sample_id": 21329,
+    "start_s": 12.364999999999998,
+    "end_s": 22.365,
+    "event_start_s": 16.22,
+    "event_end_s": 38.51,
+    "have_bgm": 1,
+    "event_label": 116,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000c4hl9prc77uda10fhipg",
+   "pilot_split": "train",
+   "category": 99,
+   "category_name": "blowing bubbles",
+   "source_duration_s": 28.42,
+   "clip_context": {
+    "sample_id": 23199,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 23.48,
+    "have_bgm": 1,
+    "event_label": 99,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000cddaq7rc77uaqeeh53fg",
+   "pilot_split": "train",
+   "category": 74,
+   "category_name": "milking sheep",
+   "source_duration_s": 19.25,
+   "clip_context": {
+    "sample_id": 2935,
+    "start_s": 3.5,
+    "end_s": 13.5,
+    "event_start_s": 8.02,
+    "event_end_s": 18.98,
+    "have_bgm": 1,
+    "event_label": 74,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000c724bvjc77u31gactif0",
+   "pilot_split": "train",
+   "category": 60,
+   "category_name": "using a jack",
+   "source_duration_s": 58.98,
+   "clip_context": {
+    "sample_id": 14447,
+    "start_s": 22.385000000000005,
+    "end_s": 32.385000000000005,
+    "event_start_s": 25.42,
+    "event_end_s": 49.35,
+    "have_bgm": 1,
+    "event_label": 60,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000ce3er3bc77ue2m8i3i4g",
+   "pilot_split": "train",
+   "category": 347,
+   "category_name": "playing mbira",
+   "source_duration_s": 19.13,
+   "clip_context": {
+    "sample_id": 17344,
+    "start_s": 4.955,
+    "end_s": 14.955,
+    "event_start_s": 7.67,
+    "event_end_s": 12.24,
+    "have_bgm": 0,
+    "event_label": 347,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000ce0otfjc77uahqi5tj1g",
+   "pilot_split": "train",
+   "category": 80,
+   "category_name": "water truck sprinkling water",
+   "source_duration_s": 15.05,
+   "clip_context": {
+    "sample_id": 17657,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 4.1,
+    "event_end_s": 15.03,
+    "have_bgm": 0,
+    "event_label": 80,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000c5sd7m3c77uainecjejg",
+   "pilot_split": "train",
+   "category": 55,
+   "category_name": "deconstructing a building",
+   "source_duration_s": 15.09,
+   "clip_context": {
+    "sample_id": 3713,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 15.08,
+    "have_bgm": 0,
+    "event_label": 55,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000cco258bc77u07tgt0gh0",
+   "pilot_split": "train",
+   "category": 54,
+   "category_name": "cleaning carpet",
+   "source_duration_s": 36.62,
+   "clip_context": {
+    "sample_id": 21296,
+    "start_s": 16.619999999999997,
+    "end_s": 26.62,
+    "event_start_s": 17.05,
+    "event_end_s": 36.42,
+    "have_bgm": 0,
+    "event_label": 54,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000cdhmd7bc77u90hjaeheg",
+   "pilot_split": "train",
+   "category": 120,
+   "category_name": "playing melodica",
+   "source_duration_s": 12.47,
+   "clip_context": {
+    "sample_id": 11789,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 12.46,
+    "have_bgm": 0,
+    "event_label": 120,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000cc2buibc77u2rel8mct0",
+   "pilot_split": "dev",
+   "category": 52,
+   "category_name": "brushing teeth",
+   "source_duration_s": 43.8,
+   "clip_context": {
+    "sample_id": 4611,
+    "start_s": 18.08,
+    "end_s": 28.08,
+    "event_start_s": 22.66,
+    "event_end_s": 33.5,
+    "have_bgm": 1,
+    "event_label": 52,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cdabsqbc77u9qv12vc50",
+   "pilot_split": "train",
+   "category": 48,
+   "category_name": "flying remote control drone",
+   "source_duration_s": 52.37,
+   "clip_context": {
+    "sample_id": 23816,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.03,
+    "event_end_s": 48.16,
+    "have_bgm": 1,
+    "event_label": 48,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000c8k8623c77u5gv9m0cj0",
+   "pilot_split": "train",
+   "category": 61,
+   "category_name": "using a hammer",
+   "source_duration_s": 43.37,
+   "clip_context": {
+    "sample_id": 21362,
+    "start_s": 23.545,
+    "end_s": 33.545,
+    "event_start_s": 24.93,
+    "event_end_s": 32.16,
+    "have_bgm": 1,
+    "event_label": 61,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200c750000c11l0vt4onpcnlqlsqag",
+   "pilot_split": "train",
+   "category": 77,
+   "category_name": "having a snowball fight",
+   "source_duration_s": 22.71,
+   "clip_context": {
+    "sample_id": 3017,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 22.65,
+    "have_bgm": 1,
+    "event_label": 77,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cboa67rc77ubg40oq790",
+   "pilot_split": "train",
+   "category": 196,
+   "category_name": "Playing the cello",
+   "source_duration_s": 52.03,
+   "clip_context": {
+    "sample_id": 19781,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.01,
+    "event_end_s": 51.99,
+    "have_bgm": 0,
+    "event_label": 196,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000cd77k73c77u891t0b6cg",
+   "pilot_split": "train",
+   "category": 118,
+   "category_name": "playing harmonica",
+   "source_duration_s": 44.6,
+   "clip_context": {
+    "sample_id": 24201,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.01,
+    "event_end_s": 44.57,
+    "have_bgm": 0,
+    "event_label": 118,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000ccfjlprc77uf2i91k2d0",
+   "pilot_split": "dev",
+   "category": 151,
+   "category_name": "harvesting crops by machines",
+   "source_duration_s": 33.6,
+   "clip_context": {
+    "sample_id": 486,
+    "start_s": 23.6,
+    "end_s": 33.6,
+    "event_start_s": 30.48,
+    "event_end_s": 33.6,
+    "have_bgm": 0,
+    "event_label": 151,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000cdsa6rjc77u7kqdnhhg0",
+   "pilot_split": "confirm",
+   "category": 69,
+   "category_name": "auto racing",
+   "source_duration_s": 15.35,
+   "clip_context": {
+    "sample_id": 12762,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 15.35,
+    "have_bgm": 1,
+    "event_label": 69,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cdpo5vbc77u94c0q0k1g",
+   "pilot_split": "confirm",
+   "category": 164,
+   "category_name": "jumping rope",
+   "source_duration_s": 52.08,
+   "clip_context": {
+    "sample_id": 19018,
+    "start_s": 42.08,
+    "end_s": 52.08,
+    "event_start_s": 45.35,
+    "event_end_s": 49.08,
+    "have_bgm": 0,
+    "event_label": 164,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cdkdderc77u4ujq4vlm0",
+   "pilot_split": "dev",
+   "category": 148,
+   "category_name": "piercing a balloon",
+   "source_duration_s": 60.1,
+   "clip_context": {
+    "sample_id": 7090,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 60.1,
+    "have_bgm": 1,
+    "event_label": 148,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cdjpdabc77u6fndm9gdg",
+   "pilot_split": "dev",
+   "category": 131,
+   "category_name": "practicing equestrianism",
+   "source_duration_s": 29.98,
+   "clip_context": {
+    "sample_id": 10724,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 24.1,
+    "have_bgm": 1,
+    "event_label": 131,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cathb53c77u277n4186g",
+   "pilot_split": "train",
+   "category": 337,
+   "category_name": "raining",
+   "source_duration_s": 15.95,
+   "clip_context": {
+    "sample_id": 17366,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.02,
+    "event_end_s": 15.95,
+    "have_bgm": 1,
+    "event_label": 337,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000cba0eprc77u0mtp785v0",
+   "pilot_split": "train",
+   "category": 133,
+   "category_name": "tap dancing",
+   "source_duration_s": 26.82,
+   "clip_context": {
+    "sample_id": 6440,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.92,
+    "event_end_s": 26.8,
+    "have_bgm": 1,
+    "event_label": 133,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000c9ha233c77uckd9vc9d0",
+   "pilot_split": "dev",
+   "category": 113,
+   "category_name": "meowing",
+   "source_duration_s": 17.23,
+   "clip_context": {
+    "sample_id": 14059,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.01,
+    "event_end_s": 17.23,
+    "have_bgm": 1,
+    "event_label": 113,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cbj6503c77uac5al48hg",
+   "pilot_split": "dev",
+   "category": 349,
+   "category_name": "playing suona",
+   "source_duration_s": 22.86,
+   "clip_context": {
+    "sample_id": 3678,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 22.81,
+    "have_bgm": 0,
+    "event_label": 349,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000c8ouhjbc77ueincbhoc0",
+   "pilot_split": "train",
+   "category": 310,
+   "category_name": "skateboarding",
+   "source_duration_s": 25.05,
+   "clip_context": {
+    "sample_id": 15183,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 25.01,
+    "have_bgm": 1,
+    "event_label": 310,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000c45pga3c77ufruchlgt0",
+   "pilot_split": "dev",
+   "category": 359,
+   "category_name": "singing",
+   "source_duration_s": 31.49,
+   "clip_context": {
+    "sample_id": 34,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 30.79,
+    "have_bgm": 1,
+    "event_label": 359,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000c886fqrc77u0ua3pas40",
+   "pilot_split": "train",
+   "category": 312,
+   "category_name": "playing badminton",
+   "source_duration_s": 16.13,
+   "clip_context": {
+    "sample_id": 6935,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 3.48,
+    "event_end_s": 16.13,
+    "have_bgm": 1,
+    "event_label": 312,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000cd3batbc77uaq6ud63a0",
+   "pilot_split": "train",
+   "category": 84,
+   "category_name": "playing hang (instrument)",
+   "source_duration_s": 56.23,
+   "clip_context": {
+    "sample_id": 21764,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 1.71,
+    "event_end_s": 56.05,
+    "have_bgm": 0,
+    "event_label": 84,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cc8p51bc77u9j9bok88g",
+   "pilot_split": "dev",
+   "category": 228,
+   "category_name": "mowing a lawn",
+   "source_duration_s": 14.63,
+   "clip_context": {
+    "sample_id": 3890,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 8.69,
+    "have_bgm": 1,
+    "event_label": 228,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000ce04u5jc77u8mnrvfbf0",
+   "pilot_split": "train",
+   "category": 353,
+   "category_name": "watching a concert",
+   "source_duration_s": 45.53,
+   "clip_context": {
+    "sample_id": 20234,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 45.53,
+    "have_bgm": 0,
+    "event_label": 353,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000cbmsa5bc77udvrcjo9e0",
+   "pilot_split": "train",
+   "category": 240,
+   "category_name": "laser beam welding",
+   "source_duration_s": 17.32,
+   "clip_context": {
+    "sample_id": 23836,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 1.06,
+    "event_end_s": 3.63,
+    "have_bgm": 1,
+    "event_label": 240,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000cdn02v3c77uecv2ipuhg",
+   "pilot_split": "dev",
+   "category": 235,
+   "category_name": "using a vacuum cleaner",
+   "source_duration_s": 42.37,
+   "clip_context": {
+    "sample_id": 2527,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 24.66,
+    "have_bgm": 1,
+    "event_label": 235,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cb8eh8jc77u07b6ka0fg",
+   "pilot_split": "confirm",
+   "category": 398,
+   "category_name": "setting off fireworks and firecrackers",
+   "source_duration_s": 23.85,
+   "clip_context": {
+    "sample_id": 14631,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 16.61,
+    "have_bgm": 0,
+    "event_label": 398,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cdt26l3c77u4klo8o1j0",
+   "pilot_split": "train",
+   "category": 352,
+   "category_name": "performing traditional Chinese opera",
+   "source_duration_s": 52.38,
+   "clip_context": {
+    "sample_id": 7209,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 52.36,
+    "have_bgm": 0,
+    "event_label": 352,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000cdh477bc77u0mqfcqf00",
+   "pilot_split": "dev",
+   "category": 32,
+   "category_name": "washing car",
+   "source_duration_s": 25.31,
+   "clip_context": {
+    "sample_id": 81,
+    "start_s": 6.379999999999999,
+    "end_s": 16.38,
+    "event_start_s": 6.58,
+    "event_end_s": 16.18,
+    "have_bgm": 1,
+    "event_label": 32,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000c5ofk5jc77u7lqamtnc0",
+   "pilot_split": "dev",
+   "category": 319,
+   "category_name": "wrestling",
+   "source_duration_s": 32.7,
+   "clip_context": {
+    "sample_id": 14841,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 32.67,
+    "have_bgm": 1,
+    "event_label": 319,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000ccmh5ejc77ubmp1vhe80",
+   "pilot_split": "dev",
+   "category": 57,
+   "category_name": "scraping putty/cement",
+   "source_duration_s": 53.64,
+   "clip_context": {
+    "sample_id": 5605,
+    "start_s": 28.865,
+    "end_s": 38.865,
+    "event_start_s": 29.03,
+    "event_end_s": 38.7,
+    "have_bgm": 1,
+    "event_label": 57,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000ce2873bc77uaan2od650",
+   "pilot_split": "train",
+   "category": 343,
+   "category_name": "plane taking off",
+   "source_duration_s": 50.2,
+   "clip_context": {
+    "sample_id": 23351,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.16,
+    "event_end_s": 50.2,
+    "have_bgm": 1,
+    "event_label": 343,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cai0pkbc77u7qtc4nco0",
+   "pilot_split": "dev",
+   "category": 333,
+   "category_name": "practicing archery",
+   "source_duration_s": 31.73,
+   "clip_context": {
+    "sample_id": 19681,
+    "start_s": 11.73,
+    "end_s": 21.73,
+    "event_start_s": 16.81,
+    "event_end_s": 27.11,
+    "have_bgm": 1,
+    "event_label": 333,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cd6ir1rc77u5lok9lu20",
+   "pilot_split": "confirm",
+   "category": 231,
+   "category_name": "cleaning with a robot vacuum",
+   "source_duration_s": 40.9,
+   "clip_context": {
+    "sample_id": 18058,
+    "start_s": 12.335,
+    "end_s": 22.335,
+    "event_start_s": 14.0,
+    "event_end_s": 30.67,
+    "have_bgm": 1,
+    "event_label": 231,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000c3dmo9rc77uadn725c10",
+   "pilot_split": "dev",
+   "category": 241,
+   "category_name": "moving with forklift",
+   "source_duration_s": 36.13,
+   "clip_context": {
+    "sample_id": 23540,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 3.51,
+    "event_end_s": 36.12,
+    "have_bgm": 1,
+    "event_label": 241,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000c96221jc77u84jjjpib0",
+   "pilot_split": "train",
+   "category": 360,
+   "category_name": "shaving head",
+   "source_duration_s": 58.84,
+   "clip_context": {
+    "sample_id": 8739,
+    "start_s": 8.09,
+    "end_s": 18.09,
+    "event_start_s": 9.93,
+    "event_end_s": 46.25,
+    "have_bgm": 0,
+    "event_label": 360,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000cclf83jc77u6gh2v8mbg",
+   "pilot_split": "train",
+   "category": 37,
+   "category_name": "laser engraving",
+   "source_duration_s": 16.4,
+   "clip_context": {
+    "sample_id": 3220,
+    "start_s": 6.399999999999999,
+    "end_s": 16.4,
+    "event_start_s": 11.6,
+    "event_end_s": 16.4,
+    "have_bgm": 0,
+    "event_label": 37,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000c68uh8bc77u5j8173jgg",
+   "pilot_split": "confirm",
+   "category": 338,
+   "category_name": "scratching on a cat scratching board",
+   "source_duration_s": 34.25,
+   "clip_context": {
+    "sample_id": 2352,
+    "start_s": 10.005,
+    "end_s": 20.005,
+    "event_start_s": 13.6,
+    "event_end_s": 16.41,
+    "have_bgm": 1,
+    "event_label": 338,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000c7gpe0rc77udatr2qbu0",
+   "pilot_split": "train",
+   "category": 397,
+   "category_name": "clubbing",
+   "source_duration_s": 11.41,
+   "clip_context": {
+    "sample_id": 23766,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 11.41,
+    "have_bgm": 0,
+    "event_label": 397,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cdrl7urc77u6ap7700mg",
+   "pilot_split": "confirm",
+   "category": 346,
+   "category_name": "playing drum",
+   "source_duration_s": 57.7,
+   "clip_context": {
+    "sample_id": 22563,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 57.66,
+    "have_bgm": 1,
+    "event_label": 346,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cdevafbc77u05su96dcg",
+   "pilot_split": "confirm",
+   "category": 20,
+   "category_name": "cutting with a circular saw",
+   "source_duration_s": 18.03,
+   "clip_context": {
+    "sample_id": 8007,
+    "start_s": 8.030000000000001,
+    "end_s": 18.03,
+    "event_start_s": 14.31,
+    "event_end_s": 18.03,
+    "have_bgm": 0,
+    "event_label": 20,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cbqeuobc77uf9rjut4t0",
+   "pilot_split": "train",
+   "category": 81,
+   "category_name": "playing erhu",
+   "source_duration_s": 59.07,
+   "clip_context": {
+    "sample_id": 15326,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.06,
+    "event_end_s": 59.0,
+    "have_bgm": 1,
+    "event_label": 81,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cblmlvjc77u1rdsk1tfg",
+   "pilot_split": "confirm",
+   "category": 108,
+   "category_name": "playing fingerstyle guitar",
+   "source_duration_s": 83.99,
+   "clip_context": {
+    "sample_id": 12665,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 83.78,
+    "have_bgm": 0,
+    "event_label": 108,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000cc7clpbc77uddsgaq3ug",
+   "pilot_split": "train",
+   "category": 232,
+   "category_name": "cleaning a washing machine",
+   "source_duration_s": 59.84,
+   "clip_context": {
+    "sample_id": 10969,
+    "start_s": 27.895,
+    "end_s": 37.895,
+    "event_start_s": 30.9,
+    "event_end_s": 34.89,
+    "have_bgm": 0,
+    "event_label": 232,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00f960000c15bd8kqavp0ekuoltr0",
+   "pilot_split": "train",
+   "category": 344,
+   "category_name": "launching a racket",
+   "source_duration_s": 11.65,
+   "clip_context": {
+    "sample_id": 2798,
+    "start_s": 1.6500000000000004,
+    "end_s": 11.65,
+    "event_start_s": 3.36,
+    "event_end_s": 11.64,
+    "have_bgm": 1,
+    "event_label": 344,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000ceeelp3c77uabifs7sg0",
+   "pilot_split": "train",
+   "category": 307,
+   "category_name": "playing tennis",
+   "source_duration_s": 14.95,
+   "clip_context": {
+    "sample_id": 12406,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 14.94,
+    "have_bgm": 0,
+    "event_label": 307,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cbrn71bc77u0gchcli3g",
+   "pilot_split": "train",
+   "category": 106,
+   "category_name": "playing djembe",
+   "source_duration_s": 46.21,
+   "clip_context": {
+    "sample_id": 9529,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 45.91,
+    "have_bgm": 0,
+    "event_label": 106,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000cdn3ebrc77uflb9vgmn0",
+   "pilot_split": "train",
+   "category": 342,
+   "category_name": "feeding a cat",
+   "source_duration_s": 13.93,
+   "clip_context": {
+    "sample_id": 487,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 12.0,
+    "have_bgm": 1,
+    "event_label": 342,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000cbb1qr3c77ueshquan2g",
+   "pilot_split": "confirm",
+   "category": 348,
+   "category_name": "playing piano",
+   "source_duration_s": 14.98,
+   "clip_context": {
+    "sample_id": 21650,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 14.97,
+    "have_bgm": 0,
+    "event_label": 348,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000ca50og3c77u413ad4dhg",
+   "pilot_split": "train",
+   "category": 322,
+   "category_name": "boxing",
+   "source_duration_s": 32.9,
+   "clip_context": {
+    "sample_id": 9737,
+    "start_s": 2.8999999999999986,
+    "end_s": 12.9,
+    "event_start_s": 5.04,
+    "event_end_s": 32.62,
+    "have_bgm": 1,
+    "event_label": 322,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000c8oll8jc77u45kiovon0",
+   "pilot_split": "confirm",
+   "category": 203,
+   "category_name": "using a sewing machine",
+   "source_duration_s": 58.17,
+   "clip_context": {
+    "sample_id": 10910,
+    "start_s": 19.96,
+    "end_s": 29.96,
+    "event_start_s": 23.79,
+    "event_end_s": 36.13,
+    "have_bgm": 0,
+    "event_label": 203,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cck85vrc77u5p6b02skg",
+   "pilot_split": "train",
+   "category": 56,
+   "category_name": "mixing cement/concrete",
+   "source_duration_s": 31.02,
+   "clip_context": {
+    "sample_id": 12438,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 31.02,
+    "have_bgm": 1,
+    "event_label": 56,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000ccfulk3c77udlh5p0qkg",
+   "pilot_split": "train",
+   "category": 199,
+   "category_name": "arc welding",
+   "source_duration_s": 54.4,
+   "clip_context": {
+    "sample_id": 17639,
+    "start_s": 44.4,
+    "end_s": 54.4,
+    "event_start_s": 47.23,
+    "event_end_s": 54.37,
+    "have_bgm": 0,
+    "event_label": 199,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000c6njabbc77udnasnqao0",
+   "pilot_split": "train",
+   "category": 12,
+   "category_name": "carving with hand tools",
+   "source_duration_s": 46.8,
+   "clip_context": {
+    "sample_id": 21074,
+    "start_s": 5.020000000000003,
+    "end_s": 15.020000000000003,
+    "event_start_s": 7.16,
+    "event_end_s": 42.88,
+    "have_bgm": 1,
+    "event_label": 12,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000ccrs40bc77ud5nb6k26g",
+   "pilot_split": "train",
+   "category": 14,
+   "category_name": "operating a remote control car (excluding drifting/racing)",
+   "source_duration_s": 33.62,
+   "clip_context": {
+    "sample_id": 13001,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.03,
+    "event_end_s": 1.7,
+    "have_bgm": 1,
+    "event_label": 14,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cdnm923c77uc56iqqjog",
+   "pilot_split": "confirm",
+   "category": 71,
+   "category_name": "freeskating",
+   "source_duration_s": 53.6,
+   "clip_context": {
+    "sample_id": 23928,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.02,
+    "event_end_s": 53.59,
+    "have_bgm": 1,
+    "event_label": 71,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000cd1tsojc77ue4ivus170",
+   "pilot_split": "confirm",
+   "category": 76,
+   "category_name": "feeding dogs",
+   "source_duration_s": 58.53,
+   "clip_context": {
+    "sample_id": 22803,
+    "start_s": 27.435,
+    "end_s": 37.435,
+    "event_start_s": 28.7,
+    "event_end_s": 36.17,
+    "have_bgm": 1,
+    "event_label": 76,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000cbgt1p3c77uf66ic5df0",
+   "pilot_split": "confirm",
+   "category": 358,
+   "category_name": "performing a duet",
+   "source_duration_s": 53.08,
+   "clip_context": {
+    "sample_id": 952,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 11.3,
+    "have_bgm": 0,
+    "event_label": 358,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200cg10000c6lffdbc77u15hm6o3sg",
+   "pilot_split": "train",
+   "category": 10,
+   "category_name": "playing ukulele",
+   "source_duration_s": 18.62,
+   "clip_context": {
+    "sample_id": 19497,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 18.62,
+    "have_bgm": 0,
+    "event_label": 10,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000c58441bc77u2kd0ril9g",
+   "pilot_split": "train",
+   "category": 341,
+   "category_name": "panda eating bamboo",
+   "source_duration_s": 19.97,
+   "clip_context": {
+    "sample_id": 9437,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 19.96,
+    "have_bgm": 0,
+    "event_label": 341,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000c3pd7k3c77u8to5dasm0",
+   "pilot_split": "train",
+   "category": 326,
+   "category_name": "diving (sports)",
+   "source_duration_s": 22.08,
+   "clip_context": {
+    "sample_id": 5251,
+    "start_s": 12.079999999999998,
+    "end_s": 22.08,
+    "event_start_s": 14.56,
+    "event_end_s": 22.07,
+    "have_bgm": 1,
+    "event_label": 326,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000ce6059rc77ubnptu3smg",
+   "pilot_split": "train",
+   "category": 388,
+   "category_name": "whistling",
+   "source_duration_s": 16.04,
+   "clip_context": {
+    "sample_id": 18648,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.48,
+    "event_end_s": 16.04,
+    "have_bgm": 1,
+    "event_label": 388,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000ce5vc7rc77u1csfocns0",
+   "pilot_split": "train",
+   "category": 105,
+   "category_name": "using a massage gun",
+   "source_duration_s": 28.7,
+   "clip_context": {
+    "sample_id": 18064,
+    "start_s": 0.205,
+    "end_s": 10.205,
+    "event_start_s": 4.2,
+    "event_end_s": 26.21,
+    "have_bgm": 0,
+    "event_label": 105,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000cc0878jc77u5peg6qt20",
+   "pilot_split": "train",
+   "category": 92,
+   "category_name": "playing konghou",
+   "source_duration_s": 48.5,
+   "clip_context": {
+    "sample_id": 5679,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 46.64,
+    "have_bgm": 0,
+    "event_label": 92,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000cdeb13rc77u3s1kp7vm0",
+   "pilot_split": "train",
+   "category": 306,
+   "category_name": "playing volleyball",
+   "source_duration_s": 16.33,
+   "clip_context": {
+    "sample_id": 24822,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 16.29,
+    "have_bgm": 1,
+    "event_label": 306,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cd3ajebc77u8ooehjolg",
+   "pilot_split": "train",
+   "category": 5,
+   "category_name": "playing bamboo flute",
+   "source_duration_s": 27.12,
+   "clip_context": {
+    "sample_id": 12836,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.42,
+    "event_end_s": 27.11,
+    "have_bgm": 0,
+    "event_label": 5,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000c8nj8hbc77u0rfa8jvqg",
+   "pilot_split": "train",
+   "category": 86,
+   "category_name": "playing guzheng",
+   "source_duration_s": 72.14,
+   "clip_context": {
+    "sample_id": 17958,
+    "start_s": 2.140000000000001,
+    "end_s": 12.14,
+    "event_start_s": 5.6,
+    "event_end_s": 72.03,
+    "have_bgm": 0,
+    "event_label": 86,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cbpptkjc77u5umvtprlg",
+   "pilot_split": "train",
+   "category": 102,
+   "category_name": "playing hulusi",
+   "source_duration_s": 19.27,
+   "clip_context": {
+    "sample_id": 4758,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.19,
+    "event_end_s": 19.25,
+    "have_bgm": 1,
+    "event_label": 102,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000c29r0q6lq070a240t1e0",
+   "pilot_split": "train",
+   "category": 93,
+   "category_name": "playing guqin",
+   "source_duration_s": 58.23,
+   "clip_context": {
+    "sample_id": 12937,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 58.21,
+    "have_bgm": 0,
+    "event_label": 93,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000cdh2icbc77u2vkopoq50",
+   "pilot_split": "dev",
+   "category": 305,
+   "category_name": "playing table tennis",
+   "source_duration_s": 25.98,
+   "clip_context": {
+    "sample_id": 18348,
+    "start_s": 3.3000000000000007,
+    "end_s": 13.3,
+    "event_start_s": 7.08,
+    "event_end_s": 19.52,
+    "have_bgm": 1,
+    "event_label": 305,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000c5rk7nbc77u793odbhn0",
+   "pilot_split": "train",
+   "category": 334,
+   "category_name": "shooting with a slingshot",
+   "source_duration_s": 55.89,
+   "clip_context": {
+    "sample_id": 18556,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.01,
+    "event_end_s": 55.86,
+    "have_bgm": 1,
+    "event_label": 334,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000cd8jfpjc77u1ead166sg",
+   "pilot_split": "train",
+   "category": 4,
+   "category_name": "playing flute",
+   "source_duration_s": 58.2,
+   "clip_context": {
+    "sample_id": 11746,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.15,
+    "event_end_s": 58.19,
+    "have_bgm": 0,
+    "event_label": 4,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000cd72kurc77u4k82nf7ig",
+   "pilot_split": "dev",
+   "category": 13,
+   "category_name": "twisting balloons",
+   "source_duration_s": 13.57,
+   "clip_context": {
+    "sample_id": 24649,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 13.3,
+    "have_bgm": 1,
+    "event_label": 13,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cdf41crc77u8au3n878g",
+   "pilot_split": "train",
+   "category": 19,
+   "category_name": "riding a motorcycle (excluding drifting)",
+   "source_duration_s": 59.7,
+   "clip_context": {
+    "sample_id": 9490,
+    "start_s": 33.505,
+    "end_s": 43.505,
+    "event_start_s": 37.34,
+    "event_end_s": 49.67,
+    "have_bgm": 1,
+    "event_label": 19,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000ca0edf3c77u081kmqbj0",
+   "pilot_split": "train",
+   "category": 100,
+   "category_name": "carving wood",
+   "source_duration_s": 32.55,
+   "clip_context": {
+    "sample_id": 23479,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.05,
+    "event_end_s": 25.67,
+    "have_bgm": 1,
+    "event_label": 100,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cd1898jc77u324navjrg",
+   "pilot_split": "train",
+   "category": 145,
+   "category_name": "baby drinking milk",
+   "source_duration_s": 12.63,
+   "clip_context": {
+    "sample_id": 5894,
+    "start_s": 2.630000000000001,
+    "end_s": 12.63,
+    "event_start_s": 8.66,
+    "event_end_s": 12.55,
+    "have_bgm": 1,
+    "event_label": 145,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000c9l6m9rc77u0o9tbjce0",
+   "pilot_split": "train",
+   "category": 49,
+   "category_name": "drifting car",
+   "source_duration_s": 43.84,
+   "clip_context": {
+    "sample_id": 6779,
+    "start_s": 8.25,
+    "end_s": 18.25,
+    "event_start_s": 11.29,
+    "event_end_s": 35.21,
+    "have_bgm": 1,
+    "event_label": 49,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000cc2n7j3c77u0ppcsbmeg",
+   "pilot_split": "train",
+   "category": 36,
+   "category_name": "modifying car",
+   "source_duration_s": 14.67,
+   "clip_context": {
+    "sample_id": 22977,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 2.95,
+    "event_end_s": 4.68,
+    "have_bgm": 1,
+    "event_label": 36,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00cg10000cb12pqrc77u23t20g9f0",
+   "pilot_split": "confirm",
+   "category": 78,
+   "category_name": "harvesting rice",
+   "source_duration_s": 21.71,
+   "clip_context": {
+    "sample_id": 8584,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 9.4,
+    "have_bgm": 1,
+    "event_label": 78,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000cb6jv6bc77ufc258nsf0",
+   "pilot_split": "confirm",
+   "category": 104,
+   "category_name": "fingerboarding",
+   "source_duration_s": 28.2,
+   "clip_context": {
+    "sample_id": 16033,
+    "start_s": 6.870000000000001,
+    "end_s": 16.87,
+    "event_start_s": 10.77,
+    "event_end_s": 12.97,
+    "have_bgm": 1,
+    "event_label": 104,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200cd10000bus8l0o74jmjfod91bfg",
+   "pilot_split": "dev",
+   "category": 116,
+   "category_name": "train running",
+   "source_duration_s": 15.09,
+   "clip_context": {
+    "sample_id": 10111,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 15.07,
+    "have_bgm": 0,
+    "event_label": 116,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000cakr9ujc77ufd1u39hs0",
+   "pilot_split": "train",
+   "category": 99,
+   "category_name": "blowing bubbles",
+   "source_duration_s": 26.59,
+   "clip_context": {
+    "sample_id": 21127,
+    "start_s": 0.3100000000000005,
+    "end_s": 10.31,
+    "event_start_s": 3.51,
+    "event_end_s": 7.11,
+    "have_bgm": 1,
+    "event_label": 99,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300f5a0000bt5gkbcf43g3tk5rd4ng",
+   "pilot_split": "dev",
+   "category": 74,
+   "category_name": "milking sheep",
+   "source_duration_s": 27.13,
+   "clip_context": {
+    "sample_id": 13361,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 1.5,
+    "have_bgm": 0,
+    "event_label": 74,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300cg10000c25cg9qk5jov8c9i0vs0",
+   "pilot_split": "confirm",
+   "category": 60,
+   "category_name": "using a jack",
+   "source_duration_s": 21.03,
+   "clip_context": {
+    "sample_id": 3290,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 21.0,
+    "have_bgm": 1,
+    "event_label": 60,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000ceem9lrc77uargt5camg",
+   "pilot_split": "train",
+   "category": 347,
+   "category_name": "playing mbira",
+   "source_duration_s": 17.77,
+   "clip_context": {
+    "sample_id": 20358,
+    "start_s": 0.0250000000000003,
+    "end_s": 10.025,
+    "event_start_s": 2.68,
+    "event_end_s": 17.37,
+    "have_bgm": 1,
+    "event_label": 347,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000caop2jrc77u0kdmeipb0",
+   "pilot_split": "train",
+   "category": 80,
+   "category_name": "water truck sprinkling water",
+   "source_duration_s": 59.37,
+   "clip_context": {
+    "sample_id": 4265,
+    "start_s": 21.905,
+    "end_s": 31.905,
+    "event_start_s": 23.88,
+    "event_end_s": 49.93,
+    "have_bgm": 1,
+    "event_label": 80,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000cbuafujc77u35hq735a0",
+   "pilot_split": "train",
+   "category": 55,
+   "category_name": "deconstructing a building",
+   "source_duration_s": 21.73,
+   "clip_context": {
+    "sample_id": 11686,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 21.7,
+    "have_bgm": 1,
+    "event_label": 55,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000cdrcnijc77u5e7s0jkh0",
+   "pilot_split": "train",
+   "category": 54,
+   "category_name": "cleaning carpet",
+   "source_duration_s": 58.0,
+   "clip_context": {
+    "sample_id": 7915,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 55.77,
+    "have_bgm": 0,
+    "event_label": 54,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000cd01htbc77uflp64jok0",
+   "pilot_split": "train",
+   "category": 120,
+   "category_name": "playing melodica",
+   "source_duration_s": 58.81,
+   "clip_context": {
+    "sample_id": 4021,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 58.56,
+    "have_bgm": 1,
+    "event_label": 120,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cc8v9brc77u01i98bdeg",
+   "pilot_split": "train",
+   "category": 52,
+   "category_name": "brushing teeth",
+   "source_duration_s": 19.1,
+   "clip_context": {
+    "sample_id": 15626,
+    "start_s": 7.165000000000001,
+    "end_s": 17.165,
+    "event_start_s": 7.55,
+    "event_end_s": 16.78,
+    "have_bgm": 0,
+    "event_label": 52,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000cdq2vv3c77u73dibrfm0",
+   "pilot_split": "train",
+   "category": 48,
+   "category_name": "flying remote control drone",
+   "source_duration_s": 69.1,
+   "clip_context": {
+    "sample_id": 21791,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.01,
+    "event_end_s": 48.5,
+    "have_bgm": 1,
+    "event_label": 48,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000c9l5dg3c77u1r659eme0",
+   "pilot_split": "train",
+   "category": 61,
+   "category_name": "using a hammer",
+   "source_duration_s": 14.4,
+   "clip_context": {
+    "sample_id": 12824,
+    "start_s": 4.4,
+    "end_s": 14.4,
+    "event_start_s": 7.46,
+    "event_end_s": 14.4,
+    "have_bgm": 1,
+    "event_label": 61,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300cg10000c64i7qbc77u4g71n2630",
+   "pilot_split": "train",
+   "category": 77,
+   "category_name": "having a snowball fight",
+   "source_duration_s": 15.12,
+   "clip_context": {
+    "sample_id": 12101,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 15.1,
+    "have_bgm": 0,
+    "event_label": 77,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000ce5i0mbc77u1c01dnlu0",
+   "pilot_split": "dev",
+   "category": 196,
+   "category_name": "Playing the cello",
+   "source_duration_s": 25.5,
+   "clip_context": {
+    "sample_id": 1648,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 25.5,
+    "have_bgm": 0,
+    "event_label": 196,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200f9a0000bup7sgm862852577qbq0",
+   "pilot_split": "train",
+   "category": 118,
+   "category_name": "playing harmonica",
+   "source_duration_s": 56.57,
+   "clip_context": {
+    "sample_id": 21522,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.59,
+    "event_end_s": 56.23,
+    "have_bgm": 0,
+    "event_label": 118,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000cck1ocbc77uc3r41e2ng",
+   "pilot_split": "train",
+   "category": 151,
+   "category_name": "harvesting crops by machines",
+   "source_duration_s": 89.5,
+   "clip_context": {
+    "sample_id": 6211,
+    "start_s": 36.29,
+    "end_s": 46.29,
+    "event_start_s": 39.58,
+    "event_end_s": 73.0,
+    "have_bgm": 1,
+    "event_label": 151,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000ccmr453c77u1b9pkh600",
+   "pilot_split": "train",
+   "category": 69,
+   "category_name": "auto racing",
+   "source_duration_s": 22.1,
+   "clip_context": {
+    "sample_id": 6427,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 5.44,
+    "have_bgm": 1,
+    "event_label": 69,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000cas2r23c77u80h8kq0m0",
+   "pilot_split": "train",
+   "category": 164,
+   "category_name": "jumping rope",
+   "source_duration_s": 22.17,
+   "clip_context": {
+    "sample_id": 3309,
+    "start_s": 3.0250000000000004,
+    "end_s": 13.025,
+    "event_start_s": 5.89,
+    "event_end_s": 10.16,
+    "have_bgm": 1,
+    "event_label": 164,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000ce50t1rc77u0qolhu1pg",
+   "pilot_split": "train",
+   "category": 148,
+   "category_name": "piercing a balloon",
+   "source_duration_s": 64.55,
+   "clip_context": {
+    "sample_id": 9367,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 64.54,
+    "have_bgm": 0,
+    "event_label": 148,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000cdls4rjc77ub9n113jug",
+   "pilot_split": "train",
+   "category": 131,
+   "category_name": "practicing equestrianism",
+   "source_duration_s": 12.89,
+   "clip_context": {
+    "sample_id": 8765,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 12.88,
+    "have_bgm": 1,
+    "event_label": 131,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000cas5lirc77uae5ckphag",
+   "pilot_split": "train",
+   "category": 337,
+   "category_name": "raining",
+   "source_duration_s": 15.0,
+   "clip_context": {
+    "sample_id": 18404,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 3.0,
+    "have_bgm": 1,
+    "event_label": 337,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000c47pe23c77ueknj2scgg",
+   "pilot_split": "dev",
+   "category": 133,
+   "category_name": "tap dancing",
+   "source_duration_s": 28.61,
+   "clip_context": {
+    "sample_id": 17447,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 28.59,
+    "have_bgm": 0,
+    "event_label": 133,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000cdoe3prc77ufar3e2efg",
+   "pilot_split": "train",
+   "category": 113,
+   "category_name": "meowing",
+   "source_duration_s": 11.4,
+   "clip_context": {
+    "sample_id": 22839,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 3.13,
+    "event_end_s": 4.34,
+    "have_bgm": 0,
+    "event_label": 113,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000cdrm6dbc77u9v6vqbtjg",
+   "pilot_split": "train",
+   "category": 349,
+   "category_name": "playing suona",
+   "source_duration_s": 33.74,
+   "clip_context": {
+    "sample_id": 15485,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.02,
+    "event_end_s": 31.46,
+    "have_bgm": 0,
+    "event_label": 349,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000c8jf82bc77u0hepavrng",
+   "pilot_split": "train",
+   "category": 310,
+   "category_name": "skateboarding",
+   "source_duration_s": 15.02,
+   "clip_context": {
+    "sample_id": 8112,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.11,
+    "event_end_s": 7.31,
+    "have_bgm": 1,
+    "event_label": 310,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000calgchjc77ubuh8sqef0",
+   "pilot_split": "train",
+   "category": 359,
+   "category_name": "singing",
+   "source_duration_s": 57.37,
+   "clip_context": {
+    "sample_id": 14297,
+    "start_s": 7.369999999999997,
+    "end_s": 17.369999999999997,
+    "event_start_s": 9.2,
+    "event_end_s": 57.35,
+    "have_bgm": 0,
+    "event_label": 359,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cdsv8njc77u9jdcfssh0",
+   "pilot_split": "train",
+   "category": 312,
+   "category_name": "playing badminton",
+   "source_duration_s": 24.77,
+   "clip_context": {
+    "sample_id": 9745,
+    "start_s": 14.77,
+    "end_s": 24.77,
+    "event_start_s": 16.84,
+    "event_end_s": 24.76,
+    "have_bgm": 1,
+    "event_label": 312,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cc2v7h3c77ualujo7lug",
+   "pilot_split": "train",
+   "category": 84,
+   "category_name": "playing hang (instrument)",
+   "source_duration_s": 24.91,
+   "clip_context": {
+    "sample_id": 21595,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.8,
+    "event_end_s": 23.26,
+    "have_bgm": 0,
+    "event_label": 84,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v03033g10000cb8e5ibc77u9c0ksd7kg",
+   "pilot_split": "confirm",
+   "category": 228,
+   "category_name": "mowing a lawn",
+   "source_duration_s": 26.01,
+   "clip_context": {
+    "sample_id": 1226,
+    "start_s": 4.745000000000001,
+    "end_s": 14.745,
+    "event_start_s": 7.76,
+    "event_end_s": 21.73,
+    "have_bgm": 0,
+    "event_label": 228,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000c1un2cpvd1pft8edr2rg",
+   "pilot_split": "confirm",
+   "category": 353,
+   "category_name": "watching a concert",
+   "source_duration_s": 29.26,
+   "clip_context": {
+    "sample_id": 20831,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 29.24,
+    "have_bgm": 0,
+    "event_label": 353,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000cck2iujc77u6u0lf4na0",
+   "pilot_split": "confirm",
+   "category": 240,
+   "category_name": "laser beam welding",
+   "source_duration_s": 18.95,
+   "clip_context": {
+    "sample_id": 11429,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 18.93,
+    "have_bgm": 1,
+    "event_label": 240,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000cdmf7trc77u361m1eb30",
+   "pilot_split": "train",
+   "category": 235,
+   "category_name": "using a vacuum cleaner",
+   "source_duration_s": 32.95,
+   "clip_context": {
+    "sample_id": 22112,
+    "start_s": 10.989999999999998,
+    "end_s": 20.99,
+    "event_start_s": 13.12,
+    "event_end_s": 28.86,
+    "have_bgm": 1,
+    "event_label": 235,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fa70000bvun00f5sstuq1u95en0",
+   "pilot_split": "confirm",
+   "category": 398,
+   "category_name": "setting off fireworks and firecrackers",
+   "source_duration_s": 18.13,
+   "clip_context": {
+    "sample_id": 3408,
+    "start_s": 1.1500000000000004,
+    "end_s": 11.15,
+    "event_start_s": 4.21,
+    "event_end_s": 18.09,
+    "have_bgm": 1,
+    "event_label": 398,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000cabja2jc77u9g385sou0",
+   "pilot_split": "train",
+   "category": 352,
+   "category_name": "performing traditional Chinese opera",
+   "source_duration_s": 46.83,
+   "clip_context": {
+    "sample_id": 3154,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 1.16,
+    "event_end_s": 46.65,
+    "have_bgm": 1,
+    "event_label": 352,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cbgg5ejc77u5n14q95p0",
+   "pilot_split": "train",
+   "category": 32,
+   "category_name": "washing car",
+   "source_duration_s": 50.57,
+   "clip_context": {
+    "sample_id": 13872,
+    "start_s": 14.439999999999998,
+    "end_s": 24.44,
+    "event_start_s": 14.65,
+    "event_end_s": 44.23,
+    "have_bgm": 1,
+    "event_label": 32,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cbejscjc77ucv9psavag",
+   "pilot_split": "train",
+   "category": 319,
+   "category_name": "wrestling",
+   "source_duration_s": 14.27,
+   "clip_context": {
+    "sample_id": 20074,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 14.26,
+    "have_bgm": 1,
+    "event_label": 319,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000cdgeut3c77u8pum3k7g0",
+   "pilot_split": "train",
+   "category": 57,
+   "category_name": "scraping putty/cement",
+   "source_duration_s": 16.73,
+   "clip_context": {
+    "sample_id": 21538,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.01,
+    "event_end_s": 11.82,
+    "have_bgm": 1,
+    "event_label": 57,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00cg10000c2oogqv18jogj90euq10",
+   "pilot_split": "train",
+   "category": 343,
+   "category_name": "plane taking off",
+   "source_duration_s": 15.13,
+   "clip_context": {
+    "sample_id": 15263,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.03,
+    "event_end_s": 15.08,
+    "have_bgm": 1,
+    "event_label": 343,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000c7e277bc77uf69rs7ac0",
+   "pilot_split": "train",
+   "category": 333,
+   "category_name": "practicing archery",
+   "source_duration_s": 11.22,
+   "clip_context": {
+    "sample_id": 25143,
+    "start_s": 1.2200000000000006,
+    "end_s": 11.22,
+    "event_start_s": 7.93,
+    "event_end_s": 9.83,
+    "have_bgm": 1,
+    "event_label": 333,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cd4eoa3c77u09d2ugbeg",
+   "pilot_split": "dev",
+   "category": 231,
+   "category_name": "cleaning with a robot vacuum",
+   "source_duration_s": 53.93,
+   "clip_context": {
+    "sample_id": 20701,
+    "start_s": 17.14,
+    "end_s": 27.14,
+    "event_start_s": 20.08,
+    "event_end_s": 24.2,
+    "have_bgm": 1,
+    "event_label": 231,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cc28kljc77u3a28pn4q0",
+   "pilot_split": "dev",
+   "category": 241,
+   "category_name": "moving with forklift",
+   "source_duration_s": 21.07,
+   "clip_context": {
+    "sample_id": 17696,
+    "start_s": 1.0700000000000005,
+    "end_s": 11.07,
+    "event_start_s": 4.57,
+    "event_end_s": 21.06,
+    "have_bgm": 1,
+    "event_label": 241,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000c87nin3c77u7aftvmfp0",
+   "pilot_split": "train",
+   "category": 360,
+   "category_name": "shaving head",
+   "source_duration_s": 57.47,
+   "clip_context": {
+    "sample_id": 5014,
+    "start_s": 7.469999999999999,
+    "end_s": 17.47,
+    "event_start_s": 12.96,
+    "event_end_s": 56.96,
+    "have_bgm": 0,
+    "event_label": 360,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000c7ggb4jc77ueq2o7kkrg",
+   "pilot_split": "train",
+   "category": 37,
+   "category_name": "laser engraving",
+   "source_duration_s": 23.13,
+   "clip_context": {
+    "sample_id": 17383,
+    "start_s": 13.11,
+    "end_s": 23.11,
+    "event_start_s": 15.7,
+    "event_end_s": 20.52,
+    "have_bgm": 1,
+    "event_label": 37,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cd5t1g3c77ue48c30pvg",
+   "pilot_split": "train",
+   "category": 338,
+   "category_name": "scratching on a cat scratching board",
+   "source_duration_s": 17.32,
+   "clip_context": {
+    "sample_id": 21972,
+    "start_s": 1.2000000000000002,
+    "end_s": 11.2,
+    "event_start_s": 3.85,
+    "event_end_s": 8.55,
+    "have_bgm": 1,
+    "event_label": 338,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cdek8erc77u51d9jmfjg",
+   "pilot_split": "train",
+   "category": 397,
+   "category_name": "clubbing",
+   "source_duration_s": 12.54,
+   "clip_context": {
+    "sample_id": 3368,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 12.31,
+    "have_bgm": 0,
+    "event_label": 397,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000ccsl49bc77uf1i7c0o3g",
+   "pilot_split": "train",
+   "category": 346,
+   "category_name": "playing drum",
+   "source_duration_s": 12.65,
+   "clip_context": {
+    "sample_id": 24599,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 12.65,
+    "have_bgm": 1,
+    "event_label": 346,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cd1vpjbc77ub62r47k10",
+   "pilot_split": "train",
+   "category": 20,
+   "category_name": "cutting with a circular saw",
+   "source_duration_s": 29.81,
+   "clip_context": {
+    "sample_id": 12400,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 29.8,
+    "have_bgm": 0,
+    "event_label": 20,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cdfj953c77ue2811nbr0",
+   "pilot_split": "train",
+   "category": 81,
+   "category_name": "playing erhu",
+   "source_duration_s": 25.54,
+   "clip_context": {
+    "sample_id": 22163,
+    "start_s": 15.54,
+    "end_s": 25.54,
+    "event_start_s": 20.82,
+    "event_end_s": 25.54,
+    "have_bgm": 0,
+    "event_label": 81,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000cdrk7bjc77u8pevh3gh0",
+   "pilot_split": "train",
+   "category": 108,
+   "category_name": "playing fingerstyle guitar",
+   "source_duration_s": 67.01,
+   "clip_context": {
+    "sample_id": 19750,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 67.0,
+    "have_bgm": 0,
+    "event_label": 108,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000cdahpjjc77ucqkj8d25g",
+   "pilot_split": "train",
+   "category": 232,
+   "category_name": "cleaning a washing machine",
+   "source_duration_s": 32.72,
+   "clip_context": {
+    "sample_id": 11163,
+    "start_s": 7.025,
+    "end_s": 17.025,
+    "event_start_s": 10.67,
+    "event_end_s": 13.38,
+    "have_bgm": 1,
+    "event_label": 232,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cdfrtg3c77uc1gm9e71g",
+   "pilot_split": "train",
+   "category": 344,
+   "category_name": "launching a racket",
+   "source_duration_s": 12.77,
+   "clip_context": {
+    "sample_id": 8451,
+    "start_s": 2.77,
+    "end_s": 12.77,
+    "event_start_s": 3.11,
+    "event_end_s": 12.77,
+    "have_bgm": 1,
+    "event_label": 344,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000ce5vsqrc77u9t5f8j7rg",
+   "pilot_split": "dev",
+   "category": 307,
+   "category_name": "playing tennis",
+   "source_duration_s": 23.17,
+   "clip_context": {
+    "sample_id": 1650,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 19.6,
+    "have_bgm": 0,
+    "event_label": 307,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000cduvrhbc77ub1f3qh8f0",
+   "pilot_split": "train",
+   "category": 106,
+   "category_name": "playing djembe",
+   "source_duration_s": 32.77,
+   "clip_context": {
+    "sample_id": 14462,
+    "start_s": 0.4499999999999993,
+    "end_s": 10.45,
+    "event_start_s": 0.47,
+    "event_end_s": 30.43,
+    "have_bgm": 0,
+    "event_label": 106,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cd21fhrc77u60v9tq1j0",
+   "pilot_split": "train",
+   "category": 342,
+   "category_name": "feeding a cat",
+   "source_duration_s": 48.95,
+   "clip_context": {
+    "sample_id": 3022,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 34.85,
+    "have_bgm": 1,
+    "event_label": 342,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000cck0robc77u5vkvfvd8g",
+   "pilot_split": "train",
+   "category": 348,
+   "category_name": "playing piano",
+   "source_duration_s": 50.8,
+   "clip_context": {
+    "sample_id": 22129,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 50.79,
+    "have_bgm": 0,
+    "event_label": 348,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cdnket3c77u5qb9e2qgg",
+   "pilot_split": "train",
+   "category": 322,
+   "category_name": "boxing",
+   "source_duration_s": 34.18,
+   "clip_context": {
+    "sample_id": 12769,
+    "start_s": 0.2300000000000004,
+    "end_s": 10.23,
+    "event_start_s": 2.37,
+    "event_end_s": 8.09,
+    "have_bgm": 1,
+    "event_label": 322,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000cb22g3jc77u2to2gasb0",
+   "pilot_split": "dev",
+   "category": 203,
+   "category_name": "using a sewing machine",
+   "source_duration_s": 20.25,
+   "clip_context": {
+    "sample_id": 803,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 4.88,
+    "have_bgm": 1,
+    "event_label": 203,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00cg10000c7l2dcrc77u40ba2b5ig",
+   "pilot_split": "train",
+   "category": 56,
+   "category_name": "mixing cement/concrete",
+   "source_duration_s": 17.98,
+   "clip_context": {
+    "sample_id": 1186,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 16.97,
+    "have_bgm": 1,
+    "event_label": 56,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000cdn2vbrc77u2mirvuoh0",
+   "pilot_split": "train",
+   "category": 199,
+   "category_name": "arc welding",
+   "source_duration_s": 62.9,
+   "clip_context": {
+    "sample_id": 6796,
+    "start_s": 27.345,
+    "end_s": 37.345,
+    "event_start_s": 29.38,
+    "event_end_s": 35.31,
+    "have_bgm": 0,
+    "event_label": 199,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000ccm3cebc77u7sp2skqig",
+   "pilot_split": "train",
+   "category": 12,
+   "category_name": "carving with hand tools",
+   "source_duration_s": 47.88,
+   "clip_context": {
+    "sample_id": 21265,
+    "start_s": 20.35,
+    "end_s": 30.35,
+    "event_start_s": 20.44,
+    "event_end_s": 30.26,
+    "have_bgm": 1,
+    "event_label": 12,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000cbs8b3bc77u4siqme1kg",
+   "pilot_split": "train",
+   "category": 14,
+   "category_name": "operating a remote control car (excluding drifting/racing)",
+   "source_duration_s": 16.53,
+   "clip_context": {
+    "sample_id": 25027,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 16.53,
+    "have_bgm": 1,
+    "event_label": 14,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000ccpg3ubc77u2nlspo250",
+   "pilot_split": "dev",
+   "category": 71,
+   "category_name": "freeskating",
+   "source_duration_s": 22.94,
+   "clip_context": {
+    "sample_id": 6763,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.01,
+    "event_end_s": 20.98,
+    "have_bgm": 1,
+    "event_label": 71,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000cdnhh6bc77u4thqlv5sg",
+   "pilot_split": "dev",
+   "category": 76,
+   "category_name": "feeding dogs",
+   "source_duration_s": 19.94,
+   "clip_context": {
+    "sample_id": 4626,
+    "start_s": 2.0649999999999995,
+    "end_s": 12.065,
+    "event_start_s": 4.29,
+    "event_end_s": 19.84,
+    "have_bgm": 1,
+    "event_label": 76,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000ccl8e6bc77u82ld8e0tg",
+   "pilot_split": "confirm",
+   "category": 358,
+   "category_name": "performing a duet",
+   "source_duration_s": 45.84,
+   "clip_context": {
+    "sample_id": 18885,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 45.8,
+    "have_bgm": 0,
+    "event_label": 358,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000ccq05fjc77u22rjfabn0",
+   "pilot_split": "train",
+   "category": 10,
+   "category_name": "playing ukulele",
+   "source_duration_s": 48.1,
+   "clip_context": {
+    "sample_id": 15021,
+    "start_s": 1.1149999999999984,
+    "end_s": 11.114999999999998,
+    "event_start_s": 5.44,
+    "event_end_s": 46.79,
+    "have_bgm": 0,
+    "event_label": 10,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cdve903c77u7ri08fla0",
+   "pilot_split": "train",
+   "category": 341,
+   "category_name": "panda eating bamboo",
+   "source_duration_s": 32.07,
+   "clip_context": {
+    "sample_id": 24963,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.01,
+    "event_end_s": 32.06,
+    "have_bgm": 0,
+    "event_label": 341,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000c8kq42bc77u08bg3gnj0",
+   "pilot_split": "train",
+   "category": 326,
+   "category_name": "diving (sports)",
+   "source_duration_s": 16.63,
+   "clip_context": {
+    "sample_id": 13363,
+    "start_s": 1.6950000000000005,
+    "end_s": 11.695,
+    "event_start_s": 5.61,
+    "event_end_s": 7.78,
+    "have_bgm": 1,
+    "event_label": 326,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000cddguejc77u1eaef0b40",
+   "pilot_split": "train",
+   "category": 388,
+   "category_name": "whistling",
+   "source_duration_s": 24.31,
+   "clip_context": {
+    "sample_id": 22146,
+    "start_s": 3.540000000000001,
+    "end_s": 13.54,
+    "event_start_s": 4.96,
+    "event_end_s": 22.12,
+    "have_bgm": 0,
+    "event_label": 388,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000cbtp21jc77u6panoppi0",
+   "pilot_split": "train",
+   "category": 105,
+   "category_name": "using a massage gun",
+   "source_duration_s": 57.5,
+   "clip_context": {
+    "sample_id": 16011,
+    "start_s": 37.5,
+    "end_s": 47.5,
+    "event_start_s": 42.4,
+    "event_end_s": 57.48,
+    "have_bgm": 1,
+    "event_label": 105,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000c48g4njc77u6j6n2bsm0",
+   "pilot_split": "dev",
+   "category": 92,
+   "category_name": "playing konghou",
+   "source_duration_s": 22.67,
+   "clip_context": {
+    "sample_id": 10094,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 22.66,
+    "have_bgm": 0,
+    "event_label": 92,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000ccsmqqbc77u9jaf3m890",
+   "pilot_split": "dev",
+   "category": 306,
+   "category_name": "playing volleyball",
+   "source_duration_s": 15.97,
+   "clip_context": {
+    "sample_id": 14349,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.05,
+    "event_end_s": 4.12,
+    "have_bgm": 0,
+    "event_label": 306,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000c9aignbc77uf621m9da0",
+   "pilot_split": "train",
+   "category": 5,
+   "category_name": "playing bamboo flute",
+   "source_duration_s": 48.53,
+   "clip_context": {
+    "sample_id": 472,
+    "start_s": 5.140000000000001,
+    "end_s": 15.14,
+    "event_start_s": 5.93,
+    "event_end_s": 44.35,
+    "have_bgm": 0,
+    "event_label": 5,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cd89nabc77u5lreq5u50",
+   "pilot_split": "train",
+   "category": 86,
+   "category_name": "playing guzheng",
+   "source_duration_s": 56.43,
+   "clip_context": {
+    "sample_id": 18269,
+    "start_s": 12.405,
+    "end_s": 22.405,
+    "event_start_s": 12.48,
+    "event_end_s": 52.33,
+    "have_bgm": 0,
+    "event_label": 86,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000cd8vmijc77u5e20cgl70",
+   "pilot_split": "train",
+   "category": 102,
+   "category_name": "playing hulusi",
+   "source_duration_s": 39.52,
+   "clip_context": {
+    "sample_id": 791,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.1,
+    "event_end_s": 37.23,
+    "have_bgm": 1,
+    "event_label": 102,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000ce1195jc77u80ops46mg",
+   "pilot_split": "dev",
+   "category": 93,
+   "category_name": "playing guqin",
+   "source_duration_s": 56.47,
+   "clip_context": {
+    "sample_id": 15555,
+    "start_s": 17.625,
+    "end_s": 27.625,
+    "event_start_s": 18.62,
+    "event_end_s": 46.63,
+    "have_bgm": 0,
+    "event_label": 93,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cdelrrrc77u2rmdej8hg",
+   "pilot_split": "dev",
+   "category": 305,
+   "category_name": "playing table tennis",
+   "source_duration_s": 15.09,
+   "clip_context": {
+    "sample_id": 3322,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 9.06,
+    "have_bgm": 0,
+    "event_label": 305,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000cd6uq1jc77ucfggpr32g",
+   "pilot_split": "train",
+   "category": 334,
+   "category_name": "shooting with a slingshot",
+   "source_duration_s": 59.28,
+   "clip_context": {
+    "sample_id": 4745,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 34.21,
+    "have_bgm": 1,
+    "event_label": 334,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000c916oljc77u9g334u8b0",
+   "pilot_split": "train",
+   "category": 4,
+   "category_name": "playing flute",
+   "source_duration_s": 23.55,
+   "clip_context": {
+    "sample_id": 2541,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 13.89,
+    "have_bgm": 1,
+    "event_label": 4,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200cd60000bu4eptm65u522v8datj0",
+   "pilot_split": "train",
+   "category": 13,
+   "category_name": "twisting balloons",
+   "source_duration_s": 11.66,
+   "clip_context": {
+    "sample_id": 10871,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.62,
+    "event_end_s": 4.61,
+    "have_bgm": 1,
+    "event_label": 13,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000cdkauujc77u5h0etn3tg",
+   "pilot_split": "dev",
+   "category": 19,
+   "category_name": "riding a motorcycle (excluding drifting)",
+   "source_duration_s": 14.95,
+   "clip_context": {
+    "sample_id": 4015,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 14.95,
+    "have_bgm": 1,
+    "event_label": 19,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000cdvbrnbc77uad9am02vg",
+   "pilot_split": "train",
+   "category": 100,
+   "category_name": "carving wood",
+   "source_duration_s": 45.83,
+   "clip_context": {
+    "sample_id": 23308,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 17.38,
+    "have_bgm": 1,
+    "event_label": 100,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cb0q3d3c77u6ookn9ccg",
+   "pilot_split": "train",
+   "category": 145,
+   "category_name": "baby drinking milk",
+   "source_duration_s": 11.7,
+   "clip_context": {
+    "sample_id": 24812,
+    "start_s": 1.6999999999999993,
+    "end_s": 11.7,
+    "event_start_s": 8.46,
+    "event_end_s": 11.7,
+    "have_bgm": 0,
+    "event_label": 145,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cd7ro63c77u2djsuphl0",
+   "pilot_split": "train",
+   "category": 49,
+   "category_name": "drifting car",
+   "source_duration_s": 24.98,
+   "clip_context": {
+    "sample_id": 23611,
+    "start_s": 4.98,
+    "end_s": 14.98,
+    "event_start_s": 11.23,
+    "event_end_s": 23.5,
+    "have_bgm": 1,
+    "event_label": 49,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cdnhf6bc77uaor3k3c50",
+   "pilot_split": "train",
+   "category": 36,
+   "category_name": "modifying car",
+   "source_duration_s": 38.43,
+   "clip_context": {
+    "sample_id": 12526,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 25.48,
+    "have_bgm": 1,
+    "event_label": 36,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000c469h0bc77uarhpfft60",
+   "pilot_split": "confirm",
+   "category": 78,
+   "category_name": "harvesting rice",
+   "source_duration_s": 25.47,
+   "clip_context": {
+    "sample_id": 1711,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.46,
+    "event_end_s": 25.47,
+    "have_bgm": 0,
+    "event_label": 78,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000ccle1hrc77u9fv7a1h3g",
+   "pilot_split": "train",
+   "category": 104,
+   "category_name": "fingerboarding",
+   "source_duration_s": 19.3,
+   "clip_context": {
+    "sample_id": 11315,
+    "start_s": 6.73,
+    "end_s": 16.73,
+    "event_start_s": 9.27,
+    "event_end_s": 14.19,
+    "have_bgm": 0,
+    "event_label": 104,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000c8lfjebc77udll89bscg",
+   "pilot_split": "dev",
+   "category": 116,
+   "category_name": "train running",
+   "source_duration_s": 27.68,
+   "clip_context": {
+    "sample_id": 17349,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 27.67,
+    "have_bgm": 0,
+    "event_label": 116,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000cdh0mcjc77ufao7d55a0",
+   "pilot_split": "train",
+   "category": 99,
+   "category_name": "blowing bubbles",
+   "source_duration_s": 59.1,
+   "clip_context": {
+    "sample_id": 19324,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 59.06,
+    "have_bgm": 1,
+    "event_label": 99,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000cbaadorc77ues0sk5mgg",
+   "pilot_split": "train",
+   "category": 74,
+   "category_name": "milking sheep",
+   "source_duration_s": 80.67,
+   "clip_context": {
+    "sample_id": 1180,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.0,
+    "event_end_s": 55.97,
+    "have_bgm": 1,
+    "event_label": 74,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000c8m7gs3c77u123sppk7g",
+   "pilot_split": "train",
+   "category": 60,
+   "category_name": "using a jack",
+   "source_duration_s": 58.9,
+   "clip_context": {
+    "sample_id": 7152,
+    "start_s": 13.07,
+    "end_s": 23.07,
+    "event_start_s": 13.56,
+    "event_end_s": 42.58,
+    "have_bgm": 1,
+    "event_label": 60,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000ce4psc3c77udcjldu9cg",
+   "pilot_split": "train",
+   "category": 347,
+   "category_name": "playing mbira",
+   "source_duration_s": 31.13,
+   "clip_context": {
+    "sample_id": 17038,
+    "start_s": 0.0,
+    "end_s": 10.0,
+    "event_start_s": 0.94,
+    "event_end_s": 27.85,
+    "have_bgm": 1,
+    "event_label": 347,
+    "context_only_not_crop_gt": true
+   },
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000ce04drjc77u3uhp6kft0",
+   "pilot_split": "train",
+   "category": 80,
+   "category_name": "water truck sprinkling water",
+   "source_duration_s": 30.58,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000cc3ku8bc77u60e6ai160",
+   "pilot_split": "confirm",
+   "category": 55,
+   "category_name": "deconstructing a building",
+   "source_duration_s": 30.05,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000ccukja3c77u6eh0dogj0",
+   "pilot_split": "confirm",
+   "category": 54,
+   "category_name": "cleaning carpet",
+   "source_duration_s": 27.93,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300f150000c0od65floli0aobrjbrg",
+   "pilot_split": "train",
+   "category": 120,
+   "category_name": "playing melodica",
+   "source_duration_s": 41.13,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000cdkg2v3c77u2c6aho1dg",
+   "pilot_split": "train",
+   "category": 52,
+   "category_name": "brushing teeth",
+   "source_duration_s": 15.7,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000cce6073c77u7e2jvtin0",
+   "pilot_split": "confirm",
+   "category": 48,
+   "category_name": "flying remote control drone",
+   "source_duration_s": 36.71,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000cb9a5cjc77ubre7sgihg",
+   "pilot_split": "train",
+   "category": 61,
+   "category_name": "using a hammer",
+   "source_duration_s": 30.83,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000c65r6fbc77ucc75mee10",
+   "pilot_split": "train",
+   "category": 77,
+   "category_name": "having a snowball fight",
+   "source_duration_s": 37.41,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000ce7riu3c77u07jc3iu20",
+   "pilot_split": "confirm",
+   "category": 196,
+   "category_name": "Playing the cello",
+   "source_duration_s": 29.86,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cd99733c77u9l38e26c0",
+   "pilot_split": "train",
+   "category": 118,
+   "category_name": "playing harmonica",
+   "source_duration_s": 34.25,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000cchbss3c77u53rn8nbeg",
+   "pilot_split": "train",
+   "category": 151,
+   "category_name": "harvesting crops by machines",
+   "source_duration_s": 12.66,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000c886m9rc77ufneatndr0",
+   "pilot_split": "confirm",
+   "category": 69,
+   "category_name": "auto racing",
+   "source_duration_s": 25.91,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000cdnglkjc77uasrhe57ag",
+   "pilot_split": "train",
+   "category": 164,
+   "category_name": "jumping rope",
+   "source_duration_s": 26.54,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000cbt610jc77ubk3sodum0",
+   "pilot_split": "train",
+   "category": 148,
+   "category_name": "piercing a balloon",
+   "source_duration_s": 48.9,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000c99a0fjc77ud2878obh0",
+   "pilot_split": "confirm",
+   "category": 131,
+   "category_name": "practicing equestrianism",
+   "source_duration_s": 32.7,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cbie9e3c77u8hb6hrlu0",
+   "pilot_split": "dev",
+   "category": 337,
+   "category_name": "raining",
+   "source_duration_s": 20.5,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000c4gk0b3c77u7isopvs20",
+   "pilot_split": "dev",
+   "category": 133,
+   "category_name": "tap dancing",
+   "source_duration_s": 52.6,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000c7ochkbc77u4gtkb1jug",
+   "pilot_split": "train",
+   "category": 113,
+   "category_name": "meowing",
+   "source_duration_s": 36.87,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000cdd5iqjc77udnnkn33og",
+   "pilot_split": "confirm",
+   "category": 349,
+   "category_name": "playing suona",
+   "source_duration_s": 40.63,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cdgst8bc77uf4sc2iql0",
+   "pilot_split": "train",
+   "category": 310,
+   "category_name": "skateboarding",
+   "source_duration_s": 40.54,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000cb4la6rc77u4pe44pes0",
+   "pilot_split": "train",
+   "category": 359,
+   "category_name": "singing",
+   "source_duration_s": 37.67,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cdj666jc77u051m9a09g",
+   "pilot_split": "confirm",
+   "category": 312,
+   "category_name": "playing badminton",
+   "source_duration_s": 48.11,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300f530000bv0bi9pd1nmb4mfm547g",
+   "pilot_split": "train",
+   "category": 84,
+   "category_name": "playing hang (instrument)",
+   "source_duration_s": 21.12,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000cagtjsbc77u6h32411b0",
+   "pilot_split": "train",
+   "category": 228,
+   "category_name": "mowing a lawn",
+   "source_duration_s": 17.3,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000c1uo748ju8fmanaj9log",
+   "pilot_split": "dev",
+   "category": 353,
+   "category_name": "watching a concert",
+   "source_duration_s": 28.97,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cc6og8bc77u28a2cqhvg",
+   "pilot_split": "confirm",
+   "category": 240,
+   "category_name": "laser beam welding",
+   "source_duration_s": 21.23,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cbf8fu3c77u0d28fgu2g",
+   "pilot_split": "train",
+   "category": 235,
+   "category_name": "using a vacuum cleaner",
+   "source_duration_s": 22.3,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000cb5pnibc77u44reeedag",
+   "pilot_split": "train",
+   "category": 398,
+   "category_name": "setting off fireworks and firecrackers",
+   "source_duration_s": 11.9,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000c7vpi5jc77ucdlnh8v7g",
+   "pilot_split": "dev",
+   "category": 352,
+   "category_name": "performing traditional Chinese opera",
+   "source_duration_s": 51.8,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000c83n2g3c77u3mv3fioeg",
+   "pilot_split": "train",
+   "category": 32,
+   "category_name": "washing car",
+   "source_duration_s": 45.53,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cdrgq23c77u3psjfh6ag",
+   "pilot_split": "train",
+   "category": 319,
+   "category_name": "wrestling",
+   "source_duration_s": 32.55,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000ccvu1jbc77ueut6rffng",
+   "pilot_split": "dev",
+   "category": 57,
+   "category_name": "scraping putty/cement",
+   "source_duration_s": 20.27,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cbck0cjc77uebubotsdg",
+   "pilot_split": "train",
+   "category": 343,
+   "category_name": "plane taking off",
+   "source_duration_s": 18.4,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cd4d4brc77uf8a9kate0",
+   "pilot_split": "train",
+   "category": 333,
+   "category_name": "practicing archery",
+   "source_duration_s": 15.67,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300f6b0000buvjf87rlr42150g9aig",
+   "pilot_split": "dev",
+   "category": 231,
+   "category_name": "cleaning with a robot vacuum",
+   "source_duration_s": 29.04,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000c70pg83c77udsqlr629g",
+   "pilot_split": "train",
+   "category": 241,
+   "category_name": "moving with forklift",
+   "source_duration_s": 11.75,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000cdbrqh3c77u0v85skfng",
+   "pilot_split": "train",
+   "category": 360,
+   "category_name": "shaving head",
+   "source_duration_s": 22.8,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000ca8280bc77u5tjoeqck0",
+   "pilot_split": "dev",
+   "category": 37,
+   "category_name": "laser engraving",
+   "source_duration_s": 14.95,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cd3bv33c77ubmetti7a0",
+   "pilot_split": "confirm",
+   "category": 338,
+   "category_name": "scratching on a cat scratching board",
+   "source_duration_s": 16.77,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000c6otmcjc77u27tcp1i80",
+   "pilot_split": "train",
+   "category": 397,
+   "category_name": "clubbing",
+   "source_duration_s": 34.47,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000ccqp0cbc77udam5onkkg",
+   "pilot_split": "train",
+   "category": 346,
+   "category_name": "playing drum",
+   "source_duration_s": 41.4,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000cbseop3c77ucpi2t41n0",
+   "pilot_split": "train",
+   "category": 20,
+   "category_name": "cutting with a circular saw",
+   "source_duration_s": 19.62,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000cbqbpm3c77u68vgf6pbg",
+   "pilot_split": "train",
+   "category": 81,
+   "category_name": "playing erhu",
+   "source_duration_s": 29.54,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000cec4shjc77ueulu0frc0",
+   "pilot_split": "train",
+   "category": 108,
+   "category_name": "playing fingerstyle guitar",
+   "source_duration_s": 53.08,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000cadakh3c77u5tjq8hdh0",
+   "pilot_split": "train",
+   "category": 232,
+   "category_name": "cleaning a washing machine",
+   "source_duration_s": 26.98,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000c6e4dcbc77ue9utttae0",
+   "pilot_split": "train",
+   "category": 344,
+   "category_name": "launching a racket",
+   "source_duration_s": 14.05,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000ce129e3c77ucjvtrh79g",
+   "pilot_split": "dev",
+   "category": 307,
+   "category_name": "playing tennis",
+   "source_duration_s": 41.57,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000ce6oa3bc77u2teglei40",
+   "pilot_split": "train",
+   "category": 106,
+   "category_name": "playing djembe",
+   "source_duration_s": 21.93,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000cbusctbc77u2v543s45g",
+   "pilot_split": "dev",
+   "category": 342,
+   "category_name": "feeding a cat",
+   "source_duration_s": 40.24,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000caso2irc77u2kr60ur4g",
+   "pilot_split": "train",
+   "category": 348,
+   "category_name": "playing piano",
+   "source_duration_s": 21.37,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fff0000c0d8lltgjqvpoeid453g",
+   "pilot_split": "confirm",
+   "category": 322,
+   "category_name": "boxing",
+   "source_duration_s": 48.04,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000ce48i9bc77udk751oir0",
+   "pilot_split": "train",
+   "category": 203,
+   "category_name": "using a sewing machine",
+   "source_duration_s": 15.81,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000cbr1s93c77ufersjb560",
+   "pilot_split": "train",
+   "category": 56,
+   "category_name": "mixing cement/concrete",
+   "source_duration_s": 12.21,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000cc6ntr3c77u3qbjflhig",
+   "pilot_split": "dev",
+   "category": 199,
+   "category_name": "arc welding",
+   "source_duration_s": 73.0,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cd2f7sbc77u62u7crib0",
+   "pilot_split": "train",
+   "category": 12,
+   "category_name": "carving with hand tools",
+   "source_duration_s": 43.28,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000cdbos8bc77u3ocecqkng",
+   "pilot_split": "train",
+   "category": 14,
+   "category_name": "operating a remote control car (excluding drifting/racing)",
+   "source_duration_s": 12.35,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000c725kkbc77u99udsk2o0",
+   "pilot_split": "train",
+   "category": 71,
+   "category_name": "freeskating",
+   "source_duration_s": 16.4,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000ca6urpbc77u4lkksuhdg",
+   "pilot_split": "train",
+   "category": 76,
+   "category_name": "feeding dogs",
+   "source_duration_s": 27.73,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cbq8853c77uba561bplg",
+   "pilot_split": "train",
+   "category": 358,
+   "category_name": "performing a duet",
+   "source_duration_s": 48.86,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000cdj9e9jc77udo7lhu2d0",
+   "pilot_split": "train",
+   "category": 10,
+   "category_name": "playing ukulele",
+   "source_duration_s": 57.33,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000cdqaabjc77u9u77a1fig",
+   "pilot_split": "train",
+   "category": 341,
+   "category_name": "panda eating bamboo",
+   "source_duration_s": 23.13,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cdtficjc77u3psk9tlvg",
+   "pilot_split": "train",
+   "category": 326,
+   "category_name": "diving (sports)",
+   "source_duration_s": 59.21,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cc9f4h3c77uaoomdd5vg",
+   "pilot_split": "train",
+   "category": 388,
+   "category_name": "whistling",
+   "source_duration_s": 50.93,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000c4jkto3c77u5ngfnqvl0",
+   "pilot_split": "dev",
+   "category": 105,
+   "category_name": "using a massage gun",
+   "source_duration_s": 28.47,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cdeeps3c77ucv5f997r0",
+   "pilot_split": "train",
+   "category": 92,
+   "category_name": "playing konghou",
+   "source_duration_s": 27.54,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000cd2p9erc77uedfjo77eg",
+   "pilot_split": "train",
+   "category": 306,
+   "category_name": "playing volleyball",
+   "source_duration_s": 29.86,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000caknokrc77u7hejm2pe0",
+   "pilot_split": "dev",
+   "category": 5,
+   "category_name": "playing bamboo flute",
+   "source_duration_s": 55.77,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cdtl1lbc77udcjidkl5g",
+   "pilot_split": "train",
+   "category": 86,
+   "category_name": "playing guzheng",
+   "source_duration_s": 68.07,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cb217ijc77u00fri90tg",
+   "pilot_split": "confirm",
+   "category": 102,
+   "category_name": "playing hulusi",
+   "source_duration_s": 14.84,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000caq4v8rc77uf3lb2ngi0",
+   "pilot_split": "confirm",
+   "category": 93,
+   "category_name": "playing guqin",
+   "source_duration_s": 34.62,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000cdhin13c77u70oofv510",
+   "pilot_split": "train",
+   "category": 305,
+   "category_name": "playing table tennis",
+   "source_duration_s": 18.03,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000ca4bovrc77u7f1fo1tjg",
+   "pilot_split": "train",
+   "category": 334,
+   "category_name": "shooting with a slingshot",
+   "source_duration_s": 58.87,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000cb5uqubc77u9qrfdcd30",
+   "pilot_split": "train",
+   "category": 4,
+   "category_name": "playing flute",
+   "source_duration_s": 28.47,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000ce39ecjc77ua6jd2lm7g",
+   "pilot_split": "train",
+   "category": 13,
+   "category_name": "twisting balloons",
+   "source_duration_s": 52.11,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cb7tm9rc77u0le1v23ig",
+   "pilot_split": "dev",
+   "category": 19,
+   "category_name": "riding a motorcycle (excluding drifting)",
+   "source_duration_s": 14.8,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000cdn1ftrc77u2fsnbir60",
+   "pilot_split": "train",
+   "category": 100,
+   "category_name": "carving wood",
+   "source_duration_s": 29.13,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0300fg10000ca5l0irc77u8n3psmdi0",
+   "pilot_split": "train",
+   "category": 145,
+   "category_name": "baby drinking milk",
+   "source_duration_s": 47.99,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cbss8jrc77u2ru7s4ps0",
+   "pilot_split": "train",
+   "category": 49,
+   "category_name": "drifting car",
+   "source_duration_s": 12.42,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0200fg10000cd37udjc77u4imb4ne00",
+   "pilot_split": "dev",
+   "category": 36,
+   "category_name": "modifying car",
+   "source_duration_s": 48.25,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  },
+  {
+   "pm_video_id": "v0d00fg10000ccepmgrc77u2ttqbb74g",
+   "pilot_split": "train",
+   "category": 78,
+   "category_name": "harvesting rice",
+   "source_duration_s": 15.07,
+   "clip_context": null,
+   "media_status": "pending_download",
+   "annotation_status": "pending"
+  }
+ ]
+}

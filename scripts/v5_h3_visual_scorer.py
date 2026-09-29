@@ -24,7 +24,7 @@ def load_all(tables,visual,names):
   units=pickle.loads((tables/f'{name}.pkl').read_bytes())
   for ui,u in enumerate(units):
    z=np.load(visual/f'{name}_{ui:04d}.npz')
-   K=len(u['J']);V=np.zeros((K,u['offs'].shape[1],12,768),np.float32)
+   K=len(u['J']);V=np.zeros((K,u['offs'].shape[1],12,768),np.float16)
    rows=z['rows']
    if len(rows):V[rows]=z['pooled']
    u['V']=V.reshape(K,u['offs'].shape[1],-1)
@@ -41,7 +41,7 @@ def unit_tensors(u,dev,mu,sd,proj,kind):
  base[...,0]=offn;base[...,1]=u['s']/u['L'];base[...,2]=float(u['comp']);base[...,3]=math.log(u['W']/u['H'])
  base[...,4]=1. if u['ds']=='rv' else 0.;base[...,5]=1. if u['ds']=='live' else 0.;base[...,6]=u['is_mother'].astype(np.float32)
  bt=torch.tensor(base,dtype=torch.float32,device=dev)
- vt=torch.tensor(u['V'],dtype=torch.float32,device=dev)
+ vt=torch.tensor(u['V'].astype(np.float32),dtype=torch.float32,device=dev)
  if kind=='G':x=(gi-mu)/sd
  elif kind=='V':x=torch.cat([bt,proj(vt)],-1)
  else:x=torch.cat([(gi-mu)/sd,proj(vt)],-1)
@@ -81,12 +81,12 @@ def train_head(kind,train,devu,dev,seed,steps,log=print):
  opt=torch.optim.AdamW([{'params':[p for p in params if p.ndim==2],'weight_decay':1e-3},{'params':[p for p in params if p.ndim<2],'weight_decay':0.}],lr=3e-4)
  warm=max(1,int(.05*steps));sch=torch.optim.lr_scheduler.LambdaLR(opt,lambda s:(s+1)/warm if s<warm else .5*(1+math.cos(math.pi*(s-warm)/max(1,steps-warm))))
  pools={ds:[u for u in train if u['ds']==ds and u['has_gt'].any()] for ds in ('rv','live')};pools={k:v for k,v in pools.items() if v}
- per_ds=max(1,8//len(pools));best=(-1,None,None,None);hist=[];npar=sum(p.numel().item() for p in params)
+ per_ds=max(1,8//len(pools));best=(-1,None,None,None);hist=[];npar=sum(int(p.numel()) for p in params)
  for step in range(steps):
   xs=[];ys=[]
   for pool in pools.values():
    for ui in rng.integers(0,len(pool),per_ds):
-    u=pool[ui];ok=np.flatnonzero(u['has_gt']);kk=rng.choice(ok,min(8,len(ok)),replace=False)
+    u=pool[ui];ok=np.flatnonzero(u['has_gt']);kk=rng.choice(ok,8,replace=len(ok)<8)
     x,y=unit_tensors(u,dev,mu,sd,proj,kind);xs.append(x[kk]);ys.append(y[torch.tensor(kk,device=dev)])
   x=torch.stack(xs);y=torch.stack(ys)
   loss=torch.nn.functional.huber_loss(net(x).squeeze(-1),y,delta=.25)

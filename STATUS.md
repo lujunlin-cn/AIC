@@ -1,10 +1,11 @@
 # 项目状态
 
-更新：2026-09-29 18:15。当前是初赛阶段，只计 raw F_video（规则 01 §3.4），不乘规模系数。
+更新：2026-09-29 18:25。当前是初赛阶段，只计 raw F_video（规则 01 §3.4），不乘规模系数。
 
-## 最新（2026-09-29 傍晚）：V5 收尾完成——P0 已打包待评、P1（H3）gate2 未过不出包、P2 负结果、数据侧部分缓存
+## 最新（2026-09-29 傍晚）：V5 收尾——XRERANK 官方 48.49（−0.18 未胜母本）；正式最佳保持 INTERP 48.67
 
-- **P0 通过预注册晋级规则并已打包**：INTERP 母本上 x 行替换为 E4 式视觉复核点，dev2 x +1.87 CI[+0.73,+3.23]、confirm2 x +1.88 CI[+0.79,+3.26]、全视频 +0.93/+0.94、y 行严格零变化；E4 sanity 复现 ±0.0001 内。`QWEN32B_INTERP_XRERANK_V5_FINAL.zip` sha `027fd12a…`，174 视频/78,992 帧，keys==TEMP 逐视频 0 差异，vs INTERP 实际差异 21 视频/10,273 帧。成绩**待评**，正式最佳保持 INTERP 48.67。详见 `reports/20260929_v5_p0_xrerank_package.md`、`registry.jsonl`（V5_P0_XRERANK_OFFICIAL）。
+- **P0 官方成绩 48.49（用户 18:25 告知）**：`QWEN32B_INTERP_XRERANK_V5_FINAL`（zip `027fd12a…`）比母本 INTERP 48.67 **−0.18**。RV x 代理 +1.9 IoU 未迁移到官方集——与空间类改动的历史迁移失败一致（缩放 −4、居中 −4.29、E4 官方中止）。**正式最佳保持 INTERP 48.67**；时间类改动（插值 +0.79）仍是唯一正迁移。证据 `registry.jsonl`（V5_P0_XRERANK_OFFICIAL_SCORE）。
+- P0 过预注册打包、官方回分记录：INTERP 母本上 x 行替换为 E4 式视觉复核点，dev2 x +1.87 CI[+0.73,+3.23]、confirm2 x +1.88 CI[+0.79,+3.26]、y 行严格零变化；E4 sanity 复现 ±0.0001 内。174 视频/78,992 帧，四重身份守卫全过。详见 `reports/20260929_v5_p0_xrerank_package.md`。
 - **P2 关闭为负结果**：Qwen 点名主体 + GroundingDINO 定位，confirm2 24 视频（axis×motion 分层）。v0 无条件替换 −0.066 [−0.106,−0.032]，v1b 限幅 −0.039 [−0.062,−0.020]，四分层全负。机制：单帧检测框中心方差大于 DENSE 蒸馏点；与 P0 候选空间复核（+0.0093）对照说明"再看一眼"在候选空间有效、开放词表框空间无效。不晋级不出包。详见 `reports/20260929_v5_p2_ground_pilot_negative.md`、registry（V5_P2_GROUND_PILOT）。
 - **P1（H3 视觉评分头）gate1 过、gate2 未过，按预注册不出包**：视觉价值确证——dev 均衡关键帧 IoU G .6194 / V .6272 / VQ .6304（视觉−几何 +.0110）；管线配对 VQ 在 confirm2 **+.0190 [+.0071,+.0313]、y 轴 +.0172**（全项目首个 y 轴为正的定位信号）、全新 live_val +.0113 [+.0020,+.0207]；但 rv_dev 仅 40 视频，V/VQ CI 下界 −.0112/−.0118 < −.002，预注册要求双集全过 → promote=false。纯几何 G 四集全正（rv_dev CI_low +.0056）证明候选重评分框架有效。消融表 `reports/20260929_visual_scorer_ablation.csv`、指标 `reports/h3/metrics.json`。下轮若重启：先扩 rv_dev 再重新预注册。
 - 数据侧：PM-400/AVE-PM 直链实测全灭（12 链接 × 3 头全 502）；社区 GDrive 缓存（68.07 GB）下载至 **36.57 GB（53.7%）后于 15:48 起 SSL EOF 中断**，断点保留（.part + Range 续传），tmux 重启自动重试中，**未完成、不交付**；`portrait_reframe_pilot_v1` 补标任务已建（320 源/86 类全覆盖，215/51/54 划分，240 片段上下文引用；状态 pending_annotation；AVE-PM 事件/BGM/类别仅作上下文，不冒充裁剪 GT）。见 `ext_data/configs/portrait_reframe_pilot_v1/`（ANNOTATION_SCHEMA.md + sampling_manifest_v1.json）。

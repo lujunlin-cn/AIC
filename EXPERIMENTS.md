@@ -304,3 +304,4 @@ The frozen InternVideo2 Stage1-1B K700 candidate received official platform scor
     confirm2 VQ +.0190 [+.0071,+.0313]、y 轴 +.0172 ✅；live_val（全新）VQ +.0113 [+.0020,+.0207]（仅报告）。
   - 预注册判定 NOT_PROMOTED（gate2 需双集全过）；不出包。G 纯几何四集全正（rv_dev CI_low +.0056）。
   - 消融表 `reports/20260929_visual_scorer_ablation.csv`；registry V5_H3_VISUAL。
+- `V5_P0_XRERANK_OFFICIAL`（官方回分 18:25）：**48.49，比母本 INTERP 48.67 低 0.18**。RV x 代理 +1.9 IoU 未迁移；空间类改动连续第三次官方迁移失败（缩放 −4 / 居中 −4.29 / 本包 −0.18）。正式最佳保持 INTERP 48.67。

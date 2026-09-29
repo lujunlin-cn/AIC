@@ -299,3 +299,8 @@ The frozen InternVideo2 Stage1-1B K700 candidate received official platform scor
   - confirm2 24 视频分层：v0 无条件替换 −.0657 [−.1063,−.0317]（7 好/16 差）；v1b 限幅 ≤.75 窗宽 −.0385 [−.0621,−.0200]（5/18）；四分层全负。
   - 否决：单帧 top-1 框中心噪声 > DENSE 蒸馏点；"再看一眼"在候选空间有效（P0 +.0093）、开放词表框空间无效。
 - `V5_EXT_PM400_AVEPM`：PM-400 直链 12×3 全 502（协议留档）；社区 GDrive 缓存 68.07 GB 下载中（14:51 时 22.5%，ETA ~17:50）；`portrait_reframe_pilot_v1` 补标任务（320 源/86 类，215/51/54，AVE-PM 标签仅上下文不冒充 GT）。
+- `V5_H3_VISUAL`（结果）：三头 2000 步训练完成（G 561s / V 991s / VQ 5,981s，seed 1，best dev IoU .6194/.6272/.6304）。
+  - gate1 视觉价值 +.0110 ✅；gate2：rv_dev V +.0117 [−.0118,+.0370]、VQ +.0110 [−.0112,+.0361] CI 未过 ✗；
+    confirm2 VQ +.0190 [+.0071,+.0313]、y 轴 +.0172 ✅；live_val（全新）VQ +.0113 [+.0020,+.0207]（仅报告）。
+  - 预注册判定 NOT_PROMOTED（gate2 需双集全过）；不出包。G 纯几何四集全正（rv_dev CI_low +.0056）。
+  - 消融表 `reports/20260929_visual_scorer_ablation.csv`；registry V5_H3_VISUAL。

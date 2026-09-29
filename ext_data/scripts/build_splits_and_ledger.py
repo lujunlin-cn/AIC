@@ -33,8 +33,12 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from aicext.common import EXT_ROOT, REGISTRY_DIR, now, read_jsonl, write_json, write_jsonl  # noqa: E402
+from aicext.holdout import current_ledger, index_by_group, project_split  # noqa: E402
 from aicext.ids import qvh_youtube, split_bucket, youtube_id  # noqa: E402
 from aicext.registry import _to_parquet, dataset_names  # noqa: E402
+
+# Frozen releases never read these working files; see aicext/release.py.
+SPLIT_FIELDS = ("aic_split", "aic_split_reason", "project_split", "project_split_reason", "exposure_roles")
 
 INHOUSE = {
     "TVSum": "/data/aic/datasets/TVSum/tvsum_manifest.jsonl",
@@ -144,18 +148,31 @@ def main():
         else:
             assign[g] = "val" if split_bucket(g) < VAL_FRACTION else "train"
             reason[g] = "hash bucket (no official split published)"
-    # write back
-    counts = {}
+    # project split: frozen exposure ledger on top of aic_split (official_split untouched)
+    hold = current_ledger()
+    exp_idx = index_by_group(hold)
+    psplit, preason = {}, {}
+    reserved = (hold or {}).get("reservations", {})
+    for g in assign:
+        psplit[g], preason[g] = project_split(assign[g], reason[g], exp_idx.get(g, []), reserved.get(g))
+    # write back: only the split fields change; a new ingest writes them as null and this
+    # step restores them, so the working registry is consistent after every refresh
+    counts, pcounts = {}, {}
     for name, ms in ext_media.items():
-        c = collections.Counter()
+        c, pc = collections.Counter(), collections.Counter()
         for m in ms:
-            m["aic_split"] = assign[m["group_id"]]
+            g = m["group_id"]
+            m.update(aic_split=assign[g], aic_split_reason=reason[g], project_split=psplit[g],
+                     project_split_reason=preason[g],
+                     exposure_roles=sorted({e["role"] for e in exp_idx.get(g, [])}))
             c[m["aic_split"]] += 1
+            pc[m["project_split"]] += 1
         write_jsonl(EXT_ROOT / name / "processed" / "media.jsonl", ms)
-        counts[name] = dict(c)
+        counts[name], pcounts[name] = dict(c), dict(pc)
     for r in ledger:
-        r["aic_split"] = assign.get(r["group_id"])
-        r["aic_split_reason"] = reason.get(r["group_id"])
+        g = r["group_id"]
+        r.update(aic_split=assign.get(g), aic_split_reason=reason.get(g), project_split=psplit.get(g),
+                 project_split_reason=preason.get(g))
     write_jsonl(REGISTRY_DIR / "source_ledger.jsonl", ledger)
     _to_parquet(ledger, REGISTRY_DIR / "source_ledger.parquet")
     # cross-split leakage check (must be empty by construction)
@@ -184,8 +201,11 @@ def main():
                          "inhouse_train_groups_seen_externally": len(inhouse_train & set(assign))},
         "official_train_items_moved_out_of_train": {f"{d}->{s}": n for (d, s), n in moved.items()},
         "official_eval_items_assigned_train": {f"{d}:{s}": n for (d, s), n in eval_to_train.items()},
-        "aic_split_counts": counts, "groups_with_conflicting_split": leaks})
-    print(json.dumps({"counts": counts, "overlaps": {f"{a}&{b}": n for (a, b), n in pair.most_common(12)},
+        "aic_split_counts": counts, "project_split_counts": pcounts,
+        "holdout_ledger_version": (hold or {}).get("version"),
+        "groups_with_conflicting_split": leaks})
+    print(json.dumps({"counts": counts, "project": pcounts,
+                      "overlaps": {f"{a}&{b}": n for (a, b), n in pair.most_common(12)},
                       "moved": {f"{d}->{s}": n for (d, s), n in moved.items()}}, indent=1))
 
 

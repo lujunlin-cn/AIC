@@ -5,6 +5,11 @@ Every adapter reads the unified index (``processed/media.jsonl`` +
 type, and yields plain-Python/numpy samples.  ``torch_dataset()`` wraps any
 adapter for a DataLoader.  Unlabelled positions are always expressed through a
 ``valid`` mask; missing labels are never filled with 0 silently.
+
+These adapters read the *working* registry, which changes on every refresh.
+Experiments should read a frozen release instead (``aicext.release``).  Split
+filtering defaults to ``project_split`` (exposure-aware); records whose split
+fields are null (fresh ingest, no refresh yet) match no split.
 """
 from __future__ import annotations
 
@@ -32,7 +37,7 @@ class Index:
         return cls(dataset, media, list(read_jsonl(d / "annotations.jsonl")))
 
     def select(self, annotation_type: str | Iterable[str], split: Optional[str | Iterable[str]] = None,
-               split_field: str = "aic_split", ready_only: bool = True,
+               split_field: str = "project_split", ready_only: bool = True,
                where: Optional[Callable[[dict, dict], bool]] = None) -> list[tuple[dict, dict]]:
         types = {annotation_type} if isinstance(annotation_type, str) else set(annotation_type)
         splits = None if split is None else ({split} if isinstance(split, str) else set(split))

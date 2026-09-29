@@ -113,6 +113,9 @@ def read_flags(p: Path) -> np.ndarray:
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--categories", nargs="+", default=["mouse", "electricfan"])
+    ap.add_argument("--fetch-only", action="store_true",
+                    help="download + member-check + extract only; do not rewrite processed/*.jsonl. "
+                         "Used by lasot_full.sh so per-category fetches never clobber the shared index.")
     a = ap.parse_args()
     root = dataset_dir(DS)
     (root / "annotations").mkdir(parents=True, exist_ok=True)
@@ -146,6 +149,8 @@ def main():
             with zipfile.ZipFile(z) as f:
                 f.extractall(out)
             (out / ".extracted").write_text(now() + "\n")
+        if a.fetch_only:
+            continue   # extracted; indexing deferred to the single full pass
         for sd in sorted(p for p in out.iterdir() if p.is_dir()):
             name = sd.name
             imgs = sorted((sd / "img").glob("*.jpg"))
@@ -217,6 +222,12 @@ def main():
               frac_min_x_eq_1=float(np.mean(np.array(origin_stats["min_x"]) == 1)) if origin_stats["min_x"] else None,
               frac_x2_eq_W_plus_1=float(np.mean(np.array(origin_stats["max_x2_minus_W"]) == 1))
               if origin_stats["min_x"] else None)
+    if a.fetch_only:
+        log(DS, "fetch_only_done", categories=len(a.categories), anomalies=len(anomalies),
+            extracted=[c for c in a.categories if (root / "raw" / c / ".extracted").exists()])
+        print(json.dumps({"fetch_only": True, "categories": a.categories, "packages": pkg,
+                          "anomalies": len(anomalies)}))
+        return
     one_based = bool(ev["n_sequences"]) and min(origin_stats["min_x"] + origin_stats["min_y"]) >= 0 and \
         max(origin_stats["max_x2_minus_W"] + origin_stats["max_y2_minus_H"]) >= 1 and \
         (ev["frac_min_x_eq_1"] or 0) > 0.3
@@ -226,13 +237,15 @@ def main():
     write_jsonl(root / "processed" / "annotations.jsonl", annots)
     write_jsonl(root / "processed" / "anomalies.jsonl", anomalies)
     write_json(root / "processed" / "dataset_card.json", {
-        "dataset": DS, "release": "LaSOT (1,400 seq, 70 categories); sample categories only", "packages": pkg,
+        "dataset": DS, "release": "LaSOT (1,400 seq, 70 categories)", "packages": pkg,
         "source": "http://vision.cs.stonybrook.edu/~lasot/", "categories_indexed": a.categories,
         "media_indexed": len(media), "full_release_sequences": 1400,
         "coord_origin_evidence": ev, "coord_origin_decision": "1-based -> subtract 1" if one_based else "0-based",
         "official_split": "training_set.txt (1120) / testing_set.txt (280)",
-        "readiness": "sample_only", "trainable_as": ["object_track_box (sample)"],
-        "blockers": ["full set = 70 category zips, ~248 GB; only a sample downloaded this round"],
+        "readiness": "raw_video_trainable" if len(media) else "sample_only",
+        "trainable_as": ["object_track_box"],
+        "blockers": [] if len(media) >= 1390 else
+                    [f"{1400 - len(media)} sequences missing/failed this round"],
         "updated": now()})
     log(DS, "ingest_done", media=len(media), annotations=len(annots), one_based=one_based)
     print(json.dumps({"media": len(media), "packages": pkg, "origin": ev, "one_based": one_based}))

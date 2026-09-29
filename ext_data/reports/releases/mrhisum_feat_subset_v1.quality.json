@@ -1,0 +1,38 @@
+{
+  "release": "mrhisum_feat_subset_v1",
+  "counts": {
+    "train": 25069,
+    "dev": 2808,
+    "confirmation": 4008
+  },
+  "excluded": {
+    "quarantine: also in in-house eval/holdout set": 1,
+    "features_not_extracted_yet": 6
+  },
+  "batch": {
+    "features": [
+      4,
+      258,
+      1024
+    ],
+    "valid_true": 850
+  },
+  "length_agreement_first2000_train": {
+    "label_eq_feature_steps": 2000,
+    "n": 2000
+  },
+  "readiness": {
+    "MrHiSum": {
+      "schema_pass": true,
+      "sample_readable": true,
+      "raw_video_trainable": false,
+      "feature_head_trainable": true
+    }
+  },
+  "generated": "2026-09-29T09:39:22+08:00",
+  "release_sha256sums": "3f60c686c2bbd512c8be8fe076d1d54eb46250bdf56efc3867fedc42cf24692c",
+  "integrity": {
+    "files_checked_against_SHA256SUMS": 1522,
+    "bad": 0
+  }
+}

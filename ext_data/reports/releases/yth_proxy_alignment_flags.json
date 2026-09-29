@@ -1,0 +1,150 @@
+[
+{
+"video_id": "dog__1gjntnYm8NA",
+"reason": "frame_count_mismatch (last label frame 805 vs 1800 decoded; |gap| > 3)"
+},
+{
+"video_id": "dog__9D_Q8l_ruQk",
+"reason": "frame_count_mismatch (last label frame 713 vs 2111 decoded; |gap| > 3)"
+},
+{
+"video_id": "dog__O3XxuutEvoo",
+"reason": "misaligned_suspect (label frames beyond decoded media)"
+},
+{
+"video_id": "dog__Om5mczkpcVg",
+"reason": "frame_count_mismatch (last label frame 2624 vs 2942 decoded; |gap| > 3)"
+},
+{
+"video_id": "dog__PWqLJKZeBC8",
+"reason": "misaligned_suspect (label frames beyond decoded media)"
+},
+{
+"video_id": "dog__a2nj7XCo2Rk",
+"reason": "frame_count_mismatch (last label frame 548 vs 1596 decoded; |gap| > 3)"
+},
+{
+"video_id": "dog__xZIN_s-qhbU",
+"reason": "frame_count_mismatch (last label frame 1564 vs 1656 decoded; |gap| > 3)"
+},
+{
+"video_id": "gymnastics__FT7yIi3-tG0",
+"reason": "frame_count_mismatch (last label frame 2595 vs 5192 decoded; |gap| > 3)"
+},
+{
+"video_id": "gymnastics__rPsKpHKzUso",
+"reason": "frame_count_mismatch (last label frame 1125 vs 2252 decoded; |gap| > 3)"
+},
+{
+"video_id": "gymnastics__s6LNwTThBgs",
+"reason": "frame_count_mismatch (last label frame 2220 vs 4442 decoded; |gap| > 3)"
+},
+{
+"video_id": "parkour__4-4BgyGphLQ",
+"reason": "frame_count_mismatch (last label frame 461 vs 921 decoded; |gap| > 3)"
+},
+{
+"video_id": "skating__1n7Afe5AZCM",
+"reason": "frame_count_mismatch (last label frame 3052 vs 6106 decoded; |gap| > 3)"
+},
+{
+"video_id": "skating__2oOe2_Ew6Ao",
+"reason": "frame_count_mismatch (last label frame 299 vs 599 decoded; |gap| > 3)"
+},
+{
+"video_id": "skating__4cyx1VpDjc4",
+"reason": "frame_count_mismatch (last label frame 936 vs 1874 decoded; |gap| > 3)"
+},
+{
+"video_id": "skating__BGZaaqFjoRY",
+"reason": "frame_count_mismatch (last label frame 493 vs 985 decoded; |gap| > 3)"
+},
+{
+"video_id": "skating__CQZNrEstSag",
+"reason": "frame_count_mismatch (last label frame 2987 vs 5975 decoded; |gap| > 3)"
+},
+{
+"video_id": "skating__NC6vxbZZZHs",
+"reason": "frame_count_mismatch (last label frame 930 vs 1862 decoded; |gap| > 3)"
+},
+{
+"video_id": "skating__OeJMoe9rzVU",
+"reason": "frame_count_mismatch (last label frame 2292 vs 4585 decoded; |gap| > 3)"
+},
+{
+"video_id": "skating__SLN-xH-rsU0",
+"reason": "frame_count_mismatch (last label frame 3348 vs 6694 decoded; |gap| > 3)"
+},
+{
+"video_id": "skating__SZClqA7rjOg",
+"reason": "misaligned_suspect (label frames beyond decoded media)"
+},
+{
+"video_id": "skating__TM9-qyWnXpQ",
+"reason": "frame_count_mismatch (last label frame 1551 vs 3104 decoded; |gap| > 3)"
+},
+{
+"video_id": "skating__VszVaULK11c",
+"reason": "frame_count_mismatch (last label frame 2507 vs 5015 decoded; |gap| > 3)"
+},
+{
+"video_id": "skating__ixsKaNplm6o",
+"reason": "frame_count_mismatch (last label frame 3335 vs 6671 decoded; |gap| > 3)"
+},
+{
+"video_id": "skating__kNvIyxKwHfU",
+"reason": "frame_count_mismatch (last label frame 2291 vs 4581 decoded; |gap| > 3)"
+},
+{
+"video_id": "skating__kpg7l0y0oow",
+"reason": "frame_count_mismatch (last label frame 1099 vs 2199 decoded; |gap| > 3)"
+},
+{
+"video_id": "skating__lsU1NVsTwW4",
+"reason": "frame_count_mismatch (last label frame 2770 vs 5542 decoded; |gap| > 3)"
+},
+{
+"video_id": "skating__n6VL2bX-MjE",
+"reason": "frame_count_mismatch (last label frame 2687 vs 5375 decoded; |gap| > 3)"
+},
+{
+"video_id": "skating__nabfs6Dzyw0",
+"reason": "frame_count_mismatch (last label frame 602 vs 1205 decoded; |gap| > 3)"
+},
+{
+"video_id": "surfing__0P2PZXUa0Bg",
+"reason": "misaligned_suspect (label frames beyond decoded media)"
+},
+{
+"video_id": "surfing__4RsZz_8d8Ro",
+"reason": "frame_count_mismatch (last label frame 731 vs 1350 decoded; |gap| > 3)"
+},
+{
+"video_id": "surfing__HevmZSTRIt0",
+"reason": "misaligned_suspect (label frames beyond decoded media)"
+},
+{
+"video_id": "surfing__Xa0y6b6Vm6U",
+"reason": "frame_count_mismatch (last label frame 1187 vs 4440 decoded; |gap| > 3)"
+},
+{
+"video_id": "surfing__ZxRfxCjBMFU",
+"reason": "frame_count_mismatch (last label frame 416 vs 1969 decoded; |gap| > 3)"
+},
+{
+"video_id": "surfing__l8ME6z_EWKE",
+"reason": "frame_count_mismatch (last label frame 462 vs 2304 decoded; |gap| > 3)"
+},
+{
+"video_id": "surfing__lbp6_wCXqvw",
+"reason": "frame_count_mismatch (last label frame 274 vs 546 decoded; |gap| > 3)"
+},
+{
+"video_id": "surfing__wSQvcOWn0Ec",
+"reason": "frame_count_mismatch (last label frame 318 vs 631 decoded; |gap| > 3)"
+},
+{
+"video_id": "surfing__wvQ0h5Nwsxc",
+"reason": "frame_count_mismatch (last label frame 388 vs 2000 decoded; |gap| > 3)"
+}
+]

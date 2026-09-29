@@ -11,7 +11,10 @@ export AIC_EXT_PY=/opt/miniconda3/envs/cv/bin/python
 # Tool overlay: yt-dlp, pyarrow, rarfile, pycocotools (numpy comes from the env).
 export PYTHONPATH=$AIC_EXT_ROOT/_tools/pyoverlay:/home/supie/AIC/ext_data${PYTHONPATH:+:$PYTHONPATH}
 # The cv env takes cv2/h5py/av from ~/.local; do not set PYTHONNOUSERSITE here.
-export PATH=$AIC_EXT_ROOT/_tools/pyoverlay/bin:/data/aic/tmp/unrar/rar:$PATH
+# ~/.local/bin holds the user-installed yt-dlp and deno (EJS runtime: YouTube's
+# nsig challenge needs it, otherwise formats 403 with newer yt-dlp).
+export PATH=$HOME/.local/bin:$AIC_EXT_ROOT/_tools/pyoverlay/bin:/data/aic/tmp/unrar/rar:$PATH
+export AIC_YTDLP=${AIC_YTDLP:-$HOME/.local/bin/yt-dlp}
 # Keep CPU/IO polite towards running experiments.
 export AIC_EXT_NICE="nice -n 15 ionice -c2 -n7"
 export OMP_NUM_THREADS=${OMP_NUM_THREADS:-2}

@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 # Re-derive splits, merged registry and validation after any ingest step.
-# Ingest scripts rewrite processed/media.jsonl (aic_split reset), so always run
-# this afterwards.  Safe to re-run; raw data is never touched.
+# Ingest scripts rewrite processed/media.jsonl (split fields written as null), so
+# run this afterwards; it restores aic_split and project_split (frozen holdout
+# ledger).  This refreshes the *working* registry only: frozen releases under
+# $AIC_EXT_ROOT/_releases are never touched (build a new release version instead).
+# Safe to re-run; raw data is never touched.
 set -euo pipefail
 source /home/supie/AIC/ext_data/scripts/env.sh
 cd /home/supie/AIC/ext_data

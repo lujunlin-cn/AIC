@@ -1,0 +1,44 @@
+[
+ {
+  "dataset": "DAVSOD",
+  "dest": "DAVSOD/raw/archives/Easy-35.zip",
+  "gdrive": "1hwlb1t7S_Zahp6GSKW9qlRMQh7lMUhph",
+  "expected_size": 2236362741,
+  "note": "DAVSOD test Easy-35. Queue 2026-09-29: DAVSOD test before ClipShots (ClipShots parts are Drive-quota limited)."
+ },
+ {
+  "dataset": "DAVSOD",
+  "dest": "DAVSOD/raw/archives/Normal-25.zip",
+  "gdrive": "1bclC888a-3yXc-yTVB5PPnwyPiPi2hNJ",
+  "expected_size": 1535830992,
+  "note": "DAVSOD test Normal-25"
+ },
+ {
+  "dataset": "DAVSOD",
+  "dest": "DAVSOD/raw/archives/Difficult-20.zip",
+  "gdrive": "1ZHf3y96tF7m92L08DnctI3uRh7h-gZo9",
+  "expected_size": 1488447205,
+  "note": "DAVSOD test Difficult-20"
+ },
+ {
+  "dataset": "ClipShots",
+  "dest": "ClipShots/raw/archives/ClipShots-a",
+  "gdrive": "1iESqNwFTG9f-HXH9ghiv3W-HCa279hfb",
+  "expected_size": 18874368000,
+  "note": "data.tar.gz part a = head of one gzip stream: a prefix decompresses to complete tar members up to the cut (checked on the 64 MB .part: 154 members, repo tree). Resumes from .part."
+ },
+ {
+  "dataset": "ClipShots",
+  "dest": "ClipShots/raw/archives/ClipShots-b",
+  "gdrive": "1TPkjQSTgPCTrfTbn4YPINuocK5l1zLb9",
+  "expected_size": 18874368000,
+  "note": "part b = continuation bytes of the gzip stream; not usable on its own"
+ },
+ {
+  "dataset": "ClipShots",
+  "dest": "ClipShots/raw/archives/ClipShots-c",
+  "gdrive": "1WSIAZ1XJi5-ojKcydgb3Xc_wcTAb8I4j",
+  "expected_size": 10555027769,
+  "note": "part c = continuation; not usable on its own"
+ }
+]

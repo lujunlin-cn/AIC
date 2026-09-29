@@ -1,0 +1,339 @@
+{
+  "release": "temporal_evidence_v1",
+  "counts": {
+    "author_list_videos": 550,
+    "raw_media_available": 419,
+    "annotations": {
+      "match_label(auto)": 550,
+      "mturk(human)": 413
+    },
+    "mturk_with_media": 315,
+    "released_videos": 316,
+    "released_with_mturk": 233,
+    "independent_source_videos": 316,
+    "per_split": {
+      "train": {
+        "videos": 164,
+        "with_mturk": 101,
+        "source_videos": 164,
+        "domains": {
+          "dog": 28,
+          "gymnastics": 22,
+          "parkour": 11,
+          "skating": 11,
+          "skiing": 49,
+          "surfing": 43
+        }
+      },
+      "dev": {
+        "videos": 17,
+        "with_mturk": 10,
+        "source_videos": 17,
+        "domains": {
+          "dog": 4,
+          "gymnastics": 4,
+          "parkour": 3,
+          "skiing": 5,
+          "surfing": 1
+        }
+      },
+      "confirmation": {
+        "videos": 48,
+        "with_mturk": 35,
+        "source_videos": 48,
+        "domains": {
+          "dog": 8,
+          "gymnastics": 5,
+          "parkour": 4,
+          "skating": 6,
+          "skiing": 18,
+          "surfing": 7
+        }
+      },
+      "exposed_eval": {
+        "videos": 87,
+        "with_mturk": 87,
+        "source_videos": 87,
+        "domains": {
+          "dog": 10,
+          "gymnastics": 19,
+          "parkour": 9,
+          "skating": 4,
+          "skiing": 22,
+          "surfing": 23
+        }
+      }
+    },
+    "excluded": {
+      "videos": 234,
+      "with_mturk": 180,
+      "reasons": {
+        "no_media": 131,
+        "frame_count_mismatch": 84,
+        "misaligned_suspect": 14,
+        "mirror_alignment_warning": 5
+      },
+      "reasons_x_project_split": {
+        "no_media|train": 74,
+        "frame_count_mismatch|holdout_dev_exposed": 32,
+        "frame_count_mismatch|train": 43,
+        "misaligned_suspect|train": 8,
+        "misaligned_suspect|holdout_dev_exposed": 5,
+        "no_media|val": 49,
+        "no_media|holdout_confirm_reserved": 8,
+        "misaligned_suspect|holdout_confirm_reserved": 1,
+        "frame_count_mismatch|val": 4,
+        "frame_count_mismatch|holdout_confirm_reserved": 5,
+        "mirror_alignment_warning|val": 4,
+        "mirror_alignment_warning|train": 1
+      }
+    }
+  },
+  "frame_mapping": {
+    "rule": "label frame f <-> decoded display frame f; kept only if |last label frame - decoded frames| <= 3",
+    "kept_gap_frames": {
+      "0": 103,
+      "-1": 123,
+      "-3": 5,
+      "-2": 22,
+      "2": 23,
+      "1": 39,
+      "3": 1
+    },
+    "excluded_frame_count_mismatch": {
+      "videos": 84,
+      "labels_shorter_than_media": 84,
+      "ratio_last_over_frames_0.49_0.51": 56,
+      "fps_59.94": 65,
+      "in_T3_T4_yth_val_proxy": 32,
+      "interpretation": "most look like 60 fps re-uploads of ~30 fps originals (labels cover about the first half of the frames under a frame-number mapping); not recovered in v1"
+    }
+  },
+  "labels": {
+    "packed_vs_raw_json_maxabs": 0.0,
+    "clips": 18411,
+    "mturk_votes_gt0 (explicit human selection)": 2465,
+    "mturk_votes_eq0 (nobody selected; weak, not negative)": 8805,
+    "no_mturk (NaN)": 7141,
+    "auto_match_label": {
+      "-1": 9184,
+      "0": 1099,
+      "1": 8128
+    },
+    "relative_preference_pairs_margin1": 39478,
+    "vote_detail": "per-clip soft totals only; per-worker votes / worker count / ids not published"
+  },
+  "frame_channels_2fps": {
+    "train": {
+      "frames": 36629,
+      "human_unlabelled": 11,
+      "human_unselected_weak": 16393,
+      "human_selected": 4273,
+      "no_mturk_video_frames": 15952,
+      "auto_unlabelled": 18,
+      "auto_unmatched_weak": 17983,
+      "auto_borderline": 2156,
+      "auto_matched": 16472
+    },
+    "dev": {
+      "frames": 3372,
+      "human_unlabelled": 1,
+      "human_unselected_weak": 590,
+      "human_selected": 390,
+      "no_mturk_video_frames": 2391,
+      "auto_unlabelled": 3,
+      "auto_unmatched_weak": 1618,
+      "auto_borderline": 482,
+      "auto_matched": 1269
+    },
+    "confirmation": {
+      "frames": 17009,
+      "human_unlabelled": 5,
+      "human_unselected_weak": 7410,
+      "human_selected": 1575,
+      "no_mturk_video_frames": 8019,
+      "auto_unlabelled": 8,
+      "auto_unmatched_weak": 8434,
+      "auto_borderline": 580,
+      "auto_matched": 7987
+    },
+    "exposed_eval": {
+      "frames": 7805,
+      "human_unlabelled": 10,
+      "human_unselected_weak": 4249,
+      "human_selected": 3546,
+      "no_mturk_video_frames": 0,
+      "auto_unlabelled": 10,
+      "auto_unmatched_weak": 2727,
+      "auto_borderline": 644,
+      "auto_matched": 4424
+    }
+  },
+  "timeline": {
+    "videos": 316,
+    "len_eq_frame_count": 316,
+    "first_time_zero": 316,
+    "strictly_increasing": 316,
+    "method_decode": 316,
+    "rotation_zero": 316,
+    "bad_examples": [],
+    "redecode": [
+      {
+        "unit": "yth:skating:bA3CxZllhsI",
+        "frames": 10854,
+        "pts_identical": true
+      },
+      {
+        "unit": "yth:dog:x2Za-t1yHtI",
+        "frames": 764,
+        "pts_identical": true
+      },
+      {
+        "unit": "yth:skiing:qAinbyORWIw",
+        "frames": 17527,
+        "pts_identical": true
+      },
+      {
+        "unit": "yth:gymnastics:T_zWyrVzyvw",
+        "frames": 495,
+        "pts_identical": true
+      }
+    ]
+  },
+  "decode": [
+    {
+      "unit": "yth:skiing:V3J26hr1ZSE",
+      "frames": [
+        0,
+        1942,
+        3884
+      ],
+      "decoded": [
+        0,
+        1942,
+        3884
+      ],
+      "shape_ok": true
+    },
+    {
+      "unit": "yth:surfing:TXfsxoLiWd4",
+      "frames": [
+        0,
+        579,
+        1158
+      ],
+      "decoded": [
+        0,
+        579,
+        1158
+      ],
+      "shape_ok": true
+    },
+    {
+      "unit": "yth:dog:zyooMDuAgCA",
+      "frames": [
+        0,
+        638,
+        1276
+      ],
+      "decoded": [
+        0,
+        638,
+        1276
+      ],
+      "shape_ok": true
+    },
+    {
+      "unit": "yth:gymnastics:D6nyvx9kEac",
+      "frames": [
+        0,
+        2788,
+        5575
+      ],
+      "decoded": [
+        0,
+        2788,
+        5575
+      ],
+      "shape_ok": true
+    },
+    {
+      "unit": "yth:skating:jUiwyguxzIw",
+      "frames": [
+        0,
+        283,
+        565
+      ],
+      "decoded": [
+        0,
+        283,
+        565
+      ],
+      "shape_ok": true
+    },
+    {
+      "unit": "yth:dog:-olTgMPAyMI",
+      "frames": [
+        0,
+        2359,
+        4718
+      ],
+      "decoded": [
+        0,
+        2359,
+        4718
+      ],
+      "shape_ok": true
+    }
+  ],
+  "batches": {
+    "train": {
+      "votes_max": [
+        4,
+        603
+      ],
+      "padding_never_valid": true
+    },
+    "dev": {
+      "votes_max": [
+        4,
+        98
+      ],
+      "padding_never_valid": true
+    },
+    "confirmation": {
+      "votes_max": [
+        4,
+        393
+      ],
+      "padding_never_valid": true
+    },
+    "exposed_eval": {
+      "votes_max": [
+        4,
+        168
+      ],
+      "padding_never_valid": true
+    }
+  },
+  "official_test_byte_check": {
+    "official_test_videos": 173,
+    "release_media_hashed": 316,
+    "byte_identical_hits": 0,
+    "meaning": "no byte-identical file; re-encodes, crops or other content overlap are NOT excluded by this check"
+  },
+  "readiness": {
+    "YouTubeHighlights": {
+      "schema_pass": true,
+      "sample_readable": true,
+      "raw_video_trainable": true,
+      "note": "human MTurk subset is small; auto match labels are weak"
+    }
+  },
+  "generated": "2026-09-29T09:39:43+08:00",
+  "release_sha256sums": "5c65c70707b27eaf26bafa41d298d413b81ebb540a2305c55eb111f33f471216",
+  "integrity": {
+    "files_checked_against_SHA256SUMS": 2188,
+    "bad": 0
+  }
+}

@@ -1,0 +1,56 @@
+{
+ "release": "temporal_evidence_v1",
+ "created": "2026-09-29T09:24:18+08:00",
+ "immutable": true,
+ "kind": "temporal_evidence",
+ "ext_root": "/data/aic/external_datasets",
+ "holdout_ledger_version": "v1",
+ "holdout_ledger_sha256": "64bc3e330eee85fb5092873a799b9789320b9fe547963ac0893fa078a4fb7ff7",
+ "registry_source_ledger_sha256": "bb3d3031b6fb4bfe61e89e58fef33e9ab01aa3ea7d29ce1e5855266d9b92167c",
+ "split_rule": {
+  "train/dev": "project_split=train; dev = sha256('release_dev_v1:'+group) bucket < 0.1",
+  "confirmation": "project_split=holdout_confirm_reserved (fresh reserve frozen in the ledger)",
+  "exposed_eval": "project_split in holdout_dev_exposed / holdout_confirm_exposed: already used for validation, never train, not a fresh confirmation",
+  "excluded": "quarantine or other; reason per row"
+ },
+ "git": {
+  "repo_head": null,
+  "note": "ext_data is not committed; code identity = code_tree_sha256"
+ },
+ "datasets": {
+  "YouTubeHighlights": {
+   "supervision_channels": {
+    "human_mturk_votes": "raw soft vote count per ~2 s clip (MTurk, coverage-weighted, relative within video); explicit human selection only where votes > 0",
+    "human_unselected": "votes == 0: nobody selected it; weak, NOT a reliable negative",
+    "relative_preference": "pairs of clips of the same video ordered by votes (aicext.release.preference_pairs)",
+    "auto_match": "match_label 1/0/-1 from edited-video matching; -1 = not reused by the uploader, NOT a human negative",
+    "unlabelled": "frames covered by no clip"
+   },
+   "vote_detail_available": "only per-clip soft totals are published; per-worker votes, number of workers and worker ids are not available"
+  }
+ },
+ "not_included": {
+  "MrHiSum": "separate feature-only release mrhisum_feat_subset_v1 (no raw video)",
+  "PHD2": "media sample only (40 videos)"
+ },
+ "counts": {
+  "train": {
+   "videos": 164,
+   "with_mturk": 101
+  },
+  "confirmation": {
+   "videos": 48,
+   "with_mturk": 35
+  },
+  "dev": {
+   "videos": 17,
+   "with_mturk": 10
+  },
+  "exposed_eval": {
+   "videos": 87,
+   "with_mturk": 87
+  }
+ },
+ "excluded": 234,
+ "code_tree_sha256": "3568d0c3879434d51248d49326f8717418c4913c74abe489ce99656913d2fd9a"
+}

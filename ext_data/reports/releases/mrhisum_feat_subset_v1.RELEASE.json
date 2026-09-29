@@ -1,0 +1,31 @@
+{
+ "release": "mrhisum_feat_subset_v1",
+ "created": "2026-09-29T09:34:14+08:00",
+ "immutable": true,
+ "kind": "feature_only",
+ "ext_root": "/data/aic/external_datasets",
+ "holdout_ledger_version": "v1",
+ "holdout_ledger_sha256": "64bc3e330eee85fb5092873a799b9789320b9fe547963ac0893fa078a4fb7ff7",
+ "registry_source_ledger_sha256": "bb3d3031b6fb4bfe61e89e58fef33e9ab01aa3ea7d29ce1e5855266d9b92167c",
+ "split_rule": {
+  "train/dev": "project_split=train; dev = sha256('release_dev_v1:'+group) bucket < 0.1",
+  "confirmation": "project_split=holdout_confirm_reserved (fresh reserve frozen in the ledger)",
+  "exposed_eval": "project_split in holdout_dev_exposed / holdout_confirm_exposed: already used for validation, never train, not a fresh confirmation",
+  "excluded": "quarantine or other; reason per row"
+ },
+ "git": {
+  "repo_head": null,
+  "note": "ext_data is not committed; code identity = code_tree_sha256"
+ },
+ "use": "FEATURE HEAD ONLY: YouTube-8M v2 frame features (1 fps, 1024-d rgb PCA + 128-d audio, quantized) + Mr.HiSum gtscore. No raw video; not raw-video / VideoMAE / Qwen fine-tuning data and not counted as video training data.",
+ "subset": "fixed subset: the 1462 shards completed at build time; later shards go into a new version",
+ "labels": "gtscore = Most-Replayed aggregate (viewer behaviour, mixed/weak), gt_summary algorithmic",
+ "counts": {
+  "train": 25069,
+  "confirmation": 4008,
+  "dev": 2808
+ },
+ "shards": 1462,
+ "excluded": 7,
+ "code_tree_sha256": "70ede85f83f0e4425cbfe56108c07d498661cb9cafe78c4b9a6ff6381ba6b22b"
+}

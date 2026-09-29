@@ -43,7 +43,7 @@ env.sh 做了这些设置：
 
 每条命令都可以断点续跑。下载写入 `.part` 并按 Range 续传，校验大小和 sha256 后才改名；解压以 `.extracted` 标记；探测结果按 path|size|mtime 缓存。
 
-注意：每次跑完 ingest 都必须执行一次 `bash scripts/refresh_all.sh`，依次做划分、注册表、校验。因为 ingest 会把 aic_split 重置为空。
+注意：每次跑完 ingest 都必须执行一次 `bash scripts/refresh_all.sh`，依次做划分、注册表、校验。因为 ingest 会把 aic_split 重置为空。refresh 只刷新工作注册表 `_registry/`，不会改动 `_releases/` 下已冻结的版本。实验应该读取冻结版本，而不是工作注册表。
 
 | 数据集 | 下载 | 接入 / 预处理 |
 |---|---|---|
@@ -52,7 +52,7 @@ env.sh 做了这些设置：
 | Mr.HiSum | 作者 Drive 上的 h5 和 metadata；YT-8M 帧级特征从官方镜像流式下载 | `python scripts/ingest_mrhisum.py --stage features --workers 3`，然后 `--stage index` |
 | YouTube Highlights | HF 镜像 tar（已记录 sha256）；缺失视频走 yt-dlp 队列 | `python scripts/ingest_youtube_highlights.py`；`python scripts/run_yt_queue.py --dataset YouTubeHighlights` |
 | GAICD / DAVSOD / ClipShots | `python scripts/fetch_many.py --manifest configs/batch2_downloads.json [--only GAICD]` | `ingest_gaicd.py`、`ingest_davsod.py`、`ingest_clipshots.py --stage all` |
-| PHD² | CSV 已在上游仓库快照里 | `python scripts/ingest_phd2.py --sample 40 --download 40`（小样本 yt-dlp） |
+| PHD² | CSV 已在上游仓库快照里；YouTube 走 yt-dlp 队列（需要 `~/.local/bin` 下的 yt-dlp + deno） | 子集选定 `python scripts/select_phd2_subset.py --budget-gb 420`（tier0 = 测试集 is_last 官方指标视频，tier1 = 训练侧按"每小时 GIF 数"密度排序，预算内约 1.2 万个视频），下载 `bash scripts/run_bg.sh phd2_subset $AIC_EXT_ROOT/_logs/phd2_subset.log $AIC_EXT_PY scripts/run_phd2_subset.py`（预算感知、断点续跑，停在实际落盘字节达标的时刻） |
 | LaSOT | 类别 zip 从 hf-mirror 下载，逐成员比对官方 LaSOTTesting.zip 的 CRC | `python scripts/ingest_lasot.py --categories mouse electricfan` |
 | SA-V | 全量需要在浏览器里同意条款（阻塞） | `python scripts/ingest_sav.py`（只接入官方仓库自带的样例） |
 
@@ -64,6 +64,28 @@ VALIDATE_DATASETS="GAICD ClipShots" bash scripts/refresh_all.sh     # 只校验�
 python scripts/make_report.py --out $AIC_EXT_ROOT/_registry/registry_status.md
 python -m pytest -q -p no:cacheprovider tests
 ```
+
+## 冻结版本（releases）与暴露台账
+
+- 台账 `_registry/holdout_exposure_v1.json`（本地副本：`configs/holdout_exposure_v1.json`）：
+  - 从实验产物中读取每个源视频组的暴露角色，分 fit、diagnostic、selection、confirmation 四类，并冻结新的确认保留集。
+  - 生成命令为 `python scripts/freeze_holdout_ledger.py --version v1 ...`。这个脚本拒绝覆盖已有台账，新的台账只能用新版本号。
+- `project_split` 由 aic_split 叠加台账得到，每行附 `project_split_reason` 和 `exposure_roles`，`official_split` 不变。`Index.select` 默认按 project_split 过滤。
+- 冻结版本位于 `_releases/<name>/`：
+  - 内容包括 RELEASE.json（来源、规则、台账 sha、代码树 sha）、manifests、原始标注的字节级副本、packed npz、timelines、`code/` 快照和 SHA256SUMS。
+  - 构建后设为只读，并追加到 `_releases/INDEX.jsonl`。
+  - 构建：`python scripts/build_release.py`。质检：`python scripts/release_quality.py`，结果写到 `_releases/<name>.quality.json`。
+- 版本内的划分：
+  - train / dev：dev 是未暴露训练组中的 release_dev_v1 桶，占 10%。
+  - confirmation：冻结的保留集加未暴露的 val。
+  - exposed_eval：已用于验证，只能评测，不能训练。
+  - excluded：每行附排除原因。
+- 读取器在 `aicext/release.py`：`Release(name, verify=)`、`SpatialCropUnits`、`TemporalEvidenceUnits`、`FeatureSubsetUnits`、`score_unit(_frame)`、`preference_pairs`。
+- 窗口打分器在 `aicext/window_scorer.py`：
+  - 输入 W、H、目标比例和候选框。
+  - 输出每名标注者的 IoU、聚合值、valid 掩码，以及候选的 legal / is_max_window 标记。
+  - IoU 约定为 halfopen 或 inclusive_plus1，边界处理为 none、clip_v1 或 clip_exp_v1。
+- 示例：`examples/load_releases.py`。当前版本的说明见 `reports/20260929_data_releases_v1.md`。
 
 ## 训练侧读取（adapters）
 
@@ -109,4 +131,5 @@ python -m pytest -q -p no:cacheprovider tests
 ## 报告
 
 - 本轮进度与交付：`reports/progress_20260928.md`
+- 冻结版本 v1：`reports/20260929_data_releases_v1.md`，质量报告在 `reports/releases/`
 - 注册表的即时状态：由 `scripts/make_report.py` 生成，另有一份拷贝在 `reports/registry_status.md`

@@ -1,0 +1,69 @@
+{
+ "release": "spatial_crop_v1",
+ "created": "2026-09-29T09:24:22+08:00",
+ "immutable": true,
+ "kind": "spatial_crop",
+ "ext_root": "/data/aic/external_datasets",
+ "holdout_ledger_version": "v1",
+ "holdout_ledger_sha256": "64bc3e330eee85fb5092873a799b9789320b9fe547963ac0893fa078a4fb7ff7",
+ "registry_source_ledger_sha256": "bb3d3031b6fb4bfe61e89e58fef33e9ab01aa3ea7d29ce1e5855266d9b92167c",
+ "split_rule": {
+  "train/dev": "project_split=train; dev = sha256('release_dev_v1:'+group) bucket < 0.1",
+  "confirmation": "project_split=holdout_confirm_reserved (fresh reserve frozen in the ledger)",
+  "exposed_eval": "project_split in holdout_dev_exposed / holdout_confirm_exposed: already used for validation, never train, not a fresh confirmation",
+  "excluded": "quarantine or other; reason per row"
+ },
+ "git": {
+  "repo_head": null,
+  "note": "ext_data is not committed; code identity = code_tree_sha256"
+ },
+ "datasets": {
+  "RetargetVid": {
+   "supervision": "crop_box_dense (human, 6 annotators, every frame)",
+   "ratios": [
+    "1:3",
+    "3:1"
+   ],
+   "gt_is_max_window": true
+  },
+  "LIVE_YT_VC": {
+   "supervision": "crop_box_sparse (human, 30 frames, 1 subject per frame)",
+   "ratio": "9:16 (variable size)",
+   "gt_is_max_window": false,
+   "derived": "interp_v1 under derived/ (single-scene videos only), never mixed with human boxes"
+  }
+ },
+ "not_included": {
+  "GAICD": "image crop candidates + MOS, separate auxiliary release (not a video crop target)"
+ },
+ "coord_version": "xywh_halfopen_v1",
+ "scorer_version": "window_scorer_v1",
+ "iou_conventions": {
+  "default": "halfopen",
+  "teacher_compat": "inclusive_plus1 (RetargetVid upstream)"
+ },
+ "counts": {
+  "exposed_eval": {
+   "RetargetVid": 400,
+   "LIVE_YT_VC": 334
+  },
+  "train": {
+   "LIVE_YT_VC": 1115
+  },
+  "dev": {
+   "LIVE_YT_VC": 124
+  },
+  "confirmation": {
+   "LIVE_YT_VC": 227
+  }
+ },
+ "groups": {
+  "exposed_eval": 534,
+  "train": 1115,
+  "dev": 124,
+  "confirmation": 227
+ },
+ "excluded": 0,
+ "media": "referenced by path + sha256, not copied",
+ "code_tree_sha256": "3568d0c3879434d51248d49326f8717418c4913c74abe489ce99656913d2fd9a"
+}

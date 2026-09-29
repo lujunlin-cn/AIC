@@ -1,0 +1,523 @@
+{
+  "release": "spatial_crop_v1",
+  "counts": {
+    "LIVE_YT_VC": {
+      "raw_media_videos": 1800,
+      "units": 1800,
+      "independent_source_videos": 1800,
+      "human_label_rows": 1800,
+      "human_boxes_nominal": 54000,
+      "derived_tracks": 1566,
+      "per_split": {
+        "train": {
+          "units": 1115,
+          "source_videos": 1115
+        },
+        "dev": {
+          "units": 124,
+          "source_videos": 124
+        },
+        "confirmation": {
+          "units": 227,
+          "source_videos": 227
+        },
+        "exposed_eval": {
+          "units": 334,
+          "source_videos": 334
+        }
+      }
+    },
+    "RetargetVid": {
+      "raw_media_videos": 200,
+      "units": 400,
+      "independent_source_videos": 200,
+      "human_annotation_files": 2400,
+      "human_boxes_nominal": 1472208,
+      "derived_tracks": 0,
+      "per_split": {
+        "train": {
+          "units": 0,
+          "source_videos": 0
+        },
+        "dev": {
+          "units": 0,
+          "source_videos": 0
+        },
+        "confirmation": {
+          "units": 0,
+          "source_videos": 0
+        },
+        "exposed_eval": {
+          "units": 400,
+          "source_videos": 200
+        }
+      }
+    }
+  },
+  "excluded": {
+    "rows": 0,
+    "reasons": {}
+  },
+  "split_reasons": {
+    "train": {
+      "hash bucket": 1115
+    },
+    "dev": {
+      "release_dev_v1 bucket < 0.1 of unexposed train groups; hash bucket": 124
+    },
+    "confirmation": {
+      "fresh confirmation reserve": 227
+    },
+    "exposed_eval": {
+      "confirmation exposure: T0_T2_TEACHER_DIAG_V1:confirm2, T1_T2_TEACHER_DIAG_V2:confirm2, T5_CROPHEAD_V3:rv_confirm2": 200,
+      "confirmation exposure: T5_CROPHEAD_V3:live_confirm3": 178,
+      "selection exposure: T5_CROPHEAD_V3:live_dev": 156,
+      "selection exposure: T0_T2_TEACHER_DIAG_V1:dev2, T1_T2_TEACHER_DIAG_V2:dev2": 100,
+      "selection exposure: MAX_WINDOW_CAND_P1B_P2_V1:dev, MAX_WINDOW_CAND_P1B_P2_V2_PYAV15:dev, MAX_WINDOW_PATH_P1A_V1:dev, SPA": 40,
+      "selection exposure: T0_T2_TEACHER_DIAG_V1:dev2, T1_T2_TEACHER_DIAG_V2:dev2, T5_CROPHEAD_V3:rv_dev": 40,
+      "confirmation exposure: MAX_WINDOW_CAND_P1B_P2_V1:confirm, MAX_WINDOW_CAND_P1B_P2_V2_PYAV15:confirm, MAX_WINDOW_PATH_P1A_": 20
+    }
+  },
+  "coordinates": {
+    "schema_errors": [],
+    "schema_error_count": 0,
+    "packed_vs_raw_file_maxabs": {
+      "RetargetVid": 0,
+      "LIVE_YT_VC": 0.0
+    },
+    "valid_human_boxes": {
+      "LIVE_YT_VC": 54000,
+      "RetargetVid": 1472208
+    },
+    "boxes_not_max_window(>1px)": {
+      "LIVE_YT_VC": 53804,
+      "RetargetVid": 0
+    },
+    "boxes_out_of_image": {
+      "LIVE_YT_VC": 92,
+      "RetargetVid": 0
+    },
+    "annotated_frames_beyond_video": 0,
+    "convention": "xywh_halfopen_v1: x=l, y=t, w=r-l, h=b-t, no clipping; raw ltrb kept as ltrb_raw",
+    "rotation_nonzero_videos": 0
+  },
+  "iou_convention_comparison": {
+    "LIVE_YT_VC:inclusive_minus_halfopen": {
+      "frames": 54000,
+      "mean": 0.0011903576087206602,
+      "max": 0.0012846440076828003
+    },
+    "LIVE_YT_VC:argmax_changed_by_plus1": {
+      "frames": 54000,
+      "mean": 0.27335185185185185,
+      "max": 1.0
+    },
+    "LIVE_YT_VC:clip_exp_minus_none": {
+      "frames": 54000,
+      "mean": 7.314606045838445e-05,
+      "max": 0.0029221773147583008
+    },
+    "RetargetVid:inclusive_minus_halfopen": {
+      "frames": 8374,
+      "mean": 0.004993237089365721,
+      "max": 0.008286118507385254
+    },
+    "RetargetVid:argmax_changed_by_plus1": {
+      "frames": 8374,
+      "mean": 0.04955815619775496,
+      "max": 1.0
+    },
+    "RetargetVid:clip_exp_minus_none": {
+      "frames": 8374,
+      "mean": 0.0018082845490425825,
+      "max": 0.011087954044342041
+    }
+  },
+  "reproduce_T5_targets": {
+    "rv_confirm2": {
+      "keyframes": 4081,
+      "max_abs_diff": 0.0
+    },
+    "rv_dev": {
+      "keyframes": 746,
+      "max_abs_diff": 0.0
+    },
+    "live_confirm3": {
+      "keyframes": 913,
+      "max_abs_diff": 0.0
+    },
+    "live_dev": {
+      "keyframes": 800,
+      "max_abs_diff": 0.0
+    }
+  },
+  "max_window_iou_ceiling": {
+    "LIVE_YT_VC": {
+      "boxes": 54000,
+      "p5": 0.339917695473251,
+      "median": 0.8711111111111111,
+      "mean": 0.7860375011026387
+    },
+    "RetargetVid": {
+      "boxes": 25656,
+      "p5": 0.9984374999999998,
+      "median": 0.9992187499999998,
+      "mean": 0.9992187499999999
+    }
+  },
+  "timeline": {
+    "LIVE_YT_VC": {
+      "videos": 1800,
+      "len_eq_frame_count": 1800,
+      "first_time_zero": 1800,
+      "strictly_increasing": 1800,
+      "method_decode": 1800,
+      "rotation_zero": 1800,
+      "bad_examples": [],
+      "redecode": [
+        {
+          "unit": "liveytvc:video1574",
+          "frames": 180,
+          "pts_identical": true
+        },
+        {
+          "unit": "liveytvc:video762",
+          "frames": 180,
+          "pts_identical": true
+        },
+        {
+          "unit": "liveytvc:video28",
+          "frames": 180,
+          "pts_identical": true
+        },
+        {
+          "unit": "liveytvc:video657",
+          "frames": 180,
+          "pts_identical": true
+        }
+      ]
+    },
+    "RetargetVid": {
+      "videos": 400,
+      "len_eq_frame_count": 400,
+      "first_time_zero": 400,
+      "strictly_increasing": 400,
+      "method_decode": 400,
+      "rotation_zero": 400,
+      "bad_examples": [],
+      "redecode": [
+        {
+          "unit": "retargetvid:697:3-1",
+          "frames": 584,
+          "pts_identical": true
+        },
+        {
+          "unit": "retargetvid:057:1-3",
+          "frames": 659,
+          "pts_identical": true
+        },
+        {
+          "unit": "retargetvid:018:3-1",
+          "frames": 648,
+          "pts_identical": true
+        },
+        {
+          "unit": "retargetvid:001:1-3",
+          "frames": 450,
+          "pts_identical": true
+        }
+      ]
+    }
+  },
+  "decode": {
+    "LIVE_YT_VC": [
+      {
+        "unit": "liveytvc:video2643",
+        "frames": [
+          0,
+          90,
+          179
+        ],
+        "decoded": [
+          0,
+          90,
+          179
+        ],
+        "shape_ok": true
+      },
+      {
+        "unit": "liveytvc:video2606",
+        "frames": [
+          0,
+          90,
+          179
+        ],
+        "decoded": [
+          0,
+          90,
+          179
+        ],
+        "shape_ok": true
+      },
+      {
+        "unit": "liveytvc:video1070",
+        "frames": [
+          0,
+          90,
+          179
+        ],
+        "decoded": [
+          0,
+          90,
+          179
+        ],
+        "shape_ok": true
+      },
+      {
+        "unit": "liveytvc:video718",
+        "frames": [
+          0,
+          90,
+          179
+        ],
+        "decoded": [
+          0,
+          90,
+          179
+        ],
+        "shape_ok": true
+      },
+      {
+        "unit": "liveytvc:video2639",
+        "frames": [
+          0,
+          90,
+          179
+        ],
+        "decoded": [
+          0,
+          90,
+          179
+        ],
+        "shape_ok": true
+      },
+      {
+        "unit": "liveytvc:video901",
+        "frames": [
+          0,
+          90,
+          179
+        ],
+        "decoded": [
+          0,
+          90,
+          179
+        ],
+        "shape_ok": true
+      }
+    ],
+    "RetargetVid": [
+      {
+        "unit": "retargetvid:633:3-1",
+        "frames": [
+          0,
+          296,
+          592
+        ],
+        "decoded": [
+          0,
+          296,
+          592
+        ],
+        "shape_ok": true
+      },
+      {
+        "unit": "retargetvid:660:3-1",
+        "frames": [
+          0,
+          262,
+          524
+        ],
+        "decoded": [
+          0,
+          262,
+          524
+        ],
+        "shape_ok": true
+      },
+      {
+        "unit": "retargetvid:038:3-1",
+        "frames": [
+          0,
+          565,
+          1130
+        ],
+        "decoded": [
+          0,
+          565,
+          1130
+        ],
+        "shape_ok": true
+      },
+      {
+        "unit": "retargetvid:655:3-1",
+        "frames": [
+          0,
+          245,
+          489
+        ],
+        "decoded": [
+          0,
+          245,
+          489
+        ],
+        "shape_ok": true
+      },
+      {
+        "unit": "retargetvid:656:3-1",
+        "frames": [
+          0,
+          206,
+          411
+        ],
+        "decoded": [
+          0,
+          206,
+          411
+        ],
+        "shape_ok": true
+      },
+      {
+        "unit": "retargetvid:620:1-3",
+        "frames": [
+          0,
+          420,
+          839
+        ],
+        "decoded": [
+          0,
+          420,
+          839
+        ],
+        "shape_ok": true
+      }
+    ]
+  },
+  "batches": {
+    "train": {
+      "datasets": [
+        "LIVE_YT_VC",
+        "LIVE_YT_VC",
+        "LIVE_YT_VC",
+        "LIVE_YT_VC"
+      ],
+      "boxes_xywh": [
+        4,
+        1,
+        30,
+        4
+      ],
+      "valid_true": 120,
+      "padding_never_valid": true
+    },
+    "dev": {
+      "datasets": [
+        "LIVE_YT_VC",
+        "LIVE_YT_VC",
+        "LIVE_YT_VC",
+        "LIVE_YT_VC"
+      ],
+      "boxes_xywh": [
+        4,
+        1,
+        30,
+        4
+      ],
+      "valid_true": 120,
+      "padding_never_valid": true
+    },
+    "confirmation": {
+      "datasets": [
+        "LIVE_YT_VC",
+        "LIVE_YT_VC",
+        "LIVE_YT_VC",
+        "LIVE_YT_VC"
+      ],
+      "boxes_xywh": [
+        4,
+        1,
+        30,
+        4
+      ],
+      "valid_true": 120,
+      "padding_never_valid": true
+    },
+    "exposed_eval": {
+      "datasets": [
+        "RetargetVid",
+        "RetargetVid",
+        "LIVE_YT_VC",
+        "RetargetVid"
+      ],
+      "boxes_xywh": [
+        4,
+        6,
+        51,
+        4
+      ],
+      "valid_true": 780,
+      "padding_never_valid": true
+    },
+    "mixed_rv_live": {
+      "boxes_xywh": [
+        2,
+        6,
+        30,
+        4
+      ],
+      "shapes": [
+        [
+          6,
+          30
+        ],
+        [
+          1,
+          30
+        ]
+      ],
+      "padding_never_valid": true
+    }
+  },
+  "aux_saliency": {
+    "boxes": 720,
+    "median_in_over_out": 22.104150262032874,
+    "share_gt_1": 0.9472222222222222,
+    "note": "auxiliary sanity check of box/frame alignment only; saliency is not crop ground truth"
+  },
+  "official_test_byte_check": {
+    "official_test_videos": 173,
+    "release_media_hashed": 2000,
+    "byte_identical_hits": 0,
+    "meaning": "no byte-identical file; re-encodes, crops or other content overlap are NOT excluded by this check"
+  },
+  "readiness": {
+    "RetargetVid": {
+      "schema_pass": true,
+      "sample_readable": true,
+      "raw_video_trainable": true,
+      "v1_training_split": "none: all 200 source videos were used for validation (exposed_eval only)"
+    },
+    "LIVE_YT_VC": {
+      "schema_pass": true,
+      "sample_readable": true,
+      "raw_video_trainable": true,
+      "v1_training_split": "1115 units"
+    }
+  },
+  "generated": "2026-09-29T09:40:19+08:00",
+  "release_sha256sums": "faa14d8b216a691e6f385dd79fc0f0a00b20c7695885aca3bd5a7e312256a893",
+  "integrity": {
+    "files_checked_against_SHA256SUMS": 8225,
+    "bad": 0
+  }
+}

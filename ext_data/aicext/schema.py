@@ -53,8 +53,12 @@ def media_record(**kw: Any) -> dict:
         "source_video_id": None,      # e.g. YouTube ID or dataset-native video ID
         "source_platform": None,      # youtube / dataset_native / flickr ...
         "group_id": None,             # leakage group; same source video -> same group
-        "official_split": None,       # as published (train/val/test/unknown)
-        "aic_split": None,            # our leakage-safe split (filled by splits step)
+        "official_split": None,       # as published (train/val/test/unknown); never changed
+        "aic_split": None,            # leakage-safe working split (filled by the splits step)
+        "aic_split_reason": None,
+        "project_split": None,        # aic_split + frozen holdout/exposure ledger (splits step)
+        "project_split_reason": None,
+        "exposure_roles": [],         # roles of experiments that used this group
         "media_kind": None, "media_path": None, "media_reused_from": None,
         "download_url": None, "download_source": None, "file_size": None, "sha256": None,
         "download_status": "pending", "preprocess_status": "pending",

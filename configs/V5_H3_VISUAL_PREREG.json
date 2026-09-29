@@ -1,0 +1,33 @@
+{
+ "prereg": "V5_H3_VISUAL_PREREG",
+ "written_before_result": "2026-09-29T13:30+08:00 (before any feature caching, training or evaluation)",
+ "hypothesis": "A frozen spatial visual encoder (DINOv2 ViT-B/14, patch tokens, letterbox with explicit valid mask) plus a small scoring head can rank legal max-window candidates better than the non-visual H2-style feature set, because window preference depends on what the pixels inside/outside the window show, not only on geometry and detector statistics.",
+ "mother": "INTERP 48.67 protocol (DENSE d2 points, qwen_centres_interp, NOFACE gate, B0 EMA, TEMP mask at release). The scorer only changes the keyframe centre on the free axis; everything else is inherited.",
+ "architecture": {
+  "encoder": "dinov2_vitb14 (HF facebook/dinov2-base safetensors, sha256 d73036b5…), fully frozen, fp16, input letterbox 518x518 aspect-preserving, valid-pixel patch mask carried; no center crop, no VideoMAE clip vectors",
+  "features_per_candidate": "3x3 pooled in-window patch means (9x768) + in-window mean + out-of-window mean + boundary ring mean (768 each), fp16",
+  "candidates": "33 evenly spaced legal offsets on the unique free axis + the mother point-centred window, de-duplicated, mother always included",
+  "heads": "G = MLP(26 H2-style geometry/detector/saliency/point-distance features); V = MLP(base geometry 7 + visual); V+Q = MLP(26 H2 features + visual). All heads 2x128 hidden, matched capacity, ReLU.",
+  "targets": "q(c) = mean-annotator IoU(legal window c, human box) with each dataset's native convention (RV rounded-inclusive, 6 annotators, max-window GT; LIVE clip_exp_v1 rounded-inclusive, 1 annotator, variable-size GT). No relabelling, no 'human max window' construction.",
+  "loss": "Huber(delta=0.25) on q; NaN targets skipped; dataset-balanced batches; pairwise ranking only added later and only if regression works"
+ },
+ "training": {
+  "optimizer": "AdamW, head lr 3e-4, weight decay 1e-3 (weights) / 0 (bias+norm), warmup 5% + cosine, grad clip 1.0",
+  "budget": "max 2000 updates, dev check every 250, keep best by dev keyframe IoU, seed 1 (a second seed only if positive)",
+  "encoder_policy": "frozen this round; unfreezing the last block is a separate later experiment and is NOT part of this prereg"
+ },
+ "splits": {
+  "rv": "train 001-080 / dev 081-100 / confirm 601-700 (old H2 source-disjoint 80/20/100). dev2 031-100 overlaps rv train 001-080; therefore dev2 numbers are never quoted as clean and confirm2 is labelled reused validation. RV train 001-080 was already exposed to T5 H1/H2 fitting; it is training data again, not validation.",
+  "live": "T5 split reused: live_train (fold 10% dev), live_val 178 (exposed, report-only). The release confirmation reserve (227) is NOT used: per holdout_exposure_v1 it already has T5 live_train fit exposure, so it is not fresh either.",
+  "leak_rule": "No training on dev/confirm/val rows of any dataset; no DHF1K/DAVSOD-derived substitute may enter training that maps into an eval video's source group."
+ },
+ "decision_rule": {
+  "gate1_visual_value": "On dev (dataset-equal mean of rv_dev and live_dev keyframe IoU): best(V,V+Q) - G > 0, and on rv_dev alone > 0. If V/V+Q do not beat G, diagnose pooling/labels/time-mapping/candidate range first; do not unfreeze the encoder in this round.",
+  "gate2_pipeline": "rv_dev pipeline SELECTOR_INTERP - INTERP mean > 0 with CI lower > -0.002, and axis_y mean >= -0.002. E4 showed x-only gains can hide y losses; a y regression blocks packaging.",
+  "confirmation": "rv_confirm2 (reused) must repeat gate2. live_val is report-only (exposed).",
+  "package": "Only if gate1+gate2+confirmation pass: QWEN32B_INTERP_VISUALHEAD_V5_FINAL, both axes applied, y labelled transfer-exploration (no public y evidence at official geometry), mother fallback where the selector is inactive, TEMP mask unchanged, 174 videos / 78,992 frames."
+ },
+ "reporting": "reports/20260929_visual_scorer_ablation.csv (keyframe IoU: mother/G/V/V+Q/oracle, regret, selection rate, per axis/dataset) + pipeline deltas; added params/memory/latency of the visual path recorded.",
+ "implementation_addendum_20260929": "Candidate set is the constant 33 evenly spaced legal offsets; the mother centre is snapped to the nearest grid candidate (per-keyframe gap <= half spacing recorded as mo_gap_max, window-width fraction). Reason: appending the exact mother made the candidate count vary per keyframe (33 vs 34 after de-duplication). Decision rules unchanged; the mother reference in keyframe tables is the snapped candidate, while pipeline evaluation still uses the exact INTERP points.",
+ "official_platform_score": null
+}

@@ -1,0 +1,14 @@
+{
+ "prereg": "V5_P0_XRERANK_PREREG",
+ "written_before_result": "2026-09-29T13:15+08:00 (before any V5 evaluation was run)",
+ "hypothesis": "E4's visual crop re-ranking signal, which replicated on the x axis only (+.0174 dev2 / +.0179 confirm2 vs DENSENF hold), stays positive when (a) the mother is INTERP (linear interpolation between same-shot keyframes) instead of hold, and (b) only the 55 official x-axis videos (9:16 source -> 16:9 window) are allowed to change.",
+ "mother": "INTERP = QWEN32B_DT_INTERP_V4_FINAL (official 48.67). DENSENF is no longer the reference.",
+ "change": "Only x-axis rows: at DENSE keyframes whose E4 order-agreement rerank accepted a candidate, the keyframe centre becomes the accepted candidate centre; everything else (DENSE points, INTERP interpolation rule, face routing, B0 EMA, resets, TEMP mask, width) unchanged. y-axis rows are byte-identical to INTERP by construction.",
+ "cache_reuse": "RetargetVid dev2/confirm2 rerank replies are reused byte-for-byte from /data/aic/experiments/V4_E4_RERANK (exposed validation, labelled reused). No new teacher queries on the public set. Sanity gate: RERANKNF(hold) - DENSENF must reproduce E4's published dev2 +.0093 [.0019,.0173] within bootstrap noise; otherwise the reuse is invalid and P0 stops.",
+ "protocol": "scripts/v5_p0_xrerank_eval.py; video macro over both ratios, 6-annotator mean IoU (rounded inclusive pixels), paired video bootstrap, axis/motion strata as in v4_s1_interp_eval.",
+ "primary_metric": "XRERANK_INTERP - INTERP on the x-axis stratum (per-ratio rows, video-clustered bootstrap).",
+ "promotion_rule": "Package QWEN32B_INTERP_XRERANK_V5_FINAL only if BOTH: (1) dev2 axis_x mean > 0 with 95% CI lower > 0; (2) confirm2 axis_x mean > 0 with 95% CI lower > 0. Additionally the all-video mean must not be < -0.002 on either split.",
+ "stop_rule": "If the promotion rule fails, no official inference and no package; the negative report is the deliverable. No threshold re-tuning, no prompt changes, no additional splits after reading results.",
+ "official_run_if_promoted": "qwen_crop_rerank on the official x videos only (index-filtered), same prompt SHA as E4, then splice-release with identity guards: recomputed y rows == INTERP spatial byte-for-byte (119/119 videos), recomputed x rows from DENSE points == INTERP spatial byte-for-byte (code-parity guard), final keys == TEMP, 174 videos / 78,992 frames.",
+ "official_platform_score": null
+}

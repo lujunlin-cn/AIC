@@ -1,0 +1,58 @@
+{
+ "manifest": "V5_BASELINE_MANIFEST",
+ "frozen_at": "2026-09-29",
+ "purpose": "V5 cycle baseline freeze: all new methods compare against INTERP 48.67 with TEMP mask, face routing, existing decode/post-processing unchanged.",
+ "official_best": {
+  "name": "QWEN32B_DT_INTERP_V4_FINAL",
+  "official_platform_score": 48.67,
+  "scored_at": "2026-09-29 08:28 user screenshot",
+  "zip_sha256": "501cebce04e5245bc17bacd538bd8f6ff3f881b7595fab7ca001b4fa2403e565",
+  "predictions_sha256": "7c9ea1787d8f31e8e94200ef9e96756ea453f6c5af21a4960aa724d7607583a6",
+  "spatial_predictions": "/data/aic/official_test_20260926/submissions/QWEN32B_NOFACE_INTERP_V4_SPATIAL/predictions.jsonl",
+  "spatial_predictions_sha256": "2c329184182e915e1990e8d1b67b4b61d30621eae08dd814e8218576f32c7a78",
+  "videos": 174,
+  "predictions": 78992
+ },
+ "parents": {
+  "official_best": "INTERP 48.67",
+  "mask_parent": "TEMP 46.84 (QWEN32B_NOFACE_TEMPORAL_V2_FINAL, zip 631d0104…)",
+  "spatial_observation_parent": "DENSE 43.76 / N0 42.83 (frozen, remote dirs read-only)",
+  "historical_reference": "60 (not the verified current leaderboard, not a commitment)"
+ },
+ "invariants": [
+  "TEMP (video_id, frame) mask exactly as scored; every kept frame must be present",
+  "face routing (YuNet) and B0 EMA / shot resets unchanged",
+  "output window is always the legal max window for the target ratio",
+  "frame keys equal TEMP == DT_V3 for spatial-single-variable packages (78,992 frames, 174 videos)"
+ ],
+ "official_set_facts": {
+  "videos": 174,
+  "frame_keys": 78992,
+  "x_axis_videos": 55,
+  "y_axis_videos": 119,
+  "dense_keyframes": 5988,
+  "geometry": "9:16 source -> 16:9 window (x-axis) vs 16:9 source -> 9:16 window (y-axis, window 31.6% of height)"
+ },
+ "teacher": {
+  "model": "Qwen3-VL-32B-Instruct FP16 vLLM TP=4 (GPUs 4-7)",
+  "parameters": 33357390064,
+  "env": "/opt/miniconda3/envs/vllm/bin/python, PYTHONPATH=/data/aic/envs/vllm_overlay:/home/supie/AIC"
+ },
+ "data_versions": {
+  "official_index_sha256": "9a59316e97f5a80fc2c22f43f38ebd72130d20109d17954efa3dde9f86d404d5",
+  "external_release": "spatial_crop_v1 (immutable, /data/aic/external_datasets/_releases/spatial_crop_v1)",
+  "holdout_ledger": "holdout_exposure_v1 (sha 64bc3e33…)",
+  "rv_caches": {
+   "obs": "/data/aic/experiments/OBS_CACHE_RETARGET_ALL200 (d2 0.5 s)",
+   "points": "/data/aic/experiments/QWEN_RV200_POINT_D2/points",
+   "keyframes": "/data/aic/experiments/QWEN_RV200_KEYFRAMES/d2"
+  }
+ },
+ "splits": {
+  "rv_h3_train": "001-080 (source-disjoint old H2 train; exposed to H1/H2 fitting, never counted as fresh)",
+  "rv_h3_dev": "081-100 (old H2 dev; also inside dev2 031-100 => reused validation)",
+  "rv_h3_confirm": "601-700 (= confirm2, reused validation)",
+  "leak_rule": "H3 must NOT train on 001-080 and then quote dev2 031-100 as clean; dev2/confirm2 numbers are always labelled reused",
+  "live": "train 1115 / dev 124 / val 178 (exposed) / confirmation reserve 227 (untouched this round)"
+ }
+}

@@ -47,6 +47,8 @@
  ],
  "declared_model_size_mb": null,
  "declared_size_note": "same teacher size disclosure as DENSE_V2 / TEMPORAL_V2 / N0; JSONL omits model_size_mb (preliminary format).",
- "official_platform_score": null,
- "parent_baseline": "DT_V3 = QWEN32B_NOFACE_DENSE_TEMP_V3_FINAL (official 47.88, zip c702de926450717ff3c18c4a11aabeee9f3ad3a49ab28f0f512768b14722cf67)"
+ "official_platform_score": 48.67,
+ "parent_baseline": "DT_V3 = QWEN32B_NOFACE_DENSE_TEMP_V3_FINAL (official 47.88, zip c702de926450717ff3c18c4a11aabeee9f3ad3a49ab28f0f512768b14722cf67)",
+ "official_score_source": "user platform screenshot 2026-09-29 08:28, all four packages DONE; per-video scores not fetched",
+ "official_score_recorded_at": "2026-09-29"
 }

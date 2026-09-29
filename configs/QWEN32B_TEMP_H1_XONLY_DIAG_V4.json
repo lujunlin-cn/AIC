@@ -17,18 +17,32 @@
  "override": {
   "name": "QWEN32B_NOFACE_TEMP_CROPHEAD_V3_FINAL",
   "platform_name": "T5",
-  "official_platform_score": 45.00,
+  "official_platform_score": 45.0,
   "zip_sha256": "519a718a2f16d499cf0a2b99bd8c5525bed34440d5e8b0a3dad40a27f63eaade",
   "predictions": "/data/aic/official_test_20260926/submissions/QWEN32B_NOFACE_TEMP_CROPHEAD_V3_FINAL/predictions.jsonl",
   "predictions_sha256": "fe68e2a125459835dc467582109d960a7f99cb699cf5a5e549049c1694a1145a"
  },
  "index_sha256": "9a59316e97f5a80fc2c22f43f38ebd72130d20109d17954efa3dde9f86d404d5",
  "components": [
-  {"name": "Qwen3-VL-32B-Instruct (FP16, vLLM TP=4)", "parameters": 33357390064, "bytes": 66714912872},
-  {"name": "YuNet 2023mar", "parameters": 53104, "bytes": 232589},
-  {"name": "H1 calibration x axis only (2 scalars)", "parameters": 2, "bytes": 0}
+  {
+   "name": "Qwen3-VL-32B-Instruct (FP16, vLLM TP=4)",
+   "parameters": 33357390064,
+   "bytes": 66714912872
+  },
+  {
+   "name": "YuNet 2023mar",
+   "parameters": 53104,
+   "bytes": 232589
+  },
+  {
+   "name": "H1 calibration x axis only (2 scalars)",
+   "parameters": 2,
+   "bytes": 0
+  }
  ],
  "declared_model_size_mb": null,
  "declared_size_note": "same teacher size disclosure as N0 / TEMP / DT_V3; JSONL omits model_size_mb (preliminary format).",
- "official_platform_score": null
+ "official_platform_score": 46.73,
+ "official_score_source": "user platform screenshot 2026-09-29 08:28, all four packages DONE; per-video scores not fetched",
+ "official_score_recorded_at": "2026-09-29"
 }

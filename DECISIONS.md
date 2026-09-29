@@ -378,6 +378,11 @@ Evidence：
 - P2（Qwen 点名 + 检测器落位）：两个变体、四个分层一致为负（−.066 / −.039）；单帧开放词表框中心引入的方差大于它替换掉的 DENSE 蒸馏点。负结果成立。
 - H3 视觉评分头：若 gate1（视觉头 dev 均值 − 几何头 >0）与 gate2（rv_dev+confirm2 管线配对均值 >0 且 CI_low >−.002、axis1 ≥−.002）全过才打包，否则只留消融证据。
 
+结果（同日 18:00）：
+- gate1 通过（+.0110）；gate2 confirm2 干净通过（VQ +.0190 [+.0071,+.0313]，y +.0172）但 rv_dev（40 视频）CI 下界 −.0112 未过 → **按预注册不出包**。
+- 纯几何 G 四集全正：候选重评分框架本身有效，留作下轮基础；重启前置条件 = 扩大 rv_dev 划分并重新预注册。
+- 提交顺序维持单一包 `QWEN32B_INTERP_XRERANK_V5_FINAL`；正式最佳保持 INTERP 48.67。
+
 Decision：
 - 提交顺序：先 `QWEN32B_INTERP_XRERANK_V5_FINAL`（唯一新候选包）；H3 过门才追加 `QWEN32B_INTERP_VISUALHEAD_V5_FINAL`。
 - 正式最佳保持 INTERP 48.67，新包成绩填写待评，不预报分数。

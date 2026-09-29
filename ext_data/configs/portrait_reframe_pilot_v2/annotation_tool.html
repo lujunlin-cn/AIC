@@ -105,9 +105,10 @@ function buildTemporal(s){const tm=$('tmode')
  if(!s.temporal_subset){tm.style.display='none';return}
  tm.style.display='flex';tm.querySelectorAll('button').forEach(b=>{b.dataset.arm='';b.textContent=b.dataset.l+'段 起/止'})
  tm.querySelectorAll('button').forEach(b=>b.onclick=()=>{const v=$('vid'),l=b.dataset.l
-  if(!tpending[l]){tpending[l]=v.currentTime;b.textContent=l+'段 止 t='+v.currentTime.toFixed(1)}
+  if(!(l in tpending)){tpending[l]=v.currentTime;b.textContent=l+'段 止 t='+v.currentTime.toFixed(1)}
   else{const a=tpending[l];delete tpending[l];b.textContent=l+'段 起/止'
    const s0=Math.min(a,v.currentTime),s1=Math.max(a,v.currentTime)
+   if(s1-s0<0.05){b.textContent=l+'段 取消(<0.05s)';return}
    rows.push({schema:'portrait_reframe_pilot_v2',pm_video_id:s.pm_video_id,kind:'temporal',
     span_start_sec:+s0.toFixed(2),span_end_sec:+s1.toFixed(2),label:l,
     annotator_id:$('annotator').value||'anon',note:null});persist();mark()}})}

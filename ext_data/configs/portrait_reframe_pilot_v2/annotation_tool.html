@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<!-- portrait_reframe_pilot_v2 annotation tool. Self-contained; open via any static
+     server (python3 -m http.server) next to the video files, or file:// with a
+     local media directory.  Output: portrait_reframe_pilot_v2 JSONL (frame rows +
+     temporal rows).  Rows are per-annotator and never merged here. -->
+<html lang="zh"><head><meta charset="utf-8">
+<title>portrait_reframe_pilot_v2 标注</title>
+<style>
+ body{font:14px/1.5 system-ui,sans-serif;margin:0;display:flex;height:100vh;background:#111;color:#ddd}
+ #left{width:280px;overflow-y:auto;background:#1b1b1b;padding:8px;box-sizing:border-box}
+ #main{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative}
+ #stage{position:relative;background:#000}
+ video{display:block;max-height:82vh}
+ #win{position:absolute;left:0;border:2px solid #ff5252;box-sizing:border-box;cursor:ns-resize;
+      background:linear-gradient(0deg,rgba(255,82,82,.08),rgba(255,82,82,.08));pointer-events:none}
+ #yline{position:absolute;left:0;right:0;height:0;border-top:1px dashed #ffde03;pointer-events:none}
+ .src{padding:6px;margin:4px 0;background:#242424;border-radius:6px;cursor:pointer;border:1px solid #333}
+ .src.done{border-color:#2e9e5b}.src.cur{border-color:#ffde03}
+ textarea{width:100%;height:38vh;background:#111;color:#9f9;font:11px monospace}
+ button,select,input{font:inherit;margin:2px}
+ .row{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+ #meta{position:absolute;top:6px;left:8px;background:#000a;padding:6px 10px;border-radius:6px}
+ kbd{background:#333;padding:0 5px;border-radius:3px}
+</style></head><body>
+<div id="left">
+ <b>portrait_reframe_pilot_v2</b>
+ <div class="row"><input id="manifest" type="file" accept=".json"></div>
+ <div class="row">视频目录 URL 前缀 <input id="mediadir" value="./videos" style="width:110px"></div>
+ <div class="row">标注者 ID <input id="annotator" placeholder="anon-id" style="width:90px">
+   轮次 <input id="round" type="number" value="1" min="1" style="width:52px"></div>
+ <div id="srclist"></div>
+ <textarea id="out" readonly placeholder='导出的 JSONL 出现在这里'></textarea>
+ <div class="row"><button id="export">导出 JSONL</button><button id="download">下载 .jsonl</button>
+   <span id="prog"></span></div>
+</div>
+<div id="main">
+ <div id="stage"><video id="vid" controls></video><div id="win"></div><div id="yline"></div>
+  <div id="meta"></div></div>
+ <div class="row" id="ctrl">
+  <button id="prevf">◀ 帧</button><span id="frinfo"></span><button id="nextf">帧 ▶</button>
+  <label><input type="checkbox" id="skip"> 转场帧跳过</label>
+  <select id="conf"><option>sure</option><option>unsure</option></select>
+  <button id="savef">保存此帧 (Enter)</button>
+  <span id="tmode" style="display:none" class="row">
+    <button data-l="keep">保留段起/止</button><button data-l="trim">可删段起/止</button>
+    <button data-l="unsure">不确定起/止</button></span>
+ </div>
+ <div style="color:#888">拖动红窗或 <kbd>↑</kbd><kbd>↓</kbd> 微调（Shift 大步）；<kbd>Enter</kbd> 保存帧；播放器正常播放上下文</div>
+</div>
+<script>
+'use strict'
+const H916=W=>W*9/16
+let MAN=null,IDX=-1,FRAMES=[],FI=0,Y=0,rows=[],tpending={},FPS=1
+const $=id=>document.getElementById(id)
+$('manifest').onchange=async e=>{MAN=JSON.parse(await e.target.files[0].text());
+ const el=$('srclist');el.innerHTML=''
+ MAN.sources.forEach((s,i)=>{const d=document.createElement('div');d.className='src'
+  d.textContent=`${i+1}. ${s.pm_video_id.slice(0,14)}… [${s.pilot_split}]${s.temporal_subset?' ⏱':''}`
+  d.onclick=()=>load(i);el.appendChild(d)})
+ $('prog').textContent=`${MAN.sources.length} 源`}
+function savedKey(){return 'prp2_'+($('annotator').value||'anon')+'_r'+$('round').value}
+function load(i){if(!MAN)return;IDX=i;const s=MAN.sources[i]
+ document.querySelectorAll('.src').forEach((d,j)=>d.classList.toggle('cur',j===i))
+ $('vid').src=`${$('mediadir').value}/${s.pm_video_id}.mp4`
+ const W=0;Y=0;FI=0;tpending={}
+ $('vid').onloadedmetadata=()=>{layout()}
+ FRAMES=[];for(let t=.5,k=0;t<s.source_duration_s&&k<12;t+=2,k++)FRAMES.push({t,idx:k})
+ buildTemporal(s);show()}
+function layout(){const v=$('vid'),r=v.getBoundingClientRect()
+ $('stage').style.width=r.width+'px';$('stage').style.height=r.height+'px'
+ draw()}
+function draw(){const v=$('vid');if(!v.videoWidth)return
+ const s=MAN.sources[IDX],W=v.videoWidth,Hh=v.videoHeight,h=H916(W)
+ const sx=$('stage').clientWidth/W
+ const w=$('win');w.style.width=$('stage').clientWidth+'px';w.style.height=h*sx+'px'
+ w.style.top=(Y*sx)+'px';$('yline').style.top=((Y+h)*sx)+'px'
+ $('frinfo').textContent=`帧 ${FI+1}/${FRAMES.length} t=${FRAMES[FI].t.toFixed(2)}s y=${Y} h=${h.toFixed(1)}`
+ $('meta').textContent=`${s.pm_video_id} [${s.pilot_split}] W=${W} H=${Hh} 窗=16:9 全宽${s.temporal_subset?' ⏱时间段':''}`}
+function show(){if(IDX<0)return;const t=FRAMES[FI].t,v=$('vid')
+ if(Math.abs(v.currentTime-t)>.05){v.currentTime=t;v.pause()}
+ const s=MAN.sources[IDX],key=s.pm_video_id+':'+FI
+ const prev=rows.find(r=>r.pm_video_id===s.pm_video_id&&r.frame_idx===FI&&!r.kind)
+ if(prev){Y=prev.window_y;$('skip').checked=prev.skip_transition;$('conf').value=prev.confidence}
+ else{$('skip').checked=false;$('conf').value='sure'}
+ draw()}
+$('prevf').onclick=()=>{if(FI>0){FI--;show()}}
+$('nextf').onclick=()=>{if(FI<FRAMES.length-1){FI++;show()}}
+$('vid').onclick=e=>{const r=$('stage').getBoundingClientRect(),v=$('vid')
+ const h=H916(v.videoWidth),sx=$('stage').clientWidth/v.videoWidth
+ Y=Math.max(0,Math.min(v.videoHeight-h,Math.round((e.clientY-r.top)/sx-h/2)));draw()}
+window.onkeydown=e=>{if(e.target.tagName==='INPUT'&&e.target.type==='text'&&e.target.id!=='q')return
+ const v=$('vid'),h=H916(v.videoWidth),step=e.shiftKey?Math.round(h*.1):1
+ if(e.key==='ArrowUp'){Y=Math.max(0,Y-step);draw();e.preventDefault()}
+ if(e.key==='ArrowDown'){const m=v.videoHeight-h;Y=Math.min(m,Y+step);draw();e.preventDefault()}
+ if(e.key==='Enter'){$('savef').click();e.preventDefault()}}
+$('savef').onclick=()=>{if(IDX<0)return;const s=MAN.sources[IDX],v=$('vid'),h=H916(v.videoWidth)
+ const row={schema:'portrait_reframe_pilot_v2',pm_video_id:s.pm_video_id,frame_idx:FI,
+  t_sec:+FRAMES[FI].t.toFixed(3),source_w:v.videoWidth,source_h:v.videoHeight,
+  window_w:v.videoWidth,window_h_cont:+h.toFixed(4),window_y:Y,
+  window_bottom_cont:+(Y+h).toFixed(4),annotator_id:$('annotator').value||'anon',
+  annotator_round:+$('round').value||1,skip_transition:$('skip').checked,confidence:$('conf').value}
+ rows=rows.filter(r=>!(r.pm_video_id===row.pm_video_id&&r.frame_idx===row.frame_idx&&r.kind===undefined))
+ rows.push(row);persist();FI<FRAMES.length-1?(FI++,show()):0;mark()}
+function buildTemporal(s){const tm=$('tmode')
+ if(!s.temporal_subset){tm.style.display='none';return}
+ tm.style.display='flex';tm.querySelectorAll('button').forEach(b=>{b.dataset.arm='';b.textContent=b.dataset.l+'段 起/止'})
+ tm.querySelectorAll('button').forEach(b=>b.onclick=()=>{const v=$('vid'),l=b.dataset.l
+  if(!tpending[l]){tpending[l]=v.currentTime;b.textContent=l+'段 止 t='+v.currentTime.toFixed(1)}
+  else{const a=tpending[l];delete tpending[l];b.textContent=l+'段 起/止'
+   const s0=Math.min(a,v.currentTime),s1=Math.max(a,v.currentTime)
+   rows.push({schema:'portrait_reframe_pilot_v2',pm_video_id:s.pm_video_id,kind:'temporal',
+    span_start_sec:+s0.toFixed(2),span_end_sec:+s1.toFixed(2),label:l,
+    annotator_id:$('annotator').value||'anon',note:null});persist();mark()}})}
+function mark(){const s=MAN.sources[IDX]
+ const done=rows.some(r=>r.pm_video_id===s.pm_video_id)
+ document.querySelectorAll('.src')[IDX].classList.toggle('done',done)
+ const n=new Set(rows.map(r=>r.pm_video_id)).size
+ $('prog').textContent=`${n}/${MAN.sources.length} 源有行`;$('export').click()}
+function persist(){try{localStorage.setItem(savedKey(),JSON.stringify(rows))}catch(e){}}
+$('export').onclick=()=>{rows.sort((a,b)=>a.pm_video_id<b.pm_video_id?-1:a.pm_video_id>b.pm_video_id?1:(a.frame_idx??-1)-(b.frame_idx??-1))
+ $('out').value=rows.map(r=>JSON.stringify(r)).join('\n')}
+$('download').onclick=()=>{const blob=new Blob([$('out').value],{type:'application/jsonl'})
+ const a=document.createElement('a');a.href=URL.createObjectURL(blob)
+ a.download=`portrait_reframe_pilot_v2_${$('annotator').value||'anon'}_r${$('round').value}.jsonl`;a.click()}
+try{const s=localStorage.getItem(savedKey());if(s)rows=JSON.parse(s)}catch(e){}
+window.onresize=layout
+</script></body></html>

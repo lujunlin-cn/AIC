@@ -287,3 +287,15 @@ The frozen InternVideo2 Stage1-1B K700 candidate received official platform scor
   - dev2 +.0093 [.0019,.0173]；x +.0174，y +.0012。
   - 关键帧层面：DENSE .704，选中 .712，候选 oracle .778。选择器只拿到 oracle 增益的约 11%，y 轴为负。
   - confirm2 +.0072 [−.0011,+.0161]，x +.0179，y −.0034，否决（7,078 次查询，4,528 s）；官方推理已中止，不出包。
+
+## 2026-09-29 V5 周期（母本 INTERP 48.67，正式最佳）
+
+- `V5_P0_XRERANK_OFFICIAL`：E4 式视觉复核点接回 INTERP 管线（只 x 行 x 分量，y 与非空间行逐字节不变）。
+  - dev2 +.0093 [.0036,.0161]（x +.0187）；confirm2 +.0094 [.0040,.0163]（x +.0188）；y 严格 0。
+  - E4 sanity 复现：dev2 .009302 vs .0093，confirm2 .007228 vs .0072。
+  - 晋级并打包 `QWEN32B_INTERP_XRERANK_V5_FINAL`（zip `027fd12a…`，predictions `4f7cfe52…`，174v/78,992f，四重身份守卫全过，vs INTERP 差异 21 视频/10,273 帧）。官方分待评。
+- `V5_H3_VISUAL`：冻结 DINOv2 ViT-B/14 + 33 常量网格候选评分头，G（26 几何）/V（7 基础+视觉）/VQ（26+视觉）匹配消融；rv 160/40/200 + live 1,416/148/172 单元全 axis0，DINOv2 特征 2,136 单元全缓存；Huber .25、AdamW 3e-4、≤2000 步、dev 关键帧 IoU 选优；预注册双门（gate1 数据集均衡 dev、gate2 rv_dev+confirm2 管线配对）。训练中（cuda:2 seed 1）。
+- `V5_P2_GROUND_PILOT`：Qwen 点名 1-4 主体短语 → GroundingDINO-tiny 逐关键帧落位 → qwen 顺序 + 覆盖率 ≥.6 选身份 → 自由轴中心替换。
+  - confirm2 24 视频分层：v0 无条件替换 −.0657 [−.1063,−.0317]（7 好/16 差）；v1b 限幅 ≤.75 窗宽 −.0385 [−.0621,−.0200]（5/18）；四分层全负。
+  - 否决：单帧 top-1 框中心噪声 > DENSE 蒸馏点；"再看一眼"在候选空间有效（P0 +.0093）、开放词表框空间无效。
+- `V5_EXT_PM400_AVEPM`：PM-400 直链 12×3 全 502（协议留档）；社区 GDrive 缓存 68.07 GB 下载中（14:51 时 22.5%，ETA ~17:50）；`portrait_reframe_pilot_v1` 补标任务（320 源/86 类，215/51/54，AVE-PM 标签仅上下文不冒充 GT）。

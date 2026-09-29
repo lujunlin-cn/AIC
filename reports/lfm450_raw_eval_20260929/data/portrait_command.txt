@@ -1,0 +1,1 @@
+/data/aic/tools/lfm_venv/bin/python scripts/lfm450_portrait_probe.py --cards 5 --output-dir /data/aic/experiments_910a/LFM450_EVAL_V1/portrait_probe

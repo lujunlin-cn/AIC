@@ -1,0 +1,8 @@
+{
+ "shard": 1,
+ "n_queries": 690,
+ "s_queries": 819.5,
+ "avg_s_per_query": 1.188,
+ "peak_mem_gib": 0.998,
+ "t_done": "2026-09-29 16:23:36"
+}

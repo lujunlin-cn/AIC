@@ -1,0 +1,12 @@
+{
+ "unique_params": 448718848,
+ "named_with_duplicates": 515827712,
+ "by_module": {
+  "model.vision_tower": 85843200,
+  "model.multi_modal_projector": 8391680,
+  "model.language_model": 354483968
+ },
+ "tie_word_embeddings": true,
+ "text_tie_cfg": true,
+ "vision_model_type": "siglip2_vision_model"
+}

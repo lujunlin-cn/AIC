@@ -1,0 +1,159 @@
+{
+ "summary": {
+  "dtype": "float16",
+  "attn": "eager",
+  "load_s": 11.8,
+  "n_params_M": 448.72,
+  "n_queries": 12,
+  "avg_s_per_query": 23.702,
+  "peak_mem_gib": 1.0,
+  "parse_ok": 4,
+  "n_rows": 12
+ },
+ "rows": [
+  {
+   "vid": "031",
+   "ratio": "1-3",
+   "kf": 0,
+   "prompt": "point",
+   "s": 128.95,
+   "status": "ok",
+   "reply": "(x, y) = (320, 240)",
+   "parsed": {
+    "kind": "point",
+    "vals": [
+     320.0,
+     240.0
+    ]
+   }
+  },
+  {
+   "vid": "031",
+   "ratio": "1-3",
+   "kf": 0,
+   "prompt": "box",
+   "s": 99.4,
+   "status": "no_tuple",
+   "reply": "(x1, y1, x2, y2)",
+   "parsed": null
+  },
+  {
+   "vid": "031",
+   "ratio": "3-1",
+   "kf": 0,
+   "prompt": "point",
+   "s": 27.27,
+   "status": "ok",
+   "reply": "(x, y) = (640, 360)",
+   "parsed": {
+    "kind": "point",
+    "vals": [
+     640.0,
+     360.0
+    ]
+   }
+  },
+  {
+   "vid": "031",
+   "ratio": "3-1",
+   "kf": 0,
+   "prompt": "box",
+   "s": 24.76,
+   "status": "no_tuple",
+   "reply": "(x1, y1, x2, y2)",
+   "parsed": null
+  },
+  {
+   "vid": "032",
+   "ratio": "1-3",
+   "kf": 0,
+   "prompt": "point",
+   "s": 0.26,
+   "status": "no_tuple",
+   "reply": "(x, y)",
+   "parsed": null
+  },
+  {
+   "vid": "032",
+   "ratio": "1-3",
+   "kf": 0,
+   "prompt": "box",
+   "s": 0.61,
+   "status": "no_tuple",
+   "reply": "(x1, y1, x2, y2)",
+   "parsed": null
+  },
+  {
+   "vid": "032",
+   "ratio": "3-1",
+   "kf": 0,
+   "prompt": "point",
+   "s": 0.26,
+   "status": "no_tuple",
+   "reply": "(x, y)",
+   "parsed": null
+  },
+  {
+   "vid": "032",
+   "ratio": "3-1",
+   "kf": 0,
+   "prompt": "box",
+   "s": 0.61,
+   "status": "no_tuple",
+   "reply": "(x1, y1, x2, y2)",
+   "parsed": null
+  },
+  {
+   "vid": "033",
+   "ratio": "1-3",
+   "kf": 0,
+   "prompt": "point",
+   "s": 0.55,
+   "status": "ok",
+   "reply": "(x, y) = (320, 240)",
+   "parsed": {
+    "kind": "point",
+    "vals": [
+     320.0,
+     240.0
+    ]
+   }
+  },
+  {
+   "vid": "033",
+   "ratio": "1-3",
+   "kf": 0,
+   "prompt": "box",
+   "s": 0.61,
+   "status": "no_tuple",
+   "reply": "(x1, y1, x2, y2)",
+   "parsed": null
+  },
+  {
+   "vid": "033",
+   "ratio": "3-1",
+   "kf": 0,
+   "prompt": "point",
+   "s": 0.57,
+   "status": "ok",
+   "reply": "(x, y) = (640, 360)",
+   "parsed": {
+    "kind": "point",
+    "vals": [
+     640.0,
+     360.0
+    ]
+   }
+  },
+  {
+   "vid": "033",
+   "ratio": "3-1",
+   "kf": 0,
+   "prompt": "box",
+   "s": 0.58,
+   "status": "no_tuple",
+   "reply": "(x1, y1, x2, y2)",
+   "parsed": null
+  }
+ ]
+}

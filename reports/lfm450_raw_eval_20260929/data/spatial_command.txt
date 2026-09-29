@@ -1,0 +1,1 @@
+/data/aic/tools/lfm_venv/bin/python scripts/lfm450_eval_spatial.py --manifest /data/aic/experiments_910a/LFM450_EVAL_V1/dev_manifest_v1.json --nshards 4 --output-dir /data/aic/experiments_910a/LFM450_EVAL_V1/spatial_v2 --shard {0..3} --cards {2..5}

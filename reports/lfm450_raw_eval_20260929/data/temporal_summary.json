@@ -1,0 +1,76 @@
+{
+ "n_videos": 16,
+ "n_seg": 16,
+ "n_queries": 320,
+ "avg_s_per_query": 0.199,
+ "peak_mem_gib": 1.141,
+ "load_s": 7.8,
+ "image_tokens": [
+  64,
+  64
+ ],
+ "do_image_splitting": false,
+ "prompts": {
+  "TOP3": "The 16 images are frames from 16 consecutive segments of one video, in time order (Segment 1 to Segment 16). Which 3 segments are the most important highlights of this video? Answer with only the 3 segment numbers, most important first, separated by commas.",
+  "RATE": "The 16 images are frames from 16 consecutive segments of one video, in time order (Segment 1 to Segment 16). Rate how much each segment is a highlight of this video from 0 (boring) to 9 (key highlight). Answer with exactly 16 integers separated by commas, one per segment in order.",
+  "SINGLE": "This is one frame from a video. Rate how likely this moment is a highlight of the video, from 0 (boring) to 9 (key highlight). Answer with one integer only.",
+  "COUNT": "How many images are shown above? Answer with one integer only.",
+  "MATCH": "The first 16 images are Segment 1 to Segment 16 of a video. The last image is an exact copy of one of those segments. Which segment number is it? Answer with one integer only."
+ },
+ "parse": {
+  "top3_nonempty": 16,
+  "rate_ok": 13,
+  "single_all16": 16
+ },
+ "probes": {
+  "count_ok": 0,
+  "match_ok": 0,
+  "match_chance": 0.0625
+ },
+ "rate_constant_videos": 0,
+ "single_constant_videos": 11,
+ "top3_overlap_mean": 0.3125,
+ "top3_overlap_chance": 0.5625,
+ "mean": {
+  "MULTI_TOP3": {
+   "n": 16,
+   "spearman": -0.14210934265201336,
+   "kendall_tau_b": -0.11620871002517102,
+   "ndcg": 0.846816223391906,
+   "ndcg_at_15pct": 0.5086943936772519,
+   "top15_mean_relevance": 0.2007704153739456
+  },
+  "MULTI_RATE": {
+   "n": 13,
+   "spearman": 0.013412262362895543,
+   "kendall_tau_b": 0.0014642057454363156,
+   "ndcg": 0.8773053459428388,
+   "ndcg_at_15pct": 0.6345361413348615,
+   "top15_mean_relevance": 0.24501670153894306
+  },
+  "SINGLE": {
+   "n": 16,
+   "spearman": 0.23281729546958346,
+   "kendall_tau_b": 0.19594495211093013,
+   "ndcg": 0.878312850998723,
+   "ndcg_at_15pct": 0.6412947969562466,
+   "top15_mean_relevance": 0.22291988927838025
+  },
+  "UNIFORM": {
+   "n": 16,
+   "spearman": null,
+   "kendall_tau_b": null,
+   "ndcg": 0.8743678782069995,
+   "ndcg_at_15pct": 0.6291993470209026,
+   "top15_mean_relevance": 0.21708340200427897
+  },
+  "RANDOM": {
+   "n": 16,
+   "spearman": -0.00879044117647059,
+   "kendall_tau_b": -0.007322916666666668,
+   "ndcg": 0.8725521508281041,
+   "ndcg_at_15pct": 0.6230080093488701,
+   "top15_mean_relevance": 0.24349435744363748
+  }
+ }
+}

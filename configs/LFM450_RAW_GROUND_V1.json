@@ -1,0 +1,43 @@
+{
+ "submission_id": "LFM450_RAW_GROUND_V1",
+ "status": "frozen_exploratory",
+ "release_status": "PACKAGED_NOT_UPLOADED_STUDENT_ZERO_SHOT_BASELINE",
+ "frozen_at": "2026-09-29",
+ "policy": "QWEN_POINT",
+ "parent_baseline": "B0_ALL_SELECT_YUNET_V1 (official 34.42)",
+ "primary_changed_factor": "per-frame max-window position observation: LFM2.5-VL-450M zero-shot GROUND subject box centre (official 1 s keyframes + shot starts, the MAX_WINDOW_QWEN_POINT_V1 keyframe grid; images only, no teacher reply read), held within shot; same B0 EMA .25 path, same B0 shot resets, same all-select mask, same max width",
+ "fixed_conditions": {
+  "temporal": "all decoded frames (LFM temporal ranking not used: TVSum dev probe at or below chance)",
+  "width": "largest legal",
+  "path": "B0 EMA alpha .25 on free axis, B0 thumbnail-diff resets, hold within shot",
+  "fallback": "B0 observation on parse failure / before first keyframe"
+ },
+ "alpha": 0.25,
+ "centre_mode": "hold",
+ "prompt_script": "/root/AIC/scripts/lfm450_official_points.py",
+ "prompt": "Detect all instances of: main subject. Response must be a JSON array: [{\"label\": ..., \"bbox\": [x1, y1, x2, y2]}, ...]. Coordinates are normalized to [0,1].",
+ "geometry_rule": "largest valid box (in [0,1] after +-0.02 tolerance, >=0.005 side) -> box centre -> free-axis centre",
+ "model_revision": "LiquidAI/LFM2.5-VL-450M@fc6221ca597f3315e4f82fc2df606783267b34ba (model.safetensors sha256 2f6deb5dd43707de5cfe3c59470d3bccf4c3112a810a74570499f4728d412eea; ModelScope mirror)",
+ "runtime": "transformers 5.1.0, torch 2.10.0+cpu, torch_npu 2.10.0, CANN 9.0.0, Ascend 910A NPU fp16, attn eager, torch.npu jit_compile=False, greedy, max_new_tokens 64, processor defaults (max_tiles 10, min/max image tokens 64/256)",
+ "keyframe_step_s": 1.0,
+ "dev_evidence": "RetargetVid dev 50 sources (031-100 stratified, configs/LFM450_SPATIAL_DEV_MANIFEST_V1.json): LFM_GROUND - B0 -0.0306 CI[-0.0680,+0.0093]; - CENTER -0.0109 CI[-0.0501,+0.0308]; x -0.0147, y -0.0465 CI[-0.0836,-0.0102]. Packaged as a reproducible zero-shot student baseline, not as an expected improvement.",
+ "index_sha256": "9a59316e97f5a80fc2c22f43f38ebd72130d20109d17954efa3dde9f86d404d5",
+ "b0_predictions": "/data/aic/official_test_20260926/submissions/B0_ALL_SELECT_YUNET_V1_FINAL/predictions.jsonl",
+ "obs_cache": "/data/aic/experiments/OBS_CACHE_OFFICIAL_V1/cache",
+ "qwen_points": "/data/aic/experiments_910a/LFM450_EVAL_V1/official_points/points",
+ "components": [
+  {
+   "name": "LFM2.5-VL-450M (FP16, all parameters incl. SigLIP2 NaFlex encoder + projector + LFM2 LM)",
+   "parameters": 448718848,
+   "bytes": 897484568
+  },
+  {
+   "name": "YuNet 2023mar",
+   "parameters": 53104,
+   "bytes": 232589
+  }
+ ],
+ "declared_model_size_mb": null,
+ "declared_size_note": "Preliminary stage scores raw F only (rules 01 s3.4); JSONL omits model_size_mb as all prior preliminary packages. Deployed total 448,771,952 params (<= 0.5B tier) / 897,717,157 B. The FasterRCNN detections in the obs cache are NOT used by this policy.",
+ "official_platform_score": null
+}

@@ -1,0 +1,281 @@
+{
+ "rule": "multi_person if >=30% frames have >=2 person dets (score>=.5); post-hoc descriptive split",
+ "tags": {
+  "031": {
+   "multi_person_frame_rate": 0.24468085106382978,
+   "multi_person": false
+  },
+  "032": {
+   "multi_person_frame_rate": 0.2916666666666667,
+   "multi_person": false
+  },
+  "033": {
+   "multi_person_frame_rate": 0.027122641509433963,
+   "multi_person": false
+  },
+  "034": {
+   "multi_person_frame_rate": 0.2706611570247934,
+   "multi_person": false
+  },
+  "037": {
+   "multi_person_frame_rate": 0.14516129032258066,
+   "multi_person": false
+  },
+  "038": {
+   "multi_person_frame_rate": 0.847922192749779,
+   "multi_person": true
+  },
+  "039": {
+   "multi_person_frame_rate": 0.3431603773584906,
+   "multi_person": true
+  },
+  "041": {
+   "multi_person_frame_rate": 0.0,
+   "multi_person": false
+  },
+  "042": {
+   "multi_person_frame_rate": 0.0,
+   "multi_person": false
+  },
+  "044": {
+   "multi_person_frame_rate": 0.6320754716981132,
+   "multi_person": true
+  },
+  "045": {
+   "multi_person_frame_rate": 0.15789473684210525,
+   "multi_person": false
+  },
+  "046": {
+   "multi_person_frame_rate": 0.0966952264381885,
+   "multi_person": false
+  },
+  "047": {
+   "multi_person_frame_rate": 0.45088408644400785,
+   "multi_person": true
+  },
+  "048": {
+   "multi_person_frame_rate": 1.0,
+   "multi_person": true
+  },
+  "050": {
+   "multi_person_frame_rate": 0.0,
+   "multi_person": false
+  },
+  "054": {
+   "multi_person_frame_rate": 0.22631578947368422,
+   "multi_person": false
+  },
+  "055": {
+   "multi_person_frame_rate": 0.0,
+   "multi_person": false
+  },
+  "058": {
+   "multi_person_frame_rate": 1.0,
+   "multi_person": true
+  },
+  "059": {
+   "multi_person_frame_rate": 0.898981324278438,
+   "multi_person": true
+  },
+  "060": {
+   "multi_person_frame_rate": 0.3333333333333333,
+   "multi_person": true
+  },
+  "061": {
+   "multi_person_frame_rate": 0.005016722408026756,
+   "multi_person": false
+  },
+  "064": {
+   "multi_person_frame_rate": 0.0,
+   "multi_person": false
+  },
+  "065": {
+   "multi_person_frame_rate": 0.04028436018957346,
+   "multi_person": false
+  },
+  "066": {
+   "multi_person_frame_rate": 0.0,
+   "multi_person": false
+  },
+  "067": {
+   "multi_person_frame_rate": 1.0,
+   "multi_person": true
+  },
+  "069": {
+   "multi_person_frame_rate": 0.0,
+   "multi_person": false
+  },
+  "071": {
+   "multi_person_frame_rate": 0.21143847487001732,
+   "multi_person": false
+  },
+  "072": {
+   "multi_person_frame_rate": 1.0,
+   "multi_person": true
+  },
+  "073": {
+   "multi_person_frame_rate": 1.0,
+   "multi_person": true
+  },
+  "074": {
+   "multi_person_frame_rate": 1.0,
+   "multi_person": true
+  },
+  "076": {
+   "multi_person_frame_rate": 0.8422897196261683,
+   "multi_person": true
+  },
+  "077": {
+   "multi_person_frame_rate": 0.17006802721088435,
+   "multi_person": false
+  },
+  "078": {
+   "multi_person_frame_rate": 0.0023584905660377358,
+   "multi_person": false
+  },
+  "079": {
+   "multi_person_frame_rate": 0.0,
+   "multi_person": false
+  },
+  "080": {
+   "multi_person_frame_rate": 0.9946236559139785,
+   "multi_person": true
+  },
+  "082": {
+   "multi_person_frame_rate": 0.6927899686520376,
+   "multi_person": true
+  },
+  "083": {
+   "multi_person_frame_rate": 0.9807280513918629,
+   "multi_person": true
+  },
+  "084": {
+   "multi_person_frame_rate": 0.11554621848739496,
+   "multi_person": false
+  },
+  "086": {
+   "multi_person_frame_rate": 1.0,
+   "multi_person": true
+  },
+  "087": {
+   "multi_person_frame_rate": 1.0,
+   "multi_person": true
+  },
+  "088": {
+   "multi_person_frame_rate": 0.2781954887218045,
+   "multi_person": false
+  },
+  "091": {
+   "multi_person_frame_rate": 0.7091412742382271,
+   "multi_person": true
+  },
+  "092": {
+   "multi_person_frame_rate": 0.17511520737327188,
+   "multi_person": false
+  },
+  "093": {
+   "multi_person_frame_rate": 0.0,
+   "multi_person": false
+  },
+  "095": {
+   "multi_person_frame_rate": 0.5931428571428572,
+   "multi_person": true
+  },
+  "096": {
+   "multi_person_frame_rate": 0.32992036405005687,
+   "multi_person": true
+  },
+  "097": {
+   "multi_person_frame_rate": 0.5696400625978091,
+   "multi_person": true
+  },
+  "098": {
+   "multi_person_frame_rate": 0.005988023952095809,
+   "multi_person": false
+  },
+  "099": {
+   "multi_person_frame_rate": 0.935064935064935,
+   "multi_person": true
+  },
+  "100": {
+   "multi_person_frame_rate": 0.89937106918239,
+   "multi_person": true
+  }
+ },
+ "splits": {
+  "multi_person": {
+   "n_src": 24,
+   "mean_iou": {
+    "CENTER": 0.6286854637890791,
+    "B0": 0.6314593797087887,
+    "LFM_GROUND": 0.5962635739899037,
+    "LFM_GROUND+INTERP": 0.6174974014483964,
+    "QWEN_T": 0.6645353533167855
+   },
+   "LFM_GROUND - B0": {
+    "delta": -0.03519580571888504,
+    "ci95": [
+     -0.08813466598982406,
+     0.0250196317322728
+    ],
+    "wins": 8,
+    "losses": 16
+   },
+   "LFM_GROUND - CENTER": {
+    "delta": -0.032421889799175325,
+    "ci95": [
+     -0.09529273344119847,
+     0.03547594163507423
+    ],
+    "wins": 8,
+    "losses": 16
+   },
+   "LFM_GROUND - QWEN_T": {
+    "delta": -0.06827177932688182,
+    "ci95": [
+     -0.09644027056359863,
+     -0.04206047001545855
+    ],
+    "wins": 4,
+    "losses": 20
+   }
+  },
+  "single_or_no_person": {
+   "n_src": 26,
+   "mean_iou": {
+    "CENTER": 0.613642427418541,
+    "B0": 0.6490552273168841,
+    "LFM_GROUND": 0.6226423443625927,
+    "LFM_GROUND+INTERP": 0.6390304445746892,
+    "QWEN_T": 0.674940002495158
+   },
+   "LFM_GROUND - B0": {
+    "delta": -0.026412882954291443,
+    "ci95": [
+     -0.07741932145807257,
+     0.02628762974525897
+    ],
+    "wins": 10,
+    "losses": 16
+   },
+   "LFM_GROUND - CENTER": {
+    "delta": 0.008999916944051611,
+    "ci95": [
+     -0.03819413413184885,
+     0.05739219997413236
+    ],
+    "wins": 13,
+    "losses": 13
+   },
+   "LFM_GROUND - QWEN_T": {
+    "delta": -0.052297658132565344,
+    "ci95": [
+     -0.08774019099089654,
+     -0.023717222040833423
+    ],
+    "wins": 9,
+    "losses": 17
+   }
+  }
+ }
+}

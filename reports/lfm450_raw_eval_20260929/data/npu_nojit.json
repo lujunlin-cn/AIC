@@ -1,0 +1,70 @@
+{
+ "summary": {
+  "device": "npu",
+  "dtype": "float16",
+  "jit": "off",
+  "threads": 16,
+  "load_s": 7.3,
+  "peak_gib": 0.9974822998046875,
+  "first_pass_s": [
+   1.97,
+   1.24,
+   1.26
+  ],
+  "last_pass_s": [
+   1.28,
+   1.26,
+   1.24
+  ]
+ },
+ "rows": [
+  {
+   "rep": 0,
+   "frame": "031/0.png",
+   "s": 1.97,
+   "new_tokens": 34,
+   "prompt_tokens": 283,
+   "reply": "[{\"label\": \"main subject\", \"bbox\": [0.3, 0.7, 0.45, 0.85]}]"
+  },
+  {
+   "rep": 0,
+   "frame": "031/120.png",
+   "s": 1.24,
+   "new_tokens": 34,
+   "prompt_tokens": 283,
+   "reply": "[{\"label\": \"main subject\", \"bbox\": [0.0, 0.5, 0.99, 0.75]}]"
+  },
+  {
+   "rep": 0,
+   "frame": "034/0.png",
+   "s": 1.26,
+   "new_tokens": 34,
+   "prompt_tokens": 283,
+   "reply": "[{\"label\": \"main subject\", \"bbox\": [0.0, 0.2, 0.6, 0.99]}]"
+  },
+  {
+   "rep": 1,
+   "frame": "031/0.png",
+   "s": 1.28,
+   "new_tokens": 34,
+   "prompt_tokens": 283,
+   "reply": "[{\"label\": \"main subject\", \"bbox\": [0.3, 0.7, 0.45, 0.85]}]"
+  },
+  {
+   "rep": 1,
+   "frame": "031/120.png",
+   "s": 1.26,
+   "new_tokens": 34,
+   "prompt_tokens": 283,
+   "reply": "[{\"label\": \"main subject\", \"bbox\": [0.0, 0.5, 0.99, 0.75]}]"
+  },
+  {
+   "rep": 1,
+   "frame": "034/0.png",
+   "s": 1.24,
+   "new_tokens": 34,
+   "prompt_tokens": 283,
+   "reply": "[{\"label\": \"main subject\", \"bbox\": [0.0, 0.2, 0.6, 0.99]}]"
+  }
+ ]
+}

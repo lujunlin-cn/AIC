@@ -1,0 +1,1 @@
+/data/aic/tools/lfm_venv/bin/python -m scripts.max_window_release --frozen configs/LFM450_RAW_GROUND_V1.json --index /data/aic/official_test_20260926/intake/index.enriched.jsonl --output /data/aic/official_test_20260926/submissions/LFM450_RAW_GROUND_V1

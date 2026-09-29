@@ -1,0 +1,1409 @@
+{
+ "status": "QUANTITATIVE_EFFECT_UNVERIFIED_NO_GT",
+ "sources": [
+  {
+   "uid": "yth:gymnastics:KldEfRhv7H0",
+   "split": "val (selection-exposed)",
+   "W": 406,
+   "H": 720,
+   "overlay": "/data/aic/experiments_910a/LFM450_EVAL_V1/portrait_probe/yth_gymnastics_KldEfRhv7H0.png",
+   "frames": [
+    {
+     "frame": 0,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.0, 0.0, 1.0, 0.99]}]",
+     "box": [
+      0.0,
+      0.0,
+      1.0,
+      0.99
+     ],
+     "crop_xywh": [
+      0.0,
+      242.21249999999998,
+      406,
+      228.375
+     ],
+     "legal": true,
+     "s": 1.738
+    },
+    {
+     "frame": 92,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.0, 0.0, 1.0, 0.6]}]",
+     "box": [
+      0.0,
+      0.0,
+      1.0,
+      0.6
+     ],
+     "crop_xywh": [
+      0.0,
+      101.8125,
+      406,
+      228.375
+     ],
+     "legal": true,
+     "s": 1.177
+    },
+    {
+     "frame": 184,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.0, 0.0, 1.0, 0.5]}]",
+     "box": [
+      0.0,
+      0.0,
+      1.0,
+      0.5
+     ],
+     "crop_xywh": [
+      0.0,
+      65.8125,
+      406,
+      228.375
+     ],
+     "legal": true,
+     "s": 1.188
+    },
+    {
+     "frame": 276,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.0, 0.0, 1.0, 0.5]}]",
+     "box": [
+      0.0,
+      0.0,
+      1.0,
+      0.5
+     ],
+     "crop_xywh": [
+      0.0,
+      65.8125,
+      406,
+      228.375
+     ],
+     "legal": true,
+     "s": 1.169
+    },
+    {
+     "frame": 369,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.0, 0.0, 1.0, 0.5]}]",
+     "box": [
+      0.0,
+      0.0,
+      1.0,
+      0.5
+     ],
+     "crop_xywh": [
+      0.0,
+      65.8125,
+      406,
+      228.375
+     ],
+     "legal": true,
+     "s": 1.169
+    },
+    {
+     "frame": 461,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.0, 0.0, 1.0, 0.5]}]",
+     "box": [
+      0.0,
+      0.0,
+      1.0,
+      0.5
+     ],
+     "crop_xywh": [
+      0.0,
+      65.8125,
+      406,
+      228.375
+     ],
+     "legal": true,
+     "s": 1.204
+    },
+    {
+     "frame": 553,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.4, 0.36, 0.55, 0.57]}]",
+     "box": [
+      0.4,
+      0.36,
+      0.55,
+      0.57
+     ],
+     "crop_xywh": [
+      0.0,
+      220.61249999999995,
+      406,
+      228.375
+     ],
+     "legal": true,
+     "s": 1.195
+    },
+    {
+     "frame": 645,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.36, 0.26, 0.58, 0.65]}]",
+     "box": [
+      0.36,
+      0.26,
+      0.58,
+      0.65
+     ],
+     "crop_xywh": [
+      0.0,
+      213.41250000000002,
+      406,
+      228.375
+     ],
+     "legal": true,
+     "s": 1.22
+    }
+   ],
+   "parse_ok": 8,
+   "all_legal": true,
+   "crop_y_std_frac": 0.10420645073602688
+  },
+  {
+   "uid": "yth:gymnastics:zr5LSPMBpiI",
+   "split": "val (selection-exposed)",
+   "W": 360,
+   "H": 640,
+   "overlay": "/data/aic/experiments_910a/LFM450_EVAL_V1/portrait_probe/yth_gymnastics_zr5LSPMBpiI.png",
+   "frames": [
+    {
+     "frame": 0,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.3, 0.2, 0.8, 0.8]}]",
+     "box": [
+      0.3,
+      0.2,
+      0.8,
+      0.8
+     ],
+     "crop_xywh": [
+      0.0,
+      218.75,
+      360,
+      202.5
+     ],
+     "legal": true,
+     "s": 1.209
+    },
+    {
+     "frame": 290,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.44, 0.6, 0.99, 0.99]}]",
+     "box": [
+      0.44,
+      0.6,
+      0.99,
+      0.99
+     ],
+     "crop_xywh": [
+      0.0,
+      407.54999999999995,
+      360,
+      202.5
+     ],
+     "legal": true,
+     "s": 1.164
+    },
+    {
+     "frame": 580,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.37, 0.53, 0.99, 0.99]}]",
+     "box": [
+      0.37,
+      0.53,
+      0.99,
+      0.99
+     ],
+     "crop_xywh": [
+      0.0,
+      385.15,
+      360,
+      202.5
+     ],
+     "legal": true,
+     "s": 1.151
+    },
+    {
+     "frame": 870,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.2, 0.2, 0.8, 0.7]}]",
+     "box": [
+      0.2,
+      0.2,
+      0.8,
+      0.7
+     ],
+     "crop_xywh": [
+      0.0,
+      186.75,
+      360,
+      202.5
+     ],
+     "legal": true,
+     "s": 1.163
+    },
+    {
+     "frame": 1160,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.13, 0.35, 0.72, 0.89]}]",
+     "box": [
+      0.13,
+      0.35,
+      0.72,
+      0.89
+     ],
+     "crop_xywh": [
+      0.0,
+      295.55,
+      360,
+      202.5
+     ],
+     "legal": true,
+     "s": 1.173
+    },
+    {
+     "frame": 1450,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.0, 0.0, 0.5, 0.99]}]",
+     "box": [
+      0.0,
+      0.0,
+      0.5,
+      0.99
+     ],
+     "crop_xywh": [
+      0.0,
+      215.55,
+      360,
+      202.5
+     ],
+     "legal": true,
+     "s": 1.171
+    },
+    {
+     "frame": 1740,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.0, 0.0, 0.5, 0.99]}]",
+     "box": [
+      0.0,
+      0.0,
+      0.5,
+      0.99
+     ],
+     "crop_xywh": [
+      0.0,
+      215.55,
+      360,
+      202.5
+     ],
+     "legal": true,
+     "s": 1.19
+    },
+    {
+     "frame": 2030,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.2, 0.2, 0.87, 0.75]}]",
+     "box": [
+      0.2,
+      0.2,
+      0.87,
+      0.75
+     ],
+     "crop_xywh": [
+      0.0,
+      202.75,
+      360,
+      202.5
+     ],
+     "legal": true,
+     "s": 1.161
+    }
+   ],
+   "parse_ok": 8,
+   "all_legal": true,
+   "crop_y_std_frac": 0.12683034928596543
+  },
+  {
+   "uid": "yth:parkour:oT6g0I2Ok9o",
+   "split": "val (selection-exposed)",
+   "W": 360,
+   "H": 640,
+   "overlay": "/data/aic/experiments_910a/LFM450_EVAL_V1/portrait_probe/yth_parkour_oT6g0I2Ok9o.png",
+   "frames": [
+    {
+     "frame": 0,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.44, 0.0, 1.0, 0.99]}]",
+     "box": [
+      0.44,
+      0.0,
+      1.0,
+      0.99
+     ],
+     "crop_xywh": [
+      0.0,
+      215.55,
+      360,
+      202.5
+     ],
+     "legal": true,
+     "s": 1.182
+    },
+    {
+     "frame": 90,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.12, 0.06, 0.45, 0.82]}]",
+     "box": [
+      0.12,
+      0.06,
+      0.45,
+      0.82
+     ],
+     "crop_xywh": [
+      0.0,
+      180.34999999999997,
+      360,
+      202.5
+     ],
+     "legal": true,
+     "s": 1.158
+    },
+    {
+     "frame": 179,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.4, 0.0, 1.0, 0.99]}]",
+     "box": [
+      0.4,
+      0.0,
+      1.0,
+      0.99
+     ],
+     "crop_xywh": [
+      0.0,
+      215.55,
+      360,
+      202.5
+     ],
+     "legal": true,
+     "s": 1.154
+    },
+    {
+     "frame": 269,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.3, 0.0, 1.0, 0.99]}]",
+     "box": [
+      0.3,
+      0.0,
+      1.0,
+      0.99
+     ],
+     "crop_xywh": [
+      0.0,
+      215.55,
+      360,
+      202.5
+     ],
+     "legal": true,
+     "s": 1.166
+    },
+    {
+     "frame": 359,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.0, 0.0, 1.0, 0.5]}]",
+     "box": [
+      0.0,
+      0.0,
+      1.0,
+      0.5
+     ],
+     "crop_xywh": [
+      0.0,
+      58.75,
+      360,
+      202.5
+     ],
+     "legal": true,
+     "s": 1.194
+    },
+    {
+     "frame": 449,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.31, 0.38, 0.55, 0.53]}]",
+     "box": [
+      0.31,
+      0.38,
+      0.55,
+      0.53
+     ],
+     "crop_xywh": [
+      0.0,
+      189.95,
+      360,
+      202.5
+     ],
+     "legal": true,
+     "s": 1.187
+    },
+    {
+     "frame": 538,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.47, 0.16, 0.75, 0.41]}]",
+     "box": [
+      0.47,
+      0.16,
+      0.75,
+      0.41
+     ],
+     "crop_xywh": [
+      0.0,
+      81.14999999999998,
+      360,
+      202.5
+     ],
+     "legal": true,
+     "s": 1.206
+    },
+    {
+     "frame": 628,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.43, 0.04, 0.69, 0.6]}]",
+     "box": [
+      0.43,
+      0.04,
+      0.69,
+      0.6
+     ],
+     "crop_xywh": [
+      0.0,
+      103.55000000000001,
+      360,
+      202.5
+     ],
+     "legal": true,
+     "s": 1.214
+    }
+   ],
+   "parse_ok": 8,
+   "all_legal": true,
+   "crop_y_std_frac": 0.09596345332990056
+  },
+  {
+   "uid": "yth:skating:lBVAo0MpsY0",
+   "split": "train",
+   "W": 360,
+   "H": 640,
+   "overlay": "/data/aic/experiments_910a/LFM450_EVAL_V1/portrait_probe/yth_skating_lBVAo0MpsY0.png",
+   "frames": [
+    {
+     "frame": 0,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.47, 0.19, 0.63, 0.6]}]",
+     "box": [
+      0.47,
+      0.19,
+      0.63,
+      0.6
+     ],
+     "crop_xywh": [
+      0.0,
+      151.55,
+      360,
+      202.5
+     ],
+     "legal": true,
+     "s": 1.244
+    },
+    {
+     "frame": 302,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.45, 0.25, 0.79, 0.82]}]",
+     "box": [
+      0.45,
+      0.25,
+      0.79,
+      0.82
+     ],
+     "crop_xywh": [
+      0.0,
+      241.14999999999998,
+      360,
+      202.5
+     ],
+     "legal": true,
+     "s": 1.214
+    },
+    {
+     "frame": 605,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.5, 0.2, 0.8, 0.8]}]",
+     "box": [
+      0.5,
+      0.2,
+      0.8,
+      0.8
+     ],
+     "crop_xywh": [
+      0.0,
+      218.75,
+      360,
+      202.5
+     ],
+     "legal": true,
+     "s": 1.157
+    },
+    {
+     "frame": 907,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.6, 0.2, 0.99, 0.75]}]",
+     "box": [
+      0.6,
+      0.2,
+      0.99,
+      0.75
+     ],
+     "crop_xywh": [
+      0.0,
+      202.75,
+      360,
+      202.5
+     ],
+     "legal": true,
+     "s": 1.246
+    },
+    {
+     "frame": 1210,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.43, 0.33, 0.64, 0.69]}]",
+     "box": [
+      0.43,
+      0.33,
+      0.64,
+      0.69
+     ],
+     "crop_xywh": [
+      0.0,
+      225.14999999999998,
+      360,
+      202.5
+     ],
+     "legal": true,
+     "s": 1.256
+    },
+    {
+     "frame": 1512,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.14, 0.22, 0.62, 0.94]}]",
+     "box": [
+      0.14,
+      0.22,
+      0.62,
+      0.94
+     ],
+     "crop_xywh": [
+      0.0,
+      269.95,
+      360,
+      202.5
+     ],
+     "legal": true,
+     "s": 1.22
+    },
+    {
+     "frame": 1815,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.37, 0.29, 0.64, 0.72]}]",
+     "box": [
+      0.37,
+      0.29,
+      0.64,
+      0.72
+     ],
+     "crop_xywh": [
+      0.0,
+      221.95,
+      360,
+      202.5
+     ],
+     "legal": true,
+     "s": 1.229
+    },
+    {
+     "frame": 2117,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.3, 0.04, 0.99, 0.99]}]",
+     "box": [
+      0.3,
+      0.04,
+      0.99,
+      0.99
+     ],
+     "crop_xywh": [
+      0.0,
+      228.35000000000002,
+      360,
+      202.5
+     ],
+     "legal": true,
+     "s": 1.239
+    }
+   ],
+   "parse_ok": 8,
+   "all_legal": true,
+   "crop_y_std_frac": 0.049493528617385915
+  },
+  {
+   "uid": "yth:skiing:YRO_RQ3aBgg",
+   "split": "train",
+   "W": 480,
+   "H": 720,
+   "overlay": "/data/aic/experiments_910a/LFM450_EVAL_V1/portrait_probe/yth_skiing_YRO_RQ3aBgg.png",
+   "frames": [
+    {
+     "frame": 0,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.0, 0.0, 1.0, 0.8]}]",
+     "box": [
+      0.0,
+      0.0,
+      1.0,
+      0.8
+     ],
+     "crop_xywh": [
+      0.0,
+      153.0,
+      480,
+      270.0
+     ],
+     "legal": true,
+     "s": 1.283
+    },
+    {
+     "frame": 693,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.4, 0.46, 0.55, 0.58]}]",
+     "box": [
+      0.4,
+      0.46,
+      0.55,
+      0.58
+     ],
+     "crop_xywh": [
+      0.0,
+      239.40000000000003,
+      480,
+      270.0
+     ],
+     "legal": true,
+     "s": 1.259
+    },
+    {
+     "frame": 1387,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.0, 0.5, 1.0, 0.99]}]",
+     "box": [
+      0.0,
+      0.5,
+      1.0,
+      0.99
+     ],
+     "crop_xywh": [
+      0.0,
+      401.4,
+      480,
+      270.0
+     ],
+     "legal": true,
+     "s": 1.259
+    },
+    {
+     "frame": 2080,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.5, 0.4, 0.65, 0.52]}]",
+     "box": [
+      0.5,
+      0.4,
+      0.65,
+      0.52
+     ],
+     "crop_xywh": [
+      0.0,
+      196.2,
+      480,
+      270.0
+     ],
+     "legal": true,
+     "s": 1.259
+    },
+    {
+     "frame": 2773,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.7, 0.45, 0.8, 0.55]}]",
+     "box": [
+      0.7,
+      0.45,
+      0.8,
+      0.55
+     ],
+     "crop_xywh": [
+      0.0,
+      225.0,
+      480,
+      270.0
+     ],
+     "legal": true,
+     "s": 1.269
+    },
+    {
+     "frame": 3466,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.5, 0.45, 0.99, 0.7]}]",
+     "box": [
+      0.5,
+      0.45,
+      0.99,
+      0.7
+     ],
+     "crop_xywh": [
+      0.0,
+      278.99999999999994,
+      480,
+      270.0
+     ],
+     "legal": true,
+     "s": 1.262
+    },
+    {
+     "frame": 4160,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.35, 0.43, 0.44, 0.54]}]",
+     "box": [
+      0.35,
+      0.43,
+      0.44,
+      0.54
+     ],
+     "crop_xywh": [
+      0.0,
+      214.2,
+      480,
+      270.0
+     ],
+     "legal": true,
+     "s": 1.258
+    },
+    {
+     "frame": 4853,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.0, 0.0, 1.0, 1.0]}]",
+     "box": [
+      0.0,
+      0.0,
+      1.0,
+      1.0
+     ],
+     "crop_xywh": [
+      0.0,
+      225.0,
+      480,
+      270.0
+     ],
+     "legal": true,
+     "s": 1.262
+    }
+   ],
+   "parse_ok": 8,
+   "all_legal": true,
+   "crop_y_std_frac": 0.09591459417106449
+  },
+  {
+   "uid": "sav:sav_000001",
+   "split": "train",
+   "W": 480,
+   "H": 848,
+   "overlay": "/data/aic/experiments_910a/LFM450_EVAL_V1/portrait_probe/sav_sav_000001.png",
+   "frames": [
+    {
+     "frame": 0,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.22, 0.28, 0.55, 0.95]}]",
+     "box": [
+      0.22,
+      0.28,
+      0.55,
+      0.95
+     ],
+     "crop_xywh": [
+      0.0,
+      386.52,
+      480,
+      270.0
+     ],
+     "legal": true,
+     "s": 1.307
+    },
+    {
+     "frame": 69,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.22, 0.45, 0.62, 0.76]}]",
+     "box": [
+      0.22,
+      0.45,
+      0.62,
+      0.76
+     ],
+     "crop_xywh": [
+      0.0,
+      378.03999999999996,
+      480,
+      270.0
+     ],
+     "legal": true,
+     "s": 1.148
+    },
+    {
+     "frame": 138,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.19, 0.06, 0.59, 0.79]}]",
+     "box": [
+      0.19,
+      0.06,
+      0.59,
+      0.79
+     ],
+     "crop_xywh": [
+      0.0,
+      225.40000000000003,
+      480,
+      270.0
+     ],
+     "legal": true,
+     "s": 1.161
+    },
+    {
+     "frame": 207,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.22, 0.0, 0.6, 0.6]}]",
+     "box": [
+      0.22,
+      0.0,
+      0.6,
+      0.6
+     ],
+     "crop_xywh": [
+      0.0,
+      119.39999999999998,
+      480,
+      270.0
+     ],
+     "legal": true,
+     "s": 1.166
+    },
+    {
+     "frame": 275,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.33, 0.24, 0.66, 0.82]}]",
+     "box": [
+      0.33,
+      0.24,
+      0.66,
+      0.82
+     ],
+     "crop_xywh": [
+      0.0,
+      314.44,
+      480,
+      270.0
+     ],
+     "legal": true,
+     "s": 1.173
+    },
+    {
+     "frame": 344,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.33, 0.24, 0.62, 0.78]}]",
+     "box": [
+      0.33,
+      0.24,
+      0.62,
+      0.78
+     ],
+     "crop_xywh": [
+      0.0,
+      297.48,
+      480,
+      270.0
+     ],
+     "legal": true,
+     "s": 1.241
+    },
+    {
+     "frame": 413,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.5, 0.5, 0.9, 0.8]}]",
+     "box": [
+      0.5,
+      0.5,
+      0.9,
+      0.8
+     ],
+     "crop_xywh": [
+      0.0,
+      416.20000000000005,
+      480,
+      270.0
+     ],
+     "legal": true,
+     "s": 1.234
+    },
+    {
+     "frame": 482,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.6, 0.4, 0.88, 0.67]}]",
+     "box": [
+      0.6,
+      0.4,
+      0.88,
+      0.67
+     ],
+     "crop_xywh": [
+      0.0,
+      318.68,
+      480,
+      270.0
+     ],
+     "legal": true,
+     "s": 1.276
+    }
+   ],
+   "parse_ok": 8,
+   "all_legal": true,
+   "crop_y_std_frac": 0.10664631967395781
+  },
+  {
+   "uid": "lasot:mouse-1",
+   "split": "val",
+   "W": 406,
+   "H": 720,
+   "overlay": "/data/aic/experiments_910a/LFM450_EVAL_V1/portrait_probe/lasot_mouse-1.png",
+   "frames": [
+    {
+     "frame": 0,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.16, 0.44, 0.4, 0.62]}]",
+     "box": [
+      0.16,
+      0.44,
+      0.4,
+      0.62
+     ],
+     "crop_xywh": [
+      0.0,
+      267.4125,
+      406,
+      228.375
+     ],
+     "legal": true,
+     "s": 1.265
+    },
+    {
+     "frame": 221,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.0, 0.0, 1.0, 0.99]}]",
+     "box": [
+      0.0,
+      0.0,
+      1.0,
+      0.99
+     ],
+     "crop_xywh": [
+      0.0,
+      242.21249999999998,
+      406,
+      228.375
+     ],
+     "legal": true,
+     "s": 1.253
+    },
+    {
+     "frame": 442,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.0, 0.3, 1.0, 0.99]}]",
+     "box": [
+      0.0,
+      0.3,
+      1.0,
+      0.99
+     ],
+     "crop_xywh": [
+      0.0,
+      350.21250000000003,
+      406,
+      228.375
+     ],
+     "legal": true,
+     "s": 1.234
+    },
+    {
+     "frame": 663,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.0, 0.0, 1.0, 0.99]}]",
+     "box": [
+      0.0,
+      0.0,
+      1.0,
+      0.99
+     ],
+     "crop_xywh": [
+      0.0,
+      242.21249999999998,
+      406,
+      228.375
+     ],
+     "legal": true,
+     "s": 1.258
+    },
+    {
+     "frame": 883,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.56, 0.46, 0.79, 0.59]}]",
+     "box": [
+      0.56,
+      0.46,
+      0.79,
+      0.59
+     ],
+     "crop_xywh": [
+      0.0,
+      263.8125,
+      406,
+      228.375
+     ],
+     "legal": true,
+     "s": 1.248
+    },
+    {
+     "frame": 1104,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.3, 0.3, 0.5, 0.5]}]",
+     "box": [
+      0.3,
+      0.3,
+      0.5,
+      0.5
+     ],
+     "crop_xywh": [
+      0.0,
+      173.8125,
+      406,
+      228.375
+     ],
+     "legal": true,
+     "s": 1.259
+    },
+    {
+     "frame": 1325,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.5, 0.5, 0.7, 0.65]}]",
+     "box": [
+      0.5,
+      0.5,
+      0.7,
+      0.65
+     ],
+     "crop_xywh": [
+      0.0,
+      299.81249999999994,
+      406,
+      228.375
+     ],
+     "legal": true,
+     "s": 1.22
+    },
+    {
+     "frame": 1546,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.0, 0.3, 1.0, 0.99]}]",
+     "box": [
+      0.0,
+      0.3,
+      1.0,
+      0.99
+     ],
+     "crop_xywh": [
+      0.0,
+      350.21250000000003,
+      406,
+      228.375
+     ],
+     "legal": true,
+     "s": 1.266
+    }
+   ],
+   "parse_ok": 8,
+   "all_legal": true,
+   "crop_y_std_frac": 0.07684196444651843
+  },
+  {
+   "uid": "lasot:mouse-15",
+   "split": "train",
+   "W": 406,
+   "H": 720,
+   "overlay": "/data/aic/experiments_910a/LFM450_EVAL_V1/portrait_probe/lasot_mouse-15.png",
+   "frames": [
+    {
+     "frame": 0,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.0, 0.3, 0.9, 0.8]}]",
+     "box": [
+      0.0,
+      0.3,
+      0.9,
+      0.8
+     ],
+     "crop_xywh": [
+      0.0,
+      281.81250000000006,
+      406,
+      228.375
+     ],
+     "legal": true,
+     "s": 1.241
+    },
+    {
+     "frame": 201,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.0, 0.0, 1.0, 0.99]}]",
+     "box": [
+      0.0,
+      0.0,
+      1.0,
+      0.99
+     ],
+     "crop_xywh": [
+      0.0,
+      242.21249999999998,
+      406,
+      228.375
+     ],
+     "legal": true,
+     "s": 1.239
+    },
+    {
+     "frame": 401,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.56, 0.3, 0.66, 0.42]}]",
+     "box": [
+      0.56,
+      0.3,
+      0.66,
+      0.42
+     ],
+     "crop_xywh": [
+      0.0,
+      145.0125,
+      406,
+      228.375
+     ],
+     "legal": true,
+     "s": 1.232
+    },
+    {
+     "frame": 602,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.4, 0.2, 0.6, 0.4]}]",
+     "box": [
+      0.4,
+      0.2,
+      0.6,
+      0.4
+     ],
+     "crop_xywh": [
+      0.0,
+      101.81250000000003,
+      406,
+      228.375
+     ],
+     "legal": true,
+     "s": 1.216
+    },
+    {
+     "frame": 803,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.5, 0.35, 0.6, 0.45]}]",
+     "box": [
+      0.5,
+      0.35,
+      0.6,
+      0.45
+     ],
+     "crop_xywh": [
+      0.0,
+      173.8125,
+      406,
+      228.375
+     ],
+     "legal": true,
+     "s": 1.206
+    },
+    {
+     "frame": 1004,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.4, 0.0, 0.8, 0.4]}]",
+     "box": [
+      0.4,
+      0.0,
+      0.8,
+      0.4
+     ],
+     "crop_xywh": [
+      0.0,
+      29.8125,
+      406,
+      228.375
+     ],
+     "legal": true,
+     "s": 1.162
+    },
+    {
+     "frame": 1204,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.0, 0.0, 1.0, 0.99]}]",
+     "box": [
+      0.0,
+      0.0,
+      1.0,
+      0.99
+     ],
+     "crop_xywh": [
+      0.0,
+      242.21249999999998,
+      406,
+      228.375
+     ],
+     "legal": true,
+     "s": 1.19
+    },
+    {
+     "frame": 1405,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.0, 0.0, 0.998, 0.998]}]",
+     "box": [
+      0.0,
+      0.0,
+      0.998,
+      0.998
+     ],
+     "crop_xywh": [
+      0.0,
+      245.09249999999997,
+      406,
+      228.375
+     ],
+     "legal": true,
+     "s": 1.258
+    }
+   ],
+   "parse_ok": 8,
+   "all_legal": true,
+   "crop_y_std_frac": 0.11220844163876441
+  },
+  {
+   "uid": "lasot:electricfan-20",
+   "split": "val",
+   "W": 406,
+   "H": 720,
+   "overlay": "/data/aic/experiments_910a/LFM450_EVAL_V1/portrait_probe/lasot_electricfan-20.png",
+   "frames": [
+    {
+     "frame": 0,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.0, 0.07, 0.9, 0.99]}]",
+     "box": [
+      0.0,
+      0.07,
+      0.9,
+      0.99
+     ],
+     "crop_xywh": [
+      0.0,
+      267.4125,
+      406,
+      228.375
+     ],
+     "legal": true,
+     "s": 1.245
+    },
+    {
+     "frame": 329,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.2, 0.17, 0.99, 0.99]}]",
+     "box": [
+      0.2,
+      0.17,
+      0.99,
+      0.99
+     ],
+     "crop_xywh": [
+      0.0,
+      303.41249999999997,
+      406,
+      228.375
+     ],
+     "legal": true,
+     "s": 1.283
+    },
+    {
+     "frame": 658,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.0, 0.15, 1.0, 0.99]}]",
+     "box": [
+      0.0,
+      0.15,
+      1.0,
+      0.99
+     ],
+     "crop_xywh": [
+      0.0,
+      296.2125,
+      406,
+      228.375
+     ],
+     "legal": true,
+     "s": 1.276
+    },
+    {
+     "frame": 987,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.0, 0.17, 0.99, 0.99]}]",
+     "box": [
+      0.0,
+      0.17,
+      0.99,
+      0.99
+     ],
+     "crop_xywh": [
+      0.0,
+      303.41249999999997,
+      406,
+      228.375
+     ],
+     "legal": true,
+     "s": 1.279
+    },
+    {
+     "frame": 1317,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.3, 0.15, 1.0, 0.99]}]",
+     "box": [
+      0.3,
+      0.15,
+      1.0,
+      0.99
+     ],
+     "crop_xywh": [
+      0.0,
+      296.2125,
+      406,
+      228.375
+     ],
+     "legal": true,
+     "s": 1.266
+    },
+    {
+     "frame": 1646,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.0, 0.17, 1.0, 1.0]}]",
+     "box": [
+      0.0,
+      0.17,
+      1.0,
+      1.0
+     ],
+     "crop_xywh": [
+      0.0,
+      307.0125,
+      406,
+      228.375
+     ],
+     "legal": true,
+     "s": 1.233
+    },
+    {
+     "frame": 1975,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.0, 0.0, 1.0, 1.0]}]",
+     "box": [
+      0.0,
+      0.0,
+      1.0,
+      1.0
+     ],
+     "crop_xywh": [
+      0.0,
+      245.8125,
+      406,
+      228.375
+     ],
+     "legal": true,
+     "s": 1.267
+    },
+    {
+     "frame": 2304,
+     "reply": "[{\"label\": \"main subject\", \"bbox\": [0.0, 0.13, 1.0, 0.99]}]",
+     "box": [
+      0.0,
+      0.13,
+      1.0,
+      0.99
+     ],
+     "crop_xywh": [
+      0.0,
+      289.01250000000005,
+      406,
+      228.375
+     ],
+     "legal": true,
+     "s": 1.239
+    }
+   ],
+   "parse_ok": 8,
+   "all_legal": true,
+   "crop_y_std_frac": 0.027662869970413395
+  }
+ ]
+}

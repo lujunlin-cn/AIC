@@ -47,8 +47,24 @@
  ],
  "declared_model_size_mb": null,
  "declared_size_note": "same teacher size disclosure as DENSE_V2 / TEMPORAL_V2 / N0; JSONL omits model_size_mb (preliminary format).",
- "official_platform_score": 48.67,
- "parent_baseline": "INTERP = QWEN32B_DT_INTERP_V4_FINAL (official 48.67, zip 501cebce...)",
- "official_score_source": "user platform screenshot 2026-09-29 08:28, all four packages DONE; per-video scores not fetched",
- "official_score_recorded_at": "2026-09-29"
+ "official_platform_score": 48.49,
+ "parent_baseline": "INTERP = QWEN32B_DT_INTERP_V4_FINAL (official 48.67, zip 501cebce...) — the parent keeps 48.67; this package scored 48.49 (−0.18)",
+ "official_score_source": "user report 2026-09-29 evening (official platform result for this package); per-video scores not fetched",
+ "official_score_recorded_at": "2026-09-29",
+ "correction_log": [
+  {
+   "at": "2026-09-29",
+   "field": "official_platform_score",
+   "was": 48.67,
+   "now": 48.49,
+   "reason": "value 48.67 was copied from the INTERP mother config when this package was frozen; the official platform returned 48.49 for XRERANK. Mother stays 48.67. Historical records (STATUS/EXPERIMENTS/DECISIONS) already logged 48.49; this file now matches them."
+  },
+  {
+   "at": "2026-09-29",
+   "field": "official_score_source",
+   "was": "user platform screenshot 2026-09-29 08:28, all four packages DONE",
+   "now": "user report 2026-09-29 evening",
+   "reason": "the 08:28 screenshot described the four V4 packages; the XRERANK score arrived later via user report. Source attribution corrected, not overwritten."
+  }
+ ]
 }

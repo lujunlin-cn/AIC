@@ -1,0 +1,10 @@
+{
+ "scored_videos": 174,
+ "kind": "VQ",
+ "candidate_columns": 34,
+ "domain_flags": {
+  "note": "official ds='off' => ds_rv=ds_live=0; training saw only (1,0) rv and (0,1) live \u2014 known OOV combo (audit 4.5.5); E1 removes source one-hot",
+  "ds_rv": 0.0,
+  "ds_live": 0.0
+ }
+}

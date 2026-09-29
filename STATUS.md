@@ -246,3 +246,10 @@ GitHub main synchronized through prior evidence; native training code frozen at 
 - 用户确认 K710 完整 174-video FINAL 包的官方平台分数为 **34.38**。因此此前 G=`17.46` 已确认是单 shard 覆盖问题，而不是 K710 模型质量。
 - 完整包官方结果：K700 `34.43`、Stage2 `34.42`、K710 `34.38`。三者最大差异 `0.05`，均使用相同 L-tier 规则、threshold、2 FPS、Temporal U-Net 和 YuNet spatial；当前没有证据证明 Stage2/K710 超过 K700。
 - 最新报告：`reports/20260927_official_score_root_cause_v2.md`。
+
+## V6 E0/E1/E2 进展（2026-09-29）
+
+- E0 完成：成绩账本更正（XRERANK=48.49）、H3 gate1 按完整预注册重判 FAIL（rv_dev 点估计 −0.0031）、gate2 rv_dev 源组级仍 FAIL、exposure ledger 三点裁定、部署接口 8 项缺陷修复、官方 174 真实数据 E2E 全链路（双轴 G1/G2/G3+往返全过，诊断包不上传）。H3 V5 不出包维持。
+- E1 工具链交付（schema v2 / manifest v2 冻结 / 校验器 / 标注界面浏览器实测过）；训练等人工标签到位后启动。
+- E2 MrHiSum：特征提取逐位复现 ✓、部署前向逐位复现 ✓、训练方差 ±0.007 根因定位（upsample 反传 CUDA 核）；1.71M 参数头 dev Spearman 0.288±0.007（弱监督可学信号）。
+- 正式最佳保持 INTERP 48.67；本轮 0 个新上传候选（无预注册通过者，不预报分数）。

@@ -305,3 +305,11 @@ The frozen InternVideo2 Stage1-1B K700 candidate received official platform scor
   - 预注册判定 NOT_PROMOTED（gate2 需双集全过）；不出包。G 纯几何四集全正（rv_dev CI_low +.0056）。
   - 消融表 `reports/20260929_visual_scorer_ablation.csv`；registry V5_H3_VISUAL。
 - `V5_P0_XRERANK_OFFICIAL`（官方回分 18:25）：**48.49，比母本 INTERP 48.67 低 0.18**。RV x 代理 +1.9 IoU 未迁移；空间类改动连续第三次官方迁移失败（缩放 −4 / 居中 −4.29 / 本包 −0.18）。正式最佳保持 INTERP 48.67。
+
+## 2026-09-29 深夜：V6 E0 审计+接口修复+E2E；E1 工具链；E2 MrHiSum pilot
+
+- `V6_E0_AUDIT`：XRERANK 官方分更正 48.49（配置内 correction_log）；RV 同源双比例合并后 source-group 级 CI 重算（单元级 12/12 逐位自校验过）；gate1 按完整预注册重判 = **FAIL**（rv_dev 单独 best(V,VQ)−G = −0.0031，点估计失败非 CI 宽度）；gate2 rv_dev 源组级 CI_low −0.0114 < −0.002 仍 FAIL。H3 V5 不出包维持，依据更早更强。exposure ledger v1 三点裁定：无 holdout_confirm_reserved/"227" 记录；live_val=T5 confirm3 已暴露（V5 report-only 合规）；跨库同组拷贝继承暴露身份。`reports/20260929_v6_e0_evidence_audit.md`。
+- `V6_E0_INTERFACE`：H3 部署接口 5 项预登记缺陷 + E2E 新发现 3 项全部修复（X 生成并存入 unit、--kind G/V/VQ、轴可选拼接器 G1/G2/G3、--exact-mother 34 列去重、ds=(0,0) 域审计；追加：unit 缺 X、34 列 broadcast、官方关键帧 1fps 缓存 vs dense 0.5s 网格——从源 mp4 补渲染 2,882 帧，provenance 在档）。
+- `V6_E0_E2E`（官方 174 真实数据端到端）：tables 174 units / 5,586 kf / 34 列，`exact_mother_added_frac` 均值 **0.879**（量化母本吸附缺陷的影响面）；score VQ+V 全量 rerank + 域审计；splice 双轴诊断包 G1/G2/G3 + 独立校验 + ZIP 往返全过（vid12 x 轴 VQ 148/148 帧变；vid0 y 轴 V 578/630 帧变）。诊断包 NOT_FOR_UPLOAD。证据 `reports/v6_e0_e2e/`。
+- `V6_E1_TOOLCHAIN`：portrait_reframe_pilot_v2 三件套（schema v2：119 竖屏源同方向更正、连续窗口高度、双标注 0.1h 第三人规则）+ 冻结 temporal manifest v2（30/320，sha256 排序规则）+ 自包含标注工具（托管浏览器实测：视频加载/帧行/时间段行/导出→校验器 0 错误；实测发现并修复时间段 falsy-zero 无法闭合 bug 与 0 长段垃圾行，已加 <0.05s 取消守卫）+ validate_annotations.py（永不合并行）。人工标签未到，训练不启动，不用伪标签冒充 GT。
+- `V6_E2_MRHISUM_PILOT`（冻结 release `mrhisum_feat_subset_v1`）：全量导出 27,877 视频（去量化 v1 映射 (q+0.5)*2/255−1）；**特征提取复现**=从 asia 镜像重下 train0026（md5 对 download plan 一致）重跑 extract_shard，15 视频 rgb/audio/labels **逐位 IDENTICAL**；**部署复现**=27,877 视频全量前向两进程 sha256 逐位一致（`87d6d15b…`，5,624,693 steps）；**训练不可逐位**：4 runs dev Spearman 0.2774–0.2909（极差 ~0.013），根因 `upsample_linear1d_backward_out_cuda` 无确定性实现（warn_only 下告警在档）；TemporalUNet(1152) 头 1,712,897 参数 = 0.0017B（≤0.1B 档 k=1.00）。

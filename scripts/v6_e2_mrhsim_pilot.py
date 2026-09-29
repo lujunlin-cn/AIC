@@ -185,12 +185,43 @@ def stage_verify_extract(release, mr_root, work):
     print(json.dumps(out), flush=True)
 
 
+def stage_verify_forward(work, device):
+    """Deployment-side determinism: forward pass (the deployed path) must be
+    bit-identical across repeated evaluation.  Training backward is NOT
+    bit-deterministic (upsample_linear1d_backward CUDA kernel, documented in
+    det_ab.log); deployment freezes weights, so only forward matters."""
+    import torch
+    from torch.utils.data import DataLoader
+    from aic.features import FeatureCacheDataset, collate_feature_batch
+    from aic.models import TemporalUNet
+    from aic.train import set_seed
+    dev = torch.device(device if torch.cuda.is_available() or device == 'cpu' else 'cpu')
+    recs = [json.loads(l) for l in (work / 'cache_manifest.jsonl').read_text().splitlines() if l.strip()]
+    ds = FeatureCacheDataset(recs)
+    runs = []
+    for rep in range(2):
+        set_seed(SEED)
+        model = TemporalUNet(FEATS).to(dev).eval()
+        dl = DataLoader(ds, batch_size=8, shuffle=False, num_workers=2,
+                        collate_fn=collate_feature_batch)
+        import hashlib
+        h = hashlib.sha256(); n = 0
+        with torch.inference_mode():
+            for b in dl:
+                z = model(b['features'].to(dev), lengths=b['lengths'].to(dev))
+                h.update(z.detach().cpu().numpy().tobytes()); n += int(b['mask'].sum())
+        runs.append({'sha256': h.hexdigest(), 'steps': n})
+    out = {'forward_bit_identical': runs[0] == runs[1], 'runs': runs, 'videos': len(recs)}
+    (work / 'verify_forward.json').write_text(json.dumps(out, indent=1) + '\n')
+    print(json.dumps(out), flush=True)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--release', type=Path, default=Path('/data/aic/external_datasets/_releases/mrhisum_feat_subset_v1'))
     ap.add_argument('--mr-root', type=Path, default=Path('/data/aic/external_datasets/MrHiSum'))
     ap.add_argument('--work', type=Path, default=Path('/data/aic/experiments/V6_E2'))
-    ap.add_argument('--stage', required=True, choices=('export', 'train', 'verify-extract'))
+    ap.add_argument('--stage', required=True, choices=('export', 'train', 'verify-extract', 'verify-forward'))
     ap.add_argument('--tag', default='run1')
     ap.add_argument('--epochs', type=int, default=3)
     ap.add_argument('--device', default='cuda:2')
@@ -199,6 +230,8 @@ def main():
         stage_export(a.release, a.work)
     elif a.stage == 'train':
         stage_train(a.release, a.work, a.tag, a.epochs, a.device)
+    elif a.stage == 'verify-forward':
+        stage_verify_forward(a.work, a.device)
     else:
         stage_verify_extract(a.release, a.mr_root, a.work)
 

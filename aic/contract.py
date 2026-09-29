@@ -90,6 +90,7 @@ class ValidationReport:
     video_count: int = 0
     prediction_count: int = 0
     model_size_mb: float | None = None
+    model_params_b: float | None = None
     stage: str = "preliminary"
 
     @property
@@ -226,6 +227,7 @@ def validate_submission_file(
     *,
     stage: str = "preliminary",
     actual_model_size_mb: float | None = None,
+    actual_model_params_b: float | None = None,
     require_sorted: bool = True,
 ) -> ValidationReport:
     """Batch validator entry point for an index and a submission file.
@@ -236,7 +238,8 @@ def validate_submission_file(
     """
     return validate_submission(
         load_jsonl(submission_path), load_index(index_path), stage=stage,
-        actual_model_size_mb=actual_model_size_mb, require_sorted=require_sorted,
+        actual_model_size_mb=actual_model_size_mb,
+        actual_model_params_b=actual_model_params_b, require_sorted=require_sorted,
     )
 
 
@@ -275,11 +278,28 @@ def validate_prediction(prediction: Any, metadata: VideoMetadata) -> list[str]:
 
 
 def size_coefficient(model_size_mb: float) -> float:
+    """LEGACY MB-based tiering (document 01). Kept only to re-read historical
+    reports; current submissions declare model_params_b instead (V6 E0)."""
     if not finite_number(model_size_mb) or not 0 < model_size_mb <= 9216:
         raise ContractError("model_size_mb must satisfy 0 < M <= 9216")
     if model_size_mb <= 100:
         return 1.0
     if model_size_mb <= 500:
+        return 0.95
+    return 0.90
+
+
+def size_coefficient_params(model_params_b: float) -> float:
+    """Semifinal tiering by TOTAL parameter count in billions (notice 2026-09-29).
+
+    Counts every inference component (main + auxiliary); quantisation does not
+    reduce the count and LoRA base parameters count too.  >9B is not eligible.
+    """
+    if not finite_number(model_params_b) or not 0 < model_params_b <= 9:
+        raise ContractError("model_params_b must satisfy 0 < P <= 9 (semifinal cap)")
+    if model_params_b <= 0.1:
+        return 1.0
+    if model_params_b <= 0.5:
         return 0.95
     return 0.90
 
@@ -299,6 +319,7 @@ def validate_submission(
     *,
     stage: str = "preliminary",
     actual_model_size_mb: float | None = None,
+    actual_model_params_b: float | None = None,
     require_sorted: bool = True,
 ) -> ValidationReport:
     """Check complete index coverage, fields, geometry, and model-size consistency.
@@ -309,6 +330,8 @@ def validate_submission(
     establish a whole-submission rejection rule.
     Empty prediction lists are legal. Empty submissions/indexes are not.
     Actual file-size matching, if requested, uses the caller's explicit MB base.
+    Semifinal rows declare model_params_b (total parameter count in billions);
+    legacy rows with only model_size_mb stay readable (explicit legacy entry).
     """
     stage = _normalise_stage(stage)
     if not index:
@@ -318,10 +341,14 @@ def validate_submission(
         raise ContractError("index keys must match VideoMetadata.video_id")
     if actual_model_size_mb is not None:
         size_coefficient(actual_model_size_mb)
+    if actual_model_params_b is not None:
+        size_coefficient_params(actual_model_params_b)
     report = ValidationReport(stage=stage)
     seen_ids: set[str] = set()
     sizes: list[float] = []
     size_present = 0
+    params: list[float] = []
+    params_present = 0
     for row_number, row in enumerate(rows, 1):
         report.video_count += 1
         if not isinstance(row, Mapping):
@@ -364,6 +391,25 @@ def validate_submission(
                 add("model_size", str(error))
         elif stage == "final":
             add("model_size_missing", "model_size_mb is required for final stage")
+        if "model_params_b" in row:
+            params_present += 1
+            try:
+                p = row["model_params_b"]
+                size_coefficient_params(p)
+                params.append(float(p))
+                if actual_model_params_b is not None and not math.isclose(
+                    p, actual_model_params_b, rel_tol=0, abs_tol=1e-9
+                ):
+                    add("params_mismatch", "declared parameter count differs from measured total")
+            except ContractError as error:
+                add("model_params", str(error))
+        elif stage == "final":
+            if "model_size_mb" in row:
+                add("model_params_missing",
+                    "legacy MB-only row; declare model_params_b for semifinal",
+                    severity="warning")
+            else:
+                add("model_params_missing", "model_params_b is required for semifinal rows")
         predictions = row.get("predictions")
         if not isinstance(predictions, list):
             add("predictions_type", "predictions must be a list; [] is legal")
@@ -392,12 +438,19 @@ def validate_submission(
             report.issues.append(ValidationIssue("inconsistent_size", "all video rows must use identical model_size_mb"))
     if 0 < size_present < report.video_count:
         report.issues.append(ValidationIssue("partial_size", "include model_size_mb consistently on every video row"))
+    if params:
+        report.model_params_b = params[0]
+        if any(p != params[0] for p in params):
+            report.issues.append(ValidationIssue("inconsistent_params", "all video rows must use identical model_params_b"))
+    if 0 < params_present < report.video_count:
+        report.issues.append(ValidationIssue("partial_params", "include model_params_b consistently on every video row"))
     return report
 
 
 def write_submission(path: str | Path, rows: Sequence[Mapping[str, Any]],
                      index: Mapping[str, VideoMetadata], *, stage: str = "preliminary",
-                     actual_model_size_mb: float | None = None) -> ValidationReport:
+                     actual_model_size_mb: float | None = None,
+                     actual_model_params_b: float | None = None) -> ValidationReport:
     """Validate before atomically writing; refuse unsorted/duplicate submissions."""
     # The measured size is authoritative at the exporter boundary. Populate an
     # omitted field for convenience; explicit conflicting declarations remain an
@@ -407,9 +460,12 @@ def write_submission(path: str | Path, rows: Sequence[Mapping[str, Any]],
         copied = dict(row)
         if actual_model_size_mb is not None and "model_size_mb" not in copied:
             copied["model_size_mb"] = actual_model_size_mb
+        if actual_model_params_b is not None and "model_params_b" not in copied:
+            copied["model_params_b"] = actual_model_params_b
         output_rows.append(copied)
     report = validate_submission(output_rows, index, stage=stage,
                                  actual_model_size_mb=actual_model_size_mb,
+                                 actual_model_params_b=actual_model_params_b,
                                  require_sorted=True)
     report.raise_for_errors()
     write_jsonl(path, output_rows)

@@ -1,8 +1,16 @@
 # 项目状态
 
-更新：2026-09-29 04:50。当前是初赛阶段，只计 raw F_video（规则 01 §3.4），不乘规模系数。
+更新：2026-09-29 14:15。当前是初赛阶段，只计 raw F_video（规则 01 §3.4），不乘规模系数。
 
-## 最新（2026-09-29）：V4 正式成绩已回（INTERP 48.67 = 新正式最佳）；V5 周期启动
+## 最新（2026-09-29 下午）：V5 P0 官方包已打包待评（QWEN32B_INTERP_XRERANK_V5_FINAL）；P1/P2/数据侧进行中
+
+- **P0 通过预注册晋级规则并已打包**：INTERP 母本上 x 行替换为 E4 式视觉复核点，dev2 x +1.87 CI[+0.73,+3.23]、confirm2 x +1.88 CI[+0.79,+3.26]、全视频 +0.93/+0.94、y 行严格零变化；E4 sanity 复现 ±0.0001 内。`QWEN32B_INTERP_XRERANK_V5_FINAL.zip` sha `027fd12a…`，174 视频/78,992 帧，keys==TEMP 逐视频 0 差异，vs INTERP 实际差异 21 视频/10,273 帧。成绩**待评**，正式最佳保持 INTERP 48.67。详见 `reports/20260929_v5_p0_xrerank_package.md`、`registry.jsonl`（V5_P0_XRERANK_OFFICIAL）。
+- P1（H3 视觉评分头 G/V/V+Q）：RV+LIVE 六表构建完成（rv_train 6,795 kf / rv_dev 1,470 / rv_confirm2 8,004 / live_val 1,032 全 axis0），DINOv2 缓存并行中；决策规则见 `configs/V5_H3_VISUAL_PREREG.json`（含实现附录：候选恒 33 网格、mother 吸附最近格点）。
+- P2（Qwen 命名对象 + GroundingDINO 定位）：25 个 confirm2 分层视频（x/y × fast/slow 四层），32B 命名阶段重跑中。
+- 数据侧：PM-400/AVE-PM 直链实测全灭（12 链接 × 3 头全 502）；改用社区 GDrive 缓存（68.07 GB）后台下载中（~4.6 MB/s）；`portrait_reframe_pilot_v1` 补标任务已建（320 源/86 类全覆盖，215/51/54 划分，240 片段上下文引用；状态 pending_annotation；AVE-PM 事件/BGM/类别仅作上下文，不冒充裁剪 GT）。见 `ext_data/configs/portrait_reframe_pilot_v1/ANNOTATION_SCHEMA.md`。
+- 分支 `teacher-v5-20260929`（主题提交进行中）；V5 基线冻结 `configs/V5_BASELINE_MANIFEST.json`。
+
+## 2026-09-29 上午：V4 正式成绩已回（INTERP 48.67 = 新正式最佳）；V5 周期启动
 
 - **正式最佳更新为 INTERP 48.67**（`501cebce…`，+0.79 vs DT_V3）；OBS025 48.32、MEDIAN3 48.21、H1_XONLY 46.73（−0.11 vs TEMP）。证据：用户 2026-09-29 08:28 平台截图，四项 DONE；逐视频分数未取。详见 `reports/20260929_official_v4_feedback.md`、`registry.jsonl`、`configs/V5_BASELINE_MANIFEST.json`。
 - H1_XONLY 拆分：x 轴 −0.11，y 轴 −1.73（≈94% 伤害在上下方向）。

@@ -103,6 +103,10 @@ def stage_train(release, work, tag, epochs, device):
     from aic.models import TemporalUNet
     from aic.train import masked_regression, set_seed
     set_seed(SEED)
+    # bit-exact rerun requires more than cudnn.deterministic (run1 vs run2 on
+    # cuda:4 differed by ~0.011 dev Spearman); warn_only for ops without a
+    # deterministic kernel.  CUBLAS_WORKSPACE_CONFIG is set by the launcher.
+    torch.use_deterministic_algorithms(True, warn_only=True)
     dev = torch.device(device if torch.cuda.is_available() or device == 'cpu' else 'cpu')
     recs = [json.loads(l) for l in (work / 'cache_manifest.jsonl').read_text().splitlines() if l.strip()]
     # classify by the release dev manifest (group-level, frozen)

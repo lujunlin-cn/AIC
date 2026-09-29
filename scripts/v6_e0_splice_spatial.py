@@ -45,7 +45,12 @@ def main():
  if fz.get('centre_mode','hold')!='interp' or fz['policy']!='QWEN_POINT_NOFACE':raise ValueError('mother is not the INTERP/NOFACE protocol')
  if sha256_file(a.index)!=fz['index_sha256']:raise ValueError('index changed')
  index=load_index(a.index);records=load_jsonl(a.index)
- if only is not None:records=[r for r in records if r['video_id'] in only]
+ if only is not None:
+  records=[r for r in records if r['video_id'] in only]
+  # diagnostic slice: validate against the sliced index, never against the full 174
+  idx_diag=a.output/'index_diag.jsonl';idx_diag.parent.mkdir(parents=True,exist_ok=True)
+  idx_diag.write_text(''.join(json.dumps(r)+'\n' for r in records))
+  a=argparse.Namespace(**{**vars(a),'index':idx_diag})
  audit_path=a.rerank/'_domain_audit.json';head_label=json.loads(audit_path.read_text())['kind'] if audit_path.exists() else 'unknown'
  b0={r['video_id']:r for r in load_jsonl(fz['b0_predictions'])};cache=Path(fz['obs_cache'])
  dense=Path(fz['qwen_points']);parent={r['video_id']:np.array([p['bboxes'] for p in r['predictions']]) for r in load_jsonl(a.parent)}
@@ -79,7 +84,7 @@ def main():
   bad=sum(1 for s in stats if not s['in_scope'] and s['changed_vs_parent']!=0)
   if bad:raise ValueError(f'G3 rows outside axes {sorted(axes)} changed vs parent: {bad} videos')
  dest=a.output/'predictions.jsonl'
- validation=write_submission(dest,rows,index,stage='preliminary',actual_model_size_mb=None).to_dict();independent=check(a.index,dest,None,require_size=False)
+ validation=write_submission(dest,rows,load_index(a.index),stage='preliminary',actual_model_size_mb=None).to_dict();independent=check(a.index,dest,None,require_size=False)
  with tempfile.TemporaryDirectory() as tmp:
   zp=a.output/f'{a.submission_id}.zip'
   with zipfile.ZipFile(zp,'w',compression=zipfile.ZIP_DEFLATED) as zf:zf.write(dest,'predictions.jsonl')

@@ -86,10 +86,34 @@ confirm2 VQ +0.0190 [+0.0064,+0.0326] 重复通过。**gate2 = FAIL（rv_dev 关
 | 4 | 母本候选被吸附到网格（addendum 承认） | `--exact-mother`：33 网格 + 精确母本偏移（34 槽位，去重），默认 grid33 保持 V5 可复现 |
 | 5 | 官方 ds='off' → (ds_rv,ds_live)=(0,0) 为训练未见组合 | score 阶段输出域标识审计（`rerank/_domain_audit.json` + 已知 OOV 警告）；根治（去 source one-hot）属 E1 |
 
-## 6. 小样本端到端复现（E2E）
+## 6. 小样本端到端复现（E2E，已完成 2026-09-29）
 
-（结果见本报告第 6 节附表，跑完后回填：tables → features → score(V 与 VQ) → v6_e0_splice_spatial --axes 0 / 1，
-断言 G1/G2/G3、keys 一致、ZIP 往返一致全过/失败明细。）
+真实数据全链路：tables → features → score(VQ 与 V) → v6_e0_splice_spatial --axes 0 / 1，
+远端 `/data/aic/experiments/V6_E0/off_e2e/`。
+
+### 6.1 E2E 过程中新发现并修复的缺陷（第 5 节表格之外）
+
+| # | 缺陷 | 修复 |
+|---|---|---|
+| 6 | `build_units` 计算了 26 特征表但未存入 unit dict → score 阶段 KeyError('X') | `'X':X` 入 dict（与缺陷 1 同根） |
+| 7 | `--exact-mother` 时 gap≤1e-6 的行走 33 宽赋值到 34 宽数组 → broadcast 崩溃 | 统一拼接精确列；added 标志改循环内记录（exact_mother_added_frac 口径更准） |
+| 8 | **官方关键帧缓存 1 fps（stride 60），dense 点位 0.5s（stride 30）**；V5 训练域 rv 为每 dense 关键帧一张图（rv_dev 57/57 实测）。官方 png 只覆盖一半 dense 键 | `v6_e0_render_missing_kf.py` 从 intake index 的源 mp4 补渲染 2,882 帧（半分辨率、noautorotate、coded_pixels 口径，现有一律不改），provenance manifest 落盘 |
+
+### 6.2 各阶段结果
+
+| 阶段 | 结果 |
+|---|---|
+| tables | 174 units / 5,586 关键帧 / 34 候选列；`exact_mother_added_frac` 均值 **0.879**（min 0.158 / max 1.000）——量化缺陷 4：官方 ~87.9% 的关键帧上精确母本位置被网格吸附丢失 |
+| features | 5,586 关键帧 DINOv2 ViT-B/14 letterbox 池化，全部缓存 |
+| score VQ | 174/174 出 rerank JSON；`_domain_audit.json`：ds_rv=ds_live=**0.0**（训练未见组合，已知 OOV 警告在档，见缺陷 5） |
+| score V | 同上（同一特征缓存） |
+| splice axes 0（vid=12，VQ） | G1（DENSE 重算=母包逐字节）✓ G2（仅 x 自由分量可变）✓ G3（非目标行不变）✓；148/148 帧与母包不同；独立校验 + ZIP 往返 valid（zip `4f0b86e6…`，`diagnostic_only=true`） |
+| splice axes 1（vid=0，V） | G1/G2/G3 ✓；578/630 帧不同；独立校验 + 往返 valid（zip `9d5d7056…`） |
+
+**判定：H3 部署接口五项缺陷的修复全部在真实官方数据上端到端跑通；三轴守卫与身份链（index sha256 → 母包 sha256 → predictions sha256 → ZIP 往返）成立。**
+两个诊断包均为 INTERMEDIATE_SPATIAL_ALL_FRAMES_NOT_FOR_UPLOAD，不得上传（单视频切片）。
+
+E2E 之后 score/table 产物另见：`off_e2e/off_units.pkl`、`off_e2e/features/`、`off_e2e/rerank_vq/`、`off_e2e/rerank_v/`、`render_missing_manifest.json`。
 
 ## 7. model_params_b 契约（aic/contract.py）
 

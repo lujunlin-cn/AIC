@@ -67,7 +67,7 @@ def build_units(cfg,index_path,exact_mother=False):
   units.append({'vid':vid,'ds':'off','comp':comp,'W':W,'H':H,'ratio':ratio,'keys':keys,'J':J,'pts':pts,
    'offs':offs,'s':s,'L':L,'frames_dir':'/data/aic/experiments/QWEN_SUBJECT_POINT_OFFICIAL_V1/keyframes',
    'reset':z['reset'].astype(bool),'raw':z['raw'][:,comp],'face':z['chosen']>=0,'gf':np.arange(int(z['b0'].shape[0])),
-   'gt':None,'Y':np.full((len(J),NCX),np.nan,np.float32),'has_gt':np.zeros((len(J),NCX),bool),
+   'gt':None,'X':X,'Y':np.full((len(J),NCX),np.nan,np.float32),'has_gt':np.zeros((len(J),NCX),bool),
    'is_mother':im,'mo_gap_max':float(np.max(gaps)),'exact_mother':bool(exact_mother),
    'exact_mother_added_frac':float(np.mean(added)) if exact_mother else 0.,
    'frame_count':meta.frame_count,'alpha':fz['alpha']})

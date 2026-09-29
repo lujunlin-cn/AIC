@@ -1,0 +1,87 @@
+{
+ "submission_id": "SUB_SF_K700_SEMIFINAL_V1",
+ "status": "READY_TO_UPLOAD_SEMIFINAL",
+ "uploaded": false,
+ "official_platform_score": null,
+ "semifinal": {
+  "model_params_b": 1.022373889,
+  "tier": "<=9B",
+  "k_size": 0.9,
+  "declaration": "per-row model_params_b; total inference components (InternVideo2 Stage1-1B encoder + native QVH temporal head + YuNet detector), no teacher-cache dependency at inference"
+ },
+ "parent": {
+  "submission_id": "SUB_E_INTERNVIDEO2_NATIVE_V1 (=K700)",
+  "official_platform_score": 34.43,
+  "zip_sha256": "342d36e229f2502d863e8944a4906030050e16282cc94f5cb81138bc9a0d419a",
+  "predictions_sha256": "a999f51a78a1832c0171b46a691c3baf8a7ba90c0b0d88c5ab6a68b0a4362b4e",
+  "note": "predictions carried over byte-for-byte; platform scored this exact content 34.43 (K700)"
+ },
+ "identity": {
+  "index_sha256": "9a59316e97f5a80fc2c22f43f38ebd72130d20109d17954efa3dde9f86d404d5",
+  "predictions_sha256": "aa176cd434e4215f1f76f1ee01318c50945440245e9169445603c47c8c618a1c",
+  "zip_sha256": "87cdb7ffcebe444cb26a70f772b0e70c0941193d2032c4aa5ce6f5d9b1736d1e",
+  "zip_bytes": 1053965,
+  "changed_factor_vs_parent": "none in prediction space; metadata-only (model_params_b rows) per semifinal contract",
+  "weights": [
+   {
+    "path": "/data/aic/pretrained/internvideo2_stage1_1b/1B_ft_k710_ft_k700_f8.pth",
+    "bytes": 2042600861,
+    "sha256": "a615568ca9f386509373e4943a5924adfb36f640c2e7c460930c277072e48caf"
+   },
+   {
+    "path": "/data/aic/experiments/NATIVE_CANDIDATE_V1/internvideo/best.pt",
+    "bytes": 6667937,
+    "sha256": "fe281a351bf228c5907d700c355522eface872ffb619cf039bcb26814bf76ecb"
+   },
+   {
+    "path": "/data/aic/pretrained/yunet/face_detection_yunet_2023mar.onnx",
+    "bytes": 232589,
+    "sha256": "8f2383e4dd3cfbb4553ea8718107fc0423210dc964f9f4280604804ed2552fa4"
+   }
+  ],
+  "code_files": {
+   "/home/supie/AIC/scripts/foundation_candidate_release.py": "093acfce816a112bb4b5c10f7f08743e68dd4c90dc7db67034d994e76da1776b",
+   "/home/supie/AIC/aic/foundation.py": "7af5be71db82f0cddd3bbb2aa0ce77462282ebd9a80c657f24d831ff3e2afdda",
+   "/home/supie/AIC/aic/spatial_pipeline.py": "bd4505d10b1e070b14554a64a255ff198071dae3260672a033817fce27090023"
+  },
+  "repro": {
+   "entry": "scripts/foundation_candidate_release.py (code sha256 in code_files)",
+   "weights_shas": [
+    "a615568ca9f38650",
+    "fe281a351bf228c5",
+    "8f2383e4dd3cfbb4"
+   ],
+   "precision": "FP16 encoder, FP32 temporal head",
+   "sample_fps": 2.0,
+   "threshold": 0.35,
+   "spatial_mode": "true_face_smooth",
+   "temporal_postprocess": "linear probability interpolation on original PTS; no test tuning"
+  }
+ },
+ "video_count": 174,
+ "prediction_count": 87637,
+ "validator": {
+  "valid": true,
+  "issues": [],
+  "video_count": 174,
+  "prediction_count": 87637,
+  "model_size_mb": 2049.501387,
+  "model_params_b": 1.022373889,
+  "stage": "final",
+  "validator": "local_rules_2026-09-24_not_official"
+ },
+ "independent": {
+  "valid": true,
+  "videos": 174,
+  "predictions": 87637,
+  "model_size_mb": 2049.501387,
+  "checker": "independent_submission_check_v1"
+ },
+ "unzip_independent": {
+  "valid": true,
+  "videos": 174,
+  "predictions": 87637,
+  "model_size_mb": 2049.501387,
+  "checker": "independent_submission_check_v1"
+ }
+}

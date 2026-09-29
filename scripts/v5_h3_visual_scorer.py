@@ -35,7 +35,7 @@ def load_all(tables,visual,names):
 def unit_tensors(u,dev,mu,sd,proj,kind):
  import torch
  K=len(u['J']);C=u['offs'].shape[1]
- gi=torch.tensor(u['X'],dtype=torch.float32,device=dev)
+ gi=torch.tensor(u['X'],dtype=torch.float32,device=dev) if kind!='V' else None  # V6 E0: V reads no X (official units may lack it; identical numerics when X exists)
  base=np.zeros((K,C,len(BASE)),np.float32)
  offn=u['offs']/max(u['L']-u['s'],1e-9)
  base[...,0]=offn;base[...,1]=u['s']/u['L'];base[...,2]=float(u['comp']);base[...,3]=math.log(u['W']/u['H'])

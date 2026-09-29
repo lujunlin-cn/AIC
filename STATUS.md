@@ -253,3 +253,4 @@ GitHub main synchronized through prior evidence; native training code frozen at 
 - E1 工具链交付（schema v2 / manifest v2 冻结 / 校验器 / 标注界面浏览器实测过）；训练等人工标签到位后启动。
 - E2 MrHiSum：特征提取逐位复现 ✓、部署前向逐位复现 ✓、训练方差 ±0.007 根因定位（upsample 反传 CUDA 核）；1.71M 参数头 dev Spearman 0.288±0.007（弱监督可学信号）。
 - 正式最佳保持 INTERP 48.67；本轮 0 个新上传候选（无预注册通过者，不预报分数）。
+- 复赛候选已建立：`SUB_SF_K700_SEMIFINAL_V1`（承接 SUB_E/K700 官方 34.43 的同一预测内容 + 全行 model_params_b=1.022373889，k=0.90；zip `87cdb7ff…`）。48.67 教师系超 9B 上限不合复赛，保留为研究基线。包未上传、分数不预报。

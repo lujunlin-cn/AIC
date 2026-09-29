@@ -1,13 +1,13 @@
 # 项目状态
 
-更新：2026-09-29 14:15。当前是初赛阶段，只计 raw F_video（规则 01 §3.4），不乘规模系数。
+更新：2026-09-29 15:05。当前是初赛阶段，只计 raw F_video（规则 01 §3.4），不乘规模系数。
 
-## 最新（2026-09-29 下午）：V5 P0 官方包已打包待评（QWEN32B_INTERP_XRERANK_V5_FINAL）；P1/P2/数据侧进行中
+## 最新（2026-09-29 下午）：V5 收尾——P0 已打包、P1（H3）训练中、P2 负结果关闭、数据侧下载中
 
 - **P0 通过预注册晋级规则并已打包**：INTERP 母本上 x 行替换为 E4 式视觉复核点，dev2 x +1.87 CI[+0.73,+3.23]、confirm2 x +1.88 CI[+0.79,+3.26]、全视频 +0.93/+0.94、y 行严格零变化；E4 sanity 复现 ±0.0001 内。`QWEN32B_INTERP_XRERANK_V5_FINAL.zip` sha `027fd12a…`，174 视频/78,992 帧，keys==TEMP 逐视频 0 差异，vs INTERP 实际差异 21 视频/10,273 帧。成绩**待评**，正式最佳保持 INTERP 48.67。详见 `reports/20260929_v5_p0_xrerank_package.md`、`registry.jsonl`（V5_P0_XRERANK_OFFICIAL）。
-- P1（H3 视觉评分头 G/V/V+Q）：RV+LIVE 六表构建完成（rv_train 6,795 kf / rv_dev 1,470 / rv_confirm2 8,004 / live_val 1,032 全 axis0），DINOv2 缓存并行中；决策规则见 `configs/V5_H3_VISUAL_PREREG.json`（含实现附录：候选恒 33 网格、mother 吸附最近格点）。
-- P2（Qwen 命名对象 + GroundingDINO 定位）：25 个 confirm2 分层视频（x/y × fast/slow 四层），32B 命名阶段重跑中。
-- 数据侧：PM-400/AVE-PM 直链实测全灭（12 链接 × 3 头全 502）；改用社区 GDrive 缓存（68.07 GB）后台下载中（~4.6 MB/s）；`portrait_reframe_pilot_v1` 补标任务已建（320 源/86 类全覆盖，215/51/54 划分，240 片段上下文引用；状态 pending_annotation；AVE-PM 事件/BGM/类别仅作上下文，不冒充裁剪 GT）。见 `ext_data/configs/portrait_reframe_pilot_v1/ANNOTATION_SCHEMA.md`。
+- **P2 关闭为负结果**：Qwen 点名主体 + GroundingDINO 定位，confirm2 24 视频（axis×motion 分层）。v0 无条件替换 −0.066 [−0.106,−0.032]，v1b 限幅 −0.039 [−0.062,−0.020]，四分层全负。机制：单帧检测框中心方差大于 DENSE 蒸馏点；与 P0 候选空间复核（+0.0093）对照说明"再看一眼"在候选空间有效、开放词表框空间无效。不晋级不出包。详见 `reports/20260929_v5_p2_ground_pilot_negative.md`、registry（V5_P2_GROUND_PILOT）。
+- **P1（H3 视觉评分头）训练中**：六表 + DINOv2 特征全缓存（2,136 单元，rv_train 6,795 kf / rv_dev 1,470 / rv_confirm2 8,004 / live_val 1,032，全部 axis0）；G/V/V+Q 三头 ×2000 步，cuda:2，seed 1；预注册门 `configs/V5_H3_VISUAL_PREREG.json`（sha eb9ee068…）。结果出来按门决策，晋级才打包。
+- 数据侧：PM-400/AVE-PM 直链实测全灭（12 链接 × 3 头全 502）；社区 GDrive 缓存（68.07 GB）下载中，14:51 时 15.3 GB（22.5%），ETA ~17:50；`portrait_reframe_pilot_v1` 补标任务已建（320 源/86 类全覆盖，215/51/54 划分，240 片段上下文引用；状态 pending_annotation；AVE-PM 事件/BGM/类别仅作上下文，不冒充裁剪 GT）。见 `ext_data/configs/portrait_reframe_pilot_v1/`（ANNOTATION_SCHEMA.md + sampling_manifest_v1.json）。
 - 分支 `teacher-v5-20260929`（主题提交进行中）；V5 基线冻结 `configs/V5_BASELINE_MANIFEST.json`。
 
 ## 2026-09-29 上午：V4 正式成绩已回（INTERP 48.67 = 新正式最佳）；V5 周期启动

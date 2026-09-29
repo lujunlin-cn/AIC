@@ -67,19 +67,29 @@ def pool_unit(patches,valid,u,png_wh):
  return out
 
 
+def _prep(args):
+ from PIL import Image
+ path,resized,ox,oy=args
+ im=Image.open(path).convert('RGB').resize(tuple(resized),Image.BILINEAR)
+ canvas=Image.new('RGB',(D,D),(0,0,0));canvas.paste(im,(ox,oy))
+ return np.asarray(canvas,np.uint8)
+
+
 def main():
  ap=argparse.ArgumentParser();ap.add_argument('--tables',type=Path,required=True);ap.add_argument('--weights',type=Path,required=True)
  ap.add_argument('--output',type=Path,required=True);ap.add_argument('--batch',type=int,default=24);ap.add_argument('--only',nargs='*')
+ ap.add_argument('--workers',type=int,default=10)
  ap.add_argument('--cuda',default='cuda:2');a=ap.parse_args();a.output.mkdir(parents=True,exist_ok=True)
  import torch
  from transformers import Dinov2Model
  from PIL import Image
+ from multiprocessing import Pool
  dev=a.cuda if torch.cuda.is_available() else 'cpu'
  model=Dinov2Model.from_pretrained(a.weights,torch_dtype=torch.float16).to(dev).eval()
  for p in model.parameters():p.requires_grad_(False)
  mean=torch.tensor([.485,.456,.406],device=dev).view(1,3,1,1);std=torch.tensor([.229,.224,.225],device=dev).view(1,3,1,1)
  names=a.only or ['rv_train','rv_dev','rv_confirm2','live_train','live_dev','live_val']
- t0=time.time()
+ t0=time.time();pool=Pool(a.workers)
  for name in names:
   units=pickle.loads((a.tables/f'{name}.pkl').read_bytes());done=0
   for ui,u in enumerate(units):
@@ -87,24 +97,22 @@ def main():
    if dest.exists():continue
    frdir=Path(u['frames_dir']);rows=[j for j in range(len(u['J'])) if u['has_gt'][j]] if name.endswith('train') else list(range(len(u['J'])))
    if not rows:
-    np.savez_compressed(dest,pooled=np.zeros((0,u['offs'].shape[1],12,768),np.float16),rows=np.array([],int),meta=json.dumps({}));continue
+    np.savez(dest,pooled=np.zeros((0,u['offs'].shape[1],12,768),np.float16),rows=np.array([],int),meta=json.dumps({}));continue
    im0=Image.open(frdir/u['vid']/f'{u["keys"][rows[0]]}.png');png_wh=im0.size
    meta=letterbox_meta(png_wh[0],png_wh[1]);valid=valid_patch_mask(meta)
    patches=np.zeros((len(rows),GRID,GRID,768),np.float16)
    with torch.no_grad():
     for b0 in range(0,len(rows),a.batch):
-     part=rows[b0:b0+a.batch];imgs=[]
-     for j in part:
-      im=Image.open(frdir/u['vid']/f'{u["keys"][j]}.png').convert('RGB').resize(tuple(meta['resized']),Image.BILINEAR)
-      canvas=Image.new('RGB',(D,D),(0,0,0));canvas.paste(im,(meta['ox'],meta['oy']))
-      imgs.append(np.asarray(canvas,np.uint8))
+     part=rows[b0:b0+a.batch]
+     imgs=pool.map(_prep,[(str(frdir/u['vid']/f'{u["keys"][j]}.png'),meta['resized'],meta['ox'],meta['oy']) for j in part])
      xb=torch.from_numpy(np.stack(imgs)).to(dev).float().permute(0,3,1,2)/255.
      xb=((xb-mean)/std).half()
      o=model(xb,interpolate_pos_encoding=True).last_hidden_state[:,1:,:]
      patches[b0:b0+len(o)]=o.reshape(-1,GRID,GRID,768).float().cpu().numpy().astype(np.float16)
    pooled=pool_unit(patches,valid,u,png_wh)
-   np.savez_compressed(dest,pooled=pooled,rows=np.array(rows,int),
+   np.savez(dest,pooled=pooled,rows=np.array(rows,int),
     meta=json.dumps({'letterbox':meta,'png_wh':png_wh,'valid':valid.tolist(),'encoder':'hf:dinov2_vitb14(facebook/dinov2-base)','sha256':'d73036b56966966d07975d696bde331762f37297e2f095de8cea0040c3aa0841','grid':GRID}))
    done+=1
   print(json.dumps({'table':name,'units':len(units),'cached_now':done,'s':round(time.time()-t0,1)}),flush=True)
+ pool.close();pool.join()
 if __name__=='__main__':main()

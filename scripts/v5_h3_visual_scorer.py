@@ -52,12 +52,12 @@ def unit_tensors(u,dev,mu,sd,proj,kind):
 def make_head(kind,dev):
  import torch.nn as nn
  proj=nn.Linear(12*768,256).to(dev) if kind in ('V','VQ') else None
- nin=26+(256 if proj is not None else 0)
+ nin=(7 if kind=='V' else 26)+(256 if proj is not None else 0)
  net=nn.Sequential(nn.Linear(nin,128),nn.ReLU(),nn.Linear(128,128),nn.ReLU(),nn.Linear(128,1)).to(dev)
  return net,proj
 
 
-def params_of(net,proj):return list(net.parameters())+([proj] if proj is not None else [])
+def params_of(net,proj):return list(net.parameters())+(list(proj.parameters()) if proj is not None else [])
 
 
 def dev_keyframe_iou(net,proj,kind,units,dev,mu,sd):

@@ -41,20 +41,46 @@ NC = 129
 RATIOS = {'1-3': [1, 3], '3-1': [3, 1]}
 
 
-def load_np(tag):
-    p = args.samples_dir / f'{tag}.npz'
-    z = np.load(p, allow_pickle=False)
-    return [{'feat': z['feat'][i], 'u': z['u'][i], 'vid': str(z['vid'][i]),
-             'frame': int(z['frame'][i]), 'ratio': str(z['ratio'][i])} for i in range(len(z['feat']))]
+class Pool:
+    """Inflate a cached npz exactly ONCE and materialise rows on demand.
+
+    Same V8 memory fix as v8_s_train_multidata: `z['feat']` re-inflates the
+    whole array on every access, so the original per-row list comprehension
+    decompressed ~15 GB once per row for rv_train and kept a second full copy.
+    """
+
+    def __init__(self, tag):
+        self.p = args.samples_dir / f'{tag}.npz'
+        if not self.p.exists():
+            self.n = 0
+            return
+        with np.load(self.p, allow_pickle=False) as z:
+            self.feat, self.u = z['feat'], z['u']
+            self.vid, self.frame, self.ratio = z['vid'], z['frame'], z['ratio']
+        self.n = len(self.u)
+
+    def __len__(self):
+        return self.n
+
+    def rows(self, idxs):
+        return [{'feat': self.feat[i], 'u': self.u[i], 'vid': str(self.vid[i]),
+                 'frame': int(self.frame[i]), 'ratio': str(self.ratio[i])} for i in idxs]
+
+    def __getitem__(self, i):
+        if isinstance(i, slice):
+            return self.rows(range(*i.indices(self.n)))
+        if isinstance(i, (list, np.ndarray)):
+            return self.rows([int(k) for k in i])
+        return self.rows([int(i)])[0]
 
 
-train = load_np('rv_native/rv_train')
-dev = load_np('rv_native/rv_dev')
-diag = load_np('rv_native/rv_diag')
+train = Pool('rv_train')
+dev = Pool('rv_dev')
+diag = Pool('rv_diag')
 
 # teacher preference targets on the candidate grid
 tp = {}
-for r in train:
+for r in train.rows(range(len(train))):
     tp.setdefault((r['vid'], r['ratio']), {})[r['frame']] = None
 n_kd = 0
 for (vid, rn), frames in sorted(tp.items()):
@@ -170,7 +196,7 @@ def eval_rows(rows, ret=False):
 hist, best = [], (-1.0, None)
 t0 = time.time()
 for step in range(args.steps):
-    rs = [train[i] for i in rng.integers(0, len(train), args.batch)]
+    rs = train.rows(rng.integers(0, len(train), args.batch))
     x, u = batch_to(rs)
     loss, _ = loss_fn(x, u, rs)
     opt.zero_grad(set_to_none=True)
@@ -190,7 +216,7 @@ torch.save({'state_dict': best[1], 'config': {'d': D, 'nc': NC, 'seed': args.see
                                               'kd_weight': args.kd_weight, 'kd_sigma': args.kd_sigma}},
            args.output_dir / 'head_s.pt')
 head.load_state_dict(best[1])
-confirm = load_np('live_confirmation')
+confirm = Pool('live_confirmation')
 for name, pool in (('rv_dev', dev), ('rv_diag', diag), ('live_confirm', confirm)):
     per = eval_rows(pool, ret=True)
     with open(args.output_dir / f'per_{name}.jsonl', 'w') as fo:

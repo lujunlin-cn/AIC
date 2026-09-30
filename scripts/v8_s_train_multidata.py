@@ -70,22 +70,115 @@ rows = [json.loads(l) for l in open(args.manifest)]  # metadata only; feats come
 
 
 def load_np(tag):
+    """Load a cached sample pool.
+
+    Memory note (V8 fix): np.load on .npz is lazy PER KEY, and `z['feat']`
+    re-inflates the whole array on every access.  The original
+    `[{'feat': z['feat'][i], ...} for i in range(len(z['feat']))]` therefore
+    decompressed ~15 GB once per row (25,878 times for rv_train) and kept both
+    the inflated array and a per-row dict copy alive - ~30 GB per tag, ~100 GB
+    for B3.  Four concurrent arms plus duplicate resume entries exhausted host
+    RAM.  Fix: inflate each array exactly once, keep views/indices (no copies),
+    and close the zip handle immediately.
+    """
     p = args.samples_dir / f'{tag}.npz'
     if not p.exists():
-        return []
-    z = np.load(p, allow_pickle=False)
-    return [{'feat': z['feat'][i], 'u': z['u'][i], 'vid': str(z['vid'][i]),
-             'frame': int(z['frame'][i]), 'ratio': str(z['ratio'][i])} for i in range(len(z['feat']))]
+        return None
+    with np.load(p, allow_pickle=False) as z:
+        feat = z['feat']
+        u = z['u']
+        vids = z['vid']
+        frames = z['frame']
+        ratios = z['ratio']
+    return {'feat': feat, 'u': u, 'vid': vids, 'frame': frames, 'ratio': ratios}
 
 
 want_train_tags, want_dev_tags = [], []
 for s in args.sources:
     want_train_tags += TRAIN_SPLITS[s]
     want_dev_tags += DEV_SPLITS[s]
-train = [r for tag in dict.fromkeys(want_train_tags) for r in load_np(tag)]
-dev = [r for tag in dict.fromkeys(want_dev_tags) for r in load_np(tag)]
-diag = load_np('rv_diag')
-print(f'cached pools train={len(train)} dev={len(dev)} diag={len(diag)}', flush=True)
+
+
+class Pool:
+    """Concatenated view over cached tags. Rows are materialised ONLY on
+    demand (batch or eval pass) - never as a full list of dicts, which was the
+    second copy that pushed the multi-arm runs past host RAM."""
+
+    def __init__(self, pools):
+        self.pools = [p for p in pools if p]
+        self.offsets = np.cumsum([0] + [len(p['u']) for p in self.pools])
+        self.n = int(self.offsets[-1])
+
+    def __len__(self):
+        return self.n
+
+    def _loc(self, i):
+        j = int(np.searchsorted(self.offsets, i, 'right') - 1)
+        return j, int(i - self.offsets[j])
+
+    def rows(self, idxs):
+        out = []
+        for i in idxs:
+            j, k = self._loc(int(i))
+            p = self.pools[j]
+            out.append({'feat': p['feat'][k], 'u': p['u'][k], 'vid': str(p['vid'][k]),
+                        'frame': int(p['frame'][k]), 'ratio': str(p['ratio'][k])})
+        return out
+
+    def __getitem__(self, idx):
+        if isinstance(idx, slice):
+            return self.rows(range(*idx.indices(self.n)))
+        if isinstance(idx, (list, np.ndarray)):
+            return self.rows(idx)
+        return self.rows([idx])[0]
+
+    def where(self, pred):
+        """Index list where pred(row_dict) is True - evaluated one row at a
+        time but returning only integer indices (no retained copies)."""
+        keep = []
+        for i in range(self.n):
+            j, k = self._loc(i)
+            p = self.pools[j]
+            if pred({'vid': str(p['vid'][k]), 'ratio': str(p['ratio'][k])}):
+                keep.append(i)
+        return keep
+
+
+class IndexSubset:
+    """Read-only view over a Pool restricted to an index list."""
+
+    def __init__(self, pool, idx):
+        self.pool, self.idx = pool, list(idx)
+
+    def __len__(self):
+        return len(self.idx)
+
+    def __getitem__(self, i):
+        if isinstance(i, slice):
+            return self.pool.rows([self.idx[k] for k in range(*i.indices(len(self.idx)))])
+        if isinstance(i, (list, np.ndarray)):
+            return self.pool.rows([self.idx[int(k)] for k in i])
+        return self.pool.rows([self.idx[int(i)]])[0]
+
+
+def pool_of(tags):
+    loaded = [load_np(t) for t in dict.fromkeys(tags)]
+    return Pool(loaded) if any(loaded) else None
+
+
+train_pool = pool_of(want_train_tags)
+dev_pool = pool_of(want_dev_tags)
+diag_pool = pool_of(['rv_diag'])
+confirm_pool = pool_of(['live_confirmation'])
+train = train_pool if train_pool else IndexSubset(Pool([]), [])
+dev_all = dev_pool if dev_pool else IndexSubset(Pool([]), [])
+diag = diag_pool if diag_pool else IndexSubset(Pool([]), [])
+rv_dev = IndexSubset(dev_all, dev_all.where(lambda r: r['vid'].isdigit())) if dev_all else dev_all
+live_dev = IndexSubset(dev_all, dev_all.where(lambda r: not r['vid'].isdigit())) if dev_all else dev_all
+print(f'cached pools train={len(train)} rv_dev={len(rv_dev)} live_dev={len(live_dev)} '
+      f'diag={len(diag)} confirm={len(confirm_pool) if confirm_pool else 0} '
+      f'feat_GB={sum(p["feat"].nbytes for pool in (train_pool, dev_pool, diag_pool, confirm_pool) if pool for p in pool.pools) / 1e9:.1f}',
+      flush=True)
 
 
 def build_sample(row):
@@ -207,7 +300,7 @@ def eval_rows(rs, ret=False):
 hist, best = [], (-1.0, None)
 t0 = time.time()
 for step in range(args.steps):
-    rs = [train[i] for i in rng.integers(0, len(train), args.batch)]
+    rs = train.rows(rng.integers(0, len(train), args.batch))
     x, u = batch_to(rs)
     loss, _ = huber_pair(x, u)
     opt.zero_grad(set_to_none=True)
@@ -217,9 +310,8 @@ for step in range(args.steps):
     sched.step()
     if (step + 1) % args.eval_every == 0:
         m = {}
-        for name, pool in (('rv_dev', [r for r in dev if r['vid'].isdigit()]),
-                           ('live_dev', [r for r in dev if not r['vid'].isdigit()])):
-            if pool:
+        for name, pool in (('rv_dev', rv_dev), ('live_dev', live_dev)):
+            if len(pool):
                 m[name] = eval_rows(pool)
         score = float(np.mean([v[1] for v in m.values()]))  # mean d_center across dev sets
         hist.append({'step': step + 1, 'loss': float(loss), 'score': score,
@@ -234,11 +326,9 @@ torch.save({'state_dict': best[1], 'config': {'d': D, 'nc': NC, 'seed': args.see
                                               'sources': args.sources, 'steps': args.steps}},
            args.output_dir / 'head_s.pt')
 head.load_state_dict(best[1])
-for name, pool in (('rv_dev', [r for r in dev if r['vid'].isdigit()]),
-                   ('live_dev', [r for r in dev if not r['vid'].isdigit()]),
-                   ('rv_diag', diag),
-                   ('live_confirm', load_np('live_confirmation'))):
-    if not pool:
+for name, pool in (('rv_dev', rv_dev), ('live_dev', live_dev), ('rv_diag', diag),
+                   ('live_confirm', confirm_pool)):
+    if not len(pool):
         continue
     per = eval_rows(pool, ret=True)
     with open(args.output_dir / f'per_{name}.jsonl', 'w') as fo:

@@ -155,7 +155,11 @@ class Head(torch.nn.Module):
 
 D = train[0]['feat'].shape[1]
 head = Head(D, NC).to(args.device).float()
-opt = torch.optim.AdamW(head.parameters(), lr=args.lr, weight_decay=0.01)
+# foreach=False on CPU: torch_npu patches the optimizer as a torch plugin and
+# its device probe fires even for CPU tensors (V8, when the NPU driver was
+# down). Keep the fused/foreach fast path on NPU only.
+opt = torch.optim.AdamW(head.parameters(), lr=args.lr, weight_decay=0.01,
+                          foreach=(args.device != 'cpu'))
 sched = torch.optim.lr_scheduler.CosineAnnealingLR(opt, T_max=args.steps)
 
 

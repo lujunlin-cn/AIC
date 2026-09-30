@@ -44,17 +44,30 @@
 
 ## 2. 方向一：多几何候选效用头（本轮主线）
 
-设计：同一头结构/预算（1,511,425 参数，与 V7 逐字节可比），对照臂（预注册于 scripts 启动前）：
+设计：同一头结构/预算（1,511,425 参数，与 V7 逐字节可比），对照臂：
 - B1 rv_native（V7 复刻，1200 步）
 - B2 rv_native + rv_rot（旋转增强，1200 步）
-- B3 rv + rot + live_train（全量，3000 步）
-- B4 live_train only（3000 步）
-各臂 2 seed；选择集 rv_dev + live_dev（均未参与训练）；确认 rv_diag + live_confirmation
-（两者对 V8 头均新鲜：V7/V8 头从未用 LIVE 训练或选择）。
-特征：LIVE 帧 PyAV 解码 → 长边 640（与部署一致）→ LFM vision grid；样本预构建缓存
-（samples/*.npz，25,878 RV + 43,980 LIVE）。
+- B3 rv + rot + live_train（全量，2000 步）
+- B4 live_train only（2000 步）
+各臂 2 seed；选择集 rv_dev + rv_rot_dev + live_dev（按 cache tag 划分，不按 vid 形状
+——旋转缓存用同样的数字 DHF1K id，按 isdigit 划分会把两种几何混进同一选择集）；确认
+rv_diag（含 rot）+ live_confirmation（两者对 V8 头均新鲜）。
+特征：LIVE 帧 PyAV 解码 → 长边 640（与部署一致）→ LFM vision grid；样本预构建为
+.npy memmap 缓存（69,858 行）。
 
-（结果待填）
+### 2.1 一次被结果本身抓出的管线缺陷（先记于过程，后补结论）
+B2 与 B1 的 best_score **逐位相同**（s0 均 0.04948276291847941，s1 均 0.05212656097582715）。
+两个不同数据池不可能位级一致——据此定位：
+1. `TRAIN_SPLITS['rv_rot'] = ['rv_train']`（我写成了与 native 同一个 tag，等于没加旋转）；
+2. build_samples 按 `split` 分组，而 manifest 里旋转行与 native 行**共用 split 名**
+   （仅 src='rv_rot' 区分）→ 两种几何被混进同一 tag；
+3. 首次构建样本时旋转特征尚未生成，过滤后只剩 native 行（61,020 行中 RV 仅 17,040）。
+修复：build 按 (split, src) 分组并去重复前缀（`rv_rot_train`/`rv_rot_dev`/`rv_rot_diag`），
+TRAIN/DEV_SPLITS 接线，dev 池按 tag 而非 vid 划分。修复后 B2 池 8,996 → **13,494** 行
+（native 8,996 + rot 4,498），独立 rv_rot_dev=948。B1/B4 不含旋转，结果保留；B2/B3
+的退化结果作废重跑。
+**教训：对照组结果的位级一致性是最强的"数据没进模型"信号；预注册对照臂后应先核对
+各臂实际池大小，再看指标。**
 
 ## 3. 方向二：学生 INTERP / 密集观察
 
@@ -107,11 +120,16 @@ head LR 双臂一致 3e-4、eval 每 50 步（识别 V7 的 best@100 后震荡�
   S_TRAIN 110 源 / S_DEV 20 / DIAG 70 源级分离。
 - **两 seed FINAL**：dev pearson 0.294/0.235、ndcg@15% 0.316/0.337；diag pearson
   0.286/0.226、**ndcg@15% 0.456/0.445**（随机 0.15）——diag 排序信号中等。
-- f1_B keep-mask 裁决（v8_joint_eval2 stage 4，关键帧网格选帧）待训练臂后与值头
-  联合跑（V7 头 keep + 值头打分）；决定 keep 与否的 f1_B 对 ρ 网格在 §3.1 表扩展。
+- **f1_B keep-mask 裁决（值头 s0）**：首版口径错误——把"只提交 keep 帧"与"GT 为全部帧"
+  比较，命中天然稀少（20 关键帧 ∩ 620 GT 帧）且分母不同，与 f1_A 不可比；发现即改。
+  修正为**提交密度不变**（非 keep 帧沿用前一 keep 帧的窗），衡量稀疏观察的真实代价。
+- **结果（ρ=1.0 / f1_A hold=0.4519 同尺度）**：keep=1.0 → 0.4457；0.75 → 0.4454；
+  0.5 → 0.4437；0.3 → 0.4368；0.15 → 0.4348。ρ=0.15 时 0.3 与 0.15 几乎相同（0.1137）。
+- **结论（分数判负 / 效率为正）**：稀疏观察**不提高** f1（随 keep 单调不增），但代价极小
+  ——只观察 30% 帧损失 1.6% f1，15% 帧损失 3.1%。即学生头空间预测在时间上高度自相关
+  （与 §3.1 中 interp/dense 无差异同源）。可作**推理量优化**（-70% 观察量换 -1.6% 分），
+  不作分数手段；方向三在分数维度判负。
 - TVSum TCN（V7 C3）与 YTH 证据不重复报告，见 V7 报告。
-
-（f1_B 结果待填）
 
 ## 6. 方向五：教师候选偏好蒸馏（KD-v2）
 

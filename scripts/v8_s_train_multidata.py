@@ -52,9 +52,12 @@ for spec in args.feat_roots:
     FEATS[k] = Path(v)
 RATIOS = {'1-3': [1, 3], '3-1': [3, 1], '9-16': [9, 16], '16-9': [16, 9]}
 NC = args.n_cand
-TRAIN_SPLITS = {'rv_native': ['rv_train'], 'rv_rot': ['rv_train'],
+# V8 fix: rotation-augmentation rows carry their own cache tags
+# (rv_rot_*), built by v8_build_samples.py grouping on (split, src).  Before
+# this, 'rv_rot' mapped to the native tag, so B2 == B1 by construction.
+TRAIN_SPLITS = {'rv_native': ['rv_train'], 'rv_rot': ['rv_rot_train'],
                 'live_train': ['live_train'], 'live_all': ['live_train']}
-DEV_SPLITS = {'rv_native': ['rv_dev'], 'rv_rot': [], 'live_train': [],
+DEV_SPLITS = {'rv_native': ['rv_dev'], 'rv_rot': ['rv_rot_dev'], 'live_train': [],
               'live_all': ['live_dev']}
 if 'live_train' in args.sources:
     args.sources = [s for s in args.sources if s != 'live_train'] + ['live_all']
@@ -172,18 +175,19 @@ def pool_of(tags):
     return Pool(loaded) if any(loaded) else None
 
 
-train_pool = pool_of(want_train_tags)
-dev_pool = pool_of(want_dev_tags)
-diag_pool = pool_of(['rv_diag'])
+EMPTY = IndexSubset(Pool([]), [])
+# dev pools are per-TAG, not filtered by vid shape: the rotated caches use the
+# same numeric DHF1K ids as the native ones, so an isdigit() split would silently
+# mix the two geometries into one selection set.
+train = pool_of(want_train_tags) or EMPTY
+rv_dev = pool_of(['rv_dev']) or EMPTY
+rv_rot_dev = pool_of(['rv_rot_dev']) or EMPTY
+live_dev = pool_of(['live_dev']) or EMPTY
+diag = pool_of(['rv_diag', 'rv_rot_diag']) or EMPTY
 confirm_pool = pool_of(['live_confirmation'])
-train = train_pool if train_pool else IndexSubset(Pool([]), [])
-dev_all = dev_pool if dev_pool else IndexSubset(Pool([]), [])
-diag = diag_pool if diag_pool else IndexSubset(Pool([]), [])
-rv_dev = IndexSubset(dev_all, dev_all.where(lambda r: r['vid'].isdigit())) if dev_all else dev_all
-live_dev = IndexSubset(dev_all, dev_all.where(lambda r: not r['vid'].isdigit())) if dev_all else dev_all
-print(f'cached pools train={len(train)} rv_dev={len(rv_dev)} live_dev={len(live_dev)} '
-      f'diag={len(diag)} confirm={len(confirm_pool) if confirm_pool else 0} '
-      f'feat_GB={sum(p["feat"].nbytes for pool in (train_pool, dev_pool, diag_pool, confirm_pool) if pool for p in pool.pools) / 1e9:.1f}',
+print(f'cached pools train={len(train)} rv_dev={len(rv_dev)} rv_rot_dev={len(rv_rot_dev)} '
+      f'live_dev={len(live_dev)} diag={len(diag)} confirm={len(confirm_pool) if confirm_pool else 0} '
+      f'feat_GB={sum(p["feat"].nbytes for pool in (train, rv_dev, rv_rot_dev, live_dev, diag, confirm_pool) if pool for p in pool.pools) / 1e9:.1f}',
       flush=True)
 
 
@@ -263,7 +267,11 @@ class Head(torch.nn.Module):
 
 D = train[0]['feat'].shape[1]
 head = Head(D, NC).to(args.device).float()
-opt = torch.optim.AdamW(head.parameters(), lr=args.lr, weight_decay=0.01)
+# foreach=False on CPU: torch_npu patches the optimizer as a torch plugin and
+# its device probe fires even for CPU tensors (V8, when the NPU driver was
+# down). Keep the fused/foreach fast path on NPU only.
+opt = torch.optim.AdamW(head.parameters(), lr=args.lr, weight_decay=0.01,
+                          foreach=(args.device != 'cpu'))
 sched = torch.optim.lr_scheduler.CosineAnnealingLR(opt, T_max=args.steps)
 
 
@@ -316,7 +324,7 @@ for step in range(args.steps):
     sched.step()
     if (step + 1) % args.eval_every == 0:
         m = {}
-        for name, pool in (('rv_dev', rv_dev), ('live_dev', live_dev)):
+        for name, pool in (('rv_dev', rv_dev), ('rv_rot_dev', rv_rot_dev), ('live_dev', live_dev)):
             if len(pool):
                 m[name] = eval_rows(pool)
         score = float(np.mean([v[1] for v in m.values()]))  # mean d_center across dev sets
@@ -332,8 +340,8 @@ torch.save({'state_dict': best[1], 'config': {'d': D, 'nc': NC, 'seed': args.see
                                               'sources': args.sources, 'steps': args.steps}},
            args.output_dir / 'head_s.pt')
 head.load_state_dict(best[1])
-for name, pool in (('rv_dev', rv_dev), ('live_dev', live_dev), ('rv_diag', diag),
-                   ('live_confirm', confirm_pool)):
+for name, pool in (('rv_dev', rv_dev), ('rv_rot_dev', rv_rot_dev), ('live_dev', live_dev),
+                   ('rv_diag', diag), ('live_confirm', confirm_pool)):
     if not len(pool):
         continue
     per = eval_rows(pool, ret=True)

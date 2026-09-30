@@ -79,9 +79,22 @@ def build(row):
     return feat.astype(np.float16), u.astype(np.float32)
 
 
+# V8 fix: group by (split, src), not split alone.  The manifest stores the
+# rotated-augmentation rows under the SAME split names as the native ones
+# (distinguished only by src='rv_rot'), so grouping by split alone mixed the two
+# geometries into one tag - which is why B2 (rv+rotation) silently trained on the
+# same data as B1 and produced bit-identical results.
+def tag_of(row):
+    if row['src'] != 'rv_rot':
+        return row['split']
+    # split names already start with 'rv_' (rv_train / rv_dev / rv_diag), so
+    # prefixing blindly yields 'rv_rot_rv_train' and --tags never matches.
+    return 'rv_rot_' + row['split'].split('_', 1)[1] if '_' in row['split'] else 'rv_rot_' + row['split']
+
+
 groups = {}
 for r in rows:
-    groups.setdefault(r['split'], []).append(r)
+    groups.setdefault(tag_of(r), []).append(r)
 
 args.output_dir.mkdir(parents=True, exist_ok=True)
 CHUNK = 512  # rows materialised at once; bounds worker IPC and parent RSS

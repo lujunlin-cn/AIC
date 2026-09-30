@@ -270,7 +270,11 @@ if args.value_ckpt:
     vh = TCN(d=vck['config']['d'], ch=vck['config']['ch'])
     vh.load_state_dict(vck['state_dict'])
     vh.eval()
-    out['f1_B'] = {'keep_fracs': args.keep_fracs, 'rhos': {}}
+    out['f1_B'] = {'keep_fracs': args.keep_fracs, 'rhos': {},
+                   'note': 'same denominator as f1_A (full-frame submission, n_pred=N_total). '
+                           'A frame is re-predicted by the head only if it is in the value-head '
+                           'top-m keyframes; other frames hold the last kept window. Measures the '
+                           'f1 cost of sparse observation, not a change of submission density.'}
     for rho in args.rhos:
         acc = {str(k): [] for k in args.keep_fracs}
         for vid in vids:
@@ -288,15 +292,27 @@ if args.value_ckpt:
                 vs = vh(torch.from_numpy(x[None]))[0].numpy()
             for keep in args.keep_fracs:
                 m = max(1, int(round(len(kf_seq) * keep)))
-                keep_frames = {kf_seq[i] for i in np.argsort(-vs)[:m]}
+                keep_set = {kf_seq[i] for i in np.argsort(-vs)[:m]}
                 for rn, d in res[vid].items():
                     kfsr = cache[vid][rn]['kfs']
                     g_all = gt_interp(kfsr, np.stack([gt_map[(vid, rn, k)] for k in kfsr]), n_frame)
-                    w = expand_windows(kfsr, np.asarray(cache[vid][rn]['wins']), n_frame, 'interp')
-                    iou_row = iou(w, g_all).astype(np.float64)
-                    hit = sum(iou_row[f] for f in gt_frames if f in keep_frames)
-                    acc[str(keep)].append(2 * float(hit) / (m + n_gt) if (m + n_gt) else 1.0)
-        out['f1_B']['rhos'][str(rho)] = {k: float(np.mean(v)) for k, v in acc.items()}
+                    w = expand_windows(kfsr, np.asarray(cache[vid][rn]['wins']), n_frame, 'hold')
+                    # sparse observation: only kept keyframes refresh the window,
+                    # every other frame keeps the last kept one
+                    ks = sorted(keep_set)
+                    if not ks:
+                        continue
+                    w_sparse = w.copy()
+                    prev = w[0]
+                    ki = 0
+                    for f in range(n_frame):
+                        while ki < len(ks) and ks[ki] <= f:
+                            prev = w[ks[ki]]
+                            ki += 1
+                        w_sparse[f] = prev
+                    iou_row = iou(w_sparse, g_all).astype(np.float64)
+                    acc[str(keep)].append(f1_a(iou_row, gt_frames, n_frame))
+        out['f1_B']['rhos'][str(rho)] = {k: round(float(np.mean(v)), 4) for k, v in acc.items()}
         print('f1_B', rho, out['f1_B']['rhos'][str(rho)], flush=True)
 
 args.output.parent.mkdir(parents=True, exist_ok=True)

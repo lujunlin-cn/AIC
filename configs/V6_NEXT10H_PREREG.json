@@ -1,0 +1,123 @@
+{
+  "prereg_id": "V6_NEXT10H_PREREG",
+  "created_utc": "2026-09-29T15:30:00Z",
+  "window": {
+    "t0_cst": "2026-09-29T23:14",
+    "hard_deadline_cst": "2026-09-30T11:30",
+    "freeze_candidates_cst": "2026-09-30T09:30",
+    "guide": "AIC_V6_后续10小时研究与执行指南_20260929.md"
+  },
+  "code_identity": {
+    "branch": "teacher-v5-20260929",
+    "head_at_start": "a2aef49",
+    "e2_release": "mrhisum_feat_subset_v1",
+    "e2_release_sha256": "70ede85f83f0e4425cbfe56108c07d498661cb9cafe78c4b9a6ff6381ba6b22b",
+    "e2_pilot_seed": 20260929
+  },
+  "e3_deployment_chain": {
+    "goal": "raw MP4 -> YouTube-8M-compatible frame features (rgb1024+audio128 quantized) -> frozen E2/T0 head -> temporal prediction",
+    "timebox_hours": 2,
+    "rgb_route": "official TF feature extractor (InceptionV3 + YT-8M PCA) on CPU, isolated env; torch port fallback",
+    "audio_route": "VGGish official weights + PCA params (torch port acceptable, weights byte-checked)",
+    "parity_sample": "1-3 MrHiSum-listed YouTube videos downloaded via workstation proxy; feature-level comparison (dequantized L2/cosine per step after best-offset alignment); if download blocked, local raw videos with parity explicitly UNVERIFIED",
+    "verdicts": ["DEPLOYABLE", "FEATURE_ONLY", "BLOCKED"],
+    "blockers_recorded": true,
+    "notes": "no TF on V100 (cv env); 1fps YT-8M frame features; 300s coverage rule per sample must be checked against steps"
+  },
+  "e4_temporal_candidates": {
+    "control": {
+      "id": "T0",
+      "def": "E2 config re-run with weight saving: TemporalUNet(1152), masked_regression, AdamW lr1e-3 wd1e-4, bs16, 3 epochs, seed 20260929",
+      "expected": "dev macro Spearman 0.288 +/- 0.013 run-to-run variance documented in V6_E2/det_ab.log"
+    },
+    "new_candidates": [
+      {
+        "id": "T1",
+        "def": "TemporalTCN(1152): adapter->128, 4 dilated residual ConvBlocks (d 1,2,4,8) at full temporal resolution, no pooling/interpolate decode, output Conv1d->1; params budget <= 2.5M",
+        "hypothesis": "removing down/upsample keeps signal and removes the nondeterministic-interpolate variance source; dev Spearman >= T0 with smaller seed variance"
+      },
+      {
+        "id": "T2",
+        "def": "T0 skeleton + intra-video pairwise margin ranking loss on 64 uniformly sampled valid pairs per video, lambda=0.5 (preregistered), same optimizer/epochs",
+        "hypothesis": "explicit ranking objective improves dev Spearman and transfers better to native labels than pure regression"
+      }
+    ],
+    "screen": {
+      "seed": 20260929,
+      "data": "release train (25,069) / dev (2,808) npz caches at /data/aic/experiments/V6_E2/npz",
+      "metric": "dev macro Spearman (primary); Kendall tau (secondary)",
+      "rule": "a new candidate advances to multi-seed iff dev Spearman - T0_same_seed >= +0.002"
+    },
+    "multi_seed": {
+      "seeds": [20260929, 20260930, 20260931],
+      "budget": "3 seeds x at most 2 configs (control T0 always re-seeded for variance reference)",
+      "report": "per-seed dev Spearman, mean +/- sd, paired per-video deltas vs T0 per seed"
+    },
+    "confirm_one_shot": {
+      "data": "release confirmation 4,008 videos (fresh reserve, never used for selection)",
+      "rule": "run ONCE for at most the 2 best configs after multi-seed freeze; export-confirm npz before that",
+      "metric": "macro Spearman + per-video CSV"
+    },
+    "target_domain_transfer": {
+      "data_candidates": ["YouTubeHighlights raw 419 mp4 + local annotations (ledger: T3/T4 selection-exposed 124 groups -> diagnostic only)", "QVH native raw (query-conditioned, report separately)", "E1 native portrait labels (LABELS_MISSING as of T0)"],
+      "prereq": "E3 extractor output on those raw videos; if absent -> TRANSFER_NOT_VERIFIED, stated explicitly",
+      "stop_condition": "weak-domain improve + target-domain (when measurable) degrade => close package route for that config"
+    },
+    "package_rule": "no candidate package from weak-label Spearman alone; needs prereg promotion gate (see promotion)"
+  },
+  "e5_lfm_zero_shot": {
+    "model": "LiquidAI/LFM2.5-VL-450M",
+    "weights_local": "/data/aic/pretrained/lfm2_5_vl_450m (910A copy); V100 fresh download sha-checked",
+    "env": "V100 physical GPU4, isolated PYTHONPATH install (transformers>=5.1 pinned), cv env untouched; V100 fp16 only (no bf16), eager/sdpa attention as validated",
+    "protocol": {
+      "smoke": "10 keyframes from configs/LFM450_SPATIAL_DEV_MANIFEST_V1.json videos; verify load, parse, bbox legality, latency",
+      "pilot": "50 videos x up to 6 sampled keyframes, layers nonperson/fast_motion/shot_cuts/regular as manifest",
+      "arms": ["S0 center crop at target ratio (geometric baseline)", "S1 LFM bbox -> validated geometry to legal crop window", "S2 fixed legal candidate selection only if S1 passes checks"],
+      "prompts": "at most 2 frozen templates",
+      "decoding": "greedy; mechanical format fixes only, all raw replies retained",
+      "engineering_threshold": ">=99% parseable without manual rescue (preregistered engineering bar, not an accuracy bar)"
+    },
+    "metrics": "per-frame raw output, parse/fallback status, out-of-range rate, per-arm geometry validity stratified by layer/ratio, latency, peak memory; NO fabricated IoU (no human boxes), no teacher-agreement as accuracy",
+    "temporal_grid_probe": {
+      "budget_minutes": 90,
+      "def": "2x2 grid of 4 timestamps vs single center frame, same visual-token budget, fixed keep/skip judgment format",
+      "status": "interface/behavior exploration only unless native temporal labels exist; not a model-gain claim"
+    }
+  },
+  "e1_auto_native_supervision": {
+    "user_override_utc": "2026-09-29T15:35:00Z",
+    "human_annotation": "NONE (user will not annotate and assigns no annotators; supersedes earlier E1 UI/wait-for-labels plan)",
+    "public_labels": "reuse existing public/in-house labels as-is; auto-organize train/dev/confirm with original label semantics and source grouping; never rename exposed data into a fresh confirmation set",
+    "teacher_pseudo": {
+      "teacher": "Qwen3-VL-32B on 910A (aic-batch container, batch transformers)",
+      "task": "crop-candidate preference + temporal pseudo-labels on native-portrait videos of the LEGAL training pool only; competition test videos forbidden",
+      "pilot": "20-40 videos, measure throughput + retention before any scale-up; timebox 1-2h total",
+      "qc": "automated format/geometry/candidate-order/transform-consistency checks; low quality dropped or downweighted; consistency is a filtering basis only, never presented as label accuracy",
+      "abstain_rule": "teacher unavailable or gains insufficient => continue public-label-only training; never stall on this"
+    },
+    "training_contrast": "public-labels-only vs public-labels+filtered-pseudo; gains evaluated ONLY on existing public ground truth; teacher-agreement reported separately; native-portrait independent GT absent => effects marked UNVERIFIED",
+    "shared_encoder_feasibility": "cache LFM SigLIP2-NaFlex ~86M vision-tower features on local raw videos, train one small head as signal probe; parameters counted after export; no dim-matching across encoders"
+  },
+  "promotion_gate": {
+    "rule": "clean-confirm paired gain mean >0 AND source-clustered 95% CI lower bound >0 vs locked deployable student baseline; native-portrait layer must not degrade beyond -0.002 F tolerance (engineering suggestion, frozen before results)",
+    "note": "local evidence only; no official-score prediction; official best stays INTERP 48.67 until platform feedback"
+  },
+  "constraints": {
+    "gpus_allowed": [1, 2, 4, 5, 6, 7],
+    "gpus_forbidden": [0, 3],
+    "max_train_hours": 12,
+    "no_teacher_dependency_in_student_inference": true,
+    "test_data_use": "frozen-algorithm inference + format validation only",
+    "no_dev_expansion_no_threshold_retrofit_for_H3": true,
+    "kill_unrelated_processes": false
+  },
+  "deliverables": [
+    "reports/20260930_v6_next10h_research.md",
+    "reports/v6_next10h/model_params.json",
+    "reports/v6_next10h/lfm_zero_shot.csv",
+    "reports/v6_next10h/temporal_transfer.csv",
+    "reports/v6_next10h/exposure_ledger.jsonl",
+    "reports/v6_next10h/e2e_manifest.json",
+    "reports/v6_next10h/NEXT_ACTIONS.md"
+  ]
+}

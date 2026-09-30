@@ -1,0 +1,66 @@
+{
+ "submission_id": "LFM_V7_S_FINAL",
+ "status": "frozen_exploratory",
+ "release_status": "PACKAGED_NOT_UPLOADED_TRAINED_STUDENT_SPATIAL_HEAD",
+ "frozen_at": "2026-09-30",
+ "policy": "QWEN_POINT",
+ "parent_baseline": "LFM450_RAW_GROUND_V1 (official 35.00)",
+ "primary_changed_factor": "per-frame max-window position observation: trained candidate-utility head over LFM2.5-VL-450M vision-tower 2D tokens (single-tile NaFlex grid 22x40x768; 129 equal legal windows along the free axis incl. centre; win/out token-mean pooling + position, 2305-d; MLP 2305-512-128 + 2-layer eager self-attention; ratio-conditioned) replacing the zero-shot GROUND text->box->centre readout. Trained GT-only on RetargetVid 6-annotator mean IoU (Huber + pairwise). Same B0 EMA .25 path, same B0 shot resets, same all-select mask, same max width, same YuNet fallback. Head selected on S_DEV by frozen prereg; unfrozen-backbone arm and GT+KD arm trained and rejected on the same selection set (see dev_evidence).",
+ "fixed_conditions": {
+  "temporal": "all decoded frames (unchanged)",
+  "width": "largest legal",
+  "path": "B0 EMA alpha .25 on free axis, B0 thumbnail-diff resets, hold within shot",
+  "fallback": "B0 observation on head failure / before first keyframe"
+ },
+ "alpha": 0.25,
+ "centre_mode": "hold",
+ "training": {
+  "data": "RetargetVid public crop GT only (6-annotator mean IoU); no teacher output, no B0 observation, no official-test anything",
+  "splits": "S_TRAIN 001-030+621-700 (110 src) / S_DEV 601-620 (20 src, selection) / DIAG 031-100 (70 src, untouched); configs/V7_LFM_PREREG.json splits_v7",
+  "steps": 1200,
+  "batch": 16,
+  "lr": 0.0003,
+  "n_candidates": 129,
+  "train_samples": 4498,
+  "head_params": 1511425,
+  "selected_seed": 1,
+  "head_checkpoint": "/data/aic/experiments_910a/LFM_V7/s_head_s1/head_s.pt",
+  "head_checkpoint_sha256": "81dcdbac0f447170b8abd154751ff6c051c5ad919761e92a5b8b23a24853a011",
+  "rejected_arms": {
+   "seed0_frozen": "same config seed 0, S-dev 0.6541 (< selected 0.6650)",
+   "gt_kd_w0.2_seed0": "teacher-point KD weight 0.2, S-dev 0.6465 < GT-only 0.6541 same seed -> KD arm rejected (C4)",
+   "unfrozen_seed0": "vision tower last-2 blocks + projector + head unfrozen (24,078,849 trainable, FP32, 600 steps), best S-dev 0.6570 at step 100 then oscillates down < frozen 0.6650 -> unfrozen arm rejected (C2); old feature cache v7_feats_v1 invalid for this arm"
+  }
+ },
+ "model_revision": "LiquidAI/LFM2.5-VL-450M@fc6221ca597f3315e4f82fc2df606783267b34ba (ModelScope mirror) + V7 candidate-utility head 81dcdbac0f447170b8abd154751ff6c051c5ad919761e92a5b8b23a24853a011",
+ "runtime": "transformers 5.1.0, torch 2.10.0+cpu, torch_npu 2.10.0, CANN 9.0.0, Ascend 910A; vision tower fp16 forward (no text prompt, no generate), head fp32; attn eager; torch.npu jit_compile=False; 0.16 s/keyframe over 3 shards",
+ "keyframe_step_s": 1.0,
+ "prompt_script": "/root/AIC/scripts/v7_s_official_points.py",
+ "prompt": "NONE_HEAD (no text prompt at inference; vision-tower tokens only)",
+ "dev_evidence": "S_DEV 601-620 (prereg selection set): seed0 0.6541, seed1 0.6650 IoU vs center +0.059/+0.072. DIAG 031-100 (70 src, never trained nor selected; source-video paired 10k bootstrap): seed1 head-B0 +0.0575 CI95[+0.0332,+0.0827] wins 49/21; head-CENTER +0.0705 [+0.0458,+0.0973] 52/18; head-LFM_GROUND(zero-shot 35.00 readout) +0.0692 [+0.0263,+0.1126] 21/5; head-QWEN_T(32B teacher points) +0.0281 [-0.0026,+0.0557]. seed0 replicates: +0.0474 [+0.0219,+0.0734] 46/24 vs B0. Layered (seed0, head-b0): y-axis 3-1 keyframe level +0.0121 [+0.0059,+0.0184] n=1537; x-axis 1-3 +0.0845 [+0.0694,+0.0996]; fast_motion +0.027 [-0.024,+0.077]; shot_cuts +0.064 [+0.005,+0.132]; multi_person +0.051 [+0.014,+0.090]; single_person +0.045 [+0.011,+0.080]; regular +0.030 [-0.013,+0.074]; nonperson +0.064 [-0.008,+0.146]. No subgroup regresses >0.01 (C1 pass).",
+ "index_sha256": "9a59316e97f5a80fc2c22f43f38ebd72130d20109d17954efa3dde9f86d404d5",
+ "b0_predictions": "/data/aic/official_test_20260926/submissions/B0_ALL_SELECT_YUNET_V1_FINAL/predictions.jsonl",
+ "obs_cache": "/data/aic/experiments/OBS_CACHE_OFFICIAL_V1/cache",
+ "qwen_points": "/data/aic/experiments_910a/LFM_V7/official_points_s1/points",
+ "components": [
+  {
+   "name": "LFM2.5-VL-450M (FP16 inference, all parameters incl. SigLIP2 NaFlex encoder + projector + LFM2 LM)",
+   "parameters": 448718848,
+   "bytes": 897484568
+  },
+  {
+   "name": "V7 candidate-utility head (fp32, 2305-512-128 MLP + 2-layer self-attention, seed 1)",
+   "parameters": 1511425,
+   "bytes": 6045700
+  },
+  {
+   "name": "YuNet 2023mar",
+   "parameters": 53104,
+   "bytes": 232589
+  }
+ ],
+ "declared_model_size_mb": null,
+ "declared_size_note": "Preliminary stage scores raw F only (rules 01 s3.4); JSONL omits model_size_mb as all prior preliminary packages. Deployed total 450,283,377 params (<= 0.5B tier) / 903,812,857 B.",
+ "official_platform_score": null,
+ "official_score_status": "OFFICIAL_SCORE_PENDING_NO_PREDICTION"
+}

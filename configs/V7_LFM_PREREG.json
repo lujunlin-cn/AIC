@@ -1,0 +1,58 @@
+{
+  "prereg_id": "V7_LFM_PREREG",
+  "created_cst": "2026-09-30T10:45",
+  "guide": "AIC_V6复盘与LFM_910A_24小时激进实验指南_20260930.md",
+  "t0_cst": "2026-09-30T09:15",
+  "wall_clock_budget_h": 24,
+  "freeze_new_direction_h": 18,
+  "code_identity": {
+    "branch": "v6-next10h-20260930",
+    "note": "V7 scripts committed on a v7 topic branch at delivery; head at prereg = 8a0c4b4"
+  },
+  "score_ledger_frozen": {
+    "LFM450_RAW_GROUND_V1": {"official_f": 35.00, "zip_sha256": "4e4f8b91594d5fbf72116cb4322393dc1d8005134468c260d529e10ba40ccd9b", "predictions_sha256": "c8eac061923001e559fec35b639830915a0c8a4728d", "role": "student formal baseline (all-select time, LFM raw spatial)"},
+    "QWEN32B_DT_INTERP_V4": {"official_f": 48.67, "zip_sha256": "501cebce04e5245bc17bacd538bd8f6ff3f881b7595fab7ca001b4fa2403e565", "role": "teacher formal best"},
+    "QWEN32B_INTERP_XRERANK_V5": {"official_f": 48.49, "zip_sha256": "027fd12a51b128d87014e2aae006c93c179b5c2fe4f8eecb143a60b62fa9a150", "role": "teacher latest"},
+    "B0_ALL_SELECT_YUNET_V1": {"official_f": 34.42, "role": "reproducible non-LLM baseline"},
+    "note": "new V7 candidates are OFFICIAL_SCORE_PENDING; no score prediction is made"
+  },
+  "e0_protocol_verdict": {
+    "run": "LFM_V7/e0/protocol_check",
+    "conclusion": "E5 0/12 vs 3210/3210 conflict resolved: reply schema is the single deciding factor. E5 P1 <box>x1 y1 x2 y2</box> (0-1000) = 0/4 parseable; official grounding JSON array [0,1] = 4/4; JSON schema with 0-1000 wording still yields [0,1] JSON 4/4; <box> with [0,1] wording 3/4 with degenerate boxes. Model-card protocol failure, not a model capability failure. C0 pass.",
+    "exposed_frames_note": "031-034 frame 0 were already exposed (dev2 + E5 smoke); this is an engineering replay, not a generalisation claim"
+  },
+  "data_release": {
+    "rv_annotations": "/data/aic/experiments_910a/LFM450_EVAL_V1/annotations (6 annotators x 200 src x 2 ratios, inclusive-pixel)",
+    "rv_keyframes": "/data/aic/experiments/QWEN_RV200_KEYFRAMES/d1 (~30s grid)",
+    "rv_obs_cache": "/data/aic/experiments/OBS_CACHE_RETARGET_ALL200 (200 src = 001-100 + 601-700)",
+    "v7_feats_v1": "/data/aic/experiments_910a/LFM_V7/feats (single-tile NaFlex vision-tower grids + pooled, fp16)",
+    "tvsum_labels": "/data/aic/datasets/TVSum/labels_v3 proxy-v2 (50 src, per-frame 20-rater scores)",
+    "freeze": "v7_feats_v1 is valid ONLY for frozen-tower training; any unfrozen-tower checkpoint must re-extract (cache invalidation rule)"
+  },
+  "splits_v7": {
+    "S_TRAIN": "RetargetVid 001-030 + 621-700 (110 src). Exposure: 001-030 legacy QWEN_POINT dev/confirm; 621-700 legacy confirm2 demoted to train per guide section 8. All historical dev/confirm numbers on these sources are void for trained systems.",
+    "S_DEV": "RetargetVid 601-620 (20 src). Model selection only (early stop / checkpoint pick); no training; legacy confirm2 exposure recorded.",
+    "DIAG_031_100": "RetargetVid 031-100 (70 src). First contact for this head; legacy dev2 exposure to PRIOR systems recorded. Used only for final paired diagnostics and layer breakdowns; NEVER for training or selection.",
+    "TVSUM_T": "TVSum 50 minus local dev 16 (splits/local_protocol_v1.json) = 34 src for temporal training",
+    "TVSUM_DEV": "local dev 16 (legacy: LFM zero-shot temporal eval) for temporal paired diagnostics",
+    "rule": "no official-test prediction ever enters training; teacher test-time masks never presented as student capability"
+  },
+  "candidates": {
+    "LFM_V7_S_FINAL": {"spatial": "trained candidate-utility head (win/out token pooling + set transformer, 129 equal legal windows incl. centre)", "time": "all-select (unchanged)", "compare_to": "LFM 35.00 baseline; single changed factor = spatial decision"},
+    "LFM_V7_T_DIAG": {"spatial": "raw LFM grounding (35.00 path)", "time": "native-feature TCN top-k selection", "status": "promote to FINAL only if C3 passes; else diagnostic"},
+    "LFM_V7_ST_FINAL": {"spatial": "V7 S head", "time": "V7 T head", "status": "pure student joint; deliver only if combination does not degrade"},
+    "LFM_V7_SFT_CHALLENGER": {"note": "budget-permitting single short-output SFT; never the mainline"}
+  },
+  "gates_frozen_before_reading_final_numbers": {
+    "C1_spatial": "paired per-source-video macro IoU vs raw-LFM on DIAG: 95% CI lower bound > 0; vs CENTER no subgroup (x/y, fast_motion, multi-person) degraded by > 0.01 beyond CI; y-axis must not be negative-significant",
+    "C2_unfreeze": "frozen-head vs unfrozen same budget/data: gain direction consistent across 2 seeds on S_DEV, no key-group collapse",
+    "C3_temporal": "TVSum dev 16 ranking_report nDCG@15% exceeds RANDOM 0.623 and UNIFORM 0.629 baselines; segment scores not correlated with segment index (>0.3 with labels)",
+    "C4_kd": "GT-only vs GT+KD same budget: gain beyond seed noise; teacher calls logged",
+    "C5_joint": "S x T must not drop below S-alone on spatial layers; time selection reported separately; no joint confirmation without joint GT (official score pending)",
+    "C6_deploy": "inference param audit <= 500M total; clean-room re-extraction from raw keyframes; independent unzip check"
+  },
+  "budget": {
+    "teacher_calls_cap": "only already-cached teacher outputs; no new teacher purchases; E1-AUTO PM400 pseudo-labels usable as WEAK supervision with source tags, cap 25% of batches unless proven helpful",
+    "size_budget": "LFM 448,718,848 + head <= 10M target; YuNet 53,104 counted; hard cap 500,000,000 total inference params"
+  }
+}

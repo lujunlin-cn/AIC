@@ -1,5 +1,17 @@
 # 技术决定
 
+## 2026-09-30：V6-NEXT10H——T1 不出包、E5 判负、E1-AUTO 达扩展标准
+
+Status：Accepted（预注册规则执行）。
+
+Evidence：T1 confirm 配对门 3/3 过 + YTH 迁移 macro AP 0.616(n=32, TRANSFER_INDICATIVE)；
+E5 零样本 0/12 可解析；E1-AUTO pilot parse 100%/保留 90.6%，A/B delta +0.0069（噪声内）。
+
+Decision：(1) T1 仅作开发主候选，不出包——把 MrHiSum 权重换入现有 bundle 不是单一
+因素干净包，正确路径是学生原生域重训同骨架；(2) 450M 零样本空间定位路线终止，
+空间蒸馏监督改用教师点→合法窗；(3) E1-AUTO 扩展至 108 条（用户预设扩展标准已达成），
+扩展后对照必须报种子置信区间而非点估计。
+
 ## 2026-09-25：从 Phase 0 / 1 启动
 
 Status：Accepted（工程选择，非模型效果结论）。

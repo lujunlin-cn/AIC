@@ -1,0 +1,14 @@
+video,frame,prompt,arm,raw_output,parse_ok,oob,latency_s,verdict
+031,0,P1,S1_candidate,"""<box>0.5 x 0.5 x 0.5</box>""",0,1,1.642,unparseable
+031,0,P2,S1_candidate,"""<box>boat</box>""",0,0,0.44,unparseable
+032,0,P1,S1_candidate,"""<box>0.5 x 0.5 x 0.5</box>""",0,1,0.43,unparseable
+032,0,P2,S1_candidate,"""<box>dancers</box>""",0,0,0.208,unparseable
+033,0,P1,S1_candidate,"""<box>0.6 x0.4 x0.6</box>""",0,1,0.401,unparseable
+033,0,P2,S1_candidate,"""<box>person fishing</box>""",0,0,0.205,unparseable
+034,0,P1,S1_candidate,"""<box>0.1</box>""",0,0,0.228,unparseable
+034,0,P2,S1_candidate,"""<box>Man</box>""",0,0,0.241,unparseable
+031,0,P3_numbers_plain,S1_candidate,"""-1 1 1 1\\n-1 1 1 1\\n-1 1 1 1\\n-1 1 1 1""",0,0,,unparseable_degenerate_repeat
+032,0,P3_numbers_plain,S1_candidate,"""- 0 0 0\\n- 0 0 0\\n- 0 0 0\\n- 0 0 0""",0,0,,unparseable_degenerate_repeat
+033,0,P3_numbers_plain,S1_candidate,"""- 0 0 0\\n- 0 0 100\\n- 0 100 0\\n- 100 0 0""",0,0,,unparseable_degenerate_repeat
+034,0,P3_numbers_plain,S1_candidate,"""- 0 0 0\\n- 0 0 0\\n- 0 0 0\\n- 0 0 0""",0,0,,unparseable_degenerate_repeat
+SMOKE_SUMMARY,8+4,,,P1 0/4 P2 0/4 P3 0/4 parseable,0,0,,SMOKE_GATE_FAIL_prereg>=99pct_parse;S1_not_viable;S0_center_only

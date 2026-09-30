@@ -1,0 +1,50 @@
+{
+  "audit_time": "2026-09-30T01:25:00+08:00",
+  "rule": "全部推理组件总参数量定档（见 memory: aic-size-tier-by-params）；初赛只计 raw F",
+  "candidates": {
+    "T0_temporal_unet": {
+      "params": 1712897,
+      "config": "TemporalUNet(1152) E2 配置复刻，seed 20260929",
+      "dev_macro_spearman": 0.2810958090900509,
+      "confirm_macro_spearman": 0.28805,
+      "role": "E4 预注册基线"
+    },
+    "T1_temporal_tcn": {
+      "params": 740609,
+      "config": "TemporalTCN(1152,128) 6 膨胀残差块 dilations=(1,2,4,8,16,32)，全分辨率无 down/upsample",
+      "seeds": {
+        "20260929": {"dev": 0.31544724950099146, "confirm": 0.32196},
+        "20260930": {"dev": 0.3139146140867529, "confirm": 0.32496},
+        "20260931": {"dev": 0.3269518295367451, "confirm": 0.3289}
+      },
+      "confirm_paired_gate": "3/3 pass (delta +0.0339/+0.0369/+0.0408, source-clustered CI lo +0.0267/+0.0288/+0.0332)",
+      "role": "E4 唯一预注册干净候选（弱域证据，未出包）"
+    },
+    "T2_unet_rank": {
+      "params": 1712897,
+      "config": "T0 骨架 + intra-video pairwise rank loss lambda=0.5",
+      "seeds": {
+        "20260929": {"dev": 0.29562161438922463, "confirm": null,
+                     "gate": "fail (CI lo -4.0e-05)"},
+        "20260930": {"dev": 0.2993546136648859, "confirm": 0.30248},
+        "20260931": {"dev": 0.30226785307695464, "confirm": 0.30427}
+      },
+      "role": "E4 候选，否决（种子不稳：1/3 CI 下界<0，delta 亦小于 T1）"
+    },
+    "LFM2.5_VL_450M": {
+      "params_approx_m": 450,
+      "weights_bytes": 897484568,
+      "role": "E5 零样本空间定位：不可用（0/12 可解析），负结果，不进入任何提交组件"
+    },
+    "teacher_qwen3vl_32b": {
+      "params_approx_b": 32,
+      "role": "E1-AUTO 伪标签生成（训练期工具，不进推理包；同既有教师路线口径）"
+    },
+    "e1auto_pilot_head": {
+      "params": 740609,
+      "config": "复用 T1 骨架在 24 条 PM400 pilot 上从头训练（对照实验）",
+      "role": "PILOT_SCALE 可行性对照，非候选"
+    }
+  },
+  "formal_best_note": "正式最佳 INTERP 48.67（教师路线）；本文件所有 dev/confirm/AP 数字均为代理指标，非官方分数"
+}

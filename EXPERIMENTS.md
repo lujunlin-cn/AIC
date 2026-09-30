@@ -1,5 +1,22 @@
 # 实验历史
 
+## V6_NEXT10H_E4_E3_E5_E1AUTO（2026-09-30，代理指标，非官方分）
+
+所有数值为 MrHiSum 弱标签 / YouTube-Highlights match_label / PM400 clip_context 公共标注上的代理指标。confirm=MrHiSum fresh reserve 4,008 一次性使用。
+
+| 实验 | 配置 | 关键数值 | 判定 |
+|---|---|---|---|
+| E4 | T1 TemporalTCN(1152,128) 740,609 参数 ×3 种子 | dev 0.3188±0.0058；confirm 0.3220/0.3250/0.3289；配对 delta +0.034/+0.037/+0.041，聚类 CI 下界全>0 | 弱域过门，候选 |
+| E4 | T2 U-Net+rank(λ=.5) ×3 种子 | confirm 0.3025/0.3043；s1 CI 下界 -4e-05 | 否决 |
+| E4/E3 | T1_s3 → YTH 迁移 n=32 六域 | macro AP 0.6162 vs 基率 0.4722；Spearman 0.1296 | TRANSFER_INDICATIVE |
+| E3 | 官方链 selftest | rgb_q∈[0,255]，audio absmean 134.3 | DEPLOYABLE |
+| E5 | LFM2.5-VL-450M 零样本 P1/P2/P3 | 0/8+0/4 可解析；语义正确、坐标退化 | SMOKE_FAIL，负结果 |
+| E1-AUTO | 教师 pilot 32 视频/640 帧 | 56.0 min，0.19qps，parse 100%，保留 90.6% | 达扩展标准 |
+| E1-AUTO | A/B 对照 3 种子 | A 0.8360 / B 0.8429 / Δ+0.0069（±0.04 摆动） | 噪声内，不宣称收益 |
+
+产物：`reports/20260930_v6_next10h_research.md`、`reports/v6_next10h/*`；实验目录
+V100 `/data/aic/experiments/{V6N_E4,V6N_E3_YTH,V6N_E1A,V6N_E5}`、910A `/data/aic/experiments/V6N_E1A`。
+
 本项目所有TVSum数值均按binary proxy、ranking或author-style summary单独命名，不是AIC官方F_video。当前虽已取得RetargetVid crop GT，仍没有AIC联合GT；`official_f_video`和`competition_score`保持null。早期章节保留为历史，最新证据见末节。
 
 ## OFFICIAL_TEST_20260926（冻结推理闭环）

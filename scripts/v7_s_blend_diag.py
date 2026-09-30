@@ -137,12 +137,15 @@ def main():
             per_ratio[rn] = []
             for ki, kf in enumerate(kfs):
                 f = fdir / f'{kf}.npz'
-                if ki >= len(pts) or st[ki] != 'ok' or not f.exists():
+                if ki >= len(pts) or st[ki] != 'ok' or kf >= gt.shape[1] or not f.exists():
                     per_ratio[rn].append(None)
                     continue
                 z = np.load(f)
                 u, offs, win_px, axis, span, w, h, Wf, Hf = feat_and_u(head, z['grid'], W, H, rc)
-                ious = iou(win_px[:, None, :], gt[:, ki][None, :, :]).mean(1) if gt.shape[1] > ki else None
+                # V8 fix: GT is indexed by actual frame number kf, not the
+                # enumeration index ki (teacher keyframes are 1s-grid frames,
+                # e.g. 0,30,60...; the old gt[:, ki] was off by the grid step).
+                ious = iou(win_px[:, None, :], gt[:, kf][None, :, :]).mean(1) if gt.shape[1] > kf else None
                 if ious is None:
                     per_ratio[rn].append(None)
                     continue

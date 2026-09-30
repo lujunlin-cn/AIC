@@ -1,0 +1,105 @@
+"""V8: pre-build candidate-utility training samples (features + labels) once,
+so the arm x seed training grid reads cached arrays instead of re-building.
+
+One .npz per split tag in --output-dir:
+  feat (N,NC,2305) fp16, u (N,NC) f32, vid/frame/ratio metadata.
+Rows are taken from the manifest, filtered to rows whose feature file exists
+(keyframes only, keeping RV strictly comparable with V7).
+"""
+import argparse, json, math
+from pathlib import Path
+from concurrent.futures import ProcessPoolExecutor
+
+ap = argparse.ArgumentParser()
+ap.add_argument('--manifest', type=Path, default=Path('/data/aic/experiments_910a/LFM_V8/v8_manifest.jsonl'))
+ap.add_argument('--feat-roots', nargs='*', default=[
+    'rv_native=/data/aic/experiments_910a/LFM_V7/feats',
+    'rv_rot=/data/aic/experiments_910a/LFM_V8/rv_feats_rot',
+    'live=/data/aic/experiments_910a/LFM_V8/live_feats'])
+ap.add_argument('--n-cand', type=int, default=129)
+ap.add_argument('--workers', type=int, default=24)
+ap.add_argument('--tags', nargs='*', default=None, help='only build these split tags')
+ap.add_argument('--output-dir', type=Path, default=Path('/data/aic/experiments_910a/LFM_V8/samples'))
+args = ap.parse_args()
+
+import numpy as np  # noqa: E402
+from aic.max_window_path import geometry  # noqa: E402
+from scripts.benchmark_spatial import iou  # noqa: E402
+
+FEATS = {}
+for spec in args.feat_roots:
+    k, v = spec.split('=', 1)
+    FEATS[k] = Path(v)
+RATIOS = {'1-3': [1, 3], '3-1': [3, 1], '9-16': [9, 16], '16-9': [16, 9]}
+NC = args.n_cand
+
+
+def feat_path(src, vid, kf):
+    root = FEATS['live'] if src.startswith('live') else FEATS[src]
+    return root / vid / f'{kf}.npz'
+
+
+rows = [json.loads(l) for l in open(args.manifest)]
+rows = [r for r in rows if feat_path(r['src'], r['vid'], r['frame']).exists()]
+print(f'{len(rows)} rows with feats', flush=True)
+
+
+def build(row):
+    f = np.load(feat_path(row['src'], row['vid'], row['frame']))
+    grid = f['grid'].astype(np.float32)
+    fh, fw, D = grid.shape
+    W, H = float(row['W']), float(row['H'])
+    w, h, axis = geometry(W, H, RATIOS[row['ratio']])
+    span = (W - w) if axis == 0 else ((H - h) if axis == 1 else 0.0)
+    offs = np.linspace(0, span, NC) if span > 0 else np.zeros(1)
+    win_px = np.zeros((len(offs), 4))
+    for j, o in enumerate(offs):
+        if axis == 0:
+            win_px[j] = [o, 0, o + w, h]
+        elif axis == 1:
+            win_px[j] = [0, o, w, o + h]
+        else:
+            win_px[j] = [0, 0, W, H]
+    flat = grid.reshape(-1, D)
+    px_per = np.array([W / fw, H / fh])
+    gy, gx = np.mgrid[0:fh, 0:fw]
+    m = np.zeros((len(offs), fh * fw), dtype=np.float32)
+    for j, (x1, y1, x2, y2) in enumerate(win_px):
+        cx1, cx2 = int(math.floor(x1 / px_per[0])), int(math.ceil(x2 / px_per[0]))
+        cy1, cy2 = int(math.floor(y1 / px_per[1])), int(math.ceil(y2 / px_per[1]))
+        cx2, cy2 = max(cx2, cx1 + 1), max(cy2, cy1 + 1)
+        m[j] = ((gx >= cx1) & (gx < cx2) & (gy >= cy1) & (gy < cy2)).reshape(-1).astype(np.float32)
+    ms = m.sum(1, keepdims=True)
+    winp = (m @ flat) / ms
+    outp = ((1 - m) @ flat) / np.maximum((1 - m).sum(1, keepdims=True), 1)
+    pos = (offs / span if span > 0 else offs).astype(np.float32)
+    feat = np.concatenate([winp, outp, winp - outp, pos[:, None]], 1)
+    gt = np.array(row['gt'], dtype=np.float32)
+    u = iou(win_px[:, None, :], gt[None, :, :]).mean(1)
+    return feat.astype(np.float16), u.astype(np.float32)
+
+
+groups = {}
+for r in rows:
+    groups.setdefault(r['split'], []).append(r)
+
+args.output_dir.mkdir(parents=True, exist_ok=True)
+for tag, rs in sorted(groups.items()):
+    if args.tags and tag not in args.tags:
+        continue
+    if not rs:
+        print(tag, 'empty (features not extracted yet), skip', flush=True)
+        continue
+    outf = args.output_dir / f'{tag}.npz'
+    if outf.exists():
+        print(tag, 'exists, skip', flush=True)
+        continue
+    with ProcessPoolExecutor(max_workers=args.workers) as ex:
+        res = list(ex.map(build, rs, chunksize=16))
+    feat = np.stack([x[0] for x in res])
+    u = np.stack([x[1] for x in res])
+    np.savez(outf, feat=feat, u=u,
+             vid=np.array([r['vid'] for r in rs]), frame=np.array([r['frame'] for r in rs]),
+             ratio=np.array([r['ratio'] for r in rs]))
+    print(tag, len(rs), 'written', flush=True)
+print('ALL DONE', flush=True)

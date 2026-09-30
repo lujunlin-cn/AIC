@@ -65,8 +65,10 @@ for vi, vid in enumerate(mine):
         if have >= total:
             continue
         od.mkdir(parents=True, exist_ok=True)
+        fi = -1
         for frame in cont.decode(cont.streams.video[0]):
-            outf = od / f'{frame.index}.npz'
+            fi += 1  # PyAV 17 VideoFrame has no .index attribute
+            outf = od / f'{fi}.npz'
             if outf.exists():
                 continue
             im = frame.to_image().convert('RGB')

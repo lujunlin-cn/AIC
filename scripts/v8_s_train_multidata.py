@@ -236,7 +236,8 @@ torch.save({'state_dict': best[1], 'config': {'d': D, 'nc': NC, 'seed': args.see
 head.load_state_dict(best[1])
 for name, pool in (('rv_dev', [r for r in dev if r['vid'].isdigit()]),
                    ('live_dev', [r for r in dev if not r['vid'].isdigit()]),
-                   ('rv_diag', diag)):
+                   ('rv_diag', diag),
+                   ('live_confirm', load_np('live_confirmation'))):
     if not pool:
         continue
     per = eval_rows(pool, ret=True)

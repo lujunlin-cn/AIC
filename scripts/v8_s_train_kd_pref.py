@@ -190,7 +190,8 @@ torch.save({'state_dict': best[1], 'config': {'d': D, 'nc': NC, 'seed': args.see
                                               'kd_weight': args.kd_weight, 'kd_sigma': args.kd_sigma}},
            args.output_dir / 'head_s.pt')
 head.load_state_dict(best[1])
-for name, pool in (('rv_dev', dev), ('rv_diag', diag)):
+confirm = load_np('live_confirmation')
+for name, pool in (('rv_dev', dev), ('rv_diag', diag), ('live_confirm', confirm)):
     per = eval_rows(pool, ret=True)
     with open(args.output_dir / f'per_{name}.jsonl', 'w') as fo:
         for p in per:

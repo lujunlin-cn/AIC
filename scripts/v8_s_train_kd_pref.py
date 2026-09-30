@@ -42,19 +42,31 @@ RATIOS = {'1-3': [1, 3], '3-1': [3, 1]}
 
 
 class Pool:
-    """Inflate a cached npz exactly ONCE and materialise rows on demand.
+    """One cached pool, read through mmap when the .npy sidecars exist.
 
-    Same V8 memory fix as v8_s_train_multidata: `z['feat']` re-inflates the
-    whole array on every access, so the original per-row list comprehension
-    decompressed ~15 GB once per row for rv_train and kept a second full copy.
+    Same V8 memory fix as v8_s_train_multidata: the original loader read
+    z['feat'][i] per row, and np.load on .npz re-inflates the entire array on
+    every key access (~15 GB x 25,878 for rv_train), then kept a second copy of
+    the pool alive. mmap sidecars cost megabytes of RSS; the .npz fallback
+    inflates once and materialises rows lazily.
     """
 
     def __init__(self, tag):
-        self.p = args.samples_dir / f'{tag}.npz'
-        if not self.p.exists():
+        self.tag = tag
+        fp = args.samples_dir / f'{tag}_feat.npy'
+        if fp.exists():
+            self.feat = np.load(fp, mmap_mode='r')
+            self.u = np.load(args.samples_dir / f'{tag}_u.npy')
+            self.vid = np.load(args.samples_dir / f'{tag}_vid.npy', allow_pickle=True)
+            self.frame = np.load(args.samples_dir / f'{tag}_frame.npy', allow_pickle=True)
+            self.ratio = np.load(args.samples_dir / f'{tag}_ratio.npy', allow_pickle=True)
+            self.n = len(self.u)
+            return
+        p = args.samples_dir / f'{tag}.npz'
+        if not p.exists():
             self.n = 0
             return
-        with np.load(self.p, allow_pickle=False) as z:
+        with np.load(p, allow_pickle=False) as z:
             self.feat, self.u = z['feat'], z['u']
             self.vid, self.frame, self.ratio = z['vid'], z['frame'], z['ratio']
         self.n = len(self.u)

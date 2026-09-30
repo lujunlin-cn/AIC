@@ -70,27 +70,33 @@ rows = [json.loads(l) for l in open(args.manifest)]  # metadata only; feats come
 
 
 def load_np(tag):
-    """Load a cached sample pool.
+    """Load one cached pool.
 
-    Memory note (V8 fix): np.load on .npz is lazy PER KEY, and `z['feat']`
-    re-inflates the whole array on every access.  The original
-    `[{'feat': z['feat'][i], ...} for i in range(len(z['feat']))]` therefore
-    decompressed ~15 GB once per row (25,878 times for rv_train) and kept both
-    the inflated array and a per-row dict copy alive - ~30 GB per tag, ~100 GB
-    for B3.  Four concurrent arms plus duplicate resume entries exhausted host
-    RAM.  Fix: inflate each array exactly once, keep views/indices (no copies),
-    and close the zip handle immediately.
+    V8 memory fix, two layers:
+      1. preferred path: .npy sidecars read with mmap_mode='r' -> the OS pages
+         features in on demand, so a pool costs megabytes of RSS instead of
+         tens of GB;
+      2. legacy path (.npz): inflate each array EXACTLY ONCE and materialise
+         rows lazily.  The original comprehension read z['feat'][i] per row and
+         np.load on .npz re-inflates the whole array on every key access, which
+         decompressed ~15 GB 25,878 times for rv_train and kept a second full
+         copy alive - that exhausted host RAM when several arms ran at once.
     """
+    fpath = args.samples_dir / f'{tag}_feat.npy'
+    if fpath.exists():
+        return {'feat': np.load(fpath, mmap_mode='r'),
+                'u': np.load(args.samples_dir / f'{tag}_u.npy'),
+                'vid': np.load(args.samples_dir / f'{tag}_vid.npy', allow_pickle=True),
+                'frame': np.load(args.samples_dir / f'{tag}_frame.npy', allow_pickle=True),
+                'ratio': np.load(args.samples_dir / f'{tag}_ratio.npy', allow_pickle=True),
+                'mmap': True}
     p = args.samples_dir / f'{tag}.npz'
     if not p.exists():
         return None
     with np.load(p, allow_pickle=False) as z:
-        feat = z['feat']
-        u = z['u']
-        vids = z['vid']
-        frames = z['frame']
-        ratios = z['ratio']
-    return {'feat': feat, 'u': u, 'vid': vids, 'frame': frames, 'ratio': ratios}
+        feat, u = z['feat'], z['u']
+        vids, frames, ratios = z['vid'], z['frame'], z['ratio']
+    return {'feat': feat, 'u': u, 'vid': vids, 'frame': frames, 'ratio': ratios, 'mmap': False}
 
 
 want_train_tags, want_dev_tags = [], []

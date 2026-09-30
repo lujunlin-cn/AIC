@@ -84,22 +84,42 @@ for r in rows:
     groups.setdefault(r['split'], []).append(r)
 
 args.output_dir.mkdir(parents=True, exist_ok=True)
+CHUNK = 512  # rows materialised at once; bounds worker IPC and parent RSS
 for tag, rs in sorted(groups.items()):
     if args.tags and tag not in args.tags:
         continue
     if not rs:
         print(tag, 'empty (features not extracted yet), skip', flush=True)
         continue
-    outf = args.output_dir / f'{tag}.npz'
-    if outf.exists():
-        print(tag, 'exists, skip', flush=True)
+    # V8 memory fix: write memmap-able .npy sidecars instead of a single .npz.
+    # The old path did `res = list(ex.map(build, rs))` and then np.stack, i.e.
+    # two full copies of the pool in RAM (rv_train ~30 GB, live_train ~40 GB)
+    # on top of 24 workers' IPC buffers.  Now the output array is preallocated as
+    # a memmap on disk and filled chunk by chunk, so parent RSS stays ~CHUNK
+    # rows and the trainers can mmap it read-only.
+    if (args.output_dir / f'{tag}_feat.npy').exists() and (args.output_dir / f'{tag}_u.npy').exists():
+        print(tag, 'npy cache exists, skip', flush=True)
         continue
+    first = build(rs[0])
+    D = first[0].shape[-1]
+    feat_mm = np.lib.format.open_memmap(args.output_dir / f'{tag}_feat.npy', mode='w+',
+                                         dtype=np.float16, shape=(len(rs), first[0].shape[0], D))
+    u_mm = np.lib.format.open_memmap(args.output_dir / f'{tag}_u.npy', mode='w+',
+                                     dtype=np.float32, shape=(len(rs), first[0].shape[0]))
+    done = 0
     with ProcessPoolExecutor(max_workers=args.workers) as ex:
-        res = list(ex.map(build, rs, chunksize=16))
-    feat = np.stack([x[0] for x in res])
-    u = np.stack([x[1] for x in res])
-    np.savez(outf, feat=feat, u=u,
-             vid=np.array([r['vid'] for r in rs]), frame=np.array([r['frame'] for r in rs]),
-             ratio=np.array([r['ratio'] for r in rs]))
-    print(tag, len(rs), 'written', flush=True)
+        for s in range(0, len(rs), CHUNK):
+            block = rs[s:s + CHUNK]
+            res = list(ex.map(build, block, chunksize=8))
+            feat_mm[s:s + len(res)] = np.stack([x[0] for x in res])
+            u_mm[s:s + len(res)] = np.stack([x[1] for x in res])
+            done += len(res)
+            print(f'{tag} {done}/{len(rs)}', flush=True)
+    feat_mm.flush(); u_mm.flush()
+    del feat_mm, u_mm
+    np.save(args.output_dir / f'{tag}_vid.npy', np.array([r['vid'] for r in rs]))
+    np.save(args.output_dir / f'{tag}_frame.npy', np.array([r['frame'] for r in rs]))
+    np.save(args.output_dir / f'{tag}_ratio.npy', np.array([r['ratio'] for r in rs]))
+    (args.output_dir / f'{tag}_meta.json').write_text(json.dumps({'n': len(rs), 'nc': first[0].shape[0], 'd': D}) + '\n')
+    print(tag, len(rs), 'written (npy memmap)', flush=True)
 print('ALL DONE', flush=True)

@@ -61,3 +61,23 @@
 - best-checkpoint 保存对 ModuleList 切片直接 .state_dict() 会 AttributeError → 逐 blk 更新。
 - points 文件 status 值需为字面 'ok'（打包器 parse_fail 判定用列表精确计数），'ok_head' 会导致 174 视频全部误标 parse_fail。
 - docker exec -d 内 nohup 启动后，grep 进程数会把 bash 包装计入；pkill 后必须重新核对 python 实例数。
+
+## 检查点 3 · T+5.6h（14:50）—— T 线 C3 过、融合诊断、复赛就绪、用户提示后转向
+
+- **T 线 C3 通过（两 seed）**：TCN 394,241 参数（LFM pooled 从头训，无 Mr.HiSum 权重）。
+  seed0 macro nDCG@15% 0.8725 vs RANDOM +0.1008 [+0.0592,+0.1439]（12/16）；
+  seed1 0.8850 vs RANDOM +0.1133 [+0.0697,+0.1553]（14/16）。超预注册门槛（0.623/0.629）与实测基线。
+  定位=诊断：LFM pooled 有可用时序信号；但全选 mask 是历史最优、无提交增量通道 → LFM_V7_T_DIAG 不出包。
+- **NPU 小算子教训**：TCN 在 NPU 上 <300 步/13 分钟（小 conv+逐算子同步），改 CPU 后 0.3 s/步、292 s 完训。
+  模型 <1M 参数时 910A 直接用 CPU。
+- **师生融合诊断（DIAG 70 源 3,074 帧网格口径）**：head 0.5859 > teacher 0.5791（teacher−head −0.0068 [−0.024,+0.011]）；
+  λ=0.2 教师先验 blend−head **+0.0105 [+0.0018,+0.0198]** 显著，λ≥0.4 无增益。
+  不打包（融合把 32B 拉进部署总量破 ≤500M 档）；若未来做教师档提交，λ=0.2 融合为首选配置。
+- **复赛就绪（用户提示：不再跑当前官方评测集，今晚复赛集到）**：全部组件 910A 验证——
+  avcheck 174/174（15.6s）；CPU obs cache（YuNet，2 视频 52s，det 列跳过）；B0-from-cache VALID；
+  提帧器 1s+reset 网格 360×640（与官方集规格一致）；头推理 0.16 s/帧；打包校验器复用。
+  已知事项：PyAV 17(lfm_venv) vs 15(V100 cv env) 像素级色彩转换差异 → 同视频 reset 一致、raw/b0 小偏；
+  复赛全新建缓存链内自洽。清单 = reports/v7_lfm_24h/SEMIFINAL_READY.md。
+- **LFM_V7_S_FINAL 收尾**：status 值修正（'ok_head'→'ok'，打包器精确计数）重打包；
+  最终 zip eb67f04d26a84211c5b287e8a4f5fdde9c4a2bf5cb61ff03814b9ae8a7fb5a3c；predictions 7ee9b202…；
+  registry.jsonl 已登记；分支 v7-lfm-24h-20260930 已推 origin（39ee059 + 本次收尾提交）。

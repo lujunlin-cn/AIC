@@ -48,21 +48,29 @@ def orient_of(w, h):
 
 
 def load_annotations():
+    """train.json ONLY.
+
+    PHD2 ships a second file, selections/test.json (10,222 videos), which is the
+    upstream PHD2 test split - the same GIF-highlight objective the AIC official
+    drop is built from (tier0 = the 831 is_last GIF hosts of that split).  667
+    tier-1 videos also appear in test.json, so anchoring fragments on test.json
+    intervals would pull official-test supervision into training.  v9 hard-blocks
+    that by never opening test.json.
+    """
     out = {}
-    for split in ('train', 'test'):
-        p = D / 'annotations' / 'selections' / f'{split}.json'
-        if not p.exists():
-            continue
-        d = json.loads(p.read_text())
-        for vid, users in d.items():
-            ivs = []
-            for u, lst in users.items():
-                for s in lst:
-                    t0, t1 = float(s['t0']), float(s['t1'])
-                    if t1 > t0:
-                        ivs.append((t0, t1))
-            if ivs:
-                out.setdefault(vid, []).extend(ivs)
+    p = D / 'annotations' / 'selections' / 'train.json'
+    if not p.exists():
+        return out
+    d = json.loads(p.read_text())
+    for vid, users in d.items():
+        ivs = []
+        for u, lst in users.items():
+            for s in lst:
+                t0, t1 = float(s['t0']), float(s['t1'])
+                if t1 > t0:
+                    ivs.append((t0, t1))
+        if ivs:
+            out[vid] = ivs
     return out
 
 

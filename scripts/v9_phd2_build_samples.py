@@ -29,6 +29,7 @@ from pathlib import Path
 
 ap = argparse.ArgumentParser()
 ap.add_argument('--pool', type=Path, required=True)
+ap.add_argument('--index-name', default='index_clean.jsonl')
 ap.add_argument('--feat-root', type=Path, required=True)
 ap.add_argument('--points', type=Path, required=True)
 ap.add_argument('--output-dir', type=Path, required=True)
@@ -37,6 +38,11 @@ ap.add_argument('--workers', type=int, default=24)
 ap.add_argument('--val-frac', type=float, default=0.035)
 ap.add_argument('--seed', type=int, default=20261001)
 ap.add_argument('--chunk', type=int, default=512)
+ap.add_argument('--target', choices=['gauss', 'iou'], default='gauss',
+                help='teacher point -> candidate target; gauss matches the validated '
+                     'V8 KD-v2 soft preference, iou is the hard argmax window')
+ap.add_argument('--kd-sigma', type=float, default=1.0 / 16,
+                help='gaussian width as a fraction of the sliding span')
 args = ap.parse_args()
 
 import numpy as np  # noqa: E402
@@ -98,22 +104,34 @@ def build(row):
 
     # teacher point -> target window centred on it along the sliding axis
     px, py = row['tx'], row['ty']
-    if axis == 0:
-        w, h = win[0][2] - win[0][0], win[0][3] - win[0][1]
-        x1 = min(max(px * W - w / 2, 0.0), W - w)
-        gt = [x1, 0.0, x1 + w, h]
-    elif axis == 1:
-        w, h = win[0][2] - win[0][0], win[0][3] - win[0][1]
-        y1 = min(max(py * H - h / 2, 0.0), H - h)
-        gt = [0.0, y1, w, y1 + h]
+    w, h = win[0][2] - win[0][0], win[0][3] - win[0][1]
+    if args.target == 'gauss':
+        # same soft preference target as the V8 KD-v2 arm (sigma = 1/16 of the
+        # sliding span): a jittery teacher point shifts a Gaussian slightly, but
+        # makes a hard argmax-IoU target jump to a neighbouring candidate.
+        if axis == 0:
+            ot = float(np.clip((px * W - w / 2) / span if span > 0 else 0.0, 0, 1))
+        elif axis == 1:
+            ot = float(np.clip((py * H - h / 2) / span if span > 0 else 0.0, 0, 1))
+        else:
+            return feat.astype(np.float16), np.ones(len(win), dtype=np.float32)
+        offs_n = np.arange(len(win), dtype=np.float32) / max(len(win) - 1, 1)
+        u = np.exp(-0.5 * ((offs_n - ot) / args.kd_sigma) ** 2).astype(np.float32)
     else:
-        gt = [0.0, 0.0, W, H]
-    u = iou(win[:, None, :], np.array(gt, dtype=np.float32)[None]).mean(1)
+        if axis == 0:
+            x1 = min(max(px * W - w / 2, 0.0), W - w)
+            gt = [x1, 0.0, x1 + w, h]
+        elif axis == 1:
+            y1 = min(max(py * H - h / 2, 0.0), H - h)
+            gt = [0.0, y1, w, y1 + h]
+        else:
+            gt = [0.0, 0.0, W, H]
+        u = iou(win[:, None, :], np.array(gt, dtype=np.float32)[None]).mean(1)
     return feat.astype(np.float16), u.astype(np.float32)
 
 
 def main():
-    rows = [json.loads(l) for l in (args.pool / 'index.jsonl').read_text().splitlines() if l.strip()]
+    rows = [json.loads(l) for l in (args.pool / args.index_name).read_text().splitlines() if l.strip()]
     # attach teacher points
     kept, n_nopoint, n_parsefail = [], 0, 0
     for r in rows:

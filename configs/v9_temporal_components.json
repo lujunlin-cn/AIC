@@ -1,0 +1,22 @@
+[
+  {
+   "name": "LFM2.5-VL-450M (FP16 inference, all parameters incl. SigLIP2 NaFlex encoder + projector + LFM2 LM)",
+   "parameters": 448718848,
+   "bytes": 897484568
+  },
+  {
+   "name": "V8 B3 candidate-utility head (fp32, 2305-512-128 MLP + 2-layer self-attention, 129 legal windows)",
+   "parameters": 1511425,
+   "bytes": 6045700
+  },
+  {
+   "name": "V9 PHD2 temporal head (fp32, 3-block dilated TCN, receptive field 15 frames, 1 s keyframe grid)",
+   "parameters": 246401,
+   "bytes": 985604
+  },
+  {
+   "name": "YuNet 2023mar",
+   "parameters": 53104,
+   "bytes": 232589
+  }
+]

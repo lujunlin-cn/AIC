@@ -45,11 +45,14 @@ def load_args():
     ap.add_argument('--seed', type=int, default=0)
     ap.add_argument('--device', default='cpu')
     ap.add_argument('--pair-weight', type=float, default=0.3)
+    ap.add_argument('--label', choices=['soft', 'binary'], default='soft')
+    ap.add_argument('--tau', type=float, default=3.0,
+                    help='seconds; decay constant of the distance-to-highlight label')
     ap.add_argument('--train-sources', type=int, default=0, help='0 = all but val')
     return ap.parse_args()
 
 
-def load_fragments(pool, feat_root, frames):
+def load_fragments(pool, feat_root, frames, a):
     rows = [json.loads(l) for l in (pool / 'index.jsonl').read_text().splitlines() if l.strip()]
     out = []
     for r in rows:
@@ -58,29 +61,45 @@ def load_fragments(pool, feat_root, frames):
         if not all((feat_root / r['video_id'] / f'{k}.npz').exists() for k in kfs):
             continue
         t0, L = float(r['t0']), float(r['L'])
-        ann = []
-        for split in ('train', 'test'):
-            p = D / 'annotations' / 'selections' / f'{split}.json'
-            if p.exists():
-                ann.extend(ALL_ANN.get((r['src'], split), []))
+        ann = ALL_ANN.get(r['src'], [])
         secs = [t0 + L * j / frames for j in range(frames)]
-        y = np.array([1.0 if any(a < s < b for a, b in ann) else 0.0 for s in secs],
-                     dtype=np.float32)
-        out.append({'vid': r['video_id'], 'src': r['src'], 'kfs': kfs, 'y': y,
+        if a.label == 'soft':
+            # distance to the nearest GIF interval, exponentially decayed.
+            # Binary in-interval labels leak through the sampler: 65% of the
+            # fragments are anchored inside a GIF interval, so "is this frame a
+            # highlight" is answered by "was this fragment anchored", and pure
+            # background fragments carry no gradient at all.  A distance target
+            # gives every fragment information and matches deployment better:
+            # the frame remover ranks by score, it does not threshold a class.
+            d = []
+            for s in secs:
+                if not ann:
+                    d.append(float(L))
+                    continue
+                d.append(min(max(0.0, min(abs(s - a0) if s < a0 else (s - b0 if s > b0 else 0.0)
+                                    for a0, b0 in ann)) for _ in (0,)))
+            y = np.exp(-np.asarray(d, dtype=np.float32) / a.tau).astype(np.float32)
+            yb = (y > 0.5).astype(np.float32)
+        else:
+            y = np.array([1.0 if any(a0 < s < b0 for a0, b0 in ann) else 0.0 for s in secs],
+                         dtype=np.float32)
+            yb = y
+        out.append({'vid': r['video_id'], 'src': r['src'], 'kfs': kfs, 'y': y, 'yb': yb,
                     'rot': bool(r.get('rotated')), 'W': r['W'], 'H': r['H']})
     return out
 
 
 ALL_ANN = {}
-for _sp in ('train', 'test'):
-    _p = D / 'annotations' / 'selections' / f'{_sp}.json'
-    if _p.exists():
-        _d = json.loads(_p.read_text())
-        for _v, _u in _d.items():
-            ivs = [(float(s['t0']), float(s['t1'])) for lst in _u.values() for s in lst
-                   if float(s['t1']) > float(s['t0'])]
-            if ivs:
-                ALL_ANN[(_v, _sp)] = ivs
+# train.json only: selections/test.json is the upstream PHD2 test split, i.e.
+# the same GIF-highlight objective the AIC official drop is drawn from.
+_p = D / 'annotations' / 'selections' / 'train.json'
+if _p.exists():
+    _d = json.loads(_p.read_text())
+    for _v, _u in _d.items():
+        ivs = [(float(s['t0']), float(s['t1'])) for lst in _u.values() for s in lst
+               if float(s['t1']) > float(s['t0'])]
+        if ivs:
+            ALL_ANN[_v] = ivs
 
 
 def load_pooled(frags, feat_root, frames):
@@ -99,7 +118,7 @@ def main():
     torch.manual_seed(a.seed)
     np.random.seed(a.seed)
 
-    frags = load_fragments(a.pool, a.feat_root, a.frames)
+    frags = load_fragments(a.pool, a.feat_root, a.frames, a)
     by_src = defaultdict(list)
     for f in frags:
         by_src[f['src']].append(f)
@@ -113,10 +132,15 @@ def main():
     if a.train_sources:
         keep = sorted({f['src'] for f in tr})[:a.train_sources]
         tr = [f for f in tr if f['src'] in set(keep)]
-    Xtr, Ytr = load_pooled(tr, a.feat_root, a.frames), np.stack([f['y'] for f in tr])
-    Xva, Yva = load_pooled(va, a.feat_root, a.frames), np.stack([f['y'] for f in va])
-    print(f'TCN train={len(tr)} val={len(va)} pos_rate train={Ytr.mean():.3f} '
-          f'val={Yva.mean():.3f} val_sources={len(val_src)}', flush=True)
+    Xtr = load_pooled(tr, a.feat_root, a.frames)
+    Xva = load_pooled(va, a.feat_root, a.frames)
+    # train target is the chosen label form; every metric is always computed on
+    # the binary in-interval labels so runs stay comparable.
+    Ytr = np.stack([f['y'] if a.label == 'soft' else f['yb'] for f in tr])
+    Yva = np.stack([f['yb'] for f in va])
+    print(f'TCN train={len(tr)} val={len(va)} label={a.label} '
+          f'target_mean train={Ytr.mean():.3f} pos_rate(val)={Yva.mean():.3f} '
+          f'val_sources={len(val_src)}', flush=True)
 
     class TCN(torch.nn.Module):
         def __init__(self, d_in=768, ch=128, dils=(1, 2, 4)):
@@ -143,8 +167,8 @@ def main():
     print(f'TCN params={n_par} receptive_field={1 + 2 * sum(a.dils)} frames', flush=True)
 
     def metrics(sc, y):
-        sc = sc.reshape(-1).cpu().numpy()
-        y = y.reshape(-1).cpu().numpy()
+        sc = np.asarray(sc.detach().cpu() if torch.is_tensor(sc) else sc).reshape(-1)
+        y = np.asarray(y.detach().cpu() if torch.is_tensor(y) else y).reshape(-1)
         if y.min() == y.max():
             return {'ap': float('nan'), 'acc': float((sc > sc.mean()).astype(float).__eq__(y).mean())}
         order = np.argsort(-sc)
@@ -164,17 +188,18 @@ def main():
         idx = torch.randint(0, len(Xt), (32,))
         xb, yb = Xt[idx], Yt[idx]
         pred = model(xb)
-        bce = torch.nn.functional.binary_cross_entropy_with_logits(pred, yb)
+        if a.label == 'soft':
+            reg = torch.nn.functional.mse_loss(pred, yb)
+        else:
+            reg = torch.nn.functional.binary_cross_entropy_with_logits(pred, yb)
         pair = torch.zeros((), device=pred.device)
-        hi, lo = yb.argmax(1), (1 - yb).argmax(1)
-        has_hi = yb.max(1).values > 0
-        has_lo = yb.min(1).values < 1
-        m = has_hi & has_lo
+        hi, lo = yb.argmax(1), yb.argmin(1)
+        m = (yb.max(1).values - yb.min(1).values) > 1e-3
         if m.any():
             ar = torch.arange(len(yb), device=pred.device)[m]
             pair = torch.nn.functional.softplus(
                 -(pred[ar, hi[m]] - pred[ar, lo[m]])).mean()
-        loss = bce + a.pair_weight * pair
+        loss = reg + a.pair_weight * pair
         opt.zero_grad()
         loss.backward()
         opt.step()

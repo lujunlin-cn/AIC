@@ -56,7 +56,10 @@ for arm in ARMS:
             break
         entry['missing'] = False
         summ = json.loads(s.read_text())
-        entry.setdefault('best_score', []).append(round(summ['best_score'], 4))
+        # KD arms report best_dev_iou; multi-geometry arms report best_score
+        # (mean d_center across their dev sets)
+        bs = summ.get('best_score', summ.get('best_dev_iou'))
+        entry.setdefault('best_score', []).append(round(bs, 4))
         entry.setdefault('wall_s', []).append(summ['wall_s'])
         for pool in args.pools:
             d = load_pool(arm, seed, pool)

@@ -26,6 +26,9 @@ def main():
     ap.add_argument('--model', default='/data/aic/pretrained/qwen3_vl_32b_instruct')
     ap.add_argument('--index', type=Path, required=True)
     ap.add_argument('--frames-dir', type=Path, required=True)
+    ap.add_argument('--ext', default='png',
+                    help='frame file extension under frames-dir/<vid>/ (png in the '
+                         'semifinal production runs, jpg for the PHD2 fragment pool)')
     ap.add_argument('--skel-dir', type=Path, default=None,
                     help='keyframe skeletons (points/{vid}.json); defaults to frames-dir/../points')
     ap.add_argument('--output', type=Path, required=True)
@@ -80,7 +83,7 @@ def main():
         for s in range(0, len(kfs), a.batch):
             block = kfs[s:s + a.batch]
             t_b = time.time()
-            imgs = [Image.open(a.frames_dir / vid / f'{k}.png').convert('RGB') for k in block]
+            imgs = [Image.open(a.frames_dir / vid / f'{k}.{a.ext}').convert('RGB') for k in block]
             msgs = [[{'role': 'system', 'content': [{'type': 'text', 'text': SYSTEM}]},
                      {'role': 'user', 'content': [{'type': 'image', 'image': im},
                                                  {'type': 'text', 'text': text}]}] for im in imgs]

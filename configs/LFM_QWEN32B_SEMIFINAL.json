@@ -1,0 +1,49 @@
+{
+ "submission_id": "LFM_QWEN32B_SEMIFINAL",
+ "status": "frozen_exploratory",
+ "release_status": "PACKAGED_NOT_UPLOADED_TEACHER_INFERENCE_SEMIFINAL",
+ "frozen_at": "2026-10-01",
+ "policy": "QWEN_POINT",
+ "parent_baseline": "B0_SEMIFINAL (this drop)",
+ "primary_changed_factor": "32B teacher (Qwen3-VL-32B-Instruct) point policy replacing the B0 GROUND text->box->centre readout, with in-shot linear interpolation of teacher keyframe centres (DT_INTERP mechanism, the teacher family's best preliminary mechanism). Prompt, greedy decoding and point schema identical to the preliminary teacher family (prompt sha256 918f0730...); only the test drop changed. Teacher inference ran on Ascend 910A via batched transformers (fp16, eager attention, jit_compile=False, batch 16, 0.73 qps); reply parse rate 8837/8837.",
+ "fixed_conditions": {
+  "temporal": "all decoded frames (unchanged)",
+  "width": "largest legal",
+  "path": "B0 EMA alpha .25 on free axis, B0 thumbnail-diff resets, hold within shot; centres from teacher keyframe points interpolated in-shot (DT_INTERP)",
+  "fallback": "B0 observation on parse failure / before first keyframe"
+ },
+ "alpha": 0.25,
+ "centre_mode": "interp",
+ "teacher": {
+  "model": "Qwen3-VL-32B-Instruct (local /data/aic/pretrained/qwen3_vl_32b_instruct)",
+  "prompt": "point",
+  "prompt_sha256": "918f0730f5407c7186a3208a9f76662c3121c8ea25475655d8ce3f5dc8acb53d",
+  "inference": "transformers 5.1 batched fp16 eager, 4x Ascend 910A, jit_compile=False, batch 16; 8837 keyframe queries, parse_ok 8837/8837, wall 12081s",
+  "points_dir": "/data/aic/semifinal_20261001/teacher_points/points",
+  "script": "/root/AIC/scripts/v8_teacher_points_tf.py"
+ },
+ "keyframe_step_s": 1.0,
+ "prompt_script": "/root/AIC/scripts/v8_teacher_points_tf.py",
+ "prompt": "point",
+ "index_sha256": "02d52321e82a70cafd33d566319b2ebf5e405af43946d6da32181eccdbc46a93",
+ "b0_predictions": "/data/aic/semifinal_20261001/B0/predictions.jsonl/predictions.jsonl",
+ "obs_cache": "/data/aic/semifinal_20261001/obs_cache",
+ "qwen_points": "/data/aic/semifinal_20261001/teacher_points/points",
+ "components": [
+  {
+   "name": "Qwen3-VL-32B-Instruct (FP16 inference, all parameters)",
+   "parameters": 33357390064,
+   "bytes": 66714912872
+  },
+  {
+   "name": "YuNet 2023mar",
+   "parameters": 53104,
+   "bytes": 232589
+  }
+ ],
+ "declared_model_size_mb": null,
+ "declared_size_note": "Teacher-family package: full-parameter tier (33,357,443,168 params total incl. YuNet), same accounting as the preliminary teacher packages; NOT a 100-500M-tier student package. JSONL omits model_size_mb as all prior packages.",
+ "official_platform_score": null,
+ "official_score_status": "OFFICIAL_SCORE_PENDING_NO_PREDICTION",
+ "notes": "Semifinal (426-video) teacher run. Same frozen prompt and greedy decoding as the preliminary teacher family; only the test drop changed. No official score is predicted or claimed."
+}

@@ -138,7 +138,27 @@ def build(row):
     outp = ((1 - m) @ flat) / np.maximum((1 - m).sum(1, keepdims=True), 1)
     pos = (np.arange(len(win)) / max(len(win) - 1, 1)).astype(np.float32) if span > 0 \
         else np.zeros(len(win), dtype=np.float32)
-    feat = np.concatenate([winp, outp, winp - outp, pos[:, None]], 1)
+    parts = [winp, outp, winp - outp, pos[:, None]]
+    if args.segments > 1 and axis is not None:
+        # Bands along the axis the window CANNOT slide along.  sel must stay a
+        # flat (fh*fw,) mask: a 1-D per-column/row predicate has to be broadcast
+        # back over the grid before the reshape, otherwise (129, fh*fw) * (fh,)
+        # fails to broadcast.
+        cross = 0 if axis == 0 else 1          # axis=0 slides x -> band over y
+        edges = np.linspace(0.0, 1.0, args.segments + 1)
+        bands = []
+        for bi in range(args.segments):
+            lo, hi = edges[bi], edges[bi + 1]
+            if cross == 0:
+                col = (gx1 >= lo * fw) & (gx1 < hi * fw)
+                sel = np.broadcast_to(col[None, :], (fh, fw))
+            else:
+                row = (gy1 >= lo * fh) & (gy1 < hi * fh)
+                sel = np.broadcast_to(row[:, None], (fh, fw))
+            sel = np.ascontiguousarray(sel).reshape(-1).astype(np.float32)
+            bands.append(((m * sel) @ flat) / max(float(sel.sum()), 1.0))
+        parts.append(np.repeat(np.concatenate(bands, 0)[None, :], len(win), 0))
+    feat = np.concatenate(parts, 1)
 
     # teacher point -> target window centred on it along the sliding axis
     px, py = row['tx'], row['ty']

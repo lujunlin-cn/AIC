@@ -1,0 +1,59 @@
+{
+ "submission_id": "LFM_V9_VISIONONLY_SEMIFINAL",
+ "status": "frozen_exploratory",
+ "release_status": "PACKAGED_NOT_UPLOADED_TRAINED_STUDENT_VISION_TOWER_ONLY",
+ "frozen_at": "2026-10-02",
+ "policy": "QWEN_POINT",
+ "parent_baseline": "LFM_V9_A1RAW_SEMIFINAL (same head, same training data, full-model runtime)",
+ "primary_changed_factor": "the runtime loads only what the forward pass executes. LFM2.5-VL-450M keeps 354,483,968 of its 448,718,848 parameters (79.0%, 709 MB of the 897 MB fp16 file) in the language model, and the student path never touches it: the deployed call is model.model.vision_tower(pixel_values, spatial_shapes, pixel_attention_mask) with no text prompt, no generate, no projector. The model shell is instantiated from config (which reads no weight file) and only the 197 vision-tower tensors are read from the safetensors file, so the language model's bytes are never loaded at inference. Declared weight drops from 903,762,857 B (861.9 MB, k_size 0.90) to 177,964,689 B (169.8 MB, k_size 0.95). Predictions are unchanged: a two-run probe over 177 points found the vision-only run differs from the full-model reference by mean 0.00031 on the max axis with signed mean +0.00005/+0.00009 (no directional bias) and 166/177 points bit-identical - i.e. the vision-only/full-model gap is smaller than the run-to-run jitter of the same script on two different cards (0.00053). No score is predicted for the coefficient change; it is arithmetic on an unchanged raw prediction set.",
+ "fixed_conditions": {
+  "temporal": "all decoded frames (unchanged)",
+  "width": "largest legal",
+  "path": "B0 EMA alpha .25 on the free axis, B0 thumbnail-diff shot resets, hold within shot; centres from the student head argmax window",
+  "fallback": "B0 observation on head failure / before first keyframe"
+ },
+ "alpha": 0.25,
+ "centre_mode": "hold",
+ "training": {
+  "gt_pools": ["rv_train", "rv_rot_train", "live_train"],
+  "kd_pool": "phd2_train (21,264 rows; teacher-point Gaussian targets, no human GT)",
+  "kd_pool_weight": 0.5,
+  "steps": 1000,
+  "batch": 16,
+  "lr": 0.0003,
+  "seed": 0,
+  "head_params": 1511425,
+  "head_checkpoint": "/data/aic/experiments_910a/LFM_V9/arms/A1_raw/head_s0.pt"
+ },
+ "model_revision": "LiquidAI/LFM2.5-VL-450M@fc6221ca597f3315e4f82fc2df606783267b34ba (vision tower only, Siglip2 NaFlex encoder) + V9 student head A1_raw",
+ "runtime": "transformers 5.1, torch_npu 2.10.0, CANN 9.0.0, Ascend 910A; vision tower fp16 eager (no text prompt, no generate), head fp32; attn eager on the vision config (the default backend calls aclnnIsNegInf, unsupported on 910A); torch.npu jit_compile=False; 0.05 s/keyframe, 8,848 keyframes over 2 shards in 229 s",
+ "keyframe_step_s": 1.0,
+ "prompt_script": "/root/AIC/scripts/v9_vision_only_points.py",
+ "prompt": "NONE_HEAD (no text prompt at inference; vision-tower tokens only)",
+ "index_sha256": "02d52321e82a70cafd33d566319b2ebf5e405af43946d6da32181eccdbc46a93",
+ "b0_predictions": "/data/aic/semifinal_20261001/B0/predictions.jsonl/predictions.jsonl",
+ "obs_cache": "/data/aic/semifinal_20261001/obs_cache",
+ "qwen_points": "/data/aic/semifinal_20261001/points_VISIONONLY/points",
+ "components": [
+  {
+   "name": "LFM2.5-VL-450M vision_tower only (Siglip2 NaFlex encoder, 85,843,200 params fp16; language model and projector not loaded at inference)",
+   "parameters": 85843200,
+   "bytes": 171686400
+  },
+  {
+   "name": "V9 student candidate-utility head (fp32, 2305-512-128 MLP + 2-layer self-attention, 129 legal windows, PHD2-KD retrained)",
+   "parameters": 1511425,
+   "bytes": 6045700
+  },
+  {
+   "name": "YuNet 2023mar",
+   "parameters": 53104,
+   "bytes": 232589
+  }
+ ],
+ "declared_model_size_mb": 177.964689,
+ "declared_size_note": "177,964,689 B = 169.8 MB (2^20) or 178.0 MB (1e6); both inside the 100-500 MB tier, so k_size = 0.95 against 0.90 for every other semifinal package. The language model is excluded because it is not loaded when the predictions are produced, which is the quantity rules 01 s4.2 measures.",
+ "official_platform_score": null,
+ "official_score_status": "OFFICIAL_SCORE_PENDING_NO_PREDICTION",
+ "notes": "Semifinal (426-video) student package, identical predictions to LFM_V9_A1RAW_SEMIFINAL under a smaller declared runtime. Compliance note for the record: the platform verifies declared size against its own audit, and the exclusion rests on the modules not being loaded at inference rather than on a parameter-count convention."
+}

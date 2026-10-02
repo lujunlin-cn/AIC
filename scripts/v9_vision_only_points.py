@@ -146,22 +146,32 @@ for vi, r in enumerate(recs):
     kfs = src['keyframes']
     pts, st = [], []
     for kf in kfs:
-        img = Image.open(args.keyframe_src / 'keyframes' / vid / f'{kf}.png').convert('RGB')
-        W, H = img.size
-        msgs = [{'role': 'user', 'content': [{'type': 'image', 'image': img},
-                                             {'type': 'text', 'text': 'describe'}]}]
-        x = proc.apply_chat_template(msgs, tokenize=True, add_generation_prompt=True,
-                                     return_dict=True, return_tensors='pt')
-        x = {k: v.to(DEV) for k, v in x.items() if isinstance(v, torch.Tensor)}
-        if 'pixel_values' in x:
-            x['pixel_values'] = x['pixel_values'].to(DTYPE)
-        with torch.no_grad():
-            out = vision(pixel_values=x['pixel_values'], spatial_shapes=x['spatial_shapes'],
-                         pixel_attention_mask=x['pixel_attention_mask'], return_dict=True)
-            valid = int(x['pixel_attention_mask'][0].sum())
-            fh, fw = [int(v) for v in x['spatial_shapes'][0]]
-            grid = out.last_hidden_state[0, :valid].reshape(fh, fw, -1)[:, :(fw // 2) * 2, :]
-            grid = grid[: (fh // 2) * 2].float()
+        try:
+            img = Image.open(args.keyframe_src / 'keyframes' / vid / f'{kf}.png').convert('RGB')
+            W, H = img.size
+            msgs = [{'role': 'user', 'content': [{'type': 'image', 'image': img},
+                                                 {'type': 'text', 'text': 'describe'}]}]
+            x = proc.apply_chat_template(msgs, tokenize=True, add_generation_prompt=True,
+                                         return_dict=True, return_tensors='pt')
+            x = {k: v.to(DEV) for k, v in x.items() if isinstance(v, torch.Tensor)}
+            if 'pixel_values' in x:
+                x['pixel_values'] = x['pixel_values'].to(DTYPE)
+            with torch.no_grad():
+                out = vision(pixel_values=x['pixel_values'], spatial_shapes=x['spatial_shapes'],
+                             pixel_attention_mask=x['pixel_attention_mask'], return_dict=True)
+                valid = int(x['pixel_attention_mask'][0].sum())
+                fh, fw = [int(v) for v in x['spatial_shapes'][0]]
+                grid = out.last_hidden_state[0, :valid].reshape(fh, fw, -1)[:, :(fw // 2) * 2, :]
+                grid = grid[: (fh // 2) * 2].float()
+        except Exception:
+            # a boundary-frame tile layout can leave valid != fh*fw (the
+            # attention mask and the declared grid disagree), which crashes the
+            # reshape and would otherwise drop the whole video.  Emit a centred
+            # fallback point for that frame instead - the packaging path reads
+            # the third tuple element as the is_fallback flag.
+            pts.append([0.5, 0.5, True])
+            st.append('frame_fallback')
+            continue
         flat = grid.reshape(-1, grid.shape[-1])
         rw, rh = r['targetRatioWH']
         w, h, axis = geometry(float(W), float(H), [rw, rh])

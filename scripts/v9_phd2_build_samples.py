@@ -22,20 +22,34 @@ Splits are by SOURCE VIDEO (never by fragment) and stratified by the geometry
 class, so `phd2_val` mirrors the official task composition and stays a fresh
 confirmation pool.
 """
-import argparse, json, math
+import argparse, json, math, os
+
+# BLAS defaults to one thread per core: 8 workers were each grabbing 24 cores,
+# driving the 192-core host to load ~475 and stretching the concurrently running
+# 32B teacher's per-batch wall time from 12 s to 33 s.  Pin to one thread per
+# worker BEFORE numpy is imported and scale the pool instead.
+for _v in ('OMP_NUM_THREADS', 'OPENBLAS_NUM_THREADS', 'MKL_NUM_THREADS',
+           'NUMEXPR_NUM_THREADS', 'VECLIB_MAXIMUM_THREADS'):
+    os.environ.setdefault(_v, '1')
+
 from collections import defaultdict
 from concurrent.futures import ProcessPoolExecutor
 from pathlib import Path
 
 ap = argparse.ArgumentParser()
 ap.add_argument('--pool', type=Path, required=True)
-ap.add_argument('--index-name', default='index_clean.jsonl')
+ap.add_argument('--index-name', default='index_v2.jsonl')
 ap.add_argument('--feat-root', type=Path, required=True)
 ap.add_argument('--points', type=Path, required=True)
 ap.add_argument('--output-dir', type=Path, required=True)
 ap.add_argument('--n-cand', type=int, default=129)
 ap.add_argument('--workers', type=int, default=24)
 ap.add_argument('--val-frac', type=float, default=0.035)
+ap.add_argument('--val-sources', type=Path, default=None,
+                help='JSON list of held-out source videos. Written on first run '
+                     'and reused afterwards: without this the val split drifts '
+                     'every time the teacher finishes more fragments, and no two '
+                     'runs are comparable.')
 ap.add_argument('--seed', type=int, default=20261001)
 ap.add_argument('--chunk', type=int, default=512)
 ap.add_argument('--target', choices=['gauss', 'iou'], default='gauss',
@@ -43,6 +57,24 @@ ap.add_argument('--target', choices=['gauss', 'iou'], default='gauss',
                      'V8 KD-v2 soft preference, iou is the hard argmax window')
 ap.add_argument('--kd-sigma', type=float, default=1.0 / 16,
                 help='gaussian width as a fraction of the sliding span')
+ap.add_argument('--segments', type=int, default=0,
+                help='split each candidate window into K bands along the axis '
+                     'PERPENDICULAR to the sliding axis and pool each separately. '
+                     'The existing feature set pools the whole window, which '
+                     'discards where inside the window the subject sits; for a '
+                     'portrait window sliding on x, knowing whether the subject '
+                     'is in the top, middle or bottom third is exactly what the '
+                     'candidate head cannot recover from win/out/diff. These band '
+                     'features are identical across candidates, so they only widen '
+                     'the input. 0 = off (keeps the 2305-d V7/V8 layout).')
+ap.add_argument('--smooth', type=int, default=0,
+                help='temporal smoothing of the teacher point along the fragment '
+                     'before the target is derived. The audit measured a p90 frame-'
+                     'to-frame jump of 0.25-0.30 in normalised coordinates on 1 s '
+                     'keyframes, i.e. the teacher is jittery where it should be '
+                     'smooth; V8 KD-v2 gained only +0.003/+0.007, consistent with '
+                     'the student averaging that noise instead of the signal. '
+                     '1 = 3-point moving average, 2 = 5-point, and so on.')
 args = ap.parse_args()
 
 import numpy as np  # noqa: E402
@@ -89,12 +121,18 @@ def build(row):
     flat = grid.reshape(-1, D)
     px_per = np.array([W / fw, H / fh])
     gy, gx = np.mgrid[0:fh, 0:fw]
-    m = np.zeros((len(win), fh * fw), dtype=np.float32)
-    for j, (x1, y1, x2, y2) in enumerate(win):
-        cx1, cx2 = int(math.floor(x1 / px_per[0])), int(math.ceil(x2 / px_per[0]))
-        cy1, cy2 = int(math.floor(y1 / px_per[1])), int(math.ceil(y2 / px_per[1]))
-        cx2, cy2 = max(cx2, cx1 + 1), max(cy2, cy1 + 1)
-        m[j] = ((gx >= cx1) & (gx < cx2) & (gy >= cy1) & (gy < cy2)).reshape(-1).astype(np.float32)
+    # Broadcast instead of a 129-iteration Python loop: the loop version made this
+    # stage CPU-bound (192-core host driven to load ~900, which starved the NPU
+    # teacher running alongside it - teacher wall time went 12 s -> 33 s per
+    # batch).  Building all 129 masks in one shot is ~100x fewer numpy calls.
+    cx1 = np.floor(win[:, 0] / px_per[0]).astype(int)
+    cx2 = np.maximum(np.ceil(win[:, 2] / px_per[0]).astype(int), cx1 + 1)
+    cy1 = np.floor(win[:, 1] / px_per[1]).astype(int)
+    cy2 = np.maximum(np.ceil(win[:, 3] / px_per[1]).astype(int), cy1 + 1)
+    gx1, gy1 = gx[0, :], gy[:, 0]          # mgrid gives (fh, fw) views
+    m = ((gx1[None, None, :] >= cx1[:, None, None]) & (gx1[None, None, :] < cx2[:, None, None]) &
+         (gy1[None, :, None] >= cy1[:, None, None]) & (gy1[None, :, None] < cy2[:, None, None]))
+    m = m.reshape(len(win), fh * fw).astype(np.float32)
     ms = m.sum(1, keepdims=True)
     winp = (m @ flat) / ms
     outp = ((1 - m) @ flat) / np.maximum((1 - m).sum(1, keepdims=True), 1)
@@ -156,6 +194,23 @@ def main():
                          'rw': rw, 'rh': rh, 'tx': pt[0], 'ty': pt[1],
                          'src': r['src'], 'cls': geom_class(r),
                          'rot': bool(r.get('rotated'))})
+    if args.smooth > 0:
+        # Smooth per fragment, in keyframe order, over the RAW points, then let
+        # build() derive the target. Edge frames use the available window.
+        byfrag = defaultdict(list)
+        for row in kept:
+            byfrag[row['vid']].append(row)
+        w = 2 * args.smooth + 1
+        for vid, rs in byfrag.items():
+            rs.sort(key=lambda r: float(r['kf']))
+            px = np.array([r['tx'] for r in rs], dtype=np.float32)
+            py = np.array([r['ty'] for r in rs], dtype=np.float32)
+            k = np.ones(w, dtype=np.float32) / w
+            sx = np.convolve(np.pad(px, (args.smooth, args.smooth), mode="edge"), k, "valid")
+            sy = np.convolve(np.pad(py, (args.smooth, args.smooth), mode="edge"), k, "valid")
+            for r, a_, b_ in zip(rs, sx, sy):
+                r['tx'] = float(np.clip(a_, 0.0, 1.0))
+                r['ty'] = float(np.clip(b_, 0.0, 1.0))
     print(f'ROWS fragments={len(rows)} no_points_yet={n_nopoint} '
           f'teacher_parse_fail={n_parsefail} usable_frames={len(kept)}', flush=True)
     if not kept:
@@ -168,12 +223,18 @@ def main():
         by_src[r['src']].append(r)
     srcs = sorted(by_src)
     cls_of = {s: by_src[s][0]['cls'] for s in srcs}
-    val_src = set()
-    for c in sorted(set(cls_of.values())):
-        pool_c = [s for s in srcs if cls_of[s] == c]
-        rng.shuffle(pool_c)
-        k = max(1, int(round(len(pool_c) * args.val_frac)))
-        val_src.update(pool_c[:k])
+    vsf = args.val_sources or (args.pool / 'val_sources.json')
+    if vsf.exists():
+        val_src = set(json.loads(vsf.read_text()))
+    else:
+        val_src = set()
+        for c in sorted(set(cls_of.values())):
+            pool_c = [s for s in srcs if cls_of[s] == c]
+            rng.shuffle(pool_c)
+            val_src.update(pool_c[:max(1, int(round(len(pool_c) * args.val_frac)))])
+        vsf.write_text(json.dumps(sorted(val_src), indent=0))
+        print(f'WROTE val source list -> {vsf} ({len(val_src)} sources)', flush=True)
+    val_src = {s for s in val_src if s in by_src}
 
     groups = {'phd2_val': [], 'phd2_train': []}
     for s in srcs:

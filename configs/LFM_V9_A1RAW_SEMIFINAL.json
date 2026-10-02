@@ -1,0 +1,65 @@
+{
+ "submission_id": "LFM_V9_A1RAW_SEMIFINAL",
+ "status": "frozen_exploratory",
+ "release_status": "PACKAGED_NOT_UPLOADED_TRAINED_STUDENT_HEAD_PHD2_KD",
+ "frozen_at": "2026-10-02",
+ "policy": "QWEN_POINT",
+ "parent_baseline": "LFM_V8_B3_SEMIFINAL (official 34.75, same 426-video drop)",
+ "primary_changed_factor": "the candidate-utility head is retrained with a KD-only PHD2 sample stream: 21,264 rows of official-domain video (PHD2 tier-1, 90s-2h YouTube clips cut into 8-14 s fragments on a 1 s keyframe grid, 30% of them rotated 90 deg clockwise to supply the portrait-source geometry PHD2 otherwise lacks), each labelled by the frozen 32B teacher's point mapped onto the 129-candidate grid as a Gaussian preference. Those rows carry no human crop GT and enter only through a KD term (weight 0.5) alongside the unchanged RetargetVid + rotated-RV + LIVE GT pools. Head architecture, inference path, B0 EMA path, shot resets, all-select mask and YuNet fallback are identical to LFM_V8_B3_SEMIFINAL, so the platform difference is attributable to training data alone. Selection on rv_dev; confirmation by source-level paired bootstrap on live_confirmation (227 sources never used for training or selection) +0.0178 [+0.0076,+0.0282], phd2_val (33 held-out PHD2 sources) +0.0326 [+0.0165,+0.0482], live_dev (124 sources) +0.0142 [+0.0037,+0.0257].",
+ "fixed_conditions": {
+  "temporal": "all decoded frames (unchanged) - no temporal head in this package",
+  "width": "largest legal",
+  "path": "B0 EMA alpha .25 on the free axis, B0 thumbnail-diff shot resets, hold within shot; centres from the student head argmax window",
+  "fallback": "B0 observation on head failure / before first keyframe"
+ },
+ "alpha": 0.25,
+ "centre_mode": "hold",
+ "training": {
+  "gt_pools": [
+   "rv_train",
+   "rv_rot_train",
+   "live_train"
+  ],
+  "kd_pool": "phd2_train (21,264 rows; teacher-point Gaussian targets, no human GT)",
+  "kd_pool_weight": 0.5,
+  "kd_weight_inside_gt_pools": 0.0,
+  "steps": 1000,
+  "batch": 16,
+  "lr": 0.0003,
+  "seed": 0,
+  "head_params": 1511425,
+  "head_checkpoint": "/data/aic/experiments_910a/LFM_V9/arms/A1_raw/head_s0.pt",
+  "selection": "rv_dev top-1 IoU over steps 500/1000 (best at step 500)"
+ },
+ "model_revision": "LiquidAI/LFM2.5-VL-450M@fc6221ca597f3315e4f82fc2df606783267b34ba (ModelScope mirror) + V9 student head A1_raw",
+ "runtime": "transformers 5.1, torch_npu 2.10.0, CANN 9.0.0, Ascend 910A; vision tower fp16 eager (no text prompt, no generate), head fp32; attn eager; torch.npu jit_compile=False; 0.05 s/keyframe, 8,848 keyframes over 2 shards in 227 s",
+ "keyframe_step_s": 1.0,
+ "prompt_script": "/root/AIC/scripts/v8_s_official_points.py",
+ "prompt": "NONE_HEAD (no text prompt at inference; vision-tower tokens only)",
+ "index_sha256": "02d52321e82a70cafd33d566319b2ebf5e405af43946d6da32181eccdbc46a93",
+ "b0_predictions": "/data/aic/semifinal_20261001/B0/predictions.jsonl/predictions.jsonl",
+ "obs_cache": "/data/aic/semifinal_20261001/obs_cache",
+ "qwen_points": "/data/aic/semifinal_20261001/points_V9_A1raw/points",
+ "components": [
+  {
+   "name": "LFM2.5-VL-450M (FP16 inference, all parameters incl. SigLIP2 NaFlex encoder + projector + LFM2 LM)",
+   "parameters": 448718848,
+   "bytes": 897484568
+  },
+  {
+   "name": "V9 student candidate-utility head (fp32, 2305-512-128 MLP + 2-layer self-attention, 129 legal windows, PHD2-KD retrained)",
+   "parameters": 1511425,
+   "bytes": 6045700
+  },
+  {
+   "name": "YuNet 2023mar",
+   "parameters": 53104,
+   "bytes": 232589
+  }
+ ],
+ "declared_model_size_mb": 903.762857,
+ "declared_size_note": "903,762,857 B of weights = 861.9 MB (2^20) or 903.8 MB (1e6); inside the 500 MB - 9 GB tier so k_size = 0.90, identical to LFM_V8_B3_SEMIFINAL and to the other semifinal packages, which keeps this a clean single-variable test against that package.",
+ "official_platform_score": null,
+ "official_score_status": "OFFICIAL_SCORE_PENDING_NO_PREDICTION",
+ "notes": "Semifinal (426-video) student package. No official score is predicted or claimed. Teacher point set used for the KD stream covers ~45% of the 5,795-fragment pool at training time; a full-data retrain follows when the teacher run finishes."
+}

@@ -28,6 +28,9 @@ fi
 say "quarantining any ratio-mismatched points (keeps the point set clean for later use)"
 docker exec aic-batch python /root/AIC/scripts/v9_prune_mismatched_points.py | tee -a "$LOG"
 
-say "SKIPPED: KD pool rebuild + five-arm retrain - PHD2 KD is a confirmed -4.15-raw"
-say "negative transfer on the official drop (VISIONONLY/A1 head 34.61 vs B3 38.76)."
+say "SKIPPED: KD pool rebuild + five-arm retrain - PHD2 KD is a confirmed negative on the official drop"
+say "  (VISIONONLY mounted the A1 KD head: 34.61 vs the no-KD B3 head's 34.75 on the"
+say "   identical 234,159-prediction set. Both are platform scores - do NOT divide by"
+say "   k_size; an earlier revision of this script quoted a -4.15 gap derived that way"
+say "   and it was wrong by 30x. The sign is right, the magnitude is ~0.14.)"
 say "NPU freed for the QVHighlights temporal-axis work instead.  Pipeline ends here."

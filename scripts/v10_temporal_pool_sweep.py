@@ -54,6 +54,14 @@ def load_head_feats(feat_root, index, sel, keep_src, pooling):
                 continue
             Xf = np.concatenate([m['mean'].astype(np.float32), m['attn'].astype(np.float32),
                                  m['topk'].astype(np.float32)], 1)
+        elif pooling.endswith('+delta'):
+            base = pooling[:-len('+delta')]
+            if base not in keys:
+                continue
+            F = m[base].astype(np.float32)          # [L,768] frame features
+            d = np.zeros_like(F)
+            d[1:] = F[1:] - F[:-1]                  # frame-to-frame change
+            Xf = np.concatenate([F, d], 1)
         else:
             if pooling not in keys:
                 continue
@@ -133,7 +141,7 @@ def main():
     ap.add_argument('--feat-root', type=Path, required=True)
     ap.add_argument('--index', type=Path, default=Path('/data/aic/experiments_910a/PHD2_FRAG_V1/index_clean.jsonl'))
     ap.add_argument('--sources', type=Path, default=Path('/data/aic/experiments_910a/PHD2_FRAG_V1/val_sources.json'))
-    ap.add_argument('--poolings', nargs='*', default=['mean', 'attn', 'topk', 'mean+attn'])
+    ap.add_argument('--poolings', nargs='*', default=['mean', 'attn', 'topk', 'mean+attn', 'mean+delta', 'mean+attn+delta'])
     ap.add_argument('--structs', nargs='*', default=['single', 'multi'])
     ap.add_argument('--seeds', type=int, nargs='*', default=[0, 1])
     ap.add_argument('--steps', type=int, default=2500)

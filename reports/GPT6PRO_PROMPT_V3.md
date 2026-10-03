@@ -28,20 +28,22 @@ Seed-2 (both RNGs 20261004) prefix points: 0.7013 at step 150, 0.6943 at
 step 300 - matching seed-1 within 0.008, no early slide. Seed-2 completes
 later tonight; its full-set number is the one outstanding check.
 
-The verdicts we draw, for you to audit:
+The verdicts we draw, for you to audit - note that items 1 and 2 were
+REVISED the same evening, after the platform result in section 0.6:
 
-1. The recipe moved the ranking, the tower update did not. The frozen
-   control reaches 0.7462 on the full held-out set. The fourteen-variant
-   matrix (batch 64, 2,500 steps, about 81 exposures per fragment) capped
-   at 0.696 with the SAME tower. The probe recipe (batch 8, 900 steps,
-   about 3.7 exposures) lifts the same frozen tower by +0.056. The wall at
-   0.677 to 0.696 was a recipe property, not a representation ceiling.
-2. LoRA is zero gain: full-set paired delta -0.0019, inside noise. The
+1. LoRA is zero gain: full-set paired delta -0.0019, inside noise. The
    prefix gap (-0.02 to -0.035) does not survive to the endpoint.
+2. **REVISED: the recipe effect was an evaluation-protocol artifact.**
+   Under the probe protocol, the SHIPPED head - tcn_s0.pt, the head in
+   the 34.73 package - also reads AP 0.7462, identical to the probe
+   frozen head. Its stored val_ap 0.6263 came from an older protocol.
+   The 0.690-versus-0.746 gap between the sweep matrix and the probe is a
+   protocol difference, not a training-recipe effect. The two heads tie
+   on every PHD2 measure; the recipe line closes.
 3. The prefix reads 0.02 to 0.03 BELOW the full set for the same model;
    it stays monitoring-only.
-4. The smoke point 0.7067 is fully unmasked: the probe recipe alone
-   crosses 0.70 by step 150 with a frozen tower.
+4. The smoke point 0.7067 is fully unmasked: any trained head sits near
+   0.746 under the probe protocol; the tower was never the variable.
 
 ### 0.2 Exposure, manifests, hashes
 
@@ -97,8 +99,32 @@ single-user sources, and a measured disagreement of 0.127.
 
 ### 0.5 What we did not run
 
-No new platform submission. No QV revival. No confirm-set construction yet.
-The 984 held-out sources are dev-exposed, as you ruled.
+No QV revival. No confirm-set construction yet. The 984 held-out sources
+are dev-exposed, as you ruled.
+
+### 0.6 The platform result that forces the revision
+
+We packaged the probe frozen head (LFM_V10_PROBEHEAD_SEMIFINAL): spatial
+boxes byte-identical to the 34.73 parent on kept frames, keep 0.80, mask
+volume within 0.1 percent. Platform score: **33.85, minus 0.88 versus the
+parent**. Mask analysis: 426 of 426 videos changed their kept-frame set,
+Jaccard 0.773. Read together with the protocol finding above:
+
+- Two heads that tie at AP 0.7462 on PHD2 differ by 0.88 platform points.
+- PHD2-domain ranking metrics do not predict the platform delta's sign.
+  Third directional failure (KD flat, QV worse, now a tied-swap negative).
+- Deployment variance between ranking-equivalent heads is of order
+  0.5 to 1.0 platform points - the same order as every "improvement" we
+  have chased this week.
+
+Our proposed rescue: the 174-video preliminary set carries official GT
+and is disjoint from the 426-video semifinal drop. We plan to score both
+heads as real F on the 174 GT and, if the ordering reproduces (old head >
+new head), adopt the 174 F as the promotion gate for every future
+package. Audit this plan: leakage risks (is preliminary GT legitimate for
+semifinal model choice?), statistical power at 174 videos for deltas near
+0.005, and the failure mode if the ordering does NOT reproduce (what does
+that say about the 174-to-426 transfer?).
 
 ## 1. Framing for the questions
 
@@ -141,23 +167,23 @@ the confirm set costs zero construction and was never touched by our
 training. Is that defensible, or does the official val carry its own
 selection bias that a self-built set avoids? Give the decision rule.
 
-## 3. Q2 - the recipe effect and the representation
+## 3. Q2 - what can still be trusted, and what to measure instead
 
-3.1 Ablate the recipe. The frozen-tower jump from 0.690 to 0.746 changed
-three knobs at once: batch 64 to 8, steps 2500 to 900, exposures about 81
-to about 3.7. Design the smallest ablation that attributes the +0.056:
-which single knob carries it, and is it a regularization effect (early
-stopping), an optimization-noise effect, or a label-coverage effect (3.7
-exposures means 2.5 percent of fragments are never seen)? Give the grid,
-the stop rule, and the budget in NPU-hours on our stack (one probe run is
-about 2 NPU-hours).
+3.1 The protocol confound. The sweep matrix read 0.690 under its protocol;
+the probe and the shipped head both read 0.7462 under the probe protocol.
+Design the one experiment that pins the confound: score the frozen probe
+head AND a sweep-matrix head under BOTH protocols on the same fragments.
+If protocol fully explains the gap, say which protocol component is
+responsible (feature source, label timestamps, fragment filter) and give
+the single canonical protocol we should freeze.
 
-3.2 Does the recipe transfer? Two downstream uses wait on 3.1: the M01
-video-encoder runs (your section 2.4) and the decision layer, whose route
-A/B were both tested against heads trained under the sweep recipe. If the
-recipe effect is real, both conclusions were measured against a
-handicapped baseline. Give the rule for which past closures must be
-re-opened under the probe recipe, in priority order, and which may stand.
+3.2 Deployment variance. Two ranking-equivalent heads moved the platform
+by -0.88 (section 0.6). Is there ANY local measurable that predicts this
+variance - for example, mask-set distance between heads versus platform
+delta, score distribution shape, or per-video rank stability? If nothing
+on disk predicts it, say so plainly, and give the cheapest design that
+estimates the variance floor (how many head re-trains x platform
+submissions would map it, and whether we can afford it).
 
 3.3 NPU viability. Candidates: VideoMAE ViT-B, V-JEPA 2.1 ViT-B/16,
 InternVideo2-dist-B, SigLIP2-L tower. Backend is torch_npu on Ascend 910B,
@@ -240,14 +266,13 @@ prefix? If not, give the cheapest compliant monitoring design.
 
 ## 6. Q5 - order of execution
 
-Given: the LoRA line is closed with data; the recipe line is open and
-unexplained; seed-2 lands tonight and only confirms; your stage-2 list has
-five items, two of which (decision-layer routes) were measured against
-sweep-recipe heads. Give the exact order for the next 48 NPU-hours
-(8 cards), one line per slot. Constraints: the recipe ablation (3.1), one
-M01 encoder smoke on NPU (3.3), and a probe-recipe rerun of the decision
-layer route A must all fit. Name the two experiments you would run in
-parallel first, and the one result that would reorder the plan.
+Given: the LoRA and recipe lines are closed; the 174-GT gate (section
+0.6) is the proposed main line; seed-2 lands tonight and only confirms.
+Give the exact order for the next 48 NPU-hours (8 cards), one line per
+slot. Constraints: the 174 two-head scoring must run first if you approve
+it; the protocol pinning test (3.1); one M01 encoder smoke on NPU (3.3).
+Name the two experiments to run in parallel first, and the one result
+that would reorder the plan.
 
 ## 7. Output format
 

@@ -129,9 +129,10 @@ More tests against the same band:
 
 Verdict: fourteen variants. One band: 0.677 to 0.696. No variant escapes.
 Pooling, structure, motion features, label protocol, and training breadth do
-not move the ranking. CORRECTION (section 6.5): the band's absolute level is
-a recipe effect, not a representation ceiling - the same frozen tower under
-the probe recipe reaches 0.7462. The relative ties inside the matrix stand.
+not move the ranking. CORRECTION (section 6.5, finding 1): the band's level
+versus the probe numbers is an evaluation-protocol difference, not a recipe
+or representation effect - the shipped head also reads 0.7462 under the
+probe protocol. The relative ties inside the matrix stand.
 
 ## 6. The LoRA confirmation round (V11 stage-1 data)
 
@@ -197,41 +198,45 @@ spread, is the measured effect.
 
 ### 6.5 Findings, in descending order of importance
 
-1. **The training recipe, not the tower, set the fourteen-variant wall.**
-   The frozen control - same TCN, same pool, same split, no adapters -
-   reaches AP 0.7462 on the full held-out set. The ten-variant matrix
-   (2500 steps, batch 64, about 81 exposures per fragment) capped at
-   0.696. The probe recipe (900 steps, batch 8, about 3.7 exposures per
-   fragment) lifts the SAME frozen tower by +0.056. The wall at 0.677 to
-   0.696 was a property of the large-batch long-schedule recipe, not of
-   the Siglip2 representation. Candidate mechanisms: over-training on
-   81 exposures versus 3.7, or optimization noise. Section 5's relative
-   conclusions (pooling and structure variants tie under the sweep
-   recipe) stand; its absolute ceiling does not.
-2. **LoRA adds nothing.** Full-set delta LoRA - frozen = -0.0019, inside
-   seed noise. The mid-run prefix showed -0.02 to -0.035, but the full-set
-   endpoint erases it. The step-12 smoke signal (0.7067) is fully
-   explained: the probe recipe alone crosses 0.70 (frozen at step 150
-   reads 0.7067 on the prefix), with no tower update needed.
-3. **The prefix is not the population.** The 270-fragment prefix reads
-   about 0.02 to 0.03 BELOW the full set for the same model (frozen:
-   0.7269 prefix at step 750, 0.7462 full at 900). Monitoring may keep the
-   prefix; decisions may not cite it (V11 audit INVALID_EVAL_SET).
-4. **The `escaped_band` field is void.** Both runs "escaped" 0.70; the
-   field cannot separate them. The valid comparison is the paired
-   LoRA-minus-frozen delta, which is zero.
-5. **Verdicts.** Tower fine-tune (LoRA r=8, this objective): CLOSED as
-   NO_PRACTICAL_GAIN(lora r=8, Siglip2 tower, MSE ranking objective, 900
-   steps, full-set AP; paired delta -0.0019 [-noise, +noise]). The
-   ranking-recipe line (batch x steps x exposure) is OPEN and is the new
-   main line: it moved AP by +0.056 with zero architecture change. The
-   V11 M01 video-native encoder line keeps priority for the next stage,
-   but must run under the probe recipe, not the sweep recipe.
-6. **Distance to the oracle.** With AP 0.746 on the held-out pool against
-   the prefix-oracle 0.7804, the remaining ranking gap is about 0.034,
-   and the decision layer gap (+0.116) is now the larger prize. The
-   recipe finding must be re-tested against the decision layer before
-   any platform extrapolation - none is made here.
+1. **The 0.626-to-0.746 gap was an evaluation-protocol artifact, not a
+   model difference.** Scored under the probe protocol (same 1,954 mixed
+   held-out fragments, fresh tower features), the SHIPPED head -
+   tcn_s0.pt, the head inside the 34.73 package - reads AP 0.7462,
+   identical to the probe frozen head. The shipped head's stored
+   val_ap = 0.6263 came from an older, undocumented protocol. The probe
+   recipe never improved ranking over the shipped head; the two heads tie
+   on every PHD2 measure we have.
+2. **Platform 33.85 (-0.88 versus the 34.73 parent) is therefore the
+   deployment variance between two ranking-equivalent heads.** The new
+   package changed only the temporal head; spatial boxes are byte-
+   identical on kept frames; mask volume matches within 0.1 percent. Yet
+   426 of 426 videos changed their kept-frame set (mask Jaccard 0.773).
+   Two heads that AP cannot separate (+0.0000) differ by 0.88 platform
+   points. Third directional failure, first negative one: KD gained
+   locally and stayed flat, QV fused worse, and now a ranking-tied head
+   swap moved the score DOWN.
+3. **PHD2-domain ranking metrics have no predictive power for the
+   platform direction.** Not imprecise - uninformative. Every local
+   ranking number (AP, simulated keep F1, oracle distance) is blind to
+   the sign of the platform delta. All prior closures and priorities that
+   rested on those numbers keep their internal validity but lose their
+   platform relevance.
+4. **The `escaped_band` field, the step-12 signal, and the LoRA line are
+   all fully explained with no tower effect.** LoRA - frozen at 900 full
+   set: -0.0019. The probe protocol alone puts any trained head near
+   0.746.
+5. **Verdicts (revised).** Tower fine-tune (LoRA r=8): CLOSED,
+   NO_PRACTICAL_GAIN, paired delta -0.0019. Ranking-recipe line: CLOSED,
+   NO_PRACTICAL_GAIN - the apparent +0.056 was protocol confounding
+   (finding 1). The probe-recipe head stays deployed nowhere; the
+   platform-tested parent (34.73) remains the best package.
+6. **The only trusted local signal is official-domain ground truth.** The
+   174-video preliminary set carries official GT and is not part of the
+   426-video semifinal drop. Every future package decision (head choice,
+   keep rate, mask style) must first be measured as real F on the 174
+   videos. Next action: score the two heads (tcn_s0 and probe frozen) on
+   the 174 GT to confirm the 33.85-versus-34.73 ordering is reproducible
+   locally - if yes, we finally own a trustworthy proxy.
 
 ### 6.4 Verdict rule (unchanged)
 
@@ -251,12 +256,13 @@ the video-native encoder line (V11 M01) takes priority.
 | QV auxiliary domain        | Closed      | Cross-domain AP 0.531 vs 0.695    |
 | Decision layer, route A    | Closed      | Rule 0.568 vs fixed 0.569         |
 | Decision layer, route B    | Closed      | +0.0007, CI contains zero         |
-| Pooling x structure (sweep recipe) | Closed | Ten variants in one band; absolute level corrected in 6.5 |
+| Pooling x structure        | Closed      | Ten variants in one band          |
 | Label protocol             | Closed      | Three protocols in one band       |
 | Training breadth           | Closed      | Boundary fragments do not help    |
 | Tower fine-tune (LoRA)     | Closed      | Paired full-set delta -0.0019 vs frozen control |
-| Ranking recipe (batch/steps/exposure) | OPEN, main line | Frozen tower AP 0.690 -> 0.746 under probe recipe |
-| Video-native encoder (M01) | Queued      | V11 priority; must run under the probe recipe |
+| Ranking recipe             | Closed      | Probe-protocol artifact; shipped head also 0.7462 |
+| PHD2 metrics as platform proxy | Closed  | 33.85 platform on a ranking-tied head swap; 3rd failure |
+| 174 official-GT validation | OPEN, main line | Score both heads on 174 GT; verify the ordering |
 
 ## 8. Rules for later reports
 
@@ -269,7 +275,9 @@ the video-native encoder line (V11 M01) takes priority.
 3. One changed factor per experiment.
 4. Mark every proxy metric as a proxy. The constant-IoU F1 is a temporal
    proxy, not the platform F. AP is a ranking diagnostic, not the
-   deployment metric.
+   deployment metric. STRONGER (section 6.5, finding 3): PHD2-domain
+   numbers do not predict the platform delta's sign. They may rank
+   hypotheses inside PHD2 only; no package decision cites them.
 5. Report negative results with the same detail as positive results.
 6. Mid-run prefix numbers are monitoring only. No decision cites them
    (eval manifest sha 24fae58a...; prefix reads 0.02 to 0.03 below the
@@ -277,3 +285,6 @@ the video-native encoder line (V11 M01) takes priority.
 7. A paired same-budget control runs before any "gain" claim. The smoke
    signal and the recipe effect were both unmasked by controls, not by
    more seeds.
+8. Every package decision (head, keep rate, mask style) is scored first
+   as real F on the 174-video preliminary GT. A candidate that has not
+   passed the 174 gate does not get packaged.

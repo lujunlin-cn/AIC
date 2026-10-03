@@ -181,12 +181,12 @@ backprops through the tower. Paired fields, all from disk:
 | 750 | 0.7269 | 0.6943 | -0.0326 |
 | **900 full** | **0.7462** | **0.7443** | **-0.0019** |
 
-Seed-2 (both RNGs pinned to 20261004) is still running; its prefix points
-at steps 150 and 300 (0.7013, 0.6943) match seed-1's (0.7048, 0.6861)
-within 0.008, with no collapse. The operator's decision rule ("if seed-2
-slides early, seed-1 was an accident") did not trigger - and the frozen
-control made the question moot: the LoRA-minus-frozen gap, not the seed
-spread, is the measured effect.
+Seed-2 (both RNGs pinned to 20261004) reached step 600 with prefix points
+0.7013 / 0.6943 at steps 150 / 300, matching seed-1 within 0.008, no
+collapse. UPDATE (2026-10-03 late): the operator stopped the LoRA line
+before seed-2 finished; seed-2 has no endpoint. The paired frozen control
+already answers the question - the LoRA-minus-frozen gap, not the seed
+spread, is the measured effect. Seed-2 status: PAUSED_EXPLORATORY.
 
 ### 6.4 Checkpoint hashes
 

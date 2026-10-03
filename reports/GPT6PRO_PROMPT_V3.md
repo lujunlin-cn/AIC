@@ -25,8 +25,10 @@ TCN updates, with NO adapters.
 | 900 (FULL 1,954) | **0.7462** | **0.7443** | **-0.0019** |
 
 Seed-2 (both RNGs 20261004) prefix points: 0.7013 at step 150, 0.6943 at
-step 300 - matching seed-1 within 0.008, no early slide. Seed-2 completes
-later tonight; its full-set number is the one outstanding check.
+step 300 - matching seed-1 within 0.008, no early slide. UPDATE: the
+operator stopped the LoRA line; seed-2 has no endpoint (status
+PAUSED_EXPLORATORY). The paired frozen control replaces it as the
+deciding evidence.
 
 The verdicts we draw, for you to audit - note that items 1 and 2 were
 REVISED the same evening, after the platform result in section 0.6:

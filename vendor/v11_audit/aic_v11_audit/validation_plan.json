@@ -1,0 +1,122 @@
+{
+  "problem_contract_version": "AIC_V11_20261003_v1",
+  "candidate_set_version": "v1",
+  "model_id": "not_selected",
+  "validation_vs_verification": {
+    "validation_question": "Does the frozen empirical target support the claimed improvement?",
+    "verification_handoff": "Execute the preregistered runs and replay their saved masks with the independent scorer."
+  },
+  "claims": [
+    {
+      "claim_id": "C01",
+      "claim": "New label constructions improve source-disjoint deployed F rather than relabelled AP.",
+      "claim_strength": "conditional",
+      "material": true,
+      "tests": [
+        {
+          "test_id": "D01",
+          "threat": "label target mismatch",
+          "design": "compare exact block occupancy and annotation-wise expected F with the frozen champion",
+          "independence": "group-aware source split; old heldout is development; locked unused eligible sources are confirm",
+          "baseline": "current champion on identical confirm video IDs and frame map",
+          "metric": "temporal macro F on exact exported frame lists",
+          "direction": "higher",
+          "acceptance": "paired mean delta >=0.007 and confirm CI lower >0",
+          "threshold_basis": "proposal fixed before experiments: raw F=0.005, temporal F=0.007; audit gates are exact contracts",
+          "artifact": "planned/results/D01/paired_by_video.jsonl",
+          "failure_action": "retain champion; mark not_run, invalid, inconclusive or scoped no-practical-gain; do not close the whole family",
+          "status": "not_run"
+        }
+      ]
+    },
+    {
+      "claim_id": "C02",
+      "claim": "Temporal video evidence improves ranking beyond static appearance.",
+      "claim_strength": "conditional",
+      "material": true,
+      "tests": [
+        {
+          "test_id": "M01",
+          "threat": "architecture versus information confounding",
+          "design": "compare ordered, shuffled and repeated-frame controls with matched frames, head, sample exposures and seeds",
+          "independence": "group-aware source split; old heldout is development; locked unused eligible sources are confirm",
+          "baseline": "current champion on identical confirm video IDs and frame map",
+          "metric": "deployed temporal macro F; AP diagnostic",
+          "direction": "higher",
+          "acceptance": "three-seed paired confirm F gain and order-specific interaction",
+          "threshold_basis": "proposal fixed before experiments: raw F=0.005, temporal F=0.007; audit gates are exact contracts",
+          "artifact": "planned/results/M01/paired_by_video.jsonl",
+          "failure_action": "retain champion; mark not_run, invalid, inconclusive or scoped no-practical-gain; do not close the whole family",
+          "status": "not_run"
+        }
+      ]
+    },
+    {
+      "claim_id": "C03",
+      "claim": "Exact expected F or policy gradients improve hard decoded masks.",
+      "claim_strength": "conditional",
+      "material": true,
+      "tests": [
+        {
+          "test_id": "T01",
+          "threat": "reward proxy and train-inference mismatch",
+          "design": "BCE, soft F, exact expected F and leave-one-out REINFORCE on identical features, fixed boxes and decoder",
+          "independence": "group-aware source split; old heldout is development; locked unused eligible sources are confirm",
+          "baseline": "current champion on identical confirm video IDs and frame map",
+          "metric": "deployed joint macro F if joint GT exists; otherwise temporal proxy",
+          "direction": "higher",
+          "acceptance": "real F delta >=0.005 or temporal delta >=0.007; confirm CI lower >0",
+          "threshold_basis": "proposal fixed before experiments: raw F=0.005, temporal F=0.007; audit gates are exact contracts",
+          "artifact": "planned/results/T01/paired_by_video.jsonl",
+          "failure_action": "retain champion; mark not_run, invalid, inconclusive or scoped no-practical-gain; do not close the whole family",
+          "status": "not_run"
+        }
+      ]
+    },
+    {
+      "claim_id": "C04",
+      "claim": "The label hypothesis family has no practically useful gain in its declared scope.",
+      "claim_strength": "conditional",
+      "material": true,
+      "tests": [
+        {
+          "test_id": "G01",
+          "threat": "absence of evidence reported as evidence of absence",
+          "design": "at least three structurally distinct variants with matched training and a positive-control sensitivity check",
+          "independence": "group-aware source split; old heldout is development; locked unused eligible sources are confirm",
+          "baseline": "current champion on identical confirm video IDs and frame map",
+          "metric": "paired F gain upper confidence bound",
+          "direction": "within",
+          "acceptance": "simultaneous upper 95% bound below prespecified minimal gain for every included variant",
+          "threshold_basis": "proposal fixed before experiments: raw F=0.005, temporal F=0.007; audit gates are exact contracts",
+          "artifact": "planned/results/G01/paired_by_video.jsonl",
+          "failure_action": "retain champion; mark not_run, invalid, inconclusive or scoped no-practical-gain; do not close the whole family",
+          "status": "not_run"
+        }
+      ]
+    },
+    {
+      "claim_id": "C05",
+      "claim": "Reported gains reproduce from released checkpoints and manifests.",
+      "claim_strength": "conditional",
+      "material": true,
+      "tests": [
+        {
+          "test_id": "A01",
+          "threat": "train-on-eval and checkpoint or aggregation mismatch",
+          "design": "independent scorer, GT-perturbation test, source hash intersection, package replay, seed completeness",
+          "independence": "group-aware source split; old heldout is development; locked unused eligible sources are confirm",
+          "baseline": "current champion on identical confirm video IDs and frame map",
+          "metric": "artifact identity and prediction/scorer equivalence",
+          "direction": "within",
+          "acceptance": "all integrity checks pass before result-level verdict",
+          "threshold_basis": "proposal fixed before experiments: raw F=0.005, temporal F=0.007; audit gates are exact contracts",
+          "artifact": "planned/results/A01/paired_by_video.jsonl",
+          "failure_action": "retain champion; mark not_run, invalid, inconclusive or scoped no-practical-gain; do not close the whole family",
+          "status": "not_run"
+        }
+      ]
+    }
+  ],
+  "overall_status": "conditional"
+}

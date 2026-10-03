@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "scope": "synthetic DP value and gradient only; no AIC training or platform replication",
+  "random_cases_value_and_gradient": 120,
+  "explicit_empty_cases": 6,
+  "max_reward_abs_error": 1.1102230246251565e-16,
+  "max_logit_gradient_abs_error": 5.551115123125783e-17,
+  "seed": 20261003,
+  "python": "3.13.5",
+  "torch": "2.10.0+cpu",
+  "elapsed_seconds": 0.1708362410000177,
+  "implementation_sha256": "7c6323f8a308b41a6a2a743091295a2f90b50d1ed04fccc7cadbd16c93d36a7f",
+  "numbers": {
+    "p": 0.33,
+    "all_keep_temporal_homogeneous": 0.49624060150375937,
+    "minimum_macro_p_if_all_keep_f_is_06237": 0.45317154690111167,
+    "homogeneous_score_all_keep_k09_m076": 33.94285714285714,
+    "conditional_rank_oracle_proxy_score": 53.379360000000005,
+    "conditional_current_proxy_score": 45.47232,
+    "anchor_scaled_prefix_oracle_not_forecast": 40.945174488568,
+    "decision_gap": 0.11560000000000004,
+    "temporal_required_at_45_k09_m076": 0.6578947368421052,
+    "temporal_required_at_50_k09_m076": 0.7309941520467835,
+    "temporal_required_at_60_k09_m076": 0.8771929824561403,
+    "binary_gain_001_to_points_k09_m076": 0.684
+  }
+}

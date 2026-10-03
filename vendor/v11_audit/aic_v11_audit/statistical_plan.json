@@ -1,0 +1,32 @@
+{
+  "task_type": "classification",
+  "target": "video-macro IoU-weighted F of a hard deployed keep mask",
+  "unit_of_analysis": "evaluation video; source video is the resampling cluster",
+  "has_groups": true,
+  "has_time_order": false,
+  "split_strategy": "group-aware source partitions with disjoint train, inner development and one-shot confirm",
+  "preprocessing_fit_scope": "train partition only; metadata-only timestamp map is deterministic",
+  "baselines": [
+    "frozen current champion",
+    "same-compute continued training",
+    "positive-control toy task"
+  ],
+  "metrics": [
+    "real_joint_macro_F",
+    "temporal_macro_F_when_joint_GT_absent",
+    "macro_AP_diagnostic",
+    "prefix_oracle_gap_diagnostic"
+  ],
+  "leakage_checks": [
+    "source intersections",
+    "pseudo-label source exclusion",
+    "GT mutation must not change inference",
+    "checkpoint and feature hash checks"
+  ],
+  "uncertainty": "paired source-cluster bootstrap retaining video macro weights; training seeds reported separately; multiplicity-aware closure bounds",
+  "decision_use": "choose a reproducible submission candidate, not infer a universal 500M capacity bound",
+  "class_imbalance": true,
+  "calibration_or_threshold_plan": "existing decision routes paused; new learned hard-mask decoder is fixed before final confirmation",
+  "challenger": true,
+  "upgrade_evidence": "planned independent hard-mask F improvement and package replay; no target-domain run executed in this audit"
+}

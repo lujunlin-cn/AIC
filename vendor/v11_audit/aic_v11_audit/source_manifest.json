@@ -1,0 +1,24 @@
+{
+  "read_date": "2026-10-03",
+  "repository": "lujunlin-cn/AIC",
+  "branch": "v8-100-500m-20260930",
+  "commit": "95b7180d39446be5b961050253f553a005c7e997",
+  "code_access": "GitHub connector reads; no repository training was executed",
+  "user_sources": [
+    {
+      "file": "20261003_v10_exploration_report.md",
+      "bytes": 7334,
+      "sha256": "e3c65624c0787a5d7c8ccc78a42328ddd31f2bb90d1adf31790c4a1569fec00f"
+    },
+    {
+      "file": "AGENTS.md — CTCA-STE 中文受控技术写作规范.md",
+      "bytes": 15005,
+      "sha256": "6338543f9f7e6ee5f6aaa57e1859b400a739f98d4611580e219808a05f59f5cc"
+    }
+  ],
+  "main_document": {
+    "file": "AIC_20261003_V11_research_and_execution.md",
+    "sha256": "6db259da28fd35383946cfe83597014da6e5deadd64a860500d38a83c24bbb1a"
+  },
+  "new_aic_experiments": "NOT_RUN"
+}

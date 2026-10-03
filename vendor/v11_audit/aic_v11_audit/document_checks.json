@@ -1,0 +1,10 @@
+{
+  "one_h1": true,
+  "no_heading_skip": true,
+  "balanced_code_fences": true,
+  "q1_q2_q3_q4_order": true,
+  "no_private_use_citation_tokens": true,
+  "document_bytes": 50662,
+  "document_lines": 920,
+  "scope": "Markdown structure checks only; not a scientific-result verdict."
+}

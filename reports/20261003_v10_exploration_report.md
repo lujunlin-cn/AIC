@@ -262,7 +262,9 @@ the video-native encoder line (V11 M01) takes priority.
 | Tower fine-tune (LoRA)     | Closed      | Paired full-set delta -0.0019 vs frozen control |
 | Ranking recipe             | Closed      | Probe-protocol artifact; shipped head also 0.7462 |
 | PHD2 metrics as platform proxy | Closed  | 33.85 platform on a ranking-tied head swap; 3rd failure |
-| 174 official-GT validation | OPEN, main line | Score both heads on 174 GT; verify the ordering |
+| 174 official-GT validation | PAUSED (premise failed) | 174 mp4s are NOT contiguous cuts of the downloaded PHD2 sources (stage-5 full-axis alignment); GT not exportable at reasonable cost |
+| Feature-contract parity (A0) | CONFIRMED DEFECT | e_z 0.289 mean between all-token cache and valid-token pooling; probe head mask min Jaccard 0.667 vs 1.000 for the shipped head; 33.85 mechanism identified |
+| M01 VideoMAEv2 ViT-B on NPU | DEPLOYABLE (bridged) | aclnnConvolutionBackward missing for tubelet Conv3d; exact Conv2d bridge verified on CPU (fwd 5.7e-06, grad 0); smoke PASS (86.2M, fwd 0.3s, mem 5.8 GB @ B=2) |
 
 ## 8. Rules for later reports
 
@@ -285,6 +287,12 @@ the video-native encoder line (V11 M01) takes priority.
 7. A paired same-budget control runs before any "gain" claim. The smoke
    signal and the recipe effect were both unmasked by controls, not by
    more seeds.
-8. Every package decision (head, keep rate, mask style) is scored first
-   as real F on the 174-video preliminary GT. A candidate that has not
-   passed the 174 gate does not get packaged.
+8. SUPERSEDED (2026-10-03 late): the 174-GT gate is not constructible -
+   the preliminary mp4s are not contiguous cuts of the downloaded PHD2
+   sources, so their GT cannot be read from the official annotations.
+   Replacement rule: every package carries ONE named mechanism and ONE
+   changed factor; the platform submission is the only official-domain
+   measurement left, so submissions are batched and reserved for
+   mechanism-backed single-variable packages. Training/deployment feature
+   contracts must be byte-identical (A0 rule): a head is only scored on
+   the contract it was trained on.

@@ -28,7 +28,7 @@ import numpy as np
 import torch
 
 
-def load_head_feats(feat_root, index, sel, keep_src, pooling):
+def load_head_feats(feat_root, index, sel, keep_src, pooling, include_boundary='none'):
     """Build (X, y, src) for one pooling variant over PHD2 fragments.
 
     Layout: ONE npz per fragment at <feat_root>/<frag_id>.npz with keys
@@ -37,7 +37,7 @@ def load_head_feats(feat_root, index, sel, keep_src, pooling):
     nothing, which is why the first unattended run reported "no features".
     """
     rows = [json.loads(l) for l in Path(index).read_text().splitlines() if l.strip()]
-    X, Y, SRC = [], [], []
+    X, Y, SRC, kinds = [], [], [], []
     for r in rows:
         src = r.get('src')
         f = Path(feat_root) / f"{r['video_id']}.npz"
@@ -80,10 +80,22 @@ def load_head_feats(feat_root, index, sel, keep_src, pooling):
         half = ((stamps[-1] - stamps[0]) / max(len(stamps) - 1, 1)) * 0.5 if len(stamps) > 1 else 0.5
         for a_, b_ in ivs:
             y[(times + half >= a_) & (times - half < b_)] = 1.0
-        if y.sum() == 0 or y.sum() == L:
+        # boundary fragments (all-negative / all-positive) carry no WITHIN-
+        # fragment ranking signal, but as MSE targets they teach the base rate
+        # of boring and of uniformly-good video -- and allneg nearly doubles the
+        # training pool (1,565 of 5,886 were discarded as 'no features').  The
+        # --include-boundary flag keeps them; held-out metrics still filter to
+        # mixed fragments so every variant is scored on the same eval set.
+        if y.sum() == L and include_boundary not in ('all',):
+            continue
+        if y.sum() == 0 and include_boundary not in ('all', 'neg'):
             continue
         X.append(Xf); Y.append(y); SRC.append(src)
-    return X, Y, SRC
+        if y.sum() in (0, L):
+            kinds.append(1 if y.sum() == L else -1)
+        else:
+            kinds.append(0)
+    return X, Y, SRC, kinds
 
 
 class SingleScale(torch.nn.Module):
@@ -141,7 +153,11 @@ def main():
     ap.add_argument('--feat-root', type=Path, required=True)
     ap.add_argument('--index', type=Path, default=Path('/data/aic/experiments_910a/PHD2_FRAG_V1/index_clean.jsonl'))
     ap.add_argument('--sources', type=Path, default=Path('/data/aic/experiments_910a/PHD2_FRAG_V1/val_sources.json'))
-    ap.add_argument('--poolings', nargs='*', default=['mean', 'attn', 'topk', 'mean+attn', 'mean+delta', 'mean+attn+delta'])
+    ap.add_argument('--poolings', nargs='*', default=['mean'])
+    ap.add_argument('--include-boundary', choices=['none', 'neg', 'all'], default='none',
+                    help='none = the incumbent mixed-only pool; neg adds 1,565 all-negative '
+                         'fragments as background supervision; all adds the 404 all-positive '
+                         'fragments too')
     ap.add_argument('--structs', nargs='*', default=['single', 'multi'])
     ap.add_argument('--seeds', type=int, nargs='*', default=[0, 1])
     ap.add_argument('--steps', type=int, default=2500)
@@ -162,13 +178,15 @@ def main():
                               'checkpoint selection - the first version trained and '
                               'evaluated on the same fragments and its AP was training AP')
     for pooling in args.poolings:
-        X, Y, SRC = load_head_feats(args.feat_root, args.index, sel, None, pooling)
+        X, Y, SRC, kinds = load_head_feats(args.feat_root, args.index, sel, None,
+                                           pooling, args.include_boundary)
         if not X:
             print(f'{pooling}: no features', flush=True); continue
         d_in = X[0].shape[1]
         eval_set = set(json.loads(args.sources.read_text())) if args.sources.exists() else set()
-        tr = [(x, y) for x, y, s in zip(X, Y, SRC) if s not in eval_set]
-        va = [(x, y) for x, y, s in zip(X, Y, SRC) if s in eval_set]
+        tr = [(x, y) for x, y, s, k in zip(X, Y, SRC, kinds) if s not in eval_set]
+        va = [(x, y) for x, y, s, k in zip(X, Y, SRC, kinds)
+              if s in eval_set and k == 0]   # held-out metrics: mixed fragments only
         if not tr or not va:
             print(f'{pooling}: split empty tr={len(tr)} va={len(va)}', flush=True); continue
         pos = float(np.mean([y.mean() for _, y in tr]))

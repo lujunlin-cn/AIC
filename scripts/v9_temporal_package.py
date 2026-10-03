@@ -38,6 +38,8 @@ ap.add_argument('--weight-bytes', type=int, required=True)
 ap.add_argument('--components', type=Path, required=True)
 ap.add_argument('--val-ap', type=float, default=None)
 ap.add_argument('--val-recall', type=float, default=None)
+ap.add_argument('--baseline-id', default='LFM_V8_B3_SEMIFINAL (official 34.75, same 426-video drop)')
+ap.add_argument('--change-note', default=None, help='single changed factor, replaces the V8 default text')
 a = ap.parse_args()
 
 parent = {r['video_id']: r for r in load_jsonl(a.parent)}
@@ -92,8 +94,8 @@ man = {
     'status': 'PACKAGED_NOT_UPLOADED_TRAINED_STUDENT_TEMPORAL_HEAD',
     'uploaded': False,
     'official_platform_score': None,
-    'parent_baseline': 'LFM_V8_B3_SEMIFINAL (official 34.75, same 426-video drop)',
-    'primary_changed_factor': (
+    'parent_baseline': a.baseline_id,
+    'primary_changed_factor': a.change_note or (
         'temporal frame selection only. Spatial predictions are copied '
         'byte-for-byte from LFM_V8_B3_SEMIFINAL (bbox differences on common '
         'frames: 0). A shallow 3-block dilated TCN (246,401 params, receptive '

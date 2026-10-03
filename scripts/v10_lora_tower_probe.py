@@ -41,6 +41,14 @@ ap.add_argument('--eval-limit', type=int, default=500,
                      'A full pass is ~13 min and the probe does several.')
 ap.add_argument('--lora-r', type=int, default=8)
 ap.add_argument('--lr', type=float, default=3e-4)
+ap.add_argument('--seed', type=int, default=20261003,
+                help='controls BOTH the numpy fragment sampler and the torch '
+                     '(TCN init / dropout) RNG. Seed-1 ran before this flag '
+                     'existed: numpy 20261003, torch UNSEEDED (audit note).')
+ap.add_argument('--frozen', action='store_true',
+                help='paired same-budget control: identical sampler, steps, '
+                     'evals and TCN updates, but NO LoRA - the tower stays '
+                     'frozen. Isolates the tower-update factor.')
 ap.add_argument('--out', type=Path, default=Path('/data/aic/experiments_910a/LFM_V10/lora_probe.json'))
 args = ap.parse_args()
 
@@ -49,6 +57,7 @@ import torch  # noqa: E402
 import torch_npu  # noqa: E402,F401
 torch.npu.set_compile_mode(jit_compile=False)
 torch.npu.config.allow_internal_format = False
+torch.manual_seed(args.seed)
 assert torch.npu.device_count() > 0, 'no NPU'
 import numpy as np  # noqa: E402
 from PIL import Image  # noqa: E402
@@ -63,16 +72,19 @@ proc = AutoProcessor.from_pretrained(args.model, min_tiles=1, max_tiles=1, max_i
 model = Lfm2VlForConditionalGeneration.from_pretrained(
     args.model, dtype=torch.float16, low_cpu_mem_usage=True,
     attn_implementation='eager').to(DEV)
-# freeze everything, then hand the vision tower to peft
+# freeze everything, then hand the vision tower to peft (unless --frozen)
 for p_ in model.parameters():
     p_.requires_grad_(False)
-lcfg = LoraConfig(
-    r=args.lora_r, lora_alpha=2 * args.lora_r, lora_dropout=0.05,
-    # names are RELATIVE to the tower: vision_model.encoder.layers.N.self_attn.q_proj
-    target_modules=r'.*self_attn\.(q_proj|k_proj|v_proj|out_proj)$',
-    bias='none')
-model.model.vision_tower = get_peft_model(model.model.vision_tower, lcfg)
-model.model.vision_tower.print_trainable_parameters()
+if not args.frozen:
+    lcfg = LoraConfig(
+        r=args.lora_r, lora_alpha=2 * args.lora_r, lora_dropout=0.05,
+        # names are RELATIVE to the tower: vision_model.encoder.layers.N.self_attn.q_proj
+        target_modules=r'.*self_attn\.(q_proj|k_proj|v_proj|out_proj)$',
+        bias='none')
+    model.model.vision_tower = get_peft_model(model.model.vision_tower, lcfg)
+    model.model.vision_tower.print_trainable_parameters()
+else:
+    print('FROZEN CONTROL: no adapters attached', flush=True)
 
 
 class TCN(torch.nn.Module):
@@ -202,6 +214,11 @@ while step < args.steps:
             best = (v, step)
 
 out = {
+    'seed': args.seed, 'frozen_control': bool(args.frozen),
+    'torch_seed_note': ('seed-1 (json best_step=12 history) ran before the --seed '
+                        'flag: numpy 20261003, torch unseeded'),
+    'steps': args.steps, 'fragments_per_step': args.fragments_per_step,
+    'eval_every': args.eval_every, 'eval_limit': args.eval_limit,
     'baseline_band': '0.677-0.696 (ten frozen-tower variants)',
     'first_eval_ap': baseline_ap,
     'best_ap': round(best[0], 4), 'best_step': best[1],

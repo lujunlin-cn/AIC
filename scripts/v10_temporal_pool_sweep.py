@@ -28,35 +28,36 @@ import numpy as np
 import torch
 
 
-def load_head_feats(feat_root, index, sel, keep_src, pooling, topk_n=48):
-    """Build (X, y, groups) for one pooling variant over PHD2 fragments."""
+def load_head_feats(feat_root, index, sel, keep_src, pooling):
+    """Build (X, y, src) for one pooling variant over PHD2 fragments.
+
+    Layout: ONE npz per fragment at <feat_root>/<frag_id>.npz with keys
+    mean/attn/topk [8,768] and t [8] (v10_temporal_attnpool.py).  The first
+    version of this loader expected a directory per fragment and matched
+    nothing, which is why the first unattended run reported "no features".
+    """
     rows = [json.loads(l) for l in Path(index).read_text().splitlines() if l.strip()]
-    X, Y, G, SRC = [], [], [], []
+    X, Y, SRC = [], [], []
     for r in rows:
         src = r.get('src')
-        if keep_src is not None and src not in keep_src:
+        f = Path(feat_root) / f"{r['video_id']}.npz"
+        if not f.exists():
             continue
-        d = Path(feat_root) / r['video_id']
-        if not d.exists():
-            continue
-        fs = sorted(d.glob('*.npz'), key=lambda p: float(p.stem))
-        if len(fs) < 4:
-            continue
-        mats = [np.load(f) for f in fs]
-        keys = [k for k in ('mean', 'attn', 'topk') if k in mats[0]]
+        m = np.load(f)
+        keys = set(m.keys())
         if pooling == 'mean+attn':
-            if not {'mean', 'attn'} <= set(keys):
+            if not {'mean', 'attn'} <= keys:
                 continue
-            Xf = np.concatenate([m['mean'].astype(np.float32) for m in mats], 1)
+            Xf = np.concatenate([m['mean'].astype(np.float32), m['attn'].astype(np.float32)], 1)
         elif pooling == 'mean+attn+topk':
-            if len(keys) < 3:
+            if not {'mean', 'attn', 'topk'} <= keys:
                 continue
-            Xf = np.concatenate([np.concatenate([m[k].astype(np.float32) for k in keys])
-                                 for m in mats], 1)
+            Xf = np.concatenate([m['mean'].astype(np.float32), m['attn'].astype(np.float32),
+                                 m['topk'].astype(np.float32)], 1)
         else:
             if pooling not in keys:
                 continue
-            Xf = np.stack([m[pooling].astype(np.float32) for m in mats])
+            Xf = m[pooling].astype(np.float32)
         L = len(Xf)
         t0 = float(r['t0'])
         ivs = []
@@ -65,19 +66,16 @@ def load_head_feats(feat_root, index, sel, keep_src, pooling, topk_n=48):
                 a_, b_ = float(rec['t0']), float(rec['t1'])
                 if b_ > a_:
                     ivs.append((a_ - t0, b_ - t0))
-        stems = sorted(float(f.stem) for f in fs)
-        times = np.array([stems[i] - t0 for i in range(L)], np.float32)
+        stamps = sorted(float(x) for x in m['t'])
+        times = np.array([stamps[i] - t0 for i in range(L)], np.float32)
         y = np.zeros(L, np.float32)
-        # frame CENTRE inside the interval; a GIF interval that clips a
-        # fragment edge must still label that frame
-        step_s = (L - 1) / max(len(stems) - 1, 1) if len(stems) > 1 else 1.0
-        half = step_s * 0.5
+        half = ((stamps[-1] - stamps[0]) / max(len(stamps) - 1, 1)) * 0.5 if len(stamps) > 1 else 0.5
         for a_, b_ in ivs:
             y[(times + half >= a_) & (times - half < b_)] = 1.0
         if y.sum() == 0 or y.sum() == L:
             continue
-        X.append(Xf); Y.append(y); G.append((r['video_id'], len(y))); SRC.append(src)
-    return X, Y, G, SRC
+        X.append(Xf); Y.append(y); SRC.append(src)
+    return X, Y, SRC
 
 
 class SingleScale(torch.nn.Module):
@@ -96,26 +94,21 @@ class SingleScale(torch.nn.Module):
 
 
 class MultiScale(torch.nn.Module):
-    """Parallel dilated branches + a residual, so a long highlight and a short
-    one are both representable at their own time scale."""
+    """Parallel dilated branches summed back onto the residual path, so a long
+    highlight and a short one are both representable at their own time scale."""
 
     def __init__(self, d_in, ch=128, dils=(1, 2, 4, 8, 16)):
         super().__init__()
         self.proj = torch.nn.Conv1d(d_in, ch, 1)
         self.branches = torch.nn.ModuleList([
-            torch.nn.Sequential(torch.nn.Conv1d(ch, ch // len(dils), 3, padding=d, dilation=d),
+            torch.nn.Sequential(torch.nn.Conv1d(ch, ch, 3, padding=d, dilation=d),
                                 torch.nn.GELU()) for d in dils])
         self.merge = torch.nn.Conv1d(ch, ch, 1)
         self.out = torch.nn.Conv1d(ch, 1, 1)
 
     def forward(self, x):
         h = self.proj(x.transpose(1, 2))
-        parts = [b(h) for b in self.branches]
-        cat = torch.cat(parts, 1) if parts[0].shape[1] * len(parts) == h.shape[1] \
-            else torch.cat([p for p in parts], 1)
-        g = self.merge(cat)
-        g = g[..., :h.shape[-1]] if g.shape[-1] > h.shape[-1] else \
-            torch.nn.functional.pad(g, (0, h.shape[-1] - g.shape[-1]))
+        g = self.merge(sum(b(h) for b in self.branches))
         return self.out(torch.nn.functional.gelu(g + h)).squeeze(1)
 
 
@@ -140,7 +133,7 @@ def main():
     ap.add_argument('--feat-root', type=Path, required=True)
     ap.add_argument('--index', type=Path, default=Path('/data/aic/experiments_910a/PHD2_FRAG_V1/index_clean.jsonl'))
     ap.add_argument('--sources', type=Path, default=Path('/data/aic/experiments_910a/PHD2_FRAG_V1/val_sources.json'))
-    ap.add_argument('--poolings', nargs='*', default=['mean', 'attn', 'topk', 'mean+attn', 'mean+attn+topk'])
+    ap.add_argument('--poolings', nargs='*', default=['mean', 'attn', 'topk', 'mean+attn'])
     ap.add_argument('--structs', nargs='*', default=['single', 'multi'])
     ap.add_argument('--seeds', type=int, nargs='*', default=[0, 1])
     ap.add_argument('--steps', type=int, default=2500)
@@ -156,15 +149,29 @@ def main():
     args.output_dir.mkdir(parents=True, exist_ok=True)
     results = {'variants': {}, 'n_val_sources': 0}
 
+    results['splits_note'] = ('train on the complement of --sources, report AP on '
+                              'the held-out sources only, FIXED step count with no '
+                              'checkpoint selection - the first version trained and '
+                              'evaluated on the same fragments and its AP was training AP')
     for pooling in args.poolings:
-        X, Y, G, SRC = load_head_feats(args.feat_root, args.index, sel, keep_src, pooling)
+        X, Y, SRC = load_head_feats(args.feat_root, args.index, sel, None, pooling)
         if not X:
             print(f'{pooling}: no features', flush=True); continue
         d_in = X[0].shape[1]
-        val_srcs = sorted(set(SRC))
-        results['n_val_sources'] = len(val_srcs)
-        pos = float(np.mean([y.mean() for y in Y]))
-        print(f'== pooling={pooling} d_in={d_in} frags={len(X)} sources={len(val_srcs)} pos={pos:.3f}', flush=True)
+        eval_set = set(json.loads(args.sources.read_text())) if args.sources.exists() else set()
+        tr = [(x, y) for x, y, s in zip(X, Y, SRC) if s not in eval_set]
+        va = [(x, y) for x, y, s in zip(X, Y, SRC) if s in eval_set]
+        if not tr or not va:
+            print(f'{pooling}: split empty tr={len(tr)} va={len(va)}', flush=True); continue
+        pos = float(np.mean([y.mean() for _, y in tr]))
+        print(f'== pooling={pooling} d_in={d_in} train={len(tr)} heldout={len(va)} '
+              f'srcs_heldout={len(set(s for s in SRC if s in eval_set))} pos={pos:.3f}', flush=True)
+        results['n_val_sources'] = len(set(s for s in SRC if s in eval_set))
+
+        Xt = torch.from_numpy(np.stack([x for x, _ in tr]))
+        Yt = torch.from_numpy(np.stack([y for _, y in tr]))
+        Xv = torch.from_numpy(np.stack([x for x, _ in va]))
+        Yv = [y for _, y in va]
 
         for struct in args.structs:
             for seed in args.seeds:
@@ -175,47 +182,38 @@ def main():
                 n_par = sum(p.numel() for p in model.parameters())
                 opt = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=0.01)
                 sched = torch.optim.lr_scheduler.CosineAnnealingLR(opt, T_max=args.steps)
-                Xt = torch.from_numpy(np.stack(X))
-                Yt = torch.from_numpy(np.stack(Y))
-                best = (-1.0, None, -1)
                 for step in range(1, args.steps + 1):
                     model.train()
                     i = torch.randint(0, len(Xt), (args.batch,))
-                    pred = model(Xt[i])
-                    loss = torch.nn.functional.mse_loss(torch.sigmoid(pred), Yt[i])
+                    loss = torch.nn.functional.mse_loss(torch.sigmoid(model(Xt[i])), Yt[i])
                     opt.zero_grad(); loss.backward(); opt.step(); sched.step()
-                    if step % 250 == 0 or step == args.steps:
-                        model.eval()
-                        with torch.no_grad():
-                            s_all = torch.sigmoid(model(Xt)).numpy()
-                        ap = float(np.mean([ap_of(s_all[j], Y[j]) for j in range(len(Y))]))
-                        rc = float(np.mean([recall_at(s_all[j], Y[j], 0.5) for j in range(len(Y))]))
-                        if ap == ap and ap > best[0]:
-                            best = (ap, {k: v.detach().clone() for k, v in model.state_dict().items()}, rc)
-                        if step % 1000 == 0 or step == args.steps:
-                            print(f'  {struct} s{seed} step{step} ap={ap:.4f} r@50={rc:.4f}', flush=True)
+                # held-out AP at the final step; NO checkpoint selection anywhere
+                model.eval()
+                with torch.no_grad():
+                    sv = torch.sigmoid(model(Xv)).numpy()
+                ap = float(np.mean([ap_of(sv[j], Yv[j]) for j in range(len(Yv))]))
+                rc = float(np.mean([recall_at(sv[j], Yv[j], 0.5) for j in range(len(Yv))]))
                 key = f'{pooling}|{struct}|s{seed}'
                 results['variants'][key] = {
                     'pooling': pooling, 'struct': struct, 'seed': seed,
                     'd_in': int(d_in), 'params': int(n_par),
                     'receptive_field': int(1 + 2 * sum(dils)),
-                    'val_ap': round(best[0], 4), 'recall_at_50': round(best[2], 4),
-                    'pos_rate': round(pos, 4)}
-                if seed == args.seeds[0] and best[1] is not None:
-                    torch.save({'state_dict': best[1], 'ch': args.ch, 'dils': list(dils),
+                    'heldout_ap': round(ap, 4), 'heldout_recall_at_50': round(rc, 4)}
+                if seed == args.seeds[0]:
+                    torch.save({'state_dict': model.state_dict(), 'ch': args.ch, 'dils': list(dils),
                                 'struct': struct, 'pooling': pooling, 'd_in': int(d_in),
-                                'params': n_par, 'val_ap': best[0]},
+                                'params': n_par, 'heldout_ap': ap},
                                args.output_dir / f'head_{pooling.replace("+","_")}_{struct}_s{seed}.pt')
-                print(f'  -> {key}: ap={best[0]:.4f} r@50={best[2]:.4f}', flush=True)
+                print(f'  -> {key}: heldout_ap={ap:.4f} r@50={rc:.4f}', flush=True)
 
     (args.output_dir / 'pool_structure_matrix.json').write_text(json.dumps(results, indent=1))
     # rank by mean AP across seeds, pooling then structure
     agg = {}
     for k, v in results['variants'].items():
-        agg.setdefault((v['pooling'], v['struct']), []).append(v['val_ap'])
+        agg.setdefault((v['pooling'], v['struct']), []).append(v['heldout_ap'])
     print('\n=== ranking (mean AP over seeds) ===', flush=True)
     for (p_, s_), aps in sorted(agg.items(), key=lambda kv: -float(np.mean(kv[1]))):
-        print(f'  {p_:18s} {s_:7s} AP={np.mean(aps):.4f} (n={len(aps)})', flush=True)
+        print(f'  {p_:18s} {s_:7s} heldout_AP={np.mean(aps):.4f} (n={len(aps)})', flush=True)
 
 
 if __name__ == '__main__':

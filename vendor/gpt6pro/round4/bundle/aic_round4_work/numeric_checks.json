@@ -1,0 +1,52 @@
+{
+  "scope": "Independent synthetic arithmetic only; no production training or platform inference run",
+  "seed_means": {
+    "mse": 0.6354333333333334,
+    "exactdp": 0.6625333333333333,
+    "delta": 0.027099999999999975,
+    "per_seed_delta": [
+      0.03520000000000001,
+      0.03499999999999992,
+      0.011099999999999999
+    ]
+  },
+  "illustrative_seed_t_interval": {
+    "ci95": [
+      -0.007322118212309648,
+      0.0615221182123096
+    ],
+    "caveat": "3 independent paired seeds and approximate normality assumed; not a valid final hierarchical CI"
+  },
+  "numeric_verification": {
+    "n_cases": 40,
+    "max_abs_value_error": 1.1102230246251565e-16,
+    "max_abs_gradient_error": 5.984795992119984e-17,
+    "max_abs_conditional_gradient_error": 8.586881206085195e-17,
+    "passed": true
+  },
+  "unit_mismatch_counterexample": {
+    "cost_per_block": 100,
+    "positive_blocks": 1,
+    "wrong_gt_count": 8,
+    "correct_gt_count": 100,
+    "wrong_reward": 1.8518518518518519,
+    "correct_reward": 1.0
+  },
+  "a0_recovery_fraction": {
+    "34.7": 0.9659090909090975,
+    "34.3": 0.5113636363636341,
+    "33.9": 0.05681818181817888
+  },
+  "iid_cluster_se_factor_equal_cluster_size": 1.409174353202462,
+  "fixed_keep_temporal_ceiling_reference_p04722_k080": 0.7423361106744223,
+  "decode_onepass_cpu_hours_reference": {
+    "100": 0.6504416666666667,
+    "300": 0.2168138888888889
+  },
+  "native426_window_count": {
+    "four_windows_per_video": 1704,
+    "eight_windows_per_video": 3408
+  },
+  "no_slide_fraction": 0.3732394366197183,
+  "no_slide_only_delta05_temporal": 0.01339622641509434
+}

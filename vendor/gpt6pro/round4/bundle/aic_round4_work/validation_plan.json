@@ -1,0 +1,156 @@
+{
+  "problem_contract_version": "AIC-round4-20261004",
+  "candidate_set_version": "V11-pending-official",
+  "model_id": "VTREPLAY_EXACTDP_NATIVE",
+  "validation_vs_verification": {
+    "validation_question": "Do the claims survive matched deploy-metric tests?",
+    "verification_handoff": "Run the independent invariant checks and record immutable artifacts."
+  },
+  "claims": [
+    {
+      "claim_id": "A0",
+      "claim": "The feature-only repair improves the fixed official evaluation set.",
+      "claim_strength": "conditional, prospective",
+      "material": true,
+      "tests": [
+        {
+          "test_id": "official_replay",
+          "threat": "Package lineage or evaluation version changes.",
+          "design": "Compare immutable VTREPLAY with the scored 33.85 package; only features change.",
+          "independence": "Same evaluation version; no tuning after feedback; independent checks before submission.",
+          "baseline": "Bad-cache probe package B",
+          "metric": "raw video-macro score",
+          "direction": "higher",
+          "unit": "dimensionless except raw score points",
+          "acceptance": "Report S(V)-S(B); recovery and practical improvement are separate.",
+          "threshold_basis": "Historical 33.85 and 34.73 anchors; 0.50 raw-point practical gate is a design choice.",
+          "artifact": "reports/20261004_round4/package_lineage.json",
+          "failure_action": "If versions or lineage differ, mark unresolved; do not attribute the score change to A0.",
+          "status": "not_run"
+        }
+      ]
+    },
+    {
+      "claim_id": "DP",
+      "claim": "Pooled expected-F improves deployment F over a matched MSE control.",
+      "claim_strength": "conditional, prospective",
+      "material": true,
+      "tests": [
+        {
+          "test_id": "fresh_confirm",
+          "threat": "Development reuse, source correlation, and seed selection.",
+          "design": "Freeze all paired candidates before one evaluation on 500 fresh source-disjoint sources; retain natural prevalence.",
+          "independence": "Independent confirmation sources and near-duplicate clusters excluded from training and model selection.",
+          "baseline": "Matched MSE, plus a preregistered soft-F diagnostic",
+          "metric": "original-frame binary temporal video-macro F",
+          "direction": "higher",
+          "unit": "dimensionless except raw score points",
+          "acceptance": "Mean paired improvement >=0.007 and cluster CI lower bound >0; all seeds reported.",
+          "threshold_basis": "0.007 is the predeclared minimum useful temporal effect; no platform-score conversion is assumed.",
+          "artifact": "reports/20261004_round4/pooled_seed_source_metrics.csv",
+          "failure_action": "Use INCONCLUSIVE for wide CI; scope-specific NO_PRACTICAL_GAIN only when upper CI <0.007.",
+          "status": "not_run"
+        }
+      ]
+    },
+    {
+      "claim_id": "UNIT",
+      "claim": "Native training and evaluation use the same valid reward units.",
+      "claim_strength": "conditional, prospective",
+      "material": true,
+      "tests": [
+        {
+          "test_id": "reward_contract",
+          "threat": "Native slot-count denominator mixed with original-frame gains.",
+          "design": "Verify reward range, duplication invariance, unit scaling, and small exact enumeration; compare training/export actions.",
+          "independence": "Independent brute-force verifier on synthetic cases, then held-out raw-frame replay.",
+          "baseline": "Direct set-based original-frame evaluator",
+          "metric": "reward and gradient absolute error",
+          "direction": "within",
+          "unit": "dimensionless except raw score points",
+          "acceptance": "Reward within [0,1], matched integer counts, enumeration errors <=1e-10 in FP64.",
+          "threshold_basis": "Algebraic invariants of 2*IoU_sum/(N_pred+N_gt).",
+          "artifact": "reports/20261004_round4/reward_unit_audit.json",
+          "failure_action": "Mark INVALID_IMPLEMENTATION; invalidate affected claims, not unrelated pooled experiments.",
+          "status": "not_run"
+        }
+      ]
+    },
+    {
+      "claim_id": "NATIVE",
+      "claim": "The native feature path reads the intended normalized frames.",
+      "claim_strength": "conditional, prospective",
+      "material": true,
+      "tests": [
+        {
+          "test_id": "native_contract",
+          "threat": "Seek units, preprocessing, stale cache, and hidden filtering.",
+          "design": "Check actual PTS and frame IDs against sequential decode; compare processor inputs with official checkpoint transform.",
+          "independence": "Independent decoder and frozen manifest; no selection by GT or observed improvement.",
+          "baseline": "Sequential original-frame decoding and official transform",
+          "metric": "frame identity and input tensor agreement",
+          "direction": "within",
+          "unit": "dimensionless except raw score points",
+          "acceptance": "Exact frame identities under frozen nearest-frame policy; declared input tolerance met; cache hash matches.",
+          "threshold_basis": "Input contract and source-video timing semantics.",
+          "artifact": "reports/20261004_round4/native_feature_contract_audit.json",
+          "failure_action": "Quarantine affected caches; rebuild under a new contract hash before training.",
+          "status": "not_run"
+        }
+      ]
+    },
+    {
+      "claim_id": "MOTION",
+      "claim": "Ordered input provides deployment benefit beyond static multi-frame content.",
+      "claim_strength": "conditional, prospective",
+      "material": true,
+      "tests": [
+        {
+          "test_id": "motion_control",
+          "threat": "Repeated-middle control also removes static visual coverage.",
+          "design": "Compare ordered, shuffled, and a static multi-frame aggregation control with matched training budget.",
+          "independence": "Independent source-disjoint holdout for confirmation; exposed development data only for choosing variants, never training on heldout sources.",
+          "baseline": "Static multi-frame content control, not only repeated middle frame",
+          "metric": "original-frame deployment F",
+          "direction": "higher",
+          "unit": "dimensionless except raw score points",
+          "acceptance": "Paired useful F improvement and documented control parity; AP alone cannot pass.",
+          "threshold_basis": "Same practical effect gate and valid action/feature contract.",
+          "artifact": "reports/20261004_round4/mask_exchange_metrics.csv",
+          "failure_action": "Retain as engineering asset; do not claim motion caused an AP difference.",
+          "status": "not_run"
+        }
+      ]
+    },
+    {
+      "claim_id": "CUT",
+      "claim": "A budget-matched objective improves the hard deployment cut.",
+      "claim_strength": "conditional, prospective",
+      "material": true,
+      "tests": [
+        {
+          "test_id": "fixed_budget",
+          "threat": "Unconstrained action expectation mismatches deterministic top-K.",
+          "design": "Compare MSE, unrestricted expected F, and budget-conditioned expected F with identical exporter.",
+          "independence": "All variants developed on exposed dev; test once after freezing on a separately preregistered confirmation set.",
+          "baseline": "MSE and unrestricted expected F",
+          "metric": "actual hard-mask macro F",
+          "direction": "higher",
+          "unit": "dimensionless except raw score points",
+          "acceptance": "Useful paired hard-mask gain; oracle headroom and exchange mass reported.",
+          "threshold_basis": "Budget-matched mathematical objective; empirical improvement still requires confirmation.",
+          "artifact": "reports/20261004_round4/fixed_budget_oracles.csv",
+          "failure_action": "Pause only this budget/decoder scope if its useful headroom or measured upper CI is below threshold.",
+          "status": "not_run"
+        }
+      ]
+    }
+  ],
+  "correction_promotion_tests": [
+    "Verify reward and feature corrections independently before promotion."
+  ],
+  "cross_stage_tests": [
+    "Use the same actual frame exporter for train diagnostics, validation, and package."
+  ],
+  "overall_status": "conditional"
+}

@@ -3084,5 +3084,6 @@
   }
  ],
  "scored_at": "2026-10-04",
- "score_note": "platform score with k_size=0.90 applied; raw F = 38.60.  VTREPLAY beats the 34.75 parent (+0.20 platform / +0.22 raw, A0 recovery 125 percent); EXACTDP ties the parent (+0.01, noise level)."
+ "score_note": "official score 34.74 as returned by the platform - a RAW score, no size penalty applied (operator-confirmed 2026-10-04; the earlier 'raw F = 38.60' note was an illegal score/k_size conversion, withdrawn).  Ties the 34.75 parent (-0.01, noise level): the confirm-set +0.031 did not convert to the official domain.",
+ "score_unit": "raw_no_size_penalty"
 }

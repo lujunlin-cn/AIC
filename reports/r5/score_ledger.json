@@ -1,0 +1,71 @@
+{
+  "meta": {
+    "created": "2026-10-04",
+    "rule": "all scores in this ledger are returned official values, RAW, no size penalty; conversions from score/k_size are BANNED (violated 10-02 and 10-04, see aic-score-handling-rule)",
+    "sources": "operator messages 2026-10-04; not independently verified on the platform"
+  },
+  "entries": [
+    {
+      "package": "V11_VTREPLAY",
+      "asset_id": 56693,
+      "score_platform": 34.95,
+      "score_raw_percent": 34.95,
+      "k_size_reported": null,
+      "k_size_verified": false,
+      "score_unit": "raw_no_size_penalty",
+      "note": "champion; parent 34.75; delta +0.20 same-unit"
+    },
+    {
+      "package": "V11_EXACTDP",
+      "asset_id": 56694,
+      "score_platform": 34.74,
+      "score_raw_percent": 34.74,
+      "k_size_reported": null,
+      "k_size_verified": false,
+      "score_unit": "raw_no_size_penalty",
+      "note": "ties parent 34.75 (-0.01, noise); confirm-set +0.031 did not convert"
+    },
+    {
+      "package": "parent (V9/V10 lineage best)",
+      "asset_id": null,
+      "score_platform": 34.75,
+      "score_raw_percent": 34.75,
+      "k_size_reported": null,
+      "k_size_verified": false,
+      "score_unit": "raw_no_size_penalty",
+      "note": "comparison anchor"
+    },
+    {
+      "package": "A0-defective ancestor",
+      "asset_id": null,
+      "score_platform": 33.85,
+      "score_raw_percent": 33.85,
+      "k_size_reported": null,
+      "k_size_verified": false,
+      "score_unit": "raw_no_size_penalty",
+      "note": "defect drop 0.90 points; VTREPLAY recovery 1.10/0.90 = 122 percent (same-unit ratio)"
+    },
+    {
+      "package": "LEADER (operator intelligence)",
+      "asset_id": null,
+      "score_platform": 45.0,
+      "score_raw_percent": 45.0,
+      "k_size_reported": null,
+      "k_size_verified": false,
+      "score_unit": "raw_no_size_penalty",
+      "note": "gap to champion = 45 - 34.95 = 10.05 points; no decomposition derivable from totals"
+    }
+  ],
+  "withdrawn_conversions": [
+    "raw F = 38.83 = 34.95/0.90 (round-4 report 4c, manifests, GPT6PRO_PROMPT_V5 section 0.1)",
+    "raw F = 38.60 = 34.74/0.90",
+    "gap = 6.2 raw = 45 - 38.83",
+    "63 platform ceiling = 0.6995 x 0.90 x 100 (double conversion: k_size x dev-to-official leap)",
+    "keep-0.70 ceiling 44.38 -> recomputed on true units: 34.95 x 0.8/0.7 = 39.94; conclusion SURVIVES (keep-0.70 alone cannot reach 45, still 5.06 short)"
+  ],
+  "surviving_scale_invariant_results": [
+    "conditional spatial marginal table (R5 section 2.6): +0.02 slide-group IoU at temporal-F 0.60 = +0.752 points; +0.05 = +1.88; +0.10 = +3.76 (marginal effects, no baseline dependence)",
+    "keep-0.70 nested-set ratio bound F(0.7)/F(0.8) <= 0.8/0.7 = 1.1429",
+    "all dev/confirm-set simulated F1/AP deltas and their CIs (same-unit local metric)"
+  ]
+}

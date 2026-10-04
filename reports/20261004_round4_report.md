@@ -124,10 +124,16 @@ DP (Q3.6) as a DIFFERENT hypothesis, plus the +0.037 oracle gap.
 
 ## 4c. OFFICIAL SCORES (2026-10-04, platform back)
 
-| Package | platform (k=0.90) | raw F | vs parent 34.75 | verdict |
-|---|---:|---:|---:|---|
-| V11_VTREPLAY | **34.95** | 38.83 | +0.20 / +0.22 raw | NEW HIGH; A0 recovery = (34.95-33.85)/0.90 = 122 percent - the valid-token contract fix is PLATFORM-CONFIRMED and its head beats the parent's |
-| V11_EXACTDP | 34.74 | 38.60 | +0.01 / -0.01 raw | tie with parent, noise level - the confirm-set +0.031 did NOT convert to the official domain |
+SCORE-UNIT CORRECTION (2026-10-04, operator): 34.95 and 34.74 are RAW
+scores with NO size penalty applied.  The "raw F = 38.83 / 38.60 =
+platform / 0.90" figures published earlier in this section were an
+illegal score/k_size conversion (the rule is on record since 10-02 and
+was violated again).  All scores below are read as returned.
+
+| Package | official score (raw, no penalty) | vs parent 34.75 | verdict |
+|---|---:|---:|---|
+| V11_VTREPLAY | **34.95** | +0.20 | NEW HIGH; A0 recovery = 1.10/0.90 = 122 percent (recovered 1.10 of the 0.90-point defect drop, same-unit ratio) - the valid-token contract fix is PLATFORM-CONFIRMED and its head beats the parent's |
+| V11_EXACTDP | 34.74 | -0.01 | tie with parent, noise level - the confirm-set +0.031 did NOT convert to the official domain |
 
 Q1 tree cell V=H, D=H.  Actions per the tree: do NOT scale the DP line
 (D-C ceiling is below noise; no matched-MSE package C will be spent), do
@@ -135,16 +141,19 @@ NOT submit a third diagnostic package now.  The confirm-set verdict and
 the platform agree on the mechanism: the prior head adds nothing on the
 official domain either.
 
-Operator intelligence: the current first place reports raw 45 (before
-size penalty) vs our raw 38.83 - a 6.2 raw gap.  Our in-domain
-fixed-ranking prefix oracle is F=0.6995 -> a 63 platform-score ceiling,
-so 45 raw needs roughly AP ~0.85-grade ranking at unchanged spatial
-quality, OR the same ranking with materially better spatial IoU.  The
-two unmined seams left: spatial IoU quality (rho, never optimized since
-the teacher rounds) and true temporal ranking quality (native VideoMAE
-line rebuilt on the corrected extractor).  Keep-structure is NOT tuned
-on the official set (in-domain curve peaks at 0.70-0.80 and falls at
-0.50; blind cuts would be leaderboard overfitting).
+Operator intelligence: the current first place reports 45 (raw, no
+penalty) vs our 34.95 (raw, no penalty) - a 10.05-point gap.  No
+conversion arithmetic attaches to either number.  The in-domain
+fixed-ranking prefix oracle F=0.6995 is a dev-pool simulated binary-
+temporal F, NOT an official-domain ceiling; the earlier "63 platform"
+figure was a double conversion and is withdrawn.  What stands: our dev
+pooled AP is 0.74 and content-ablation shows the pooled head is mostly
+position prior; spatial IoU has never been optimized.  The two unmined
+seams left: spatial IoU quality (rho) and true temporal ranking quality
+(native VideoMAE line rebuilt on the corrected extractor).
+Keep-structure is NOT tuned on the official set (in-domain curve peaks
+at 0.70-0.80 and falls at 0.50; blind cuts would be leaderboard
+overfitting).
 
 ## 5. Environment incident and recovery
 

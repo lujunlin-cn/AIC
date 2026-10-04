@@ -1,5 +1,15 @@
 # Prompt for GPT-6-PRO, round 5: the 6.2-raw-gap attack after both scores landed
 
+> **ERRATUM (added 2026-10-04 after the round-5 answer returned).**  The
+> score-unit premise in section 0.1 of this prompt was WRONG.  Per the
+> operator: 34.95 / 34.74 / 45 are ALL raw scores with NO size penalty.
+> There is no "platform vs raw" duality, no 38.83/38.60, no 6.2 gap
+> (real gap = 45 - 34.95 = 10.05), and the "63 platform ceiling" was a
+> double conversion.  Consume every conditional number derived from
+> 38.8333 in the round-5 answer through that correction; the protocol
+> and gate structure of the answer are score-unit-invariant and stand.
+> This prompt body is kept verbatim for the record.
+
 Style: ASD-STE100 Simplified Technical English.  Short sentences.  Active
 voice.  Present tense.  Mark every estimate as an estimate.
 

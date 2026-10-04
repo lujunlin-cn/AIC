@@ -1,0 +1,63 @@
+{
+ "keep": 0.8,
+ "slot_prior_devtrain": [
+  0.36629998683929443,
+  0.47209998965263367,
+  0.5116999745368958,
+  0.49900001287460327,
+  0.4381999969482422,
+  0.3441999852657318,
+  0.2393999993801117,
+  0.17870000004768372
+ ],
+ "n_dev_train_frags": 5886,
+ "sets": {
+  "anchor": {
+   "n_frags": 920,
+   "n_frags_with_pos": 648,
+   "n_mixed": 585,
+   "pos_frac": 0.7043,
+   "champion": {
+    "f1_mixed": 0.6489,
+    "f1_all_pos": 0.6692,
+    "ap_mixed": 0.7313
+   },
+   "zeros": {
+    "f1_mixed": 0.564,
+    "f1_all_pos": 0.5925,
+    "ap_mixed": 0.5434
+   },
+   "slotprior": {
+    "f1_mixed": 0.653,
+    "f1_all_pos": 0.6729,
+    "ap_mixed": null
+   }
+  },
+  "neutral": {
+   "n_frags": 920,
+   "n_frags_with_pos": 180,
+   "n_mixed": 169,
+   "pos_frac": 0.1957,
+   "champion": {
+    "f1_mixed": 0.541,
+    "f1_all_pos": 0.5603,
+    "ap_mixed": 0.6278
+   },
+   "zeros": {
+    "f1_mixed": 0.529,
+    "f1_all_pos": 0.5491,
+    "ap_mixed": 0.5768
+   },
+   "slotprior": {
+    "f1_mixed": 0.5373,
+    "f1_all_pos": 0.5568,
+    "ap_mixed": null
+   }
+  }
+ },
+ "reading": {
+  "champion_anchor_minus_neutral_f1_mixed": 0.1079,
+  "slotprior_anchor_minus_neutral_f1_mixed": 0.1157,
+  "note": "large positive gaps mean the measured quality depends on the anchored slicing protocol; DEV stress read only"
+ }
+}

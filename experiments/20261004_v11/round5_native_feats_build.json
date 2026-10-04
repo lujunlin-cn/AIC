@@ -1,0 +1,12 @@
+{
+ "contract_hash": "ac3b657f42264c9a",
+ "encoder": "videomaev2-vitb-distilled",
+ "n_sources_done": 1,
+ "n_windows": 30,
+ "windows_per_sec": 0.775,
+ "hard_errors": 0,
+ "mean_unique_frac": 1.0,
+ "mean_err_s": 0.0083,
+ "wall_s": 38.7,
+ "limit_windows": 30
+}

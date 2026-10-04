@@ -1,0 +1,15 @@
+{
+ "protocol": "R5 7.3 parity, contract copied from confirm_feats_cpu.pools_of",
+ "n_cases": 32,
+ "input_sha_equal": true,
+ "eps_feat_inf_max": 0.013152,
+ "eps_head_inf_max": 0.004836,
+ "gamma_min": 0.023215,
+ "mask_diff_cases": 0,
+ "gamma_gt_2eps_all": true,
+ "F_cpu": 0.77229,
+ "F_npu": 0.77229,
+ "abs_F_diff": 0.0,
+ "release_gate": "abs_F_diff <= 0.001 on this frozen subset; masks must not differ beyond the gamma>2eps float rule",
+ "gate_pass": true
+}

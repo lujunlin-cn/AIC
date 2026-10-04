@@ -99,16 +99,54 @@ starts).  Frames extracted 920/920 (20 s); CPU features 16 shards running.
 Read discipline frozen in reports/r5/anchor_neutral_protocol_audit.md.
 Dev stress only - never a gate.
 
-## 6. B1 parity (running) and next
+## 6. B1 parity - FAILED then FIXED, gate now green
 
-CPU-fp32 vs NPU-fp16 parity (32 frozen cases, gamma > 2*eps mask rule,
-|dF| <= 0.001 gate) is running on the 910A.  After it passes: the 72
-NPU.h plan unlocks in R5 order - spatial S1-adjacent work (feature
-upgrade for the candidate scorer) in parallel with the VideoMAEv2-B
-native cache build (14 NPU.h) and the P/O/S/B/L matrix (8 NPU.h).
+The first parity run FAILED hard (eps_feat 21.8, 32/32 masks differ,
+F 0.77 vs 0.52, feature corr 0.16): the NPU vision tower was computing a
+DIFFERENT function, silently (no nan, no error).  Layer-by-layer hooks
+located the divergence: transformers 5.18 Siglip2 NaFlex
+`resize_positional_embeddings` returns ALL ZEROS on torch_npu 2.9 /
+CANN 9.0.0 (NPU output norm 0.0 vs CPU 566).  The interpolate kernel and
+the patch embedding are individually correct - only the module-level
+empty+write pattern loses the result.  This also means the position
+information was missing from every NPU Siglip2 forward since the CANN
+9.0.0 reinstall; the OLD-stack dev features were verified against CPU at
+the time, so the defect is NEW-STACK only.
+
+Fix: `scripts/v11_npu_siglip2_patch.py` - compute the pos-embed resize on
+CPU (negligible cost) and cast back to the source dtype (an fp32 return
+silently upcasts the add and breaks attention dtypes).  Re-run: eps_feat
+21.8 -> 0.0132, masks 0/32 differ, F_cpu = F_npu = 0.77229, abs_F_diff
+0.0, gamma > 2*eps everywhere - **gate_pass: true**.  Rule going forward:
+EVERY NPU Siglip2 forward applies patch_siglip2_npu(model), and parity
+re-runs after any stack change.  Artifacts: round5_cpu_npu_parity.json
+(the failed run is kept as ..._feats_npu_fp16.pt.POISONED), reports/r5/.
+
+## 6b. A6 anchor/neutral read (dev stress, demoted audit sources)
+
+| condition | anchor (70.4% pos) | neutral (16.0% pos) | gap |
+|---|---|---|---|
+| champion keep-F1 (mixed) | 0.653 | 0.545 | **+0.108** |
+| slotprior keep-F1 (mixed) | 0.653 | 0.537 | **+0.116** |
+
+Both the champion and the pure position prior lose ~0.11 keep-F1 when the
+slicing protocol's position structure is removed.  The champion's
+degradation MATCHES the prior's - direct confirmation of section 1's
+verdict, and the preregistered R5 7.6 clause fires: slicing-protocol
+dependence is on record; no official-mechanism claim may be built on
+anchor-sliced numbers.  Artifact: round5_anchor_neutral_read.json.
+
+## 6c. Native feature pipeline - probe passed, throughput measured
+
+The frozen contract validated end to end on NPU: 30 windows, 1 source,
+0 hard errors, 16/16 unique frames per window, nearest-match error
+0.008 s, contract hash ac3b657f42264c9a recorded in every npz.  Throughput
+0.775 win/s single-process (decode+forward serial) -> the full build
+needs a multi-process decoder before the 256-source dev build (R5 3.4);
+measured first, not promised.  Artifact: round5_native_feats_build.json.
 
 ## 7. Budget used this phase
 
-CPU: ~6 h wall (ablation, oracle analysis, contract validation, slicing,
-parity-CPU stage).  NPU: parity stage only so far (~0.5 h of the 72 h
-envelope).  No submission spent.
+CPU: ~8 h wall (ablation, oracle analysis, contract validation, slicing,
+feature extraction, parity).  NPU: parity + native probe ~1 h of the 72 h
+envelope.  No submission spent.

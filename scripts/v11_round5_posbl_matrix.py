@@ -50,6 +50,8 @@ ap.add_argument('--seeds', nargs='*', type=int, default=[510, 511, 512])
 ap.add_argument('--steps', type=int, default=900)
 ap.add_argument('--batch', type=int, default=8)
 ap.add_argument('--lrs', nargs='*', type=float, default=[3e-5, 1e-4, 3e-4])
+ap.add_argument('--device', default='cpu', choices=['npu', 'cpu'])
+ap.add_argument('--single', nargs=3, default=None, metavar=('ARM', 'SEED', 'LR'))
 ap.add_argument('--out', type=Path,
                 default=Path('/data/aic/experiments_910a/LFM_V11/round5_posbl_matrix.json'))
 args = ap.parse_args()
@@ -124,9 +126,9 @@ def f1_keep(s, y, keep=0.8):
     return float(2 * sum(y[i] for i in idx) / (k + y.sum()))
 
 
-def train_arm(X, Y, tr, dv, arm, seed, lr, steps, batch, rng):
+def train_arm(X, Y, tr, dv, arm, seed, lr, steps, batch, rng, DEV='cpu'):
     torch.manual_seed(seed)
-    model = TCN()
+    model = TCN().to(DEV)
     opt = torch.optim.AdamW(model.parameters(), lr=lr)
     losses = []
     for step in range(steps):
@@ -134,8 +136,8 @@ def train_arm(X, Y, tr, dv, arm, seed, lr, steps, batch, rng):
         opt.zero_grad()
         acc = 0.0
         for j in idxs:                    # variable-length sources: grad-accum
-            logits = model(torch.from_numpy(X[tr[j]])[None])[0]
-            yb = torch.from_numpy(Y[tr[j]]).float()
+            logits = model(torch.from_numpy(X[tr[j]])[None].to(DEV))[0]
+            yb = torch.from_numpy(Y[tr[j]]).float().to(DEV)
             loss = torch.nn.functional.binary_cross_entropy_with_logits(
                 logits, yb, reduction='mean') / batch
             loss.backward()
@@ -144,12 +146,62 @@ def train_arm(X, Y, tr, dv, arm, seed, lr, steps, batch, rng):
         losses.append(acc)
     model.eval()
     with torch.no_grad():
-        sc = {i: model(torch.from_numpy(X[i])[None])[0].numpy().astype(np.float32)
+        sc = {i: model(torch.from_numpy(X[i])[None].to(DEV))[0].float().cpu().numpy()
               for i in dv}
     return model, sc
 
 
+def single_task():
+    """--single ARM SEED LR: one training run -> scores npz.
+    """
+    arm, seed, lr = args.single[0], int(args.single[1]), float(args.single[2])
+    sel = json.loads(args.selections.read_text())
+    labels = load_labels(sel)
+    src_sel = json.loads(args.sources_file.read_text())
+    tr_srcs = sorted(set(src_sel['train_sources']))
+    dv_srcs = sorted(set(src_sel['eval_sources']))
+    Xl, Cl, Yl, keep = load_native(args.feat_dir, tr_srcs + dv_srcs, labels)
+    keep_set = set(keep)
+    tr = [i for i, s in enumerate(keep) if s in set(tr_srcs)]
+    dv = [i for i, s in enumerate(keep) if s in set(dv_srcs)]
+    rng_fix = np.random.RandomState(77)
+    if arm == 'O':
+        X = [flat_of(x) for x in Xl]
+    elif arm == 'S':
+        X = [flat_of(x[:, rng_fix.permutation(8)]) for x in Xl]
+    elif arm == 'P':
+        X = [np.zeros((len(x), 6144), np.float32) for x in Xl]
+    elif arm == 'L':
+        X = []
+        for x in Xl:
+            z = np.zeros_like(x)
+            z[:, ::2] = x[:, ::2]
+            X.append(flat_of(z))
+    else:
+        raise SystemExit(f'unknown arm {arm}')
+    rng = np.random.RandomState(seed)
+    model, sc = train_arm(X, Yl, tr, dv, arm, seed, lr, args.steps,
+                          args.batch, rng, 'cpu')
+    out = args.out.with_name(
+        f'{args.out.stem}_task_{arm}_s{seed}_lr{lr}.npz')
+    np.savez_compressed(out, scores=np.array([sc[i] for i in dv]),
+                        dv=dv, keep=np.array(keep),
+                        labels=np.array([Yl[i] for i in dv], dtype=object),
+                        arm=arm, seed=seed, lr=lr)
+    print('TASK_DONE', out, flush=True)
+
+
+def flat_of(x):
+    return x.reshape(len(x), -1)
+
+
 def main():
+    if args.single:
+        single_task()
+        return
+    DEV = args.device
+    if DEV == 'npu':
+        import torch_npu                                        # noqa: F401
     sel = json.loads(args.selections.read_text())
     labels = load_labels(sel)
     src_sel = json.loads(args.sources_file.read_text())
@@ -215,7 +267,7 @@ def main():
         for sd in args.seeds:
             rng = np.random.RandomState(sd)
             _, sc = train_arm(X['O'], Yl, tr, dv, 'O', sd, lr, args.steps,
-                              args.batch, rng)
+                              args.batch, rng, DEV)
             aps.append(float(np.mean([ap_of(sc[i], Yl[i]) for i in dv])))
         results[f'O_lr{lr}'] = {'dev_ap_mean': round(float(np.mean(aps)), 4),
                                 'per_seed': [round(a, 4) for a in aps]}
@@ -231,7 +283,7 @@ def main():
         for sd in args.seeds:
             rng = np.random.RandomState(sd)
             _, sc = train_arm(X[arm], Yl, tr, dv, arm, sd, chosen_lr,
-                              args.steps, args.batch, rng)
+                              args.steps, args.batch, rng, DEV)
             aps.append(float(np.mean([ap_of(sc[i], Yl[i]) for i in dv])))
             f1s.append(float(np.mean([f1_keep(sc[i], Yl[i]) for i in dv])))
         results[arm] = {'dev_ap_mean': round(float(np.mean(aps)), 4),

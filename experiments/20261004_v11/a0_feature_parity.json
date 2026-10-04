@@ -1,0 +1,24 @@
+{
+ "videos": 16,
+ "frames": 96,
+ "ez_mean": 0.289259,
+ "ez_p50": 0.273289,
+ "ez_p90": 0.528025,
+ "ez_max": 0.57921,
+ "valid_tokens_mean": 886.8,
+ "total_tokens_mean": 1024.0,
+ "pad_share_mean": 0.134,
+ "heads": {
+  "a": {
+   "score_pearson_mean": 0.99671,
+   "keep08_jaccard_mean": 1.0,
+   "keep08_jaccard_min": 1.0
+  },
+  "b": {
+   "score_pearson_mean": 0.85523,
+   "keep08_jaccard_mean": 0.9583,
+   "keep08_jaccard_min": 0.6667
+  }
+ },
+ "note": "z_all = deployment cache contract (all-token mean, cached FP16); z_val = probe training contract (valid-token mean). FP32 here both, so e_z isolates the pooling effect, not dtype."
+}

@@ -1,0 +1,19 @@
+{
+ "pool": {
+  "train": 1963,
+  "eval": 1954,
+  "note": "VideoMAE 8-slot features; ord vs rep paired arms; MSE objective"
+ },
+ "arms": {
+  "ord": {
+   "arm": "ord",
+   "ap": 0.7226,
+   "f1_keep080": 0.6418
+  },
+  "rep": {
+   "arm": "rep",
+   "ap": 0.7193,
+   "f1_keep080": 0.6473
+  }
+ }
+}

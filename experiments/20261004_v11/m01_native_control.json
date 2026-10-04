@@ -1,0 +1,19 @@
+{
+ "pool": {
+  "train": 1292,
+  "eval": 1329,
+  "note": "native-framerate 4x16-frame windows, 32-step TCN input, ord vs rep, MSE"
+ },
+ "arms": {
+  "ord": {
+   "arm": "ord",
+   "ap": 0.6406,
+   "f1_keep080": 0.5972
+  },
+  "rep": {
+   "arm": "rep",
+   "ap": 0.5611,
+   "f1_keep080": 0.5965
+  }
+ }
+}

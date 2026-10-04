@@ -1,0 +1,74 @@
+{
+ "pool": {
+  "train": 1292,
+  "eval": 1329,
+  "seeds": [
+   20261009,
+   20261010,
+   20261011
+  ],
+  "note": "native 32-step features; ord/rep x mse/dp; paired streams"
+ },
+ "arms": {
+  "ord_mse": {
+   "20261009": {
+    "ap": 0.6406,
+    "f1_keep080": 0.5972,
+    "seed": 20261009,
+    "scores": "<stripped: per-fragment list, see remote>"
+   },
+   "20261010": {
+    "ap": 0.5503,
+    "f1_keep080": 0.5692,
+    "seed": 20261010,
+    "scores": "<stripped: per-fragment list, see remote>"
+   },
+   "20261011": {
+    "ap": 0.5427,
+    "f1_keep080": 0.5656,
+    "seed": 20261011,
+    "scores": "<stripped: per-fragment list, see remote>"
+   }
+  },
+  "ord_dp": {
+   "20261009": {
+    "ap": 0.528,
+    "f1_keep080": 0.5384,
+    "seed": 20261009,
+    "scores": "<stripped: per-fragment list, see remote>"
+   },
+   "20261010": {
+    "ap": 0.5247,
+    "f1_keep080": 0.5516,
+    "seed": 20261010,
+    "scores": "<stripped: per-fragment list, see remote>"
+   },
+   "20261011": {
+    "ap": 0.5255,
+    "f1_keep080": 0.5513,
+    "seed": 20261011,
+    "scores": "<stripped: per-fragment list, see remote>"
+   }
+  },
+  "rep_dp": {
+   "20261009": {
+    "ap": 0.528,
+    "f1_keep080": 0.5385,
+    "seed": 20261009,
+    "scores": "<stripped: per-fragment list, see remote>"
+   },
+   "20261010": {
+    "ap": 0.5207,
+    "f1_keep080": 0.536,
+    "seed": 20261010,
+    "scores": "<stripped: per-fragment list, see remote>"
+   },
+   "20261011": {
+    "ap": 0.5251,
+    "f1_keep080": 0.5512,
+    "seed": 20261011,
+    "scores": "<stripped: per-fragment list, see remote>"
+   }
+  }
+ }
+}

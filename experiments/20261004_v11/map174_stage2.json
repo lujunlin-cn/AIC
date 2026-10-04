@@ -1,0 +1,1999 @@
+{
+ "n": 174,
+ "scored": 71,
+ "pending_download": 58,
+ "unmatched": 45,
+ "tol": 0.15,
+ "results": [
+  {
+   "video_id": "0",
+   "dur": 10.52,
+   "n_cands": 10,
+   "n_media_missing": 8,
+   "status": "SCORED",
+   "best": {
+    "yt": "xxkqeR46bdk",
+    "start": 347.25,
+    "dur": 10.54,
+    "user": "13012",
+    "is_last": "True",
+    "mae": 61.56
+   },
+   "second": {
+    "yt": "Cmhca-ROWwQ",
+    "start": 287.0,
+    "dur": 10.5,
+    "user": "13105",
+    "is_last": "True",
+    "mae": 111.5
+   }
+  },
+  {
+   "video_id": "1",
+   "dur": 17.1,
+   "n_cands": 1,
+   "n_media_missing": 1,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "2",
+   "dur": 9.217,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "3",
+   "dur": 8.2,
+   "n_cands": 10,
+   "n_media_missing": 9,
+   "status": "SCORED",
+   "best": {
+    "yt": "yq_watF41yU",
+    "start": 96.0,
+    "dur": 8.19,
+    "user": "13184",
+    "is_last": "True",
+    "mae": 72.11
+   },
+   "second": null
+  },
+  {
+   "video_id": "4",
+   "dur": 14.233,
+   "n_cands": 10,
+   "n_media_missing": 9,
+   "status": "SCORED",
+   "best": {
+    "yt": "6uMcdpiV094",
+    "start": 241.48,
+    "dur": 14.25,
+    "user": "13351",
+    "is_last": "False",
+    "mae": 158.66
+   },
+   "second": null
+  },
+  {
+   "video_id": "5",
+   "dur": 6.967,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "6",
+   "dur": 10.233,
+   "n_cands": 10,
+   "n_media_missing": 8,
+   "status": "SCORED",
+   "best": {
+    "yt": "NH-5aUFoF9g",
+    "start": 3.0105,
+    "dur": 10.2295,
+    "user": "13628",
+    "is_last": "True",
+    "mae": 66.52
+   },
+   "second": {
+    "yt": "cedoBlUvBlI",
+    "start": 39.77,
+    "dur": 10.22,
+    "user": "13247",
+    "is_last": "False",
+    "mae": 91.73
+   }
+  },
+  {
+   "video_id": "7",
+   "dur": 6.802,
+   "n_cands": 10,
+   "n_media_missing": 9,
+   "status": "SCORED",
+   "best": {
+    "yt": "aVibtHojASU",
+    "start": 32.166,
+    "dur": 6.80312,
+    "user": "13337",
+    "is_last": "True",
+    "mae": 27.06
+   },
+   "second": null
+  },
+  {
+   "video_id": "8",
+   "dur": 5.898,
+   "n_cands": 10,
+   "n_media_missing": 9,
+   "status": "SCORED",
+   "best": {
+    "yt": "Jf01tTgGH9s",
+    "start": 24.0,
+    "dur": 5.9,
+    "user": "13586",
+    "is_last": "True",
+    "mae": 60.33
+   },
+   "second": null
+  },
+  {
+   "video_id": "9",
+   "dur": 6.933,
+   "n_cands": 10,
+   "n_media_missing": 9,
+   "status": "SCORED",
+   "best": {
+    "yt": "QRmJ17m5fis",
+    "start": 60.0,
+    "dur": 6.94,
+    "user": "13769",
+    "is_last": "False",
+    "mae": 110.38
+   },
+   "second": null
+  },
+  {
+   "video_id": "10",
+   "dur": 10.767,
+   "n_cands": 10,
+   "n_media_missing": 9,
+   "status": "SCORED",
+   "best": {
+    "yt": "Gz2oHRD2pF4",
+    "start": 41.28,
+    "dur": 10.75,
+    "user": "13280",
+    "is_last": "True",
+    "mae": 122.52
+   },
+   "second": null
+  },
+  {
+   "video_id": "11",
+   "dur": 8.172,
+   "n_cands": 10,
+   "n_media_missing": 9,
+   "status": "SCORED",
+   "best": {
+    "yt": "ksZS8ip_-r4",
+    "start": 160.66,
+    "dur": 8.17,
+    "user": "13053",
+    "is_last": "True",
+    "mae": 54.63
+   },
+   "second": null
+  },
+  {
+   "video_id": "12",
+   "dur": 5.92,
+   "n_cands": 10,
+   "n_media_missing": 9,
+   "status": "SCORED",
+   "best": {
+    "yt": "-2Co6_tu808",
+    "start": 106.0,
+    "dur": 5.92,
+    "user": "13101",
+    "is_last": "False",
+    "mae": 223.56
+   },
+   "second": null
+  },
+  {
+   "video_id": "13",
+   "dur": 5.239,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "14",
+   "dur": 7.466,
+   "n_cands": 10,
+   "n_media_missing": 9,
+   "status": "SCORED",
+   "best": {
+    "yt": "uHbMt6WDhQ8",
+    "start": 22.52,
+    "dur": 7.46,
+    "user": "13394",
+    "is_last": "False",
+    "mae": 191.67
+   },
+   "second": null
+  },
+  {
+   "video_id": "15",
+   "dur": 5.208,
+   "n_cands": 10,
+   "n_media_missing": 8,
+   "status": "SCORED",
+   "best": {
+    "yt": "yLTi1ydy31c",
+    "start": 30.0,
+    "dur": 5.21,
+    "user": "13433",
+    "is_last": "True",
+    "mae": 75.54
+   },
+   "second": {
+    "yt": "ZhGh7MymC6o",
+    "start": 92.2604,
+    "dur": 5.20833,
+    "user": "13093",
+    "is_last": "True",
+    "mae": 109.73
+   }
+  },
+  {
+   "video_id": "16",
+   "dur": 5.209,
+   "n_cands": 10,
+   "n_media_missing": 8,
+   "status": "SCORED",
+   "best": {
+    "yt": "yLTi1ydy31c",
+    "start": 30.0,
+    "dur": 5.21,
+    "user": "13433",
+    "is_last": "True",
+    "mae": 85.44
+   },
+   "second": {
+    "yt": "ZhGh7MymC6o",
+    "start": 92.2604,
+    "dur": 5.20833,
+    "user": "13093",
+    "is_last": "True",
+    "mae": 126.83
+   }
+  },
+  {
+   "video_id": "17",
+   "dur": 9.968,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "18",
+   "dur": 31.486,
+   "n_cands": 0,
+   "n_media_missing": 0,
+   "status": "UNMATCHED"
+  },
+  {
+   "video_id": "19",
+   "dur": 172.067,
+   "n_cands": 0,
+   "n_media_missing": 0,
+   "status": "UNMATCHED"
+  },
+  {
+   "video_id": "20",
+   "dur": 285.8,
+   "n_cands": 0,
+   "n_media_missing": 0,
+   "status": "UNMATCHED"
+  },
+  {
+   "video_id": "21",
+   "dur": 44.633,
+   "n_cands": 0,
+   "n_media_missing": 0,
+   "status": "UNMATCHED"
+  },
+  {
+   "video_id": "22",
+   "dur": 16.52,
+   "n_cands": 0,
+   "n_media_missing": 0,
+   "status": "UNMATCHED"
+  },
+  {
+   "video_id": "23",
+   "dur": 6.882,
+   "n_cands": 10,
+   "n_media_missing": 8,
+   "status": "SCORED",
+   "best": {
+    "yt": "sWuYspuN6U8",
+    "start": 9.0,
+    "dur": 6.89,
+    "user": "13240",
+    "is_last": "False",
+    "mae": 102.59
+   },
+   "second": {
+    "yt": "QIyOSnSLwnI",
+    "start": 398.53,
+    "dur": 6.88,
+    "user": "13810",
+    "is_last": "True",
+    "mae": 107.95
+   }
+  },
+  {
+   "video_id": "24",
+   "dur": 10.444,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "25",
+   "dur": 25.44,
+   "n_cands": 0,
+   "n_media_missing": 0,
+   "status": "UNMATCHED"
+  },
+  {
+   "video_id": "26",
+   "dur": 5.92,
+   "n_cands": 10,
+   "n_media_missing": 9,
+   "status": "SCORED",
+   "best": {
+    "yt": "-2Co6_tu808",
+    "start": 106.0,
+    "dur": 5.92,
+    "user": "13101",
+    "is_last": "False",
+    "mae": 140.43
+   },
+   "second": null
+  },
+  {
+   "video_id": "27",
+   "dur": 25.0,
+   "n_cands": 0,
+   "n_media_missing": 0,
+   "status": "UNMATCHED"
+  },
+  {
+   "video_id": "28",
+   "dur": 4.379,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "29",
+   "dur": 5.32,
+   "n_cands": 10,
+   "n_media_missing": 9,
+   "status": "SCORED",
+   "best": {
+    "yt": "L8eRzOYhLuw",
+    "start": 95.9142,
+    "dur": 5.32807,
+    "user": "13524",
+    "is_last": "False",
+    "mae": 121.9
+   },
+   "second": null
+  },
+  {
+   "video_id": "30",
+   "dur": 5.005,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "31",
+   "dur": 5.56,
+   "n_cands": 10,
+   "n_media_missing": 9,
+   "status": "SCORED",
+   "best": {
+    "yt": "MYG4sn8tmHA",
+    "start": 139.44,
+    "dur": 5.56,
+    "user": "13833",
+    "is_last": "True",
+    "mae": 192.16
+   },
+   "second": null
+  },
+  {
+   "video_id": "32",
+   "dur": 6.72,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "33",
+   "dur": 21.56,
+   "n_cands": 0,
+   "n_media_missing": 0,
+   "status": "UNMATCHED"
+  },
+  {
+   "video_id": "34",
+   "dur": 16.597,
+   "n_cands": 0,
+   "n_media_missing": 0,
+   "status": "UNMATCHED"
+  },
+  {
+   "video_id": "35",
+   "dur": 5.077,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "36",
+   "dur": 21.355,
+   "n_cands": 0,
+   "n_media_missing": 0,
+   "status": "UNMATCHED"
+  },
+  {
+   "video_id": "37",
+   "dur": 13.947,
+   "n_cands": 10,
+   "n_media_missing": 9,
+   "status": "SCORED",
+   "best": {
+    "yt": "qPMypN6lQU0",
+    "start": 66.36,
+    "dur": 13.94,
+    "user": "13247",
+    "is_last": "True",
+    "mae": 98.64
+   },
+   "second": null
+  },
+  {
+   "video_id": "38",
+   "dur": 5.56,
+   "n_cands": 10,
+   "n_media_missing": 9,
+   "status": "SCORED",
+   "best": {
+    "yt": "MYG4sn8tmHA",
+    "start": 139.44,
+    "dur": 5.56,
+    "user": "13833",
+    "is_last": "True",
+    "mae": 210.62
+   },
+   "second": null
+  },
+  {
+   "video_id": "39",
+   "dur": 3.804,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "40",
+   "dur": 4.533,
+   "n_cands": 10,
+   "n_media_missing": 7,
+   "status": "SCORED",
+   "best": {
+    "yt": "e90BniiXuYA",
+    "start": 42.65,
+    "dur": 4.53,
+    "user": "13555",
+    "is_last": "True",
+    "mae": 79.33
+   },
+   "second": {
+    "yt": "0Oo5uQfcfIQ",
+    "start": 143.128,
+    "dur": 4.53145,
+    "user": "13528",
+    "is_last": "False",
+    "mae": 99.26
+   }
+  },
+  {
+   "video_id": "41",
+   "dur": 5.8,
+   "n_cands": 10,
+   "n_media_missing": 9,
+   "status": "SCORED",
+   "best": {
+    "yt": "CNEeAaH3bFc",
+    "start": 155.0,
+    "dur": 5.8,
+    "user": "13334",
+    "is_last": "False",
+    "mae": 77.39
+   },
+   "second": null
+  },
+  {
+   "video_id": "42",
+   "dur": 5.6,
+   "n_cands": 10,
+   "n_media_missing": 8,
+   "status": "SCORED",
+   "best": {
+    "yt": "u_jaF3BhGW0",
+    "start": 50.0,
+    "dur": 5.6,
+    "user": "13255",
+    "is_last": "True",
+    "mae": 76.82
+   },
+   "second": {
+    "yt": "8x2TwDUhT08",
+    "start": 9.35,
+    "dur": 5.6,
+    "user": "13362",
+    "is_last": "True",
+    "mae": 102.28
+   }
+  },
+  {
+   "video_id": "43",
+   "dur": 7.925,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "44",
+   "dur": 11.167,
+   "n_cands": 10,
+   "n_media_missing": 9,
+   "status": "SCORED",
+   "best": {
+    "yt": "e3EqY5gPrcU",
+    "start": 252.61,
+    "dur": 11.18,
+    "user": "13379",
+    "is_last": "True",
+    "mae": 70.34
+   },
+   "second": null
+  },
+  {
+   "video_id": "45",
+   "dur": 7.967,
+   "n_cands": 10,
+   "n_media_missing": 9,
+   "status": "SCORED",
+   "best": {
+    "yt": "NYGIN6B4Df4",
+    "start": 43.75,
+    "dur": 7.96,
+    "user": "13023",
+    "is_last": "True",
+    "mae": 128.06
+   },
+   "second": null
+  },
+  {
+   "video_id": "46",
+   "dur": 8.0,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "47",
+   "dur": 5.84,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "48",
+   "dur": 5.923,
+   "n_cands": 10,
+   "n_media_missing": 9,
+   "status": "SCORED",
+   "best": {
+    "yt": "-2Co6_tu808",
+    "start": 106.0,
+    "dur": 5.92,
+    "user": "13101",
+    "is_last": "False",
+    "mae": 184.73
+   },
+   "second": null
+  },
+  {
+   "video_id": "49",
+   "dur": 6.924,
+   "n_cands": 10,
+   "n_media_missing": 9,
+   "status": "SCORED",
+   "best": {
+    "yt": "-2Co6_tu808",
+    "start": 120.0,
+    "dur": 6.92,
+    "user": "13101",
+    "is_last": "False",
+    "mae": 69.11
+   },
+   "second": null
+  },
+  {
+   "video_id": "50",
+   "dur": 7.375,
+   "n_cands": 10,
+   "n_media_missing": 9,
+   "status": "SCORED",
+   "best": {
+    "yt": "0xNcIh4v1Ew",
+    "start": 217.0,
+    "dur": 7.37,
+    "user": "13771",
+    "is_last": "True",
+    "mae": 79.72
+   },
+   "second": null
+  },
+  {
+   "video_id": "51",
+   "dur": 8.175,
+   "n_cands": 10,
+   "n_media_missing": 9,
+   "status": "SCORED",
+   "best": {
+    "yt": "ksZS8ip_-r4",
+    "start": 160.66,
+    "dur": 8.17,
+    "user": "13053",
+    "is_last": "True",
+    "mae": 79.18
+   },
+   "second": null
+  },
+  {
+   "video_id": "52",
+   "dur": 5.656,
+   "n_cands": 10,
+   "n_media_missing": 9,
+   "status": "SCORED",
+   "best": {
+    "yt": "b1QrYw9xIJI",
+    "start": 29.28,
+    "dur": 5.65,
+    "user": "13097",
+    "is_last": "False",
+    "mae": 125.73
+   },
+   "second": null
+  },
+  {
+   "video_id": "53",
+   "dur": 5.68,
+   "n_cands": 10,
+   "n_media_missing": 9,
+   "status": "SCORED",
+   "best": {
+    "yt": "gKlVkQpgXeg",
+    "start": 83.0,
+    "dur": 5.68,
+    "user": "13607",
+    "is_last": "True",
+    "mae": 44.08
+   },
+   "second": null
+  },
+  {
+   "video_id": "54",
+   "dur": 10.0,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "55",
+   "dur": 8.5,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "56",
+   "dur": 13.568,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "57",
+   "dur": 8.706,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "58",
+   "dur": 8.9,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "59",
+   "dur": 12.067,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "60",
+   "dur": 6.607,
+   "n_cands": 10,
+   "n_media_missing": 9,
+   "status": "SCORED",
+   "best": {
+    "yt": "uZgEMlnwG-Y",
+    "start": 195.2,
+    "dur": 6.6,
+    "user": "13116",
+    "is_last": "True",
+    "mae": 88.72
+   },
+   "second": null
+  },
+  {
+   "video_id": "61",
+   "dur": 9.567,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "62",
+   "dur": 30.301,
+   "n_cands": 0,
+   "n_media_missing": 0,
+   "status": "UNMATCHED"
+  },
+  {
+   "video_id": "63",
+   "dur": 11.9,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "64",
+   "dur": 19.6,
+   "n_cands": 0,
+   "n_media_missing": 0,
+   "status": "UNMATCHED"
+  },
+  {
+   "video_id": "65",
+   "dur": 8.706,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "66",
+   "dur": 19.273,
+   "n_cands": 0,
+   "n_media_missing": 0,
+   "status": "UNMATCHED"
+  },
+  {
+   "video_id": "67",
+   "dur": 7.522,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "68",
+   "dur": 14.667,
+   "n_cands": 10,
+   "n_media_missing": 9,
+   "status": "SCORED",
+   "best": {
+    "yt": "9uypQGzzhns",
+    "start": 175.565,
+    "dur": 14.6603,
+    "user": "13529",
+    "is_last": "True",
+    "mae": 54.61
+   },
+   "second": null
+  },
+  {
+   "video_id": "69",
+   "dur": 13.35,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "70",
+   "dur": 10.519,
+   "n_cands": 10,
+   "n_media_missing": 9,
+   "status": "SCORED",
+   "best": {
+    "yt": "Cmhca-ROWwQ",
+    "start": 287.0,
+    "dur": 10.5,
+    "user": "13105",
+    "is_last": "True",
+    "mae": 29.95
+   },
+   "second": null
+  },
+  {
+   "video_id": "71",
+   "dur": 10.667,
+   "n_cands": 10,
+   "n_media_missing": 9,
+   "status": "SCORED",
+   "best": {
+    "yt": "9uypQGzzhns",
+    "start": 203.847,
+    "dur": 10.6706,
+    "user": "13529",
+    "is_last": "True",
+    "mae": 62.75
+   },
+   "second": null
+  },
+  {
+   "video_id": "72",
+   "dur": 7.067,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "73",
+   "dur": 9.515,
+   "n_cands": 10,
+   "n_media_missing": 9,
+   "status": "SCORED",
+   "best": {
+    "yt": "zz-SglUfvJE",
+    "start": 134.09,
+    "dur": 9.53,
+    "user": "13035",
+    "is_last": "True",
+    "mae": 52.63
+   },
+   "second": null
+  },
+  {
+   "video_id": "74",
+   "dur": 9.087,
+   "n_cands": 10,
+   "n_media_missing": 9,
+   "status": "SCORED",
+   "best": {
+    "yt": "1LRJ83ylRec",
+    "start": 93.92,
+    "dur": 9.08,
+    "user": "13717",
+    "is_last": "False",
+    "mae": 179.19
+   },
+   "second": null
+  },
+  {
+   "video_id": "75",
+   "dur": 15.76,
+   "n_cands": 0,
+   "n_media_missing": 0,
+   "status": "UNMATCHED"
+  },
+  {
+   "video_id": "76",
+   "dur": 15.6,
+   "n_cands": 8,
+   "n_media_missing": 8,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "77",
+   "dur": 10.08,
+   "n_cands": 10,
+   "n_media_missing": 8,
+   "status": "SCORED",
+   "best": {
+    "yt": "HgHqLFt1NTk",
+    "start": 10.5978,
+    "dur": 10.0781,
+    "user": "13731",
+    "is_last": "True",
+    "mae": 100.94
+   },
+   "second": {
+    "yt": "cRTNvWcx9Oo",
+    "start": 32.78,
+    "dur": 10.08,
+    "user": "13394",
+    "is_last": "False",
+    "mae": 128.62
+   }
+  },
+  {
+   "video_id": "78",
+   "dur": 14.975,
+   "n_cands": 10,
+   "n_media_missing": 9,
+   "status": "SCORED",
+   "best": {
+    "yt": "FyzE9thQIPo",
+    "start": 140.0,
+    "dur": 14.98,
+    "user": "13276",
+    "is_last": "False",
+    "mae": 139.77
+   },
+   "second": null
+  },
+  {
+   "video_id": "79",
+   "dur": 12.328,
+   "n_cands": 10,
+   "n_media_missing": 9,
+   "status": "SCORED",
+   "best": {
+    "yt": "QRmJ17m5fis",
+    "start": 217.0,
+    "dur": 12.34,
+    "user": "13769",
+    "is_last": "False",
+    "mae": 0.22
+   },
+   "second": null
+  },
+  {
+   "video_id": "80",
+   "dur": 3.3,
+   "n_cands": 10,
+   "n_media_missing": 9,
+   "status": "SCORED",
+   "best": {
+    "yt": "-FRgkJWR2W8",
+    "start": 120.0,
+    "dur": 3.3,
+    "user": "13208",
+    "is_last": "False",
+    "mae": 84.82
+   },
+   "second": null
+  },
+  {
+   "video_id": "81",
+   "dur": 5.545,
+   "n_cands": 10,
+   "n_media_missing": 9,
+   "status": "SCORED",
+   "best": {
+    "yt": "JvjWy4saR08",
+    "start": 0.0,
+    "dur": 5.54,
+    "user": "13321",
+    "is_last": "False",
+    "mae": 83.23
+   },
+   "second": null
+  },
+  {
+   "video_id": "82",
+   "dur": 15.718,
+   "n_cands": 0,
+   "n_media_missing": 0,
+   "status": "UNMATCHED"
+  },
+  {
+   "video_id": "83",
+   "dur": 59.002,
+   "n_cands": 0,
+   "n_media_missing": 0,
+   "status": "UNMATCHED"
+  },
+  {
+   "video_id": "84",
+   "dur": 18.417,
+   "n_cands": 0,
+   "n_media_missing": 0,
+   "status": "UNMATCHED"
+  },
+  {
+   "video_id": "85",
+   "dur": 25.133,
+   "n_cands": 0,
+   "n_media_missing": 0,
+   "status": "UNMATCHED"
+  },
+  {
+   "video_id": "86",
+   "dur": 28.0,
+   "n_cands": 0,
+   "n_media_missing": 0,
+   "status": "UNMATCHED"
+  },
+  {
+   "video_id": "87",
+   "dur": 4.016,
+   "n_cands": 10,
+   "n_media_missing": 9,
+   "status": "SCORED",
+   "best": {
+    "yt": "vqmlGp54Of0",
+    "start": 215.0,
+    "dur": 4.02,
+    "user": "13240",
+    "is_last": "False",
+    "mae": 115.05
+   },
+   "second": null
+  },
+  {
+   "video_id": "88",
+   "dur": 8.938,
+   "n_cands": 10,
+   "n_media_missing": 9,
+   "status": "SCORED",
+   "best": {
+    "yt": "d3BCwUU8ens",
+    "start": 0.92,
+    "dur": 8.94,
+    "user": "13708",
+    "is_last": "True",
+    "mae": 63.21
+   },
+   "second": null
+  },
+  {
+   "video_id": "89",
+   "dur": 32.133,
+   "n_cands": 0,
+   "n_media_missing": 0,
+   "status": "UNMATCHED"
+  },
+  {
+   "video_id": "90",
+   "dur": 8.242,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "91",
+   "dur": 186.131,
+   "n_cands": 0,
+   "n_media_missing": 0,
+   "status": "UNMATCHED"
+  },
+  {
+   "video_id": "92",
+   "dur": 5.433,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "93",
+   "dur": 11.471,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "94",
+   "dur": 14.35,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "95",
+   "dur": 13.667,
+   "n_cands": 10,
+   "n_media_missing": 8,
+   "status": "SCORED",
+   "best": {
+    "yt": "1-xGerv5FOk",
+    "start": 9.93,
+    "dur": 13.66,
+    "user": "13353",
+    "is_last": "False",
+    "mae": 61.58
+   },
+   "second": {
+    "yt": "e7pnLGrFA_8",
+    "start": 12.0,
+    "dur": 13.66,
+    "user": "13006",
+    "is_last": "False",
+    "mae": 68.74
+   }
+  },
+  {
+   "video_id": "96",
+   "dur": 18.413,
+   "n_cands": 0,
+   "n_media_missing": 0,
+   "status": "UNMATCHED"
+  },
+  {
+   "video_id": "97",
+   "dur": 26.889,
+   "n_cands": 0,
+   "n_media_missing": 0,
+   "status": "UNMATCHED"
+  },
+  {
+   "video_id": "98",
+   "dur": 8.033,
+   "n_cands": 10,
+   "n_media_missing": 9,
+   "status": "SCORED",
+   "best": {
+    "yt": "ksZS8ip_-r4",
+    "start": 160.81,
+    "dur": 8.03,
+    "user": "13053",
+    "is_last": "True",
+    "mae": 113.67
+   },
+   "second": null
+  },
+  {
+   "video_id": "99",
+   "dur": 11.867,
+   "n_cands": 10,
+   "n_media_missing": 9,
+   "status": "SCORED",
+   "best": {
+    "yt": "uyqs75BXIRk",
+    "start": 60.36,
+    "dur": 11.87,
+    "user": "13486",
+    "is_last": "True",
+    "mae": 103.15
+   },
+   "second": null
+  },
+  {
+   "video_id": "100",
+   "dur": 53.103,
+   "n_cands": 0,
+   "n_media_missing": 0,
+   "status": "UNMATCHED"
+  },
+  {
+   "video_id": "101",
+   "dur": 21.525,
+   "n_cands": 0,
+   "n_media_missing": 0,
+   "status": "UNMATCHED"
+  },
+  {
+   "video_id": "102",
+   "dur": 8.452,
+   "n_cands": 10,
+   "n_media_missing": 8,
+   "status": "SCORED",
+   "best": {
+    "yt": "d2smz_1L2_0",
+    "start": 193.0,
+    "dur": 8.46,
+    "user": "13402",
+    "is_last": "True",
+    "mae": 31.22
+   },
+   "second": {
+    "yt": "e3EqY5gPrcU",
+    "start": 54.06,
+    "dur": 8.45,
+    "user": "13379",
+    "is_last": "True",
+    "mae": 77.18
+   }
+  },
+  {
+   "video_id": "103",
+   "dur": 9.636,
+   "n_cands": 10,
+   "n_media_missing": 8,
+   "status": "SCORED",
+   "best": {
+    "yt": "yvtb9A9ai9Q",
+    "start": 0.0,
+    "dur": 9.64,
+    "user": "13830",
+    "is_last": "True",
+    "mae": 99.95
+   },
+   "second": {
+    "yt": "XMX_0xqBYT0",
+    "start": 20.13,
+    "dur": 9.64,
+    "user": "13152",
+    "is_last": "True",
+    "mae": 183.37
+   }
+  },
+  {
+   "video_id": "104",
+   "dur": 13.7,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "105",
+   "dur": 19.1,
+   "n_cands": 1,
+   "n_media_missing": 1,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "106",
+   "dur": 15.743,
+   "n_cands": 0,
+   "n_media_missing": 0,
+   "status": "UNMATCHED"
+  },
+  {
+   "video_id": "107",
+   "dur": 38.283,
+   "n_cands": 0,
+   "n_media_missing": 0,
+   "status": "UNMATCHED"
+  },
+  {
+   "video_id": "108",
+   "dur": 8.033,
+   "n_cands": 10,
+   "n_media_missing": 9,
+   "status": "SCORED",
+   "best": {
+    "yt": "ksZS8ip_-r4",
+    "start": 160.81,
+    "dur": 8.03,
+    "user": "13053",
+    "is_last": "True",
+    "mae": 61.39
+   },
+   "second": null
+  },
+  {
+   "video_id": "109",
+   "dur": 11.424,
+   "n_cands": 10,
+   "n_media_missing": 9,
+   "status": "SCORED",
+   "best": {
+    "yt": "hMx7OP7yiHA",
+    "start": 38.7785,
+    "dur": 11.4367,
+    "user": "13166",
+    "is_last": "True",
+    "mae": 148.63
+   },
+   "second": null
+  },
+  {
+   "video_id": "110",
+   "dur": 17.368,
+   "n_cands": 0,
+   "n_media_missing": 0,
+   "status": "UNMATCHED"
+  },
+  {
+   "video_id": "111",
+   "dur": 18.576,
+   "n_cands": 0,
+   "n_media_missing": 0,
+   "status": "UNMATCHED"
+  },
+  {
+   "video_id": "112",
+   "dur": 12.5,
+   "n_cands": 10,
+   "n_media_missing": 9,
+   "status": "SCORED",
+   "best": {
+    "yt": "BEkSJylCXlU",
+    "start": 1.0,
+    "dur": 12.5,
+    "user": "13179",
+    "is_last": "True",
+    "mae": 45.53
+   },
+   "second": null
+  },
+  {
+   "video_id": "113",
+   "dur": 25.567,
+   "n_cands": 0,
+   "n_media_missing": 0,
+   "status": "UNMATCHED"
+  },
+  {
+   "video_id": "114",
+   "dur": 12.074,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "115",
+   "dur": 9.3,
+   "n_cands": 10,
+   "n_media_missing": 7,
+   "status": "SCORED",
+   "best": {
+    "yt": "pYW2GmHB5xs",
+    "start": 41.0,
+    "dur": 9.3,
+    "user": "13790",
+    "is_last": "False",
+    "mae": 12.71
+   },
+   "second": {
+    "yt": "xEeFrLSkMm8",
+    "start": 81.6873,
+    "dur": 9.29913,
+    "user": "13204",
+    "is_last": "False",
+    "mae": 95.86
+   }
+  },
+  {
+   "video_id": "116",
+   "dur": 25.796,
+   "n_cands": 0,
+   "n_media_missing": 0,
+   "status": "UNMATCHED"
+  },
+  {
+   "video_id": "117",
+   "dur": 8.4,
+   "n_cands": 10,
+   "n_media_missing": 9,
+   "status": "SCORED",
+   "best": {
+    "yt": "MYG4sn8tmHA",
+    "start": 161.6,
+    "dur": 8.4,
+    "user": "13833",
+    "is_last": "True",
+    "mae": 209.54
+   },
+   "second": null
+  },
+  {
+   "video_id": "118",
+   "dur": 9.681,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "119",
+   "dur": 9.101,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "120",
+   "dur": 19.876,
+   "n_cands": 0,
+   "n_media_missing": 0,
+   "status": "UNMATCHED"
+  },
+  {
+   "video_id": "121",
+   "dur": 14.733,
+   "n_cands": 10,
+   "n_media_missing": 9,
+   "status": "SCORED",
+   "best": {
+    "yt": "Z0dmcg_ympo",
+    "start": 741.58,
+    "dur": 14.72,
+    "user": "13045",
+    "is_last": "True",
+    "mae": 58.96
+   },
+   "second": null
+  },
+  {
+   "video_id": "122",
+   "dur": 10.494,
+   "n_cands": 10,
+   "n_media_missing": 9,
+   "status": "SCORED",
+   "best": {
+    "yt": "Cmhca-ROWwQ",
+    "start": 287.0,
+    "dur": 10.5,
+    "user": "13105",
+    "is_last": "True",
+    "mae": 2.7
+   },
+   "second": null
+  },
+  {
+   "video_id": "123",
+   "dur": 8.133,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "124",
+   "dur": 14.071,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "125",
+   "dur": 18.133,
+   "n_cands": 0,
+   "n_media_missing": 0,
+   "status": "UNMATCHED"
+  },
+  {
+   "video_id": "126",
+   "dur": 15.767,
+   "n_cands": 0,
+   "n_media_missing": 0,
+   "status": "UNMATCHED"
+  },
+  {
+   "video_id": "127",
+   "dur": 24.233,
+   "n_cands": 0,
+   "n_media_missing": 0,
+   "status": "UNMATCHED"
+  },
+  {
+   "video_id": "128",
+   "dur": 13.667,
+   "n_cands": 10,
+   "n_media_missing": 8,
+   "status": "SCORED",
+   "best": {
+    "yt": "e7pnLGrFA_8",
+    "start": 12.0,
+    "dur": 13.66,
+    "user": "13006",
+    "is_last": "False",
+    "mae": 75.4
+   },
+   "second": {
+    "yt": "1-xGerv5FOk",
+    "start": 9.93,
+    "dur": 13.66,
+    "user": "13353",
+    "is_last": "False",
+    "mae": 89.23
+   }
+  },
+  {
+   "video_id": "129",
+   "dur": 13.367,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "130",
+   "dur": 8.833,
+   "n_cands": 10,
+   "n_media_missing": 9,
+   "status": "SCORED",
+   "best": {
+    "yt": "Rd6mUcqV8oY",
+    "start": 86.65,
+    "dur": 8.84,
+    "user": "13228",
+    "is_last": "True",
+    "mae": 118.5
+   },
+   "second": null
+  },
+  {
+   "video_id": "131",
+   "dur": 10.542,
+   "n_cands": 10,
+   "n_media_missing": 8,
+   "status": "SCORED",
+   "best": {
+    "yt": "-Lrx_KwqO1s",
+    "start": 223.88,
+    "dur": 10.5414,
+    "user": "13548",
+    "is_last": "True",
+    "mae": 81.0
+   },
+   "second": {
+    "yt": "xxkqeR46bdk",
+    "start": 347.25,
+    "dur": 10.54,
+    "user": "13012",
+    "is_last": "True",
+    "mae": 87.62
+   }
+  },
+  {
+   "video_id": "132",
+   "dur": 14.433,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "133",
+   "dur": 8.497,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "134",
+   "dur": 11.633,
+   "n_cands": 10,
+   "n_media_missing": 9,
+   "status": "SCORED",
+   "best": {
+    "yt": "KTS_092ZX5k",
+    "start": 120.74,
+    "dur": 11.63,
+    "user": "13281",
+    "is_last": "True",
+    "mae": 0.22
+   },
+   "second": null
+  },
+  {
+   "video_id": "135",
+   "dur": 7.802,
+   "n_cands": 10,
+   "n_media_missing": 8,
+   "status": "SCORED",
+   "best": {
+    "yt": "FIRT7lf8byw",
+    "start": 27.0,
+    "dur": 7.8,
+    "user": "13055",
+    "is_last": "True",
+    "mae": 69.74
+   },
+   "second": {
+    "yt": "CyeXrfjd7NQ",
+    "start": 125.8,
+    "dur": 7.8,
+    "user": "13211",
+    "is_last": "True",
+    "mae": 112.98
+   }
+  },
+  {
+   "video_id": "136",
+   "dur": 14.133,
+   "n_cands": 10,
+   "n_media_missing": 9,
+   "status": "SCORED",
+   "best": {
+    "yt": "7HLaTZA-Thk",
+    "start": 122.94,
+    "dur": 14.1261,
+    "user": "13571",
+    "is_last": "True",
+    "mae": 0.22
+   },
+   "second": null
+  },
+  {
+   "video_id": "137",
+   "dur": 11.929,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "138",
+   "dur": 7.779,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "139",
+   "dur": 13.1,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "140",
+   "dur": 22.2,
+   "n_cands": 0,
+   "n_media_missing": 0,
+   "status": "UNMATCHED"
+  },
+  {
+   "video_id": "141",
+   "dur": 19.833,
+   "n_cands": 0,
+   "n_media_missing": 0,
+   "status": "UNMATCHED"
+  },
+  {
+   "video_id": "142",
+   "dur": 17.856,
+   "n_cands": 0,
+   "n_media_missing": 0,
+   "status": "UNMATCHED"
+  },
+  {
+   "video_id": "143",
+   "dur": 8.102,
+   "n_cands": 10,
+   "n_media_missing": 8,
+   "status": "SCORED",
+   "best": {
+    "yt": "5uWAMwcRGmU",
+    "start": 48.0,
+    "dur": 8.1,
+    "user": "13805",
+    "is_last": "True",
+    "mae": 50.85
+   },
+   "second": {
+    "yt": "ksZS8ip_-r4",
+    "start": 160.67,
+    "dur": 8.11,
+    "user": "13053",
+    "is_last": "True",
+    "mae": 54.74
+   }
+  },
+  {
+   "video_id": "144",
+   "dur": 9.172,
+   "n_cands": 10,
+   "n_media_missing": 9,
+   "status": "SCORED",
+   "best": {
+    "yt": "rXPDFJv2sMg",
+    "start": 394.65,
+    "dur": 9.17,
+    "user": "13208",
+    "is_last": "True",
+    "mae": 212.45
+   },
+   "second": null
+  },
+  {
+   "video_id": "145",
+   "dur": 12.0,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "146",
+   "dur": 7.8,
+   "n_cands": 10,
+   "n_media_missing": 8,
+   "status": "SCORED",
+   "best": {
+    "yt": "FIRT7lf8byw",
+    "start": 27.0,
+    "dur": 7.8,
+    "user": "13055",
+    "is_last": "True",
+    "mae": 60.44
+   },
+   "second": {
+    "yt": "CyeXrfjd7NQ",
+    "start": 125.8,
+    "dur": 7.8,
+    "user": "13211",
+    "is_last": "True",
+    "mae": 90.53
+   }
+  },
+  {
+   "video_id": "147",
+   "dur": 9.8,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "148",
+   "dur": 43.861,
+   "n_cands": 0,
+   "n_media_missing": 0,
+   "status": "UNMATCHED"
+  },
+  {
+   "video_id": "149",
+   "dur": 16.833,
+   "n_cands": 0,
+   "n_media_missing": 0,
+   "status": "UNMATCHED"
+  },
+  {
+   "video_id": "150",
+   "dur": 8.242,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "151",
+   "dur": 9.404,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "152",
+   "dur": 16.045,
+   "n_cands": 0,
+   "n_media_missing": 0,
+   "status": "UNMATCHED"
+  },
+  {
+   "video_id": "153",
+   "dur": 10.0,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "154",
+   "dur": 19.533,
+   "n_cands": 0,
+   "n_media_missing": 0,
+   "status": "UNMATCHED"
+  },
+  {
+   "video_id": "155",
+   "dur": 7.933,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "156",
+   "dur": 11.61,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "157",
+   "dur": 39.845,
+   "n_cands": 0,
+   "n_media_missing": 0,
+   "status": "UNMATCHED"
+  },
+  {
+   "video_id": "158",
+   "dur": 19.233,
+   "n_cands": 0,
+   "n_media_missing": 0,
+   "status": "UNMATCHED"
+  },
+  {
+   "video_id": "159",
+   "dur": 9.033,
+   "n_cands": 10,
+   "n_media_missing": 8,
+   "status": "SCORED",
+   "best": {
+    "yt": "bpOSxM0rNPM",
+    "start": 70.0,
+    "dur": 9.04,
+    "user": "13278",
+    "is_last": "False",
+    "mae": 52.12
+   },
+   "second": {
+    "yt": "dkvNtFHa79Y",
+    "start": 673.0,
+    "dur": 9.04,
+    "user": "13266",
+    "is_last": "True",
+    "mae": 73.37
+   }
+  },
+  {
+   "video_id": "160",
+   "dur": 7.167,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "161",
+   "dur": 14.015,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "162",
+   "dur": 22.499,
+   "n_cands": 0,
+   "n_media_missing": 0,
+   "status": "UNMATCHED"
+  },
+  {
+   "video_id": "163",
+   "dur": 9.111,
+   "n_cands": 10,
+   "n_media_missing": 9,
+   "status": "SCORED",
+   "best": {
+    "yt": "MdIaX39nQl8",
+    "start": 5.90598,
+    "dur": 9.12459,
+    "user": "13509",
+    "is_last": "True",
+    "mae": 128.18
+   },
+   "second": null
+  },
+  {
+   "video_id": "164",
+   "dur": 10.4,
+   "n_cands": 10,
+   "n_media_missing": 9,
+   "status": "SCORED",
+   "best": {
+    "yt": "_84gBlRZwO0",
+    "start": 0.23,
+    "dur": 10.39,
+    "user": "13729",
+    "is_last": "True",
+    "mae": 72.71
+   },
+   "second": null
+  },
+  {
+   "video_id": "165",
+   "dur": 8.98,
+   "n_cands": 10,
+   "n_media_missing": 9,
+   "status": "SCORED",
+   "best": {
+    "yt": "W9Ikf4vZMbU",
+    "start": 258.0,
+    "dur": 8.98,
+    "user": "13714",
+    "is_last": "False",
+    "mae": 102.15
+   },
+   "second": null
+  },
+  {
+   "video_id": "166",
+   "dur": 8.96,
+   "n_cands": 10,
+   "n_media_missing": 9,
+   "status": "SCORED",
+   "best": {
+    "yt": "FHXtZ1uRsys",
+    "start": 139.03,
+    "dur": 8.96,
+    "user": "13544",
+    "is_last": "True",
+    "mae": 90.53
+   },
+   "second": null
+  },
+  {
+   "video_id": "167",
+   "dur": 8.983,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "168",
+   "dur": 8.633,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "169",
+   "dur": 8.0,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "170",
+   "dur": 14.65,
+   "n_cands": 10,
+   "n_media_missing": 8,
+   "status": "SCORED",
+   "best": {
+    "yt": "9uypQGzzhns",
+    "start": 175.565,
+    "dur": 14.6603,
+    "user": "13529",
+    "is_last": "True",
+    "mae": 93.43
+   },
+   "second": {
+    "yt": "vHBR5MZmEsY",
+    "start": 32.0,
+    "dur": 14.63,
+    "user": "13328",
+    "is_last": "True",
+    "mae": 97.4
+   }
+  },
+  {
+   "video_id": "171",
+   "dur": 8.475,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "172",
+   "dur": 9.752,
+   "n_cands": 10,
+   "n_media_missing": 10,
+   "status": "PENDING_DOWNLOAD"
+  },
+  {
+   "video_id": "173",
+   "dur": 13.002,
+   "n_cands": 10,
+   "n_media_missing": 9,
+   "status": "SCORED",
+   "best": {
+    "yt": "JV0M5uS-c6w",
+    "start": 317.0,
+    "dur": 13.0,
+    "user": "13120",
+    "is_last": "True",
+    "mae": 53.79
+   },
+   "second": null
+  }
+ ]
+}

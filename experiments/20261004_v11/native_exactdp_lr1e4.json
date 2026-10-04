@@ -1,0 +1,35 @@
+{
+ "pool": {
+  "train": 1292,
+  "eval": 1329,
+  "seeds": [
+   20261009,
+   20261010,
+   20261011
+  ],
+  "note": "native 32-step features; ord/rep x mse/dp; paired streams",
+  "lr": 0.0001
+ },
+ "arms": {
+  "ord_dp": {
+   "20261009": {
+    "ap": 0.6472,
+    "f1_keep080": 0.5975,
+    "seed": 20261009,
+    "scores": "<stripped: per-fragment list, see remote>"
+   },
+   "20261010": {
+    "ap": 0.6442,
+    "f1_keep080": 0.5973,
+    "seed": 20261010,
+    "scores": "<stripped: per-fragment list, see remote>"
+   },
+   "20261011": {
+    "ap": 0.6381,
+    "f1_keep080": 0.5977,
+    "seed": 20261011,
+    "scores": "<stripped: per-fragment list, see remote>"
+   }
+  }
+ }
+}

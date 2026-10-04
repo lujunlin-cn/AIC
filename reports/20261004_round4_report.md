@@ -122,6 +122,30 @@ DP (Q3.6) as a DIFFERENT hypothesis, plus the +0.037 oracle gap.
   probability weight of the D-H and D-M branches (estimate, not
   calibrated probability).
 
+## 4c. OFFICIAL SCORES (2026-10-04, platform back)
+
+| Package | platform (k=0.90) | raw F | vs parent 34.75 | verdict |
+|---|---:|---:|---:|---|
+| V11_VTREPLAY | **34.95** | 38.83 | +0.20 / +0.22 raw | NEW HIGH; A0 recovery = (34.95-33.85)/0.90 = 122 percent - the valid-token contract fix is PLATFORM-CONFIRMED and its head beats the parent's |
+| V11_EXACTDP | 34.74 | 38.60 | +0.01 / -0.01 raw | tie with parent, noise level - the confirm-set +0.031 did NOT convert to the official domain |
+
+Q1 tree cell V=H, D=H.  Actions per the tree: do NOT scale the DP line
+(D-C ceiling is below noise; no matched-MSE package C will be spent), do
+NOT submit a third diagnostic package now.  The confirm-set verdict and
+the platform agree on the mechanism: the prior head adds nothing on the
+official domain either.
+
+Operator intelligence: the current first place reports raw 45 (before
+size penalty) vs our raw 38.83 - a 6.2 raw gap.  Our in-domain
+fixed-ranking prefix oracle is F=0.6995 -> a 63 platform-score ceiling,
+so 45 raw needs roughly AP ~0.85-grade ranking at unchanged spatial
+quality, OR the same ranking with materially better spatial IoU.  The
+two unmined seams left: spatial IoU quality (rho, never optimized since
+the teacher rounds) and true temporal ranking quality (native VideoMAE
+line rebuilt on the corrected extractor).  Keep-structure is NOT tuned
+on the official set (in-domain curve peaks at 0.70-0.80 and falls at
+0.50; blind cuts would be leaderboard overfitting).
+
 ## 5. Environment incident and recovery
 
 The 910A container's writable layer was reset (python3.11.15, CANN

@@ -87,10 +87,14 @@ def build(row):
         bands = []
         for bi in range(SEGMENTS):
             lo, hi = edges[bi], edges[bi + 1]
-            sel = ((gx1 / max(fw - 1, 1) >= lo) & (gx1 / max(fw - 1, 1) < hi) if cross == 0
-                   else (gy1 / max(fh - 1, 1) >= lo) & (gy1 / max(fh - 1, 1) < hi))
-            sel = sel.reshape(-1).astype(np.float32)
-            bands.append(((m * sel) @ flat) / max(float(sel.sum()), 1.0))
+            sel = ((gy1 / max(fh - 1, 1) >= lo) & (gy1 / max(fh - 1, 1) < hi) if cross == 0
+                   else (gx1 / max(fw - 1, 1) >= lo) & (gx1 / max(fw - 1, 1) < hi))
+            sel = sel.astype(np.float32)
+            # expand the 1-D row/column selector to per-token: cross==0 bands
+            # along y (fh rows -> repeat each row selector fw times); cross==1
+            # bands along x (fw cols -> tile the column selector fh times)
+            sel_full = (np.repeat(sel, fw) if cross == 0 else np.tile(sel, fh))
+            bands.append(((m * sel_full) @ flat) / max(float(sel_full.sum()), 1.0))
         parts.append(np.repeat(np.concatenate(bands, 0)[None, :], len(offs), 0))
     feat = np.concatenate(parts, 1)
     gt = np.array(row['gt'], dtype=np.float32)

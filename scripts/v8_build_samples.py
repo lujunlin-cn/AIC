@@ -20,6 +20,11 @@ ap.add_argument('--n-cand', type=int, default=129)
 ap.add_argument('--workers', type=int, default=24)
 ap.add_argument('--tags', nargs='*', default=None, help='only build these split tags')
 ap.add_argument('--output-dir', type=Path, default=Path('/data/aic/experiments_910a/LFM_V8/samples'))
+ap.add_argument('--segments', type=int, default=0,
+                help='V9 band pooling: pool each candidate window as N bands along '
+                     'the axis it cannot slide along and append them (identical '
+                     'across candidates, so this only widens the input from 2305 to '
+                     '2305+N*768). 0 keeps the V7/V8 layout bit-for-bit.')
 args = ap.parse_args()
 
 import numpy as np  # noqa: E402
@@ -32,6 +37,7 @@ for spec in args.feat_roots:
     FEATS[k] = Path(v)
 RATIOS = {'1-3': [1, 3], '3-1': [3, 1], '9-16': [9, 16], '16-9': [16, 9]}
 NC = args.n_cand
+SEGMENTS = args.segments
 
 
 def feat_path(src, vid, kf):
@@ -73,7 +79,20 @@ def build(row):
     winp = (m @ flat) / ms
     outp = ((1 - m) @ flat) / np.maximum((1 - m).sum(1, keepdims=True), 1)
     pos = (offs / span if span > 0 else offs).astype(np.float32)
-    feat = np.concatenate([winp, outp, winp - outp, pos[:, None]], 1)
+    parts = [winp, outp, winp - outp, pos[:, None]]
+    if SEGMENTS > 1 and axis is not None:
+        cross = 1 if axis == 0 else 0          # axis=0 slides x -> band over y
+        edges = np.linspace(0.0, 1.0, SEGMENTS + 1)
+        gx1, gy1 = gx[0, :], gy[:, 0]
+        bands = []
+        for bi in range(SEGMENTS):
+            lo, hi = edges[bi], edges[bi + 1]
+            sel = ((gx1 / max(fw - 1, 1) >= lo) & (gx1 / max(fw - 1, 1) < hi) if cross == 0
+                   else (gy1 / max(fh - 1, 1) >= lo) & (gy1 / max(fh - 1, 1) < hi))
+            sel = sel.reshape(-1).astype(np.float32)
+            bands.append(((m * sel) @ flat) / max(float(sel.sum()), 1.0))
+        parts.append(np.repeat(np.concatenate(bands, 0)[None, :], len(offs), 0))
+    feat = np.concatenate(parts, 1)
     gt = np.array(row['gt'], dtype=np.float32)
     u = iou(win_px[:, None, :], gt[None, :, :]).mean(1)
     return feat.astype(np.float16), u.astype(np.float32)

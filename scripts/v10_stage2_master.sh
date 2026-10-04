@@ -27,7 +27,7 @@ PY=/data/aic/tools/lfm_venv/bin/python
 CARDS_A=${CARDS_A:-0,1}     # feature pass
 CARDS_B=${CARDS_B:-2,3,4,5} # held for the second pass once the teacher is done
 
-say() { echo "[$(date +%m-%d %H:%M:%S)] $*" | tee -a "$LOG"; }
+say() { echo "[$(date "+%m-%d %H:%M:%S")] $*" | tee -a "$LOG"; }
 mkdir -p "$OUT"
 
 # ---------------------------------------------------------------- teacher gate
@@ -40,14 +40,14 @@ docker exec aic-batch python /root/AIC/scripts/v9_prune_mismatched_points.py >> 
 
 # ------------------------------------------------------- line 1: features
 say "LINE1 attention/topk pooling pass over the PHD2 fragment pool"
-docker exec -d aic-batch bash -c "cd /root/AIC && setsid nohup $PY \
+docker exec -d aic-batch bash -c "cd /root/AIC && $PY \
   scripts/v10_temporal_attnpool.py \
   --index $LFM/index_clean.jsonl \
   --frames-root $LFM/frames --ext jpg \
   --cards 0 --shard 0 --nshards 2 \
   --output-root $OUT/pool_feats \
   >> $OUT/attnpool.log 2>&1"
-docker exec -d aic-batch bash -c "cd /root/AIC && setsid nohup $PY \
+docker exec -d aic-batch bash -c "cd /root/AIC && $PY \
   scripts/v10_temporal_attnpool.py \
   --index $LFM/index_clean.jsonl \
   --frames-root $LFM/frames --ext jpg \
@@ -61,7 +61,7 @@ say "LINE1 launched (2 shards on cards 0,1)"
 # already exists so a re-run does not redo hours of work.
 if [ ! -f "$OUT/full_pool/index.jsonl" ]; then
   say "LINE3 rebuilding the temporal pool over the full teacher point set"
-  docker exec aic-batch bash -c "cd /root/AIC && setsid nohup \
+  docker exec aic-batch bash -c "cd /root/AIC && \
     python3 scripts/v10_build_temporal_pool.py \
     --index $LFM/index_clean.jsonl \
     --points $LFM/teacher/points \
@@ -118,7 +118,7 @@ say "best arm: ${BEST:-none}"
 # random keep on PHD2, at the keep rate that maximises it.  An arm that wins AP
 # but not F1 does not ship.
 say "LINE2b keep-rate curve for the best arm"
-docker exec -d aic-batch bash -c "cd /root/AIC && setsid nohup $PY \
+docker exec -d aic-batch bash -c "cd /root/AIC && $PY \
   scripts/v10_keep_curve_heads.py \
   --feat-root $OUT/pool_feats \
   --qv-ckpt /nonexistent \

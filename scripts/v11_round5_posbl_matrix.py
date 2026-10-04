@@ -56,7 +56,7 @@ args = ap.parse_args()
 
 
 class TCN(torch.nn.Module):
-    def __init__(self, d_in=768, ch=128, dils=(1, 2, 4, 8, 16)):
+    def __init__(self, d_in=6144, ch=128, dils=(1, 2, 4, 8, 16)):
         super().__init__()
         self.proj = torch.nn.Conv1d(d_in, ch, 1)
         self.convs = torch.nn.ModuleList(
@@ -101,11 +101,12 @@ def load_native(feat_dir, srcs, labels):
                     if lo <= ct <= hi:
                         y[a, t] = 1.0
                         break
-        if not (0 < y.sum() < y.size):
+        y_act = (y.sum(1) > 0).astype(np.float32)   # action-level label
+        if not (0 < y_act.sum() < len(y_act)):
             continue
-        X.append(d['feats'].astype(np.float32))
+        X.append(d['feats'].astype(np.float32).reshape(len(y_act), -1))  # [n_act, 8*768]
         C.append(centers)
-        Y.append(y)
+        Y.append(y_act)
         keep.append(s)
     return X, C, Y, keep
 
@@ -129,14 +130,18 @@ def train_arm(X, Y, tr, dv, arm, seed, lr, steps, batch, rng):
     opt = torch.optim.AdamW(model.parameters(), lr=lr)
     losses = []
     for step in range(steps):
-        i = rng.choice(len(tr), batch)
-        xb = torch.stack([X[tr[j]] for j in i])
-        yb = torch.from_numpy(np.concatenate([Y[tr[j]] for j in i])).float()
-        logits = model(xb)
-        loss = torch.nn.functional.binary_cross_entropy_with_logits(
-            logits, yb, reduction='mean')
-        opt.zero_grad(); loss.backward(); opt.step()
-        losses.append(float(loss))
+        idxs = rng.choice(len(tr), batch)
+        opt.zero_grad()
+        acc = 0.0
+        for j in idxs:                    # variable-length sources: grad-accum
+            logits = model(torch.from_numpy(X[tr[j]])[None])[0]
+            yb = torch.from_numpy(Y[tr[j]]).float()
+            loss = torch.nn.functional.binary_cross_entropy_with_logits(
+                logits, yb, reduction='mean') / batch
+            loss.backward()
+            acc += float(loss)
+        opt.step()
+        losses.append(acc)
     model.eval()
     with torch.no_grad():
         sc = {i: model(X[i:i + 1])[0].numpy().astype(np.float32)
@@ -157,16 +162,19 @@ def main():
     print(f'native pools: train {len(tr)}, dev {len(dv)} sources', flush=True)
 
     # arm inputs
+    # Xl entries are [n_act, 8, 768]; flatten to [n_act, 6144] per arm
+    def flat(x):
+        return x.reshape(len(x), -1)
     X = {}
-    X['O'] = [x.copy() for x in Xl]
+    X['O'] = [flat(x) for x in Xl]
     rng_fix = np.random.RandomState(77)
-    X['S'] = [x[:, rng_fix.permutation(8)].copy() for x in Xl]
-    X['P'] = [np.zeros_like(x) for x in Xl]
+    X['S'] = [flat(x[:, rng_fix.permutation(8)]) for x in Xl]
+    X['P'] = [np.zeros((len(x), 6144), np.float32) for x in Xl]
     X['L'] = []
     for x in Xl:
         z = np.zeros_like(x)
         z[:, ::2] = x[:, ::2]                    # 4 of 8 tubelets (~1 Hz)
-        X['L'].append(z)
+        X['L'].append(flat(z))
     # B arm: LFM static features on the SAME sources where available is a
     # different fragmenting; R5 allows a static-CONTENT control with a
     # different encoder only as a WEAK control - run it only if the pooled
@@ -194,6 +202,8 @@ def main():
                 X['B'].append(np.concatenate(fs, 0))
             else:
                 X['B'].append(np.zeros((8, 768), np.float32))
+        if X['B']:
+            X['B'] = [np.pad(x, ((0, 0), (0, 6144 - 768))) for x in X['B']]
     else:
         X['B'] = None
 

@@ -29,7 +29,8 @@ PAUSED_BUDGET。每条 claim 附 scope、比较、门槛、区间、artifact、�
 | P0-CONTENT: champion 内容消融 | **DEV_ONLY 已裁定（2026-10-04）**：champion 非"全盲"（real−zeros 双池 CI 正：dev +0.104 [0.095,0.115]、confirm +0.085 [0.070,0.100]），但内容贡献是**视频级**非片段级——real−xperm 仅 dev +0.0031 [0.0002,0.0061]、confirm +0.0041 [−0.0017,0.0097]；**纯位置先验 slotprior 追平 champion**（dev 上 −0.0036 [−0.0064,−0.0008] 反超、confirm −0.0041 [−0.0091,0.0007] 打平）；饱和 exactdp 三 delta 全 0.0 | 预注册判据"双池含零→内容不敏感"未触发，但机制裁定更强：时间排序=位置先验，champion loss/校准调优路线关闭，主推力压改切片+内容输入（R5 §1.4） |
 | Anchor/Neutral 切片协议依赖 | NOT_RUN（Neutral 920 片段帧提取 920/920 完成，CPU 特征 16 分片进行中） | 特征完成后重训头对读 |
 | T 候选（native 重建）过时间主门 | NOT_RUN | 契约已冻结（A8 LOCAL_GATE_PASS）；P/O/S/B/L 矩阵排队 |
-| S 候选过空间晋级门 | NOT_RUN | S0 方向=特征/骨干/候选几何/TTA（loss 已排除） |
+| S1 方向带池化（SEGMENTS=4, 2305→5377 维） | NO_PRACTICAL_GAIN_IN_SCOPE（2026-10-04）：与 B3_s0 同种子同配置，dev 终值 live −0.005，confirmation head −0.010（0.5253 vs 0.5349）、oracle 差距未收窄（0.257 vs 0.247） | 空间攻击面收敛到候选几何/更强骨干/TTA/监督广度；重开条件=换骨干或候选几何重设计（会同时移动 oracle，需重测差距） |
+| S 候选过空间晋级门 | NOT_RUN | S0 方向更新=候选几何/骨干/TTA（loss 与特征细分均已排除） |
 
 ## 本轮不重开（按 R5 指令）
 

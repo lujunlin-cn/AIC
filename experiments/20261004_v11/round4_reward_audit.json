@@ -1,0 +1,124 @@
+{
+ "meta": {
+  "files_sha16": {
+   "pooled": "48314886747f3d9d",
+   "occ": "0bc4632cec6fefb8",
+   "vendor": "7c6323f8a308b41a"
+  },
+  "functions": {
+   "pooled": "expected_f_binary",
+   "occ": "expected_f_dp",
+   "vendor": "expected_f"
+  },
+  "torch_seed": 0,
+  "note": "AST-extracted functions; audit is synthetic-only"
+ },
+ "implementations": {
+  "pooled": {
+   "range": {
+    "max_value_legal_inputs": 0.701074,
+    "ok": true
+   },
+   "exhaustive": {
+    "max_abs_err": 9.992007221626409e-16,
+    "n_cases": 20,
+    "ok": true
+   },
+   "gradient": {
+    "max_abs_err_vs_central_diff": 1.9950050431094546e-09,
+    "ok": true
+   }
+  },
+  "occ": {
+   "range": {
+    "max_value_legal_inputs": 0.724909,
+    "ok": true
+   },
+   "scale": {
+    "max_abs_diff": 5.551115123125783e-17,
+    "ok": true
+   },
+   "exhaustive": {
+    "max_abs_err": 1.1102230246251565e-16,
+    "n_cases": 20,
+    "ok": true
+   },
+   "gradient": {
+    "max_abs_err_vs_central_diff": 1.634158926233642e-09,
+    "ok": true
+   }
+  },
+  "vendor": {
+   "range": {
+    "max_value_legal_inputs": 0.717349,
+    "ok": true
+   },
+   "scale": {
+    "max_abs_diff": 1.1102230246251565e-16,
+    "ok": true
+   },
+   "exhaustive": {
+    "max_abs_err": 1.1102230246251565e-16,
+    "n_cases": 20,
+    "ok": true
+   },
+   "gradient": {
+    "max_abs_err_vs_central_diff": 2.6847984391231705e-09,
+    "ok": true
+   }
+  }
+ },
+ "g0_convention": {
+  "pooled_value_zero_labels": 0.0015678212495833569,
+  "pooled_expected": "prod(1 - p) with p = sigmoid(0) = 0.5 -> 0.5^8 = 0.00390625",
+  "pooled_ok": false,
+  "occ_value_zero_labels": "nan",
+  "finding": "occ expected_f_dp has no G = 0 branch; the k = 0 term is 0/0 = NaN.  Unreachable in the reported experiments (mixed-fragment filter guarantees G > 0) but it is an API hazard the vendor reference avoids via an explicit branch."
+ },
+ "counterexample_dp_bin_call_site": {
+  "setup": "one positive sub-window of 100 frames; gains/costs in frame units (d_t=100) but G = float(Ytr[i].sum()) = 8 slot units (v11_native_occ_labels.py dp_bin arm)",
+  "value_with_slot_G": 1.850335628296162,
+  "value_with_frame_G": 0.9993294684060053,
+  "expected_frame_G_value": 0.9996646642684937,
+  "claim": "slot-unit G yields E[F] > 1, impossible for a mixture of F<=1",
+  "confirmed": true,
+  "consequence": "the reported native dp_bin arm (AP 0.7845) optimized a reward that exceeds the metric range; its results are INVALID_IMPLEMENTATION, not an algorithmic negative"
+ },
+ "interval_union_demo": {
+  "intervals": [
+   [
+    0.0,
+    2.0
+   ],
+   [
+    1.0,
+    3.0
+   ]
+  ],
+  "per_interval_sum_q": [
+   1.0,
+   2.0,
+   1.0,
+   0.0
+  ],
+  "or_union_q": [
+   1.0,
+   1.0,
+   1.0,
+   0.0
+  ],
+  "finding": "per-interval summation double-counts overlaps (q>1 visible); the occ loader never merges intervals"
+ },
+ "phd2_interval_overlap_scan": {
+  "sources": 110611,
+  "sources_with_overlapping_intervals": 14858,
+  "affected_fraction": 0.1343,
+  "note": "fraction of PHD2 train sources where the unmerged-sum occupancy label is actually distorted"
+ },
+ "verdict": {
+  "pooled_expected_f_binary": "CLEAN slot-level self-consistent (unit costs, slot gains, G = positive slots); EXACTDP 56694 training lineage unaffected by R2",
+  "occ_expected_f_dp_function": "clean as a function (range/scale/exhaustive/gradient); the defect was the dp_bin call site",
+  "dp_bin_arm": "INVALID_IMPLEMENTATION (counterexample confirmed)",
+  "vendor_expected_f": "reference implementation, all checks pass, explicit G=0 branch and input validation"
+ }
+}

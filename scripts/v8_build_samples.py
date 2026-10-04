@@ -95,7 +95,7 @@ def build(row):
             # bands along x (fw cols -> tile the column selector fh times)
             sel_full = (np.repeat(sel, fw) if cross == 0 else np.tile(sel, fh))
             bands.append(((m * sel_full) @ flat) / max(float(sel_full.sum()), 1.0))
-        parts.append(np.repeat(np.concatenate(bands, 0)[None, :], len(offs), 0))
+        parts.append(np.concatenate(bands, 1))   # (NC, SEGMENTS*D): per-candidate band features
     feat = np.concatenate(parts, 1)
     gt = np.array(row['gt'], dtype=np.float32)
     u = iou(win_px[:, None, :], gt[None, :, :]).mean(1)

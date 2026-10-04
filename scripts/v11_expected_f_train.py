@@ -175,6 +175,12 @@ def main():
     p.add_argument('--eval-sources', type=Path, default=Path('/data/aic/experiments_910a/LFM_V10/eval_sources_50.json'))
     p.add_argument('--out', type=Path, default=Path('/data/aic/experiments_910a/LFM_V11/expected_f_4arm.json'))
     p.add_argument('--steps', type=int, default=900)
+    p.add_argument('--lr', type=float, default=1e-3)
+    p.add_argument('--arms', nargs='*', default=['mse', 'exactdp'])
+    p.add_argument('--ckpt-suffix', default='',
+                   help='appended to checkpoint filenames; REQUIRED for '
+                        'any non-default lr so frozen checkpoints are '
+                        'never overwritten')
     a = p.parse_args()
     sel = json.loads(a.selections.read_text())
     ev_src = set(json.loads(a.eval_sources.read_text()))
@@ -185,17 +191,18 @@ def main():
     Xev = [X[i] for i in ev]; Yev = [Y[i] for i in ev]
     print(f'train frags {len(Xtr)} eval frags {len(Xev)}', flush=True)
     out = {'pool': {'train_frags': len(Xtr), 'eval_frags': len(Xev),
+                    'lr': a.lr, 'arms': a.arms, 'ckpt_suffix': a.ckpt_suffix,
                     'protocol': 'frozen pool_feats mean, mixed-only, source-disjoint eval'},
            'arms': {}}
     seeds = [20261006, 20261007, 20261008]
-    for arm in ('mse', 'exactdp'):
+    for arm in a.arms:
         out['arms'][arm] = {}
         for sd in seeds:
-            r = train_arm(arm, Xtr, Ytr, Xev, Yev, steps=a.steps, seed=sd)
+            r = train_arm(arm, Xtr, Ytr, Xev, Yev, steps=a.steps, lr=a.lr, seed=sd)
             st = r.pop('state')
             torch.save({'state_dict': {k: torch.from_numpy(v) for k, v in st.items()},
                         'ch': 128, 'dils': [1, 2, 4], 'arm': arm, 'seed': sd},
-                       a.out.parent / f'expected_f_arm_{arm}_s{sd}.pt')
+                       a.out.parent / f'expected_f_arm_{arm}_s{sd}{a.ckpt_suffix}.pt')
             out['arms'][arm][str(sd)] = r
             print(arm, sd, json.dumps(r), flush=True)
     # paired per-fragment deltas need per-fragment scores; store summary stats

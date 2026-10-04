@@ -1,0 +1,61 @@
+{
+ "meta": {
+  "n_fragments": 1954,
+  "keep": 0.8,
+  "ckpt_sha16": {
+   "mse_s20261006": "e0b4d2a24a167453",
+   "mse_s20261007": "640a259e9bf355ab",
+   "mse_s20261008": "216f78773d10e6fd",
+   "exactdp_s20261006": "bd015b17d04034e5",
+   "exactdp_s20261007": "09cb5d164aa5f887",
+   "exactdp_s20261008": "fd799a51842d50cb"
+  }
+ },
+ "seed_consistency": {
+  "pairwise": {
+   "mse": {
+    "mask_jaccard_mean_across_seedpairs": 0.8351,
+    "fraction_identical_masks": 0.5068
+   },
+   "exactdp": {
+    "mask_jaccard_mean_across_seedpairs": 0.9999,
+    "fraction_identical_masks": 0.9997
+   }
+  },
+  "logits": {
+   "mse": {
+    "logit_abs_mean": 1.114,
+    "frac_abs_gt_8": 0.0
+   },
+   "exactdp": {
+    "logit_abs_mean": 47.63,
+    "frac_abs_gt_8": 1.0
+   }
+  },
+  "reading": "DP jaccard ~1 with high saturation supports the same-tie-break hypothesis; jaccard <1 means genuinely similar-but-distinct policies"
+ },
+ "content_destruction": {
+  "exactdp": {
+   "real": 0.6625,
+   "zeros": 0.6625,
+   "shuffled": 0.6625,
+   "time_only": 0.5732
+  },
+  "mse": {
+   "real": 0.6354,
+   "zeros": 0.6625,
+   "shuffled": 0.6281,
+   "time_only": 0.4846
+  }
+ },
+ "mask_exchange_and_oracles": {
+  "mean_slots_in": 0.744,
+  "mean_slots_out": 0.744,
+  "mean_label_mass_in": 0.346,
+  "mean_label_mass_out": 0.181,
+  "net_label_mass": 0.1648,
+  "reading": "net label mass > 0 at equal budget = the exact quantity Q3.4 says must be positive for DP to beat MSE at the cut",
+  "fixed_budget_action_oracle_mean": 0.7309,
+  "fixed_ranking_prefix_oracle_mean": 0.6995
+ }
+}

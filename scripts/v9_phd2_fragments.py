@@ -94,6 +94,11 @@ def main():
     ap.add_argument('--extract', action='store_true', help='also decode frames to jpg')
     ap.add_argument('--jpg-quality', type=int, default=90)
     ap.add_argument('--write-index-only', action='store_true')
+    ap.add_argument('--sources-file', type=Path, default=None,
+                    help='restrict the pool to exactly these source ids (JSON '
+                         'list or one-per-line); still intersected with media '
+                         'on disk.  Used by the round-4 confirm set, whose '
+                         'exclusions are stronger than tier0/tier2.')
     a = ap.parse_args()
     rng = random.Random(a.seed)
 
@@ -101,7 +106,19 @@ def main():
     tier1 = set(sub['tiers']['tier1'])
     banned = set(sub['tiers']['tier0']) | set(sub['tiers']['tier2'])
     have = {p.stem for p in (D / 'raw' / 'youtube').glob('*.mp4')}
-    pool = sorted((tier1 & have) - banned)
+    if a.sources_file:
+        txt = a.sources_file.read_text().strip()
+        parsed = json.loads(txt)
+        if isinstance(parsed, dict) and 'sources' in parsed:
+            parsed = parsed['sources']
+        want = set(parsed) if isinstance(parsed, list) else \
+            {l.strip() for l in txt.splitlines() if l.strip()}
+        missing = want - have
+        if missing:
+            print(f'WARN {len(missing)} sources have no media on disk', flush=True)
+        pool = sorted(want & have)
+    else:
+        pool = sorted((tier1 & have) - banned)
     ann = load_annotations()
 
     # metadata pass (single glob, cache to json so reruns are instant)

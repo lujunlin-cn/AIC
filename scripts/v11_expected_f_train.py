@@ -147,10 +147,11 @@ def train_arm(name, Xtr, Ytr, Xev, Yev, steps=900, batch=8, lr=1e-3, seed=202610
             hist.append(float(loss.item()))
     # eval
     model.eval()
-    aps, f1s, keepall = [], [], []
+    aps, f1s, keepall, ev_scores = [], [], [], []
     with torch.no_grad():
         for x, y in zip(Xev, Yev):
             s = model(torch.from_numpy(x)[None])[0].numpy()
+            ev_scores.append(s.astype(np.float32).tolist())
             a_ = ap_of(s, y)
             if a_ is not None:
                 aps.append(a_)
@@ -159,6 +160,7 @@ def train_arm(name, Xtr, Ytr, Xev, Yev, steps=900, batch=8, lr=1e-3, seed=202610
     return {'arm': name, 'ap': round(float(np.mean(aps)), 4),
             'f1_keep080': round(float(np.mean(f1s)), 4),
             'f1_keepall': round(float(np.mean(keepall)), 4),
+            'ev_scores_f1keep080_list': [round(v, 6) for v in f1s],
             'loss_hist': hist,
             'state': {k: v.detach().cpu().numpy() for k, v in model.state_dict().items()}}
 
@@ -185,14 +187,18 @@ def main():
     out = {'pool': {'train_frags': len(Xtr), 'eval_frags': len(Xev),
                     'protocol': 'frozen pool_feats mean, mixed-only, source-disjoint eval'},
            'arms': {}}
-    for arm in ('mse', 'softf', 'exactdp', 'reinforce'):
-        r = train_arm(arm, Xtr, Ytr, Xev, Yev, steps=a.steps)
-        st = r.pop('state')
-        torch.save({'state_dict': {k: torch.from_numpy(v) for k, v in st.items()},
-                    'ch': 128, 'dils': [1, 2, 4], 'arm': arm},
-                   a.out.parent / f'expected_f_arm_{arm}.pt')
-        out['arms'][arm] = r
-        print(arm, json.dumps(r), flush=True)
+    seeds = [20261006, 20261007, 20261008]
+    for arm in ('mse', 'exactdp'):
+        out['arms'][arm] = {}
+        for sd in seeds:
+            r = train_arm(arm, Xtr, Ytr, Xev, Yev, steps=a.steps, seed=sd)
+            st = r.pop('state')
+            torch.save({'state_dict': {k: torch.from_numpy(v) for k, v in st.items()},
+                        'ch': 128, 'dils': [1, 2, 4], 'arm': arm, 'seed': sd},
+                       a.out.parent / f'expected_f_arm_{arm}_s{sd}.pt')
+            out['arms'][arm][str(sd)] = r
+            print(arm, sd, json.dumps(r), flush=True)
+    # paired per-fragment deltas need per-fragment scores; store summary stats
     a.out.write_text(json.dumps(out, indent=1))
     print('DONE', flush=True)
 

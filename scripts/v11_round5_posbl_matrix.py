@@ -144,7 +144,7 @@ def train_arm(X, Y, tr, dv, arm, seed, lr, steps, batch, rng):
         losses.append(acc)
     model.eval()
     with torch.no_grad():
-        sc = {i: model(X[i:i + 1])[0].numpy().astype(np.float32)
+        sc = {i: model(torch.from_numpy(X[i])[None])[0].numpy().astype(np.float32)
               for i in dv}
     return model, sc
 

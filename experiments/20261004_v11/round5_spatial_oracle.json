@@ -1,0 +1,275 @@
+{
+ "live_confirmation": {
+  "n_frames": 6810,
+  "n_videos": 227,
+  "head_iou": 0.5349,
+  "oracle_iou": 0.7819,
+  "center_iou": 0.4688,
+  "gap_mean": 0.2469,
+  "gap_median": 0.1721,
+  "gap_p90": 0.6263,
+  "gap_frac_ge_005": 0.7153,
+  "head_minus_center": 0.0662,
+  "gap_ci95_vid": [
+   0.2313,
+   0.263
+  ],
+  "gap_zero_ci95_vid": [
+   0.5171,
+   0.5528
+  ],
+  "by_ratio": {
+   "9-16": {
+    "n": 6810,
+    "head_iou": 0.5349,
+    "oracle_iou": 0.7819,
+    "gap_mean": 0.2469,
+    "gap_median": 0.1721,
+    "gap_p75": 0.3876
+   }
+  },
+  "by_head_moves": {
+   "head_eq_center": {
+    "n": 631,
+    "head_iou": 0.3275,
+    "oracle_iou": 0.4983,
+    "gap_mean": 0.1708,
+    "gap_median": 0.0,
+    "gap_p75": 0.2534
+   },
+   "head_ne_center": {
+    "n": 6179,
+    "head_iou": 0.5561,
+    "oracle_iou": 0.8108,
+    "gap_mean": 0.2547,
+    "gap_median": 0.188,
+    "gap_p75": 0.3907
+   }
+  },
+  "by_frame_half": {
+   "frame_le_median": {
+    "n": 3405,
+    "head_iou": 0.5533,
+    "oracle_iou": 0.8145,
+    "gap_mean": 0.2612,
+    "gap_median": 0.19,
+    "gap_p75": 0.3998
+   },
+   "frame_gt_median": {
+    "n": 3405,
+    "head_iou": 0.5166,
+    "oracle_iou": 0.7493,
+    "gap_mean": 0.2327,
+    "gap_median": 0.1538,
+    "gap_p75": 0.3661
+   }
+  }
+ },
+ "live_confirmation_s1": {
+  "n_frames": 6810,
+  "n_videos": 227,
+  "head_iou": 0.5378,
+  "oracle_iou": 0.7819,
+  "center_iou": 0.4688,
+  "gap_mean": 0.2441,
+  "gap_median": 0.1716,
+  "gap_p90": 0.6138,
+  "gap_frac_ge_005": 0.7184,
+  "head_minus_center": 0.069,
+  "gap_ci95_vid": [
+   0.2291,
+   0.2601
+  ],
+  "gap_zero_ci95_vid": [
+   0.52,
+   0.555
+  ],
+  "by_ratio": {
+   "9-16": {
+    "n": 6810,
+    "head_iou": 0.5378,
+    "oracle_iou": 0.7819,
+    "gap_mean": 0.2441,
+    "gap_median": 0.1716,
+    "gap_p75": 0.3815
+   }
+  },
+  "by_head_moves": {
+   "head_eq_center": {
+    "n": 648,
+    "head_iou": 0.3194,
+    "oracle_iou": 0.5049,
+    "gap_mean": 0.1855,
+    "gap_median": 0.0,
+    "gap_p75": 0.3676
+   },
+   "head_ne_center": {
+    "n": 6162,
+    "head_iou": 0.5607,
+    "oracle_iou": 0.811,
+    "gap_mean": 0.2503,
+    "gap_median": 0.184,
+    "gap_p75": 0.3829
+   }
+  },
+  "by_frame_half": {
+   "frame_le_median": {
+    "n": 3405,
+    "head_iou": 0.5555,
+    "oracle_iou": 0.8145,
+    "gap_mean": 0.259,
+    "gap_median": 0.1911,
+    "gap_p75": 0.3983
+   },
+   "frame_gt_median": {
+    "n": 3405,
+    "head_iou": 0.5201,
+    "oracle_iou": 0.7493,
+    "gap_mean": 0.2292,
+    "gap_median": 0.1544,
+    "gap_p75": 0.3584
+   }
+  }
+ },
+ "live_dev": {
+  "n_frames": 3720,
+  "n_videos": 124,
+  "head_iou": 0.5402,
+  "oracle_iou": 0.7745,
+  "center_iou": 0.469,
+  "gap_mean": 0.2343,
+  "gap_median": 0.1592,
+  "gap_p90": 0.6027,
+  "gap_frac_ge_005": 0.7019,
+  "head_minus_center": 0.0712,
+  "gap_ci95_vid": [
+   0.2132,
+   0.2549
+  ],
+  "gap_zero_ci95_vid": [
+   0.5193,
+   0.562
+  ],
+  "by_ratio": {
+   "9-16": {
+    "n": 3720,
+    "head_iou": 0.5402,
+    "oracle_iou": 0.7745,
+    "gap_mean": 0.2343,
+    "gap_median": 0.1592,
+    "gap_p75": 0.3586
+   }
+  },
+  "by_head_moves": {
+   "head_eq_center": {
+    "n": 319,
+    "head_iou": 0.3511,
+    "oracle_iou": 0.4546,
+    "gap_mean": 0.1036,
+    "gap_median": 0.0,
+    "gap_p75": 0.0
+   },
+   "head_ne_center": {
+    "n": 3401,
+    "head_iou": 0.5579,
+    "oracle_iou": 0.8045,
+    "gap_mean": 0.2465,
+    "gap_median": 0.1811,
+    "gap_p75": 0.3736
+   }
+  },
+  "by_frame_half": {
+   "frame_le_median": {
+    "n": 1860,
+    "head_iou": 0.5586,
+    "oracle_iou": 0.8079,
+    "gap_mean": 0.2492,
+    "gap_median": 0.1779,
+    "gap_p75": 0.3767
+   },
+   "frame_gt_median": {
+    "n": 1860,
+    "head_iou": 0.5218,
+    "oracle_iou": 0.741,
+    "gap_mean": 0.2193,
+    "gap_median": 0.1491,
+    "gap_p75": 0.3434
+   }
+  }
+ },
+ "rv_diag_exposed": {
+  "n_frames": 9222,
+  "n_videos": 70,
+  "head_iou": 0.681,
+  "oracle_iou": 0.8435,
+  "center_iou": 0.6251,
+  "gap_mean": 0.1625,
+  "gap_median": 0.1005,
+  "gap_p90": 0.4042,
+  "gap_frac_ge_005": 0.6458,
+  "head_minus_center": 0.0559,
+  "gap_ci95_vid": [
+   0.147,
+   0.1801
+  ],
+  "gap_zero_ci95_vid": [
+   0.6602,
+   0.7015
+  ],
+  "by_ratio": {
+   "1-3": {
+    "n": 4611,
+    "head_iou": 0.7173,
+    "oracle_iou": 0.859,
+    "gap_mean": 0.1417,
+    "gap_median": 0.0892,
+    "gap_p75": 0.2049
+   },
+   "3-1": {
+    "n": 4611,
+    "head_iou": 0.6447,
+    "oracle_iou": 0.828,
+    "gap_mean": 0.1834,
+    "gap_median": 0.1121,
+    "gap_p75": 0.2624
+   }
+  },
+  "by_head_moves": {
+   "head_eq_center": {
+    "n": 494,
+    "head_iou": 0.6117,
+    "oracle_iou": 0.856,
+    "gap_mean": 0.2443,
+    "gap_median": 0.1082,
+    "gap_p75": 0.2901
+   },
+   "head_ne_center": {
+    "n": 8728,
+    "head_iou": 0.6849,
+    "oracle_iou": 0.8428,
+    "gap_mean": 0.1579,
+    "gap_median": 0.1003,
+    "gap_p75": 0.2286
+   }
+  },
+  "by_frame_half": {
+   "frame_le_median": {
+    "n": 4686,
+    "head_iou": 0.6878,
+    "oracle_iou": 0.8465,
+    "gap_mean": 0.1587,
+    "gap_median": 0.096,
+    "gap_p75": 0.2266
+   },
+   "frame_gt_median": {
+    "n": 4536,
+    "head_iou": 0.674,
+    "oracle_iou": 0.8404,
+    "gap_mean": 0.1665,
+    "gap_median": 0.1052,
+    "gap_p75": 0.2365
+   }
+  }
+ },
+ "verdict": "SCORER_GAP_PRESENT: locked-out pool shows an exploitable scorer gap >=0.02 with CI above zero.  NOTE A5: B3 is ALREADY a candidate-utility head (huber on annotator-mean IoU, v8_s_train_multidata.py), so re-implementing the objective is a duplicate.  The attack is feature/backbone, candidate-geometry, TTA (S4), or supervision breadth - NOT the loss.  A head that closes half the gap toward oracle would add ~0.1235 mean IoU on this pool; official-domain transfer is NOT implied by this number."
+}

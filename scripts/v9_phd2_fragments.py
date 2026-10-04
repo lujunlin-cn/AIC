@@ -94,6 +94,8 @@ def main():
     ap.add_argument('--extract', action='store_true', help='also decode frames to jpg')
     ap.add_argument('--jpg-quality', type=int, default=90)
     ap.add_argument('--write-index-only', action='store_true')
+    ap.add_argument('--neutral-starts', action='store_true',
+                    help='label-agnostic uniform starts (round-5 stress protocol)')
     ap.add_argument('--sources-file', type=Path, default=None,
                     help='restrict the pool to exactly these source ids (JSON '
                          'list or one-per-line); still intersected with media '
@@ -179,8 +181,13 @@ def main():
             if len(rows) >= a.n_fragments:
                 break
             L = rng.uniform(a.clip_min, a.clip_max)
+            # --neutral-starts:起点与 GT 无关（R5 §7.2 压力测试协议）。其余
+            # （L 分布、每源片数、旋转混合、目标比例权重）与 anchor 协议一致。
+            # n_highlight_iv 仍记录，仅作元数据，不做过滤。
+            if a.neutral_starts:
+                t0 = rng.uniform(0.0, max(dur - L, 0.0))
             # 65% anchored on a GIF selection (temporal positive), else background
-            if rng.random() < 0.65 and ivs:
+            elif rng.random() < 0.65 and ivs:
                 s0, s1 = rng.choice(ivs)
                 c = rng.uniform(s0, s1)
                 t0 = min(max(c - rng.uniform(0.0, 0.6) * L, 0.0), max(dur - L, 0.0))

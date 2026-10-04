@@ -1,0 +1,46 @@
+{
+  "design": "R5 section 6.2 three-candidate factor design around the VTREPLAY parent",
+  "parent": {
+    "package": "V11_VTREPLAY",
+    "asset_id": 56693,
+    "official_score": 34.95,
+    "score_unit": "raw_no_size_penalty",
+    "frozen": true
+  },
+  "factors": {
+    "T_temporal": {
+      "definition": "time-mask candidate only; spatial boxes byte-identical to the parent on the common frames",
+      "source_line": "native VideoMAEv2-B rebuilt line (P/O/S/B/L matrix) - gated on the R5 3.5 main time gate",
+      "local_gate": "fresh-confirm original-frame macro F >= +0.007 vs BOTH the VTREPLAY head and the position baseline; source-cluster paired CI95 lower bound > 0; anchor/neutral strata reported separately",
+      "status": "NOT_RUN"
+    },
+    "S_spatial": {
+      "definition": "spatial candidate only; time mask identical to the parent",
+      "source_line": "spatial candidate improvement from the S0 audit direction (feature/backbone/candidate-geometry/TTA - NOT the loss, which B3 already is)",
+      "local_gate": "locked-out crop-domain mean IoU delta >= +0.02, source-level paired CI95 lower bound > 0, primary-group degradation lower bound >= -0.01; frame set and frame ids unchanged; x-axis-only change if only x-axis ground truth supports it",
+      "status": "NOT_RUN",
+      "s0_audit_reading": "live_confirmation scorer gap 0.247 CI95 [0.227, 0.268]; 70.2 percent of frames have gap >= 0.05; head beats centre by +0.071 - exploitable gap CONFIRMED, loss excluded as duplicate (A5)"
+    },
+    "ST_combined": {
+      "definition": "T mask + S boxes together",
+      "submission_rule": "only after BOTH S and T return usable official gains (>= +0.50 each, raw units)",
+      "status": "NOT_RUN"
+    }
+  },
+  "interaction_readout": "I = S_ST - S_S - S_T + S_P on same-unit platform scores; descriptive on the finite official set only",
+  "preregistered_score_readout": {
+    "usable_gain": ">= +0.50 official score vs parent (resource-allocation threshold, not a significance claim)",
+    "no_practical_gain": "within +/-0.50 - described as not reaching the practical threshold, never as strict equivalence",
+    "pause": "<= -0.50 vs parent - pause the candidate line, check proxy-official directional mismatch"
+  },
+  "optional_diagnostic": {
+    "K70": "keep=0.70 package only if the NPU is expected to be down for more than one platform round AND no gated S/T exists; single preregistered denominator-sensitivity diagnostic, never a 0.72/0.75 sweep",
+    "status": "NOT_PLANNED"
+  },
+  "budget": "3 new packages (S, T, conditional ST) + at most 1 K70 diagnostic this round",
+  "declarations": [
+    "every package stays single-variable vs its stated parent",
+    "no package is submitted without passing its local implementation and generalization gate",
+    "no score prediction is attached to any package; official scores are read as returned, raw, no conversions"
+  ]
+}

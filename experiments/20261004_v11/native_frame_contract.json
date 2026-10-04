@@ -1,0 +1,214 @@
+{
+ "protocol": {
+  "action_unit_s": 1.0,
+  "context_s": 2.0,
+  "frames_per_window": 16,
+  "window_step_s": 1.0,
+  "requested_grid": "linspace(start, end, 16, endpoint=False)",
+  "frame_resolution": "nearest actually-decoded PTS (ordered decode in window)",
+  "dup_rule": "record unique-frame count; <=2 unique of 16 = HARD_ERROR",
+  "boundary_rule": "clamp + is_boundary_pad flag",
+  "normalization": "(x/255 - MEAN)/STD, VideoMAEv2 processor constants",
+  "seek_rule": "int(t / float(st.time_base)) with stream=st (stream units, NOT container av.time_base); ordered decode verifies PTS",
+  "per_action_record": [
+   "video_sha256",
+   "source_id",
+   "frame_id",
+   "pts",
+   "time_base",
+   "action_id",
+   "action_frame_count",
+   "window_id",
+   "requested_pts",
+   "selected_frame_id",
+   "boundary_pad",
+   "processor_hash",
+   "encoder_hash",
+   "feature_contract_hash"
+  ]
+ },
+ "feature_contract_hash": "95066232f4d1803d3bf2a44e2b933ffa858222d1e88600782db4ce7010139139",
+ "validation": {
+  "n_sources_sampled": 12,
+  "n_ok": 12,
+  "n_hard_error_dup": 0,
+  "mean_abs_err_s_over_sources": 0.0083,
+  "max_abs_err_s_over_sources": 0.02,
+  "note": "errors here are NEAREST-MATCH quantization (source fps grid), not seek-unit defects; round-4 measured 24-1608 s mean errors - two to four orders of magnitude larger",
+  "per_source": [
+   {
+    "source": "KMHqgtdThZM",
+    "duration_s": 168.57,
+    "time_base": "1/30000",
+    "n_frames_meta": 5052,
+    "window": [
+     83.5,
+     85.5
+    ],
+    "unique_frames_of_16": 16,
+    "mean_abs_err_s": 0.0085,
+    "max_abs_err_s": 0.0166,
+    "status": "OK"
+   },
+   {
+    "source": "dQD-OYjl08o",
+    "duration_s": 821.28,
+    "time_base": "1/12800",
+    "n_frames_meta": 20532,
+    "window": [
+     409.5,
+     411.5
+    ],
+    "unique_frames_of_16": 16,
+    "mean_abs_err_s": 0.01,
+    "max_abs_err_s": 0.02,
+    "status": "OK"
+   },
+   {
+    "source": "LmTor-zQXxw",
+    "duration_s": 210.25,
+    "time_base": "1/12288",
+    "n_frames_meta": 5046,
+    "window": [
+     104.5,
+     106.5
+    ],
+    "unique_frames_of_16": 16,
+    "mean_abs_err_s": 0.0,
+    "max_abs_err_s": 0.0,
+    "status": "OK"
+   },
+   {
+    "source": "TTFBOBxOx7E.f136",
+    "duration_s": 225.99,
+    "time_base": "1/30000",
+    "n_frames_meta": 0,
+    "window": [
+     111.5,
+     113.5
+    ],
+    "unique_frames_of_16": 16,
+    "mean_abs_err_s": 0.0083,
+    "max_abs_err_s": 0.0135,
+    "status": "OK"
+   },
+   {
+    "source": "AUDFVQsVBU4",
+    "duration_s": 97.85,
+    "time_base": "1/24000",
+    "n_frames_meta": 2346,
+    "window": [
+     47.5,
+     49.5
+    ],
+    "unique_frames_of_16": 16,
+    "mean_abs_err_s": 0.0067,
+    "max_abs_err_s": 0.0077,
+    "status": "OK"
+   },
+   {
+    "source": "5vG5i-tkHEE",
+    "duration_s": 90.09,
+    "time_base": "1/24000",
+    "n_frames_meta": 2160,
+    "window": [
+     44.5,
+     46.5
+    ],
+    "unique_frames_of_16": 16,
+    "mean_abs_err_s": 0.0037,
+    "max_abs_err_s": 0.0047,
+    "status": "OK"
+   },
+   {
+    "source": "e2zJA7eBSdY",
+    "duration_s": 102.47,
+    "time_base": "1/30000",
+    "n_frames_meta": 3071,
+    "window": [
+     50.5,
+     52.5
+    ],
+    "unique_frames_of_16": 16,
+    "mean_abs_err_s": 0.0085,
+    "max_abs_err_s": 0.0162,
+    "status": "OK"
+   },
+   {
+    "source": "bY73vFGhSVk",
+    "duration_s": 156.36,
+    "time_base": "1/24000",
+    "n_frames_meta": 3749,
+    "window": [
+     77.5,
+     79.5
+    ],
+    "unique_frames_of_16": 16,
+    "mean_abs_err_s": 0.005,
+    "max_abs_err_s": 0.0059,
+    "status": "OK"
+   },
+   {
+    "source": "0aLOSyCVyGw",
+    "duration_s": 207.92,
+    "time_base": "1/24000",
+    "n_frames_meta": 4985,
+    "window": [
+     102.5,
+     104.5
+    ],
+    "unique_frames_of_16": 16,
+    "mean_abs_err_s": 0.02,
+    "max_abs_err_s": 0.0208,
+    "status": "OK"
+   },
+   {
+    "source": "5gaNyIUUxY8",
+    "duration_s": 102.97,
+    "time_base": "1/30000",
+    "n_frames_meta": 3086,
+    "window": [
+     50.5,
+     52.5
+    ],
+    "unique_frames_of_16": 16,
+    "mean_abs_err_s": 0.0085,
+    "max_abs_err_s": 0.0162,
+    "status": "OK"
+   },
+   {
+    "source": "7AoqUcQSry0",
+    "duration_s": 305.2,
+    "time_base": "1/12800",
+    "n_frames_meta": 7630,
+    "window": [
+     151.5,
+     153.5
+    ],
+    "unique_frames_of_16": 16,
+    "mean_abs_err_s": 0.01,
+    "max_abs_err_s": 0.02,
+    "status": "OK"
+   },
+   {
+    "source": "pzFuWa0TqSs",
+    "duration_s": 186.85,
+    "time_base": "1/24000",
+    "n_frames_meta": 4480,
+    "window": [
+     92.5,
+     94.5
+    ],
+    "unique_frames_of_16": 16,
+    "mean_abs_err_s": 0.01,
+    "max_abs_err_s": 0.011,
+    "status": "OK"
+   }
+  ]
+ },
+ "pending_before_cache_build": [
+  "processor/encoder hashes resolved at build time",
+  "is_boundary_pad semantics for the first/last action unit",
+  "tl;dr any window with <=2 unique frames aborts the build"
+ ]
+}

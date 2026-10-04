@@ -36,6 +36,8 @@ ap.add_argument('--confirm-manifest', type=Path,
                 default=Path('/data/aic/experiments_910a/LFM_V11/confirm_sources_500.json'))
 ap.add_argument('--ckpt-dir', type=Path,
                 default=Path('/data/aic/experiments_910a/LFM_V11'))
+ap.add_argument('--ckpt-suffix', default='',
+                help='checkpoint filename suffix, e.g. _lr1e4 (GROUP B)')
 ap.add_argument('--keep', type=float, default=0.80)
 ap.add_argument('--boot', type=int, default=10000)
 ap.add_argument('--out', type=Path,
@@ -121,7 +123,7 @@ def main():
     ckpts = {}
     for arm in ARMS:
         for sd in SEEDS:
-            p = args.ckpt_dir / f'expected_f_arm_{arm}_s{sd}.pt'
+            p = args.ckpt_dir / f'expected_f_arm_{arm}_s{sd}{args.ckpt_suffix}.pt'
             assert p.exists(), f'missing frozen checkpoint {p}'
             ck = torch.load(p, map_location='cpu')
             model = TCN(ch=ck.get('ch', 128), dils=tuple(ck.get('dils', [1, 2, 4])))
@@ -196,8 +198,8 @@ def main():
             'n_sources_evaluated': n_src,
             'pooling_contract': 'pool_feats mean [8,768] fp16 (v10_temporal_attnpool, '
                                 'valid-token grid mean)',
-            'keep': args.keep,
-            'checkpoint_sha16': {f'{a}_s{s}': sha16(args.ckpt_dir / f'expected_f_arm_{a}_s{s}.pt')
+            'keep': args.keep, 'group': 'B_lr1e4' if args.ckpt_suffix else 'A_package_lineage',
+            'checkpoint_sha16': {f'{a}_s{s}': sha16(args.ckpt_dir / f'expected_f_arm_{a}_s{s}{args.ckpt_suffix}.pt')
                                  for a in ARMS for s in SEEDS},
         },
         'summary': summary,

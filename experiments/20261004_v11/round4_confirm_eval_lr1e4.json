@@ -1,0 +1,84 @@
+{
+ "meta": {
+  "protocol": "preregistered: frozen dev checkpoints on the frozen confirm set, one pass, no tuning; source-cluster bootstrap only",
+  "confirm_sources_sha16": "d2695ae334856bb1",
+  "confirm_n_declared": 500,
+  "n_fragments_evaluated": 585,
+  "n_sources_evaluated": 389,
+  "pooling_contract": "pool_feats mean [8,768] fp16 (v10_temporal_attnpool, valid-token grid mean)",
+  "keep": 0.8,
+  "group": "B_lr1e4",
+  "checkpoint_sha16": {
+   "mse_s20261006": "3c3008d616470501",
+   "mse_s20261007": "b68aaafc26756c71",
+   "mse_s20261008": "3e0761a383038259",
+   "exactdp_s20261006": "ed1b57f51bbaff90",
+   "exactdp_s20261007": "f8944b9a835bf2e9",
+   "exactdp_s20261008": "07a06c7566400ffa"
+  }
+ },
+ "summary": {
+  "mse": {
+   "f1_per_seed": [
+    0.654,
+    0.6536,
+    0.6542
+   ],
+   "f1_mean": 0.654,
+   "ap_per_seed": [
+    0.7312,
+    0.7333,
+    0.7383
+   ],
+   "ap_mean": 0.7343
+  },
+  "exactdp": {
+   "f1_per_seed": [
+    0.653,
+    0.653,
+    0.653
+   ],
+   "f1_mean": 0.653,
+   "ap_per_seed": [
+    0.7428,
+    0.7451,
+    0.7382
+   ],
+   "ap_mean": 0.742
+  }
+ },
+ "seed_paired_delta": {
+  "20261006": -0.001,
+  "20261007": -0.0006,
+  "20261008": -0.0012
+ },
+ "delta_mean_across_seeds": -0.0009,
+ "source_cluster_bootstrap": {
+  "20261006": {
+   "mean": -0.001,
+   "ci95": [
+    -0.0039,
+    0.0019
+   ]
+  },
+  "20261007": {
+   "mean": -0.0006,
+   "ci95": [
+    -0.0035,
+    0.0023
+   ]
+  },
+  "20261008": {
+   "mean": -0.0012,
+   "ci95": [
+    -0.0025,
+    -0.0003
+   ]
+  }
+ },
+ "source_cluster_bootstrap_seedmean_ci95": [
+  -0.003,
+  0.001
+ ],
+ "note": "3-seed mean CI crosses zero in the dev read; this is the clean-confirm replacement.  Decision rule (preregistered in round-4 plan): promote only if the seed-mean delta lower bound > 0 and mean >= 0.007."
+}

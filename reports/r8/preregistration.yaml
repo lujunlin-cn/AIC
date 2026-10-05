@@ -1,0 +1,187 @@
+# R8 preregistration - frozen before any R8 probe execution
+# Date: 2026-10-05.  All scores RAW; no conversions.
+# Inputs: GPT-6-PRO round-8 response + audit bundle (208/208 reproduced);
+# companion review: reports/20261005_round8_plan.md;
+# amendment record: reports/r8/decision_layer_correction.md
+study: AIC_R8_FULLINFO
+status: NOT_RUN
+hard_rules:
+  raw_scores_only: true
+  inference_parameter_limit: 9000000000
+  official_media_in_training_or_selection: false
+  new_human_annotations: false
+  single_run_wall_hours_exclusive_upper_bound: 12
+  parity_before_new_npu_metrics: true
+  label_source_discipline: >
+    every row's label semantics recorded before any training;
+    LIVE rows are raw_single_box (one subject per frame, verified),
+    RV rows carry 6 per-annotator boxes locally; never expand one
+    cached box into synthetic "annotators"
+
+probes:
+  LABEL_PROVENANCE:
+    status: NOT_RUN
+    npu_hours: 0
+    cpu_hours_cap: 4
+    checks:
+      - source_id / frame_id / label-semantics / split per row of the 2,560-row table
+      - row-to-candidate/B3-score/reward array alignment replay (partial IoU recompute)
+      - unique source count (not just row count); pool mixing check (dev80 vs val178 vs 76-fresh)
+      - coordinate format/scale replay on sampled rows
+    fail_state: DATA_SPLIT_BLOCKED (no independent confirmation cache -> no training arm runs)
+
+  C_M_E:
+    status: NOT_RUN
+    npu_hours: 0
+    cpu_hours_cap: 6
+    rationale: >
+      B3's deployed objective is huber(0.25)+0.3*pair, not L2 on the
+      utility label; the Bayes rule for expected-IoU selection is
+      argmax of conditional mean utility.  C/M/E tests whether the
+      objective deviation matters on our table (finite sample, real
+      features), replacing the vacuous D1 and the sampling-based D3.
+    arms:
+      C: original huber(0.25)+0.3*pair (B3's objective; B3 scores frozen for reference)
+      M: pure L2 conditional-utility regression
+      E: full-information expected utility p=r via softmax exact policy
+         gradient sum_j p_j r_j, optional KL to frozen init, beta in {0, 0.03, 0.10}
+    seeds: [20261051, 20261052, 20261053]   # all seeds reported, no best-seed selection
+    budget_matching: C and M get the same dev-tuning budget as E's beta grid
+    splits: source-grouped inside the cached table; dev reads on dev80 sources only
+    primary_metric: hard-argmax video-macro IoU
+    secondary: candidate mean-prediction error, shortlist regret, content-permutation sensitivity
+    gate: +0.015 vs B3 argmax, source-level paired 95% CI lower > 0
+    gate_2: claiming E > supervised requires E > M, not only E > C
+    confirm: at most 2 passing arms, one-shot on 76-fresh (val178 stays final pool)
+    fail_state: INCONCLUSIVE if CI wide; INVALID_IMPLEMENTATION if the 3.8 checks fail
+    npu_hours_conditional: 8   # only if an arm graduates to NPU-scale features (1B/7B)
+
+  A_PROTO:
+    status: NOT_RUN
+    npu_hours: 0
+    cpu_hours_cap: 2
+    scope: RetargetVid per-annotator labels (6/frame, local) - protocol-sensitivity audit only
+    reads: per-annotator mean utility vs coordinate-mean-box utility vs
+      leave-one-annotator-out utility; source-level grouping
+    role: diagnostic for the official-protocol fork (single draw vs
+      IoU-averaged vs coordinate-aggregated); no training, no synthetic raters
+    fail_state: if raw per-annotator boxes unavailable -> record DATA_GAP, stop
+
+  NPU_PARITY_PROBE0:
+    status: NOT_RUN
+    npu_hours_cap: 4
+    supersedes: r7 PROBE_0_EAGER (same design; cap tightened 8 -> 4 after weights landed)
+    must_test: positional buffers, padding, batch permutation, checkpoint
+      reload, final-action equality, fp16 eager, host RSS, HBM peak
+    models: [Qwen2.5-VL-7B, Qwen2.5-VL-3B-fallback]
+    role: gate for every NPU number below; not a gate for CPU arms
+
+  VLM_SFT:
+    status: NOT_RUN
+    npu_hours_cap: 12
+    conditional_on: [NPU_PARITY_PROBE0 pass, LABEL_PROVENANCE clean, C_M_E completed]
+    design:
+      readout: constrained candidate-ID (single fixed token) over the 36-shortlist
+      vision_tower: frozen
+      lora: {rank: 8, targets: q/v (actual module names verified first)}
+      lr_grid: [5.0e-6, 1.0e-5]
+      micro_batch: 1
+      effective_batch: 8
+      stability_prelim: >= 50 stable steps before any claim
+    primary_metric: hard-argmax video-macro IoU on held-out sources
+    gate: +0.02 vs strongest confirmed baseline (B3 or a passing C/M/E arm),
+      paired CI lower > 0, content-permutation control passes
+    note: replaces r7 VLM_CROP_EXAM as the primary 7B arm; the zero-shot
+      exam V1-V3 stays DEMOTED (spare-budget evidence probe, arms unchanged)
+    wall_clock_rule: if projected training body > 10h, cut preregistered
+      exposure uniformly; never keep best-subset results
+
+  TEACHER_PILOT:
+    status: NOT_RUN
+    npu_hours_cap: 4
+    conditional_on: [VLM_SFT baseline exists]
+    design: 100-200 dev sources (no official media, no future confirmation
+      sources); same legal candidates + display order for 7B and 32B;
+      source-level IoU vs existing labels; candidate-ID order pair-swap check
+    gate: teacher mean delta >= +0.02 vs 7B, source-level CI lower > 0, else no distillation
+    forbidden: 32B outputs (points/boxes/captions/caches) in final inference
+      dependencies on official videos
+
+  DENSE_VIEW_KD:
+    status: NOT_RUN
+    npu_hours_cap: 6
+    conditional_on: paired real-IoU check shows dense observation beats
+      sparse on independent dev labels
+    variant: categorical KL, stopgrad dense teacher -> sparse student over
+      the same legal candidate set (a TRANSPLANT, not FD-OPSD reproduction;
+      original's selective term degenerates to 0 for single-token actions)
+
+  OPTIONAL_RLOO:
+    status: NOT_RUN
+    npu_hours_cap: 8
+    conditional_on: action/path enumeration infeasible AND exact-gradient
+      sanity passes on the small cache
+    rules: leave-one-out baseline; NO group-std normalization; no per-video
+      trajectory-length rescaling; no clipping/off-policy reuse before the
+      exact-vs-RLOO gradient check passes
+
+  FRESH_CONFIRMATION:
+    status: NOT_RUN
+    npu_hours_cap: 6
+    pools: 76-fresh one-shot per passing arm (max 2 arms); val178 reserved
+      as the final spatial confirmation pool; access log required
+
+  TRANSFER_BRIDGE_V1:
+    status: NOT_RUN   # carried over unchanged from r7 (48 CPU-h + 4 NPU-h)
+
+  IV2_1B_TEMPORAL:
+    status: NOT_RUN   # carried over unchanged from r7 (10 NPU-h); the main
+                      # 9B temporal bet; R8 does not touch this line
+
+reward_recipe:
+  spatial_reward: raw candidate IoU, weight 1.0, no sweep
+  kl_to_reference: 0.03 initial DESIGN VALUE (not validated optimal); grid {0, 0.03, 0.10}
+  entropy_bonus: 0
+  group_std_normalization: false
+  quantile_or_variance_penalty: 0 (main line)
+  teacher_reward: 0 (until TEACHER_PILOT passes its own gate)
+  format_reward: 0 (hard-constrain outputs to the legal set instead)
+  temporal_smoothing_reward: 0
+  no_reopen_boundaries: >
+    fixed-budget exact expected-F is a NEW scope, not a silent reopen of
+    the closed unconstrained expected-F line; requires explicit operator
+    approval; the ~28-point temporal headroom figure is an early
+    back-of-envelope, NOT an official bound - no budget may be
+    allocated against it
+
+implementation_checks_before_training:   # from R8 3.8; any failure -> INVALID_IMPLEMENTATION
+  - IoU in [0,1]
+  - ID permutation leaves rewards unchanged for the same physical window
+  - exact full-vector gradient == finite differences (bundle: ~1e-11, reproduced)
+  - small-scale RLOO exhaustive expectation == exact (bundle: ~8e-17, reproduced)
+  - no-gradient label paths isolated from inference inputs
+  - video-macro counts audited
+  - checkpoint/candidate/reward/source manifest hashes recorded
+  - NPU stack == CPU on logits and final decisions
+
+slot_strategy:
+  unspent_slots: 3
+  unchanged_from_r7: true
+  default_if_no_gated_candidate: DIAGNOSTIC_D_NXY
+  decision_point: hour-36 verdict review
+
+stays_closed:
+  - native old-recipe reruns
+  - TCN-vs-dense relitigation
+  - keep-rate scans
+  - unconstrained expected-F reworks (incl. expected-F-as-RL-reward without new scope)
+  - position-prior rewraps with new losses
+  - vision-only spatial packages
+  - monotone argmax calibration arms (theory gain 0; unit test only)
+  - annotator-latent-variable models on single-label rows
+
+reopen_paths:
+  - C/M/E (or its NPU-scale successor) passing its gate + confirmation
+  - VLM_SFT passing its gate
+  - IV2_1B_TEMPORAL passing its r7 gate
+  - measured dense-view advantage (opens DENSE_VIEW_KD)

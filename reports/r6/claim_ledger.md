@@ -36,3 +36,17 @@ ST 组合需两个单变量包均有正向官方证据。无门通过不出包�
 - 位置先验头换 loss 重包装
 - keep 连续扫描
 - native 旧配方无限重跑（重开须走"特征/任务定义变更"路径：真实裁剪图、池化前 token、真实多位置事件支持——即本轮 S/T 线本身）
+
+## R8 修正与新线（2026-10-05 深夜，输入核验后）
+
+**输入核验**：R8 文档审查 commit 917328e（=当时 HEAD）；附件 208/208 合成检查本机复跑通过（梯度误差 ~1.8e-11 同量级、RLOO 7.98e-17 逐位一致）；B3 谱系闭合——部署 checkpoint 确出自 v8_s_train_multidata（source_ledger.md:21、source_ancestry_audit.json:10）；P02 论文独立重读，引用属实。作者未跑任何真实实验。
+
+| Claim | 状态 | 比较、门槛与读数 | Artifact | 重开条件 |
+|---|---|---|---|---|
+| DECISION_LAYER D0/D1 设计缺陷修正 | 修正已裁定（未花 CPU） | 共同严格单调变换保持 argmax ⇒ D0"单调决策规则上限"=B3 自身 argmax（除并列），D1 校准臂收益恒为 0；D0 作 7B 路由的逻辑删除（单调不变性对所有输入成立，不能评价更强模型）。D2 降级为风险诊断；D3 被"全信息精确期望效用"臂包含（36 奖励全已知 ⇒ 精确策略梯度 p_j(r_j−r̄)，无需采样；36 个 IoU 是同一标签的 36 次评价，不是 36 位标注者）。**教训入册**：连续两轮外部评审在花 CPU 前抓到预注册设计错误（R6 z-score、R7→R8 空洞单调臂） | reports/r8/decision_layer_correction.md、reports/r8/preregistration.yaml | 无（数学恒等式） |
+| "Ahmed 均值回归次优"在我们设定下的适用性 | 措辞修正 | B3 标签本就是候选效用均值（u_j=mean_a IoU(b_j,Y_a)；RV 6 人、LIVE 1 人），argmax over 条件均值效用即 Bayes 最优；Ahmed 差距适用于框坐标均值回归（我们从未做）。**真正偏离 Bayes 规则的是训练目标**：huber(0.25)+0.3·pair（huber 总体最优解 E[clip(û−U,−δ,δ)|x]=0 ≠ 条件均值；pair 项再扰动）。合成反例证明次序可反转（A: 0.4·1+0.6·0 vs B 恒 0.3；huber 最优 1/6 选 B、均值选 A）。是否在我们表上实际发生 ⇒ C/M/E 实测 | reports/r8/preregistration.yaml (C_M_E) | C/M/E 任一臂过门 +0.015 且 CI 下界>0（E 须胜 M） |
+| 标注分歧假设的最强数字被撤回 | 修正已裁定 | LIVE-YT-VC 论文的 ~0.50 是**相邻帧**框 IoU（时间平滑统计；相邻帧可来自不同标注者），不是同帧标注者间一致性——R6 本表"相邻标注者 IoU ~0.50"表述作废。**后果**："B3 0.529 ≈ 人类上限"失去直接支撑，0.247 oracle gap 重新无界，Part B（估计/决策误差）回到待测状态——由 C/M/E 裁定，不得预设方向。新锚点（P02 Table IV，灵活裁剪协议、与我们 9:16 同型）：STCAT 52.3 / CG-STVG 53.1 mIoU，从零训练模型塌向中心偏置；B3 0.529 与已发表模型同档（不同分割，量级锚非上界）。LIVE-YT-VC++（~8.1 人/帧）上游今日核实仍 "Coming soon"，无数据升级 | 本 ledger、reports/20261005_round8_plan.md §2.3 | C/M/E 或 VLM_SFT 出现实测可学差距 |
+| 标签语义纪律 | 冻结纪律 | LIVE 行=raw_single_box（每帧单一标注者，上游 README 今日复核）；RV 行=6 位标注者本地在库（唯一本地多标注资源，供 A_PROTO 协议敏感性审计）；禁止把单个缓存框展开成合成"标注者"；官方协议三分支（单抽取/IoU 平均/坐标聚合）只能测敏感性、不能识别 | reports/r8/preregistration.yaml (LABEL_PROVENANCE, A_PROTO) | ++ 放出或官方公布协议 |
+| R8 新探针线（全部 NOT_RUN） | NOT_RUN | C_M_E（CPU 6h：C=huber+pair / M=纯 L2 / E=全信息期望效用+KL{0,.03,.1}；3 种子全报告；门 +0.015 vs B3、源级配对 CI 下界>0；E 声明优势须胜 M；≤2 臂上 76-fresh 一次性确认）；A_PROTO（CPU 2h：RV 6 人协议敏感性，仅诊断）；NPU_PARITY_PROBE0（4h，接替 r7 Probe 0）；VLM_SFT（12h：候选 ID 受约束读出、视觉塔冻结、LoRA r=8 q/v、lr{5e-6,1e-5}、门 +0.02 vs 最强已确认基线）；TEACHER_PILOT（4h 条件：32B 须 +0.02 且 CI>0 才谈蒸馏；32B 输出禁止进最终推理依赖链）；DENSE_VIEW_KD（6h 条件：稠密视图须在真实标注 IoU 上胜稀疏；FD-OPSD 选择性蒸馏项对单 token 动作退化为 0——N=1 中心化，已推导， transplant 用 categorical KL）；OPTIONAL_RLOO（8h 条件：仅当枚举不可行） | reports/r8/preregistration.yaml | 各自门条款 |
+| VLM_CROP_EXAM（r7 V0-V3） | 降级（DEMITTED） | 让位于 VLM_SFT（7B 从未监督适配，是证据最少的干净方向；SFT 直接打门，零样本考场只产 evidence reading）；臂定义冻结不变，仅在预算有余时作证据探针 | reports/r8/preregistration.yaml (VLM_SFT note) | VLM_SFT 失败且预算有余 |
+| 奖励配方裁定 | 冻结配方 | 空间 reward=原始候选 IoU 权重 1 不扫描；KL 0.03 为设计初值非验证最优；entropy/group-std/分位数/格式/教师/时间平滑奖励全 0；baseline 不消除位置捷径（守卫：ID 置换+内容置换+源级分割）；期望F作 RL reward=新 scope 须操作者批准，不静默重开；~28 分时间缺口为早期推演非官方上界，不得据此分配预算 | reports/r8/preregistration.yaml (reward_recipe) | TEACHER_PILOT 过门（教师奖励另立） |

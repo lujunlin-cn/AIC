@@ -1,6 +1,11 @@
 # R7 preregistration - frozen before any R7 probe execution
 # Date: 2026-10-05.  All scores RAW; no conversions.
 # Companion plan: reports/20261005_round7_plan.md
+# AMENDED 2026-10-05 (R8 review): DECISION_LAYER arms D0/D1 vacuous
+# (monotone transforms preserve argmax); D2 demoted; D3 subsumed by the
+# exact full-information E arm.  Replacement program and gates live in
+# reports/r8/preregistration.yaml; record: reports/r8/decision_layer_correction.md.
+# VLM_CROP_EXAM demoted behind VLM_SFT.  All other lines unchanged.
 study: AIC_R7_9B
 status: NOT_RUN
 hard_rules:

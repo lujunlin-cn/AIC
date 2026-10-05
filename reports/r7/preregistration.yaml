@@ -18,26 +18,40 @@ pinned_facts:
   val178_burned: false                 # S-REREAD read dev80, not val178
   shortlist_v2: top3+g33 ~36/frame, oracle regret 0.0055 PASS (R6)
   fresh_spatial_capacity: 76 never-used + 178 val = 254 frames-sources available
+  weights_local: internvideo2_stage1_1b(+k710) + stage2_1b present;
+    qwen2.5-vl-7b/3b NOT present (download gated on operator nod)
 
 probes:
-  MICRO_STUDY_CEILING:
+  # MICRO_STUDY_CEILING dropped 2026-10-05 (operator: no human labeling).
+  # Separator role passes to DECISION_LAYER (Part-B probe) + VLM_CROP_EXAM.
+  DECISION_LAYER:
     status: NOT_RUN
-    npu_hours: 0
-    frames: 120            # 60 dev80 + 60 from the 76 never-used sources
-    annotators_min: 2
-    annotators_target: 3
-    protocol: independent ltrb, source pixels, no model output shown,
-      fixed written instructions
-    readouts:
-      H: mean pairwise human-human IoU
-      BH: mean IoU(B3, human)
-      delta: BH - H, paired frame-level bootstrap CI
-    decision_rule:
-      ceiling_supported: "delta >= -0.03  -> spatial VLM line demoted to
-        diagnostic-only; 9B budget stays on temporal"
-      gap_supported: "delta <= -0.10 -> spatial VLM line keeps a real arm"
-      inconclusive: "between -> escalate to VLM_CROP_EXAM as sole separator"
-    fallback_if_single_human: VLM_CROP_EXAM becomes the only separator
+    npu_hours: 0            # all CPU on the cached 2,560-row table
+    rationale: >
+      Ahmed ICCV 2015: mean regression + argmax is a provably suboptimal
+      decision rule under the IoU metric when labels are an annotator
+      distribution.  Diverging Preferences (arXiv:2410.14632): variance
+      is a decision input.  These arms probe the recoverable Part B of
+      the 0.247 gap; all fail -> annotator-noise reading strengthens.
+    arms:
+      D0_ceiling: best IoU of ANY monotone decision rule over frozen B3
+        scores (isotonic-style bound); diagnostic only, no gate
+      D1_calibration: argmax over monotone calibrated score g(B3),
+        dev-fit; gate +0.015 vs B3, paired CI lower > 0
+      D2_distributional: per-candidate IoU quantile head; select by
+        quantile-tau expected-IoU surrogate; tau dev-only; gate +0.015
+        vs B3 AND +0.01 vs same-capacity huber control, CI lower > 0
+      D3_group_relative: residual head with listwise/policy-gradient
+        loss on within-frame candidate groups, reward = annotator IoU
+        (small-model GRPO shape); gate same as D2
+    read: dev80; one-shot confirm on val178/76-fresh for any passing arm
+    risk_flag: geometric-correction families carry an official negative
+      precedent (scaling -4.00); these arms change SELECTION over legal
+      candidates, not box geometry - recorded as a distinct mechanism
+      family in transfer_pairs
+    7b_link: the 2,560-row table doubles as the reward environment for
+      CROP-style preference / GRPO post-training of a 7B verifier after
+      Probe 0
 
   PROBE_0_EAGER:
     status: NOT_RUN
@@ -91,8 +105,9 @@ probes:
     evidence_reading_not_a_gate: >
       V2 in ~0.52-0.55 with B3 at 0.529 = convergent support for the
       annotation-ceiling hypothesis; recorded as evidence either way
-    run_priority: full if MICRO_STUDY says gap_supported; only-if-
-      inconclusive-or-skipped if ceiling_supported
+    run_priority: full if DECISION_LAYER D0 shows a material Part-B
+      ceiling (learnable decision layer exists); reduced/diagnostic if
+      D0 ceiling ~ B3 (noise reading strengthens)
 
   TRANSFER_BRIDGE_V1:
     status: NOT_RUN
@@ -137,4 +152,6 @@ stays_closed:
   - vision-only spatial packages
 reopen_paths:
   - feature/task redefinition (fires for IV2_1B_TEMPORAL by design)
-  - measured learnable gap from MICRO_STUDY_CEILING / VLM_CROP_EXAM
+  - measured Part-B decision-layer ceiling from DECISION_LAYER D0-D3
+  - VLM_CROP_EXAM convergent evidence (7B plateau vs gain on the same
+    2,560-row table)

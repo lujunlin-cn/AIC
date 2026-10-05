@@ -1,0 +1,91 @@
+# R6 preregistration - frozen before any R6 training or confirmation read
+# Date: 2026-10-05.  Branch: r6-sreread-tcontext (from 9efb1e0).
+# All official scores are RAW, no size penalty.  No score/size conversions.
+
+score_contract:
+  champion_raw: 34.95          # V11_VTREPLAY, unpenalized
+  leader_reported_raw: 45.0    # operator intelligence, unpenalized
+  official_utility_threshold_raw: 0.50   # resource-decision threshold, not significance
+  conversions_forbidden: true
+
+compute_budget_npu_hours:
+  P0_parity_contract: 4
+  S_reread_zero: 14
+  T_context_tokens: 12
+  V_vjepa80m_conditional: 10
+  C_confirmation: 6
+  R_release_replay: 4
+  reserve: 22
+  single_train_wall_clock_max_h: 12
+
+statistical_contract:
+  resample_unit: source_cluster
+  bootstrap_resamples: 2000
+  ci: 95
+  seeds_per_trained_arm: 3
+  max_primary_confirmatory_comparisons: 2
+  point_estimate: equal_weight_per_video
+  ap_never_promotes_alone: true
+
+S_REREAD:
+  claim: actual candidate-crop re-encoding improves legal crop selection
+  scale_check: 100 crops before full build; reduce 240/80 to 160/60 if short
+  shortlist: B3_top3 + 9 equidistant, dedup, max 12 per frame
+  shortlist_gate: oracle regret vs full-129 <= 0.01 (else extend candidates first)
+  arms:
+    S0: original B3
+    S1_control: B3 inputs + repeated-full-image embedding (same capacity)
+    S2: B3 inputs + actual crop embeddings (residual head, <= 2M new params)
+    S3_zero: B3 fused with crop/full-image cosine, lambda in {0, 0.25, 1}
+  objective: annotator-mean candidate IoU (unchanged from B3)
+  dev_gate_S2: mean IoU +0.03, paired 95% CI lower > 0, beats B3 AND S1_control
+  dev_gate_S3_zero: mean IoU +0.02, paired 95% CI lower > 0
+  lambda: chosen on dev ONLY within preregistered grid; never on confirmation
+  confirmation: LIVE val178, ONE read per candidate group, access logged
+  failure: S2 <= S1_control -> pause this input transfer (no global claim)
+
+S_ZERO_official:
+  if_dev_gate_pass: eligible as frontier-mechanism diagnostic package
+  lambda_locked_before_packaging: true
+
+T_CONTEXT:
+  design: 2x2 {historical slicing, multi-position slicing} x {healthy TCN, dense multi-scale head} + position baseline
+  shared: same features, same frame-level supervision, matched exposure
+  primary: original-frame temporal macro F on held-out dev sources
+  dev_gate: +0.007 vs healthy TCN AND position baseline, both paired CI lower > 0
+  noninferiority: positive-video degradation <= 0.005
+  diagnostics_not_gates: [equivariance_error, boundary_swap_quality, AP, empty-GT strata]
+  ineligible_events: recorded with ratio, never deleted from test
+  no_cross_video_splicing: true
+
+T_TOKENS:
+  conditional_on: budget remaining after T_CONTEXT feature build
+  arms: [last-layer mean (existing), capacity-matched repeated mean, cross-layer tokens, multi-frame static bag]
+  gate: same as T_CONTEXT; AP alone never promotes
+
+VJEPA_80M:
+  start_only_if: [T_TOKENS side-probe fails, contracts pass, explicit user approval]
+  budget_cap_npu_h: 10
+
+reserve_trigger:
+  metric: original-frame F (never AP)
+  delta_content_min: 0.020   # min vs healthy, min vs position baseline
+  ci_lower_both: '>0'
+  positional_stress_noninferiority: '>= -0.005'
+  action: move 22h reserve to temporal line
+
+confirmation_pools:
+  LIVE_val178:
+    size: 178
+    cleanliness: never in B3 training (vid-level verified), never read by any
+      round-5/6 dev audit; T5 (deprecated teacher line) built feature caches on
+      them - recorded, judged non-leaking per R6 Q7-C case 1
+    usage: ONE preregistered read per candidate group, then closed
+  RetargetVid_NEW170_residual: ~100 unused sources, backup only
+  old_dev124_confirm227: DEV ONLY, never called confirmation
+
+official_slots:
+  max: 3
+  sequence: [S, T, ST]
+  ST_requires: both single-factor packages with positive official evidence
+  hold_if_no_gate_pass: true

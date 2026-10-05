@@ -1,0 +1,21 @@
+{
+ "protocol": "R6 Q7-B label projection audit; packet-level PTS (deduped), 1 s half-open blocks at action centres; formulas exact per R6; O-arm keep-0.80 mask (3-seed mean); frame_oracle = perfect block predictor (a=y); frame_perfect = 1.0 by construction",
+ "n_sources": 128,
+ "totals": {
+  "frames": 691006.0,
+  "gt_frames": 53995.0,
+  "blocks": 25463,
+  "partial_blocks": 373
+ },
+ "e_proj": 0.00755,
+ "e_min": 0.00376,
+ "partial_block_rate": 0.01465,
+ "F_frame_macro": 0.1381,
+ "F_block_macro": 0.0444,
+ "F_frame_minus_block_macro": 0.0937,
+ "frame_oracle_macro": 0.9286,
+ "block_constant_loss_oracle": 0.0714,
+ "label_agree_frame_vs_tubelet_macro": 0.9794,
+ "contract_srcs_overlap": 0,
+ "per_source_csv": "/data/aic/experiments_910a/LFM_V11/r6_label_projection_audit_per_source.csv"
+}

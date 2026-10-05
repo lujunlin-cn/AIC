@@ -1,0 +1,56 @@
+{
+  "protocol": "R6 Q7-C source ancestry audit; directed chain source -> clip -> cache -> labels -> checkpoint -> selection -> package; new confirmation sources must not sit in the training/selection ancestry of the candidate being confirmed",
+  "date": "2026-10-05",
+  "measured_on": "910A (/data/aic), all counts read directly from manifests and caches",
+  "champion_line": {
+    "package": "V11_VTREPLAY (official raw 34.95)",
+    "components": {
+      "vision_tower": "Siglip2 NaFlex 86M (frozen features)",
+      "temporal_head": "TCN 246K, LFM_V10/probe_deploy_head.pt",
+      "spatial_head": "B3 candidate utility head, v8_s_train_multidata"
+    },
+    "temporal_training_ancestry": {
+      "manifest": "LFM_V8/v8_manifest.jsonl",
+      "splits_seen_by_training": ["rv_train", "live_train"],
+      "live_train_clips": 33450,
+      "live_train_vids": 1115,
+      "all_inside_T5_train_index": true,
+      "overlap_with_LIVE_val178": 0
+    },
+    "spatial_training_ancestry": {
+      "manifest_splits": ["rv_native", "rv_rot", "live_train"],
+      "eval_only_splits": ["live_dev (3720 fr / 124 vid)", "live_confirmation (6810 fr / 227 vid)"],
+      "overlap_with_LIVE_val178": 0
+    }
+  },
+  "confirmation_pool_audit": {
+    "LIVE_val178": {
+      "n": 178,
+      "in_T5_train_index": false,
+      "in_B3_any_training_split": false,
+      "read_by_round5_dev_audits": false,
+      "T5_deprecated_teacher_line_caches": "obs_cache_live_val (178/178 cached); T5 never shipped, no parameter/pseudo-label/selection flow into champion",
+      "q7c_case": "case 1 - not training leakage for the current line; recorded",
+      "verdict": "ELIGIBLE one-shot confirmation pool, with T5 history noted"
+    },
+    "LIVE_dev124_confirm227": {
+      "verdict": "DEV EXPOSED by round-5 reads; dev-only from now on",
+      "n": 351,
+      "all_inside_T5_train_index": true
+    },
+    "RetargetVid_NEW170_residual": {
+      "n_approx": 100,
+      "verdict": "backup pool, separate domain, own preregistration required"
+    }
+  },
+  "native_line_ancestry": {
+    "note": "native P/O/L rebuild shared no sources with pooled training (round-5 B-arm skip note); dev sources are DEV for R6 T-CONTEXT",
+    "feature_contract_hash": "ac3b657f",
+    "dev_sources": 256
+  },
+  "known_limits": [
+    "perceptual near-duplicate screening val178 vs B3 training vids NOT run (ID-level only)",
+    "T5-era per-experiment access lists on val178 not fully reconstructable",
+    "foundation-model pretraining may include public video; scope recorded, 'absolutely unpolluted' is never claimed"
+  ]
+}

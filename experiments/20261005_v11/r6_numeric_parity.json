@@ -1,0 +1,37 @@
+{
+ "protocol": "R6 P0 numeric parity + error-injection self-test; features reused from the round-5 gate cache (identical seed/stack) unless --no-reuse",
+ "n_cases": 32,
+ "input_sha_equal": true,
+ "eps_feat_inf_max": 0.013152,
+ "eps_head_inf_max": 0.004836,
+ "gamma_min": 0.023215,
+ "mask_diff_cases": 0,
+ "gamma_gt_2eps_all": true,
+ "F_cpu": 0.77229,
+ "F_npu": 0.77229,
+ "abs_F_diff": 0.0,
+ "gate_pass": true,
+ "injection_selftest": {
+  "temporal_shift": {
+   "caught": 32,
+   "nan": 0,
+   "gate_insensitive_rate": 0.0312
+  },
+  "bad_padding": {
+   "caught": 21,
+   "nan": 0,
+   "gate_insensitive_rate": 1.0
+  },
+  "layout_swap": {
+   "caught": 32,
+   "nan": 0,
+   "gate_insensitive_rate": 0.0
+  },
+  "fp16_overflow": {
+   "caught": 32,
+   "nan": 0,
+   "gate_insensitive_rate": 0.4375
+  }
+ },
+ "injection_rule": "every injection must flip a mask, blow up (>1e-3 mean score delta), or produce NaN; an uncaught injection is recorded as gate_insensitive and is a finding"
+}

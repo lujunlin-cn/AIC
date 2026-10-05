@@ -1,0 +1,206 @@
+{
+ "protocol": "R6 Q7-A xperm intervention decomposition; frozen champion; DEV_AUDIT_ONLY; 20 preregistered seeds 5201-5220; strata=L; same-src+self excluded (best-of-12); ratio/density not in strata",
+ "ckpt_sha16": {
+  "champion_v10_probe_deploy_head": "4aa26ccbdbe5e23d"
+ },
+ "perm_seeds": [
+  5201,
+  5202,
+  5203,
+  5204,
+  5205,
+  5206,
+  5207,
+  5208,
+  5209,
+  5210,
+  5211,
+  5212,
+  5213,
+  5214,
+  5215,
+  5216,
+  5217,
+  5218,
+  5219,
+  5220
+ ],
+ "keep": 0.8,
+ "boot": 2000,
+ "summary": {
+  "dev": {
+   "n_frag": 1954,
+   "n_src": 984,
+   "manifest": {
+    "residual_same_src_or_self_maps": 1
+   },
+   "conds": {
+    "real": {
+     "f1_mean": 0.6588,
+     "real_minus_cond_f1": 0.0,
+     "real_minus_cond_ci95": [
+      0.0,
+      0.0
+     ],
+     "ap_mean": 0.7463,
+     "gamma_median": 0.70711,
+     "flip_rate": 0.0,
+     "mask_xor_mean": 0.0,
+     "n_draws": 1
+    },
+    "rep_mu": {
+     "f1_mean": 0.6614,
+     "real_minus_cond_f1": -0.0026,
+     "real_minus_cond_ci95": [
+      -0.0052,
+      0.0002
+     ],
+     "ap_mean": 0.7417,
+     "gamma_median": 0.85032,
+     "flip_rate": 0.0,
+     "mask_xor_mean": 0.0415,
+     "n_draws": 1
+    },
+    "zeros": {
+     "f1_mean": 0.5545,
+     "real_minus_cond_f1": 0.1043,
+     "real_minus_cond_ci95": [
+      0.0944,
+      0.1142
+     ],
+     "ap_mean": 0.5278,
+     "gamma_median": 0.00029,
+     "flip_rate": 0.0,
+     "mask_xor_mean": 0.6534,
+     "n_draws": 1
+    },
+    "res_shuffle": {
+     "f1_mean": 0.6579,
+     "real_minus_cond_f1": 0.0009,
+     "real_minus_cond_ci95": [
+      -0.0016,
+      0.0033
+     ],
+     "ap_mean": 0.7341,
+     "gamma_median": 0.71957,
+     "flip_rate": 0.0,
+     "mask_xor_mean": 0.0588,
+     "n_draws": 20
+    },
+    "mu_xres": {
+     "f1_mean": 0.6542,
+     "real_minus_cond_f1": 0.0047,
+     "real_minus_cond_ci95": [
+      0.002,
+      0.0073
+     ],
+     "ap_mean": 0.7281,
+     "gamma_median": 0.7276,
+     "flip_rate": 0.0,
+     "mask_xor_mean": 0.0788,
+     "n_draws": 20
+    },
+    "derange": {
+     "f1_mean": 0.6554,
+     "real_minus_cond_f1": 0.0034,
+     "real_minus_cond_ci95": [
+      0.0006,
+      0.0061
+     ],
+     "ap_mean": 0.7256,
+     "gamma_median": 0.70711,
+     "flip_rate": 0.0,
+     "mask_xor_mean": 0.0801,
+     "n_draws": 20
+    }
+   }
+  },
+  "confirm_audit": {
+   "n_frag": 585,
+   "n_src": 389,
+   "manifest": {
+    "residual_same_src_or_self_maps": 0
+   },
+   "conds": {
+    "real": {
+     "f1_mean": 0.6489,
+     "real_minus_cond_f1": 0.0,
+     "real_minus_cond_ci95": [
+      0.0,
+      0.0
+     ],
+     "ap_mean": 0.7313,
+     "gamma_median": 0.68945,
+     "flip_rate": 0.0,
+     "mask_xor_mean": 0.0,
+     "n_draws": 1
+    },
+    "rep_mu": {
+     "f1_mean": 0.6523,
+     "real_minus_cond_f1": -0.0033,
+     "real_minus_cond_ci95": [
+      -0.0086,
+      0.0017
+     ],
+     "ap_mean": 0.7326,
+     "gamma_median": 0.83262,
+     "flip_rate": 0.0,
+     "mask_xor_mean": 0.0479,
+     "n_draws": 1
+    },
+    "zeros": {
+     "f1_mean": 0.564,
+     "real_minus_cond_f1": 0.0849,
+     "real_minus_cond_ci95": [
+      0.0695,
+      0.1006
+     ],
+     "ap_mean": 0.5434,
+     "gamma_median": 0.00029,
+     "flip_rate": 0.0,
+     "mask_xor_mean": 0.6513,
+     "n_draws": 1
+    },
+    "res_shuffle": {
+     "f1_mean": 0.6487,
+     "real_minus_cond_f1": 0.0002,
+     "real_minus_cond_ci95": [
+      -0.0045,
+      0.0046
+     ],
+     "ap_mean": 0.7174,
+     "gamma_median": 0.68913,
+     "flip_rate": 0.0,
+     "mask_xor_mean": 0.0616,
+     "n_draws": 20
+    },
+    "mu_xres": {
+     "f1_mean": 0.6447,
+     "real_minus_cond_f1": 0.0042,
+     "real_minus_cond_ci95": [
+      -0.0008,
+      0.0091
+     ],
+     "ap_mean": 0.7134,
+     "gamma_median": 0.68736,
+     "flip_rate": 0.0,
+     "mask_xor_mean": 0.0863,
+     "n_draws": 20
+    },
+    "derange": {
+     "f1_mean": 0.6448,
+     "real_minus_cond_f1": 0.0041,
+     "real_minus_cond_ci95": [
+      -0.0012,
+      0.0091
+     ],
+     "ap_mean": 0.7184,
+     "gamma_median": 0.68945,
+     "flip_rate": 0.0,
+     "mask_xor_mean": 0.0909,
+     "n_draws": 20
+    }
+   }
+  }
+ }
+}

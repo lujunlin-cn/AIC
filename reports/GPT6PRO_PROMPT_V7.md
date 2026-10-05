@@ -25,7 +25,7 @@ re-enter: **InternVideo2-1B** (the SG-DETR encoder; QVHighlights MR mAP
 58.8 with 150K InterVid-MR pretraining), **Qwen2.5-VL-7B** (Time-R1's
 base; CROP's base), **InternVL2-8B**, and the V-JEPA 2 line.  Treat this
 as a new design space, not a free lunch: our deployment reality is 6
-Ascend 910B (48GB HBM each), 192-core CPU, single training run ≤12h,
+Ascend 910A NPUs (48GB HBM each), 192-core CPU, single training run ≤12h,
 and a hard rule that every NEW stack must pass the CPU/NPU parity gate
 before any number is trusted (we caught a silent all-zero positional
 embedding on NPU this cycle - see 0.4).
@@ -58,7 +58,7 @@ embedding on NPU this cycle - see 0.4).
   proposal wants ANY forward pass over official videos, it must argue
   the compliance boundary explicitly - see Q1.)
 - New NPU stacks: parity gate first, numbers after.
-- Deployment: 6×910B, 48GB HBM, fp16, ~34GB host RAM per NPU process
+- Deployment: 6×910A, 48GB HBM, fp16, ~34GB host RAM per NPU process
   (safe concurrency ≤12), single training ≤12h, 192-core CPU.
 - **Throughput reality check (operator-corrected)**: our 86M tower
   encoding runs at ~37 crops/s/card with AICore near 0% - the limit is
@@ -67,19 +67,22 @@ embedding on NPU this cycle - see 0.4).
   ~1,032 prefill passes (~350 tokens each) per video ≈ a few hours for
   all 426 official videos on 6 cards, assuming ~2,000 token/s/card
   prefill.  vLLM status CORRECTED (operator re-audit 2026-10-05): the
-  card is Atlas A2 / 910B family (PCI 0xD801, npu-smi name, CANN 9.0.0
-  runs) - INSIDE the vllm-ascend mainline support surface.  The earlier
-  "vllm-ascend dead end" was a VERSION MISMATCH (the installed
-  vllm-ascend needed operators our CANN lacked), not a hardware limit.
-  Current stack: CANN 9.0.0 / torch 2.9.0 - newer than the newest
-  mainline pairing (vllm-ascend v0.13.0 wants CANN 8.5.0 / torch 2.8.0;
-  v0.11.0 wants CANN 8.3.RC2).  A version-paired vLLM install (separate
-  venv, CANN 8.5.0, training stack untouched) is the standing fix.  The
-  REAL unknowns are: (a) measured 7B batched-prefill throughput under a
-  version-paired vLLM (fallback: transformers eager), (b) whether LoRA
-  fine-tuning of a 7B fits the 12h/run limit on 6×910B.  Any backbone
-  ranking MUST size against these two measured numbers, not against
-  generic GPU numbers.
+  card is **Ascend 910A** - pinned by operator-measured
+  `lspci` device id `19e5:d801` and the official CANN device
+  identification; npu-smi's displayed name string is NOT a reliable
+  type indicator.  The earlier "vllm-ascend dead end" was a VERSION
+  MISMATCH, not a hardware limit.  CANN is PINNED at 9.0.0.  The only
+  mainline vllm-ascend pairing that matches our stack exactly is
+  **v0.18.0** (CANN == 9.0.0, torch == 2.9.0, torch-npu ==
+  2.9.0.post2) - no CANN change needed.  Honest boundary: v0.18.0's
+  support matrix lists A2/A3/300I/950 but not 910A, so operator
+  coverage on 910A kernels is measured, not assumed.  The REAL
+  unknowns are: (a) whether vllm-ascend v0.18.0 runs a 7B on our 910A
+  at all (venv-isolated probe, training stack untouched), (b) measured
+  7B batched-prefill throughput under it (fallback: transformers
+  eager), (c) whether LoRA fine-tuning of a 7B fits the 12h/run limit
+  on 6 NPUs.  Any backbone ranking MUST size against these measured
+  numbers, not against generic GPU numbers.
 
 ## Q1 - How do we build a STRONG positive correlation between our local
         validation sets and the official evaluation set? (HIGHEST PRIORITY)
@@ -119,7 +122,7 @@ Two-tier correlation reality, operator-confirmed:
    highlights with per-kept-frame crops, video-macro joint F?);
    (d) correlation measurement itself: how to predict "local +0.03 →
    official ?" with calibrated uncertainty BEFORE spending a slot.
-2. **48h probe** for the single best mechanism, sized to 6×910B.
+2. **48h probe** for the single best mechanism, sized to 6×910A.
 3. **Failure conditions** and what evidence would kill it.
 
 ## Q2 - With ≤9B legal, which backbone, and how does the 1-9B frontier
@@ -153,7 +156,7 @@ Two-tier correlation reality, operator-confirmed:
    Say explicitly how the S-REREAD four-arm read (tonight) should
    change the Q2 ranking.
 4. **48h probe**: the cheapest experiment that produces the strongest
-   evidence for or against the top-ranked backbone, sized to 6×910B
+   evidence for or against the top-ranked backbone, sized to 6×910A
    with the parity gate included.  Probe 0 (before any backbone probe):
    stand up a version-paired vLLM (v0.13.0 + CANN 8.5.0 in a SEPARATE
    venv; training stack untouched), then measure 7B batched-prefill

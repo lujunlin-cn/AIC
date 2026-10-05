@@ -1,0 +1,76 @@
+{
+ "protocol": "R6 Q2 eligible-event census; overlap-merged events per source; eligibility = duration >= 3*fragment_length AND event length <= fragment length (sufficient rule); ineligible events are counted, never deleted",
+ "n_sources_total": 110611,
+ "n_sources_with_duration": 13469,
+ "n_sources_no_info": 97142,
+ "n_events": 41522,
+ "event_len_s": {
+  "p10": 1.5,
+  "p50": 3.3,
+  "p90": 10.69
+ },
+ "strata": {
+  "<=4s": {
+   "events": 24118,
+   "eligible": {
+    "8": 24118,
+    "10": 24118,
+    "12": 24118,
+    "14": 24118
+   },
+   "eligible_rate": {
+    "8": 1.0,
+    "10": 1.0,
+    "12": 1.0,
+    "14": 1.0
+   }
+  },
+  "<=6s": {
+   "events": 7167,
+   "eligible": {
+    "8": 7167,
+    "10": 7167,
+    "12": 7167,
+    "14": 7167
+   },
+   "eligible_rate": {
+    "8": 1.0,
+    "10": 1.0,
+    "12": 1.0,
+    "14": 1.0
+   }
+  },
+  "<=8s": {
+   "events": 3379,
+   "eligible": {
+    "8": 3379,
+    "10": 3379,
+    "12": 3379,
+    "14": 3379
+   },
+   "eligible_rate": {
+    "8": 1.0,
+    "10": 1.0,
+    "12": 1.0,
+    "14": 1.0
+   }
+  },
+  ">8s": {
+   "events": 6858,
+   "eligible": {
+    "8": 0,
+    "10": 2312,
+    "12": 3528,
+    "14": 4461
+   },
+   "eligible_rate": {
+    "8": 0.0,
+    "10": 0.337,
+    "12": 0.514,
+    "14": 0.65
+   }
+  }
+ },
+ "sources_with_2plus_eligible_events": 8579,
+ "note": "Larger-than-needed D makes eligibility EASIER; the census is an upper bound on build cost and a lower bound on eligibility."
+}

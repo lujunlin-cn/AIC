@@ -1,0 +1,68 @@
+{
+ "protocol": "R6 Q3 shortlist = B3_top3 U 9-grid, dedup; regret gate <= 0.01 mean IoU; pools: old dev124 (DEV ONLY, val178 untouched); 24-video preregistered subset seed 20261006",
+ "head_sha16": "a6e7fc4bac697614",
+ "grid": [
+  0,
+  4,
+  8,
+  12,
+  16,
+  20,
+  24,
+  28,
+  32,
+  36,
+  40,
+  44,
+  48,
+  52,
+  56,
+  60,
+  64,
+  68,
+  72,
+  76,
+  80,
+  84,
+  88,
+  92,
+  96,
+  100,
+  104,
+  108,
+  112,
+  116,
+  120,
+  124,
+  128
+ ],
+ "grid_step": 4,
+ "topk": 3,
+ "subset24": {
+  "n_frames": 720,
+  "n_vids": 24,
+  "regret_mean": 0.00517,
+  "regret_ci95": [
+   0.00408,
+   0.00631
+  ],
+  "regret_p90": 0.02577,
+  "gate_pass_le_001": true
+ },
+ "dev124_full": {
+  "n_frames": 3720,
+  "n_vids": 124,
+  "regret_mean": 0.00555,
+  "regret_ci95": [
+   0.00505,
+   0.00605
+  ],
+  "regret_p90": 0.02608,
+  "gate_pass_le_001": true
+ },
+ "crop_manifest": {
+  "rows": 100,
+  "note": "boxes in manifest W,H pixel space; keyframes are 640px-wide -> scale by img_W/W at crop time",
+  "csv": "/data/aic/experiments_910a/LFM_V11/r6_spatial_shortlist_oracle_v2_g33_crops.csv"
+ }
+}

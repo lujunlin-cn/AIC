@@ -30,8 +30,14 @@ statistical_contract:
 S_REREAD:
   claim: actual candidate-crop re-encoding improves legal crop selection
   scale_check: 100 crops before full build; reduce 240/80 to 160/60 if short
-  shortlist: B3_top3 + 9 equidistant, dedup, max 12 per frame
-  shortlist_gate: oracle regret vs full-129 <= 0.01 (else extend candidates first)
+  shortlist_v1_REJECTED_by_gate: B3_top3 + 9 equidistant (<=12/frame) had oracle
+    regret 0.0347 [0.0280,0.0416] on subset24 - FAILS the 0.01 gate
+  shortlist_v2_AMENDED_after_gate_fail: B3_top3 + 33 equidistant (step 4),
+    dedup, ~36 per frame; measured regret 0.0055 [0.0050,0.0061] dev124
+    (gate amended 2026-10-05 BEFORE any crop encoding or head training;
+    candidate-count increase recorded as an encoding-budget cost, R6 Q3 rule
+    "extend candidates, never attribute recall loss to the new scorer")
+  shortlist_gate: oracle regret vs full-129 <= 0.01 (PASS at v2)
   arms:
     S0: original B3
     S1_control: B3 inputs + repeated-full-image embedding (same capacity)

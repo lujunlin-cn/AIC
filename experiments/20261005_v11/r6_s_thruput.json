@@ -1,0 +1,15 @@
+{
+ "protocol": "R6 S-REREAD 100-crop throughput; decode+resize identical to v8_live_extract (long side 640); deployment Siglip2 contract",
+ "n_crops": 100,
+ "n_distinct_frames": 9,
+ "decode_wall_s": 0.9,
+ "encode_wall_s": 2.7,
+ "crops_per_s": 36.667,
+ "crops_plus_full_per_s": 39.968,
+ "frames_640_size_sample": [
+  [
+   640,
+   360
+  ]
+ ]
+}

@@ -20,7 +20,7 @@ PAUSED_BUDGET。官方分数一律未惩罚原始分，禁止换算。
 |---|---|---|
 | S-REREAD（真实候选裁剪图再编码） | NOT_RUN | IoU +0.03、配对 CI 下界>0、胜 B3 与同容量对照、短名单 regret ≤0.01 |
 | S-ZERO（零参数余弦融合） | NOT_RUN | IoU +0.02、CI 下界>0、λ 不在确认集选 |
-| T-CONTEXT（多位置真实上下文 2×2） | NOT_RUN | 原帧时间 F +0.007 双对照、CI 下界>0、正例视频退化 ≤0.005 |
+| T-CONTEXT（多位置真实上下文 2×2） | **NO_PRACTICAL_GAIN_IN_SCOPE（DEV 已裁定 2026-10-05）** | 共同评估地面 = anchor dev 变体（90 源）：multi 训练迁移读数 **−0.192 [−0.215,−0.169]** vs anchor 训练、−0.184 vs slotprior——门要 +0.007，实际强负。**结构性读数**：每个臂只在自己的切片协议上达到 slotprior+0.008~0.031（anchor+tcn 0.5752 vs slotprior@anchor 0.5672），跨协议即掉到先验以下；dense≈tcn（+0.001~0.005，第三次确认无增益）。**多位置数据干预不能让模型从位置先验转向内容**——R6 Q2/Q6 假设在本输入/标签/头范围内证伪。300 源 3,448 变体解码零失败，读数干净。**范围限定**：关闭的是本数据干预+这两个头，不推广"内容不可学"（R6 失败动作原文） | r6_temporal_context_matrix.json、r6_t_context_plan.json | 重开条件：池化前 token 读取或外部语义条件（R6 Q4 路径）出现；单独换头/换 loss 不构成重开 |
 | T-TOKENS（池化前跨层 token） | NOT_RUN（条件） | 同 T 门；AP 单独永不晋级 |
 | V-JEPA 80M | NOT_RUN（条件） | 需 T-TOKENS 失败 + 契约全过 + 用户明确批准 |
 

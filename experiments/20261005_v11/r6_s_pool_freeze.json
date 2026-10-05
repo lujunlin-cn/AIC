@@ -1,0 +1,13 @@
+{
+ "protocol": "R6 S-REREAD pool freeze; seed 20261006; train240 from the B3 ancestry (release train split), dev80 from the 156 never-used train_index sources, confirm=val178 untouched; shortlist top3+g33 to be encoded next; 8 instants per video",
+ "seed": 20261006,
+ "pool_sizes": {
+  "train240": 240,
+  "dev80": 80,
+  "confirm": 178
+ },
+ "n_rows": 2560,
+ "dev_never_used_pool": 156,
+ "head_sha16": "a6e7fc4bac697614",
+ "csv": "/data/aic/experiments_910a/LFM_V11/r6_s_pool_freeze_rows.csv"
+}

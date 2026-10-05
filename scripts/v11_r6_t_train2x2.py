@@ -150,14 +150,14 @@ def main():
         return 2 * tp / (k + float(y.sum()))
 
     def run(arm_set, head_cls, seed):
-        tr = [i for i in tr_idx if ARM[i] in arm_set]
+        tr = np.array([i for i in tr_idx if ARM[i] in arm_set])
         torch.manual_seed(seed)
         model = head_cls()
         opt = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=0.01)
         rng = np.random.RandomState(seed)
         for st in range(args.steps):
             idx = rng.choice(len(tr), args.batch)
-            xb = torch.from_numpy(X[tr[idx]]).transpose(1, 2)
+            xb = torch.from_numpy(X[tr[idx]])          # model transposes inside
             yb = torch.from_numpy(Y[tr[idx]])
             opt.zero_grad()
             logits = model(xb)
@@ -168,9 +168,11 @@ def main():
         per_var = {}
         with torch.no_grad():
             for i in dv_idx:
-                if ARM[i] not in arm_set:
-                    continue
-                pred = model(torch.from_numpy(X[i])[None].transpose(1, 2))[0].numpy()
+                # CROSS-EVALUATION: every model reads BOTH dev variant sets
+                # (R6 gate compares arms ON THE SAME evaluation set - the
+                # anchor dev variants are the common ground; multi dev
+                # variants show the arm's own-task level)
+                pred = model(torch.from_numpy(X[i])[None])[0].numpy()
                 per_var[i] = f_keep08(pred, Y[i])
         return per_var
 
@@ -209,7 +211,16 @@ def main():
     m_sp, pos_sp = macro(sp)
     res['arms']['slotprior'] = {'f': round(m_sp, 5), 'f_positive_variants': round(pos_sp, 5)}
 
-    detail = {'slotprior': sp}
+    # slotprior baseline: no model; report on BOTH dev sets
+    sp_anchor = {i: f for i, f in sp.items() if ARM[i] == 'anchor'}
+    sp_multi = {i: f for i, f in sp.items() if ARM[i] == 'multi'}
+    res['arms']['slotprior@anchor'] = {'f': round(macro(sp_anchor)[0], 5)}
+    res['arms']['slotprior@multi'] = {'f': round(macro(sp_multi)[0], 5)}
+    print('slotprior@anchor', res['arms']['slotprior@anchor'],
+          'slotprior@multi', res['arms']['slotprior@multi'], flush=True)
+
+    COMMON = 'anchor'                     # the common evaluation ground
+    detail = {}
     for arm_set, aname in ((('anchor',), 'anchor'), (('multi',), 'multi')):
         for head_cls, hname in ((TCN, 'tcn'), (DenseMultiScale, 'dense')):
             per_seed = []
@@ -218,31 +229,40 @@ def main():
                 per_seed.append(pv)
             keys = sorted(set.intersection(*[set(p) for p in per_seed]))
             mean_pv = {k: float(np.mean([p[k] for p in per_seed])) for k in keys}
-            m, pm = macro(mean_pv)
-            detail[f'{aname}+{hname}'] = mean_pv
-            res['arms'][f'{aname}+{hname}'] = {
-                'f': round(m, 5), 'f_positive_variants': round(pm, 5),
-                'per_seed_f': [round(float(np.mean(list(p.values()))), 5) for p in per_seed]}
-            print(f'{aname}+{hname}: F {m:.5f} (pos {pm:.5f})', flush=True)
+            common = {k: v for k, v in mean_pv.items() if ARM[k] == COMMON}
+            own = {k: v for k, v in mean_pv.items() if ARM[k] != COMMON}
+            m_c, pm_c = macro(common)
+            m_o, pm_o = macro(own) if own else (float('nan'), float('nan'))
+            detail[f'{aname}+{hname}@{COMMON}'] = common
+            detail[f'{aname}+{hname}@own'] = own
+            res['arms'][f'{aname}+{hname}@{COMMON}'] = {
+                'f': round(m_c, 5), 'f_positive_variants': round(pm_c, 5),
+                'per_seed_f_common': [round(float(np.mean(
+                    [p[k] for k in common])), 5) for p in per_seed]}
+            res['arms'][f'{aname}+{hname}@own'] = {'f': round(m_o, 5)}
+            print(f'{aname}+{hname}: @{COMMON} F {m_c:.5f} (pos {pm_c:.5f}) '
+                  f'@own F {m_o:.5f}', flush=True)
 
-    # gates: paired CIs + positive-variant noninferiority
+    # gates on the COMMON anchor-dev ground (R6 main comparison):
+    #   multi-trained must beat anchor-trained AND slotprior there
     res['gate'] = {}
     for hname in ('tcn', 'dense'):
-        a, mlt = f'anchor+{hname}', f'multi+{hname}'
-        dm_vs_anchor, ci_vs_anchor = paired_ci(detail[mlt], detail[a])
-        dm_vs_sp, ci_vs_sp = paired_ci(detail[mlt], detail['slotprior'])
-        # positive-variant noninferiority: variants whose GT coverage >= 4/8
+        a, mlt = f'anchor+{hname}@{COMMON}', f'multi+{hname}@{COMMON}'
+        spc = {k: v for k, v in sp.items() if ARM[k] == COMMON}
+        dm_a, ci_a = paired_ci(detail[mlt], detail[a])
+        dm_s, ci_s = paired_ci(detail[mlt], spc)
         pos_keys = [k for k in detail[mlt] if Y[k].sum() >= 4]
-        pos_deg = float(np.mean([detail[a][k] for k in pos_keys if k in detail[a]] or [0])) \
-            - float(np.mean([detail[mlt][k] for k in pos_keys]))
-        res['gate'][f'{hname}'] = {
-            'multi_vs_anchor': {'delta': dm_vs_anchor, 'ci95': ci_vs_anchor},
-            'multi_vs_slotprior': {'delta': dm_vs_sp, 'ci95': ci_vs_sp},
-            'positive_variant_degradation': round(-pos_deg, 5),
-            'gate_pass': bool(dm_vs_anchor >= 0.007 and ci_vs_anchor[0] > 0 and
-                              dm_vs_sp >= 0.007 and ci_vs_sp[0] > 0 and
-                              pos_deg >= -0.005)}
-        print(f'gate {hname}:', res['gate'][hname], flush=True)
+        deg = float(np.mean([detail[a][k] for k in pos_keys])) - \
+            float(np.mean([detail[mlt][k] for k in pos_keys]))
+        res['gate'][hname] = {
+            'eval_ground': f'{COMMON} dev variants',
+            'multi_vs_anchor': {'delta': dm_a, 'ci95': ci_a},
+            'multi_vs_slotprior': {'delta': dm_s, 'ci95': ci_s},
+            'positive_variant_degradation_multi_minus_anchor': round(-deg, 5),
+            'gate_pass': bool(dm_a >= 0.007 and ci_a[0] > 0 and
+                              dm_s >= 0.007 and ci_s[0] > 0 and
+                              deg >= -0.005)}
+        print(f'gate {hname}:', json.dumps(res['gate'][hname]), flush=True)
     res['_detail'] = {k: {str(i): round(v, 5) for i, v in d.items()}
                       for k, d in detail.items()}
     args.out.write_text(json.dumps(res, indent=1) + '\n')

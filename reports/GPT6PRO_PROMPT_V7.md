@@ -66,12 +66,20 @@ embedding on NPU this cycle - see 0.4).
   hardware.  A 7B VLM scoring 129 candidate crops per frame costs
   ~1,032 prefill passes (~350 tokens each) per video ≈ a few hours for
   all 426 official videos on 6 cards, assuming ~2,000 token/s/card
-  prefill.  But we have NO vLLM on 910B (vllm-ascend lacks
-  FusedInferAttentionScore; transformers runs eager attention).  The
-  REAL unknowns are: (a) measured 7B batched-prefill throughput on our
-  stack, (b) whether LoRA fine-tuning of a 7B fits the 12h/run limit
-  on 6×910B.  Any backbone ranking MUST size against these two
-  measured-to-be numbers, not against generic GPU numbers.
+  prefill.  vLLM status CORRECTED (operator re-audit 2026-10-05): the
+  card is Atlas A2 / 910B family (PCI 0xD801, npu-smi name, CANN 9.0.0
+  runs) - INSIDE the vllm-ascend mainline support surface.  The earlier
+  "vllm-ascend dead end" was a VERSION MISMATCH (the installed
+  vllm-ascend needed operators our CANN lacked), not a hardware limit.
+  Current stack: CANN 9.0.0 / torch 2.9.0 - newer than the newest
+  mainline pairing (vllm-ascend v0.13.0 wants CANN 8.5.0 / torch 2.8.0;
+  v0.11.0 wants CANN 8.3.RC2).  A version-paired vLLM install (separate
+  venv, CANN 8.5.0, training stack untouched) is the standing fix.  The
+  REAL unknowns are: (a) measured 7B batched-prefill throughput under a
+  version-paired vLLM (fallback: transformers eager), (b) whether LoRA
+  fine-tuning of a 7B fits the 12h/run limit on 6×910B.  Any backbone
+  ranking MUST size against these two measured numbers, not against
+  generic GPU numbers.
 
 ## Q1 - How do we build a STRONG positive correlation between our local
         validation sets and the official evaluation set? (HIGHEST PRIORITY)
@@ -147,10 +155,11 @@ Two-tier correlation reality, operator-confirmed:
 4. **48h probe**: the cheapest experiment that produces the strongest
    evidence for or against the top-ranked backbone, sized to 6×910B
    with the parity gate included.  Probe 0 (before any backbone probe):
-   measure our stack's 7B batched-prefill throughput (single card,
-   batch {1, 8, 32}, fp16, eager attention) - this single number
-   re-prices every architecture in your ranking, because our software
-   stack has no vLLM and 34GB host RAM per process caps concurrency.
+   stand up a version-paired vLLM (v0.13.0 + CANN 8.5.0 in a SEPARATE
+   venv; training stack untouched), then measure 7B batched-prefill
+   throughput (single card, batch {1, 8, 32}, fp16) - this single
+   number re-prices every architecture in your ranking, and 34GB host
+   RAM per process caps concurrency.
 5. **Failure conditions.**
 
 ## Q3 - What ports from our small-model work to the 9B era, and what

@@ -60,6 +60,18 @@ embedding on NPU this cycle - see 0.4).
 - New NPU stacks: parity gate first, numbers after.
 - Deployment: 6×910B, 48GB HBM, fp16, ~34GB host RAM per NPU process
   (safe concurrency ≤12), single training ≤12h, 192-core CPU.
+- **Throughput reality check (operator-corrected)**: our 86M tower
+  encoding runs at ~37 crops/s/card with AICore near 0% - the limit is
+  our single-threaded decode and batch-1 implementation, NOT the
+  hardware.  A 7B VLM scoring 129 candidate crops per frame costs
+  ~1,032 prefill passes (~350 tokens each) per video ≈ a few hours for
+  all 426 official videos on 6 cards, assuming ~2,000 token/s/card
+  prefill.  But we have NO vLLM on 910B (vllm-ascend lacks
+  FusedInferAttentionScore; transformers runs eager attention).  The
+  REAL unknowns are: (a) measured 7B batched-prefill throughput on our
+  stack, (b) whether LoRA fine-tuning of a 7B fits the 12h/run limit
+  on 6×910B.  Any backbone ranking MUST size against these two
+  measured-to-be numbers, not against generic GPU numbers.
 
 ## Q1 - How do we build a STRONG positive correlation between our local
         validation sets and the official evaluation set? (HIGHEST PRIORITY)
@@ -134,7 +146,11 @@ Two-tier correlation reality, operator-confirmed:
    change the Q2 ranking.
 4. **48h probe**: the cheapest experiment that produces the strongest
    evidence for or against the top-ranked backbone, sized to 6×910B
-   with the parity gate included.
+   with the parity gate included.  Probe 0 (before any backbone probe):
+   measure our stack's 7B batched-prefill throughput (single card,
+   batch {1, 8, 32}, fp16, eager attention) - this single number
+   re-prices every architecture in your ranking, because our software
+   stack has no vLLM and 34GB host RAM per process caps concurrency.
 5. **Failure conditions.**
 
 ## Q3 - What ports from our small-model work to the 9B era, and what

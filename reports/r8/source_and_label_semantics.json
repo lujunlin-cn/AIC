@@ -1,0 +1,112 @@
+{
+ "protocol": "R8 LABEL_PROVENANCE audit; preregistered reports/r8/preregistration.yaml",
+ "checks": {
+  "pool_structure": {
+   "status": "PASS",
+   "detail": {
+    "train240": {
+     "rows": 1920,
+     "vids": 240,
+     "rows_per_vid": [
+      8
+     ]
+    },
+    "dev80": {
+     "rows": 640,
+     "vids": 80,
+     "rows_per_vid": [
+      8
+     ]
+    }
+   }
+  },
+  "pool_isolation": {
+   "status": "PASS",
+   "train240_vs_dev80_overlap": [],
+   "val178_overlap": [],
+   "dev80_vids_in_b3_train_npz": [],
+   "val178_size": 178
+  },
+  "train240_ancestry": {
+   "status": "PASS",
+   "vids_missing_from_manifest": [],
+   "n_missing": 0
+  },
+  "label_semantics": {
+   "status": "INFO",
+   "manifest_gt_ndim_by_split": {
+    "rv_native": [
+     2
+    ],
+    "rv_rot": [
+     2
+    ],
+    "live_train": [
+     2
+    ],
+    "live_dev": [
+     2
+    ],
+    "live_confirmation": [
+     2
+    ]
+   },
+   "taxonomy": {
+    "train240": "raw_single_box (LIVE one subject per frame)",
+    "dev80": "raw_single_box (LIVE sparse json raw_ltrb)",
+    "note": "train240 rows carry u = IoU vs the single box; RV rows elsewhere carry mean over 6 annotators (mean_candidate_utilities); no synthetic raters are created anywhere in R8"
+   }
+  },
+  "dev80_u_replay": {
+   "status": "PASS",
+   "rows_replayed": 640,
+   "max_abs_diff": 0.0
+  },
+  "train240_u_replay_sampled": {
+   "status": "PASS",
+   "rows_replayed": 16,
+   "max_abs_diff": 2.4e-07
+  },
+  "shortlist_validity": {
+   "status": "PASS",
+   "rows_checked": 32,
+   "shortlist_lengths_seen": [
+    34,
+    35,
+    36
+   ],
+   "length_variance_note": "top3+g33 dedupes when the g33 grid overlaps top3 on small-span rows; <36 is data, not error",
+   "index_violations": 0,
+   "argmax_covered_in_sample": 28,
+   "note": "argmax coverage is reported, NOT required (shortlist v2 has nonzero preregistered regret 0.0055); replaces the preregistered ID-permutation wording, which is a tautology for per-candidate-scalar labels; index alignment is covered by dev80_u_replay (5a)"
+  },
+  "u_range": {
+   "status": "PASS",
+   "merged_row_keys": 2560,
+   "u_min": 0.0,
+   "u_max": 0.9957
+  }
+ },
+ "artifact_sha256": {
+  "pool_freeze_rows.csv": "28a364fecc6f4d2f",
+  "live_train.npz": "4b8cd6b8f6d9c999",
+  "v8_manifest.jsonl": "a2706ca9de13f4bb",
+  "b3_checkpoint": "a6e7fc4bac697614",
+  "encode_shards": [
+   "31f2a129931d2757",
+   "3cf0984c72349cf9",
+   "4a882ea490e8a78e",
+   "d024994a2bdb1bf4",
+   "5f846e7d5fc23ae2",
+   "136e8e2ff64fa7fb",
+   "2485164aa9166bbe",
+   "d721d431c032b260",
+   "8ea14d1dc58fea3e",
+   "b0fc4263007e7239",
+   "0f0b0ad942798ea8",
+   "ba558feb9208814a"
+  ]
+ },
+ "b3_head_sha16": "a6e7fc4bac697614",
+ "overall": "PASS"
+}

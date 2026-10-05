@@ -1,0 +1,18 @@
+{
+ "protocol": "R8 A_PROTO protocol-sensitivity audit on RV 6-annotator labels; frozen B3 argmax-129; diagnostic, no gate",
+ "rows_used": 1896,
+ "gt_shapes_seen": [
+  [
+   2,
+   6
+  ]
+ ],
+ "U_util_meanboxannotators": 0.72654,
+ "U_coord_coordinate_mean_box": 0.74498,
+ "O_util_oracle": 0.9008,
+ "O_coord_oracle": 0.99705,
+ "sensitivity_U_util_minus_U_coord": -0.0163,
+ "sensitivity_O_util_minus_O_coord": -0.09056,
+ "loo_read_mean": 0.73063,
+ "note": "if sensitivity ~ 0, the two aggregation semantics do not move this table - the protocol fork matters less than the label noise itself; if large, official-protocol identity matters and stays unknowable without official labels"
+}

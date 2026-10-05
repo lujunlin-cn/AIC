@@ -164,13 +164,12 @@ def main():
             sl = sl_map[k]
             full = full_emb[k]
             scz = z(b3_sc[k].astype(np.float32))
-            idx_of = {c: i for i, c in enumerate(sl)}
             best, bestv = None, -1e9
             for c in sl:
                 ce = crop_emb[f'{k}|{c}']
                 cs = float(np.dot(ce, full) /
                            (np.linalg.norm(ce) * np.linalg.norm(full) + 1e-6))
-                v = (1 - lam) * scz[idx_of[c]] + lam * cs
+                v = (1 - lam) * scz[c] + lam * cs          # index by CAND ID
                 if v > bestv:
                     bestv, best = v, c
             pick_z[k] = best
@@ -180,26 +179,26 @@ def main():
                                    'vs_b3_delta': dm, 'vs_b3_ci95': ci}
         print(f'S3zero lam={lam}:', res[f'S3zero_lam{lam}'], flush=True)
 
-    # S1control / S2
+    # S1control / S2  (train on train240 rows; read on DEV rows)
     arm_results = {}
     for mode, name in (('control', 'S1control'), ('crop', 'S2')):
         if mode == 'control':
-            keys, X, y, b3p = kc, Xc, yc, b3c
+            keys_tr, X_tr, y_tr, b3_tr = kc, Xc, yc, b3c
         else:
-            keys, X, y, b3p = kk, Xk, yk, b3k
-        per_seed_iou, per_seed_pick = [], []
+            keys_tr, X_tr, y_tr, b3_tr = kk, Xk, yk, b3k
+        keys_dv, X_dv, _, b3_dv = build_obs(dv_rows, mode)
+        per_seed_iou = []
         for sd in args.seeds:
-            h = train_head(X, y, b3p, sd)
+            h = train_head(X_tr, y_tr, b3_tr, sd)
             with torch.no_grad():
-                pred = b3p + h(torch.from_numpy(X)).numpy()
+                pred = b3_dv + h(torch.from_numpy(X_dv)).numpy()
             best = {}
-            for (k, c), p in zip(keys, pred):
+            for (k, c), p in zip(keys_dv, pred):
                 if k not in best or p > best[k][0]:
                     best[k] = (p, c)
-            pick_h = {k: c for k, (p, c) in best.items() if k in pool_of
-                      and pool_of[k] == 'dev80'}
+            pick_h = {k: c for k, (p, c) in best.items()}
             iou_h, _ = macro_iou(pick_h)
-            per_seed_iou.append(iou_h); per_seed_pick.append(pick_h)
+            per_seed_iou.append(iou_h)
             print(f'{name} seed{sd}: {float(iou_h.mean()):.5f}', flush=True)
         iou_mean = np.mean(per_seed_iou, 0)
         ci_b3, dm_b3 = boot_ci_paired(list(iou_mean - iou_b3), vids)

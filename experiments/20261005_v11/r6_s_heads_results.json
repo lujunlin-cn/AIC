@@ -1,0 +1,67 @@
+{
+ "protocol": "R6 S-REREAD four-arm dev read; video-macro IoU; gate S2 >= +0.03 vs B3 AND vs S1-control, paired CI lower > 0",
+ "S0_b3": {
+  "iou": 0.52887
+ },
+ "S3zero_lam0.0": {
+  "iou": 0.52887,
+  "vs_b3_delta": 0.0,
+  "vs_b3_ci95": [
+   0.0,
+   0.0
+  ]
+ },
+ "S3zero_lam0.25": {
+  "iou": 0.52992,
+  "vs_b3_delta": 0.00104,
+  "vs_b3_ci95": [
+   2e-05,
+   0.00214
+  ]
+ },
+ "S3zero_lam1.0": {
+  "iou": 0.36553,
+  "vs_b3_delta": -0.16334,
+  "vs_b3_ci95": [
+   -0.19151,
+   -0.13324
+  ]
+ },
+ "S1control": {
+  "iou": 0.53547,
+  "per_seed": [
+   0.53617,
+   0.53531,
+   0.53492
+  ],
+  "vs_b3_delta": 0.00659,
+  "vs_b3_ci95": [
+   0.00185,
+   0.01216
+  ]
+ },
+ "S2": {
+  "iou": 0.5243,
+  "per_seed": [
+   0.525,
+   0.52009,
+   0.52781
+  ],
+  "vs_b3_delta": -0.00457,
+  "vs_b3_ci95": [
+   -0.01248,
+   0.00356
+  ]
+ },
+ "S2_gate": {
+  "delta_vs_b3": -0.00457,
+  "ci_vs_b3": [
+   -0.01248,
+   0.00356
+  ],
+  "delta_vs_S1": -0.01117,
+  "ge_003_vs_b3": false,
+  "ge_003_vs_S1_point": false,
+  "note": "S2-vs-S1 paired CI to be added if the point gate passes; primary preregistered comparison is S2 vs B3"
+ }
+}

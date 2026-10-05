@@ -43,9 +43,18 @@ embedding on NPU this cycle - see 0.4).
   data constructions.  Any 9B-era design must assume this shortcut is
   in our data/label structure, not in our model size.
 - SPATIAL: S0 oracle gap 0.247 [0.227, 0.268] on locked-out LIVE
-  sources (70% of frames ≥0.05).  S1 richer features and S4 smoothing:
-  negative.  S-REREAD (actual crop re-encoding, four arms S0/S1control/
-  S2/S3zero) is RUNNING NOW - four-arm reads land tonight.
+  sources (70% of frames ≥0.05).  S1 richer features, S4 smoothing, and
+  now **S-REREAD: ALL NEGATIVE** (four arms landed 2026-10-05 evening,
+  dev80 640 rows, video-macro IoU: B3 zero-shot 0.529; same-capacity
+  control +0.007 [0.002, 0.012]; **actual-crop observation arm
+  -0.005 [-0.013, +0.004] - WORSE than the capacity control**;
+  zero-train cosine fusion -0.163).  In the Siglip2-feature +
+  residual-head setting, letting the encoder SEE the actual crop buys
+  nothing.  **Annotator-disagreement hypothesis upgraded**: the
+  LIVE-YT-VC paper itself reports adjacent-annotator IoU ~0.50 - our
+  B3 at 0.529 already matches "another annotator"; most of the 0.247
+  oracle gap may be unlearnable disagreement between the mean
+  annotator and any single annotator.
 - Label projection audit: e_proj 0.76%, block-constant oracle loss
   7.1%, label agree 97.9% - 1 s projection noise is NOT the blocker.
 - 3 official slots unspent.  Official-domain readouts exist ONLY as
@@ -151,10 +160,16 @@ Two-tier correlation reality, operator-confirmed:
    THREE closed temporal lines (does a 1B video encoder invalidate the
    native-line closure?  Its reopen condition was exactly "feature/
    task definition change" - say explicitly whether it fires).
-3. **S-REREAD interaction**: S-REREAD's mechanism (the encoder must
-   SEE the actual crop) is native to any VLM that reads cropped images.
-   Say explicitly how the S-REREAD four-arm read (tonight) should
-   change the Q2 ranking.
+3. **S-REREAD interaction (reads now in hand)**: the actual-crop
+   observation FAILED on the small stack (-0.005 vs the capacity
+   control).  Two readings compete: (i) the residual head could not
+   extract it (capacity/feature limits - a 7B VLM might), or (ii) the
+   gap is annotator disagreement, which NO backbone can learn (the
+   ~0.50 adjacent-annotator IoU number).  Design your ranking so that
+   it does not silently bet on (i) vs (ii): name what evidence would
+   separate them and what a 7B backbone would have to beat
+   (B3's 0.529 on the same 36-shortlist考场 - 2,560-row crop cache and
+   labels are ready for exactly this comparison).
 4. **48h probe**: the cheapest experiment that produces the strongest
    evidence for or against the top-ranked backbone, sized to 6×910A
    with the parity gate included.  Probe 0 (before any backbone probe):

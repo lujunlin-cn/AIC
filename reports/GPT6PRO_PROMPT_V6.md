@@ -27,7 +27,9 @@ full-frame for 159 of 426 official videos).
   windows, 0 hard errors): preregistered P/O/L matrix at action level.
   O−P = +0.0079, CI [−0.0123, +0.0305] - crosses zero.  L ≥ O.  The
   full-sequence position prior itself only reaches AP 0.16 there.
-  1800-step extension in flight.
+  1800-step extension DONE: O AP 0.1666 / P 0.1605, O−P = +0.0062 - the
+  delta SHRANK with double training, so under-training is excluded and
+  the line is closed.
 - SPATIAL: S0 audit shows an exploitable 0.247 scorer gap (oracle 0.782
   vs head 0.535 on locked-out LIVE sources; 70% of frames ≥ 0.05).
   But: S1 richer per-candidate features (2305→5377, band pooling) = NO

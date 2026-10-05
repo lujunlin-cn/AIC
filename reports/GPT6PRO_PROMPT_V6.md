@@ -1,160 +1,147 @@
-# Prompt for GPT-6-PRO, round 6: two dead feature lines, one structural gap, and where 10.05 points can still come from
+# Prompt for GPT-6-PRO, round 6: track the frontier, compare us to it, then beat it
 
 Style: ASD-STE100.  Short sentences.  Active voice.  Present tense.  Mark
-every estimate.  Answer order per question: direct answer, mechanism,
-cheapest deciding experiment, failure condition.
+every estimate.  Cite by NAME for every frontier claim: paper/project
+name, year, and what it measured.  A frontier claim without a name is
+treated as empty.  Search your knowledge to its 2026 edge; say "not
+sure" where your knowledge ends.
 
-## 0. What happened since round 5 (all verified against running code)
+## 0. Our position, verified this cycle
 
-### 0.1 Score units (correction adopted)
+### 0.1 Scores
 
-All scores are RAW, no size penalty.  Our champion V11_VTREPLAY = 34.95.
-Leader intelligence = 45.  Real gap = 10.05 points.  All earlier
-"platform vs raw" duality and the 63-point ceiling were conversions and
-are withdrawn.
+All scores are RAW, no size penalty.  Champion V11_VTREPLAY = 34.95.
+Leader intelligence = 45.  Gap = 10.05 points.  Task: pick highlight
+frames from raw video AND predict a spatial crop per kept frame
+(video-macro F over joint hit IoU; no sliding window means crop IoU is
+full-frame for 159 of 426 official videos).
 
-### 0.2 The champion verdict (P0-CONTENT, preregistered)
+### 0.2 Two content lines closed this cycle (all preregistered)
 
-The VTREPLAY head is not blind (real−zeros +0.085~0.104, both CIs
-positive) but its content contribution is VIDEO-level: swapping another
-video's features erases it (+0.003/+0.004, confirm CI includes 0).  The
-pure position prior TIES the champion.  Saturated exactdp is a pure
-position prior (all ablation deltas 0.0).  A6: removing the anchored
-slicing structure costs the champion −0.108 keep-F1, the same as the
-prior (−0.116).  CONSEQUENCE ALREADY TAKEN: no more loss/calibration
-tuning on the champion.
+- TEMPORAL (pooled): the deployed head's content contribution is
+  VIDEO-level only (+0.003 under cross-video permutation); the pure
+  position prior TIES it; anchored slicing removal costs it −0.108, the
+  same as the prior.  Dev ceiling 0.6625 = position-prior ceiling.
+- TEMPORAL (native, REBUILT on a verified contract - stream-time_base
+  seek, nearest-PTS, normalization, hash-versioned; 256 sources, 46.5k
+  windows, 0 hard errors): preregistered P/O/L matrix at action level.
+  O−P = +0.0079, CI [−0.0123, +0.0305] - crosses zero.  L ≥ O.  The
+  full-sequence position prior itself only reaches AP 0.16 there.
+  1800-step extension in flight.
+- SPATIAL: S0 audit shows an exploitable 0.247 scorer gap (oracle 0.782
+  vs head 0.535 on locked-out LIVE sources; 70% of frames ≥ 0.05).
+  But: S1 richer per-candidate features (2305→5377, band pooling) = NO
+  gain; S4 score-smoothing TTA = NO gain; the scorer is ALREADY a
+  candidate-utility head (129 legal max-windows, huber on annotator-mean
+  IoU).  Three probes, three negatives.
 
-### 0.3 The spatial line: three probes, three negatives
+### 0.3 What we are, in one paragraph
 
-| probe | result |
-|---|---|
-| S0 oracle audit | exploitable gap CONFIRMED: locked-out pool oracle−head = 0.247 [0.227, 0.268]; 70.2% frames gap ≥ 0.05; head−center only +0.071 |
-| A5 objective audit | B3 IS ALREADY a candidate-utility head (huber on annotator-mean IoU) - the "retrain the scorer" route is a duplicate |
-| S1 SEGMENTS=4 (2305→5377 features, same seed/config) | NO gain: confirmation head −0.010, oracle gap NOT narrowed (0.257 vs 0.247) |
-| S4 score-smoothing TTA | NO gain: all variants ≤ 0 on the locked-out pool (top2 CI negative) |
+A 86M SigLIP2 NaFlex tower extracts per-frame features.  A 246K TCN
+consumes 8x1s pooled features and emits per-second scores that are - per
+our own audits - a position prior with weak video-level content.  A
+1.5M B3 head picks 1 of 129 fixed max-windows per frame from
+window/outside pooling features.  No motion features (1 fps grid killed
+them; native rebuild found no exploitable signal).  No temporal detector
+architecture.  No test-time compute beyond trivial smoothing (failed).
+Size tier: ≤ 500M params; we ship ~178 MB.
 
-The residual 0.247 gap is STRUCTURAL.  The surviving candidates are
-candidate-geometry redesign, a stronger backbone, or label supervision
-breadth.  Each moves the oracle itself, so each needs a re-measured gap.
+## 1. The questions - each one has a frontier obligation
 
-### 0.4 The native line: contract rebuilt, content signal tested, not found
+For EVERY question: (1) name the 2024-2026 frontier methods with
+references; (2) place us on that map honestly; (3) propose the transfer
+that could BEAT the relevant frontier piece, or prove it cannot apply;
+(4) give the cheapest local experiment that would show the transfer
+working within 48 hours on our 192-core CPU + 6 idle NPU (910B) box.
 
-The native VideoMAEv2-B pipeline was rebuilt on the corrected contract
-(stream-time_base seek, nearest-PTS, normalization; contract hash
-ac3b657f; 256 dev sources; 46.5k windows; 0 hard errors).  The
-preregistered P/O/S/L matrix ran (action-level labels over FULL source
-sequences; lr scan picked 1e-4):
+### Q1 - The frontier map for this exact task family (HIGHEST PRIORITY)
 
-| arm | dev AP | dev F1 |
-|---|---|---|
-| O (ordered native) | 0.1703 | 0.1824 |
-| P (position-only) | 0.1624 | 0.1849 |
-| L (1 Hz sparse) | 0.1751 | 0.1807 |
+Survey the 2024-2026 state of the art across: video highlight detection
+(QVHighlights-style), temporal moment grounding/localization,
+video summarization, sports/cinematic highlight spotting, smart-crop /
+aesthetic retargeting, and LLM/VLM-based temporal reasoning.  For each
+family: the current best method by name, its architecture idea, its
+data scale, and its mechanism for making CONTENT beat POSITION priors
+(this is precisely our confirmed failure mode).  Then: which single
+idea, transferred to our joint highlight+crop metric, has the highest
+evidence-per-week ratio?  Kill the obvious answer first: "just use a
+bigger VLM" - we have 500M params and a 178 MB stack; what fits?
 
-O−P = +0.0079, source-cluster CI [−0.0123, +0.0305] - CROSSES ZERO.
-O−L = −0.0048, crosses zero.  Under the preregistered rule the native
-content signal DID NOT convert.  Two caveats we are acting on: (a) an
-1800-step extension run (O/P × 3 seeds) is in flight to exclude
-under-training; (b) the task is the FULL-SOURCE action sequence, whose
-position prior itself only reaches AP 0.16 - the pooled 8-slot contract
-remains the better-scoped task, and its own ceiling (0.6625) is a
-position-prior ceiling per P0-CONTENT.
+### Q2 - How do frontier methods kill the position-prior shortcut?
 
-Also this cycle: the first parity run caught the NEW-STACK Siglip2
-positional-embedding bug (all-zero pos embeds on torch_npu 2.9 / CANN
-9.0.0 - silent wrong values; fixed by CPU-side pos-embed resize; parity
-now eps 0.0132, 0/32 masks differ, F identical).  Every NPU forward now
-requires the patch + a parity re-run after any stack change.
+Our audits say our heads learn WHERE highlights sit in a clipped
+fragment, not WHAT is happening.  Frontier moment-detection methods
+(DETR-style set prediction, dual-stream text-video alignment,
+LLM-guided temporal reasoning, etc.) - name the mechanisms they use
+that structurally prevent position shortcuts: set-based matching?
+query learnability?  long-context encoders?  ordering-free losses?
+For each mechanism: would it survive OUR data reality (PHD2 GIF
+fragments, 8-14 s, anchor-sliced positives, weak labels), and what is
+the minimal re-implementation?  Define the 48-hour probe.
 
-### 0.5 Assets and cadence
+### Q3 - The spatial 0.247 gap: does the frontier already own this?
 
-Fresh confirm set: 500 sources frozen (sha f43281bf), slicing protocol +
-read discipline declared; NOT touched.  Anchor/Neutral stress slices:
-built (920+920).  Native dev build: 256 sources.  6 NPU cards idle
-(physical 2-7; 0-1 are another team's).  Platform return ~3 days.
-Submission slots: 3 planned this round, ALL still unspent (nothing
-passed a gate).
+Smart crop / retargeting / saliency-crop work 2024-2026: name the best
+published approaches to choosing WHERE to crop inside a sliding band
+(saliency-guided, attention-guided, aesthetic-scoring, segmentation-
+guided, diffusion-guided).  Our head scores 129 fixed max-windows from
+window-mean features - is the frontier's lesson "richer candidate
+descriptions", "continuous regression instead of discrete argmax",
+"detection-style dense heads", or something else?  Name the transfer
+with the best IoU-per-week, and the locked-out evaluation that gates it.
 
-## 1. Questions
+### Q4 - Motion is the one unmined modality - what does the frontier say?
 
-### Q1 - Where can 10.05 points physically come from now?
+Our native rebuild found no exploitable content signal at 1 s actions.
+Frontier video encoders (InternVideo2-class, V-JEPA 2/2.1,
+video-native LLMs): do any of them demonstrate highlight/moment gains
+specifically attributable to MOTION at small scale?  What sampling and
+what head do they use?  Is our 2 s window / 16 frames / tubelet-mean
+protocol a known-dead shape?  If motion is genuinely dead for GIF
+highlights, say so with named evidence.  If not, name the smallest
+frontier-faithful probe we have not run.
 
-Both mined seams returned negatives: temporal content (pooled AND native
-contracts) does not beat position priors; spatial scorer improvements
-(features, smoothing) do not move the 0.247 gap.  Decompose the
-remaining space: (a) candidate geometry redesign - what geometry would
-raise the oracle itself, and how do we estimate that WITHOUT oracle
-circularity?; (b) backbone upgrade inside the size tier - which encoder,
-replacing which input block, at what expected gap change; (c) supervision
-breadth (the y-axis has no reliable GT); (d) anything we have not
-modeled (denominator/keep structure, per-video adaptivity, calibration -
-all previously excluded, say if any should be re-opened and why).  Name
-the single attribution with the best evidence-per-week ratio.
+### Q5 - Test-time compute: what does the 2026 frontier actually do?
 
-### Q2 - Candidate geometry redesign (the S0 gap's remaining owner)
+Our smoothing TTA failed.  The frontier has moved to heavier test-time
+compute: multiprobe ensembling, query decomposition, iterative
+refinement, self-consistency over VLM captions, inverse-render/saliency
+hints.  Which test-time methods apply at our size tier with zero
+trained-parameter change, and what gain do they claim on tasks shaped
+like ours?  Name the one test-time method worth 48 hours.
 
-129 equally spaced legal max-windows.  Propose 2-3 concrete alternative
-geometries (e.g. content-adaptive candidate generation, multi-scale
-pyramids, aspect-preserving sub-windows), each with: expected oracle
-movement (estimate), the risk of just widening the gap, and the cheapest
-offline read that predicts official gain without a submission.  Define
-the go/no-go gate that a new geometry must pass BEFORE training a new
-scorer (oracle delta on locked-out sources with re-measured head gap).
+### Q6 - Anti-shortcut learning: the frontier of debiasing
 
-### Q3 - Backbone upgrade decision (size-tier constrained)
+Our strongest confirmed structure is a shortcut (slicing-protocol
+position prior).  2024-2026 debiasing work: counterfactual attribution,
+shortcut-contrastive training, environment-invariant risk, attribution-
+based reweighting.  Which named method would actually move a model off
+a position prior when the labels themselves are position-correlated
+(our Neutral slicing showed the labels ARE the prior)?  Be honest if
+the answer is "none - fix the data protocol instead", and specify the
+data-protocol fix with named precedent.
 
-The vision tower is SigLIP2 NaFlex 86M (also the spatial head's feature
-source).  Candidates: higher token resolution, DINOv2-class features,
-InternVideo2-1B temporal features (fits the 500M tier?), or training a
-lightweight temporal adapter on frozen features.  For each: expected
-effect on (i) the 0.247 spatial gap and (ii) the dead temporal content
-lines - and be explicit if the answer is "none, the features are not the
-binding constraint".  Define the cheapest per-candidate offline probe.
+### Q7 - Attack our cycle's evidence chain (fourth round)
 
-### Q4 - Given both content lines are dead, is there ANY training-side move left?
+New surfaces: (a) xperm swaps features across videos WITHIN one pool -
+could video-similarity confounds explain the residual +0.003?  (b) the
+L-matrix projects GT intervals onto 1 s actions - quantified label noise
+vs the 8-slot contract?  (c) the native dev sources overlap the pooled
+line's training ancestors - contamination or not?  (d) the parity gate
+found a silent NPU bug - what OTHER silent-wrong-value risks should we
+gate before trusting any future number?
 
-Training-side debias (Anchor/Neutral re-windowing, position debias
-augmentation) attacks the confirmed slicing-protocol dependence - but it
-de biases a position prior, which cannot raise F above the prior ceiling
-on neutral slicing.  Is there a formulation where training-side debias
-PLUS the fresh confirm set produces a submission-worthy candidate, or is
-the honest read "no candidate this round; bank the evidence"?  If a
-candidate exists, define its exact local gate.
+### Q8 - Converge: the one-week plan that could reach a frontier-grade candidate
 
-### Q5 - Submission strategy with an empty candidate shelf
-
-3 slots unspent, no gated candidate.  Options: (a) hold all slots; (b)
-one K70 keep-frac diagnostic (previously conditional on NPU downtime that
-did not happen); (c) a "mechanism probe" package that changes a
-non-scored aspect to measure platform behavior.  Which (if any) buys
-information worth a slot, given the leader is at 45 and second place is
-untested?  State the exact preregistered read for whatever you propose.
-
-### Q6 - Attack the evidence chain (fourth round)
-
-Fresh surfaces: (a) the P0-CONTENT xperm control permutes features
-across videos WITHIN the dev pool - does cross-video permutation fully
-decouple "video-level appearance" from "within-video position", or could
-a video-similarity confound explain the residual +0.003?  (b) the L-matrix
-action labels project GT intervals onto 1-second actions whose centers
-come from tubelet timing - quantify the label noise this injects versus
-the 8-slot contract; (c) the native dev build trained on 128 sources
-whose anchor-sliced positives were ALSO the training pool of the pooled
-line - is the L-matrix read contaminated by construction?  (d) anything
-else that would not survive hostile review.
-
-### Q7 - 72 NPU-hour plan for the week after
-
-Cards idle: 6.  Programs on the table: candidate-geometry redesign
-(Q2), backbone probes (Q3), fresh-confirm native features (gated, built
-only if a T-gate candidate exists), augmentation experiments (gated on a
-live content line, currently closed).  Give the exact allocation, what
-runs on CPU in parallel, and the single measurement that would reorder
-everything.
+Given everything above: the exact 72 NPU-hour allocation, the CPU
+parallel work, the gate each line must pass, and the single measurement
+that would reorder everything.  Also: with 3 unspent submission slots
+and no gated candidate, is there a frontier-mechanism probe package
+that buys more information than holding the slots?
 
 ## 2. Output format
 
-Answer Q1 first.  Direct answer, mechanism, cheapest deciding
-experiment, failure condition per question.  Mark estimates.  Do not
-treat any number from the anchored dev/confirm pools as official-domain
-evidence.  Keep ASD-STE100.
+Answer Q1 first.  Every frontier claim: NAME + year + measured claim.
+Every proposal: mechanism, transfer cost, 48-hour probe, failure
+condition.  Mark estimates.  Do not treat anchored-pool numbers as
+official-domain evidence.  Keep ASD-STE100.

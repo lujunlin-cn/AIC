@@ -1,0 +1,59 @@
+{
+ "lr_scan_dev_ap": {
+  "3e-05": 0.1641,
+  "0.0001": 0.1703,
+  "0.0003": 0.163
+ },
+ "chosen_lr": 0.0001,
+ "arms": {
+  "O": {
+   "dev_ap_mean": 0.1703,
+   "dev_f1_mean": 0.1824,
+   "ap_per_seed": [
+    0.1672,
+    0.1746,
+    0.1691
+   ]
+  },
+  "P": {
+   "dev_ap_mean": 0.1624,
+   "dev_f1_mean": 0.1849,
+   "ap_per_seed": [
+    0.1639,
+    0.1611,
+    0.1622
+   ]
+  },
+  "S": "MISSING",
+  "L": {
+   "dev_ap_mean": 0.1751,
+   "dev_f1_mean": 0.1807,
+   "ap_per_seed": [
+    0.1724,
+    0.1737,
+    0.1792
+   ]
+  }
+ },
+ "note": "DEV READ ONLY",
+ "paired_deltas": {
+  "O_minus_P": {
+   "mean": 0.0079,
+   "ci95": [
+    -0.0123,
+    0.0305
+   ]
+  },
+  "O_minus_L": {
+   "mean": -0.0048,
+   "ci95": [
+    -0.013,
+    0.009
+   ]
+  }
+ },
+ "attribution": {
+  "O_gt_P": true,
+  "O_gt_L": false
+ }
+}

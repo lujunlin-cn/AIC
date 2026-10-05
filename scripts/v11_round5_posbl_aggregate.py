@@ -16,6 +16,7 @@ for _v in ('OMP_NUM_THREADS', 'OPENBLAS_NUM_THREADS', 'MKL_NUM_THREADS', 'NUMEXP
     os.environ.setdefault(_v, '8')
 from pathlib import Path
 import numpy as np
+import torch
 
 ap = argparse.ArgumentParser()
 ap.add_argument('--task-dir', type=Path,
@@ -44,7 +45,8 @@ def f1_keep(s, y, keep):
 
 
 def boot_ci(delta, keep_src, boot, seed=20261005):
-    uv = sorted(set(keep_src))
+    keep_src = np.asarray(keep_src)
+    uv = sorted(set(keep_src.tolist()))
     vidx = {v: np.where(keep_src == v)[0] for v in uv}
     rng = np.random.RandomState(seed)
     means = []
@@ -56,10 +58,10 @@ def boot_ci(delta, keep_src, boot, seed=20261005):
 
 
 def main():
-    files = glob.glob(str(args.task_dir / '*_task_*.npz'))
+    files = glob.glob(str(args.task_dir / '*_task_*.pt'))
     runs = {}
     for f in files:
-        z = np.load(f, allow_pickle=True)
+        z = torch.load(f, map_location='cpu', weights_only=False)
         arm, seed, lr = str(z['arm']), int(z['seed']), float(z['lr'])
         runs[(arm, seed, lr)] = z
     print(f'loaded {len(files)} task files', flush=True)
@@ -73,8 +75,10 @@ def main():
             z = runs.get(('O', sd, lr))
             if z is None:
                 continue
-            sc, y, kp = z['scores'], z['labels'], z['keep']
-            aps.append(float(np.mean([ap_of(sc[i], y[i]) for i in range(len(sc))])))
+            dv = z['dv']
+            sc = [z['scores'][i] for i in dv]
+            ys = [z['labels'][i] for i in dv]
+            aps.append(float(np.mean([ap_of(sc[i], ys[i]) for i in range(len(sc))])))
         lr_ap[lr] = round(float(np.mean(aps)), 4) if aps else None
     chosen = max((l for l in lrs if lr_ap[l] is not None), key=lambda l: lr_ap[l])
     print('lr scan:', lr_ap, '-> chosen', chosen, flush=True)
@@ -89,19 +93,23 @@ def main():
             z = runs.get((arm, sd, chosen))
             if z is None:
                 continue
-            sc, y, kp = z['scores'], z['labels'], z['keep']
-            aps.append(float(np.mean([ap_of(sc[i], y[i]) for i in range(len(sc))])))
-            f1s.append(float(np.mean([f1_keep(sc[i], y[i], args.keep)
+            dv = z['dv']
+            sc = [z['scores'][i] for i in dv]
+            ys = [z['labels'][i] for i in dv]
+            kp = z['keep']
+            aps.append(float(np.mean([ap_of(sc[i], ys[i]) for i in range(len(sc))])))
+            f1s.append(float(np.mean([f1_keep(sc[i], ys[i], args.keep)
                                       for i in range(len(sc))])))
             sc_list.append(sc)
             src_of = kp
+            y_ref = ys
         if not aps:
             results['arms'][arm] = 'MISSING'
             continue
         results['arms'][arm] = {'dev_ap_mean': round(float(np.mean(aps)), 4),
                                 'dev_f1_mean': round(float(np.mean(f1s)), 4),
                                 'ap_per_seed': [round(a, 4) for a in aps]}
-        per_arm[arm] = (sc_list, y, src_of)
+        per_arm[arm] = (sc_list, y_ref, src_of)
         print(arm, results['arms'][arm], flush=True)
 
     # paired deltas O-P / O-S / O-L (seed-paired, source-cluster CI)
@@ -112,7 +120,8 @@ def main():
         d = []
         for si in range(3):
             sc_o, sc_x = per_arm['O'][0][si], per_arm[other][0][si]
-            d += [ap_of(sc_o[i], per_arm['O'][1][i]) - ap_of(sc_x[i], per_arm['O'][1][i])
+            ys = per_arm['O'][1]
+            d += [ap_of(sc_o[i], ys[i]) - ap_of(sc_x[i], ys[i])
                   for i in range(len(sc_o))]
         ci = boot_ci(np.array(d), per_arm['O'][2], args.boot)
         deltas[f'O_minus_{other}'] = {'mean': round(float(np.mean(d)), 4), 'ci95': ci}

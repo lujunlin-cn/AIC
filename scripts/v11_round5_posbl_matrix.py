@@ -183,11 +183,11 @@ def single_task():
     model, sc = train_arm(X, Yl, tr, dv, arm, seed, lr, args.steps,
                           args.batch, rng, 'cpu')
     out = args.out.with_name(
-        f'{args.out.stem}_task_{arm}_s{seed}_lr{lr}.npz')
-    np.savez_compressed(out, scores=np.array([sc[i] for i in dv]),
-                        dv=dv, keep=np.array(keep),
-                        labels=np.array([Yl[i] for i in dv], dtype=object),
-                        arm=arm, seed=seed, lr=lr)
+        f'{args.out.stem}_task_{arm}_s{seed}_lr{lr}.pt')
+    import torch as _t
+    _t.save({'scores': {i: sc[i] for i in dv}, 'dv': list(dv),
+             'keep': list(keep), 'labels': {i: Yl[i] for i in dv},
+             'arm': arm, 'seed': seed, 'lr': lr}, out)
     print('TASK_DONE', out, flush=True)
 
 

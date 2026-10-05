@@ -1,0 +1,140 @@
+# R7 preregistration - frozen before any R7 probe execution
+# Date: 2026-10-05.  All scores RAW; no conversions.
+# Companion plan: reports/20261005_round7_plan.md
+study: AIC_R7_9B
+status: NOT_RUN
+hard_rules:
+  raw_scores_only: true
+  inference_parameter_limit: 9000000000
+  official_media_in_training_or_selection: false
+  official_inference_after_recipe_freeze_only: true
+  single_run_hours_limit: 12
+  group_multipliers_2.679_3.381_3.021_use: >
+    exact algebra for interpreting official feedback of group-diagnostic
+    packages ONLY; never to forecast candidate scores from local numbers
+pinned_facts:
+  card: 910A (lspci 19e5:d801; CANN 9.0.0 pinned; npu-smi names not evidence)
+  per_annotator_labels_public: false   # verified 2026-10-05 on local copy + upstream README
+  val178_burned: false                 # S-REREAD read dev80, not val178
+  shortlist_v2: top3+g33 ~36/frame, oracle regret 0.0055 PASS (R6)
+  fresh_spatial_capacity: 76 never-used + 178 val = 254 frames-sources available
+
+probes:
+  MICRO_STUDY_CEILING:
+    status: NOT_RUN
+    npu_hours: 0
+    frames: 120            # 60 dev80 + 60 from the 76 never-used sources
+    annotators_min: 2
+    annotators_target: 3
+    protocol: independent ltrb, source pixels, no model output shown,
+      fixed written instructions
+    readouts:
+      H: mean pairwise human-human IoU
+      BH: mean IoU(B3, human)
+      delta: BH - H, paired frame-level bootstrap CI
+    decision_rule:
+      ceiling_supported: "delta >= -0.03  -> spatial VLM line demoted to
+        diagnostic-only; 9B budget stays on temporal"
+      gap_supported: "delta <= -0.10 -> spatial VLM line keeps a real arm"
+      inconclusive: "between -> escalate to VLM_CROP_EXAM as sole separator"
+    fallback_if_single_human: VLM_CROP_EXAM becomes the only separator
+
+  PROBE_0_EAGER:
+    status: NOT_RUN
+    npu_hours_cap: 8
+    prerequisite: CPU/NPU parity gate on the new stack (Siglip2
+      pos-embed rule: every new stack re-tests; silent-zero outputs
+      caught only by the gate)
+    models: [Qwen2.5-VL-7B, Qwen2.5-VL-3B-fallback]
+    inputs: 128 fixed real crops from cached dev80 rows
+    batches: [1, 8, 32]
+    dtype: fp16
+    timing: 10 warmup then >= 30 timed batches
+    report: input_tokens_per_s_per_card, crops_per_s_per_card, hbm_peak,
+      host_rss, data_wait_fraction
+    note: vLLM NOT a prerequisite; vllm-ascend v0.18.0 is an upside path
+      (main-package pairing unresolved; host Docker is operator's call)
+    role: measurement that re-prices all architectures; not a gate
+
+  IV2_1B_TEMPORAL:
+    status: NOT_RUN
+    npu_hours_cap: 10
+    sequence:
+      - parity gate (public sample, CPU vs NPU, same dtype)
+      - P/O/L position controls + static multi-frame control on frozen
+        1B features BEFORE any head training; if features again carry
+        only slicing-protocol signal, STOP and record
+      - head retrain (projection + temporal head from scratch; old head
+        weights are not a control)
+    feature_contract: frozen encoder, read layer recorded (Stage-1 vs
+      Stage-2 weights + layer index)
+    gate: temporal F +0.007 vs champion line on the common pool,
+      source-cluster bootstrap CI lower > 0
+    non_advance: AP-only gains do not advance
+
+  VLM_CROP_EXAM:
+    status: NOT_RUN
+    npu_hours_cap: 6
+    arms:
+      V0: B3 (have: 0.5289 dev80)
+      V1: same 7B, matched visual-token budget, full image + candidate IDs
+      V2: same 7B + actual crop images
+      V3: frozen-score fusion, ONE dev-chosen weight
+    shortlist: 8 candidates/frame; exact oracle from cached 129-score
+      table computed BEFORE running; gate <= 0.01 else extend to 12 and
+      re-price
+    protocol: candidate-ID order pair-swapped; decisions mapped to
+      physical windows; deterministic decoding round 1; template chosen
+      on dev only
+    candidate_gates: IoU +0.03 vs B3 AND +0.02 vs V1, paired CI lower > 0,
+      no-slide untouched, one-shot confirm on val178/76-fresh
+    evidence_reading_not_a_gate: >
+      V2 in ~0.52-0.55 with B3 at 0.529 = convergent support for the
+      annotation-ceiling hypothesis; recorded as evidence either way
+    run_priority: full if MICRO_STUDY says gap_supported; only-if-
+      inconclusive-or-skipped if ceiling_supported
+
+  TRANSFER_BRIDGE_V1:
+    status: NOT_RUN
+    cpu_hours_cap: 48
+    npu_hours_cap: 4
+    rules: unsubmitted interventions get no official numbers; stages
+      split; >= 2 historical interventions replayed on the common pool;
+      most recent family held out as prediction test; compare vs the
+      official-delta-0 predictor
+    veto_rule: a proxy that rates known-strong-negative families
+      (scaling -4.00, centering -4.29) as confident positives loses its
+      gate-keeping role
+    small_n: < 8 matched interventions -> scatter + direction hits only,
+      label UNCALIBRATED
+
+  FRESH_CONFIRMATION:
+    status: NOT_RUN
+    npu_hours_cap: 6
+    pools: val178 one-shot and/or the 76 never-used sources; access log
+      required; no reuse of dev80 as confirmation
+    max_arms: 2
+
+  PACKAGE_REPLAY:
+    status: NOT_RUN
+    npu_hours_cap: 4
+
+slot_strategy:
+  unspent_slots: 3
+  designs: [DIAGNOSTIC_D_NXY, CANDIDATE_S_T_ST]
+  rule: choose ONE design before any submission; never mix
+  decision_point: hour-36 verdict review
+  default_if_no_gated_candidate: DIAGNOSTIC_D_NXY
+  if_1b_temporal_passes: one real temporal candidate + at most one
+    spatial diagnostic (D_X or D_Y); hold the last slot
+
+stays_closed:
+  - native old-recipe reruns
+  - TCN-vs-dense relitigation
+  - keep-rate scans
+  - unconstrained expected-F reworks
+  - position-prior rewraps with new losses
+  - vision-only spatial packages
+reopen_paths:
+  - feature/task redefinition (fires for IV2_1B_TEMPORAL by design)
+  - measured learnable gap from MICRO_STUDY_CEILING / VLM_CROP_EXAM

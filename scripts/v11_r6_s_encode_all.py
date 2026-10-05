@@ -179,12 +179,29 @@ for i, v in enumerate(tr_vid.tolist()):
 
 out = {'crop_emb': {}, 'full_emb': {}, 'b3_scores': {}, 'u': {},
        'shortlist': {}, 'crop_boxes': {}, 'shard': args.shard}
+out_path = args.out.with_name(f'{args.out.stem}{args.shard}.pt')
+if out_path.exists():                      # checkpoint resume
+    try:
+        prev = torch.load(out_path, map_location='cpu', weights_only=False)
+        for k in ('crop_emb', 'full_emb', 'b3_scores', 'u', 'shortlist',
+                  'crop_boxes'):
+            out[k].update(prev.get(k, {}))
+        print(f'shard {args.shard}: resumed {len(out["b3_scores"])} finished rows',
+              flush=True)
+    except Exception as e:                 # truncated file from a crash
+        print(f'shard {args.shard}: checkpoint unreadable ({e}), starting fresh',
+              flush=True)
 t0 = time.time()
-done = 0
+done = len(out['b3_scores'])
 from collections import defaultdict
 groups = defaultdict(list)
+finished = set(out['b3_scores'])
 for r in mine:
-    groups[r['vid']].append(r)
+    key = f"{r['vid']}|{r['frame']}|{r['ratio']}"
+    if key not in finished:
+        groups[r['vid']].append(r)
+print(f'shard {args.shard}: {len(mine)} rows total, {len(groups)} vids to do',
+      flush=True)
 print(f'shard {args.shard}: {len(groups)} vids', flush=True)
 for vid, rs in groups.items():
     mp, W, H = t5meta[vid]
@@ -193,8 +210,10 @@ for vid, rs in groups.items():
     # ONE sequential decode per video, shared by all its rows
     imgs = {}
     with av.open(mp) as cont:
+        stream = cont.streams.video[0]
+        stream.thread_type = 'AUTO'                  # multithreaded decode
         fi = 0
-        for frame in cont.decode(cont.streams.video[0]):
+        for frame in cont.decode(stream):
             if fi in want:
                 im = frame.to_image().convert('RGB')
                 imgs[fi] = im.resize((max(1, round(im.width * s)),
@@ -237,10 +256,12 @@ for vid, rs in groups.items():
                 out['crop_emb'][f'{rowkey}|{c}'] = embed(got.crop(tuple(out['crop_boxes'][rowkey][bi])))
             out['full_emb'][rowkey] = embed(got)
         done += 1
+        if done % 10 == 0:
+            torch.save(out, out_path)      # incremental checkpoint
         if done % 20 == 0:
             el = time.time() - t0
             print(f'shard {args.shard}: {done}/{len(mine)} rows, {el:.0f}s, '
                   f'{done / el * 3600:.0f} rows/h', flush=True)
-torch.save(out, args.out.with_name(f'{args.out.stem}{args.shard}.pt'))
+torch.save(out, out_path)
 print(f'SHARD {args.shard} DONE: {done} rows, {len(out["crop_emb"])} crops, '
       f'{time.time() - t0:.0f}s', flush=True)

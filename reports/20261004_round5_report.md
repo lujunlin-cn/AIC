@@ -150,3 +150,41 @@ measured first, not promised.  Artifact: round5_native_feats_build.json.
 CPU: ~8 h wall (ablation, oracle analysis, contract validation, slicing,
 feature extraction, parity).  NPU: parity + native probe ~1 h of the 72 h
 envelope.  No submission spent.
+
+## 8. Night session (10-04/05): L-matrix verdict, no package this round
+
+The preregistered P/O/S/L matrix ran on the rebuilt native contract
+(256 dev sources; action-level labels over FULL source sequences; lr
+scan picked 1e-4; B arm skipped - LFM features share no sources with the
+native set):
+
+| arm | dev AP | dev F1 |
+|---|---|---|
+| O ordered | 0.1703 | 0.1824 |
+| P position-only | 0.1624 | 0.1849 |
+| L 1Hz sparse | 0.1751 | 0.1807 |
+
+O−P = +0.0079, source-cluster CI [−0.0123, +0.0305] - crosses zero.
+Under the preregistered rule (O must beat P with CI above zero) the
+native content signal DOES NOT convert.  An 1800-step extension
+(O/P × 3 seeds) is running to exclude under-training (scores showed
+saturation, range −32).  Note the task scope: the FULL-source action
+sequence's own position prior only reaches AP 0.16 - this task is much
+harder than the pooled 8-slot contract, and does not contradict the
+0.6625 pooled ceiling; it does mean the native line has no usable
+signal at its natural task either.
+
+CONSEQUENCE: no S candidate (S1/S4 negative), no T candidate (O−P
+crosses zero).  All 3 submission slots stay unspent - banking evidence
+instead of burning slots on ungated candidates.  Deliverables for the
+morning: GPT6PRO_PROMPT_V6.md (the 10.05-point re-decomposition after
+both content lines closed), the full claim ledger, and this report.
+
+NPU incident (minor): the single-instance NPU posbl run hung with AICore
+idle (cause not chased); replaced by 45-way CPU task parallelism - each
+task = one (arm, seed, lr) - which also surfaced and fixed a save-format
+bug (inhomogeneous arrays) via a 30-step smoke before the full run.
+
+Artifacts: round5_posbl_matrix.json, round5_s4_tta.json,
+round5_anchor_neutral_read.json, round5_cpu_npu_parity.json,
+reports/r5/augmentation_backlog_linkage.md.

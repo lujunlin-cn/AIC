@@ -1,0 +1,95 @@
+{
+ "protocol": "R8 IV2 P/O/S/L/B attribution; frame-level binary labels (frag soft>0.5); source split 80/20 seed 77; dev read only; readout = per-source WINDOW-level Spearman (pred = mean over the 8 frame logits; label = mean saliency of the window); frame labels are the window scalar broadcast; GO = O Spearman >0 AND paired CI lower >0, else STOP per preregistration",
+ "windows": 9064,
+ "srcs": 4500,
+ "label_rule": "window scalar = mean saliency, broadcast to frames; readout per-source window-level Spearman",
+ "s_arm_note": "mean pooling is permutation-invariant, so the S arm has reduced interpretability under this label grain; the GO/STOP decision rests on O absolute and O-P / O-B paired deltas",
+ "O_lr3e-05": 0.0375,
+ "O_lr0.0001": 0.1042,
+ "O_lr0.0003": 0.2333,
+ "chosen_lr": 0.0003,
+ "P": {
+  "dev_spearman_mean": 0.0,
+  "spearman_per_seed": [
+   0.0,
+   0.0,
+   0.0
+  ]
+ },
+ "O": {
+  "dev_spearman_mean": 0.2333,
+  "spearman_per_seed": [
+   0.225,
+   0.4375,
+   0.0375
+  ]
+ },
+ "S": {
+  "dev_spearman_mean": 0.1667,
+  "spearman_per_seed": [
+   0.425,
+   0.2375,
+   -0.1625
+  ]
+ },
+ "L": {
+  "dev_spearman_mean": 0.0333,
+  "spearman_per_seed": [
+   0.225,
+   0.0375,
+   -0.1625
+  ]
+ },
+ "B": {
+  "dev_spearman_mean": 0.425,
+  "spearman_per_seed": [
+   0.425,
+   0.425,
+   0.425
+  ]
+ },
+ "attribution": {
+  "O_minus_P_spearman": {
+   "delta": 0.23333,
+   "ci95": [
+    0.02083,
+    0.49167
+   ]
+  },
+  "O_minus_S_spearman": {
+   "delta": 0.06667,
+   "ci95": [
+    -0.2,
+    0.4
+   ]
+  },
+  "O_minus_L_spearman": {
+   "delta": 0.2,
+   "ci95": [
+    0.0,
+    0.46667
+   ]
+  },
+  "O_minus_B_spearman": {
+   "delta": -0.19167,
+   "ci95": [
+    -0.52094,
+    0.13333
+   ]
+  }
+ },
+ "O_absolute_spearman": 0.2333,
+ "decision": "GO (features carry learnable content signal; proceed to head training)",
+ "decision_delta": 0.23333,
+ "decision_ci95": [
+  0.02083,
+  0.49167
+ ],
+ "raw_pred_mean_reference_only": {
+  "P": 0.76206,
+  "O": 0.75278,
+  "S": 0.75361,
+  "L": 0.75458,
+  "B": 0.75525
+ }
+}

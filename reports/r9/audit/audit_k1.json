@@ -1,0 +1,84 @@
+{
+  "scope": "local_binary_equal_cost_fragment_macro; NOT official joint F",
+  "status": "COMPUTED_FROM_SUPPLIED_PUBLIC_RECORDS",
+  "n": 8,
+  "actual_k": 1,
+  "actual_keep_fraction": 0.125,
+  "feasible_sets": 8,
+  "train_fragments": 1963,
+  "train_sources": 979,
+  "eval_fragments": 1954,
+  "eval_sources": 984,
+  "eval_g_hist": {
+    "1": 71,
+    "2": 374,
+    "3": 521,
+    "4": 408,
+    "5": 247,
+    "6": 198,
+    "7": 135
+  },
+  "train_marginal_rates": [
+    0.4610290371879776,
+    0.6026490066225165,
+    0.6597045338767193,
+    0.6332144676515538,
+    0.5506877228731534,
+    0.41365257259296995,
+    0.24859908303616912,
+    0.16760061130922058
+  ],
+  "train_macro_weights": [
+    0.20915750915750858,
+    0.2636137593091225,
+    0.2743043931785637,
+    0.25369211362588634,
+    0.218133081046987,
+    0.15532833612303779,
+    0.08693569124032721,
+    0.06591951095262367
+  ],
+  "marginal_prior_mask": [
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "macro_prior_mask": [
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "metrics": {
+    "head_f": 0.2796473655992591,
+    "marginal_prior_f": 0.2746831895501291,
+    "macro_prior_f": 0.2746831895501291,
+    "oracle_f": 0.4691341326704684,
+    "random_expected_f": 0.19135823341619146,
+    "worst_f": 0.0,
+    "delta_head_macro_prior": 0.004964176049129989,
+    "oracle_gap_from_prior": 0.1944509431203392,
+    "same_mask": 0.4841351074718526,
+    "same_hits": 0.827021494370522,
+    "swaps": 0.5158648925281474
+  },
+  "paired_source_bootstrap_delta_ci95": [
+    -0.006258826974947193,
+    0.015639501799559363
+  ],
+  "ci_scope": "conditional on frozen fitted priors/checkpoints; no seed-selection or domain-shift uncertainty",
+  "oracle_warning": "Evaluation GT oracles are diagnostics only and must not generate a deployment mask.",
+  "inputs_sha256": {
+    "/data/aic/experiments_910a/LFM_V11/r8_npu/r9_audit/train_public.jsonl": "b6da484945f8ef02dd662288609d13b004d6e674b41906f67cb52c183b04fd3e",
+    "/data/aic/experiments_910a/LFM_V11/r8_npu/r9_audit/eval_public.jsonl": "a30a9d71fe826c5d1edace1fd10da0c33d2f69ed1f6c63ed6bec7dcf8f992579"
+  }
+}

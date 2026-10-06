@@ -1,0 +1,33 @@
+{
+ "champion_ckpt": "/data/aic/experiments_910a/LFM_V10/probe_deploy_head.pt",
+ "split": "eval_sources_50 (source-disjoint)",
+ "actual_k_note": "f1_at_keep(0.80) on n=8 -> k=round(6.4)=6, real keep 0.75",
+ "pool_decomposition": {
+  "index_clean_rows": 5886,
+  "index_clean_sources": 2262,
+  "feature_available": 5886,
+  "mixed_only_kept": 3917,
+  "mixed_only_sources": 1963,
+  "g_hist_train": {
+   "1": 77,
+   "2": 361,
+   "3": 582,
+   "4": 385,
+   "5": 233,
+   "6": 189,
+   "7": 136
+  },
+  "g_hist_eval": {
+   "1": 71,
+   "2": 374,
+   "3": 521,
+   "4": 408,
+   "5": 247,
+   "6": 198,
+   "7": 135
+  },
+  "slots_hist_eval": {
+   "8": 1954
+  }
+ }
+}

@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "exhaustive_label_cardinality_cases": 2304,
+  "max_bound_error": 3.3306690738754696e-16,
+  "additional_properties": 4,
+  "aic_real_experiments": "NOT_RUN",
+  "notes": "Synthetic/analytic tests only. No AIC predictions, training, official inputs, or NPU calls."
+}

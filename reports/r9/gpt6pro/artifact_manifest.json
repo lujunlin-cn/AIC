@@ -1,0 +1,38 @@
+{
+  "study": "AIC_R9",
+  "report": "AIC_20261006_R9_prior_metric_encoder_and_execution.md",
+  "files": {
+    "AIC_20261006_R9_prior_metric_encoder_and_execution.md": {
+      "sha256": "f50a6b16f9543fa8ecde8423e2cc76f879b712c1225bfd737a1d9b88071f1ab3",
+      "bytes": 44680
+    },
+    "README.md": {
+      "sha256": "8b67dbb133bdac68478930a9579850a7de519719040103bd475e439f8e0bdc01",
+      "bytes": 1142
+    },
+    "experiment_plan.json": {
+      "sha256": "9be67e22c5acd5d91b378cee81afbff523f000fad6df1a32cfb8f2a74a53c881",
+      "bytes": 1721
+    },
+    "integration_test_results.json": {
+      "sha256": "9ab17a5479fe9cfd4fca943598c372f38a40ee6a92a9fd22b433d23ebbf3b180",
+      "bytes": 245
+    },
+    "metric_sensitivity_audit.py": {
+      "sha256": "eb63ed224e14ee2338f4686317aac817007bee59a0025a5028014abb49ceceb5",
+      "bytes": 10681
+    },
+    "self_test_results.json": {
+      "sha256": "1470be8ee4658a003ba6ddcb662261eaa41429403e5122b46ed5a911669fb889",
+      "bytes": 287
+    },
+    "synthetic_dev.jsonl": {
+      "sha256": "76d25580aab220e250d781eb7e7d7ad551487283912b110357a8a17468fce721",
+      "bytes": 6641
+    },
+    "synthetic_train.jsonl": {
+      "sha256": "647bd6de7e72dc6c73a74bb1e58c71ddc77379c836e3ddffcb6e59ba973d4451",
+      "bytes": 10140
+    }
+  }
+}

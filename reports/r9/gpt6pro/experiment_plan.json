@@ -1,0 +1,76 @@
+{
+  "study": "AIC_R9_PRIOR_METRIC_ENCODER",
+  "date": "2026-10-06",
+  "status": "NOT_RUN",
+  "score_contract": {
+    "raw_only": true,
+    "champion": 34.95,
+    "leader_operator_report": 45.0
+  },
+  "hard_rules": {
+    "inference_params_max": 9000000000,
+    "daily_submission_max": 5,
+    "new_human_labels": false,
+    "official_data_in_training_or_selection": false,
+    "single_run_hours_exclusive_max": 12
+  },
+  "probes": [
+    {
+      "id": "A0_METRIC",
+      "status": "NOT_RUN",
+      "cpu_hours_cap": 2,
+      "npu_hours_cap": 0,
+      "actual_k_required": true
+    },
+    {
+      "id": "A1_LABEL_AUDIT",
+      "status": "NOT_RUN",
+      "cpu_hours_cap": 4,
+      "same_pool_required": true
+    },
+    {
+      "id": "IV2_S1_PHD2",
+      "status": "NOT_RUN",
+      "npu_hours_cap": 8,
+      "layers": [
+        "last",
+        "minus5"
+      ],
+      "same_frames_labels_split_required": true
+    },
+    {
+      "id": "IV2_S2_PHD2",
+      "status": "NOT_RUN",
+      "npu_hours_cap": 8,
+      "layers": [
+        "last",
+        "minus5"
+      ]
+    },
+    {
+      "id": "QWEN_VISUAL",
+      "status": "NOT_RUN",
+      "npu_hours_cap": 8,
+      "full_llm_claim_forbidden": true
+    },
+    {
+      "id": "TEACHER_PUBLIC_PILOT",
+      "status": "NOT_RUN",
+      "npu_hours_cap": 4,
+      "official_teacher_package_allowed": false
+    },
+    {
+      "id": "CONFIRM",
+      "status": "NOT_RUN",
+      "npu_hours_cap": 6,
+      "fresh_source_access_log_required": true
+    }
+  ],
+  "negative_controls": [
+    "D_N",
+    "D_X",
+    "D_Y"
+  ],
+  "negative_control_rule": "Frozen recipe only; validate boundary handling. A finite-difference ratio is not a universal transfer slope.",
+  "real_experiment_results": null
+}

@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "scope": "SYNTHETIC_ONLY",
+  "checks": [
+    "JSONL load",
+    "prior fit",
+    "macro bootstrap",
+    "swap identity on all rows",
+    "source-overlap rejection"
+  ],
+  "real_aic_data_used": false,
+  "npu_used": false
+}

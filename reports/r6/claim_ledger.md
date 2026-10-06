@@ -179,3 +179,10 @@ ST 组合需两个单变量包均有正向官方证据。无门通过不出包�
 |---|---|---|---|---|
 | A1 标签定义审计（guard/中心点/占用三定义） | **DONE（标签定义排除）** | 同一冻结清单三种标签定义：prior F1 = 0.6625/0.5497/0.5549，champion−prior = −0.0036/−0.0024/−0.0023——**换标签定义只整体缩放 F1，先验平台结构不变**。R9 报告 A1 实验的结论：guard 标签不是平台成因 | reports/r9/audit/a1a2_audit.json | 无 |
 | A2 分数手术分解（real/tperm/meanvec/zerovec） | **DONE（AP-F1 分离教科书读数）** | real F1 0.6588 / AP 0.7463；tperm 0.5548/0.6016（=随机预算期望 0.5561，置换恰好摧毁集合信息）；**恒定分数（mean/zero）0.6625/0.7101=slotprior 本身**（本池先验 top-6 恰为前 6 槽）。champion 对恒定分数 **AP +0.036（有全序内容信号）但 F1 −0.0037（信号不落边界、0.13 次/片交换净效用为负）**。判定：champion 不是没有信号，是信号不转换为边界交换 | 同上 | 无 |
+
+### R9 CPU 信号探针：media probe + 三族 screen（2026-10-07 凌晨，CPU 19min）
+
+| Claim | 状态 | 比较、门槛与读数 | Artifact | 重开条件 |
+|---|---|---|---|---|
+| 音轨存在率 | **FACT** | manifest 源音轨存在率 96.7%（train）——audio 信号族未被「无音轨」排除，PyAV 音频解码路径验证可用 | r9_signal_probe npz、r9_media_probe.py | 无 |
+| 廉价标量 screen（vis 5 列 + aud 6 列） | **DONE（全 null，探针级）** | 2 参数网格（w0·logit(prior)+w1·z(x)，train 似然拟合）：**全部 11 列 w1=0**；槽级点二列相关全部 \|corr\|<0.05（最大 hist_chi2 −0.043，n=31k slot）。手写数值验证确认非实现 bug。结论 scope：**像素统计/手工音频标量层无信号**——GIF 高光选择是语义级判断；audio 族后续必须上有学习型 embedding（PANNs/BEATs 级）才可测，手工标量层已可关闭 | reports/r9/audit/signal_screen.json、r9_signal_screen.py | 谱级/嵌入级特征未测，不在本结论 scope |

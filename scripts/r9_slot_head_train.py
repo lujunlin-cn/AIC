@@ -89,11 +89,13 @@ def _expected_f_ref(logits, y):
 
 
 def f1_at_keep(scores, y, keep):
-    n = len(y)
+    scores = np.asarray(scores, np.float64)
+    yv = np.asarray(y, np.float64)
+    n = len(yv)
     k = max(1, int(round(keep * n)))
     idx = set(np.argsort(-scores)[:k].tolist())
-    hit = sum(y[i] for i in idx)
-    return float(2 * hit / (k + y.sum()))
+    hit = float(yv[list(idx)].sum())
+    return float(2 * hit / (k + yv.sum()))
 
 
 def cluster_boot_paired(delta, srcs, boot, seed=99):
@@ -154,15 +156,28 @@ def main():
 
     # frozen references; champion f1_list aligns with eval_public.jsonl row
     # order, so a skipped frag must drop from BOTH sides (kept-list filter)
+    man = load_manifest()
+    ev_src0 = set(json.loads(args.eval_sources.read_text()))
     gate_prev = json.loads(args.champion_gate.read_text())
-    champ_full = gate_prev['champion']['f1_list']
+    if 'f1_list' in gate_prev.get('champion', {}):
+        champ_full = gate_prev['champion']['f1_list']
+        champ_src = 'temporal_gate.json'
+    else:
+        # the R8 judge rewrite dropped f1_list; rebuild from the frozen audit
+        # export (its 'scores' field IS the champion logits) and self-check
+        champ_full = [f1_at_keep([float(v) for v in r['scores']],
+                                 [int(v) for v in r['labels']], 0.80)
+                      for r in man if r['source_id'] in ev_src0]
+        champ_src = 'rebuilt from eval_public.jsonl scores'
+        ref = gate_prev['champion']['f1_keep080']
+        assert abs(float(np.mean(champ_full)) - ref) < 0.002, \
+            (float(np.mean(champ_full)), ref)
     audit = {}
     for l in args.audit_k6.read_text().splitlines():
         if l.strip():
             r = json.loads(l)
             audit[r['fragment_id']] = r['macro_prior_f']
-    man = load_manifest()
-    ev_src = set(json.loads(args.eval_sources.read_text()))
+    ev_src = ev_src0
     ev_rows = [(i, r) for i, r in enumerate(man) if r['source_id'] in ev_src]
     assert len(ev_rows) == len(champ_full), (len(ev_rows), len(champ_full))
     champ_f1 = [c for (_, r), c in zip(ev_rows, champ_full)]
@@ -236,7 +251,7 @@ def main():
                 [rec['arms'][f'{readout}:{loss}:s{s_}']['f1_mean'] for s_ in args.seeds]))
         judging = max(arm_means, key=arm_means.get)
         nf1 = np.mean([[rec['arms'][f'{readout}:{judging}:s{s_}']['f1_list'][j]
-                        for s_ in args.seeds] for j in range(len(ev))], axis=0)
+                        for s_ in args.seeds] for j in range(len(ev))], axis=1)
         d_c = (nf1 - champ).tolist()
         d_m = (nf1 - mac).tolist()
         ci_c = cluster_boot_paired(d_c, [SRC[i] for i in ev], args.boot)

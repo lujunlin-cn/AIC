@@ -1,0 +1,158 @@
+{
+ "protocol": "score = w0*logit(prior_s) + w1*z(x); 2-param grid on train likelihood; alpha bar = F1-delta CI lower > 0 AND net swap utility > 0; two-stage confirm still required",
+ "audio_source_frac_train": 0.9669,
+ "families": {
+  "vis": {
+   "frame_diff": {
+    "w": [
+     1.0,
+     0.0
+    ],
+    "f1": 0.6625,
+    "delta_vs_prior": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ],
+    "net_swaps": 0
+   },
+   "sharpness": {
+    "w": [
+     1.0,
+     0.0
+    ],
+    "f1": 0.6625,
+    "delta_vs_prior": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ],
+    "net_swaps": 0
+   },
+   "brightness": {
+    "w": [
+     1.0,
+     0.0
+    ],
+    "f1": 0.6625,
+    "delta_vs_prior": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ],
+    "net_swaps": 0
+   },
+   "saturation": {
+    "w": [
+     1.0,
+     0.0
+    ],
+    "f1": 0.6625,
+    "delta_vs_prior": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ],
+    "net_swaps": 0
+   },
+   "hist_chi2": {
+    "w": [
+     1.0,
+     0.0
+    ],
+    "f1": 0.6625,
+    "delta_vs_prior": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ],
+    "net_swaps": 0
+   },
+   "alpha_qualifies": false
+  },
+  "aud": {
+   "rms_mean": {
+    "w": [
+     1.0,
+     0.0
+    ],
+    "f1": 0.6625,
+    "delta_vs_prior": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ],
+    "net_swaps": 0
+   },
+   "rms_std": {
+    "w": [
+     1.0,
+     0.0
+    ],
+    "f1": 0.6625,
+    "delta_vs_prior": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ],
+    "net_swaps": 0
+   },
+   "rms_max": {
+    "w": [
+     1.0,
+     0.0
+    ],
+    "f1": 0.6625,
+    "delta_vs_prior": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ],
+    "net_swaps": 0
+   },
+   "rms_flux": {
+    "w": [
+     1.0,
+     0.0
+    ],
+    "f1": 0.6625,
+    "delta_vs_prior": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ],
+    "net_swaps": 0
+   },
+   "silence": {
+    "w": [
+     1.0,
+     0.0
+    ],
+    "f1": 0.6625,
+    "delta_vs_prior": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ],
+    "net_swaps": 0
+   },
+   "cheer_contrast": {
+    "w": [
+     1.0,
+     0.0
+    ],
+    "f1": 0.6625,
+    "delta_vs_prior": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ],
+    "net_swaps": 0
+   },
+   "alpha_qualifies": false
+  }
+ },
+ "status": "DONE",
+ "baseline_prior_f1": 0.6625,
+ "elapsed_min": 0.5
+}

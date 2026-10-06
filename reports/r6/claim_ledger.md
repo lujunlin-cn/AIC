@@ -68,3 +68,12 @@ ST 组合需两个单变量包均有正向官方证据。无门通过不出包�
 | Claim | 状态 | 比较、门槛与读数 | Artifact | 重开条件 |
 |---|---|---|---|---|
 | C/M/E 目标函数对照（五配置 × 3 种子 × 3000 步） | **NO_PRACTICAL_GAIN_IN_SCOPE（DEV 已裁定）** | 门：+0.015 vs B3（CPU 配对基线 0.53108）且源级配对 CI 下界>0。**全部五配置未过**：C=0.52919（−0.0019 [−0.0149,+0.0125]）；M=0.53474（+0.0037 [−0.0116,+0.0185]）；E β=0/0.03/0.1=0.54034/0.54045/0.53684（+0.0093/+0.0094/+0.0058，CI 全跨零）。配对：E_rep(β=.03) vs M +0.0057 [−0.0022,+0.0147]（点正不显著）；E vs C +0.0113 [−0.0016,+0.0248]（方向合理论、功效不足）。**结构读数**：C≈B3（管线自证）；β 不敏感（非正则问题）；E 头放弃绝对尺度（pred err 4.99 vs 0.224，softmax 效用目标只管排序，预期行为）；内容置换下所有目标都掉到 ~0.48（决策的内容成分小是目标无关的）；shortlist regret 全员 ~0.22-0.23。**裁定**：按预注册关闭条款——目标函数（huber+pair vs L2 vs 全信息期望效用）在本特征+数据规模下不产生可学决策层差距；确认池未花（无过门臂）；9B 预算集中 IV2-1B 时间线 + VLM_SFT | reports/r8/control_l2_exact_results.json、reports/r8/per_source_argmax_iou.csv | 仅沿预注册特征重定义路径：若特征底座升级（VLM_SFT 或 1B 编码器）,目标对照可随新特征一次性重测；同特征同数据重跑 = 不重开 |
+
+## R8 NPU 线（10-05 夜至 10-06 晨，自主窗口）
+
+| Claim | 状态 | 比较、门槛与读数 | Artifact | 重开条件 |
+|---|---|---|---|---|
+| IV2-1B CPU/NPU parity 门 | **LOCAL_GATE_PASS** | stage1(k710) 权重、8 帧 224p、pooled fc_norm 特征：cosine **0.9999912**、rel L2 0.004184、fp16 NPU 有限值——门（cos≥0.999 且 rel≤0.02）过。注：上游 InternVideo2 checkout 已被 10-04 环境重置清除，github 直连 clone 恢复（HEAD 3d52108 与 09-26 smoke 记录一致） | r8_npu/iv2_parity.json | 换权重/换帧数/换栈时重跑 |
+| IV2 frag 特征全量提取 | **DONE** | QVH_V10/frag_train 9000 窗口 × 8 帧：居中 8 帧滑窗协议（帧 i = clamp(i−3..i+4) 的 pooled，每帧 8 秒时间上下文——单帧视觉塔不具备的性质，backbone swap 按 prereg 记为 feature change）；3 分片并行 ~92 分钟/分片；产出 **9066 npz**（~66 窗口非 8 帧被跳过），格式与 frag_feats_train 逐字段对齐（pooled (8,768) fp16 + t），时间头管线可 drop-in 换根 | r8_iv2/iv2_frag_feats_train/p{0,1,2}/ | 无（数据产物） |
+| Qwen2.5-VL parity | 修正后重跑中 | 首跑 GATE FAIL 判读为**检查代码 bug 而非 NPU 缺陷**：transformers 5.18 的 last_hidden_state 是 2D 拼接 token 流（batch8=15488×1280），permutation 检查误用图级索引取 token ⇒ 9.28 假爆炸；单图一致性本身极好（cosine 0.999993/0.999976，reload 逐位一致）。修复=按 grid_thw 切分每图 token 段；rel 门 0.05→0.10 校准（首测 0.0531 后、任何 probe 数字消费前记录：fp16 在 1936-token 流累积 ~5% 属正常，binding 判据是 cosine≥0.999+置换/重载逐位）。教训：**API 形状假设必须在写检查前实测**（CPU 对照一次即可发现 2D 流） | r8_npu/parity_7B.json（重跑中） | 3B/7B 双 PASS 后 probe0 数字生效 |
+| 工程坑清单（本夜） | 记录 | ① pkill 自匹配第 3 次（引号拼接规则已有 memory，仍需每次警惕）② IV2 源码被环境重置清除 ③ 修 bug 后只重传了单进程脚本，另一卡跑旧脚本崩（并行纪律：修 bug 必须重启全部相关进程）④ TBE 首跑编译的点阵进度≠卡死 ⑤ Module 没有 .npu() 快捷方法必须 .to("npu")（torch_npu patch 只保证 Tensor） | 本 ledger | 无 |

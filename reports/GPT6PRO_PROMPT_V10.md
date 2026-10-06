@@ -136,7 +136,21 @@ negative.  The video-text pretraining objective (Stage2) does not help
 over video-only (Stage1) on this pool either.
 
 slot_head_qwen.json - Qwen2.5-VL-7B visual tower, static 8-anchor:
-{FILL IF ARRIVED - last arm of the night}
+BOTH readouts FAIL - qwen_l32 0.6380 (-0.0209 vs champion), qwen_l24
+0.6516 (-0.0072), CIs negative.
+
+BATCH VERDICT: the R9 encoder line is CLOSED on this pool.  Eight
+readouts across THREE encoder families (video-supervised Stage1,
+video-text Stage2, image-text Qwen tower), two layers each, three seeds,
+dual preregistered gate: every one significantly BELOW the SigLIP
+champion.  Three text-aligned representations (Stage2, Qwen) are not
+better than the video-only one - the mismatch is structural: these
+encoders' training signals are not creator-GIF-selection signals, and
+the R9 escalation triggers (+0.020 for 6B/V-JEPA) are nowhere near met,
+so NO further encoder scale-up is scheduled.  Whatever remains to be
+found must come from signal families OUTSIDE appearance-encoder
+features, or from the policy-headroom side (Q7), not from a bigger
+backbone.
 
 a1a2_audit.json + signal_screen.json: filled in 0.2 - label definition
 excluded; AP/F1 separation measured; all 11 cheap scalars null.

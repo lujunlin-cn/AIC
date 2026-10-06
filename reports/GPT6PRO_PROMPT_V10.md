@@ -129,8 +129,14 @@ does not survive the label-type change.  (c) exactdp no longer converges
 to slotprior on the new features (0.6557 < 0.6625) - the new features are
 not even Position-info-equivalent, they are strictly poorer here.
 
-Stage2 (4-frame control) and Qwen visual tower (static 8-anchor): runs
-landed the same night - {FILL IF ARRIVED: same table; else mark PENDING}.
+slot_head_s2.json - IV2-1B **Stage2** (4-frame control), same protocol:
+ALL three readouts FAIL, WORSE than Stage1 - mean768 0.6435 (-0.0153 vs
+champion), m1408_l 0.6416 (-0.0172), m1408_m5 0.6471 (-0.0117), CIs all
+negative.  The video-text pretraining objective (Stage2) does not help
+over video-only (Stage1) on this pool either.
+
+slot_head_qwen.json - Qwen2.5-VL-7B visual tower, static 8-anchor:
+{FILL IF ARRIVED - last arm of the night}
 
 a1a2_audit.json + signal_screen.json: filled in 0.2 - label definition
 excluded; AP/F1 separation measured; all 11 cheap scalars null.

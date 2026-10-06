@@ -131,3 +131,11 @@ ST 组合需两个单变量包均有正向官方证据。无门通过不出包�
 |---|---|---|---|---|
 | 时间头底座选择（双底座对照，dev 级） | **OLD_BASE（旧底座，按预记录规则）** | pooled dev Spearman（3 种子均值，8,998 窗交集、TCN 从头、3,000 步）：**A 旧底座 0.17974**（0.175/0.185/0.180）vs **B IV2 0.10528**（0.130/0.079/0.107）——三种子 A 全部占优；A−B = **+0.056，源级聚类 bootstrap CI [−0.001, +0.110]** 恰跨零（下界 −0.0012）。预记录裁定规则：跨零 ⇒ 记录等效、默认主口径均值高者 ⇒ **旧底座**。三角证据同向：本对照三种子 + P/O/L B 臂（旧 0.425 vs IV2 0.2333）⇒ **时间头采用旧特征底座；IV2 换根线正式关闭**（P/O/L GO 的「IV2 有信号」成立但不构成换根理由）。合并脚本窗口集合断言通过；训练 log 与合并脚本的 pooled 读数有 ≤0.009 差异（窗口名对齐 vs 索引对齐），方向与裁定不变 | reports/r8/npu/dualbase_{A,B,verdict}.json | IV2 侧出现新读层/新协议读数反转方向 |
 | 下一步（待用户） | **OPEN** | r7 第 3 步的官方门（temporal F +0.007 vs champion，common pool，源级 CI）需要：champion 时间头的 temporal F 评测协议、common pool 定位、窗口级排序头到时间轴输出的映射。champion 管线细节需考古（VTREPLAY 系脚本 + R5 native 特征/标签投影），考古后按旧底座出正式门判定方案 | r7 preregistration IV2_1B_TEMPORAL 条款 | 无 |
+
+### 时间头考古与 pilot 复现（2026-10-06 晚，用户批准 1→2 路径）
+
+| Claim | 状态 | 比较、门槛与读数 | Artifact | 重开条件 |
+|---|---|---|---|---|
+| champion 时间头管线考古 | **DONE（全链闭环）** | 池=PHD2_FRAG_V1（5,886 frags/2,262 源）+ LFM_V10/pool_feats（每 frag (8,768) SigLIP slot 特征+t）；标签=PHD2 selections 区间投影 slot 守望窗、mixed-only；分割=eval_sources_50（1,131 eval 源/1,954 eval frags，源级隔离）；读数=f1_at_keep(0.80)=2·hit/(k+n_gt)（与官方算术同构）；头=TCN 家族（train 默认 dils (1,2,4)，champion ckpt 自带 ch/dils），Adam 1e-3/batch 8/900 步/clip 1.0；**champion=LFM_V10/probe_deploy_head.pt**。与 QVH frag 池（双底座对照所在）是不同池不同切片协议——底座选择的 dev 证据不直接外推，但 IV2 在 PHD2 池提特征需数小时 NPU 且已有两处同向负证据，性价比低，不提 | r8_temporal_gate.py（口径函数逐字复刻）、v11_expected_f_train.py（母本） | 无 |
+| pilot 复现（正式门前置，用户批准） | **PASS（管线零漂移）** | 同口径重跑：池 train 1,963/eval 1,954 frags（与 R5 记录一致）；**champion F1 = 0.6588 与 R5 锚逐位一致**；**slotprior F1 = 0.6625 与 R5 锚逐位一致**——位置先验仍高于 champion +0.0037，门的真实对手是 0.6658（=0.6588+0.007）；mse 重训单种子 0.6273（历史 mse 水平） | r8_npu/temporal_gate.json、temporal_gate_pilot.log | 无 |
+| 正式门判定（r7 第 3 步） | **RUNNING** | 预注册条款：mse+exactdp × 种子 {20261006-08}（TCN 从头），臂级 3 种子均值选判定臂（选点规则启动前预记录），配对 per-fragment delta vs champion、源级聚类 bootstrap 2,000 次；门=delta ≥ +0.007 且 CI 下界>0；slotprior 0.6625 作为诚实对照同报（判定臂须同时高于它才有部署意义） | r8_npu/temporal_gate_full.json（待出） | 不过门 ⇒ r7 第 3 步负结果关闭归档 |

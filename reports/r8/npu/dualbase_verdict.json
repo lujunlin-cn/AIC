@@ -1,0 +1,33 @@
+{
+ "protocol": "dual-base verdict; source-cluster bootstrap; preregistered rule: lower>0 -> old(A); upper<0 -> IV2(B); crossing -> equivalent, default higher pooled mean",
+ "windows": 1800,
+ "dev_srcs": 900,
+ "seeds": [
+  510,
+  511,
+  512
+ ],
+ "checks": {
+  "window_sets_equal": true
+ },
+ "A_pooled_per_seed": [
+  0.17461,
+  0.18485,
+  0.17974
+ ],
+ "A_pooled_mean": 0.17974,
+ "B_pooled_per_seed": [
+  0.12964,
+  0.07873,
+  0.10746
+ ],
+ "B_pooled_mean": 0.10528,
+ "A_minus_B": {
+  "delta": 0.05599,
+  "ci95": [
+   -0.00123,
+   0.10962
+  ]
+ },
+ "verdict": "EQUIVALENT -> default OLD_BASE (A)"
+}

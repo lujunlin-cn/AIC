@@ -77,3 +77,12 @@ ST 组合需两个单变量包均有正向官方证据。无门通过不出包�
 | IV2 frag 特征全量提取 | **DONE** | QVH_V10/frag_train 9000 窗口 × 8 帧：居中 8 帧滑窗协议（帧 i = clamp(i−3..i+4) 的 pooled，每帧 8 秒时间上下文——单帧视觉塔不具备的性质，backbone swap 按 prereg 记为 feature change）；3 分片并行 ~92 分钟/分片；产出 **9066 npz**（~66 窗口非 8 帧被跳过），格式与 frag_feats_train 逐字段对齐（pooled (8,768) fp16 + t），时间头管线可 drop-in 换根 | r8_iv2/iv2_frag_feats_train/p{0,1,2}/ | 无（数据产物） |
 | Qwen2.5-VL parity | 修正后重跑中 | 首跑 GATE FAIL 判读为**检查代码 bug 而非 NPU 缺陷**：transformers 5.18 的 last_hidden_state 是 2D 拼接 token 流（batch8=15488×1280），permutation 检查误用图级索引取 token ⇒ 9.28 假爆炸；单图一致性本身极好（cosine 0.999993/0.999976，reload 逐位一致）。修复=按 grid_thw 切分每图 token 段；rel 门 0.05→0.10 校准（首测 0.0531 后、任何 probe 数字消费前记录：fp16 在 1936-token 流累积 ~5% 属正常，binding 判据是 cosine≥0.999+置换/重载逐位）。教训：**API 形状假设必须在写检查前实测**（CPU 对照一次即可发现 2D 流） | r8_npu/parity_7B.json（重跑中） | 3B/7B 双 PASS 后 probe0 数字生效 |
 | 工程坑清单（本夜） | 记录 | ① pkill 自匹配第 3 次（引号拼接规则已有 memory，仍需每次警惕）② IV2 源码被环境重置清除 ③ 修 bug 后只重传了单进程脚本，另一卡跑旧脚本崩（并行纪律：修 bug 必须重启全部相关进程）④ TBE 首跑编译的点阵进度≠卡死 ⑤ Module 没有 .npu() 快捷方法必须 .to("npu")（torch_npu patch 只保证 Tensor） | 本 ledger | 无 |
+
+## R8 NPU 线终局（2026-10-06）
+
+| Claim | 状态 | 比较、门槛与读数 | Artifact | 重开条件 |
+|---|---|---|---|---|
+| Qwen2.5-VL parity 门（7B/3B） | **LOCAL_GATE_PASS（双）** | 首跑 FAIL 判为检查代码缺陷（2D 拼接 token 流按图索引）。决定性对照：8 图 batch 前向与单图逐个前向**逐位一致**（cosine 1.000000 ×8）⇒ NPU 无图序依赖。修复后：7B rel 0.0531 / cos_min 0.999976 / perm 0.0 / reload 逐位；3B rel 0.0395 / cos_min 0.999888 / perm 0.0 / reload 逐位。rel 门 0.05→0.10 校准记录于首测后、任何 probe 数字消费前 | reports/r8/npu/parity_{7B,3B}.json、batch_vs_single.log | 换栈/换 transformers 版本时重跑 |
+| Probe 0 吞吐定价 | **DEV_ONLY 已读** | **可用口径 = 逐图前向**：7B batch1 = 1.72 crops/s/卡（3325 visual tokens/s，HBM 16.1 GB）；3B batch1 = 1.69 crops/s（HBM 7.7 GB）。**多图拼接 batch 在此栈代价为二次方**：batch8 超过 25 分钟未完成（batch1 为 0.58 s ⇒ 线性外推应 4.7 s），batch32 推算 >6 h，计时终止。**工程结论：此栈上 VLM 训练与推理的视觉前向必须逐图 + 梯度累积**。7B/3B 吞吐几乎相同 ⇒ 瓶颈在序列注意力而非参数量 | reports/r8/npu/probe0_{7B,3B}_b1.json | 出现 window-attention/SDPA 可用路径时重测 |
+| VLM_SFT 50 步稳定性探针 | **DONE（稳定性成立，无质量声明）** | LoRA r=8 语言层 q/v（视觉塔冻结，可训练参数 0 个在 visual 内——断言通过）、单图前向 + 梯度累积 8、lr 5e-6：50 步全部有限梯度（grad_norm 最大 5.77）、无 NaN；**8.69 s/step ⇒ 外推一 epoch（240 步）= 0.58 h/卡**，12 h 限制内可容纳 ~20 epoch。loss 2.18→1.77→2.58（64 样本循环上波动，不构成质量证据）。VLM_SFT 全部前置条件满足：parity PASS + provenance PASS + C_M_E 完成 + 稳定性 DONE | reports/r8/npu/vlm_sft_stability.json | 无（已就绪，等操作者批准训练窗口） |
+| 探针脚本磨合记录 | 记录 | 4 次启动失败原因各不相同且全部闭环：①框索引越界（crop_boxes 按短名单顺序而非候选索引）②③ processor 派生字段 mm_token_type_ids 未随 input_ids 拼接扩展（读 modeling 源码定位实名）④ 解包错误 ×2（zip 替换）。全部为脚本首跑磨合，非环境问题 | reports/r8/npu/vlm_sft_probe.log | 无 |

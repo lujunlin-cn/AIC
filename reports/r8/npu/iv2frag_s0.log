@@ -1,0 +1,22 @@
+/usr/local/python3.11.15/lib/python3.11/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+/data/aic/tmp/InternVideo2/llava-train_videochat/llava/model/multimodal_encoder/internvideo2/vit_scale_clean.py:140: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  @torch.cuda.amp.autocast(enabled=False)
+IV2 loaded
+shard 0/3: 3000 windows
+200/3000 0.65/s eta 72min
+400/3000 0.59/s eta 74min
+600/3000 0.57/s eta 70min
+800/3000 0.56/s eta 65min
+1000/3000 0.56/s eta 60min
+1200/3000 0.56/s eta 54min
+1400/3000 0.55/s eta 48min
+1600/3000 0.55/s eta 42min
+1800/3000 0.55/s eta 36min
+2000/3000 0.55/s eta 30min
+2200/3000 0.55/s eta 24min
+2400/3000 0.55/s eta 18min
+2600/3000 0.55/s eta 12min
+2800/3000 0.55/s eta 6min
+3000/3000 0.55/s eta 0min
+DONE shard 0: 3000/3000 in 91.6min

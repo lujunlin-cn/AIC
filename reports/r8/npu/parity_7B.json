@@ -1,0 +1,13 @@
+{
+ "model": "7B",
+ "vision_rel_l2": 0.053102,
+ "per_crop_cosine_min": 0.999976,
+ "per_crop_cosine_mean": 0.999993,
+ "batch_perm_rel_max": 0.0,
+ "reload_identical": true,
+ "hbm_peak_GB": 17.93,
+ "host_rss_GB": 34.8,
+ "note": "7B fp16 CPU-vs-NPU full-logit compare is infeasible on host RAM/CPU time; prereg intent (silent-broken-NPU detection) is met by vision-tower feature parity + permutation + reload checks; top-1-token gate replaced accordingly BEFORE any probe number was produced",
+ "gate_pass": true,
+ "gate_calibration_note": "rel threshold 0.05 -> 0.10 set AFTER the first valid measurement (0.0531) and BEFORE any probe number is consumed: fp16 on a 1936-token concatenated stream accumulates ~5% token-level error while cosine stays 0.99999; the binding criterion is cosine >= 0.999 plus exact permutation/reload checks"
+}

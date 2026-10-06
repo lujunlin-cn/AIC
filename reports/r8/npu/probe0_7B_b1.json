@@ -1,0 +1,14 @@
+{
+ "model": "7B",
+ "batch": 1,
+ "crops": 100,
+ "mean_s_per_batch": 0.5823,
+ "p50_s": 0.5804,
+ "crops_per_s_per_card": 1.72,
+ "visual_tokens_per_s_per_card": 3324.9,
+ "hbm_peak_GB": 16.11,
+ "host_rss_GB": 4.01,
+ "decode_encode_frac_of_total": 0.03,
+ "warmup": 10,
+ "timed": 30
+}

@@ -1,0 +1,14 @@
+{
+ "model": "3B",
+ "batch": 1,
+ "crops": 100,
+ "mean_s_per_batch": 0.592,
+ "p50_s": 0.5929,
+ "crops_per_s_per_card": 1.69,
+ "visual_tokens_per_s_per_card": 3270.0,
+ "hbm_peak_GB": 7.73,
+ "host_rss_GB": 4.45,
+ "decode_encode_frac_of_total": 0.031,
+ "warmup": 10,
+ "timed": 30
+}

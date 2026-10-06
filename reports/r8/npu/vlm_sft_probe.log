@@ -1,0 +1,15 @@
+samples: 64
+Loading weights:   0%|          | 0/729 [00:00<?, ?it/s]Loading weights:   0%|          | 1/729 [00:00<02:42,  4.49it/s]Loading weights:   7%|▋         | 52/729 [00:00<00:03, 196.92it/s]Loading weights:  11%|█         | 81/729 [00:00<00:02, 219.17it/s]Loading weights:  15%|█▍        | 109/729 [00:00<00:02, 226.55it/s]Loading weights:  19%|█▊        | 135/729 [00:00<00:02, 225.79it/s]Loading weights:  22%|██▏       | 160/729 [00:00<00:02, 197.27it/s]Loading weights:  25%|██▌       | 185/729 [00:00<00:02, 202.81it/s]Loading weights:  29%|██▊       | 208/729 [00:01<00:02, 198.42it/s]Loading weights:  32%|███▏      | 232/729 [00:01<00:02, 194.47it/s]Loading weights:  35%|███▌      | 256/729 [00:01<00:02, 186.52it/s]Loading weights:  38%|███▊      | 280/729 [00:01<00:02, 178.08it/s]Loading weights:  41%|████      | 299/729 [00:01<00:02, 178.29it/s]Loading weights:  44%|████▎     | 318/729 [00:01<00:02, 160.01it/s]Loading weights:  54%|█████▍    | 397/729 [00:01<00:01, 312.17it/s]Loading weights:  72%|███████▏  | 522/729 [00:01<00:00, 553.01it/s]Loading weights:  88%|████████▊ | 643/729 [00:02<00:00, 722.93it/s]Loading weights: 100%|██████████| 729/729 [00:02<00:00, 340.67it/s]
+trainable params: 2,523,136 || all params: 8,294,689,792 || trainable%: 0.0304
+trainable tensors: 112, inside visual: 0
+/usr/local/python3.11.15/lib/python3.11/site-packages/transformers/models/qwen2_vl/image_processing_qwen2_vl.py:129: FutureWarning: Passing `min_pixels` and `max_pixels` to a processor call is deprecated and will be removed in v5.23. Pass in `size={'longest_edge': xxx, 'shortest_edge': xxx} to override the target size.`
+  warnings.warn(
+/root/AIC/scripts/r8_vlm_sft_probe.py:137: UserWarning: Cannot create tensor with interal format while allow_internel_format=False, tensor will be created with base format. (Triggered internally at ../torch_npu/csrc/aten/common/TensorFactories.cpp:340.)
+  labels = torch.cat([torch.full_like(x['input_ids'], -100), ans], 1)
+step 1 loss 2.1796 gn 2.91 11.01s/step
+step 10 loss 2.6614 gn 2.22 8.84s/step
+step 20 loss 1.8486 gn 2.94 8.76s/step
+step 30 loss 2.0674 gn 3.63 8.72s/step
+step 40 loss 1.7705 gn 3.55 8.70s/step
+step 50 loss 2.5832 gn 5.77 8.69s/step
+SUMMARY {"s_per_step": 8.69, "projected_epoch_hours_1card": 0.58, "loss_first_vs_last": [2.1796, 2.5832], "grad_norm_max": 5.772, "finite_grads": true}

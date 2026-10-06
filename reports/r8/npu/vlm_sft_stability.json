@@ -1,0 +1,63 @@
+{
+ "protocol": "R8 VLM_SFT stability probe; LoRA r=8 language q/v; vision frozen; single-image forward + grad accum 8; no quality claim",
+ "model": "Qwen2.5-VL-7B",
+ "n_train": 64,
+ "steps": 50,
+ "accum": 8,
+ "lr": 5e-06,
+ "history": [
+  {
+   "step": 1,
+   "loss": 2.1796,
+   "grad_norm": 2.912,
+   "s_per_step": 11.01,
+   "nan": false
+  },
+  {
+   "step": 10,
+   "loss": 2.6614,
+   "grad_norm": 2.218,
+   "s_per_step": 8.84,
+   "nan": false
+  },
+  {
+   "step": 20,
+   "loss": 1.8486,
+   "grad_norm": 2.94,
+   "s_per_step": 8.76,
+   "nan": false
+  },
+  {
+   "step": 30,
+   "loss": 2.0674,
+   "grad_norm": 3.634,
+   "s_per_step": 8.72,
+   "nan": false
+  },
+  {
+   "step": 40,
+   "loss": 1.7705,
+   "grad_norm": 3.554,
+   "s_per_step": 8.7,
+   "nan": false
+  },
+  {
+   "step": 50,
+   "loss": 2.5832,
+   "grad_norm": 5.772,
+   "s_per_step": 8.69,
+   "nan": false
+  }
+ ],
+ "status": "DONE",
+ "summary": {
+  "s_per_step": 8.69,
+  "projected_epoch_hours_1card": 0.58,
+  "loss_first_vs_last": [
+   2.1796,
+   2.5832
+  ],
+  "grad_norm_max": 5.772,
+  "finite_grads": true
+ }
+}

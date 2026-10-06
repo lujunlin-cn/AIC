@@ -65,9 +65,23 @@ Eval G histogram: 1:71, 2:374, 3:521, 4:408, 5:247, 6:198, 7:135.
 `_r` twin fragments share the same frozen time axis -> identical features
 by construction (pool-structure fact, relevant for any per-frag analysis).
 
-A1/A2 audits are running tonight (label-definition swap guard/centre/
-occupancy; content/position decomposition by score surgery).  Results land
-before you answer; the operator will fill section 0.4.
+A1/A2 audits are DONE (2026-10-07, CPU, frozen pool):
+
+- A1 label swap: under THREE label definitions - guard (frozen),
+  centre-point, occupancy>0.5 - the prior/champion gap barely moves:
+  champ-minus-prior = -0.0036 / -0.0024 / -0.0023, and absolute F1 falls
+  (0.6625 / 0.5497 / 0.5549 for the prior).  The LABEL DEFINITION is not
+  what creates the prior platform; it rescales everything uniformly.
+- A2 score surgery on the frozen champion, eval F1 at K=6 / AP:
+  real 0.6588 / 0.7463; temporal-permuted 0.5548 / 0.6016 (== the
+  random-budget expectation 0.5561 - permutation destroys exactly the
+  set information); CONSTANT score (mean or zero vector) 0.6625 / 0.7101.
+  Reading: a content-FREE constant score equals slotprior (its top-6 IS
+  the prior mask on this pool); the champion is +0.036 AP ABOVE the
+  constant (real full-ranking content signal) yet -0.0037 F1 BELOW it
+  (the signal does not land on the boundary, and its 0.13 swaps/fragment
+  have negative net utility).  The cleanest "AP has signal, F1 has none"
+  separation we have ever produced.
 
 ## 0.3 The signal families we have ALREADY excluded, with the exact scope of the exclusion
 

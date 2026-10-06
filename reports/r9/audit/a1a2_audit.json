@@ -1,0 +1,98 @@
+{
+ "k_actual": 6,
+ "status": "DONE",
+ "pool": {
+  "train": 1963,
+  "eval": 1954
+ },
+ "A1": {
+  "guard": {
+   "g_hist": {
+    "1": 71,
+    "2": 374,
+    "3": 521,
+    "4": 408,
+    "5": 247,
+    "6": 198,
+    "7": 135
+   },
+   "prior_f1": 0.6625,
+   "champ_f1": 0.6588,
+   "champ_minus_prior": -0.0036,
+   "ci95": [
+    -0.0064,
+    -0.00094
+   ],
+   "prior_ap": 0.7444,
+   "champ_ap": 0.7463,
+   "champ_topk_equals_prior_topk": 0.8854
+  },
+  "centre": {
+   "g_hist": {
+    "0": 43,
+    "1": 335,
+    "2": 554,
+    "3": 407,
+    "4": 266,
+    "5": 163,
+    "6": 143,
+    "7": 43
+   },
+   "prior_f1": 0.5497,
+   "champ_f1": 0.5473,
+   "champ_minus_prior": -0.0024,
+   "ci95": [
+    -0.00483,
+    0.00014
+   ],
+   "prior_ap": 0.6566,
+   "champ_ap": 0.6654,
+   "champ_topk_equals_prior_topk": 0.8854
+  },
+  "occupancy": {
+   "g_hist": {
+    "0": 46,
+    "1": 313,
+    "2": 548,
+    "3": 417,
+    "4": 270,
+    "5": 170,
+    "6": 139,
+    "7": 51
+   },
+   "prior_f1": 0.5549,
+   "champ_f1": 0.5526,
+   "champ_minus_prior": -0.0023,
+   "ci95": [
+    -0.00478,
+    3e-05
+   ],
+   "prior_ap": 0.664,
+   "champ_ap": 0.6715,
+   "champ_topk_equals_prior_topk": 0.8854
+  }
+ },
+ "A2": {
+  "real": {
+   "f1": 0.6588,
+   "ap": 0.7463,
+   "topk_equals_marginal_prior": 0.8854
+  },
+  "tperm": {
+   "f1": 0.5548,
+   "ap": 0.6016,
+   "topk_equals_marginal_prior": 0.0348
+  },
+  "meanvec": {
+   "f1": 0.6625,
+   "ap": 0.7101,
+   "topk_equals_marginal_prior": 1.0
+  },
+  "zerovec": {
+   "f1": 0.6625,
+   "ap": 0.7101,
+   "topk_equals_marginal_prior": 1.0
+  }
+ },
+ "elapsed_min": 0.3
+}

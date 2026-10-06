@@ -172,3 +172,10 @@ ST 组合需两个单变量包均有正向官方证据。无门通过不出包�
 | 池既有结构记录：同特征重复片段对 | **记录** | `_f00` 与 `_f00_r` 变体共享同一冻结 t 轴（pool_feats 逐位相同）⇒ 任意编码器都会给两者相同特征，而审计里它们是独立样本。这是 PHD2_FRAG_V1 索引层既有性质，非本次提取引入 | /tmp/r9_probe7.py 输出 | 无 |
 | IV2 Stage1 slot 池提取（R9 第一批） | **RUNNING（双卡分片）** | 范围=冻结审计清单 3,917 mixed frags；时间轴=复用冻结 pool_feats 't'（绝不从媒体重推）；输入=每槽 [t−3..t+4] 8 秒上下文（与 QVH 已验证协议同构）；tubelet_size=1 ⇒ T'=8 无时间降采样坑（R9 §3.3 警告不适用于本配置）；读出三件套=mean768（QVH 同路径 fc_norm∘clip_projector）+ m1408_l + m1408_m5（hook blocks[34]=35/40 层，读出层协议决策推迟到头训练）； pilot 五门全过（parity MAE 0/AV1 人工样张/T' 断言/数值健康/3.5s/片）。速率较 pilot 慢（AV1 软解），预计 ~4.8h 墙钟、~10 NPU·h（R9 给第一批 8h 上限，同量级） | r9_iv2_slot/p0+p1、r9_iv2_chain.sh | nmiss>0 比例过高即停 |
 | R9 头训练与门（已备好，特征齐即跑） | **READY** | 判定臂选法与 R8 门一致（arm 级 3 种子均值选判定 loss=exactdp vs mse）；读出臂 mean768/m1408_l/m1408_m5 × 2 loss × 3 种子=18 训练（CPU ~1h）；归一化仅训练源拟合；**R9 新门=对 champion 与 macro-optimal 位置先验均 +0.007 且两源簇 CI 下界>0**（审计的 macroP=margP=0.6625，先验天花板未上移）；champion f1_list 与 audit_k6 per-frag macro_prior_f 冻结引用 | r9_slot_head_train.py | 新特征读出缺键即中止链 |
+
+### R9 A1/A2 判别审计（2026-10-07 凌晨，CPU 0.3min，页缓存全热）
+
+| Claim | 状态 | 比较、门槛与读数 | Artifact | 重开条件 |
+|---|---|---|---|---|
+| A1 标签定义审计（guard/中心点/占用三定义） | **DONE（标签定义排除）** | 同一冻结清单三种标签定义：prior F1 = 0.6625/0.5497/0.5549，champion−prior = −0.0036/−0.0024/−0.0023——**换标签定义只整体缩放 F1，先验平台结构不变**。R9 报告 A1 实验的结论：guard 标签不是平台成因 | reports/r9/audit/a1a2_audit.json | 无 |
+| A2 分数手术分解（real/tperm/meanvec/zerovec） | **DONE（AP-F1 分离教科书读数）** | real F1 0.6588 / AP 0.7463；tperm 0.5548/0.6016（=随机预算期望 0.5561，置换恰好摧毁集合信息）；**恒定分数（mean/zero）0.6625/0.7101=slotprior 本身**（本池先验 top-6 恰为前 6 槽）。champion 对恒定分数 **AP +0.036（有全序内容信号）但 F1 −0.0037（信号不落边界、0.13 次/片交换净效用为负）**。判定：champion 不是没有信号，是信号不转换为边界交换 | 同上 | 无 |

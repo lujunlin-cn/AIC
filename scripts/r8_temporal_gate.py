@@ -37,7 +37,10 @@ import numpy as np
 import torch
 
 ap = argparse.ArgumentParser()
-ap.add_argument('--phase', required=True, choices=['pilot', 'full'])
+ap.add_argument('--phase', required=True, choices=['pilot', 'full', 'judge'])
+ap.add_argument('--full-json', type=Path,
+                default=Path('/data/aic/experiments_910a/LFM_V11/r8_npu/temporal_gate_full.json'),
+                help='judge phase: the full-phase JSON holding the arm results')
 ap.add_argument('--feat-root', type=Path, default=Path('/data/aic/experiments_910a/LFM_V10/pool_feats'))
 ap.add_argument('--index', type=Path, default=Path('/data/aic/experiments_910a/PHD2_FRAG_V1/index_clean.jsonl'))
 ap.add_argument('--selections', type=Path,
@@ -194,6 +197,7 @@ def main():
     rec['champion'] = {'ckpt': str(args.champion), 'ch': ck.get('ch', 128),
                        'dils': list(ck.get('dils', (1, 2))),
                        'f1_keep080': round(cf1, 4), 'ap': round(cap, 4),
+                       'f1_list': [round(v, 6) for v in cf1_list],
                        'anchor_r5': 0.6588}
     print(f"champion F1 {cf1:.4f} (R5 anchor 0.6588)", flush=True)
 
@@ -212,6 +216,47 @@ def main():
                         'anchor_r5': 0.6625}
     print(f"slotprior F1 {pf1:.4f} (R5 anchor 0.6625)", flush=True)
     args.out.write_text(json.dumps(rec, indent=1) + '\n')
+
+    if args.phase == 'judge':
+        # no training: rebuild the gate from the full-phase JSON (arms) plus
+        # a fresh champion forward; explicit shapes with assertions this time
+        prev = json.loads(args.full_json.read_text())
+        arms = sorted(set(k.rsplit('_s', 1)[0] for k in prev['arms']))
+        seeds = prev['seeds'] if 'seeds' in prev else args.seeds
+        cf1_list = rec['champion']['f1_list']
+        n_ev = len(cf1_list)
+        assert n_ev == len(ev), (n_ev, len(ev))
+        means = {}
+        for a in arms:
+            rows = np.array([[prev['arms'][f'{a}_s{sd}']['f1_list'][j] for j in range(n_ev)]
+                             for sd in seeds], dtype=np.float64)
+            assert rows.shape == (len(seeds), n_ev), rows.shape
+            means[a] = float(rows.mean())
+        best_arm = max(means, key=means.get)
+        rows = np.array([[prev['arms'][f'{best_arm}_s{sd}']['f1_list'][j] for j in range(n_ev)]
+                         for sd in seeds], dtype=np.float64)
+        nf1 = rows.mean(axis=0)
+        assert nf1.shape == (n_ev,), nf1.shape
+        cf1v = np.array(cf1_list, dtype=np.float64)
+        delta = (nf1 - cf1v).tolist()
+        ci = cluster_boot_paired(delta, [SRC[i] for i in ev], args.boot)
+        dmean = float(np.mean(delta))
+        gate_pass = bool(dmean >= 0.007 and ci[0] > 0)
+        rec['gate'] = {'judging_arm': best_arm,
+                       'arm_seed_means': {a: round(m, 4) for a, m in means.items()},
+                       'delta_vs_champion': round(dmean, 5),
+                       'ci95': ci,
+                       'gate_threshold': 0.007,
+                       'decision': ('PASS' if gate_pass else 'FAIL') +
+                                   ' (r7 IV2_1B_TEMPORAL: temporal F +0.007 '
+                                   'vs champion, source-cluster CI lower > 0)',
+                       'slotprior_bar': rec['slotprior']['f1_keep080'],
+                       'best_arm_clears_slotprior': bool(means[best_arm] > rec['slotprior']['f1_keep080'])}
+        rec['status'] = 'DONE'
+        args.out.write_text(json.dumps(rec, indent=1) + '\n')
+        print('GATE', rec['gate']['decision'], json.dumps(rec['gate']), flush=True)
+        return
+
 
     # ---- training arms ----
     arms = ['mse'] if args.phase == 'pilot' else ['mse', 'exactdp']

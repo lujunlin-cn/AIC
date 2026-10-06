@@ -1,0 +1,43 @@
+{
+ "design": "D_N shift+10% frames / D_X x+5%W / D_Y y+5%H on frozen champion LFM_V11_VTREPLAY (34.95); one perturbation per package; official drops buy per-domain transfer slopes",
+ "baseline": "/data/aic/semifinal_20261001/submissions/LFM_V11_VTREPLAY_SEMIFINAL",
+ "synthetic_identifiability": {
+  "time_f1_base": 1.0,
+  "time_f1_after_shift": 0.9,
+  "time_f1_drop": 0.1,
+  "delta_frames_applied": 8,
+  "iou_base": 1.0,
+  "iou_after_x": 0.8367,
+  "iou_after_y": 0.8367,
+  "iou_drop_x": 0.16327,
+  "iou_drop_y": 0.16327,
+  "identifiable": true
+ },
+ "packages": {
+  "DN": {
+   "dir": "/data/aic/semifinal_20261001/submissions/LFM_DDN_DIAG",
+   "zip": "/data/aic/semifinal_20261001/submissions/LFM_DDN_DIAG.zip",
+   "perturbation": "shift frames +round(0.1*n)",
+   "preds_mean": 412.4,
+   "preds_min": 62,
+   "preds_max": 6330
+  },
+  "DX": {
+   "dir": "/data/aic/semifinal_20261001/submissions/LFM_DDX_DIAG",
+   "zip": "/data/aic/semifinal_20261001/submissions/LFM_DDX_DIAG.zip",
+   "perturbation": "x + 5%W",
+   "preds_mean": 430.8,
+   "preds_min": 69,
+   "preds_max": 6840
+  },
+  "DY": {
+   "dir": "/data/aic/semifinal_20261001/submissions/LFM_DDY_DIAG",
+   "zip": "/data/aic/semifinal_20261001/submissions/LFM_DDY_DIAG.zip",
+   "perturbation": "y + 5%H",
+   "preds_mean": 430.8,
+   "preds_min": 69,
+   "preds_max": 6840
+  }
+ },
+ "elapsed_min": 0.5
+}

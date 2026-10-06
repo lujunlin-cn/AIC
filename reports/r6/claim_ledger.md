@@ -146,3 +146,10 @@ ST 组合需两个单变量包均有正向官方证据。无门通过不出包�
 |---|---|---|---|---|
 | 时间头正式门（r7 IV2_1B_TEMPORAL 第 3 步） | **FAIL（预注册条款内负结果）** | 判定臂=exactdp（臂级 3 种子均值 0.6625 vs mse 0.6354，选点规则启动前预记录）。**exactdp 0.6625/0.6626/0.6625（三种子几乎逐位一致）**；delta vs champion = **+0.00368，源级聚类 CI [0.00097, 0.00645]**——CI 下界>0 但 **delta < +0.007 门 ⇒ FAIL**（差 0.0033）。**best_arm_clears_slotprior = false**：判定臂恰好收敛到位置先验解（0.6625 = slotprior），增量全部来自位置结构，内容信号增量为零——与 R5 content ablation、expected_f 四臂、R8 C/M/E 四重证据闭环。6 训练 ~18 分钟 CPU，判定脚本含形状断言（首跑判定段数组形状崩，修复后 judge 模式从 JSON 重建判定，不重训） | reports/r8/npu/temporal_gate_{full,verdict}.json、temporal_gate.json | 预注册重开仅沿特征重定义（新特征在新池过 slotprior 级证据）；同池同特征重跑=不重开 |
 | **IV2_1B_TEMPORAL 全链收口** | **CLOSED（三步全部完成）** | ① parity PASS（cosine 0.9999912）② P/O/L GO（IV2 有内容信号）→ 双底座对照：旧底座更强（+0.056，三种子同向）⇒ 换根关闭 ③ 正式门 FAIL（同池同协议从头训练增量 +0.0037 < +0.007，且不超位置先验）。**R8 的 9B 增量线全部收口**：VLM_SFT FAIL（0.524<B3 0.531）、C/M/E 关闭、IV2 换根关闭、时间头门 FAIL。确认池未动（3 个名额保留，hour-36 决策默认诊断包）；champion 保持 V11_VTREPLAY 34.95 | 本 ledger R8 全段 | 见各行重开条件 |
+
+### 诊断包 D_N/D_X/D_Y 构造（2026-10-06 晚，用户批准交付；名额规则修正：每日 5 个）
+
+| Claim | 状态 | 比较、门槛与读数 | Artifact | 重开条件 |
+|---|---|---|---|---|
+| 名额规则修正 | **记录** | 用户 10-06 纠正：提交名额为**每天 5 个**（非总量稀缺）。r7/r8 slot_strategy 的 hour-36 一次性决策与 D/S-T 互斥设计按每日窗口重释：诊断包与真候选并行不挤占；memory 已存 | memory aic-submission-quota-daily | 无 |
+| 诊断包三件套（r7 slot 默认，用户批准） | **DELIVERED（待用户上传）** | 基线 = 冻结 champion LFM_V11_VTREPLAY（官方 34.95），每包施加一个已知合成扰动（官方分差 = 该域迁移斜率的一个数据点）：**D_N** = 保留帧索引整体平移 +round(0.1·n)（覆盖不变、定位移动；与历史 keep/k_size 斜率正交）；**D_X** = x′=clamp(x+0.05W)；**D_Y** = y′=clamp(y+0.05H)。可辨识性合成验证 PASS：时间 F1 1.00→0.90（−0.10）、IoU 1.00→0.837（−0.163，x/y 对称），单调远超噪声 ⇒ 官方分变化可唯一归因。三包均过 write_submission 全量合同校验（426 视频，semifinal enriched index）。本地斜率参照：Δlocal = −0.10（时间）/ −0.163（IoU），官方读回后 transfer = Δofficial / Δlocal | /data/aic/semifinal_20261001/submissions/LFM_D{N,X,Y}_DIAG.zip、LFM_D{N,X,Y}_DIAG/、r8_npu/diagnostic_pkgs.json | 官方读回后入 transfer_pairs |

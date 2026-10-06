@@ -83,6 +83,19 @@ A1/A2 audits are DONE (2026-10-07, CPU, frozen pool):
   have negative net utility).  The cleanest "AP has signal, F1 has none"
   separation we have ever produced.
 
+Cheap-scalar screen (the FIRST census probe, executed before this prompt):
+audio track exists on 96.7% of manifest sources, but ALL 11 hand-crafted
+per-slot scalars are NULL - 5 visual statistics (frame-diff energy,
+Laplacian sharpness, brightness, histogram chi2, saturation-degenerate) and
+6 audio scalars (RMS mean/std/max/flux, silence ratio, cheer contrast):
+slot-level point-biserial |corr| < 0.05 for every column (n = 31k slots),
+and the 2-parameter likelihood grid sets the signal weight to 0 for all.
+Scope: the PIXEL-STATISTIC and AUDIO-SCALAR layer carries no signal for
+GIF-style selections; any audio/visual cheap-feature family must jump to
+LEARNED embeddings (PANNs/BEATs/CLAP-class) to be testable at all.  Treat
+Q3/Q4's "cheapest probe" designs accordingly - the probe already ran and
+killed the scalar tier.
+
 ## 0.3 The signal families we have ALREADY excluded, with the exact scope of the exclusion
 
 | family | status | exact scope of the negative evidence |
@@ -95,15 +108,32 @@ A1/A2 audits are DONE (2026-10-07, CPU, frozen pool):
 | re-reading the crop (S-REREAD) | CLOSED | -0.0046 vs capacity control |
 | k_size / keep-rate re-selection as an official-score lever | mostly spent | V8 ladder: +1.94 official raw from stripping the LM (k 0.90->0.95); per-video adaptive keep is NOT yet measured - see Q7 |
 
-## 0.4 [OPERATOR: FILL BEFORE SENDING - tonight's overnight results]
+## 0.4 Overnight results (2026-10-07; all on the frozen PHD2 slot pool)
 
-- slot_head.json (Stage1 last / -5): {FILL: per-readout delta vs champion
-  and vs macro-prior, with CIs; gate PASS/FAIL}
-- slot_head_s2.json (Stage2): {FILL}
-- slot_head_qwen.json (Qwen visual tower, static 8-anchor): {FILL}
-- a1a2_audit.json (label swap guard/centre/occupancy + score surgery):
-  {FILL: does the prior/head gap move under label redefinition? does the
-  champion's content signal survive score surgery?}
+slot_head.json - IV2-1B **Stage1** on the PHD2 slot pool, 3 readouts x
+{mse, exactdp} x 3 seeds, judging arm = exactdp (pre-set rule), dual gate
+(+0.007 vs champion AND vs macro-prior, source-cluster CI lower > 0):
+
+| readout | exactdp mean | delta vs champ (CI) | delta vs prior (CI) | gate |
+|---|---|---|---|---|
+| mean768 (clip_proj path) | 0.6557 | -0.0031 [-0.0061, -0.0001] | -0.0068 [-0.0084, -0.0053] | FAIL |
+| m1408_l (last-layer mean) | 0.6515 | -0.0073 [-0.0112, -0.0036] | -0.0109 [-0.0136, -0.0085] | FAIL |
+| m1408_m5 (layer-35 mean) | 0.6472 | -0.0116 [-0.0151, -0.0082] | -0.0153 [-0.0180, -0.0126] | FAIL |
+
+Readings: (a) EVERY Stage1 readout is significantly WORSE than the SigLIP
+champion - consistent with the QVH-pool negative; the CLIP-aligned SigLIP
+feature stays the best representation we have for creator-choice labels.
+(b) The InternVideo2 paper's "minus-5 beats last" (THUMOS14) REVERSES on
+our GIF pool (last > -5 here) - layer-transfer from action-localization
+does not survive the label-type change.  (c) exactdp no longer converges
+to slotprior on the new features (0.6557 < 0.6625) - the new features are
+not even Position-info-equivalent, they are strictly poorer here.
+
+Stage2 (4-frame control) and Qwen visual tower (static 8-anchor): runs
+landed the same night - {FILL IF ARRIVED: same table; else mark PENDING}.
+
+a1a2_audit.json + signal_screen.json: filled in 0.2 - label definition
+excluded; AP/F1 separation measured; all 11 cheap scalars null.
 
 ## 0.5 Standing constraints (unchanged)
 

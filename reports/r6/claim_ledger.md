@@ -186,3 +186,9 @@ ST 组合需两个单变量包均有正向官方证据。无门通过不出包�
 |---|---|---|---|---|
 | 音轨存在率 | **FACT** | manifest 源音轨存在率 96.7%（train）——audio 信号族未被「无音轨」排除，PyAV 音频解码路径验证可用 | r9_signal_probe npz、r9_media_probe.py | 无 |
 | 廉价标量 screen（vis 5 列 + aud 6 列） | **DONE（全 null，探针级）** | 2 参数网格（w0·logit(prior)+w1·z(x)，train 似然拟合）：**全部 11 列 w1=0**；槽级点二列相关全部 \|corr\|<0.05（最大 hist_chi2 −0.043，n=31k slot）。手写数值验证确认非实现 bug。结论 scope：**像素统计/手工音频标量层无信号**——GIF 高光选择是语义级判断；audio 族后续必须上有学习型 embedding（PANNs/BEATs 级）才可测，手工标量层已可关闭 | reports/r9/audit/signal_screen.json、r9_signal_screen.py | 谱级/嵌入级特征未测，不在本结论 scope |
+
+### R9 编码器第一批判定：IV2-1B Stage1 三读出全 FAIL（2026-10-07 凌晨）
+
+| Claim | 状态 | 比较、门槛与读数 | Artifact | 重开条件 |
+|---|---|---|---|---|
+| IV2-1B Stage1 @ PHD2 slot 池（R9 第一批，双门预注册） | **FAIL（三读出全负，CI 全负）** | 判定臂 exactdp（预选规则）3 种子均值：mean768 0.6557 / m1408_l 0.6515 / m1408_m5 0.6472；对 champion delta −0.0031/−0.0073/−0.0116，对 macroPrior −0.0068/−0.0109/−0.0153，**六个 CI 全部全负**。三点结论：①SigLIP CLIP 对齐特征仍是创作者选择标签上的最好表示（与 QVH 负证据同向）②InternVideo2 论文 THUMOS14 的「−5 层>last」在 GIF 池**反转**——动作定位的层迁移结论不穿越标签类型 ③exactdp 在新特征上不再收敛到 slotprior（0.6557<0.6625）——新特征连位置信息等价性都不具备。头训练修复史：temporal_gate.json 无 f1_list（R8 judge 重写删失）→ 从冻结审计导出 scores 重建+自洽断言；f1_at_keep 接收 list 两次 TypeError → 本地 8 片段合成冒烟一次抓出三处（asarray×2、mean 轴反）后真机一次通过 | reports/r9/audit/slot_head.json、r9_slot_head_train.py | Stage2/Qwen 塔判定同表；置信新表示需过双门 |

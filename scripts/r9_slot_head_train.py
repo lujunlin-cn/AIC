@@ -42,6 +42,12 @@ ap.add_argument('--batch', type=int, default=8)
 ap.add_argument('--lr', type=float, default=1e-3)
 ap.add_argument('--seeds', nargs='*', type=int, default=[20261006, 20261007, 20261008])
 ap.add_argument('--boot', type=int, default=2000)
+ap.add_argument('--readouts', nargs='*', default=['mean768', 'm1408_l', 'm1408_m5'])
+ap.add_argument('--skip-missing', action='store_true',
+                help='night-chain self-heal: drop manifest frags whose npz is '
+                     'missing (ALL references - champion f1_list, macro prior, '
+                     'labels - are filtered on the SAME list, so the paired '
+                     'comparison stays aligned)')
 args = ap.parse_args()
 
 
@@ -102,34 +108,34 @@ def cluster_boot_paired(delta, srcs, boot, seed=99):
     return [round(float(lo), 5), round(float(hi), 5)]
 
 
-def load_feats(readout):
-    files = sorted(args.feat_root.glob('p*/*.npz'))
-    seen, X, NMISS = set(), [], []
-    for f in files:
-        fid = f.stem
-        if fid in seen:
-            continue
-        seen.add(fid)
-        m = np.load(f)
-        if readout not in m:
-            raise SystemExit(f'{f} lacks {readout}')
-        X.append(m[readout].astype(np.float32))
-        NMISS.append(int(m['nmiss']))
-    # frozen manifest order (labels/split live there)
+def load_manifest():
     man = []
     for split in ('train_public', 'eval_public'):
         for l in (args.manifest_dir / f'{split}.jsonl').read_text().splitlines():
             if l.strip():
                 man.append(json.loads(l))
-    pos = {r['fragment_id']: i for i, r in enumerate(man)}
-    order = []
-    for r in man:
-        fid = r['fragment_id']
-        if fid not in pos:
-            raise SystemExit(f'manifest frag {fid} has no feature npz')
-        order.append(pos[fid])
-    X = [X[i] for i in order]
-    NMISS = [NMISS[i] for i in order]
+    have = {f.stem for f in args.feat_root.glob('p*/*.npz')}
+    missing = [r['fragment_id'] for r in man if r['fragment_id'] not in have]
+    if missing:
+        if not args.skip_missing:
+            raise SystemExit(f'{len(missing)} manifest frags have no npz '
+                             f'(first: {missing[:3]}) - refusing partial pool')
+        print(f'skip_missing: dropping {len(missing)}/{len(man)} frags', flush=True)
+        man = [r for r in man if r['fragment_id'] in have]
+    return man
+
+
+def load_feats(readout, man):
+    pos = {f.stem: i for i, f in enumerate(sorted(args.feat_root.glob('p*/*.npz')))}
+    files = sorted(args.feat_root.glob('p*/*.npz'))
+    feat = {}
+    for f in files:
+        m = np.load(f)
+        if readout not in m:
+            raise SystemExit(f'{f} lacks {readout}')
+        feat[f.stem] = (m[readout].astype(np.float32), int(m['nmiss']))
+    X = [feat[r['fragment_id']][0] for r in man]
+    NMISS = [feat[r['fragment_id']][1] for r in man]
     Y = [[int(v) for v in r['labels']] for r in man]
     SRC = [r['source_id'] for r in man]
     FID = [r['fragment_id'] for r in man]
@@ -146,21 +152,27 @@ def main():
            'seeds': args.seeds, 'arms': {}, 'status': 'RUNNING'}
     args.out.write_text(json.dumps(rec, indent=1) + '\n')
 
-    # frozen references
+    # frozen references; champion f1_list aligns with eval_public.jsonl row
+    # order, so a skipped frag must drop from BOTH sides (kept-list filter)
     gate_prev = json.loads(args.champion_gate.read_text())
-    champ_f1 = gate_prev['champion']['f1_list']
+    champ_full = gate_prev['champion']['f1_list']
     audit = {}
     for l in args.audit_k6.read_text().splitlines():
         if l.strip():
             r = json.loads(l)
             audit[r['fragment_id']] = r['macro_prior_f']
+    man = load_manifest()
+    ev_src = set(json.loads(args.eval_sources.read_text()))
+    ev_rows = [(i, r) for i, r in enumerate(man) if r['source_id'] in ev_src]
+    assert len(ev_rows) == len(champ_full), (len(ev_rows), len(champ_full))
+    champ_f1 = [c for (_, r), c in zip(ev_rows, champ_full)]
+    print(f'manifest {len(man)} frags (kept after skip filter), eval {len(champ_f1)}', flush=True)
     print('frozen refs loaded '
           f'({time.time()-t0:.0f}s)', flush=True)
 
     summary = {}
-    for readout in ('mean768', 'm1408_l', 'm1408_m5'):
-        X, Y, SRC, FID, NMISS = load_feats(readout)
-        ev_src = set(json.loads(args.eval_sources.read_text()))
+    for readout in args.readouts:
+        X, Y, SRC, FID, NMISS = load_feats(readout, man)
         tr = [i for i in range(len(X)) if SRC[i] not in ev_src]
         ev = [i for i in range(len(X)) if SRC[i] in ev_src]
         nmiss_ev = sum(1 for i in ev if NMISS[i] > 0)

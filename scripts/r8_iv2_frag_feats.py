@@ -86,7 +86,12 @@ print(f'shard {a.shard}/{a.nshards}: {len(mine)} windows', flush=True)
 
 
 def read_win(win, idxs):
-    """Return (F,3,T,224,224) float16 for the given frame indices (1 Hz jpgs)."""
+    """Return (3,T,224,224) float32 for the given frame indices (1 Hz jpgs).
+
+    Normalisation follows the smoke protocol exactly: unsqueeze(0) first,
+    then 5-D mean/std, then squeeze back - a 4-D x with a 5-D view silently
+    broadcasts to dim-5 and broke the first pilot run.
+    """
     fs = sorted((FRAG / 'frames' / win).glob('*.jpg'),
                 key=lambda p: float(p.stem))
     n = len(fs)
@@ -95,7 +100,8 @@ def read_win(win, idxs):
                        (224, 224), interpolation=cv2.INTER_CUBIC)
             for f in sel]
     x = torch.tensor(np.stack(imgs), dtype=torch.float32).permute(3, 0, 1, 2) / 255
-    return ((x - mean) / std).permute(1, 0, 2, 3)  # (3,T,224,224)
+    x = (x.unsqueeze(0) - mean) / std          # (1,3,T,224,224)
+    return x.squeeze(0)                        # (3,T,224,224)
 
 
 def pooled(x):  # x (B,3,T,H,W) float32 -> (B,768) float32 cpu

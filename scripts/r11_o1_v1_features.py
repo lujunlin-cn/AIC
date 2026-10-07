@@ -63,7 +63,7 @@ def scout_readout(man, roles_by_vid):
         if not rb:
             continue
         keep_segs = {s for s, role in rb.items() if role in KEEP}
-        y = np.asarray(r.get("y", []), dtype=np.float32)
+        y = np.asarray(r.get("labels", r.get("y", [])), dtype=np.float32)
         if not keep_segs:
             rows.append({"vid": vid, "keep_seg": 0, "gt_pos": int((y > 0).sum()),
                          "overlap": 0.0, "n_slots": len(y)})
@@ -83,6 +83,8 @@ def main():
     ap.add_argument("--e3-dir", type=Path, required=True)
     ap.add_argument("--manifest-dir", type=Path,
                     default=Path("/data/aic/experiments_910a/LFM_V11/r8_npu/r9_audit"))
+    ap.add_argument("--audio-root", type=Path,
+                    default=Path("/data/aic/experiments_910a/LFM_V11/r10_audio"))
     ap.add_argument("--out", type=Path, required=True)
     args = ap.parse_args()
 
@@ -91,11 +93,27 @@ def main():
                          f"output (<vid>.json roles per 2 s segment). Run stage2 NPU "
                          f"re-inference arm first (scripts/r11_stage2_npu.sh V1).")
     man = []
-    for p in sorted(Path(args.manifest_dir).glob("*.jsonl")):
+    splits = [args.manifest_dir / f"{s}.jsonl" for s in ("train_public", "eval_public")]
+    splits = [p for p in splits if p.exists()] or sorted(args.manifest_dir.glob("*.jsonl"))
+    for p in splits:
         man += [json.loads(l) for l in open(p) if l.strip()]
-    man = [r for r in man if "fragment_id" in r and "source_id" in r]
+    seen, man_dedup = set(), []
+    for r in man:
+        if "fragment_id" in r and r["fragment_id"] not in seen:
+            seen.add(r["fragment_id"])
+            man_dedup.append(r)
+    man = [r for r in man_dedup if "source_id" in r]
     print(f"manifest frags={len(man)}")
     args.out.mkdir(parents=True, exist_ok=True)
+
+    # slot time axis lives inside the R10 audio npz (t field); manifest rows
+    # carry labels only.  Audio features also tell us which frags exist.
+    audio_t = {}
+    for f in Path(args.audio_root).glob("p*/*.npz"):
+        try:
+            audio_t[f.stem] = np.load(f)["t"].astype(np.float32)
+        except (FileNotFoundError, KeyError):
+            pass
 
     n_cov, missing = 0, []
     scout_rows, roles_by_vid = [], {}
@@ -105,7 +123,7 @@ def main():
         if outp.exists():
             n_cov += 1
             continue
-        if not p.exists():
+        if not p.exists() or r["fragment_id"] not in audio_t:
             missing.append(r["fragment_id"])
             continue
         d = json.loads(p.read_text())
@@ -114,21 +132,25 @@ def main():
             for seg, blk_roles in (blk.get("roles") or {}).items():
                 rb[int(seg)] = blk_roles
         roles_by_vid[r["source_id"]] = rb
-        t8 = np.asarray(r.get("t"), dtype=np.float32)
+        t8 = audio_t[r["fragment_id"]]
         if t8.shape != (8,):
             missing.append(r["fragment_id"])
             continue
         feat, cov, keep = slot_features(rb, t8)
         np.savez(outp, e3_role=feat, slot_cov=cov, keep_prior=keep, t=t8)
         n_cov += 1
+    (args.out / "e3_missing.json").write_text(json.dumps(missing))
+    cov_frac = n_cov / max(len(man), 1)
     scout_rows = scout_readout(
         [r for r in man if (args.out / f"{r['fragment_id']}.npz").exists()], roles_by_vid)
-    (args.out / "e3_missing.json").write_text(json.dumps(missing))
     if scout_rows:
         ov = float(np.mean([x["overlap"] for x in scout_rows]))
-        summ = {"n_frags": len(scout_rows), "mean_keep_gt_overlap": round(ov, 4),
+        summ = {"n_frags": len(scout_rows), "role_coverage_frac": round(cov_frac, 4),
+                "mean_keep_gt_overlap": round(ov, 4),
+                "status": "OK" if cov_frac >= 0.1 else "INSUFFICIENT_COVERAGE",
                 "gate_o1_ge_06": ov >= 0.6,
-                "note": "overlap >=0.6 keeps O1-verifier queued; below -> verifier NOT queued"}
+                "note": "coverage <0.1 => roles need PHD2 re-inference (stage2 arm B); "
+                        "overlap >=0.6 keeps O1-verifier queued"}
         (args.out / "scout_readout.json").write_text(json.dumps({"summary": summ, "rows": scout_rows[:50]}, indent=1))
         print(json.dumps(summ, indent=1))
     print(f"feature frags written={n_cov} missing_e3={len(missing)}")

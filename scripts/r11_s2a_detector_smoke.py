@@ -54,12 +54,14 @@ try:
     except Exception as e:  # noqa: BLE001
         log({"cand": "groundingdino", "stage": "import", "ok": False, "err": str(e)[:200]})
 
-    # Candidate 2: HF RT-DETR (transformers-native, smallest operator surface)
+    # Candidate 2: HF RT-DETR (transformers-native, smallest operator surface);
+    # kmsp05 has no direct HF egress -> hf-mirror (fixed repo recipe, 42MB/s).
     try:
+        os.environ.setdefault("HF_ENDPOINT", "https://hf-mirror.com")
         from transformers import AutoModelForObjectDetection, AutoProcessor
-        name = "PekingU/rtdetr_r50vd_finetuned_detsd_co1400" if os.environ.get("HF_ENDPOINT") \
-            else "PekingU/RTV-DERT-placeholder"
-        log({"cand": "rtdetr", "stage": "load", "name": name})
+        name = "PekingU/rtdetr_r50vd"
+        log({"cand": "rtdetr", "stage": "load", "name": name,
+             "hf_endpoint": os.environ["HF_ENDPOINT"]})
         _proc = AutoProcessor.from_pretrained(name)
         _model = AutoModelForObjectDetection.from_pretrained(name)
         log({"cand": "rtdetr", "stage": "load", "ok": True, "s": round(time.time() - t0, 1)})

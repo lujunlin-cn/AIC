@@ -28,16 +28,25 @@ ap.add_argument("--out", type=Path, required=True)
 args = ap.parse_args()
 
 man = []
-for p in sorted(args.manifest_dir.glob("*.jsonl")):
+splits = [args.manifest_dir / f"{s}.jsonl" for s in ("train_public", "eval_public")]
+splits = [p for p in splits if p.exists()] or sorted(args.manifest_dir.glob("*.jsonl"))
+for p in splits:
     man += [json.loads(l) for l in open(p) if l.strip()]
+seen, man_dedup = set(), []
+for r in man:
+    if r["fragment_id"] not in seen:
+        seen.add(r["fragment_id"])
+        man_dedup.append(r)
+man = man_dedup
+audio_files = {p.stem: p for p in args.audio_root.glob("p*/*.npz")}
 srcs = sorted({r["source_id"] for r in man if "source_id" in r})
 per, miss = {}, 0
 for s in srcs:
     fids = [r["fragment_id"] for r in man if r["source_id"] == s]
     vals, av = [], []
     for f in fids:
-        p = args.audio_root / f"{f}.npz"
-        if not p.exists():
+        p = audio_files.get(f)
+        if p is None:
             miss += 1
             continue
         z = np.load(p)
@@ -50,8 +59,11 @@ for s in srcs:
         continue
     v = np.concatenate(vals)
     a = np.concatenate(av) if av else np.ones(len(v))
-    per[s] = {"speech_mean": round(float(v.mean()), 4),
-              "speech_max": round(float(v.max()), 4),
+    # ast_527 npz stores raw logits: convert to probability domain before
+    # thresholding (logit 0 == prob 0.5).
+    pv = 1.0 / (1.0 + np.exp(-v.astype(np.float64)))
+    per[s] = {"speech_mean": round(float(pv.mean()), 4),
+              "speech_max": round(float(pv.max()), 4),
               "valid_frac": round(float(a.mean()), 4)}
 
 ok = {s: v for s, v in per.items() if v}

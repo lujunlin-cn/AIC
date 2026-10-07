@@ -48,6 +48,26 @@ SCREEN（训练/开发源）→ CONFIRM（新合法源，Holm α=0.10，家族 p
   pilot 报告按 H_coverage 口径并记此折扣。
 - 官方部署输入合同：无音频流 → 全 frag avalid=0 → 输出=位置先验（与 R9 champion 同姿势）。
 
+## 3.1 家族 A pilot 判定（2026-10-07，64 源 / 132 frags / 5 折源分组 CV）
+
+软覆盖审计（AST 527 类，R10 4.4 口径，模型估计非标注）：
+- Speech mean σ=0.30（33% 槽 >0.5）、Music mean σ=0.41（47% 槽 >0.5）。
+- **Cheering mean σ=0.0005、Crowd σ=0.0002——池内音频是 BGM+人声，不是体育欢呼/人群声。**
+  「高光=欢呼」机制在本池基本排除；PHD2 是创作者 GIF（配乐），非原始转播。
+
+主判定（`pilot_head.json`，feature=ast_pool，λ∈{0,.25,.5,1,2} 折内选择）：
+- **R1（prob residual）与 R2（util residual）λ 网格 5/5 折全选 0.0**——残差被完全关闭，
+  输出=折内先验 0.6675（delta_vs_prior 精确 0，CI [0,0]）。
+- 置换对照=先验=真实（0.6675）：无分布泄漏可捡（132 frags 的 TCN 本可记住噪声选正 λ）。
+- pilot 子集上 champion 0.6928（子集效应，全池 champion−prior 仅 −0.0036）。
+- 判定状态（R10 8.4 口径）：**NO_PRACTICAL_GAIN(AST pooler 读出 @ pilot scope)**；
+  家族 A 保持 open（64 源不足以关模态），但不再为此花 NPU。
+- 二次免费检查（进行中）：ast_mean（768 非池化读出）、ast_527（527 类语义分数作特征）——
+  同一 npz 内零提取成本；两者也 null 则 AST embedding 线整体 PAUSED_BUDGET，转 ASR/OCR。
+
+工程注：132 frags 太小，本 pilot 的职能是「方向+方差校准」，不是功效确认（R10 8.3：
+64 源 MDE≈0.022σ⁻¹ 量级）；连正 λ 都选不到这一事实，比 delta 数值本身更有信息量。
+
 ## 4. 状态表（R10 关闭规则口径）
 
 | 探针 | 状态 | 备注 |

@@ -103,6 +103,34 @@ vllm 0.10.0 源码编译被终止）；0.13/0.18 组合的配平知识记录在�
 当前状态：910-ops 9.0.0 已补全（对其他工作负载无害且可能有益）；32B generate hang
 根因未定，进入深度排障范畴；vllm-ascend 官方不支持 910 系的结论维持（FAQ 明文）。
 
+## 判定七（深度排障，进行中）：TEFUSION 编译死锁定位 + 栈状态偏移警示
+
+**确定级发现（py-spy Python+native 双栈）**：32B generate 挂点=
+`generate → _sample → 首次 forward`，native 栈停在 `Tensor.to()` 跨设备拷贝的
+`eventfd_read`（等一个永不完成的 stream event）。ASCEND DEBUG 日志（555MB）尾部
+为 **TEFUSION 死循环轮询 `GetFinishedCompilationTask`（graph 编译任务永返 size=0）**
+——即某算子触发了动态图编译，编译任务投给 TBE 后台 worker 后 worker 不消费，
+主线程死等。gitee ascend/pytorch #IC6DXR 同款问题的已知两类成因：kernel 包缺对应
+算子二进制 / 环境变量配置问题。
+
+**对照实验**：裸 P2P copy 与 MATMUL 探针正常 → 基础通道健康，挂点在「特定算子的
+JIT 编译」层。7B 同日对照：下午可跑形态（8 图）在晚间重测也卡死——与 910-ops
+装卸循环的时间线吻合（见下）。
+
+**栈状态偏移警示（重要）**：910-ops 的 uninstall 脚本连带删除了 opp/built-in
+（5.5G→45M，主链算子库），已用同一包重装恢复（5.5G，cann-opbase 子包新增注册）；
+但 910-ops 装卸循环后，**下午可跑的 7B 原版当前不可跑**，清 TBE 缓存无效果——
+当前栈状态与 10-04 重建基线存在未表征的偏差（opbase/lib64 文件集可能与重建时
+不同）。**未再继续盲试**。
+
+**建议（需用户/熟悉该机人员决策）**：
+- 选项 A：按 10-04 note 配方做一次干净重建（toolkit runfile + 910-ops + 主链
+  venv 重验），消除装卸循环残留——半小时级，风险=重建期间主链不可用；
+- 选项 B：保持现状，32B 排障转「离线分析」（torch_npu 源码/GitHub issue/
+  华为工单），不再动栈；
+- 无论 A/B：7B 下午可跑状态与 32B hang 的对比是根因的最强线索（同日装改前能跑、
+  装改后不能），重建后可用 7B 原版作金标准探针快速验证栈健康。
+
 ## 判定五：S2a 检测器 —— NPU 算子坑实锤后转 CPU 32 分片，覆盖率门过
 
 - RT-DETR r50vd 在 910B→实为 **910A（用户纠正；npu-smi 显示 910B 不可信，lspci

@@ -43,9 +43,12 @@ if model is None:
     print("PROBE_RESULT gen_ok=False err=model_load:" + " | ".join(errs), flush=True)
     raise SystemExit(1)
 model.eval()
-print(f"[probe] model loaded {time.time() - t0:.1f}s npu={model.device}", flush=True)
+# 判定九推理配方：fast processor forkserver × TBE 编译线程 fork 锁死 → use_fast=False；
+# 推理 jit_compile=False 实测安全且必要（10-04 禁令仅限训练 InplaceNormal bug）。
+torch.npu.set_compile_mode(jit_compile=False)
+print(f"[probe] model loaded {time.time() - t0:.1f}s npu={model.device} jit_compile=False", flush=True)
 
-proc = AutoProcessor.from_pretrained(MODEL, local_files_only=True)
+proc = AutoProcessor.from_pretrained(MODEL, local_files_only=True, use_fast=False)
 messages = [
     {"role": "user", "content": [
         {"type": "image", "image": IMAGE},

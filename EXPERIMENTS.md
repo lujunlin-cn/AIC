@@ -363,3 +363,11 @@ The frozen InternVideo2 Stage1-1B K700 candidate received official platform scor
 - `R12_P0A_MATCH_VERDICT`（判定 `reports/r12/20261007_p0a_match_verdict.md`，产物 summary/matched 同目录）：指纹库完成（32/32 分片，13,937 vid、1,394,739 探针，0 解码错误）→ 全库匹配+常数 offset 复验：**426 集仅 1/426 过验证**（vid31↔9cnBxSB1jUE，offset 103.0s，med_ham 14，inlier 0.667）且窗口内无 GIF 区间 → **结局 B，对接线按预注册永久关闭**，与 V10 初赛 174 集审计（非连续裁剪）一致化。边界如实记录：在盘 13,993=全集 11.6%，本判定不外推到未在盘 88.4%；复验协议为常数 offset 模型（变速会被拒真，V10 全轴对齐已独立对冲）。监督解锁转 QV/user-vote/EMO 三臂。
 - `R12_NPU_PROBE4_ABORTED`：探针按判定九配方更新（use_fast=False + 推理 jit_compile=False + eager）后无卡可跑——8 卡各被 32B V1 进程占 20-22GB（剩 ~10GB < 7B FP16 15.2GB）。裁定：不抢卡，复验以判定九验证记录（7B 24s/源 ok=3、32B hang 解除）为准，探针脚本待有空卡窗口执行。
 - `R12_P0B_RANK_PILOT`（启动）：Mr.HiSum 帧级排序，损失单变量 pairwise（Mr.HiSum 官方配方，帧对采样 |Δgtscore|≥0.1、softplus）vs MSE（B3 现状口径）。模型=TRINITY 式轻全局排序头（1152→512 投影 + 3 层 Transformer 8 头 + 1D RoPE + 逐帧标量头）。数据全在盘：yt8m 特征（V6 逐位复现）+ gtscore（Most-Replayed 曲线）+ 官方 split 27,892/2,000/2,000。**对照口径=官方基线 50.80/67.20（同 yt8m 特征）；TRINITY 40.98/69.06 自有 CLIP 特征不可比**。协议：mAP@ρ=15/50，test 2000 单次终评。冒烟过（300 视频 1 epoch 5.5min 含预载；RoPE 维度 bug 首跑修复）。全量双臂过夜后台（3 epoch，CPU 32 线程×2）。
+
+## 2026-10-08 凌晨二批：NPU 窗口验证双 PASS（探针 + M01 smoke）
+
+用户批准执行排程清单；32B V1 线完活退出后卡 1-7 空闲（卡 0 有 2 个非我方残留进程，避开）。
+
+- `R12_NPU_FINAL_PROBE`（**PASS**）：判定九配方（`use_fast=False` + 推理 `jit_compile=False` + eager，卡 1，timeout 600）——`PROBE_RESULT gen_ok=True gen_s=3.4 total_s=35.2`（加载 30.9s、24 token 3.4s、输出内容正常）。对照：故障态同探针 >14min 零产物、判定九基线 24s/源。**NPU 推理栈完全恢复，判定九配方实证**。排程 cron 已删（用户手动批准提前执行）。
+- `R12_M01_SMOKE_R12`（**PASS**）：`v11_m01_npu_smoke.py --cards 2`（VideoMAEv2 ViT-B fwd+bwd，safetensors 直载路径）——grad_norm 0.0149 非零有限、update ok、save/reload 一致 7.2e-05（fp16 量级）、peak 5.8GB、`"pass": true`。**NPU 训练栈可用**（R12-VMAE 臂的栈前提复验通过）。
+- 特征资产盘点（R12-GATT 前置）：B3 同款 SigLIP pooled 特征在盘——`LFM_V8/{live_feats,rv_feats_rot,diag_feats_dense}`（53G/5.1G/53G，per-frag `pooled (768,) f16` + grid）。**GATT 头与 B3 同表示换头=干净单变量**；B3 时间监督合同在 `v8_s_train_multidata.py`，下轮精读复刻后再训（与 P0-b 损失判定联动定配方）。

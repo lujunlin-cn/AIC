@@ -292,3 +292,25 @@ feature frags written=3917
   跑完 1,963 源（含 8 卡满占期间我方探针避让，见 R12 记录）。
 - 产物：`r11_o1_e3_feats_32b/`（3,917 npz：e3_role (8,5) + slot_cov + keep_prior + t）+
   `scout_readout.json`；统计脚本 /tmp/o1_stat.py（一次性）。
+
+## 判定十（10-08 晨）：e3_role 判别力预检 FAIL —— 角色结构与 keep_prior 冗余，O1-verifier 不再花
+
+V1-32B 产物（判定九）经 R10 同协议双门读出（`r10_audio_head.py --feature
+e3_role`，3,917 frag / 1,963 源 / 5 折 CV / 2,000 次 bootstrap）：
+
+| 臂 | f1 | vs champion | vs folded prior | 置换对照 |
+|---|---|---|---|---|
+| R1_prob_resid | 0.6612 | +0.00401 CI[0.00123,+0.00689]✓ | **+0.0004 CI[−0.00018,+0.00102] 跨 0 ✗** | +0.00039（≈真值，削弱） |
+| R2_util_resid | 0.6609 | +0.00364 CI>0 | +0.00008 null | POLICY_ONLY |
+
+**判定：FAIL（vs prior 门）**——角色 one-hot 对折叠先验（keep_prior+slot_cov）
+零增量。机制：角色分布退化，MAIN+SETUP+RESULT=84.8%、IDLE+JUNK 仅 6.4%
+（14,955 段统计）→ 与 keep_prior 共线；scout overlap 0.913（门 0.6）是
+「几乎全 keep」分布的天然产物，非精细判别证据。
+
+**结论**：32B contact-sheet 形态的事件角色结构作为 slot 残差特征块收口
+关闭；**O1-verifier（4 NPU-h）前提塌掉，不再投入**。判定四的 V1-7B 塌缩
+属形态问题（判定九修复了形态），但信息量本身与廉价先验冗余（本判定）——
+两层各自成立。与 R9（编码器 8 读出全负）、R10（音频三线全负）、S2a
+（dense 候选关闭）同向：独立廉价信息源在 PHD2 池接连证伪，残余杠杆集中
+在 S1 灰区、S2c/S2b 与官方域差（S4）。

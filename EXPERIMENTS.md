@@ -347,3 +347,11 @@ The frozen InternVideo2 Stage1-1B K700 candidate received official platform scor
   - c. 检测先验条件重排：dev β*=0.5 → eval **+0.00454 [+.0021,+.0071]**，CI>0 但 <+0.005 门——压线未过，弱正灰区，不满足打包条件，不出包不占名额。
   - **裁定：S2a 检测器源收口关闭**。S2 三源余 S2c（Light-ASD，前提门已过）与 S2b 跟踪连续性（CPU 零依赖；PHD2+live 两池检测框均为其现成资产）。
 - 过程教训（本轮新增）：① 执行前先核对读数协议的数据合同再跑提取（day-1 池错位）；② LIVE-YT-VC 帧号=解码顺序计数（流首帧 pts 非零 +4 偏移），PyAV seek 取不到首关键帧前帧；③ `pgrep -f` 链式任务自匹配死锁，用日志标记判完成。提取/读出脚本 `scripts/r11_s2a_live_extract.py`、`scripts/r11_s2a_readouts.py`（commit `9e5ec4f…`）。
+
+## 2026-10-07 深夜：R12 启动（NPU 重启后探针矩阵 + P0-a 对接审计进行中）
+
+计划链 `reports/20261007_round12_r45_plan.md`（v1，fecffac）→ `20261007_round12_frontier_addendum.md`（v2，3ab6db6）→ `20261007_round12_frame_ranking_frontier_v3.md`（v3，9410741）。用户指令：批准 R12，等 910A NPU 恢复再做后面操作。进度报告 `reports/20261007_round12_progress.md`。
+
+- `R12_NPU_PROBE_REBOOT`：整机重启完成后 910A 探针矩阵（Qwen2.5-VL-7B 单卡 generate 金标准）。probe1 卡 0 OOM（被两非我方进程各占 16.3GB，未触碰）；probe2 卡 6 默认 SDPA **崩溃**（`can not cast format when output is input`，ERR01007，sdpa_attention.py:158）——**新坑：910A 必须 `attn_implementation="eager"`**；probe3 卡 6 eager：加载 56.8s 正常、基本算子真实执行，但 generate 24 token >14min 零产物、AICore 三采样 0%、裸点输出=**判定八同签名，整机重启未恢复**。根因指向更新：判定八的「host 残留态」假设削弱，更可能是 **CANN 9.0.0 算子编译层固有缺陷**（TBE 编译任务永返 size=0）。升级选项（华为工单 / CANN 8.3.RC2 双栈降级实验）属用户裁定，未执行。CPU 批处理教训：32 分片曾被外部信号整批扫掉（零异常无 OOM），**setsid 重启后恢复**——910A 长跑 CPU 批处理一律 setsid 入册。
+- `R12_P0A_PHASH_BANK`（进行中）：426×PHD² 对接审计素材链打通——官方 426 intake（duration/fps/sha256 全）+ keyframes 指纹**已算完**（426 行）；PHD² 在盘 13,993 源（399GB，文件名=YouTube ID）+ selections train/test（110,611+10,222 vid，键=YouTube ID，per-user GIF 区间）。指纹库 32 分片（每 2s 一探针，上限 400/视频）断点续跑中。匹配脚本 `scripts/p0a_match.py`（Hamming 矩阵→候选→offset 复验→GIF 区间 join）已冒烟。预注册双结局：A 对上子集→官方域监督解锁+窗口切割函数→复赛镜像池；B 整批不过→与 V10 一致化，对接线永久关闭。V10 当年 174 档案重读：时长匹配（71 scored）+首帧 mae≈25+中后段发散 70-80+cover_share=0 →「非连续裁剪」的精确形态在案。
+- `R12_FRONTIER_V3`：TRINITY（ECCV 2026，2608.29577）Table 2 = Mr.HiSum 最全 fine-tuned SOTA 表；AHA 在 Mr.HiSum 低于专用监督基线（64.19 vs 67.20@ρ50）→ 降级为 LoRA 初始化备选；R12-GATT 改指 TRINITY 配方（冻结 Siglip2+Transformer d5/h512/1D-RoPE+BCE、标签保峰聚合）；新增 R12-EMO（情感峰值辅助视角，批次按视角隔离）。

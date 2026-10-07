@@ -254,3 +254,41 @@ fork 数，在 processor forkserver）。
   解前不在 NPU 上跑检测）。
 - 910A git：GitHub 不可达（出网），bundle 直传；ext_data 本地改动 stash 于 910A
   （pre-r11 ext_data WIP），118 个 untracked 脚本备份 /root/aic_untracked_backup。
+
+## 判定十（2026-10-08 凌晨验收）：V1-32B 全源扫描 4 小时验收 + O1 scout 门 PASS
+
+背景：判定九破解 generate hang（fast processor forkserver × TBE 编译线程 fork 锁死，
+栈从未损坏；推理配方 `use_fast=False` + 推理 `jit_compile=False`）后，32B V1 线复活，
+双实例（--cards 0-3/shard 0 与 --cards 4-7/shard 1，batch 6）全源扫描 PHD2/R10 池。
+
+### 扫描验收（判定：完成、全齐）
+
+- 产物 `r11_e3_roles_32b/`：**1,963/1,963 json 全齐**（目标 1,963）。
+- shardA：965/965，ok=889 bad=76，9,900s（0.10 src/s）；shardB：964/964，ok=874 bad=90，
+  9,572s（0.10 src/s）。合计 ok=1,763 / bad=168，双实例干净退出、0 残留进程。
+- **bad 168 个全部 status=`mostly_unsure`**（多数段输出 UNSURE；raw 内仍有部分角色判断）。
+
+### O1 scout 门（`r11_o1_v1_features.py --e3-dir … --out r11_o1_e3_feats_32b`）
+
+```
+manifest frags=3917, role_coverage_frac=1.0, missing_e3=0
+mean_keep_gt_overlap = 0.9132   →  gate_o1_ge_06 = TRUE（门限 0.6）
+feature frags written=3917
+```
+
+- **按预注册：门 PASS，O1-verifier 保持排队**。
+- 角色分布（14,955 段）：MAIN 37.2% / SETUP 27.2% / RESULT 20.4%（keep 族 84.8%）；
+  UNSURE 8.8% / JUNK 4.1% / IDLE 2.3%。
+- ⚠️ **机制警示（同报，影响下游读数设计）**：keep 族占 84.8%、63.6% 的视频全段 keep、
+  overlap median=1.0 / p10=1.0——`KEEP={MAIN,SETUP,RESULT}` 三类并集过宽，keep 并集几乎
+  盖满时间轴，overlap 门对「角色定位 GT」的**区分度有限**（0.9132 主要反映并集覆盖）。
+  与判定四 7B 的单调塌缩不同，32B 有真实三类分化（37/27/20，UNSURE 仅 8.8%）——
+  **V1-7B 的挂起结论不外推到 32B**；但下游读数不应再用 keep 并集口径，改用**角色序列
+  形态**（MAIN 集中度、SETUP→MAIN→RESULT 时序、非 keep 段位置）才有判别力。
+
+### 过程与成本
+
+- 判定九配方验证链：32B contact-sheet hang 解除（ok=2、40s/2 源）→ 全源双实例 2.75h
+  跑完 1,963 源（含 8 卡满占期间我方探针避让，见 R12 记录）。
+- 产物：`r11_o1_e3_feats_32b/`（3,917 npz：e3_role (8,5) + slot_cov + keep_prior + t）+
+  `scout_readout.json`；统计脚本 /tmp/o1_stat.py（一次性）。

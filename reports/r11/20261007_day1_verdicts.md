@@ -55,6 +55,30 @@ mean speech prob 0.27 与 R10 3.1 的 σ=0.30 互证。首次 logits 域误读�
   transformers 批量链，需新写；32B×984 源为十小时级 NPU）；或放弃角色结构改用运动/
   帧差类廉价 scout。第二层其余形态（V2 counterfactual、R8 VLM_SFT）不受本判定约束。
 
+## 判定六（追加）：V1-32B 在 kmsp05 当前栈不可用 —— vllm-ascend 线关闭 + transformers generate hang
+
+用户指示尝试 vllm-ascend 提速后，实测与文档证据如下（2026-10-07 晚）：
+
+1. **vllm-ascend 官方从未支持 910A**：v0.7.3 与 v0.11.0 安装文档硬件表均为「Atlas 800
+   A2 系列（910B 类）」，CANN 配平 8.1.RC1 / 8.3.RC2，kernels 包 `_910b`；910A 不在
+   任何版本支持表。与 10-01 实测死路（910A 缺 FusedInferAttentionScore）一致。
+2. **0.18.0 引擎初始化卡死（实测）**：venv ABI 修复后（torch_npu 2.8.0.post5 配平
+   torch 2.8；vllm-ascend 0.18 实配 vllm 0.13.0+torch 2.9.0——pypi 元数据三向互斥，
+   --no-deps 手工配平），import 与平台插件激活通过，但 V1/V0 双引擎在权重加载前
+   hang（HBM 零占用，四轮探针）。
+3. **transformers 32B generate 在 10-04 重建栈上 hang（实测）**：Qwen3-VL-32B 加载
+   71–78s 正常（6 卡 device_map），但 generate 全形态卡死——多图长 prompt、单图
+   contact-sheet、batch=1 三试均零产物，HBM 静止 5235MB。关键背景：**历史 32B 推理
+   （0.70 qps，9-28/29）跑在 10-04 栈重建之前；重建后 32B generate 从未被验证过**，
+   今日判定其已退化。`[Check][offset] storage_offset result is untrustworthy` 警告
+   反复出现，疑似 CANN 9.0.0 算子行为变化所致（未深究，属驱动/CANN 层）。
+4. 后果与选项（用户决策）：① 910A 装 CANN 8.x 双栈专供 32B 推理（动驱动层，风险
+   高）；② 有 910B 机器则 vllm-ascend 0.11/0.18 按官方文档直接可用；③ V1 事件结构
+   线挂起等环境。**S2 空间主杠杆不受影响**（S2a 走 CPU，见判定五）。
+
+vllm18 venv 最终状态：torch 2.7.1+torch_npu 2.7.1+transformers 4.57.1（0.11 线主体，
+vllm 0.10.0 源码编译被终止）；0.13/0.18 组合的配平知识记录在案。
+
 ## 判定五：S2a 检测器 —— NPU 算子坑实锤后转 CPU 32 分片，覆盖率门过
 
 - RT-DETR r50vd 在 910B→实为 **910A（用户纠正；npu-smi 显示 910B 不可信，lspci

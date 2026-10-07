@@ -79,6 +79,30 @@ mean speech prob 0.27 与 R10 3.1 的 σ=0.30 互证。首次 logits 域误读�
 vllm18 venv 最终状态：torch 2.7.1+torch_npu 2.7.1+transformers 4.57.1（0.11 线主体，
 vllm 0.10.0 源码编译被终止）；0.13/0.18 组合的配平知识记录在案。
 
+## 判定六修订（2026-10-07 晚，用户纠正后）
+
+**撤回两处错误结论**：
+1. 「CANN 9.0.0 裸缺 910 算子」——错。CANN 9.0.0 改了算子包组织：8.x 的
+   `Ascend-cann-kernels-910_<ver>` 在 9.0.0 改名 `Ascend-cann-910-ops_<ver>`（含算子
+   库/TBE/aclnn/kernel 二进制），oepkgs 镜像 kernels 名止于 8.x 不能推出 9.0.0 缺包。
+2. 「CANN 8.3.RC1+910 kernels 配 vllm-ascend 0.11.0」——作废。0.11.0 官方矩阵为
+   CANN==8.3.RC2、torch==2.7.1、torch-npu==2.7.1.post1；且 vllm-ascend FAQ（v0.11.0
+   至 v0.23.0rc1）明文将 Ascend 910 / 910 Pro B（Ascend-cann-kernels-910）列为不支持。
+
+**已执行（按用户诊断树）**：
+- 第 1 步：本机原无 910-ops（opp/Ascend910 仅 3 个 aicpu 包，无 AI Core kernel）。
+- 第 2 步：补装 `Ascend-cann-910-ops_9.0.0_linux-aarch64.run`（官方 OBS 直链，
+  --install --quiet）——success（legacy/transformer/math/ras 四子包，cann-9.0.0 内
+  share/info/ops_* 注册 + lib64 出现 910 系 HCCL 算子对象）。
+- 复验（含 env 顺序修正，ASCEND_OPP_PATH 正确指向 cann-9.0.0/opp）：
+  **32B generate 仍 hang**（transformers contact-sheet，batch 2/1、HBM 静止 5236MB、
+  零产物）。ops 缺失不是 hang 根因（或非充分修复）。
+- 第 4/5 步（vllm-ascend 非官方 910A 路径、aclnn fallback、AsStrided 是否落入 910A
+  未适配执行路径）为深度排障，未完成——需逐算子探针/strace/torch_npu 源码级分析。
+
+当前状态：910-ops 9.0.0 已补全（对其他工作负载无害且可能有益）；32B generate hang
+根因未定，进入深度排障范畴；vllm-ascend 官方不支持 910 系的结论维持（FAQ 明文）。
+
 ## 判定五：S2a 检测器 —— NPU 算子坑实锤后转 CPU 32 分片，覆盖率门过
 
 - RT-DETR r50vd 在 910B→实为 **910A（用户纠正；npu-smi 显示 910B 不可信，lspci

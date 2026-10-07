@@ -45,11 +45,14 @@ if a.device == 'npu':
     os.environ.setdefault('ASCEND_RT_VISIBLE_DEVICES', str(a.shard % 2))
     import torch_npu  # noqa: F401,E402
     # NOTE 2026-10-04 rebuild: DO NOT set_compile_mode(jit_compile=False) on
-    # CANN 9.0.0 + torch_npu 2.9.0.post2 (kernel-parse bug) -- see
-    # /data/aic/tools/ascend_teacher.env.note; run via `source ascend_teacher.env`.
+    # CANN 9.0.0 + torch_npu 2.9.0.post2 **for training** (InplaceNormal
+    # kernel-parse bug).  2026-10-07 verdict 9: for INFERENCE it is required
+    # here -- it keeps the run off the JIT path so no compile thread ever
+    # exists to deadlock the processor's (now disabled) forkserver.
     torch_npu.npu.config.allow_internal_format = False
     assert torch_npu.npu.device_count() > 0, 'no NPU visible - refusing CPU fallback'
 import torch  # noqa: E402
+torch.npu.set_compile_mode(jit_compile=False)
 from transformers import AutoProcessor, Qwen2_5_VLForConditionalGeneration  # noqa: E402
 
 SYSTEM = ('You are a professional video editor cutting a short highlight clip from a video. '
@@ -95,7 +98,15 @@ def parse_roles(text, segs):
 
 model = Qwen2_5_VLForConditionalGeneration.from_pretrained(
     a.model_path, torch_dtype=torch.float16, attn_implementation='eager').to(a.device)
-proc = AutoProcessor.from_pretrained(a.model_path, min_pixels=448 * 28 * 28, max_pixels=448 * 448)
+# 2026-10-07 night root-cause fix (see reports/r11 20261007_day1_verdicts.md
+# verdict 9): the fast image processor spawns a forkserver for multi-image
+# batches; fork while a TBE compile thread holds its lock deadlocks the
+# process (python 3.8-3.11, hiascend ptacase_0037).  Slow processor = no
+# subprocess pool.  Also: inference must NOT hit the JIT path while the
+# forkserver exists -- set_compile_mode(jit_compile=False) is SAFE for
+# inference (the 10-04 note ban is about the InplaceNormal training bug).
+proc = AutoProcessor.from_pretrained(a.model_path, min_pixels=448 * 28 * 28, max_pixels=448 * 448,
+                                     use_fast=False)
 model.eval()
 print(f'{a.model_path} on {a.device}', flush=True)
 

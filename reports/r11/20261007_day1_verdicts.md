@@ -133,6 +133,8 @@ JIT 编译」层。7B 同日对照：下午可跑形态（8 图）在晚间重�
 
 ## 判定八（选项 A 干净重建后）：JIT 编译子系统状态损坏实锤 —— 主链多模态前向不可用，升级上报
 
+
+
 用户裁定选项 A 后执行与探针矩阵（2026-10-07 深夜）：
 
 **重建执行（四步链式，全过零事故）**：卸 910-ops → 卸 toolkit → 装
@@ -174,6 +176,54 @@ Light-ASD、S2a 已完成的 3781/3917 产物的消费）不受影响。**
    可试但风险自担；
 2. 华为工单 / 离线分析（原选项 B 路径）；
 3. 接受现状：R11 推进全部走 CPU/已完成产物，NPU 线挂起等窗口。
+
+## 判定九（深夜收官）：根因闭环 —— python fork×编译线程锁死（官方 FAQ 同款），32B/7B 全线复活
+
+用户三步授权全部执行后收束（2026-10-07 23 时）。**判定八的「JIT 子系统持久
+损坏」结论被推翻**——栈从未损坏，真凶是应用层并发形态。
+
+**执行序列**：① 整机重启（up 1min 验证，NPU 健康）——复测仍冻结；② 清编译
+缓存（kernel_cache 5.2M→8K）+ 预热跑——预热跑揭示 **NPU OOM**（7B 权重
+15.5GB 后 HBM 仅剩 20MB）；③ 互联网检索命中官方 FAQ。
+
+**根因链（三层）**：
+1. **fork×编译线程锁死（官方 ptacase_0037 同款）**：python 3.8–3.11 在算子
+   编译场景下 fork 多进程会锁死。落点 = transformers 5.18 **fast image
+   processor 多图时起 forkserver 进程池** × TBE 编译线程持锁。决定性实验：
+   单图（无进程池）+jit_compile=False → 健康；10 图同配置仍冻结；
+   **10 图 + `use_fast=False`（慢速 processor，无子进程池）→ 全绿**
+   （10img fwd 6.54s、generate50 10.0s）。
+2. **「装卸循环」的真实角色**：910-ops 装卸清空算子编译缓存 → 每次首任务
+   触发编译线程 → forkserver 锁死条件成立。**下午健康 = 缓存全热无编译
+   线程**；晚间全部 hang = 冷缓存+编译线程常驻。CANN/ops 文件层全程清白。
+3. **连锁伤害（「慢 400 倍」的真相）**：历次 kill 未清 forkserver 孤儿组
+   → 僵尸进程霸占 HBM（实测卡 6 残留 16.5GB）→ 后续每个探针在 OOM 边缘
+   挣扎（OOM-重试循环表现为「极慢+零产物」）→ 再留新僵尸的恶性循环。
+   OOM 日志（`Tried to allocate 88MiB, 20MiB free`）为铁证。
+
+**修复配方（生产化，已入脚本）**：
+- 推理脚本：processor `use_fast=False`（必改）；
+- 推理可 `torch.npu.set_compile_mode(jit_compile=False)`（10-04 note 的
+  禁令限**训练**——InplaceNormal kernel-parse bug；推理无该算子，实测安全
+  且必要：保持进程内无编译线程）；
+- 进程清理必须杀全组（主进程+forkserver+worker），跑前 `npu-smi info -t
+  proc-mem` 确认 HBM 干净。
+
+**互联网对照**：hiascend 官方案例库 ptacase_0037「在模型运行时脚本突然
+卡死」精确命中（py 3.8-3.11+非二进制编译+fork→子进程锁死）；官方解法
+「spawn 代替 fork」落地为 use_fast=False，「二进制场景」落地为
+jit_compile=False；TE_PARALLEL_COMPILER=1 无效（锁死源不在 TBE 并行编译
+fork 数，在 processor forkserver）。
+
+**复活验证**：
+| 探针 | 结果 |
+|---|---|
+| 7B 金标准（同脚本同命令，基线 17.5s/源） | **ok=3 err=0 72s（24s/源）** |
+| 32B contact-sheet（判定六/七的原始故障） | **loaded 135s + generate 40s/2 源，hang 解除** |
+| 32B 解析修复后（seg-N 键归一化） | **ok=2 bad=0**，叙事弧（SETUP→MAIN→RESULT）质量良好 |
+
+**V1-32B 全源扫描已启动**（1961 源，~11h 后台，卡 2–7，
+/tmp/v1_32b_fullscan.log，产出 r11_e3_roles_32b/<src>.json）。
 
 ## 判定五：S2a 检测器 —— NPU 算子坑实锤后转 CPU 32 分片，覆盖率门过
 

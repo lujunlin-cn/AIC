@@ -67,6 +67,8 @@ def parse_roles(text, segs):
     r = d.get('roles', d)
     if not isinstance(r, dict):
         return None, 'bad_roles'
+    # normalize keys: the 32B tends to answer "seg-40" where the tag said 40
+    r = {str(k).replace('seg-', '').strip(): v for k, v in r.items()}
     out = {}
     for s in segs:
         v = r.get(str(s), r.get(s))
@@ -107,10 +109,15 @@ import torch  # noqa: E402
 import torch_npu  # noqa: F401,E402
 torch_npu.npu.config.allow_internal_format = False
 assert torch_npu.npu.device_count() > 0, 'no NPU visible'
+# 2026-10-07 verdict 9: inference-only run -- keep off the JIT path so no
+# compile thread can deadlock the (also disabled) processor forkserver.
+torch.npu.set_compile_mode(jit_compile=False)
 from transformers import AutoProcessor, Qwen3VLForConditionalGeneration  # noqa: E402
 
 t0 = time.time()
-proc = AutoProcessor.from_pretrained(a.model)
+# use_fast=False: the fast image processor spawns a forkserver for
+# multi-image batches -> python 3.8-3.11 fork deadlock (ptacase_0037).
+proc = AutoProcessor.from_pretrained(a.model, use_fast=False)
 proc.tokenizer.padding_side = 'left'
 model = Qwen3VLForConditionalGeneration.from_pretrained(
     a.model, dtype=getattr(torch, a.dtype), device_map='auto',

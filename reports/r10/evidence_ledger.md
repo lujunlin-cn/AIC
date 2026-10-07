@@ -119,17 +119,45 @@ pilot 判定（`r10_asr/asr_head.json`，同协议 5 折源分组 CV）：
 - 按 R10 Q2 覆盖审计规则：本池可读比分/计分 UI ≈ 不存在 → 家族 T 的 H_coverage 上界≈0，
   **NO_PRACTICAL_GAIN(coverage scope)**——「比分变化→高光」机制在本池无输入。
 
+## 3.6 全池 AST-527 判定与 R10 Day-1 三线收口（2026-10-07）
+
+全池判定（3,917 frags / 1,963 源，`pilot_head_527_full.json`）：
+- R1：λ 5/5 折全 0（pilot +0.0054 塌缩）。
+- R2：λ 仅 1/5 折正（0.5），**delta_vs_prior = +0.00004**（CI [−0.00075, +0.00089]）——与零无异。
+- **pilot 的两个「贴线弱方向」（527-R2 +0.0046 / ASR-R2 +0.0057）在全池全部塌缩为零。**
+  附带修正：pilot σ_ψ=0.0151 也是同一噪声的产物——真实残差方差为 0，「pilot 有判定力」
+  的推断不改变结论方向。
+
+### R10 Day-1 总判定表（SCREEN 阶段完成态，NPU·h 消耗 0）
+
+| 家族/读出 | pilot | 全池 | 判定（R10 8.4 口径） |
+|---|---|---|---|
+| A：AST pooler（R1/R2） | λ 全 0 | 未再跑（同特征） | NO_PRACTICAL_GAIN |
+| A：AST token-mean（R1/R2） | λ 全 0 | 未再跑 | NO_PRACTICAL_GAIN |
+| A：AST-527 语义分数（R1/R2） | +0.005 弱方向 | +0.00004，λ 全 0 | NO_PRACTICAL_GAIN（全池） |
+| S：ASR 语言无关形态（R1/R2） | +0.006 弱方向 | λ 全 0 | NO_PRACTICAL_GAIN（全池） |
+| T：OCR 数字状态 | 覆盖 0% | — | NO_PRACTICAL_GAIN（coverage） |
+
+机制推断（非事实）：mixed 筛选后的本池 top-6 与先验重合 88.5%，R10 10.5 根因推断
+（通用读出解释「什么内容」，无稳定辨别「第 7/8 槽为何值得替换前 6 槽」的信息）在
+音频/语音/文字三个新模态上第三次成立。R10 报告 §2「工作假设」对这些模态赋的目标
+（0.007–0.02）未兑现。
+
+剩余未测家族（按 R10 排行）：V（≤9B VLM 语义事件）、I（空间身份，ΔIoU 目标不与
+时间混算）、R（token 空间结构，≤6 NPU·h 有界）、C（音画交互——音频 embedding null
+已削弱其先验）、M（补偿后运动）、Tier-3。这些需要 NPU 预算或新协议，待下一步指示。
+
 ## 4. 状态表（R10 关闭规则口径）
 
 | 探针 | 状态 | 备注 |
 |---|---|---|
-| AUDIO_LEARNED | SCREEN | AST 三读出 pilot 完成（pool/mean null，527 弱正）；全池收窄中 |
-| OCR_STATE | NOT_TESTED | 排后 |
-| ASR_SEMANTIC | SCREEN | 32→132 片段覆盖审计 + pilot 判定完成（R2 弱正 +0.0057）；全池转录中 |
+| AUDIO_LEARNED | NO_PRACTICAL_GAIN | 三读出 pilot+全池收口（3.6 节总表） |
+| OCR_STATE | NO_PRACTICAL_GAIN | 覆盖关闭：数字文本 0%（3.5 节） |
+| ASR_SEMANTIC | NO_PRACTICAL_GAIN | 形态层全池关闭（3.4 节）；词典/编码器语义层未测 |
+| AV_INTERACTION | PAUSED_BUDGET | 音频 embedding null 已削弱先验；缓存就位 |
 | COMPENSATED_MOTION | NOT_TESTED | |
 | REGION_TOKENS | NOT_TESTED | ≤6 NPU·h 有界 |
 | SPATIAL_IDENTITY | NOT_TESTED | |
 | VLM_EVENTS | NOT_TESTED | |
-| AV_INTERACTION | NOT_TESTED | 条件于音频缓存 |
 | TRAIN_BANK_RECURRENCE | NOT_TESTED | |
 | ONE_RESERVED_TIER3 | NOT_TESTED | |

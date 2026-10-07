@@ -1,0 +1,64 @@
+# R10 证据台账（可学习信号普查与策略空间审计）
+
+计划来源：reports/r10/gpt6pro/（GPT 6 PRO，2026-10-07，repo SHA ab60493）。
+执行纪律：双门判定（+0.007 vs champion 且 vs macro-optimal prior，源簇 CI 下界>0）；
+SCREEN（训练/开发源）→ CONFIRM（新合法源，Holm α=0.10，家族 p=max(p_LL, p_F_vs_prior, p_F_vs_champ)）。
+
+## 0. R10 计划核验（2026-10-07）
+
+| 项 | GPT 断言 | 本地核验 | 结论 |
+|---|---|---|---|
+| self-test | 2,055 项 PASS，max_err 1.11e-16 | 本地复跑一致 | ✔ |
+| 评价源数 | 1,954 片段 / 984 源（非 50） | audit_k6.json + 冻结 manifest grep 一致（979 train 源） | ✔ `eval_sources_50.json` 文件名是遗留误导 |
+| AP 强位置对照 | prior 0.7444 vs champ 0.7463（+0.0019） | a1a2_audit.json A1.guard 一致 | ✔ +0.036 只对恒定分数（0.7101）成立，对位置先验仅 +0.0019 |
+| oracle/prior/交换 | gap 0.068446、交换 0.12794/frag、same_mask 0.8854 | audit_k6.json 一致 | ✔ |
+
+## 1. 先验层检查点（CPU，2026-10-07）
+
+- 效用先验 b_s=E_train[2Y/(K+G)] 的 top-6 集合与概率先验 p_s 完全相同（[0..5]），eval F1 均 0.662454。
+  **结论：先验层无免费增益；效用读出的意义只剩条件于 X 的残差（q_s=b_s+h(X)）。**
+- eval 与 train 源零重叠（复核通过）。
+
+## 2. 家族 A（学习型音频）执行记录
+
+- 编码器：`MIT/ast-finetuned-audioset-10-10-0.4593`（transformers 原生，AudioSet mAP 0.459）。
+  PANNs CNN14 GitHub release 直连不可达（9 字节错误页）；AST 在 R10 预注册编码器表内（R2 用的即 AST）。
+  权重经 hf-mirror 秒级到位：/data/aic/pretrained/ast_audioset。
+- 冒烟（合成音频，CPU）：extractor 对 2s 窗口自动 pad 到 1024×128；527 类头就位；
+  2s 单独 vs 嵌入 10s 的 pooler cosine 0.896 → 协议固定为逐窗独立前向。
+- 提取脚本 scripts/r10_audio_extract.py：媒体定位逐字复用 R9（冻结 t 轴=源内绝对秒，PyAV seek 2s 提前量）。
+  **两个解码 bug 及修复**：
+  1. `Container.seek(..., stream=st)` 把 timestamp 按 stream time_base（1/44100）解释——微秒整数被读成 582.75s；
+     去掉 stream= kwarg，与 R9 视频路径一致（微秒）。
+  2. resample 输出 to_ndarray 形状 (1, 355)（平面×样本），`mean(axis=1)` 把 355 样本塌成 1——
+     改 `reshape(-1)`（resampler 已混 mono，展平恒安全）。
+
+## 3. ⚠️ 官方域音频可用性（用户提供，2026-10-07，GPT 6 PRO 审计官方 174 集）
+
+- **77% 有真音轨（134/174，全 AAC 立体声：127×44.1kHz + 7×48kHz）；23%（40/174）完全无音频流。**
+- 抽样 10 个响度实测全部真声（mean −8.7~−23.2 dB，峰值近 0 dB，0 静音假音频）。
+- PHD2 训练池音轨存在率 96.7%（R9 探针）→ **存在率域偏移：96.7% vs 77%**。
+
+由此固化的预注册约束（家族 A 全程有效）：
+
+- **构造性回退**：`score_s = a_s + avalid_s · g(x_s)_s`。avalid=0 槽残差硬置零、落回位置先验；
+  禁止让头从 ~3% 缺失样本学习缺失行为（官方 23% 上无训练支撑）。
+- **has_audio 不进特征**（PHD2 近常数、官方强变量，域漂移特征）；只作回退开关与覆盖记账。
+- **增益定价按覆盖折扣**：官方域期望增益上限 ≈ 0.77 × 池内增益（若残差仅在可用片段有效）；
+  pilot 报告按 H_coverage 口径并记此折扣。
+- 官方部署输入合同：无音频流 → 全 frag avalid=0 → 输出=位置先验（与 R9 champion 同姿势）。
+
+## 4. 状态表（R10 关闭规则口径）
+
+| 探针 | 状态 | 备注 |
+|---|---|---|
+| AUDIO_LEARNED | RUNNING | AST 提取冒烟中 → 64 源 pilot |
+| OCR_STATE | NOT_TESTED | 排后 |
+| ASR_SEMANTIC | NOT_TESTED | speech 覆盖可先用 AST 527 类软分数 |
+| COMPENSATED_MOTION | NOT_TESTED | |
+| REGION_TOKENS | NOT_TESTED | ≤6 NPU·h 有界 |
+| SPATIAL_IDENTITY | NOT_TESTED | |
+| VLM_EVENTS | NOT_TESTED | |
+| AV_INTERACTION | NOT_TESTED | 条件于音频缓存 |
+| TRAIN_BANK_RECURRENCE | NOT_TESTED | |
+| ONE_RESERVED_TIER3 | NOT_TESTED | |

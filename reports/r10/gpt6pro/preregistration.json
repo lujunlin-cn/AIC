@@ -1,0 +1,111 @@
+{
+  "study": "AIC_R10_SIGNAL_CENSUS",
+  "created": "2026-10-07",
+  "status": "NOT_RUN",
+  "repo_sha": "ab60493e95e85bf54d29c79b9ab6e0a07ea286b5",
+  "constraints": {
+    "official_media_training": false,
+    "external_metadata_at_inference": false,
+    "new_human_labels": false,
+    "max_inference_parameters": 9000000000,
+    "training_run_hours_exclusive_upper_bound": 12
+  },
+  "baseline": {
+    "actual_K": 6,
+    "n_slots": 8,
+    "train_source_count_reported": 979,
+    "dev_source_count_reported": 984,
+    "dev_is_fresh_confirm": false,
+    "frozen_prior_F": 0.6624544709242763,
+    "local_fixedK_oracle": 0.7309006585362778
+  },
+  "screen": {
+    "source_grouped_folds": 5,
+    "maximum_readouts_per_family": 2,
+    "fit_all_transforms_on_training_only": true,
+    "pilot_sources": 64,
+    "pilot_null_closes_entire_modality": false
+  },
+  "confirm": {
+    "source_manifest": "TO_BE_CREATED_FROM_UNEXPOSED_LAWFUL_PUBLIC_SOURCES",
+    "initial_budget_sources": 768,
+    "power_guaranteed": false,
+    "alpha": "0.10 family-wise, Holm on at most 10 intersection-union family p-values",
+    "family_p": "max(p_LL, p_F_vs_prior, p_F_vs_champion)",
+    "minimum_temporal_effect": 0.007,
+    "minimum_spatial_effect": 0.02,
+    "policy_only_state": "descriptive candidate, not automatically a confirmed STRICT_ALPHA",
+    "forbidden": [
+      "choose hypothesis after confirm peeking",
+      "refit prior on confirm",
+      "select oracle actions on eval"
+    ]
+  },
+  "budgets_npu_hours": {
+    "parity": 4,
+    "learned_audio": 16,
+    "ASR": 8,
+    "OCR_CPU_first": 0,
+    "spatial_identity": 10,
+    "token_probe": 6,
+    "VLM_semantic_probe": 10,
+    "confirmation": 8,
+    "packaging": 4,
+    "conditional_reserve": 6
+  },
+  "probes": [
+    {
+      "id": "AUDIO_LEARNED",
+      "status": "NOT_RUN",
+      "first_encoder": "PANNs CNN14",
+      "pilot_npu_hours_cap": 2
+    },
+    {
+      "id": "OCR_STATE",
+      "status": "NOT_RUN",
+      "pilot_cpu_hours_cap": 4
+    },
+    {
+      "id": "ASR_SEMANTIC",
+      "status": "NOT_RUN",
+      "pilot_cpu_hours_cap": 4
+    },
+    {
+      "id": "COMPENSATED_MOTION",
+      "status": "NOT_RUN",
+      "pilot_cpu_hours_cap": 4
+    },
+    {
+      "id": "REGION_TOKENS",
+      "status": "NOT_RUN",
+      "pilot_npu_hours_cap": 2
+    },
+    {
+      "id": "SPATIAL_IDENTITY",
+      "status": "NOT_RUN",
+      "pilot_npu_hours_cap": 2
+    },
+    {
+      "id": "VLM_EVENTS",
+      "status": "NOT_RUN",
+      "pilot_npu_hours_cap": 2
+    },
+    {
+      "id": "AV_INTERACTION",
+      "status": "NOT_RUN",
+      "conditional_on": "audio_cache_available",
+      "pilot_cpu_hours_cap": 4
+    },
+    {
+      "id": "TRAIN_BANK_RECURRENCE",
+      "status": "NOT_RUN",
+      "pilot_cpu_hours_cap": 4
+    },
+    {
+      "id": "ONE_RESERVED_TIER3",
+      "status": "NOT_RUN",
+      "hypothesis": "TO_BE_FROZEN_BEFORE_CONFIRM",
+      "pilot_cpu_hours_cap": 4
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "tests": 2055,
+  "max_exchange_error": 1.1102230246251565e-16,
+  "correlation_only_signal_example": {
+    "baseline_F": 0.41666666666666663,
+    "legal_X_policy_F": 0.5,
+    "marginal_LL_gain": 0.0,
+    "F_gain": 0.08333333333333337
+  },
+  "scope": "synthetic/local arithmetic only; no AIC model or NPU executed"
+}

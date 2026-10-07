@@ -1,0 +1,52 @@
+{
+  "n": 1954,
+  "mean_G": 3.7778915046059365,
+  "mean_positive_rate": 0.47223643807574206,
+  "oracle_by_K_1_to_8": [
+    0.4691341326704684,
+    0.7217380708680606,
+    0.8207084369059804,
+    0.8231536006356887,
+    0.7831615245893649,
+    0.7309006585362778,
+    0.673951923772804,
+    0.6178474317675956
+  ],
+  "prior_oracle_gap": 0.0684461876120015,
+  "min_headroom_capture_for_007": 0.1022701226207171,
+  "swaps_good_only_min": 0.0245,
+  "swaps_good_only_max": 0.0455,
+  "sample_min_good_swaps": 48,
+  "sample_max_good_swaps": 89,
+  "needed_net_quality_at_observed_swap_rate": 0.27355999999999997,
+  "MDE_n50_sigma05": 0.022400924385831817,
+  "MDE_n984_sigma05": 0.005049558326796437,
+  "power": [
+    {
+      "sigma": 0.03,
+      "n80_one_endpoint": 185,
+      "n90_each_two_endpoints": 240
+    },
+    {
+      "sigma": 0.05,
+      "n80_one_endpoint": 513,
+      "n90_each_two_endpoints": 665
+    },
+    {
+      "sigma": 0.1,
+      "n80_one_endpoint": 2049,
+      "n90_each_two_endpoints": 2657
+    },
+    {
+      "sigma": 0.15,
+      "n80_one_endpoint": 4609,
+      "n90_each_two_endpoints": 5978
+    }
+  ],
+  "token_bytes_per_frag": 5242880,
+  "token_bytes_3917": 20536360960,
+  "token_bytes_5886": 30859591680,
+  "audio_hours_2m": 65.43333333333334,
+  "audio_hours_4m": 130.86666666666667,
+  "audio_hours_6m": 196.3
+}

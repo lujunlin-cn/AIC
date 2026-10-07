@@ -139,6 +139,12 @@ JIT 编译」层。7B 同日对照：下午可跑形态（8 图）在晚间重�
 - **转 CPU 全并行**：RT-DETR r50 CPU 3.5 s/帧（OMP 6），3,917 frag×32 分片 ≈1h 墙钟，
   755GB host 内存充裕。覆盖率门（conf≥0.3 person 帧 ≥0.6）**已过（gate_ge_060=true）**。
   全量提取 32 分片后台运行中（r11_s2a/p0..p31）。
+  **【收口更新 10-07 晚】** PHD2 32 分片完成：3,917/3,917 全量、coverage 0.766
+  [0.717–0.830]、0 错误。⚠️ 本条提取跑在 PHD2（keep-mask 协议池、无空间候选），
+  readout 数据合同要求 B3 分数场同池 → 补 live 池提取后完成读出 a/b/c：
+  **a 门 FAIL（+0.0000045 vs +0.02，低 3 数量级）、c 压线未过（+0.00454 <+0.005，
+  CI>0）→ 检测器源收口关闭**。判定与机制见
+  `reports/r11/20261007_s2a_readout_verdict.md`。
 - 教训（三项，均已修入脚本/流程）：
   1. `HF_ENDPOINT` 的 setdefault 必须在 `import transformers` 之前——huggingface_hub
      在 import 时固化 endpoint 常量，之后设置静默失效，from_pretrained 在

@@ -31,6 +31,8 @@ p.add_argument('--manifest-dir', default='/data/aic/experiments_910a/LFM_V11/r8_
 p.add_argument('--out', default='/data/aic/experiments_910a/LFM_V11/r11_e3_roles_32b')
 p.add_argument('--batch', type=int, default=4)
 p.add_argument('--limit', type=int, default=0)
+p.add_argument('--shard', type=int, default=0)
+p.add_argument('--nshards', type=int, default=1)
 p.add_argument('--dtype', default='float16')
 p.add_argument('--cards', default='2,3,4,5,6,7', help='physical NPU ids, visible via ASCEND_RT_VISIBLE_DEVICES')
 a = p.parse_args()
@@ -91,12 +93,13 @@ for r in man:
     seen.add(r['fragment_id'])
     by_src.setdefault(r['source_id'], []).append(r['fragment_id'])
 srcs = sorted(by_src)
+mine = [s for i, s in enumerate(srcs) if i % a.nshards == a.shard]
 if a.limit:
-    srcs = srcs[:a.limit]
+    mine = mine[:a.limit]
 OUT = Path(a.out)
 OUT.mkdir(parents=True, exist_ok=True)
-todo = [s for s in srcs if not (OUT / f'{s}.json').exists()]
-print(f'{len(srcs)} sources, {len(todo)} to run', flush=True)
+todo = [s for s in mine if not (OUT / f'{s}.json').exists()]
+print(f'{len(mine)} sources, {len(todo)} to run', flush=True)
 
 t_of = {}
 for f in Path(a.audio_root).glob('p*/*.npz'):

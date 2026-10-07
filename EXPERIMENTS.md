@@ -371,3 +371,11 @@ The frozen InternVideo2 Stage1-1B K700 candidate received official platform scor
 - `R12_NPU_FINAL_PROBE`（**PASS**）：判定九配方（`use_fast=False` + 推理 `jit_compile=False` + eager，卡 1，timeout 600）——`PROBE_RESULT gen_ok=True gen_s=3.4 total_s=35.2`（加载 30.9s、24 token 3.4s、输出内容正常）。对照：故障态同探针 >14min 零产物、判定九基线 24s/源。**NPU 推理栈完全恢复，判定九配方实证**。排程 cron 已删（用户手动批准提前执行）。
 - `R12_M01_SMOKE_R12`（**PASS**）：`v11_m01_npu_smoke.py --cards 2`（VideoMAEv2 ViT-B fwd+bwd，safetensors 直载路径）——grad_norm 0.0149 非零有限、update ok、save/reload 一致 7.2e-05（fp16 量级）、peak 5.8GB、`"pass": true`。**NPU 训练栈可用**（R12-VMAE 臂的栈前提复验通过）。
 - 特征资产盘点（R12-GATT 前置）：B3 同款 SigLIP pooled 特征在盘——`LFM_V8/{live_feats,rv_feats_rot,diag_feats_dense}`（53G/5.1G/53G，per-frag `pooled (768,) f16` + grid）。**GATT 头与 B3 同表示换头=干净单变量**；B3 时间监督合同在 `v8_s_train_multidata.py`，下轮精读复刻后再训（与 P0-b 损失判定联动定配方）。
+
+## 2026-10-08 凌晨三批：全批准执行（VMAE 免提取裁定 + GATT 方案 + AHA 资产落地）
+
+用户「全部批准执行」（VMAE 提取 + GATT 构建 + AHA 下载）。
+
+- `R12_VMAE_FEATS_ALREADY_ON_DISK`（**降本裁定**）：`LFM_V11/phd2_vmae_feats/` 6,001 npz 全量在盘（V11 已提取；每 frag `ord [8,768]` 16 帧 linspace 窗 + `rep [8,768]` 静态控制）——原「8 卡 1-2h 提取」取消。臂改两档：VMAE-F（冻结特征轻头，CPU，rep 条件=运动贡献对照）先行；VMAE-E2E（M01 桥 NPU 微调）视 F 档读数再定。⚠️ `v8_s_train_multidata.py` 经核实为**空间头**（129 格点+IoU），B3 时间头合同需从 `r8_temporal_dualbase.py` 一线考古——GATT 数据合同下轮完成。
+- `R12_GATT_EXEC_PLAN`（`reports/r12/20261008_gatt_vmae_exec_plan.md`）：架构固定=TRINITY 式（768→512+3 层 Transformer+1D RoPE，与 p0b 同构）；**配方冻结条件预注册**=P0-b 终评损失胜者（pairwise→GATT 直接 ranking）；本地只做预检，判定走平台差分。
+- `R12_AHA_ASSETS`：官方权重=**LoRA adapter**（951MB zip：adapter_model.safetensors 1.2GB + tokenizer；base=`lmms-lab/llava-onevision-qwen2-7b-ov`；modules_to_save 含 connector/mm_projector/lm_head + **informative/relevance/uncertainty 三解耦头**）——本地 Google Drive 下载完成（80s，12MB/s），scp 910A 进行中；基座 16GB 级 hf-mirror 下载已启动（`/data/aic/pretrained/llava-onevision-qwen2-7b-ov`）。R12-AHA 成本结构更新：需基座+LoRA 合成，推理 24GB 级单卡可容。

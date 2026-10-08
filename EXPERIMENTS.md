@@ -431,3 +431,8 @@ The frozen InternVideo2 Stage1-1B K700 candidate received official platform scor
 - **P1-UV 2 臂**（cards 0,1）：trainer 新增 `--labels vote`（逐用户 keep 指示均值→软标签；单用户 src 与 union 等价，差异仅多用户 src）。tag=lfm_vote_npu_s0/s1。
 - **P3 3 臂**（cards 2,3,4）：d6（`--n-layers 6`）、e150（epochs 150）、concat（lfm pooled ‖ vmae ord 1536d，`--feat concat`）。
 - **P1-QV 主攻**（cards 5-7 + 待臂完 0-4）：QV saliency 实际形态=仅 relevant_windows 内有标注（3 人 0-4 分、2s clip）→ 路线 B：窗口内 clip=3 人均值/4 软标签（多 query 取 max）、窗口外=0。8,619 段（train 7,100+val 1,519，全部 150s 切段）**文件对齐率 100%**，keep_rate=0.296。提取=r12_qv_extract.py（vision() 逐字 p0c 合同+grab/retrieve 顺序解码+生产者线程流水），8 分片断点续跑；pilot 20 段测吞吐后全自动（r12_qv_chain.sh：臂完→全量 8 卡→2 seeds 训练）。脚本 commit 5e8e916。
+
+## 2026-10-08：P2 keep 深度差分回分——0.80 确认为最优，P2 关闭
+
+- KEEP060 = 33.82（−1.35 vs 35.17）、KEEP070 = 35.10（−0.07）、KEEP080 = 35.17。三点曲线：keep 0.80 局部最优。
+- 归因：①0.70→0.80 仅 −0.07（噪声级）= 排序器在头部 70-80% 区间近乎无判别力；②0.60 大降 1.35 = 被剪的 60-80% 区间含真实正例，当前排序质量撑不起更深剪枝。**45 分需要排序质量跃升（监督源），不是剪枝策略微调**——keep 维度关闭，0.80 保持默认；仅在 P1 监督源出正、排序质量跃升后重测。

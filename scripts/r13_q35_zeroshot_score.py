@@ -32,14 +32,56 @@ torch.npu.set_compile_mode(jit_compile=False)
 INTAKE = "/data/aic/semifinal_20261001/intake/index.enriched.jsonl"
 OUT_DIR = "/data/aic/experiments_910a/LFM_V13/q35_zs_scores"
 
+
+def parse_scores(raw, n):
+    """JSON array anywhere in raw; else last-n floats (auto /100 if 0-100 scale)."""
+    import re as _re
+
+    best = None
+    for mch in _re.finditer(r"\[[^\[\]]*\]", raw):
+        try:
+            arr = json.loads(mch.group(0))
+            if (isinstance(arr, list) and len(arr) == n
+                    and all(isinstance(x, (int, float)) for x in arr)):
+                best = arr
+                break
+        except Exception:
+            pass
+    if best is not None:
+        return best
+    fl = _re.findall(r"-?\d+\.\d+|-?\d+", raw)
+    if len(fl) >= n:
+        vals = [float(x) for x in fl[-n:]]
+        mx = max(vals) if vals else 1.0
+        if mx > 1.5:
+            vals = [v / 100.0 for v in vals]
+        return vals
+    return None
+
 MODEL = "/data/aic/pretrained/Qwen3.5-4B"
 
 ap = argparse.ArgumentParser()
 ap.add_argument("--shard", type=int, required=True)
 ap.add_argument("--n-shards", type=int, default=8)
+ap.add_argument("--model", default=MODEL)
+ap.add_argument("--out-dir", default=OUT_DIR)
+ap.add_argument("--device-map", default=None,
+                help="e.g. 'auto' with --max-memory for cross-card sharding")
+ap.add_argument("--max-memory", default=None,
+                help="comma list, e.g. '28GiB,28GiB'")
+ap.add_argument("--device", default="npu:0")
+ap.add_argument("--max-frames", type=int, default=64)
+ap.add_argument("--no-think", action="store_true")
 args = ap.parse_args()
 
-os.makedirs(OUT_DIR, exist_ok=True)
+_dev_idx = int(args.device.split(":")[1]) if ":" in args.device else 0
+if not args.device_map:
+    torch.npu.set_device(_dev_idx)
+    assert torch.npu.device_count() > 0, "no NPU visible"
+    print(f"[shard {args.shard}] using npu:{_dev_idx} "
+          f"(visible={torch.npu.device_count()})", flush=True)
+
+os.makedirs(args.out_dir, exist_ok=True)
 vids = []
 for line in open(INTAKE):
     r = json.loads(line)
@@ -48,21 +90,33 @@ mine = [v for v in vids if int(v[0]) % args.n_shards == args.shard]
 
 from transformers import AutoProcessor, Qwen3_5ForConditionalGeneration  # noqa: E402
 
-proc = AutoProcessor.from_pretrained(MODEL, use_fast=False)
-model = Qwen3_5ForConditionalGeneration.from_pretrained(
-    MODEL, torch_dtype=torch.float16, attn_implementation="eager").to(f"npu:0")
+proc = AutoProcessor.from_pretrained(args.model, use_fast=False)
+if args.device_map:
+    mm_lim = {}
+    for i, m in enumerate(args.max_memory.split(",")):
+        mm_lim[i] = m
+    model = Qwen3_5ForConditionalGeneration.from_pretrained(
+        args.model, torch_dtype=torch.float16, attn_implementation="eager",
+        device_map=args.device_map, max_memory=mm_lim)
+else:
+    model = Qwen3_5ForConditionalGeneration.from_pretrained(
+        args.model, torch_dtype=torch.float16, attn_implementation="eager").to(args.device)
 model.eval()
-print(f"[shard {args.shard}] {len(mine)} videos, loaded on npu:0", flush=True)
+print(f"[shard {args.shard}] {len(mine)} videos, model={args.model}", flush=True)
 
 t_start = time.time()
 done = 0
 for vid, path, dur in mine:
-    out_path = os.path.join(OUT_DIR, f"{vid}.json")
+    out_path = os.path.join(args.out_dir, f"{vid}.json")
     if os.path.exists(out_path):
-        done += 1
-        continue
+        try:
+            if json.load(open(out_path)).get("scores") is not None:
+                done += 1
+                continue
+        except Exception:
+            pass
     try:
-        n_frames = int(max(16, min(64, round(dur))))
+        n_frames = int(max(16, min(args.max_frames, round(dur))))
         cap = cv2.VideoCapture(path)
         total = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
         if total <= 0:
@@ -90,17 +144,19 @@ for vid, path, dur in mine:
                 "array of " + str(len(frames)) + " numbers, nothing else.")},
         ]}]
         text = proc.apply_chat_template(messages, tokenize=False,
-                                        add_generation_prompt=True, enable_thinking=False)
-        inputs = proc(text=[text], videos=[frames], return_tensors="pt").to("npu:0")
+                                        add_generation_prompt=True)
+        # NOTE: 4B degrades to all-zero scores without its thinking phase, so
+        # default keeps thinking; --no-think is for the 27B fast lane (to be
+        # validated on its first outputs before trusting the run)
+        if args.no_think:
+            text = text.replace("<think>\n", "<think>\n\n</think>\n\n", 1)
+        inputs = proc(text=[text], videos=[frames], return_tensors="pt").to(args.device)
         with torch.no_grad():
-            out = model.generate(**inputs, max_new_tokens=768, do_sample=False)
+            out = model.generate(**inputs, max_new_tokens=(384 if args.no_think else 768), do_sample=False,
+                             eos_token_id=[proc.tokenizer.eos_token_id])
         raw = proc.tokenizer.decode(out[0, inputs["input_ids"].shape[1]:],
                                     skip_special_tokens=True)
-        m = re.search(r"\[[\s\S]*?\]", raw)
-        scores = json.loads(m.group(0)) if m else None
-        if not isinstance(scores, list) or len(scores) != len(frames):
-            # keep raw for manual recovery, save nulls to keep the packager simple
-            scores = None
+        scores = parse_scores(raw, len(frames))
         with open(out_path, "w") as f:
             json.dump({"video_id": vid, "frame_indices": idxs,
                        "n_frames": len(frames), "scores": scores,

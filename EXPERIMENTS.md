@@ -442,3 +442,11 @@ The frozen InternVideo2 Stage1-1B K700 candidate received official platform scor
 - 全程 best_dev_ap（vs union 基线 64.52/64.89/66.00/67.70，均值 65.78）：vote s0=65.33@ep6、vote s1=64.76@ep8、d6=64.35@ep0、e150=64.47@ep2、concat=64.30@ep7。**五臂全部在前 8 epoch 见顶后回落 3-7 点，无翻盘迹象**（被杀时 ep17-37）。
 - 判定：①UV vote 软标签无增益（83% 单用户池下 vote≈union，差异部分是噪声）→ R12-UV 关闭；②容量臂 ep0-2 即见顶=PHD2 frag 池（~4,700 样本）撑不起 d6/e150/concat → P3 在 PHD2 域内关闭（QV 联合池出正后可重测）。
 - 行动：五臂 kill，cards 0-4 → shard 3/4 提取上 card 0/1（~42min 全齐）→ chain2 phase5 自动开 QV 训练 2 seeds。涨分收敛到 QV 单杠杆。
+
+## 2026-10-08 19:50：QV 全链完成——两 seed 包就绪，待平台差分
+
+- 提取 8,619/8,619 全齐（8 分片零错误）。训练 2 seeds：**QV val AP 峰值 40.74（s0@ep4）/ 41.52（s1@ep3）**，此后过拟合回落（train 66-68）；随机基线 ~30（正例率 0.296）→ 域内超随机 +37%（PHD2 域 +82%，域内信号偏弱）。
+- 部署适配：训练 token=2s clip，部署 1s keyframe → 组包脚本 `--feat qv` 分支：stride-2 打分+最近前置 token 广播（与训练分布对齐）。
+- **两包出好**：`R12_QV_LFM_S0`（sha e6a73354…，192,933 帧）、`R12_QV_LFM_S1`（sha 527c59ee…，192,766 帧）。**keep 集帧级 sym_diff vs 35.17 版 = 24.5%/23.5%**——排序真差异显著，非噪声重排。单变量=监督源（manifest 已如实声明 QV 监督+stride-2 适配）。
+- 判定待平台：≥+0.3 → QV 监督成立，叠加 QV+PHD2 联合与 TVSum 系扩源；≤0 → 外部 saliency→部署域迁移证伪，转入联合/ensemble 形态前先停。
+- 途中修：trainer 短段零 pad（np.stack 形状崩）、deploy-check 预算口径、组包 $S 命名覆盖、manifest 文案分支。commit 链见 git log。

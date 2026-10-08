@@ -405,3 +405,9 @@ The frozen InternVideo2 Stage1-1B K700 candidate received official platform scor
 - `R12_P0B_NPU8`：`p0b_mrhisum_rank.py` 加 `--device` 开关（权重 CPU 初始化后 .to(npu)，避开 NPU InplaceNormal 初始化 bug，jit_compile=False 训练按 M01 先例）。冒烟：500 样本 18s（**~40 倍加速**）、P0B_FINAL 管道通。8 卡全量：3 epochs ≈ 45min/臂，实测 ~2,000 步/min（CPU 41 步/min 的 **~50 倍**）。
 - `R12_WATCHER_V2`：`run_after_p0b.sh` v2——等 8/8 P0B_FINAL → 4-seed 均值判胜（diff≥0.5→pairwise，<0.5→bce，else mse）→ `verdict.json` 落盘 → 自动启 GATT 8 臂 NPU（vmae/lfm × seed 0-3，GATT_FINAL 幂等）。`r12_gatt_vmaef_train.py` 同步加 --device。
 - ETA：P0-b 终评 ~12:45；GATT 8 臂 ~15:00 前后全部出 dev-AP。CPU 双臂 ep0 中期曲线留档（pair 28.14/61.48 vs mse 25.73/58.62 @25k，方向旁证不作为判定依据）。
+
+## 2026-10-09 下午：P0-b 终评判定 pairwise 胜出 + GATT 8 臂上线
+
+- `R12_P0B_VERDICT`（**frozen_loss=pairwise**）：8/8 NPU 终评（test mAP@ρ=50）——pair 4 seeds [58.95,58.69,59.72,59.30] 均值 **59.17±0.38**，mse [56.56,53.74,52.18,53.51] 均值 **54.00±1.60**，diff **+5.17**≥0.5 预注册规则→pairwise；pairwise 又高又稳（seed std 小 4 倍）。mAP15 25.66 vs 18.14 同向。对照官方基线 50.80/67.20：轻头在 yt8m 特征上 mAP15 仍大幅落后（预检只判损失单变量，不作 SOTA 宣称），主战场=迁我方域。
+- watcher v2 的冻结段踩坑：python `glob.glob` 不支持 bash 花括号 `{pair,mse}`→匹配 0 文件→均值段异常→LOSS 空→首发射 8 臂全挂 `--loss` 空参。**手动读数判胜+手写 verdict.json+手动发射**（watcher 修正留档）。
+- `R12_GATT8_ONLINE`：GATT 8 臂（vmae/lfm × seed 0-3，pairwise，50 epochs，NPU 8 卡）调试链 3 波修复（pairwise_loss randint 需 device= 参数；slot_ap 需显式 device 形参）后健康运行——**首 epoch vmae s0 dev_ap=62.26**（2.9min/epoch，随机基线≈keep-rate 口径），预计 ~15:30 全部完成。

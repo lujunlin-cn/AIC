@@ -136,7 +136,8 @@ def src_split(rows):
 # ---------------- losses ----------------
 def pairwise_loss(scores, y, k=16):
     t = scores.shape[0]
-    idx = torch.randint(0, t, (k * 4, 2))
+    dev = scores.device
+    idx = torch.randint(0, t, (k * 4, 2), device=dev)
     i, j = idx[:, 0], idx[:, 1]
     diff = y[i] - y[j]
     mask = diff != 0
@@ -144,7 +145,7 @@ def pairwise_loss(scores, y, k=16):
     if len(i) == 0:
         return scores.sum() * 0.0
     if len(i) > k:
-        sel = torch.randperm(len(i))[:k]
+        sel = torch.randperm(len(i), device=dev)[:k]
         i, j, diff = i[sel], j[sel], diff[sel]
     sign = torch.where(diff > 0, 1.0, -1.0)
     return torch.nn.functional.softplus(-sign * (scores[i] - scores[j])).mean()
@@ -152,7 +153,7 @@ def pairwise_loss(scores, y, k=16):
 
 # ---------------- eval ----------------
 @torch.no_grad()
-def slot_ap(model, rows, idx, feat_kind):
+def slot_ap(model, rows, idx, feat_kind, DEV="cpu"):
     """Precision@pos with the same convention as p0b mAP@rho."""
     aps = []
     model.eval()
@@ -227,8 +228,8 @@ def main():
             opt.step()
             ep_loss += float(loss)
             nb += 1
-        d_ap = slot_ap(model, rows, dv, args.feat)
-        t_ap = slot_ap(model, rows, tr[:200], args.feat)
+        d_ap = slot_ap(model, rows, dv, args.feat, DEV)
+        t_ap = slot_ap(model, rows, tr[:200], args.feat, DEV)
         rec = {"tag": args.tag, "ep": ep, "loss": round(ep_loss / max(nb, 1), 5),
                "dev_ap": round(d_ap, 2), "train_ap": round(t_ap, 2),
                "min": round((time.time() - t0) / 60, 1)}

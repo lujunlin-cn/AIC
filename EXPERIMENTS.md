@@ -450,3 +450,9 @@ The frozen InternVideo2 Stage1-1B K700 candidate received official platform scor
 - **两包出好**：`R12_QV_LFM_S0`（sha e6a73354…，192,933 帧）、`R12_QV_LFM_S1`（sha 527c59ee…，192,766 帧）。**keep 集帧级 sym_diff vs 35.17 版 = 24.5%/23.5%**——排序真差异显著，非噪声重排。单变量=监督源（manifest 已如实声明 QV 监督+stride-2 适配）。
 - 判定待平台：≥+0.3 → QV 监督成立，叠加 QV+PHD2 联合与 TVSum 系扩源；≤0 → 外部 saliency→部署域迁移证伪，转入联合/ensemble 形态前先停。
 - 途中修：trainer 短段零 pad（np.stack 形状崩）、deploy-check 预算口径、组包 $S 命名覆盖、manifest 文案分支。commit 链见 git log。
+
+## 2026-10-08 20:30：QV 平台判定——失败关闭（S0=35.08 / S1=34.94）
+
+- 双 seed 一致小负（−0.09/−0.23，sym_diff 24%）→ 非 seed 噪声，是「QV saliency→部署域」迁移无效。R12-QV 关闭。
+- **关键证据链闭合：PHD2 keep / Mr.HiSum / QV saliency 三种外部监督，平台分全部锁在 34.9-35.2**——平台对「换什么监督」不敏感（V10 finding-3「AP-tied 两头平台差 0.88」再次印证）。瓶颈假设转向：特征表征/底座（450M 单帧 pooled 特征承载不了帧级重要性判别）。
+- 用户情报：**对手已冲到 45**（+9.83）。45=掩码质量需比随机好 ~38%，我们当前 ~7%。启动全文档复盘（模型选型/底座/输出形态三轴）。

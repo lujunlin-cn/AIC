@@ -424,3 +424,10 @@ The frozen InternVideo2 Stage1-1B K700 candidate received official platform scor
 - 官方回分 35.17。预测集差异 426/426（keep 集全换）仍净 +0.29 = 打分器打包效应（架构+监督+损失三子变量捆绑）。规则更新：**比赛已取消 k_size（用户明示），后续不再使用 k_size 口径**。
 - 距 45 差 9.83；单换打分器幅度不够 → 下一级杠杆=监督源。计划与分析全文 `reports/r12/20261009_r12_gatt_verdict_next.md`：P1 R12-QV/UV 监督源升级（同链换标签，2 seeds 各）、P2 keep 0.60/0.70 零训练快包、P3 容量/特征增强（P1 正后叠加）、P4 S2c 读出判定（今晚）/AHA 挂起。
 - 冻结资产：GATT best ckpt `lfm_pairwise_npu_s1_best.pt`（67.70）；推理链（temporal_feats→GATT→掩码→`r12_gatt_package.py`）全通，后续包边际成本≈换标签重训+一条组包命令。
+
+## 2026-10-08 16:30：P1/P2/P3 全量发射（用户批准，8 卡灌满）
+
+- **P2 快包 ×2 已出**（frozen ckpt lfm_s1_best，13s/包）：`R12_GATT_LFM_KEEP070SEMIFINAL`（sha b2554d20…，169,567 帧）、`R12_GATT_LFM_KEEP060SEMIFINAL`（sha c6082a76…，145,764 帧）。单变量 vs 35.17=keep 深度（manifest 已声明）。本地副本 downloads/。
+- **P1-UV 2 臂**（cards 0,1）：trainer 新增 `--labels vote`（逐用户 keep 指示均值→软标签；单用户 src 与 union 等价，差异仅多用户 src）。tag=lfm_vote_npu_s0/s1。
+- **P3 3 臂**（cards 2,3,4）：d6（`--n-layers 6`）、e150（epochs 150）、concat（lfm pooled ‖ vmae ord 1536d，`--feat concat`）。
+- **P1-QV 主攻**（cards 5-7 + 待臂完 0-4）：QV saliency 实际形态=仅 relevant_windows 内有标注（3 人 0-4 分、2s clip）→ 路线 B：窗口内 clip=3 人均值/4 软标签（多 query 取 max）、窗口外=0。8,619 段（train 7,100+val 1,519，全部 150s 切段）**文件对齐率 100%**，keep_rate=0.296。提取=r12_qv_extract.py（vision() 逐字 p0c 合同+grab/retrieve 顺序解码+生产者线程流水），8 分片断点续跑；pilot 20 段测吞吐后全自动（r12_qv_chain.sh：臂完→全量 8 卡→2 seeds 训练）。脚本 commit 5e8e916。

@@ -418,3 +418,9 @@ The frozen InternVideo2 Stage1-1B K700 candidate received official platform scor
 - 判定十一下一颗：frozen 组合=GATT 头（6,703,617 参数）+ LFM2VL pooled 1s keyframe + pairwise 损失（P0-b 4-seed 判定）。
 - `R12_GATT_LFM_SEMIFINAL` 包交付：`/data/aic/semifinal_20261001/submissions/R12_GATT_LFM_SEMIFINAL/`（zip 1,383,849B，sha256 5381b13266df71f2...，本地副本 downloads/）。核验：426 行、keep 192,928 帧、**keep 集与 B3_TEMPORAL 在 426/426 视频全不同（真换了打分器）**、bbox 逐字节承自 B3_SEMIFINAL、457.0M 参数/930.6MB=0.90 档同父包。单变量=时间打分器 TCN→GATT；对照=34.88；回分差分归因：正→头架构杠杆；负+预测集有差异→平台不认；无差异→工程问题。
 - GATT 推理特征=官方 temporal_feats 缓存（B3_TEMPORAL 当时推理的 1s keyframe pooled，零提取成本复用）。
+
+## 2026-10-09：R12_GATT_LFM 官方回分 35.17（+0.29 vs 34.88）——时间轴首次平台转正
+
+- 官方回分 35.17。预测集差异 426/426（keep 集全换）仍净 +0.29 = 打分器打包效应（架构+监督+损失三子变量捆绑）。规则更新：**比赛已取消 k_size（用户明示），后续不再使用 k_size 口径**。
+- 距 45 差 9.83；单换打分器幅度不够 → 下一级杠杆=监督源。计划与分析全文 `reports/r12/20261009_r12_gatt_verdict_next.md`：P1 R12-QV/UV 监督源升级（同链换标签，2 seeds 各）、P2 keep 0.60/0.70 零训练快包、P3 容量/特征增强（P1 正后叠加）、P4 S2c 读出判定（今晚）/AHA 挂起。
+- 冻结资产：GATT best ckpt `lfm_pairwise_npu_s1_best.pt`（67.70）；推理链（temporal_feats→GATT→掩码→`r12_gatt_package.py`）全通，后续包边际成本≈换标签重训+一条组包命令。

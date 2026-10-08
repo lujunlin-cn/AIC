@@ -314,3 +314,27 @@ e3_role`，3,917 frag / 1,963 源 / 5 折 CV / 2,000 次 bootstrap）：
 两层各自成立。与 R9（编码器 8 读出全负）、R10（音频三线全负）、S2a
 （dense 候选关闭）同向：独立廉价信息源在 PHD2 池接连证伪，残余杠杆集中
 在 S1 灰区、S2c/S2b 与官方域差（S4）。
+
+## 判定十一（10-08 晨续）：S2b null 关闭 + S4 预审计基线固化 + S2c 权重缺口
+
+**S2b（presence/box 稳定性，slot 粒度跟踪连续性代理）**：从 S2a 检测框提取
+3,917/3,917 frag 的 (8,5) 特征（presence/conf/面积/中心抖动/检测数），R10 同
+协议读出 → **R1 delta_vs_prior = 0.0（严格 null，λ 全零 = 模型弃用特征）**、
+R2 +0.00007 null。**判定：关闭**。检测框 schema 备忘：per-slot 仅 1 框
+（best-conf），n_det 为原始检测数；工程教训：批量 np.load 必须 close（fd 耗尽
+被裸 except 吞成「malformed」假象）。
+
+**S4 预审计（`scripts/r11_s4_preaudit.py` → r11_s4_preaudit.json）**：官方域
+（live_dev keep 密度 0.248 / live_confirmation 0.232）vs 诊断域（rv_dev 0.404 /
+rv_diag 0.425），**gap −0.17、p90 gap −0.415**（rv 有大量 0.78 密度源，live 尾部
+截于 0.36）。**结论：rv 上校准的 keep 密度倾向搬到 live 会系统性 over-predict**；
+任何空间候选的 S4 门基线 = live 自身分布（≈0.24）。此读数与「B3 官方 raw 38.76
+初赛仅 +0.33 转化」的稀疏 GT 机制一致。
+
+**S2c Light-ASD**：前提门（speech 41.7%）已过，但 **Light-ASD 权重不在本地**
+（find 无资产），需下载+face-crop 管线搭设——列为待续项，本轮未跑。
+
+**R11 累计判定面**：关闭=S2a dense、V1/O1 角色结构、S2b；灰区=S1（+0.0024）；
+待续=S2c（权重缺口）、S4 正式门（待候选）、S3（条件挂起）；环境正资产=32B
+推理复活（判定九）。本地廉价信息源五连 null 后，剩余方向=官方域差（S4 预审计
+已给出第一手密度结构）与 R12 平台差分归因。

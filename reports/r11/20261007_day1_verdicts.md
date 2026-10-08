@@ -338,3 +338,24 @@ rv_diag 0.425），**gap −0.17、p90 gap −0.415**（rv 有大量 0.78 密度
 待续=S2c（权重缺口）、S4 正式门（待候选）、S3（条件挂起）；环境正资产=32B
 推理复活（判定九）。本地廉价信息源五连 null 后，剩余方向=官方域差（S4 预审计
 已给出第一手密度结构）与 R12 平台差分归因。
+
+## 判定十二（10-08 晚）：S2c Light-ASD null 关闭 —— 本地增量信息源搜索清零
+
+Light-ASD（CVPR23 AVA 预训练，YuNet face，4s 窗，全池 1,963 源/14,989 slot
+经对齐修复版管线）产出的 active-speaker logit 特征，R10 同协议读出（3,917
+frag / 5 折 / 2,000 bootstrap）：
+
+| 臂 | f1 | vs prior | λ |
+|---|---|---|---|
+| R1_prob_resid | 0.6608 | **0.0（严格 null）** | 全零=模型弃用特征 |
+| R2_util_resid | 0.6609 | +9e-05 null | POLICY_ONLY 无效 |
+
+**判定：FAIL（vs prior 门）→ S2c 关闭**。active-speaker 音画对位信号与
+keep_prior 无增量关系。
+
+**R11 收官面**：六个候选信息源（S2a dense、S2b 跟踪、V1/O1 角色结构、
+S2c active-speaker，加 R9/R10 前案）在 PHD2 池上 vs prior **全部 null/灰**。
+结论升级：**本地池不存在可廉价提取的未用增量信号**——复赛增量必须来自
+官方域机制（S4 预审计已给密度结构基线：live keep 0.24 vs rv 0.41）与
+R12 平台差分归因路线。工程资产（判定九推理配方、S2c 管线、S4 预审计）
+全部留档可用。

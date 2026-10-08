@@ -379,3 +379,12 @@ The frozen InternVideo2 Stage1-1B K700 candidate received official platform scor
 - `R12_VMAE_FEATS_ALREADY_ON_DISK`（**降本裁定**）：`LFM_V11/phd2_vmae_feats/` 6,001 npz 全量在盘（V11 已提取；每 frag `ord [8,768]` 16 帧 linspace 窗 + `rep [8,768]` 静态控制）——原「8 卡 1-2h 提取」取消。臂改两档：VMAE-F（冻结特征轻头，CPU，rep 条件=运动贡献对照）先行；VMAE-E2E（M01 桥 NPU 微调）视 F 档读数再定。⚠️ `v8_s_train_multidata.py` 经核实为**空间头**（129 格点+IoU），B3 时间头合同需从 `r8_temporal_dualbase.py` 一线考古——GATT 数据合同下轮完成。
 - `R12_GATT_EXEC_PLAN`（`reports/r12/20261008_gatt_vmae_exec_plan.md`）：架构固定=TRINITY 式（768→512+3 层 Transformer+1D RoPE，与 p0b 同构）；**配方冻结条件预注册**=P0-b 终评损失胜者（pairwise→GATT 直接 ranking）；本地只做预检，判定走平台差分。
 - `R12_AHA_ASSETS`：官方权重=**LoRA adapter**（951MB zip：adapter_model.safetensors 1.2GB + tokenizer；base=`lmms-lab/llava-onevision-qwen2-7b-ov`；modules_to_save 含 connector/mm_projector/lm_head + **informative/relevance/uncertainty 三解耦头**）——本地 Google Drive 下载完成（80s，12MB/s），scp 910A 进行中；基座 16GB 级 hf-mirror 下载已启动（`/data/aic/pretrained/llava-onevision-qwen2-7b-ov`）。R12-AHA 成本结构更新：需基座+LoRA 合成，推理 24GB 级单卡可容。
+
+## 2026-10-08 上午：AHA smoke PASS（R12-AHA 臂栈验证闭环）+ NPU 自由窗口批注
+
+用户「NPU 空闲，随便你用」授权。VMAE 提取裁定不做（PHD2 预检特征已在盘，live 池特征属打包链用料，避免提前烧 1.5h NPU 在未过预检的臂上）。
+
+- `R12_AHA_SMOKE_V1`（**PASS**，12 次迭代调试链全部固化）：aha49 专用 venv（transformers 4.49.0+peft 0.12.0+torch 2.9.0 降回 pin）+ 基座 llava-onevision-qwen2-7b-ov（15GB）+ LoRA adapter 合成加载 52.6s → **8.63B 参数、relevance/informative/uncertainty 三解耦头全部在位、NaN=0、NPU forward 0.3s、logits finite**。配方坑固化：①bitsandbytes aarch64 装不上→stub（需补 __spec__）；②**PYTHONPATH 覆盖 CANN TBE 路径=OpCompileProcessor init failed 根因（追加非覆盖）**；③AHA 代码需 RANK/WORLD_SIZE 等单卡分布式 env；④AHA forward 仅在 labels 非 None 时把 logits 放入 tuple；⑤generate override 与 peft 双传 return_dict（smoke 用 forward 绕过）。产物 `scripts/aha_smoke_v1.py`。
+- AHA Mr.HiSum 官方复现（追 +8.3% 数字）需**原始视频**（--input_dir yt8m/videos，我方只有 frame features h5）——验证集子集下载（~数百 GB）为用户数据管线决策项，不在本轮。
+- 二分记录：transformers 5.x 加载 OneVision 权重直接 shape mismatch（4.49 venv 是必选，非可选项）。
+- P0-b 中期信号：pairwise 臂 ep0 step 20k val mAP15/50=**26.23/61.04** vs mse 臂同期 21.6/55.9——**pairwise 初步领先 +4.6/+5.1**，待终评（明日）。

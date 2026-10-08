@@ -158,8 +158,8 @@ def slot_ap(model, rows, idx, feat_kind):
     model.eval()
     for i in idx:
         r = rows[i]
-        x = torch.from_numpy(load_feat(r["feat_path"], feat_kind)).unsqueeze(0)
-        s = model(x)[0].numpy()
+        x = torch.from_numpy(load_feat(r["feat_path"], feat_kind)).unsqueeze(0).to(DEV)
+        s = model(x)[0].cpu().numpy()
         pos = int((r["y"] > 0).sum())
         if pos == 0 or pos == SLOTS:
             continue
@@ -179,12 +179,19 @@ def main():
     ap.add_argument("--lr", type=float, default=3e-4)
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--tag", required=True)
+    ap.add_argument("--device", choices=["cpu", "npu"], default="cpu")
     args = ap.parse_args()
 
     os.makedirs(OUT_DIR, exist_ok=True)
     torch.manual_seed(args.seed)
     np.random.seed(args.seed)
-    torch.set_num_threads(16)
+    torch.set_num_threads(8 if args.device == "npu" else 16)
+    if args.device == "npu":
+        import torch_npu  # noqa: F401
+        assert torch.npu.device_count() > 0, "no NPU"
+        torch.npu.set_compile_mode(jit_compile=False)
+        torch.npu.config.allow_internal_format = False
+    DEV = args.device if args.device == "cpu" else "npu"
 
     rows, n_missing = build_dataset(args.feat)
     tr, dv = src_split(rows)
@@ -193,7 +200,7 @@ def main():
     pos = float(np.mean([r["y"].mean() for r in rows]))
     print(f"[gatt] slot keep-rate={pos:.3f}", flush=True)
 
-    model = Ranker()
+    model = Ranker().to(DEV)
     opt = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=0.01)
     logf = open(os.path.join(OUT_DIR, f"{args.tag}.jsonl"), "a", buffering=1)
     logf.write(json.dumps({"cfg": vars(args), "n_rows": len(rows), "n_train": len(tr),
@@ -205,8 +212,8 @@ def main():
         ep_loss, nb = 0.0, 0
         for i in order:
             r = rows[i]
-            x = torch.from_numpy(load_feat(r["feat_path"], args.feat)).unsqueeze(0)
-            y = torch.from_numpy(r["y"])
+            x = torch.from_numpy(load_feat(r["feat_path"], args.feat)).unsqueeze(0).to(DEV)
+            y = torch.from_numpy(r["y"]).to(DEV)
             s = model(x)[0]
             if args.loss == "pairwise":
                 loss = pairwise_loss(s, y)

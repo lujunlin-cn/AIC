@@ -178,12 +178,21 @@ def main():
     ap.add_argument("--accum", type=int, default=8)
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--tag", required=True)
+    ap.add_argument("--device", choices=["cpu", "npu"], default="cpu")
     args = ap.parse_args()
 
     os.makedirs(OUT_DIR, exist_ok=True)
     torch.manual_seed(args.seed)
     np.random.seed(args.seed)
-    torch.set_num_threads(32)
+    torch.set_num_threads(16 if args.device == "npu" else 32)
+    if args.device == "npu":
+        import torch_npu  # noqa: F401
+        assert torch.npu.device_count() > 0, "no NPU"
+        # M01-smoke precedent: training with jit_compile=False passes on this stack
+        # (weights init on CPU first, so NPU InplaceNormal is never touched).
+        torch.npu.set_compile_mode(jit_compile=False)
+        torch.npu.config.allow_internal_format = False
+    DEV = args.device if args.device == "cpu" else "npu"
 
     print("[p0b] building index...", flush=True)
     idx = build_index()
@@ -200,7 +209,7 @@ def main():
     cache = preload_cache(sorted(set(tr) | set(va_all) | set(te_all)), idx)
     print(f"[p0b] cache ready: {len(cache)} vids", flush=True)
 
-    model = Ranker()
+    model = Ranker().to(DEV)
     opt = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=0.01)
     log_path = os.path.join(OUT_DIR, f"p0b_{args.tag}.jsonl")
     logf = open(log_path, "a", buffering=1)
@@ -217,7 +226,7 @@ def main():
         model.eval()
         for vkey in vid_list:
             x, gs = feats(vkey)
-            s = model(torch.from_numpy(x).unsqueeze(0))[0].numpy()
+            s = model(torch.from_numpy(x).unsqueeze(0).to(DEV))[0].cpu().numpy()
             n = max(1, int(round(len(s) * rho)))
             pred_top = set(np.argsort(-s)[:n].tolist())
             gt_top = set(np.argsort(-gs)[:n].tolist())
@@ -232,8 +241,8 @@ def main():
         for n_i, ki in enumerate(order):
             vkey = tr[ki]
             x, gs = feats(vkey)
-            x = torch.from_numpy(x).unsqueeze(0)
-            g = torch.from_numpy(gs)
+            x = torch.from_numpy(x).unsqueeze(0).to(DEV)
+            g = torch.from_numpy(gs).to(DEV)
             s = model(x)[0]
             if args.loss == "pairwise":
                 loss = pairwise_loss(s, g)

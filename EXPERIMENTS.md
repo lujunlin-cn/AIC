@@ -397,3 +397,11 @@ The frozen InternVideo2 Stage1-1B K700 candidate received official platform scor
 - `R12_P0C_LFM_POOL`（完成）：PHD2 域 B3 同表示特征提取——`scripts/p0c_phd2_lfm_pooled.py`（vision() 逐字移植 + patch_siglip2_npu 修复版；与 live_feats 的差异=patch，已声明），冒烟 6/6 零错误 → 8 卡全量 **6,001/6,001 npz**（~30min），每 frag `{ts[8], pooled[8,768]f16}`。
 - `R12_GATT_TRAIN_SCRIPT`（就绪+冒烟过）：`scripts/r12_gatt_vmaef_train.py` 双特征同框（--feat vmae|lfm，单变量=特征）× 三损失开关（--loss pairwise|mse|bce，P0-b 胜者冻结，平局→bce/TRINITY 口径）。数据合同：index_clean 5,886 frag + selections GIF-union slot 标签（slot keep-rate 0.371 非退化）+ 源级 md5 80/20（4,721/1,165）——冒烟 5,886 全命中特征、训练循环正常。
 - `R12_WATCHER_CHAIN`（已部署）：`scripts/run_after_p0b.sh` setsid 常驻——轮询双 P0B_FINAL → 冻结 loss → LFM 池就绪检查（已满足）→ 自动启动 4 臂全量（vmae/lfm × seed 0/1，50 epoch，GATT_FINAL 幂等跳过）。日志 `r12_p0b/chain.log`。
+
+## 2026-10-09 中午：P0-b 迁 NPU 八卡灌满（用户裁定单一权威结果）
+
+用户否决「CPU 慢版+NPU 快版交叉验证」（两套数值可能不一致=脏），裁定：CPU 双臂杀掉停用，8 卡 NPU 灌满。配置矩阵升级：**pairwise×4 seeds（卡 0-3）+ mse×4 seeds（卡 4-7）**，终评=4-seed 均值±std（seed 方差直接可见，对齐平台噪声管理口径）。
+
+- `R12_P0B_NPU8`：`p0b_mrhisum_rank.py` 加 `--device` 开关（权重 CPU 初始化后 .to(npu)，避开 NPU InplaceNormal 初始化 bug，jit_compile=False 训练按 M01 先例）。冒烟：500 样本 18s（**~40 倍加速**）、P0B_FINAL 管道通。8 卡全量：3 epochs ≈ 45min/臂，实测 ~2,000 步/min（CPU 41 步/min 的 **~50 倍**）。
+- `R12_WATCHER_V2`：`run_after_p0b.sh` v2——等 8/8 P0B_FINAL → 4-seed 均值判胜（diff≥0.5→pairwise，<0.5→bce，else mse）→ `verdict.json` 落盘 → 自动启 GATT 8 臂 NPU（vmae/lfm × seed 0-3，GATT_FINAL 幂等）。`r12_gatt_vmaef_train.py` 同步加 --device。
+- ETA：P0-b 终评 ~12:45；GATT 8 臂 ~15:00 前后全部出 dev-AP。CPU 双臂 ep0 中期曲线留档（pair 28.14/61.48 vs mse 25.73/58.62 @25k，方向旁证不作为判定依据）。

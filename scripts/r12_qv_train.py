@@ -34,7 +34,10 @@ from r12_gatt_vmaef_train import Ranker, pairwise_loss  # noqa: E402
 def load_seg(vid):
     z = np.load(os.path.join(FEAT, vid + ".npz"))
     x = z["pooled"].astype(np.float32)
-    y = np.asarray(lab["labels"][vid][: x.shape[0]], dtype=np.float32)
+    T = x.shape[0]
+    if T < NC:  # some segments decode <75 frames; zero-pad to fixed length
+        x = np.concatenate([x, np.zeros((NC - T, 768), np.float32)], 0)
+    y = np.asarray(lab["labels"][vid][:NC], dtype=np.float32)
     return x, y
 
 

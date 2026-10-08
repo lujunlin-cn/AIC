@@ -388,3 +388,12 @@ The frozen InternVideo2 Stage1-1B K700 candidate received official platform scor
 - AHA Mr.HiSum 官方复现（追 +8.3% 数字）需**原始视频**（--input_dir yt8m/videos，我方只有 frame features h5）——验证集子集下载（~数百 GB）为用户数据管线决策项，不在本轮。
 - 二分记录：transformers 5.x 加载 OneVision 权重直接 shape mismatch（4.49 venv 是必选，非可选项）。
 - P0-b 中期信号：pairwise 臂 ep0 step 20k val mAP15/50=**26.23/61.04** vs mse 臂同期 21.6/55.9——**pairwise 初步领先 +4.6/+5.1**，待终评（明日）。
+
+## 2026-10-08 下午：四步流程准备全部就绪（watcher 已挂，待 P0-b 终评自动执行）
+
+用户批准「终评→冻结 GATT 配方→r8 考古→GATT/VMAE-F 训练」全流程。
+
+- `R12_B3_FEAT_CONTRACT_FIX`（考古重大修正）：**B3 的 pooled 768d = LFM2VL-450M vision tower**（`v8_live_extract.py` vision()：帧长边 640、min/max_tiles=1、grid mean、fp16 eager），**不是 SigLIP**——此前表述全部更正。另两条考古：`r8_temporal_dualbase.py`=QVH 域（9,066 窗 saliency）、`v8_t_train_value.py`=DHF1K 域（rank-percentile 标签）——B3 的 PHD2 域时间头原脚本未定位，GATT 采用自足合同（平台差分判定，不依赖本地复刻）。
+- `R12_P0C_LFM_POOL`（完成）：PHD2 域 B3 同表示特征提取——`scripts/p0c_phd2_lfm_pooled.py`（vision() 逐字移植 + patch_siglip2_npu 修复版；与 live_feats 的差异=patch，已声明），冒烟 6/6 零错误 → 8 卡全量 **6,001/6,001 npz**（~30min），每 frag `{ts[8], pooled[8,768]f16}`。
+- `R12_GATT_TRAIN_SCRIPT`（就绪+冒烟过）：`scripts/r12_gatt_vmaef_train.py` 双特征同框（--feat vmae|lfm，单变量=特征）× 三损失开关（--loss pairwise|mse|bce，P0-b 胜者冻结，平局→bce/TRINITY 口径）。数据合同：index_clean 5,886 frag + selections GIF-union slot 标签（slot keep-rate 0.371 非退化）+ 源级 md5 80/20（4,721/1,165）——冒烟 5,886 全命中特征、训练循环正常。
+- `R12_WATCHER_CHAIN`（已部署）：`scripts/run_after_p0b.sh` setsid 常驻——轮询双 P0B_FINAL → 冻结 loss → LFM 池就绪检查（已满足）→ 自动启动 4 臂全量（vmae/lfm × seed 0/1，50 epoch，GATT_FINAL 幂等跳过）。日志 `r12_p0b/chain.log`。

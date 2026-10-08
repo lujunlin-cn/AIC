@@ -411,3 +411,10 @@ The frozen InternVideo2 Stage1-1B K700 candidate received official platform scor
 - `R12_P0B_VERDICT`（**frozen_loss=pairwise**）：8/8 NPU 终评（test mAP@ρ=50）——pair 4 seeds [58.95,58.69,59.72,59.30] 均值 **59.17±0.38**，mse [56.56,53.74,52.18,53.51] 均值 **54.00±1.60**，diff **+5.17**≥0.5 预注册规则→pairwise；pairwise 又高又稳（seed std 小 4 倍）。mAP15 25.66 vs 18.14 同向。对照官方基线 50.80/67.20：轻头在 yt8m 特征上 mAP15 仍大幅落后（预检只判损失单变量，不作 SOTA 宣称），主战场=迁我方域。
 - watcher v2 的冻结段踩坑：python `glob.glob` 不支持 bash 花括号 `{pair,mse}`→匹配 0 文件→均值段异常→LOSS 空→首发射 8 臂全挂 `--loss` 空参。**手动读数判胜+手写 verdict.json+手动发射**（watcher 修正留档）。
 - `R12_GATT8_ONLINE`：GATT 8 臂（vmae/lfm × seed 0-3，pairwise，50 epochs，NPU 8 卡）调试链 3 波修复（pairwise_loss randint 需 device= 参数；slot_ap 需显式 device 形参）后健康运行——**首 epoch vmae s0 dev_ap=62.26**（2.9min/epoch，随机基线≈keep-rate 口径），预计 ~15:30 全部完成。
+
+## 2026-10-09 下午：GATT 8 臂终态 + R12_GATT_LFM_SEMIFINAL 包交付
+
+- GATT 8 臂终态（50 epochs NPU，best_dev_ap）：lfm 64.89/67.70/66.00/64.52（均值 65.78）vs vmae 63.93/63.27/65.02/63.68（63.98）——**lfm 胜 +1.8**，B3 同表示特征优于 VMAE 时空特征（表示墙不在视觉塔）。vmae 臂预检判负（平台复核留给差分包，不单独出包）。过拟合出现（train>dev 5-8 点）但 best-dev ckpt 兜底。
+- 判定十一下一颗：frozen 组合=GATT 头（6,703,617 参数）+ LFM2VL pooled 1s keyframe + pairwise 损失（P0-b 4-seed 判定）。
+- `R12_GATT_LFM_SEMIFINAL` 包交付：`/data/aic/semifinal_20261001/submissions/R12_GATT_LFM_SEMIFINAL/`（zip 1,383,849B，sha256 5381b13266df71f2...，本地副本 downloads/）。核验：426 行、keep 192,928 帧、**keep 集与 B3_TEMPORAL 在 426/426 视频全不同（真换了打分器）**、bbox 逐字节承自 B3_SEMIFINAL、457.0M 参数/930.6MB=0.90 档同父包。单变量=时间打分器 TCN→GATT；对照=34.88；回分差分归因：正→头架构杠杆；负+预测集有差异→平台不认；无差异→工程问题。
+- GATT 推理特征=官方 temporal_feats 缓存（B3_TEMPORAL 当时推理的 1s keyframe pooled，零提取成本复用）。

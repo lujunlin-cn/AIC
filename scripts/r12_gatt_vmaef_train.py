@@ -21,6 +21,8 @@ Eval : dev slot-AP (predicted ranking vs positive slots), per-source mean.
 
 Usage:
   python3 r12_gatt_vmaef_train.py --feat vmae --loss pairwise --tag vmae_pair
+  python3 r12_gatt_vmaef_train.py --feat lfm --loss pairwise --labels vote --tag uv_s0   # R12-UV
+  python3 r12_gatt_vmaef_train.py --feat concat --n-layers 6 --tag p3_d6_s0              # R12-P3
 """
 import argparse
 import hashlib
@@ -81,10 +83,10 @@ class Block(nn.Module):
 
 
 class Ranker(nn.Module):
-    def __init__(self, d_in=768):
+    def __init__(self, d_in=768, n_layers=N_LAYERS):
         super().__init__()
         self.proj = nn.Linear(d_in, D_MODEL)
-        self.blocks = nn.ModuleList([Block(D_MODEL, N_HEADS) for _ in range(N_LAYERS)])
+        self.blocks = nn.ModuleList([Block(D_MODEL, N_HEADS) for _ in range(n_layers)])
         self.head = nn.Linear(D_MODEL, 1)
         self.norm = nn.LayerNorm(D_MODEL)
 
@@ -97,24 +99,33 @@ class Ranker(nn.Module):
 
 
 # ---------------- data ----------------
-def build_dataset(feat_kind):
+def build_dataset(feat_kind, labels_kind="union"):
     sel = {}
     for p in (SEL_TRAIN, SEL_TEST):
         sel.update(json.load(open(p)))
     rows, n_missing = [], 0
-    fdir = FEAT_DIRS[feat_kind]
+    fdir = FEAT_DIRS["lfm"] if feat_kind == "concat" else FEAT_DIRS[feat_kind]
     for line in open(FRAG_INDEX):
         r = json.loads(line)
         fp = os.path.join(fdir, r["video_id"] + ".npz")
         if not os.path.exists(fp):
             n_missing += 1
             continue
-        ivs = [iv for lst in sel.get(r["src"], {}).values() for iv in lst]
+        users = sel.get(r["src"], {})
         t0, L = float(r["t0"]), float(r["L"])
         y = np.zeros(SLOTS, dtype=np.float32)
-        for j in range(SLOTS):
-            a, b = t0 + L * j / SLOTS, t0 + L * (j + 1) / SLOTS
-            y[j] = float(any(iv["t1"] > a and iv["t0"] < b for iv in ivs))
+        if labels_kind == "vote" and users:
+            # R12-UV: per-user keep indicator averaged -> soft label
+            for lst in users.values():
+                for j in range(SLOTS):
+                    a, b = t0 + L * j / SLOTS, t0 + L * (j + 1) / SLOTS
+                    y[j] += float(any(iv["t1"] > a and iv["t0"] < b for iv in lst))
+            y /= max(len(users), 1)
+        else:
+            ivs = [iv for lst in users.values() for iv in lst]
+            for j in range(SLOTS):
+                a, b = t0 + L * j / SLOTS, t0 + L * (j + 1) / SLOTS
+                y[j] = float(any(iv["t1"] > a and iv["t0"] < b for iv in ivs))
         rows.append({"frag": r["video_id"], "src": r["src"], "y": y, "feat_path": fp})
     return rows, n_missing
 
@@ -123,6 +134,10 @@ def load_feat(path, feat_kind):
     z = np.load(path)
     if feat_kind == "vmae":
         return z["ord"].astype(np.float32)  # motion condition; rep is the control
+    if feat_kind == "concat":  # lfm pooled || vmae ord -> 1536-d
+        vp = os.path.join(FEAT_DIRS["vmae"], os.path.basename(str(path)))
+        return np.concatenate([z["pooled"].astype(np.float32),
+                               np.load(vp)["ord"].astype(np.float32)], -1)
     return z["pooled"].astype(np.float32)
 
 
@@ -174,8 +189,10 @@ def slot_ap(model, rows, idx, feat_kind, DEV="cpu"):
 # ---------------- main ----------------
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--feat", choices=["vmae", "lfm"], required=True)
+    ap.add_argument("--feat", choices=["vmae", "lfm", "concat"], required=True)
     ap.add_argument("--loss", choices=["pairwise", "mse", "bce"], required=True)
+    ap.add_argument("--labels", choices=["union", "vote"], default="union")
+    ap.add_argument("--n-layers", type=int, default=N_LAYERS)
     ap.add_argument("--epochs", type=int, default=50)
     ap.add_argument("--lr", type=float, default=3e-4)
     ap.add_argument("--seed", type=int, default=0)
@@ -194,14 +211,15 @@ def main():
         torch.npu.config.allow_internal_format = False
     DEV = args.device if args.device == "cpu" else "npu"
 
-    rows, n_missing = build_dataset(args.feat)
+    rows, n_missing = build_dataset(args.feat, args.labels)
     tr, dv = src_split(rows)
     print(f"[gatt:{args.feat}/{args.loss}] rows={len(rows)} missing_feat={n_missing} "
           f"train={len(tr)} dev={len(dv)}", flush=True)
     pos = float(np.mean([r["y"].mean() for r in rows]))
     print(f"[gatt] slot keep-rate={pos:.3f}", flush=True)
 
-    model = Ranker().to(DEV)
+    model = Ranker(d_in=768 if args.feat != "concat" else 1536,
+                   n_layers=args.n_layers).to(DEV)
     opt = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=0.01)
     logf = open(os.path.join(OUT_DIR, f"{args.tag}.jsonl"), "a", buffering=1)
     logf.write(json.dumps({"cfg": vars(args), "n_rows": len(rows), "n_train": len(tr),

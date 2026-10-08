@@ -46,10 +46,15 @@ def main():
     ap.add_argument("--out-dir", required=True)
     ap.add_argument("--sub-id", default=None)
     ap.add_argument("--keep-frac", type=float, default=0.8)
+    ap.add_argument("--parent", default="LFM_V8_B3_TEMPORAL_SEMIFINAL (official 34.88, same 426-video drop)")
     ap.add_argument("--dry-run", action="store_true", help="random scores, no ckpt needed")
     args = ap.parse_args()
 
     t0 = time.time()
+    keep_pct = int(round(args.keep_frac * 100))
+    keep_txt = f"whole 1 s keyframes from the top until {keep_pct}% of original frames"
+    if abs(args.keep_frac - 0.8) > 1e-6:
+        keep_txt += " (keep depth is the single variable vs R12_GATT_LFM_SEMIFINAL, official 35.17)"
     dev = "cpu"
     model = None
     if not args.dry_run:
@@ -132,13 +137,13 @@ def main():
         "status": "PACKAGED_NOT_UPLOADED_TRAINED_STUDENT_TEMPORAL_HEAD",
         "uploaded": False,
         "official_platform_score": None,
-        "parent_baseline": "LFM_V8_B3_TEMPORAL_SEMIFINAL (official 34.88, same 426-video drop)",
+        "parent_baseline": args.parent,
         "primary_changed_factor": "temporal scorer only: V9 dilated TCN (246,401 params) replaced "
                                   "by the R12 GATT ranker (Transformer d512 x3 + 1D RoPE, trained on "
                                   "PHD2 GIF-union slot-keep labels, pairwise ranking loss, frozen by "
                                   "the P0-b Mr.HiSum 4-seed verdict 59.17 vs 54.00). Spatial bboxes "
-                                  "copied byte-for-byte from LFM_V8_B3_SEMIFINAL; keep rule identical "
-                                  "(whole 1 s keyframes from the top until 80% of original frames).",
+                                  "copied byte-for-byte from LFM_V8_B3_SEMIFINAL; keep rule: "
+                                  + keep_txt + ".",
         "components": comps,
         "total_parameters": total_par,
         "total_weight_bytes": total_bytes,

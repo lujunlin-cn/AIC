@@ -36,13 +36,14 @@ INTAKE = "/data/aic/semifinal_20261001/intake/index.enriched.jsonl"
 FEAT_DIRS = {"lfm": "/data/aic/semifinal_20261001/temporal_feats",
              "vmae": "/data/aic/semifinal_20261001/videomae_feats"}
 FULL_PRED = "/data/aic/semifinal_20261001/submissions/LFM_V8_B3_SEMIFINAL/predictions.jsonl"
+R12_PRED = "/data/aic/semifinal_20261001/submissions/R12_GATT_LFM_SEMIFINAL/predictions.jsonl"
 PARENT_MANIFEST = "/data/aic/semifinal_20261001/submissions/LFM_V8_B3_TEMPORAL_SEMIFINAL/manifest.json"
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--ckpt", required=True)
-    ap.add_argument("--feat", choices=["lfm", "vmae"], required=True)
+    ap.add_argument("--feat", choices=["lfm", "vmae", "qv"], required=True)
     ap.add_argument("--out-dir", required=True)
     ap.add_argument("--sub-id", default=None)
     ap.add_argument("--keep-frac", type=float, default=0.8)
@@ -55,6 +56,21 @@ def main():
     keep_txt = f"whole 1 s keyframes from the top until {keep_pct}% of original frames"
     if abs(args.keep_frac - 0.8) > 1e-6:
         keep_txt += " (keep depth is the single variable vs R12_GATT_LFM_SEMIFINAL, official 35.17)"
+    if args.feat == "qv":
+        pcf = ("temporal scorer only: same TRINITY-style GATT ranker architecture "
+               "(Transformer d512 x3 + 1D RoPE + pairwise ranking), supervision swapped to "
+               "QVHighlights saliency soft labels (relevant-window 3-annotator mean, 75 "
+               "x 2 s-clip tokens per 150 s segment, 8,619 segments, two seeds QV val AP "
+               "40.74/41.52). Deployment scores the 1 s keyframes at stride 2 and broadcasts "
+               "to 1 s bins to match the training token distribution. Spatial bboxes copied "
+               "byte-for-byte from LFM_V8_B3_SEMIFINAL; keep rule: " + keep_txt + ".")
+    else:
+        pcf = ("temporal scorer only: V9 dilated TCN (246,401 params) replaced "
+               "by the R12 GATT ranker (Transformer d512 x3 + 1D RoPE, trained on "
+               "PHD2 GIF-union slot-keep labels, pairwise ranking loss, frozen by "
+               "the P0-b Mr.HiSum 4-seed verdict 59.17 vs 54.00). Spatial bboxes "
+               "copied byte-for-byte from LFM_V8_B3_SEMIFINAL; keep rule: "
+               + keep_txt + ".")
     dev = "cpu"
     model = None
     if not args.dry_run:
@@ -79,9 +95,15 @@ def main():
         r = json.loads(line)
         full[r["video_id"]] = {p["frame"]: p["bboxes"] for p in r["predictions"]}
 
-    fdir = FEAT_DIRS[args.feat]
+    fdir = FEAT_DIRS.get(args.feat, FEAT_DIRS["lfm"])  # qv uses lfm feats dir
     out = []
     n_drop_total = 0
+    diffs = []
+    r12_frames = {}
+    if not args.dry_run and os.path.exists(R12_PRED):
+        for line in open(R12_PRED):
+            r = json.loads(line)
+            r12_frames[r["video_id"]] = {p["frame"] for p in r["predictions"]}
     for vid in sorted(intake, key=int):
         meta = intake[vid]
         total = int(meta["frame_count"])
@@ -91,9 +113,20 @@ def main():
             scores = np.random.RandomState(int(vid)).rand(len(kfs))
         else:
             kfs = sorted(int(p.stem) for p in vdir.glob("*.npy"))
-            x = np.stack([np.load(vdir / f"{k}.npy").astype(np.float32) for k in kfs])
-            with torch.no_grad():
-                scores = model(torch.from_numpy(x).unsqueeze(0).to(dev))[0].cpu().numpy()
+            if args.feat == "qv":
+                # train dist: one token per 2 s clip -> score stride-2, broadcast
+                import bisect
+                kfs2 = [k for k in kfs if k % 2 == 0] or kfs
+                x = np.stack([np.load(vdir / f"{k}.npy").astype(np.float32) for k in kfs2])
+                with torch.no_grad():
+                    s2 = model(torch.from_numpy(x).unsqueeze(0).to(dev))[0].cpu().numpy()
+                sc = {k: float(s2[i]) for i, k in enumerate(kfs2)}
+                scores = np.array([sc[kfs2[max(bisect.bisect_right(kfs2, k) - 1, 0)]]
+                                   for k in kfs])
+            else:
+                x = np.stack([np.load(vdir / f"{k}.npy").astype(np.float32) for k in kfs])
+                with torch.no_grad():
+                    scores = model(torch.from_numpy(x).unsqueeze(0).to(dev))[0].cpu().numpy()
         # frame -> nearest keyframe
         kf_arr = np.array(kfs)
         frames_all = np.arange(total)
@@ -113,8 +146,16 @@ def main():
         n_drop_total += len(src) - len(preds)
         out.append({"video_id": vid, "targetRatioWH": meta["targetRatioWH"],
                     "model_size_mb": None, "predictions": preds})
-    print(f"[pkg] scored 426 videos, dropped {n_drop_total} frames total "
-          f"({time.time() - t0:.0f}s)", flush=True)
+        # frame-level keep-set diff vs the shipped 35.17 package
+        if not args.dry_run and os.path.exists(R12_PRED):
+            r12 = r12_frames.setdefault(vid, set())
+            new_f = {p["frame"] for p in preds}
+            if r12:
+                union = r12 | new_f
+                diffs.append(len(r12 ^ new_f) / len(union))
+    if diffs:
+        print(f"[pkg] keep-set frame sym_diff vs R12_GATT_LFM_SEMIFINAL: "
+              f"{float(np.mean(diffs)):.4f} over {len(diffs)} videos", flush=True)
 
     # sizes: parent components with the temporal head swapped for the GATT ranker
     pm = json.load(open(PARENT_MANIFEST))
@@ -123,8 +164,10 @@ def main():
         n_par = sum(p.numel() for p in model.parameters())
     else:
         n_par = 9_100_000
-    comps.append({"name": "R12 GATT ranker (fp32, 768->512 proj + 3-layer Transformer 8 heads "
-                          "+ 1D RoPE + frame head, PHD2 GIF-union keep labels, pairwise loss)",
+    head_family = ("QVHighlights saliency soft labels, pairwise loss"
+                   if args.feat == "qv" else "PHD2 GIF-union keep labels, pairwise loss")
+    comps.append({"name": f"R12 GATT ranker (fp32, 768->512 proj + 3-layer Transformer 8 heads "
+                          f"+ 1D RoPE + frame head, {head_family})",
                   "parameters": n_par, "bytes": n_par * 4})
     total_bytes = sum(c["bytes"] for c in comps)
     total_par = sum(c["parameters"] for c in comps)
@@ -138,12 +181,7 @@ def main():
         "uploaded": False,
         "official_platform_score": None,
         "parent_baseline": args.parent,
-        "primary_changed_factor": "temporal scorer only: V9 dilated TCN (246,401 params) replaced "
-                                  "by the R12 GATT ranker (Transformer d512 x3 + 1D RoPE, trained on "
-                                  "PHD2 GIF-union slot-keep labels, pairwise ranking loss, frozen by "
-                                  "the P0-b Mr.HiSum 4-seed verdict 59.17 vs 54.00). Spatial bboxes "
-                                  "copied byte-for-byte from LFM_V8_B3_SEMIFINAL; keep rule: "
-                                  + keep_txt + ".",
+        "primary_changed_factor": pcf,
         "components": comps,
         "total_parameters": total_par,
         "total_weight_bytes": total_bytes,

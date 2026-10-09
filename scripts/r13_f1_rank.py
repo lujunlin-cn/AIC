@@ -202,16 +202,24 @@ def main():
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--tag", required=True)
     ap.add_argument("--device", choices=["cpu", "npu"], default="npu")
+    ap.add_argument("--npu-id", type=int, default=0,
+                    help="physical card for --device npu (set_device, not .to)")
     args = ap.parse_args()
 
     os.makedirs(OUT_DIR, exist_ok=True)
     torch.manual_seed(args.seed)
     np.random.seed(args.seed)
-    torch.set_num_threads(16 if args.device == "npu" else 32)
+    torch.set_num_threads(8 if args.device == "npu" else 32)
     DEV = "cpu"
     if args.device == "npu":
         import torch_npu  # noqa: F401
         assert torch.npu.device_count() > 0, "no NPU"
+        # card pinning must go through set_device; .to("npu:N") silently
+        # lands on card 0 in some torch_npu builds (R13 lesson)
+        torch.npu.set_device(args.npu_id)
+        assert torch.npu.device_count() > 0
+        print(f"[f1] pinned to npu:{args.npu_id} (visible={torch.npu.device_count()})",
+              flush=True)
         torch.npu.set_compile_mode(jit_compile=False)
         torch.npu.config.allow_internal_format = False
         DEV = "npu"
@@ -295,7 +303,7 @@ def main():
                 gstep += 1
                 if sched is not None:
                     sched.step()
-            if (n_i + 1) % 2000 == 0:
+            if (n_i + 1) % 500 == 0:
                 a50, a15, p50 = eval_vids(va)
                 rec = {"tag": args.tag, "ep": ep, "step": n_i + 1,
                        "loss": round(float(loss), 5), "ap50": round(a50, 2),

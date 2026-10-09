@@ -274,6 +274,7 @@ def main():
     for ep in range(args.epochs):
         order = np.random.permutation(len(tr))
         opt.zero_grad()
+        a50e = -1.0
         for n_i, ki in enumerate(order):
             x, gs = feats(tr[ki])
             xt = torch.from_numpy(x).unsqueeze(0).to(DEV)
@@ -303,16 +304,26 @@ def main():
                 print("F1 " + json.dumps(rec), flush=True)
                 logf.write(json.dumps(rec) + "\n")
         print(f"[f1] epoch {ep} done min={(time.time() - t0) / 60:.1f}", flush=True)
+        # per-epoch val-best selection (official ap50) — CPU budget: never
+        # lose a good epoch to overshooting
+        a50e, a15e, _ = eval_vids(va)
+        rec = {"tag": args.tag, "ep_val": ep, "val_ap50": round(a50e, 2),
+               "val_ap15": round(a15e, 2),
+               "min": round((time.time() - t0) / 60, 1)}
+        print("F1_EPOCHVAL " + json.dumps(rec), flush=True)
+        logf.write(json.dumps(rec) + "\n")
+        if a50e > best["ap50"]:
+            best = {"ap50": a50e, "ep": ep}
+            torch.save(model.state_dict(),
+                       os.path.join(OUT_DIR, f"f1_{args.tag}_valbest.pt"))
 
-    # val-best selection (official ap50), then single-shot test, dual metric
-    a50v, a15v, _ = eval_vids(va)
-    if a50v > best["ap50"]:
-        best = {"ap50": a50v, "ep": "final"}
-        torch.save(model.state_dict(), os.path.join(OUT_DIR, f"f1_{args.tag}_valbest.pt"))
+    # single-shot test on the val-best ckpt, dual metric
+    model.load_state_dict(torch.load(os.path.join(OUT_DIR, f"f1_{args.tag}_valbest.pt"),
+                                     map_location=DEV))
     t50a, t15a, t50p = eval_vids(te_all)
-    rec = {"tag": args.tag, "final": True,
+    rec = {"tag": args.tag, "final": True, "best_ep": best["ep"],
            "test_official_ap50": round(t50a, 2), "test_official_ap15": round(t15a, 2),
-           "test_prec50": round(t50p, 2), "val_ap50": round(a50v, 2)}
+           "test_prec50": round(t50p, 2), "val_ap50": round(best["ap50"], 2)}
     print("F1_FINAL " + json.dumps(rec), flush=True)
     logf.write(json.dumps(rec) + "\n")
     torch.save(model.state_dict(), os.path.join(OUT_DIR, f"f1_{args.tag}.pt"))

@@ -71,4 +71,16 @@ CPU 冒烟 PASS（subset 300 × d5，epoch 9.9min）。NPU 发车脚本
   报 NPU 探测错）；**挂起等 F1 消融的 audio 通道贡献读数**——若 <1 mAP 则 426
   侧无需提音频，F3 直接 rgb-only。
 - 官方 SL-module NPU 复现：NPU 窗口第二优先级（F1 主臂之后）。
-- rescore2 判定表 → F1 主臂发车参数（NPU 窗口 19:42 后）。
+- rescore 判定表 → F1 主臂发车参数（NPU 窗口 19:42 后，cron 已设）。
+
+## 6. 运维教训（本窗口新增）
+
+1. **kill 未生效+log 截断交错**：SIGTERM 打不进 torch 长前向进程（C 扩展段），
+   `kill; sleep 2; nohup 重发` 后旧进程仍持原 fd 写 log（offset 保留、内容交错），
+   bug 版读数被当成修复后读数判读了 1 小时。规程修正：杀进程必须 `kill -9` +
+   `ps 确认清零` 后才重发；关键读数行打印进程 PID 与代码版本标记。
+2. **harness 对照锚**：任何重评脚本的读数必须先复现历史自报数（本例 first-200
+   prec50=59.59 vs P0-b 全量自报 58.95，同量级 ✓）才可外推；rescore2 的 52.48
+   即被锚判定为 harness 错误，避免了一次错误归因。
+3. h5py 3.16（qwen35 venv）读 yt8m shard 可复现死锁；h5 批量读取走 tfcpu venv
+   （h5py 3.14）。

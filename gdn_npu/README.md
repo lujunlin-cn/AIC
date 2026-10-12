@@ -12,9 +12,9 @@
 | `test_gdn_correctness.py` | 自包含数值对齐测试（内嵌生产参考实现） | 双环境全绿 |
 | `bench_gdn.py` | M1 基准：chunk/decode/conv 计时 + 显存峰值 | 已跑定版 |
 | `probe_graph.py` | M1 探针：npu graph capture 可行性 | 已判死留档 |
-| `qwen35_attn_npu.py` | full-attention 分块+checkpoint（激活显存解） | CPU 13/13 PASS；NPU 待空闲 |
-| `test_attn_correctness.py` | attention 分块对齐测试 | 沙箱 CPU 全绿；NPU 等空闲 |
-| `bench_attn_npu.py` | attention 显存/速度基准（4 任务） | 备好待空卡 |
+| `qwen35_attn_npu.py` | full-attention 分块+checkpoint（激活显存解） | CPU 13/13；NPU align 逐位一致 |
+| `test_attn_correctness.py` | attention 分块对齐测试 | 双环境全绿 |
+| `bench_attn_npu.py` | attention 显存/速度基准（4 任务） | 10-12 卡 7 实测定版 |
 
 ## ✅ full-attention 分块方案（2026-10-12，RL 量产前激活显存解）
 
@@ -48,21 +48,45 @@ attn.apply()                    # 默认 block=1024, ckpt 开
 # 回滚: attn.unpatch() 或环境变量 QWEN35_ATTN_NPU_DISABLE=1
 ```
 
-### 待 NPU 空闲指令后执行（bench_attn_npu.py，4 任务）
+### ✅ NPU 实测定版（2026-10-12，卡 7，S=4900，4B 形状 fp16）
+
+| 任务 | eager | 分块+ckpt | 结论 |
+| --- | --- | --- | --- |
+| align 数值门 | — | **d_fwd=0.0 / d_grad=0.0** | 逐位一致 PASS |
+| infer prefill | 23.2ms / 3.71GB | 18.2ms / **0.80GB** | 提速 1.27×、峰值 21.6% |
+| layer 训练单层 | 57.9ms / 5.18GB | 60.2ms / **1.13GB** | 峰值 21.8%、仅慢 4% |
+| stack8 训练 8 层 | 峰值 **20.99GB** | 峰值 **1.76GB** | **11.9×（8.4%）** |
+
+- 27B 推算：eager 全保留 ~3.5GB/层 × 16 full 层 ≈ 56GB 必爆（32GB 卡）→ 分块后 ~3GB 级可训。
+- layer 时间数据须 warmup 2 次后计时（首测 6.2s/31.5s 全是 TBE 首编译污染）；
+  stack8 的 fwbw_ms 同样含编译不作数，真实吞吐留端到端 A/B。
+
+### ⚠️ 10-12 数值调试实录（重要教训，NPU 全程无辜）
+
+1. **align 首测 FAIL(d_fwd 1.83) 的真因是实现的数学错误，不是 NPU bug**：
+   "causal 前缀截断"会让块内 softmax 分母混入 j∈(i,q1) 非法列（diag9 实测 CPU 上
+   与真 causal 差 15 倍 rel）。已修：mask=None 时块内构造行内三角 mask。
+   修复后 NPU d_fwd=0.0（与 eager+causal mask 逐位一致）。
+2. **CPU 测试 13/13 曾掩盖该错误**：当时修语义时参考与被测共用了同一个 mask，
+   None 路径从未被真测过。测试修正后 None case 真传 None。
+3. 排查中验证过的 NPU 算子全部正常（对 CPU 逐位/底噪一致）：
+   fp16 matmul（全长/短 N/切片 contiguous）、softmax（fp16-in fp32-out 各 shape）、
+   w@v、checkpoint(use_reentrant=False) 前向重算。storage_offset warning 是
+   干扰项（切片 contiguous 后消失，但不是错误来源）。
+4. bench 工程坑：`finally: os._exit(0)` 会吞异常（traceback 都不出）→ 先 except
+   打 traceback 再 os._exit(1)；print 在 os._exit 前必须 flush。
+
+### 回归跑法（换卡/换环境时）
 ```bash
 cd /root/AIC && set -a && source /data/aic/tools/ascend_teacher.env && set +a
 export ASCEND_RT_VISIBLE_DEVICES=<空闲卡>
-for t in align infer layer stack8; do
-  timeout 900 python3 bench_attn_npu.py --task $t > /tmp/bt_$t.log 2>&1
-done
+cd gdn_npu
+timeout 900 python3 bench_attn_npu.py --task align     # 数值门, 必须全过
+timeout 900 python3 bench_attn_npu.py --task infer     # prefill 峰值/速度
+timeout 1200 python3 bench_attn_npu.py --task layer    # 训练单层(warmup 已内置)
+timeout 2400 python3 bench_attn_npu.py --task stack8 --impl chunked
+timeout 2400 python3 bench_attn_npu.py --task stack8 --impl eager
 ```
-- align：NPU fp16 数值门（fwd/grad <3e-3）
-- infer：prefill 峰值+速度（预期 chunked 峰值 ≪ eager）
-- layer：训练单层 fwd+bwd 峰值+速度（ckpt 重算开销量化）
-- stack8：8 层串联训练图峰值（4B 真实账：eager 预期 ~18GB vs chunked ~1GB 级）
-- 风险提示：新 shape 首编译可能触发 TBE hang（三大坑①），timeout 包裹+重试；
-  `use_reentrant=False` checkpoint 若触发 910A per-layer ckpt 线程坑，
-  退路=apply(use_ckpt=False)（分块仍省推理峰值与 autograd repeat 物化）。
 
 
 

@@ -121,6 +121,8 @@ def chunked_attention_forward(
 
     仅优化 Sq==Skv 主场景(训练/prefill); Sq!=Skv(chunked prefill 增量)一律
     回退 eager — 因果可见范围由 mask 决定, 块边界假设失效, 安全第一.
+    causal 语义: mask 路径切片相加; mask=None 时块内构造行内三角 mask
+    (纯前缀截断会让 softmax 分母混入 j>i 非法列, 数学错误, 10-12 实测修正).
     attn_weights 返回 None(与 sdpa/flash 一致; output_attentions 不支持).
     """
     if query.shape[2] != key.shape[2]:
@@ -147,17 +149,26 @@ def chunked_attention_forward(
     outs = []
     for q0 in range(0, sq, block):
         q1 = min(q0 + block, sq)
-        q_blk = query[:, :, q0:q1, :]
-        k_all = key[:, :, :q1, :]          # 本块可见 key 前缀(causal)
-        v_all = value[:, :, :q1, :]
+        # 910A 坑(实测): matmul 对 storage_offset≠0 的切片输入结果不可信
+        # (OpCommand Check offset warning, d_fwd 1.8 完全错级) → 块切片一律 contiguous
+        q_blk = query[:, :, q0:q1, :].contiguous()
+        k_all = key[:, :, :q1, :].contiguous()   # 本块可见 key 前缀(causal)
+        v_all = value[:, :, :q1, :].contiguous()
         if attention_mask is not None:
             # [B,1,Sq,Skv] → 本块行范围; 广播形(dim2==1, 无行差异)只截 key 维
             if attention_mask.shape[2] == 1:
-                mask_blk = attention_mask[:, :, :, :q1]
+                mask_blk = attention_mask[:, :, :, :q1].contiguous()
             else:
-                mask_blk = attention_mask[:, :, q0:q1, :q1]
+                mask_blk = attention_mask[:, :, q0:q1, :q1].contiguous()
         else:
-            mask_blk = None
+            # causal 前缀截断必须配合行内三角限制, 否则 softmax 分母混入
+            # j∈(i, q1) 的非法列(diag9 实测 CPU 上与真 causal 差 15 倍 rel)
+            rows = torch.arange(q0, q1, device=query.device)
+            cols = torch.arange(q1, device=query.device)
+            tri = cols[None, :] > rows[:, None]          # [bs, q1] True=不可见
+            mask_blk = torch.zeros(q1 - q0, q1, device=query.device,
+                                   dtype=query.dtype).masked_fill(
+                tri, torch.finfo(query.dtype).min)[None, None]
 
         if use_ckpt:
             out = torch.utils.checkpoint.checkpoint(

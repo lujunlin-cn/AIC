@@ -100,21 +100,22 @@ def run_case(name, B, Hq, Hkv, Sq, Skv, D, dtype, tol, seed,
         k = k.requires_grad_(True)
         v = v.requires_grad_(True)
 
-    # mask_mode="none": 生产语义下 causal 层的因果性由块边界保证(见被测文件契约);
-    # 参考实现仍需显式 causal mask 才能对齐(裸 eager 无 mask = 全双向, 语义不同).
+    # mask_mode="none": 被测真传 None(走块内构造三角 mask 路径);
+    # 参考与拷贝校验用显式 causal mask(裸 eager 无 mask = 全双向, 语义不同).
     if mask_mode == "none":
-        mask = None
-        if Sq == Skv and Sq > 1:
-            mask = _make_mask(B, Sq, Skv, dtype, seed, device, 0)
+        mask_new = None
+        mask_ref = (_make_mask(B, Sq, Skv, dtype, seed, device, 0)
+                    if (Sq == Skv and Sq > 1) else None)
     else:
-        mask = _make_mask(B, Sq, Skv, dtype, seed, device, pad_cols)
+        mask_ref = _make_mask(B, Sq, Skv, dtype, seed, device, pad_cols)
+        mask_new = mask_ref.clone()
 
     mod = _Mod(Hq // Hkv, training=training)
     scaling = D ** -0.5
 
-    out_ref, _ = _eager_ref(mod, q, k, v, mask, scaling)
-    out_copy, _ = attn_mod.eager_attention_forward(mod, q, k, v, mask, scaling)
-    out_new, w_new = attn_mod.chunked_attention_forward(mod, q, k, v, mask, scaling)
+    out_ref, _ = _eager_ref(mod, q, k, v, mask_ref, scaling)
+    out_copy, _ = attn_mod.eager_attention_forward(mod, q, k, v, mask_ref, scaling)
+    out_new, w_new = attn_mod.chunked_attention_forward(mod, q, k, v, mask_new, scaling)
 
     d_copy = _rel_err(out_copy, out_ref.detach())
     d_out = _rel_err(out_new, out_ref.detach())

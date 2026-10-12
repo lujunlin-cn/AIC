@@ -62,14 +62,20 @@ def task_align(B, Hq, Hkv, S, D):
     k = (torch.randn(B, Hkv, S, D, generator=g) * 0.3).half().to(dev).requires_grad_(True)
     v = (torch.randn(B, Hkv, S, D, generator=g) * 0.3).half().to(dev).requires_grad_(True)
     scaling = D ** -0.5
+    # causal 语义由分块的块前缀截断保证(见 qwen35_attn_npu 契约);
+    # 参考 eager 必须给显式 causal mask 才等价(裸 eager 无 mask = 全双向).
+    causal = torch.triu(torch.ones(S, S, device=dev, dtype=torch.bool), diagonal=1)
+    mask_ref = torch.zeros(B, 1, S, S, device=dev,
+                           dtype=torch.float16).masked_fill(
+        causal, torch.finfo(torch.float16).min)
 
-    out_ref, _ = attn_mod.eager_attention_forward(mod, q, k, v, None, scaling)
+    out_ref, _ = attn_mod.eager_attention_forward(mod, q, k, v, mask_ref, scaling)
     _sync()
     out_new, _ = attn_mod.chunked_attention_forward(mod, q, k, v, None, scaling)
     _sync()
     d_fwd = _rel_err(out_new, out_ref)
 
-    wgt = torch.linspace(0.1, 1.0, S, device=dev).half().reshape(1, 1, 1, -1)
+    wgt = torch.linspace(0.1, 1.0, D, device=dev).half().reshape(1, 1, 1, D)
     (out_ref * wgt).sum().backward(retain_graph=True)
     gq_ref = q.grad.clone()
     for t in (q, k, v):
@@ -124,7 +130,7 @@ def task_layer(B, Hq, Hkv, S, D):
     k = (torch.randn(B, Hkv, S, D, generator=g) * 0.3).half().to(dev).requires_grad_(True)
     v = (torch.randn(B, Hkv, S, D, generator=g) * 0.3).half().to(dev).requires_grad_(True)
     scaling = D ** -0.5
-    wgt = torch.linspace(0.1, 1.0, S, device=dev).half().reshape(1, 1, 1, -1)
+    wgt = torch.linspace(0.1, 1.0, D, device=dev).half().reshape(1, 1, 1, D)
 
     def run(fn):
         for t in (q, k, v):
@@ -133,7 +139,7 @@ def task_layer(B, Hq, Hkv, S, D):
         _reset_peak()
         t0 = time.perf_counter()
         out, _ = fn()
-        out.backward(wgt.expand_as(out) if out.dim() == 4 else out)
+        (out * wgt).sum().backward()
         _sync()
         return (time.perf_counter() - t0) * 1e3, _peak_gib()
 
@@ -142,6 +148,8 @@ def task_layer(B, Hq, Hkv, S, D):
                         mod, q, k, v, None, scaling)),
                      ("chunked_ckpt", lambda: attn_mod.chunked_attention_forward(
                          mod, q, k, v, None, scaling))):
+        for _ in range(2):   # 预热: 摊掉 TBE 首编译(否则时间全被编译污染)
+            run(fn)
         ms, peak = run(fn)
         res[name] = {"ms": round(ms, 1), "peak_gib": round(peak, 3)}
         print(f"{name}: {res[name]}", flush=True)
@@ -151,31 +159,33 @@ def task_layer(B, Hq, Hkv, S, D):
     print(json.dumps(res), flush=True)
 
 
-def task_stack8(B, Hq, Hkv, S, D):
-    """8 层串联训练图(模拟 4B 的 8 个 full 层激活全保留场景): 峰值显存对比."""
+def task_stack8(B, Hq, Hkv, S, D, impl):
+    """8 层串联训练图(模拟 4B 的 8 个 full 层激活全保留场景): 峰值显存.
+
+    impl: eager / chunked 分进程跑(8 层连续新 shape 编译易触发 TBE 连坐).
+    """
     dev = _npu()
     attn_mod._STATE.update(block=1024, use_ckpt=True, min_elems=0)
     mod = _Mod(Hq // Hkv, training=True)
     g = torch.Generator().manual_seed(0)
     x = (torch.randn(B, Hq, S, D, generator=g) * 0.3).half().to(dev).requires_grad_(True)
+    kv = (torch.randn(B, Hkv, S, D, generator=g) * 0.3).half().to(dev)  # 压缩 kv 流(Hkv 头)
 
-    res = {"task": "stack8_train", "B": B, "S": S}
-    for name, fn in (("eager", attn_mod.eager_attention_forward),
-                     ("chunked_ckpt", attn_mod.chunked_attention_forward)):
-        _reset_peak()
-        t0 = time.perf_counter()
-        h = x
-        for _ in range(8):
-            out, _ = fn(mod, h, h, h, None, D ** -0.5)
-            h = out
-        h.sum().backward()
-        _sync()
-        ms = (time.perf_counter() - t0) * 1e3
-        peak = _peak_gib()
-        res[name] = {"fwbw_ms": round(ms, 1), "peak_gib": round(peak, 3)}
-        print(f"{name}: {res[name]}", flush=True)
-    e, c = res["eager"], res["chunked_ckpt"]
-    res["peak_ratio"] = round(c["peak_gib"] / max(e["peak_gib"], 1e-9), 3)
+    fn = {"eager": attn_mod.eager_attention_forward,
+          "chunked": attn_mod.chunked_attention_forward}[impl]
+    res = {"task": "stack8_train", "impl": impl, "B": B, "S": S}
+    _reset_peak()
+    t0 = time.perf_counter()
+    h = x
+    for _ in range(8):
+        out, _ = fn(mod, h, kv, kv, None, D ** -0.5)
+        h = out.transpose(1, 2).contiguous()  # [B,S,H,D] → 下层 q 的 [B,H,S,D]
+    h.sum().backward()
+    _sync()
+    ms = (time.perf_counter() - t0) * 1e3
+    res["fwbw_ms"] = round(ms, 1)
+    res["peak_gib"] = round(_peak_gib(), 3)
+    print(f"{impl}: {res}", flush=True)
     print(json.dumps(res), flush=True)
 
 
@@ -183,6 +193,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--task", required=True,
                     choices=["align", "infer", "layer", "stack8"])
+    ap.add_argument("--impl", default="eager", choices=["eager", "chunked"],
+                    help="stack8 专用: 分支分进程跑")
     ap.add_argument("--batch", type=int, default=1)
     ap.add_argument("--heads", type=int, default=16)
     ap.add_argument("--kv-heads", type=int, default=4)
@@ -195,9 +207,18 @@ def main():
           "layer": task_layer, "stack8": task_stack8}[args.task]
     attn_mod._STATE["block"] = args.block
     try:
-        fn(args.batch, args.heads, args.kv_heads, args.seq, args.dim)
-    finally:
-        os._exit(0)  # 避开本机退出阶段 TBE daemon 死锁(输出已 flush)
+        if args.task == "stack8":
+            fn(args.batch, args.heads, args.kv_heads, args.seq, args.dim, args.impl)
+        else:
+            fn(args.batch, args.heads, args.kv_heads, args.seq, args.dim)
+    except BaseException:  # noqa: BLE001  打全 traceback 再退出(os._exit 会截断传播)
+        import traceback
+        traceback.print_exc()
+        sys.stdout.flush()
+        sys.stderr.flush()
+        os._exit(1)
+    sys.stdout.flush()
+    os._exit(0)  # 避开本机退出阶段 TBE daemon 死锁(输出已 flush)
 
 
 if __name__ == "__main__":

@@ -24,7 +24,8 @@
 ## 租机规格
 
 - GPU：1× RTX PRO 6000（96GB）或 6000D（84GB，fp16/bf16 主路径慢 ~15%，够用）
-- CPU ≥16 核（视频解码是暗瓶颈）、RAM ≥128GB、本地 NVMe ≥1TB
+- CPU ≥16 核（视频解码是暗瓶颈）、RAM ≥128GB
+- 磁盘：数据盘 ≥200GB（账目见下）；若整机单盘（系统+镜像+数据），选 300GB 档
 - 宿主机驱动 ≥ r570（Blackwell 硬要求）
 - 容器镜像：`vllm/vllm-openai` 2025-03 之后的 tag（自带 torch≥2.7+cu128
   的 sm_120 kernel；旧 tag 无 sm_120 会直接报 not compatible）
@@ -57,6 +58,19 @@ $TRAIN_PY rtx6000/r15_train_cuda.py --pool $L/grpo_pool_v2.jsonl \
 $ROLL_PY rtx6000/r15_mine_vllm.py --pool $L/grpo_pool_v2.jsonl \
   --adapter-init $ADAPTER --out $L/grpo_mining_rtx
 ```
+
+## 数据盘账目（数据盘 200GB 的依据）
+
+| 项 | 大小 | 依据 |
+| --- | --- | --- |
+| 基座 Qwen3.5-4B（bf16） | ~9GB | 4B × 2B |
+| LoRA 产物（每步 PEFT 目录 + .pt 双格式） | ~30GB | r=16 ≈ 65MB/份 × 2 × 200 步；磁盘紧张可只留最近几步，回滚窗口 3 步足够 |
+| 帧图（pool 823 段 + 全 FRAG + 4K pool 预留） | ~30GB | 823 段 ~2GB；5886 段全量 ~14GB；4K 池帧更大 |
+| merged_step（仅 reload 降级模式） | ~20GB | ~8GB/步，自动只留最近 2 步 |
+| 传输峰值（tar 与解包共存，解完可删） | ~25GB | 基座 + 帧 |
+| venv / pip 缓存（若与数据同盘） | ~10GB | |
+| traj / holdout / 杂项 | ~5GB | |
+| **合计** | **~130GB** | 主路径（lora 模式）稳态 ~85GB，传输期峰值 ~110GB |
 
 ## LoRA init（待用户指定）
 

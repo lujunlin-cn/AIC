@@ -111,5 +111,7 @@ Day-1 gate order (from $REPO/rtx6000/):
   3. $PY r15_parity.py --gate vllm     --pool <pool.jsonl> --adapter-init <lora_dir>
   4. $PY r15_parity.py --gate lora     --pool <pool.jsonl> --adapter-init <lora_dir>
      (FAIL here => rollout must use --lora-mode=reload, see README)
-  5. bash r15_smoke.sh   # 2-step colocated E2E
+  5. $PY r15_parity.py --gate logprob --pool <pool.jsonl> --adapter-init <lora_dir> --train-py $TP
+     (vLLM prompt_logprobs vs transformers forward, max|dlogp|<0.15)
+  6. bash r15_smoke.sh   # 2-step colocated E2E
 EOF

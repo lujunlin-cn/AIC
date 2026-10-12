@@ -38,23 +38,23 @@ with open(sys.argv[2], "w") as f:
 print("n_gt>0:", sum(1 for r in sel if r["n_gt"] > 0), "/", len(sel))
 EOF
 
-note "== gate 1/4: GDN kernel parity (train env) =="
+note "== gate 1/5: GDN kernel parity (train env) =="
 "$TRAIN_PY" "$R/r15_parity.py" --gate gdn --pool "$OUT/smoke_pool.jsonl" \
   --base "$BASE" --adapter-init "$ADAPTER" >>"$LOG" 2>&1 \
   || { note "GDN gate FAIL"; FAIL=1; }
 
-note "== gate 2/4: trainer numerics (train env) =="
+note "== gate 2/5: trainer numerics (train env) =="
 "$TRAIN_PY" "$R/r15_parity.py" --gate numerics \
   --pool "$OUT/smoke_pool.jsonl" --base "$BASE" \
   --adapter-init "$ADAPTER" >>"$LOG" 2>&1 \
   || { note "numerics gate FAIL"; FAIL=1; }
 
-note "== gate 3/4: vLLM video smoke (rollout env) =="
+note "== gate 3/5: vLLM video smoke (rollout env) =="
 "$ROLL_PY" "$R/r15_parity.py" --gate vllm --pool "$OUT/smoke_pool.jsonl" \
   --base "$BASE" --adapter-init "$ADAPTER" >>"$LOG" 2>&1 \
   || { note "vLLM gate FAIL"; FAIL=1; }
 
-note "== gate 4/4: vLLM LoRA liveness (rollout env) =="
+note "== gate 4/5: vLLM LoRA liveness (rollout env) =="
 if "$ROLL_PY" "$R/r15_parity.py" --gate lora \
     --pool "$OUT/smoke_pool.jsonl" --base "$BASE" \
     --adapter-init "$ADAPTER" >>"$LOG" 2>&1; then
@@ -64,6 +64,12 @@ else
   LORA_MODE=reload
   FAIL=0
 fi
+
+note "== gate 5/5: cross-engine logprob consistency (vLLM vs transformers) =="
+"$ROLL_PY" "$R/r15_parity.py" --gate logprob \
+  --pool "$OUT/smoke_pool.jsonl" --base "$BASE" \
+  --adapter-init "$ADAPTER" --train-py "$TRAIN_PY" >>"$LOG" 2>&1 \
+  || { note "logprob gate FAIL"; FAIL=1; }
 
 note "== E2E: $STEPS colocated steps (lora-mode=$LORA_MODE) =="
 rm -f "$OUT"/adapter_step* "$OUT"/traj_step*

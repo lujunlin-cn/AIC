@@ -209,19 +209,86 @@ def gate_numerics(args):
     return 0
 
 
+def gate_logprob(args):
+    """Cross-engine token-logprob consistency on a TEXT-only prompt:
+    vLLM prompt_logprobs vs a transformers forward over the SAME token ids.
+    Kernels differ by design (bf16); PASS = max|dlogp| < 0.15. A semantic
+    bug in vLLM's GDN kernel (chunk boundaries, state carry) shows up here
+    as an O(1) deviation. Run with ROLL_PY; spawns TRAIN_PY for side B."""
+    import json as _json
+    import subprocess
+    import gc
+
+    from vllm import LLM, SamplingParams
+    from vllm.inputs import TokensPrompt
+    from transformers import AutoTokenizer
+
+    tok = AutoTokenizer.from_pretrained(args.base)
+    P = ("The quick brown fox jumps over the lazy dog. "
+         "Scientists say that the capital of France is")
+    llm = LLM(model=args.base, max_model_len=2048,
+              gpu_memory_utilization=args.gpu_mem_util, enforce_eager=True)
+    gen = llm.generate([P], SamplingParams(temperature=0.0, max_tokens=48))
+    tail = list(gen[0].outputs[0].token_ids)
+    ids = list(tok(P)["input_ids"]) + tail
+    sp = SamplingParams(temperature=0.0, max_tokens=1, prompt_logprobs=0)
+    out = llm.generate([TokensPrompt(prompt_token_ids=ids)], sp)
+    lp_v = [list(e.values())[0].logprob for e in out[0].prompt_logprobs[1:]]
+    del llm
+    gc.collect()
+    import torch
+    torch.cuda.empty_cache()
+
+    d = "/tmp/r15_logprob_payload.json"
+    _json.dump({"base": args.base, "ids": ids}, open(d, "w"))
+    code = (
+        "import json,sys,torch;"
+        "d=json.load(open(sys.argv[1]));"
+        "from transformers import Qwen3_5ForConditionalGeneration;"
+        "m=Qwen3_5ForConditionalGeneration.from_pretrained("
+        "d['base'],torch_dtype=torch.bfloat16,"
+        "attn_implementation='sdpa').cuda().eval();"
+        "x=torch.tensor([d['ids']]).cuda();"
+        "lg=m(input_ids=x).logits[0,:-1].float();"
+        "lp=torch.log_softmax(lg,-1);"
+        "print(json.dumps(lp.gather(-1,x[0,1:].unsqueeze(-1))"
+        ".squeeze(-1).tolist()))")
+    r = subprocess.run([args.train_py, "-c", code, d],
+                       capture_output=True, text=True, timeout=600)
+    if r.returncode != 0:
+        print(f"LOGPROB_GATE FAIL: train-side error\n{r.stderr[-800:]}")
+        return 1
+    lp_t = _json.loads(r.stdout.strip().splitlines()[-1])
+    n = min(len(lp_v), len(lp_t))
+    diffs = [abs(a - b) for a, b in zip(lp_v[:n], lp_t[:n])]
+    mx = max(diffs) if diffs else float("inf")
+    mean = sum(diffs) / len(diffs) if diffs else float("inf")
+    print(f"n_tokens={n} max|dlogp|={mx:.4f} mean|dlogp|={mean:.4f} "
+          f"(threshold 0.15)")
+    if mx > 0.15:
+        print("LOGPROB_GATE FAIL: cross-engine deviation too large "
+              "(suspect vLLM GDN kernel semantics -> try --safe-chunk "
+              "trainer side + older/newer vLLM tag)")
+        return 1
+    print("LOGPROB_GATE_PASS")
+    return 0
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--gate", required=True,
-                    choices=["gdn", "vllm", "lora", "numerics"])
+                    choices=["gdn", "vllm", "lora", "numerics", "logprob"])
     ap.add_argument("--pool", required=True)
     ap.add_argument("--base", default="/data/aic/pretrained/Qwen3.5-4B")
     ap.add_argument("--adapter-init", required=True)
     ap.add_argument("--max-model-len", type=int, default=8192)
     ap.add_argument("--gpu-mem-util", type=float, default=0.85)
     ap.add_argument("--enforce-eager", action="store_true")
+    ap.add_argument("--train-py", default="/opt/venv_train/bin/python",
+                    help="train env python (AutoDL: miniconda train env)")
     args = ap.parse_args()
-    rc = {"gdn": gate_gdn, "vllm": gate_vllm,
-          "lora": gate_lora, "numerics": gate_numerics}[args.gate](args)
+    rc = {"gdn": gate_gdn, "vllm": gate_vllm, "lora": gate_lora,
+          "numerics": gate_numerics, "logprob": gate_logprob}[args.gate](args)
     sys.exit(rc)
 
 

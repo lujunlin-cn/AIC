@@ -159,24 +159,17 @@ def npu_causal_conv1d_fn(hidden_states, weight, bias=None, activation=None, **kw
 # 三角求解(可选 solver)
 # ----------------------------------------------------------------------
 
-def _solve_unit_lower(ut_system, rhs, method):
-    """解 (I+L)X = rhs, L = tril(ut_system, -1), 即
-    torch.linalg.solve_triangular(ut_system, rhs, upper=False, unitriangular=True).
+def _nsquaring_inv_apply(neg_l, rhs):
+    """inv(I+L)@rhs 的迭代平方(纯 bmm 可微), 独立成函数供 checkpoint 重算.
 
-    method="triangular": 直调 aclnn(910A 已实证可用, 数值锚定).
-    method="nsquaring":  inv(I+L) = sum_k (-L)^k 迭代平方, 全 bmm 可微;
-                         严格下三角幂级数在 k=chunk_size 处精确终止.
+    严格下三角幂级数在 k=chunk_size 处精确终止; log2(C) 轮, 每轮
+    inv@(eye+power) 与 power@power. 训练图不 checkpoint 时 autograd 会保留
+    每轮的 ~3 个 [B,H,NC,C,C] 中间张量(10-12 训练 OOM 三连败之一).
     """
-    if method == "triangular":
-        return torch.linalg.solve_triangular(ut_system, rhs, upper=False, unitriangular=True)
-    if method != "nsquaring":
-        raise ValueError(f"unknown solver {method!r}")
-
-    C = ut_system.shape[-1]
-    eye = torch.eye(C, dtype=ut_system.dtype, device=ut_system.device)
-    neg_l = -ut_system.tril(-1)
-    inv = eye.expand_as(neg_l).contiguous()
+    C = neg_l.shape[-1]
+    eye = torch.eye(C, dtype=neg_l.dtype, device=neg_l.device)
     power = neg_l
+    inv = eye.expand_as(neg_l).contiguous()
     for _ in range(int(math.ceil(math.log2(C))) if C > 1 else 0):
         inv = inv @ (eye + power)
         power = power @ power
@@ -185,11 +178,33 @@ def _solve_unit_lower(ut_system, rhs, method):
     return inv @ rhs
 
 
+def _solve_unit_lower(ut_system, rhs, method, use_ckpt=True):
+    """解 (I+L)X = rhs, L = tril(ut_system, -1), 即
+    torch.linalg.solve_triangular(ut_system, rhs, upper=False, unitriangular=True).
+
+    method="triangular": 直调 aclnn(910A 已实证可用, 数值锚定).
+    method="nsquaring":  迭代平方全 bmm 可微; 训练图自动 checkpoint 重算
+                         (use_ckpt), backward 只留输入输出不留 6 轮中间.
+    """
+    if method == "triangular":
+        return torch.linalg.solve_triangular(ut_system, rhs, upper=False, unitriangular=True)
+    if method != "nsquaring":
+        raise ValueError(f"unknown solver {method!r}")
+
+    neg_l = -ut_system.tril(-1)
+    if use_ckpt and torch.is_grad_enabled() and (
+            ut_system.requires_grad or rhs.requires_grad):
+        return torch.utils.checkpoint.checkpoint(
+            _nsquaring_inv_apply, neg_l, rhs, use_reentrant=False)
+    return _nsquaring_inv_apply(neg_l, rhs)
+
+
 # ----------------------------------------------------------------------
 # chunk 路径(训练 / 预填充)
 # ----------------------------------------------------------------------
 
-def _intra_quantities(query, key, k_beta, v_beta, cum_decay, mask, solver, chunk_batch):
+def _intra_quantities(query, key, k_beta, v_beta, cum_decay, mask, solver, chunk_batch,
+                      use_ckpt=True):
     """chunk 内并行量: new_values(u), k_cumdecay, intra_chunk_attn.
 
     chunk_batch>0 时沿 chunk 维分批, 压 pairwise_decay/ut_system 峰值显存
@@ -203,25 +218,26 @@ def _intra_quantities(query, key, k_beta, v_beta, cum_decay, mask, solver, chunk
         pairwise = pairwise.masked_fill(mask, 0.0)
         ut = (k_beta @ key.transpose(-1, -2)) * pairwise
         intra = (query @ key.transpose(-1, -2)) * pairwise
-        new_values = _solve_unit_lower(ut, v_beta, solver)
-        k_cumdecay = _solve_unit_lower(ut, k_decay_head, solver)
+        new_values = _solve_unit_lower(ut, v_beta, solver, use_ckpt)
+        k_cumdecay = _solve_unit_lower(ut, k_decay_head, solver, use_ckpt)
         return new_values, k_cumdecay, intra
 
     B, H, _, C, dv = v_beta.shape
     dk = key.shape[-1]
-    new_values = torch.empty(B, H, NC, C, dv, dtype=v_beta.dtype, device=v_beta.device)
-    k_cumdecay = torch.empty(B, H, NC, C, dk, dtype=v_beta.dtype, device=v_beta.device)
-    intra = torch.empty(B, H, NC, C, C, dtype=v_beta.dtype, device=v_beta.device)  # q@k^T: [C,C]
+    # list+cat 组装: empty+slice 预填会触发 autograd inplace/version 冲突
+    # (10-12 训练三连败之三)
+    nv_list, kc_list, intra_list = [], [], []
     for s in range(0, NC, chunk_batch):
         sl = slice(s, min(s + chunk_batch, NC))
         cd = cum_decay[:, :, sl]
         pairwise = (cd.unsqueeze(4) - cd.unsqueeze(3)).exp()
         pairwise = pairwise.masked_fill(mask, 0.0)
         ut = (k_beta[:, :, sl] @ key[:, :, sl].transpose(-1, -2)) * pairwise
-        new_values[:, :, sl] = _solve_unit_lower(ut, v_beta[:, :, sl], solver)
-        k_cumdecay[:, :, sl] = _solve_unit_lower(ut, k_decay_head[:, :, sl], solver)
-        intra[:, :, sl] = (query[:, :, sl] @ key[:, :, sl].transpose(-1, -2)) * pairwise
-    return new_values, k_cumdecay, intra
+        nv_list.append(_solve_unit_lower(ut, v_beta[:, :, sl], solver, use_ckpt))
+        kc_list.append(_solve_unit_lower(ut, k_decay_head[:, :, sl], solver, use_ckpt))
+        intra_list.append((query[:, :, sl] @ key[:, :, sl].transpose(-1, -2)) * pairwise)
+    return (torch.cat(nv_list, dim=2), torch.cat(kc_list, dim=2),
+            torch.cat(intra_list, dim=2))
 
 
 def _scan_seq(new_values, k_cumdecay, intra, query, key, chunk_decay, state, out):
@@ -234,21 +250,25 @@ def _scan_seq(new_values, k_cumdecay, intra, query, key, chunk_decay, state, out
     dk = key.shape[-1]
     BH = B * H
     st = state.reshape(BH, dk, dv)
-    out3 = out.reshape(BH, NC, C, dv)
+    # list+cat 组装输出: out3[:, i] = ... 的 slice 写入会撞 autograd
+    # inplace/version 检查(10-12 训练三连败之三的主嫌)
+    outs = []
     for i in range(NC):
         # v_new = u_i - k_cumdecay_i @ S   (baddbmm: alpha=-1 等价相减)
         v_new = torch.baddbmm(new_values[:, :, i].reshape(BH, C, dv),
                               k_cumdecay[:, :, i].reshape(BH, C, dk), st, alpha=-1, beta=1)
-        # out_i = q_i @ S + intra_i @ v_new   (intra_i 是 [C,C]; out3 chunk 维在 dim1)
+        # out_i = q_i @ S + intra_i @ v_new
         inter = torch.bmm(query[:, :, i].reshape(BH, C, dk), st)
-        out3[:, i] = torch.baddbmm(inter, intra[:, :, i].reshape(BH, C, C), v_new)
+        outs.append(torch.baddbmm(inter, intra[:, :, i].reshape(BH, C, C), v_new))
         # S = cd_i * S + key_i^T @ v_new
         st = st * chunk_decay[:, :, i].reshape(BH, 1, 1)
         st = torch.baddbmm(st, key[:, :, i].transpose(-1, -2).reshape(BH, dk, C), v_new)
+    out.copy_(torch.cat(outs, dim=1).reshape(B, H, NC, C, dv))
     return st.reshape(B, H, dk, dv)
 
 
-def _scan_affine(query, key, new_values, k_cumdecay, intra, chunk_decay, state0, out):
+def _scan_affine(query, key, new_values, k_cumdecay, intra, chunk_decay, state0, out,
+                 use_ckpt=True):
     """仿射前缀合成 scan: 把 NC 次串行小算子重构为 log2(NC) 层并行大 bmm.
 
     每 chunk 的状态转移是仿射的:
@@ -280,29 +300,47 @@ def _scan_affine(query, key, new_values, k_cumdecay, intra, chunk_decay, state0,
     P = P.reshape(B, H, NC, C, dk)
     c = c.reshape(B, H, NC, C, dv)
 
-    # stride-doubling 前缀合成: A_i <- A_{i-d} 后接 A_i (ping-pong 防读脏)
-    Mp, bp = M.clone(), b.clone()
-    d = 1
-    while d < NC:
-        Mn = Mp.clone()
-        bn = bp.clone()
-        Mn[:, :, d:] = torch.bmm(Mp[:, :, d:].reshape(-1, dk, dk),
-                                 Mp[:, :, :-d].reshape(-1, dk, dk)).reshape(B, H, NC - d, dk, dk)
-        bn[:, :, d:] = torch.baddbmm(bp[:, :, d:].reshape(-1, dk, dv),
-                                     Mp[:, :, d:].reshape(-1, dk, dk),
-                                     bp[:, :, :-d].reshape(-1, dk, dv)).reshape(B, H, NC - d, dk, dv)
-        Mp, bp = Mn, bn
-        d *= 2
+    # stride-doubling 前缀合成: A_i <- A_{i-d} 后接 A_i.
+    # 训练图包 checkpoint(use_ckpt): 合成链的 log2(NC) 层中间量(~636MB/层调用级)
+    # 不 checkpoint 会被 autograd 全保留, 24 层模型直接爆显存(10-12 三连败之二);
+    # slice 预填改 cat 构造(inplace/version 冲突同三连败之三).
+    def _affine_prefix(M, b):
+        Mp, bp = M, b
+        d = 1
+        while d < NC:
+            Mp_d = Mp[:, :, d:].reshape(-1, dk, dk)
+            Mn = torch.cat(
+                [Mp[:, :, :d],
+                 torch.bmm(Mp_d, Mp[:, :, :-d].reshape(-1, dk, dk)).reshape(
+                     B, H, NC - d, dk, dk)],
+                dim=2)
+            bn = torch.cat(
+                [bp[:, :, :d],
+                 torch.baddbmm(bp[:, :, d:].reshape(-1, dk, dv),
+                               Mp[:, :, d:].reshape(-1, dk, dk),
+                               bp[:, :, :-d].reshape(-1, dk, dv)).reshape(
+                     B, H, NC - d, dk, dv)],
+                dim=2)
+            Mp, bp = Mn, bn
+            d *= 2
+        return Mp, bp
+
+    if use_ckpt and torch.is_grad_enabled() and (M.requires_grad or b.requires_grad):
+        Mp, bp = torch.utils.checkpoint.checkpoint(
+            _affine_prefix, M, b, use_reentrant=False)
+    else:
+        Mp, bp = _affine_prefix(M, b)
 
     # S_i 全量物化: S_0 = state0; S_{i} = Mp_{i-1} @ S_0 + bp_{i-1}
     # (全部 3 维 bmm; 本机 4 维 matmul 带 transpose 视图会触发 TBE BatchMatMul
-    #  在线编译并失败, 见调研报告 P0 探针记录)
-    S_all = torch.empty(B, H, NC, dk, dv, dtype=new_values.dtype, device=new_values.device)
-    S_all[:, :, 0] = state0
+    #  在线编译并失败, 见调研报告 P0 探针记录; cat 组装避免 slice 预填)
     if NC > 1:
         Mp_f = Mp[:, :, :-1].reshape(-1, dk, dk)
         S0_f = state0.reshape(B * H, 1, dk, dv).expand(B * H, NC - 1, dk, dv).reshape(-1, dk, dv)
-        S_all[:, :, 1:] = torch.bmm(Mp_f, S0_f).reshape(B, H, NC - 1, dk, dv) + bp[:, :, :-1]
+        S_rest = torch.bmm(Mp_f, S0_f).reshape(B, H, NC - 1, dk, dv) + bp[:, :, :-1]
+        S_all = torch.cat([state0.unsqueeze(2), S_rest], dim=2)
+    else:
+        S_all = state0.unsqueeze(2)
 
     # out 全量: out_i = P_i @ S_i + c_i
     out_flat = torch.baddbmm(c.reshape(-1, C, dv), P.reshape(-1, C, dk), S_all.reshape(-1, dk, dv))
@@ -333,6 +371,7 @@ def npu_chunk_gated_delta_rule(query, key, value, g, beta, chunk_size=64,
     solver = _CFG.get("solver", "triangular")
     scan_mode = _CFG.get("scan", "seq")
     chunk_batch = _CFG.get("chunk_batch", 0)
+    use_ckpt = _CFG.get("use_ckpt", True)
 
     initial_dtype = query.dtype
     batch_size, sequence_length, _, k_head_dim = key.shape
@@ -369,7 +408,8 @@ def npu_chunk_gated_delta_rule(query, key, value, g, beta, chunk_size=64,
     cum_decay = decay.cumsum(dim=3)
 
     new_values, k_cumdecay, intra = _intra_quantities(
-        query, key, k_beta, v_beta, cum_decay, mask, solver, chunk_batch)
+        query, key, k_beta, v_beta, cum_decay, mask, solver, chunk_batch,
+        use_ckpt=use_ckpt)
 
     if initial_state is None:
         state = torch.zeros(recurrent_state_shape, dtype=new_values.dtype, device=new_values.device)
@@ -377,14 +417,15 @@ def npu_chunk_gated_delta_rule(query, key, value, g, beta, chunk_size=64,
         state = initial_state.to(new_values)
     core_attn_out = torch.empty_like(new_values)
 
-    # 预衰减(对齐参考: intra 计算之后才做)
-    query.mul_(cum_decay.exp().unsqueeze(-1))
-    key.mul_((cum_decay[..., -1:] - cum_decay).exp().unsqueeze(-1))
+    # 预衰减(对齐参考: intra 计算之后才做); 非 inplace: query/key 已在
+    # autograd 图上, mul_ 触发 version 冲突(10-12 训练 inplace bug 共犯)
+    query = query * cum_decay.exp().unsqueeze(-1)
+    key = key * (cum_decay[..., -1:] - cum_decay).exp().unsqueeze(-1)
     chunk_decay = cum_decay[..., -1].exp()[..., None, None]
 
     if scan_mode == "affine":
         final = _scan_affine(query, key, new_values, k_cumdecay, intra,
-                             chunk_decay, state, core_attn_out)
+                             chunk_decay, state, core_attn_out, use_ckpt=use_ckpt)
     else:
         final = _scan_seq(new_values, k_cumdecay, intra, query, key,
                           chunk_decay, state, core_attn_out)
@@ -459,7 +500,8 @@ def npu_recurrent_gated_delta_rule(query, key, value, g, beta,
 # patch 管理
 # ----------------------------------------------------------------------
 
-_CFG: dict = {"solver": "triangular", "scan": "seq", "chunk_batch": 0, "conv_impl": "conv1d"}
+_CFG: dict = {"solver": "triangular", "scan": "seq", "chunk_batch": 0, "conv_impl": "conv1d",
+              "use_ckpt": True}
 _ORIG: dict = {}
 _TARGETS = (
     "causal_conv1d_update",
@@ -476,14 +518,19 @@ _NPU_IMPLS = {
 
 
 def apply(solver: str = "triangular", scan: str = "seq", chunk_batch: int = 0,
-          conv_impl: str = "conv1d"):
-    """接管 transformers 的 4 个 GDN/conv 回退函数(模型构建前调用)."""
+          conv_impl: str = "conv1d", use_ckpt: bool = True):
+    """接管 transformers 的 4 个 GDN/conv 回退函数(模型构建前调用).
+
+    use_ckpt: 训练图对 nsquaring solve 链与 affine 前缀合成链走 checkpoint
+              重算(10-12 训练三连败的 OOM 修复); no_grad 推理无影响.
+    """
     if os.environ.get("GDN_NPU_DISABLE", "").strip() in ("1", "true", "True"):
         print("[gdn_npu] GDN_NPU_DISABLE=1, skip patch")
         return "disabled"
     import transformers.models.qwen3_5.modeling_qwen3_5 as mm
 
-    _CFG.update(solver=solver, scan=scan, chunk_batch=chunk_batch, conv_impl=conv_impl)
+    _CFG.update(solver=solver, scan=scan, chunk_batch=chunk_batch, conv_impl=conv_impl,
+                use_ckpt=use_ckpt)
     if not _ORIG:  # 首次接管才备份
         for name in _TARGETS:
             _ORIG[name] = getattr(mm, name)
@@ -492,7 +539,7 @@ def apply(solver: str = "triangular", scan: str = "seq", chunk_batch: int = 0,
         fn._gdn_npu_orig_name = name
         setattr(mm, name, fn)
     print(f"[gdn_npu] patched 4 fns: solver={solver} scan={scan} "
-          f"chunk_batch={chunk_batch} conv_impl={conv_impl}")
+          f"chunk_batch={chunk_batch} conv_impl={conv_impl} use_ckpt={use_ckpt}")
     return "patched"
 
 

@@ -1,5 +1,27 @@
 # qwen35_gdn_npu — Qwen3.5 GDN / causal_conv1d 的 910A NPU 加速
 
+## ✅ GDN 训练侧三连败修复（2026-10-12，CPU 全量回归 82/82）
+
+### 三败与修复对照
+
+| 败 | 根因 | 修复 |
+| --- | --- | --- |
+| nsquaring(+affine) 训练 OOM 29.6GB | `_solve_unit_lower` 迭代平方 6 轮 ×~3 个 [B,H,NC,64,64] 中间张量被 autograd 全保留（×2 次 solve/层 ×24 层） | nsquaring 分支抽 `_nsquaring_inv_apply` + 训练图自动 checkpoint 重算（backward 只留输入输出） |
+| affine 链 autograd 保留爆 | stride-doubling 的 log2(NC) 层 ping-pong clone/bmm 中间全保留 | 抽 `_affine_prefix`（cat 构造）+ checkpoint 包裹；S_all 预填改 cat |
+| triangular+seq 训练 inplace bug | `out3[:, i] = baddbmm(...)` slice 写视图撞 autograd version 检查（CPU 可精确复现：AsStrided version 1 ≠ 0）；`query.mul_/key.mul_` 是共犯 | seq 输出组装改 list+cat；预衰减改非 inplace；chunk_batch 分支同改 list+cat |
+
+- 接口变化：`apply(..., use_ckpt=True)`（默认开；no_grad 推理零影响）。
+- 验证：新 6 个训练 case（forward+backward 五输入 grad 对齐 + inplace 复现位），
+  CPU 全量 **82/82 PASS**；修复前版本在该 case 上精确复现档案报错（测试有效性实证）。
+- 待 NPU 空闲指令后的验收（修复前禁止跑训练，修复后按此单）：
+  1. `test_gdn_correctness.py --device npu`（82 case 含 6 训练 case）
+  2. 训练峰值显存 A/B：nsq+affine+ckpt vs safe_chunk（T=4900/8192，B=1）
+  3. 真训练图 smoke：attn+gdn 双补丁叠加 1 step fwd+bwd
+- 注意：`solve_triangular`（triangular solver）本身的 autograd 保留未动——
+  它是 aclnn 单算子，中间保留量小，且 910A 实证可用；若 NPU 复测仍紧，可同法 ckpt 化。
+
+
+
 2026-10-10 准备阶段产物（调研报告：`../GDN_NPU算子调研报告_20261010.md`）。
 目标：替换 transformers 5.19 `modeling_qwen3_5` 的 4 个 PyTorch 回退函数，
 服务 RL（GRPO）rollout 与 on-policy distillation。

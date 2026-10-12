@@ -263,6 +263,42 @@ def case_decode(tag, B, T, Hk, Hv, dk, dv, seed=0, device="cpu"):
     return ok
 
 
+def case_chunk_grad(tag, B, T, Hk, Hv, dk, dv, solver="triangular", scan="seq",
+                    gate=1e-2, seed=0, device="cpu"):
+    """训练图 case: forward+backward 全链对齐(10-12 训练三连败的回归位).
+
+    backward 抛错(inplace/version 冲突)即 case 失败; 五个输入的 grad 与
+    CPU 参考对齐; checkpoint(use_ckpt) 路径的 grad 正确性也在此覆盖.
+    """
+    q, k, v, g, beta = make_inputs(B, T, Hk, Hv, dk, dv, "cpu", seed)
+
+    def bump(*xs):
+        return tuple(x.clone().detach().requires_grad_(True) for x in xs)
+
+    kw = dict(output_final_state=True, use_qk_l2norm_in_kernel=True)
+    ins_r = bump(q, k, v, g, beta)
+    o_r, _ = ref_chunk_gated_delta_rule(*ins_r, **kw)
+    wgt = torch.linspace(0.1, 1.0, o_r.shape[-1]).to(o_r.dtype)
+    (o_r * wgt).sum().backward()
+    grads_ref = [t.grad.clone() for t in ins_r]
+
+    cfg(solver=solver, scan=scan, chunk_batch=0)
+    ins_m = bump(q, k, v, g, beta)
+    ins_d = _to_dev(*ins_m, device=device)
+    o_m, _ = gdn.npu_chunk_gated_delta_rule(*ins_d, **kw)
+    (o_m * wgt.to(o_m.dtype)).sum().backward()
+
+    ok = record(f"grad/{tag}/out", o_m, o_r.detach(), gate)
+    for name, t, gr in zip(("q", "k", "v", "g", "beta"), ins_m, grads_ref):
+        if t.grad is None:
+            RESULTS.append((f"grad/{tag}/{name}", float("nan"), float("nan"),
+                            gate, False, "grad=None"))
+            ok = False
+            continue
+        ok &= record(f"grad/{tag}/{name}", t.grad, gr, gate)
+    return ok
+
+
 def case_ref_crosscheck(device="cpu"):
     """对照组内部一致性: ref_recurrent vs ref_chunk(T 整除 64 时语义等价)."""
     B, T, Hk, Hv, dk, dv = 1, 128, 2, 4, 8, 16
@@ -382,6 +418,18 @@ def build_cases(device, quick):
             "27b_t512", 1, 512, 16, 48, 128, 128, device=device)),
         ("chunk_real27b_affine", lambda: case_chunk(
             "27b_t512", 1, 512, 16, 48, 128, 128, scan="affine", chunk_batch=8, device=device)),
+        ("train_tri_seq_small", lambda: case_chunk_grad(
+            "b1t128", 1, 128, 2, 4, 8, 16, solver="triangular", scan="seq", device=device)),
+        ("train_nsq_affine_small", lambda: case_chunk_grad(
+            "b1t128", 1, 128, 2, 4, 8, 16, solver="nsquaring", scan="affine", device=device)),
+        ("train_tri_affine_small", lambda: case_chunk_grad(
+            "b1t128", 1, 128, 2, 4, 8, 16, solver="triangular", scan="affine", device=device)),
+        ("train_nsq_seq_real4b", lambda: case_chunk_grad(
+            "4b_t512", 1, 512, 16, 32, 128, 128, solver="nsquaring", scan="seq", device=device)),
+        ("train_nsq_affine_real4b", lambda: case_chunk_grad(
+            "4b_t512", 1, 512, 16, 32, 128, 128, solver="nsquaring", scan="affine", device=device)),
+        ("train_tri_seq_real4b", lambda: case_chunk_grad(
+            "4b_t512", 1, 512, 16, 32, 128, 128, solver="triangular", scan="seq", device=device)),
         ("decode_t1", lambda: case_decode("t1", 2, 1, 2, 4, 8, 16, device=device)),
         ("decode_t7", lambda: case_decode("t7", 2, 7, 2, 4, 8, 16, device=device)),
         ("decode_real4b", lambda: case_decode("4b_t1", 1, 1, 16, 32, 128, 128, device=device)),

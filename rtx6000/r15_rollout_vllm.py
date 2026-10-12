@@ -143,6 +143,11 @@ def main():
                   enforce_eager=args.enforce_eager,
                   limit_mm_per_prompt={"video": 1},
                   mm_processor_kwargs=json.loads(args.mm_kwargs) or None)
+        # disk guard: merged full weights are ~8GB/step; keep only the
+        # current one and the previous (rollback window)
+        stale = os.path.join(args.out, f"merged_step{step - 2}")
+        if step - 2 >= 1 and os.path.isdir(stale):
+            subprocess.run(["rm", "-rf", stale], check=False)
         return llm, None
 
     def lora_dir(step):

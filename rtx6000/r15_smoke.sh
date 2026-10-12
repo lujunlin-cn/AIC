@@ -14,8 +14,9 @@ TRAIN_PY=${TRAIN_PY:-/opt/venv_train/bin/python}
 BASE=${BASE:-/data/aic/pretrained/Qwen3.5-4B}
 L=/data/aic/experiments_910a/LFM_V13
 POOL=${POOL:-$L/grpo_pool_v2.jsonl}
-# LoRA init is the user's pick; default to the R13 RL-init candidate
-ADAPTER=${ADAPTER:-$L/q35_sft_out/ckpt_060}
+# LoRA init locked 2026-10-12 (user): SFT v2 ckpt_030 -- the only real-signal
+# ckpt of the v2 redo (uniq/entropy template-collapse verdict, pred-pred 0.539)
+ADAPTER=${ADAPTER:-$L/q35_sft_v2_out/ckpt_030}
 OUT=$L/rtx_smoke_out
 LOG=$OUT/smoke.log
 STEPS=${STEPS:-2}

@@ -25,9 +25,8 @@
 
 - GPU：1× RTX PRO 6000（96GB）或 6000D（84GB，fp16/bf16 主路径慢 ~15%，够用）
 - CPU ≥16 核（视频解码是暗瓶颈）、RAM ≥128GB
-- 磁盘：**含 910A 搬迁数据时数据盘 ≥1TB**（wave1 181G + PHD2 399G + 本包 RL 运行
-  账目 ~130GB）；若整机单盘（系统+镜像+数据），选 1.5TB 档。纯 RL 运行
-  （不收搬迁数据）仍按 200GB 即可
+- 磁盘：AutoDL 数据盘 1.2T 已租定（wave1 搬迁 ~235G + RL 运行账目 ~130G ≈
+  400G，富余充足；wave2/PHD2 已取消不再占用）
 - 宿主机驱动 ≥ r570（Blackwell 硬要求）
 - 容器镜像：`vllm/vllm-openai` 2025-03 之后的 tag（自带 torch≥2.7+cu128
   的 sm_120 kernel；旧 tag 无 sm_120 会直接报 not compatible）
@@ -47,7 +46,7 @@ bash rtx6000/setup_rtx6000.sh          # 记下打印的 ROLL_PY / TRAIN_PY
 
 # 4) 冒烟（四道门 + 2-step 端到端；LoRA 活性门不过会自动切 reload 模式）
 export ROLL_PY=<上一步打印> TRAIN_PY=/opt/venv_train/bin/python
-export ADAPTER=/data/aic/experiments_910a/LFM_V13/q35_sft_out/<用户指定的ckpt>
+export ADAPTER=$L/q35_sft_v2_out/ckpt_030   # 2026-10-12 定案
 bash rtx6000/r15_smoke.sh
 
 # 5) 正式跑（共卡，两进程都要挂着；step 节奏由 trainer 侧决定）
@@ -65,8 +64,7 @@ $ROLL_PY rtx6000/r15_mine_vllm.py --pool $L/grpo_pool_v2.jsonl \
 
 | 项 | 大小 | 依据 |
 | --- | --- | --- |
-| **910A 搬迁 wave1**（LFM 全系 + 旧 experiments + datasets/提交包 + 4B/TimeLens2-8B/Qwen3.8-27B + repo tar） | ~181G | `r15_evac_910a.sh --plan` 实测 |
-| **910A 搬迁 wave2**（PHD2 原始视频，唯一搬迁的外部集） | ~399G | 同上 |
+| **910A 搬迁 wave1**（LFM 全系 + 旧 experiments + QVH_V10 + datasets/提交包 + 4B/TimeLens2-8B/Qwen3.8-27B + repo tar） | ~235G | 19 路并行实测在传；**wave2（PHD2 399G）2026-10-12 用户取消**，外部原始视频不再搬迁 |
 
 | 项 | 大小 | 依据 |
 | --- | --- | --- |
@@ -79,12 +77,12 @@ $ROLL_PY rtx6000/r15_mine_vllm.py --pool $L/grpo_pool_v2.jsonl \
 | traj / holdout / 杂项 | ~5GB | |
 | **合计** | **~130GB** | 主路径（lora 模式）稳态 ~85GB，传输期峰值 ~110GB |
 
-## LoRA init（待用户指定）
+## LoRA init（已定案，2026-10-12 用户指定）
 
-`--adapter-init` 是唯一待定项：传 PEFT adapter 目录（`adapter_config.json`
-+ 权重），vLLM 侧按目录加载、r=16（`r13_sft_lora.py` 的训练 rank，
-`--max-lora-rank 16` 勿改）。候选与打包由 `r15_pack_from_910a.sh` 的
-`LORA_DIRS` 决定。
+`--adapter-init` = **`/data/aic/experiments_910a/LFM_V13/q35_sft_v2_out/ckpt_030`**
+（SFT v2 重做中唯一真信号 ckpt：全 parse 但模板化，ckpt_030 pred-pred
+pearson 0.539 为唯一非模板信号）。PEFT 目录格式，r=16 勿改。该目录已随
+wave1 优先落位 AutoDL。
 
 ## 与 910A 版的差异（全部有意为之）
 

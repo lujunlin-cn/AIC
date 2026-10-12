@@ -25,7 +25,9 @@
 
 - GPU：1× RTX PRO 6000（96GB）或 6000D（84GB，fp16/bf16 主路径慢 ~15%，够用）
 - CPU ≥16 核（视频解码是暗瓶颈）、RAM ≥128GB
-- 磁盘：数据盘 ≥200GB（账目见下）；若整机单盘（系统+镜像+数据），选 300GB 档
+- 磁盘：**含 910A 搬迁数据时数据盘 ≥1TB**（wave1 181G + PHD2 399G + 本包 RL 运行
+  账目 ~130GB）；若整机单盘（系统+镜像+数据），选 1.5TB 档。纯 RL 运行
+  （不收搬迁数据）仍按 200GB 即可
 - 宿主机驱动 ≥ r570（Blackwell 硬要求）
 - 容器镜像：`vllm/vllm-openai` 2025-03 之后的 tag（自带 torch≥2.7+cu128
   的 sm_120 kernel；旧 tag 无 sm_120 会直接报 not compatible）
@@ -59,7 +61,12 @@ $ROLL_PY rtx6000/r15_mine_vllm.py --pool $L/grpo_pool_v2.jsonl \
   --adapter-init $ADAPTER --out $L/grpo_mining_rtx
 ```
 
-## 数据盘账目（数据盘 200GB 的依据）
+## 数据盘账目（数据盘 200GB 的依据；含搬迁数据时按 1TB 规划）
+
+| 项 | 大小 | 依据 |
+| --- | --- | --- |
+| **910A 搬迁 wave1**（LFM 全系 + 旧 experiments + datasets/提交包 + 4B/TimeLens2-8B/Qwen3.8-27B + repo tar） | ~181G | `r15_evac_910a.sh --plan` 实测 |
+| **910A 搬迁 wave2**（PHD2 原始视频，唯一搬迁的外部集） | ~399G | 同上 |
 
 | 项 | 大小 | 依据 |
 | --- | --- | --- |

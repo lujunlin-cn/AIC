@@ -28,6 +28,12 @@ if [ ! -d /root/AIC ]; then
   tar xzf "$EVAC"/root/AIC_repo_*.tgz -C /root
   echo "repo unpacked (all branches incl. evac snapshot)"
 fi
+# the evac tar is the 910A-side snapshot and LACKS the latest rtx6000/ code;
+# the sandbox pushes the live copy to /root/autodl-tmp/rtx6000 -- prefer it
+if [ -d /root/autodl-tmp/rtx6000 ]; then
+  cp -r /root/autodl-tmp/rtx6000/. /root/AIC/rtx6000/
+  echo "rtx6000/ overlaid from /root/autodl-tmp (latest, incl. 5-gate parity)"
+fi
 # 910A-identical layout so pool frames_dir absolute paths stay valid
 [ -e /data ] || ln -s /root/autodl-tmp/evac/data /data
 ls /data/aic/pretrained/Qwen3.5-4B/config.json

@@ -254,6 +254,32 @@ if __name__ == "__v4_tests__":
 W_PAIR_SP, W_PAIR_FMT = 0.9, 0.1
 
 
+def reward_v6(scores, target, gif_hard, iou_frame=None, fmt_ok=True,
+              tau=TAU_SEL):
+    """v6 = 0.5*R_F + 0.3*R_TW + 0.2*pair_core (2026-10-13).
+
+    keep-set 模拟(R_F, 官方 F_i analog) + 时间容差(W1) + 段内排序(spearman
+    vs fused target)。官方裁决(run7 35.04 < 35.44)后引入: pair-only 把
+    弧线先验当敌人清零(detmpl 换 spearman 负净值); v6 保留先验的 keep
+    结构, 只在其上优化排序与命中。iou_frame 缺失时 R_F 退化为纯命中
+    (rf_score 设计内)。"""
+    sel = ([s >= tau for s in scores] if scores is not None
+           else [False] * len(gif_hard))
+    k = int(sum(1 for b in sel if b))
+    n_gt = int(sum(1 for b in gif_hard if b))
+    rf = rf_score(sel, n_gt, iou_frame, gif_hard=gif_hard)
+    rtw = rtw_score(scores, gif_hard)
+    if scores is not None and fmt_ok and len(scores) == len(target):
+        pr = W_PAIR_SP * spearman(np.asarray(scores, float),
+                                  np.asarray(target, float))
+    else:
+        pr = 0.0
+    raw = 0.5 * rf + 0.3 * rtw + 0.2 * pr
+    return shape_reward(raw), raw, {"rf": round(rf, 4), "rtw": round(rtw, 4),
+                                    "pair": round(pr, 4), "k": k,
+                                    "n_gt": n_gt}
+
+
 def pairwise_reward(scores, target, fmt_ok=True):
     """v5: r = 0.9*spearman(scores, target) + 0.1*fmt. Unparsable -> -0.1."""
     if scores is None or not fmt_ok:

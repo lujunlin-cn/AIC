@@ -49,7 +49,7 @@ import torch  # noqa: E402
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from r15_common import (build_texts, load_frames, orarl_advantage,  # noqa: E402
                         parse_scores, reward_v4, truncate_at_eos)
-from r15_grpo_reward import pairwise_reward  # noqa: E402
+from r15_grpo_reward import pairwise_reward, reward_v6  # noqa: E402
 
 
 def wait_file(path, timeout=1800.0):
@@ -100,13 +100,44 @@ def main():
                     help="disable CUDA graphs (use on first bring-up)")
     ap.add_argument("--mm-kwargs", default="{}",
                     help="extra vLLM mm_processor_kwargs JSON")
-    ap.add_argument("--reward-mode", choices=["v4", "pair"], default="v4")
+    ap.add_argument("--reward-mode", choices=["v4", "pair", "v6"],
+                    default="v4",
+                    help="v6 = 0.5*R_F + 0.3*W1 + 0.2*pair_core: keep-set "
+                         "sim + temporal tolerance + intra-seg ranking "
+                         "(official-verdict 2026-10-13 line)")
     ap.add_argument("--cf-table", default=None,
                     help="template reward table jsonl (vid,r) from "
                          "r15_make_cf_table.py; enables counterfactual "
-                         "baseline with --cf-lambda")
+                         "baseline with --cf-lambda (NO-OP under group "
+                         "re-centering, 2026-10-13 finding; superseded by "
+                         "--cf-swap-k)")
     ap.add_argument("--cf-lambda", type=float, default=0.5)
+    ap.add_argument("--vpb-inject", action="store_true",
+                    help="inject the pool row's per-frame VPB saliency "
+                         "vector as reference text (pool must carry the "
+                         "'vpb' field, grpo_pool_v5+); requires the same "
+                         "flag on the trainer for prompt consistency")
+    ap.add_argument("--cf-swap-k", type=int, default=0,
+                    help="input-swap counterfactual (pair mode): per-sample "
+                         "baseline = mean pair reward of THIS output scored "
+                         "against K random other segments' targets in the "
+                         "block. Varies within the group so it survives "
+                         "advantage re-centering; zeroes the mean-arc "
+                         "template's gradient. >0 enables")
     args = ap.parse_args()
+    os.makedirs(args.out, exist_ok=True)  # run5 crash: traj write assumed dir
+
+    def score_row(sc, fmt, row):
+        """Unified per-mode reward: on-policy, oracle and the swap
+        counterfactual all score through this one function, so v6 swaps
+        use the full keep+timing+pair counterfactual automatically."""
+        if args.reward_mode == "pair":
+            return pairwise_reward(sc, row["target"], fmt)
+        if args.reward_mode == "v6":
+            return reward_v6(sc, row["target"], row["gif_hard"], None,
+                             fmt, args.tau)[0]
+        return reward_v4(sc, row["gif_hard"], row.get("iou_frame"), fmt,
+                         args.tau)[0]
 
     from vllm import LLM, SamplingParams
     from vllm.lora.request import LoRARequest
@@ -217,7 +248,7 @@ def main():
         blk = stream[(step - 1) * args.segs_per_step:
                      (step - 1) * args.segs_per_step + args.segs_per_step]
         t_ro = time.time()
-        texts = build_texts(proc, blk)
+        texts = build_texts(proc, blk, vpb_inject=args.vpb_inject)
         prompts = [{"prompt": t,
                     "multi_modal_data": {"video": (frames_np(r), _mm_meta(
                         int(frames_np(r).shape[0])))}}
@@ -228,6 +259,7 @@ def main():
         for j, r in enumerate(blk):
             n = len(r["gif_hard"])
             gids, r_on, tails, info = [], [], [], []
+            sc_all, fmt_all = [], []
             sc_keep = None
             for m in range(args.samples):
                 tid = list(outs[j].outputs[m].token_ids)
@@ -235,13 +267,12 @@ def main():
                                       proc.tokenizer.pad_token_id or eos_id)
                 g = proc.tokenizer.decode(gid, skip_special_tokens=True)
                 sc, fmt = parse_scores(g, n)
-                if args.reward_mode == "pair":
-                    sr, raw, p = pairwise_reward(sc, r["target"], fmt), 0.0, {
-                        "k": int(sum(1 for v in (sc or []) if v >= args.tau)),
-                        "n_gt": int(sum(r["gif_hard"])), "fmt": int(fmt)}
-                else:
-                    sr, raw, p = reward_v4(sc, r["gif_hard"],
-                                           r.get("iou_frame"), fmt, args.tau)
+                sc_all.append(sc)
+                fmt_all.append(fmt)
+                sr = score_row(sc, fmt, r)
+                p = {"k": int(sum(1 for v in (sc or []) if v >= args.tau)),
+                     "n_gt": int(sum(r["gif_hard"])), "fmt": int(fmt)}
+                raw = 0.0
                 r_on.append(sr)
                 tails.append(gid.tolist())
                 info.append(p)
@@ -251,14 +282,27 @@ def main():
             otail = proc.tokenizer(otxt, add_special_tokens=False)[
                 "input_ids"] + [eos_id]
             sc_o, fmt_o = parse_scores(otxt, n)
-            if args.reward_mode == "pair":
-                r_gt, _, p_gt = pairwise_reward(sc_o, r["target"], fmt_o), 0.0, {
-                    "k": int(sum(1 for v in (sc_o or []) if v >= args.tau)),
+            r_gt = score_row(sc_o, fmt_o, r)
+            p_gt = {"k": int(sum(1 for v in (sc_o or []) if v >= args.tau)),
                     "n_gt": int(sum(r["gif_hard"])), "fmt": int(fmt_o)}
-            else:
-                r_gt, _, p_gt = reward_v4(sc_o, r["gif_hard"],
-                                          r.get("iou_frame"), fmt_o, args.tau)
             cf_r = cf_tab.get(r["vid"]) if cf_tab else None
+            if args.cf_swap_k > 0:
+                # input-swap counterfactual: score THIS output against K
+                # other segments' targets (block-local, same n). Varies per
+                # sample -> survives advantage re-centering; an input-agnostic
+                # output scores the same on swap -> zero gradient.
+                others = [blk[k] for k in range(len(blk))
+                          if k != j and len(blk[k]["gif_hard"]) == n]
+                if others:
+                    rng_k = np.random.default_rng(1009 * step + 17 * j)
+                    pick = rng_k.choice(len(others),
+                                        size=min(args.cf_swap_k, len(others)),
+                                        replace=False)
+                    cf_r = []
+                    for m in range(args.samples):
+                        sw = [score_row(sc_all[m], fmt_all[m], others[i])
+                              for i in pick]
+                        cf_r.append(float(np.mean(sw)))
             adv_on, adv_gt = orarl_advantage(
                 r_on, r_gt, cf_r=cf_r, cf_lambda=args.cf_lambda,
                 cf_mean=cf_mean)

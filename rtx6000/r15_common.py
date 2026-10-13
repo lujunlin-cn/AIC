@@ -37,15 +37,26 @@ def load_frames(row):
     return fl
 
 
-def build_texts(proc, rows):
+def build_texts(proc, rows, vpb_inject=False):
     """Chat-template prompt text with no-think prefill, identical to
-    r13_grpo_train.build_inputs (same replace of the <think> block)."""
+    r13_grpo_train.build_inputs (same replace of the <think> block).
+    vpb_inject: pool rows carry a "vpb" per-frame saliency vector (VPB
+    frozen-encoder head scores, 2026-10-13 fusion-RL line) - injected as
+    reference text so the policy learns calibration/correction of an
+    input-dependent expert prior instead of scoring from scratch."""
     texts = []
     for r in rows:
         n = len(r["gif_hard"])
+        if vpb_inject and r.get("vpb"):
+            body = (PROMPT.format(n=n) + " A frozen video-encoder expert "
+                    "scored these frames for highlight likelihood: "
+                    + json.dumps(r["vpb"]) + ". Use it as a reference and "
+                      "correct it from the video content.")
+        else:
+            body = PROMPT.format(n=n)
         msgs = [{"role": "user", "content": [
             {"type": "video", "video": None},
-            {"type": "text", "text": PROMPT.format(n=n)},
+            {"type": "text", "text": body},
         ]}]
         t = proc.apply_chat_template(msgs, tokenize=False,
                                      add_generation_prompt=True)
@@ -54,10 +65,10 @@ def build_texts(proc, rows):
     return texts
 
 
-def build_inputs(proc, rows, dev):
+def build_inputs(proc, rows, dev, vpb_inject=False):
     """HF/transformers batch inputs (trainer path + parity baseline).
     Left padding, capped pixels per frame, fps=1.0 video metadata."""
-    texts = build_texts(proc, rows)
+    texts = build_texts(proc, rows, vpb_inject=vpb_inject)
     proc.tokenizer.padding_side = "left"
     frames = [load_frames(r) for r in rows]
     inputs = proc(text=texts, videos=frames, padding=True,
@@ -123,10 +134,11 @@ def seq_logprob_loss(model, prompt_row, tail_ids_list, advs, eos_id, K=280,
             continue
         term = -a * tok_lp[m].mean()
         if entropy_beta > 0.0:
-            # policy entropy on the same tail positions (full-vocab over the
-            # already-computed log_softmax); maximise H -> subtract beta*H
-            ent = -(lp.exp() * lp).sum(-1)[m].mean()
-            term = term - entropy_beta * ent
+            # policy entropy on the same tail positions; bf16 like the KL
+            # term - fp32 intermediates OOMed the 16-seg graph (run4 tail)
+            lpb = lp.bfloat16()
+            ent = -(lpb.exp() * lpb).sum(-1)[m].mean()
+            term = term - entropy_beta * ent.float()
         if ref_model is not None and kl_beta > 0.0:
             # KL(current || ref) on the same tail positions, against the
             # frozen init policy (ckpt_030) - the anchoring term that keeps
@@ -137,24 +149,36 @@ def seq_logprob_loss(model, prompt_row, tail_ids_list, advs, eos_id, K=280,
                                     video_grid_thw=prompt_row.get("video_grid_thw"),
                                     mm_token_type_ids=mmtti,
                                     logits_to_keep=min(K, ids.shape[1]))
-                lp_ref = torch.log_softmax(ref_out.logits[:, :-1].float(), dim=-1)
-            p_cur = lp.exp()
-            kl = (p_cur * (lp - lp_ref)).sum(-1)[m].mean()
-            term = term + kl_beta * kl
+                lp_ref = torch.log_softmax(ref_out.logits[:, :-1], dim=-1)
+            # bf16 KL: keeps 3x fp32 [1,279,152k] tensors out of the
+            # backward graph (16-seg accumulation OOMed at step 2, run4)
+            lpb = lp.bfloat16()
+            kl = (lpb.exp() * (lpb - lp_ref)).sum(-1)[m].mean()
+            term = term + kl_beta * kl.float()
         losses.append(term)
     return torch.stack(losses).sum() if losses else None
 
 
 def orarl_advantage(r_on, r_gt, cf_r=None, cf_lambda=0.0, cf_mean=0.0):
     """r13 anchor (=2*w_q, 2026-10-11) + optional counterfactual de-
-    prioritization (2026-10-13): subtract cf_lambda * (r_template - cf_mean)
-    (pool-centered) BEFORE the directional gain, so an input-agnostic prior
-    template's advantage is structurally zeroed and escape mutations earn
-    gradient. cf_r = this segment's template reward, cf_mean = pool mean."""
+    prioritization (2026-10-13). cf_r may be
+      - a scalar (per-segment template reward from a cf table): SUBTRACTED
+        BEFORE re-centering it is a within-group constant, so the final
+        re-centering cancels it exactly - a mathematical no-op (verified
+        2026-10-13, run5 launch attempt); kept only for compat;
+      - a list (per-SAMPLE input-swap counterfactual: reward of THIS output
+        decoded against OTHER segments' targets). Varies within the group,
+        survives re-centering, and zeroes the advantage of any input-agnostic
+        output (a swap scores it identically) - the mean-arc template
+        (spearman 0.75 vs any pool target, verified) earns zero gradient."""
     mu = float(np.mean(r_on))
     adv = [r - mu for r in r_on]
     if cf_r is not None and cf_lambda > 0.0:
-        adv = [a - cf_lambda * (cf_r - cf_mean) for a in adv]
+        if isinstance(cf_r, (list, tuple)):
+            cm = float(np.mean(cf_r))
+            adv = [a - cf_lambda * (c - cm) for a, c in zip(adv, cf_r)]
+        else:
+            adv = [a - cf_lambda * (cf_r - cf_mean) for a in adv]
     adv = [a * (1.5 if a > 0 else 1.0) for a in adv]
     mean = float(np.mean(adv))
     adv = [a - mean for a in adv]

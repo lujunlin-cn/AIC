@@ -60,6 +60,10 @@ def main():
                          "default off = 910A-identical numerics")
     ap.add_argument("--entropy-beta", type=float, default=0.01,
                     help="policy-entropy bonus on tail tokens (anti-collapse)")
+    ap.add_argument("--vpb-inject", action="store_true",
+                    help="match the rollout's --vpb-inject prompt (pool "
+                         "rows must carry the 'vpb' field); prompt text "
+                         "must be identical on both sides")
     ap.add_argument("--kl-beta", type=float, default=0.0,
                     help="KL(current||init-ref) anchor; 0 disables (ref adds "
                          "a second 4B resident model, step time ~2x)")
@@ -155,7 +159,8 @@ def main():
         losses_log = []
         for t in trajs:
             r = rows[t["vid"]]
-            inputs, _ = build_inputs(proc, [r], dev)
+            inputs, _ = build_inputs(proc, [r], dev,
+                                     vpb_inject=args.vpb_inject)
             prompt_row = {"input_ids": inputs["input_ids"],
                           "attention_mask": inputs["attention_mask"],
                           "pixel_values": inputs.get("pixel_values"),

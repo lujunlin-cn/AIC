@@ -46,6 +46,8 @@ def main():
                     help="must be <= Mamba cache blocks; at low mem-util "
                          "水位 0.18 only ~285 blocks exist (10-13 finding)")
     ap.add_argument("--out", required=True)
+    ap.add_argument("--vpb-inject", action="store_true",
+                    help="match the RL prompt when the pool carries 'vpb'")
     args = ap.parse_args()
     args.adapter_label = args.adapter_label or os.path.basename(
         os.path.normpath(args.adapter))
@@ -69,7 +71,7 @@ def main():
     sp = SamplingParams(temperature=0.0, max_tokens=256,
                         stop_token_ids=[eos_id])
 
-    texts = build_texts(proc, rows)
+    texts = build_texts(proc, rows, vpb_inject=args.vpb_inject)
     prompts = [{"prompt": t,
                 "multi_modal_data": {"video": (np.stack(load_frames(r)),
                                                 _mm_meta(len(r["files"])))}}
@@ -110,11 +112,29 @@ def main():
         sps.append(spearman(sc, np.asarray(r["target"], float)))
         sr, _, _ = reward_v4(sc, r["gif_hard"], None, True)
         rms.append(sr)
+    # de-template gain (2026-10-13): spearman vs OWN target minus the
+    # swap-target baseline (K=8 random other segments). Input-agnostic
+    # templates score ~0 here; per-video signal shows up as positive gain.
+    rng2 = np.random.default_rng(29)
+    tgts = [np.asarray(r["target"], float) for r in rows]
+    det = []
+    for i, (sc, f) in enumerate(parsed):
+        if not f or sc is None:
+            continue
+        own = spearman(sc, tgts[i])
+        sw = []
+        for _ in range(8):
+            j = int(rng2.integers(len(tgts)))
+            while j == i:
+                j = int(rng2.integers(len(tgts)))
+            sw.append(spearman(sc, tgts[j]))
+        det.append(own - float(np.mean(sw)))
     label = args.adapter_label
     m = {"label": label, "n": len(rows), "fmt": round(fmt_rate, 4),
          "uniq": round(uniq, 4), "pair_r": round(pair_r, 4),
          "spearman": round(float(np.mean(sps)), 4) if sps else None,
-         "r_mean": round(float(np.mean(rms)), 4) if rms else None}
+         "r_mean": round(float(np.mean(rms)), 4) if rms else None,
+         "detmpl": round(float(np.mean(det)), 4) if det else None}
     print("METRICS " + json.dumps(m))
     with open(args.out, "a") as f:
         f.write(json.dumps(m) + "\n")

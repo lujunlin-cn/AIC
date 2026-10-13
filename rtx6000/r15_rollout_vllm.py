@@ -49,6 +49,7 @@ import torch  # noqa: E402
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from r15_common import (build_texts, load_frames, orarl_advantage,  # noqa: E402
                         parse_scores, reward_v4, truncate_at_eos)
+from r15_grpo_reward import pairwise_reward  # noqa: E402
 
 
 def wait_file(path, timeout=1800.0):
@@ -99,6 +100,12 @@ def main():
                     help="disable CUDA graphs (use on first bring-up)")
     ap.add_argument("--mm-kwargs", default="{}",
                     help="extra vLLM mm_processor_kwargs JSON")
+    ap.add_argument("--reward-mode", choices=["v4", "pair"], default="v4")
+    ap.add_argument("--cf-table", default=None,
+                    help="template reward table jsonl (vid,r) from "
+                         "r15_make_cf_table.py; enables counterfactual "
+                         "baseline with --cf-lambda")
+    ap.add_argument("--cf-lambda", type=float, default=0.5)
     args = ap.parse_args()
 
     from vllm import LLM, SamplingParams
@@ -124,6 +131,16 @@ def main():
     stream = [rows[i] for i in stream_idx]
     print(f"[w{args.worker}] seg stream={len(stream)} "
           f"(~{len(stream)/args.segs_per_step:.0f} steps)", flush=True)
+
+    cf_tab, cf_mean = None, 0.0
+    if args.cf_table:
+        cf_tab = {}
+        for l in open(args.cf_table):
+            d = json.loads(l)
+            cf_tab[d["vid"]] = d["r"]
+        cf_mean = float(np.mean(list(cf_tab.values())))
+        print(f"[w{args.worker}] cf table n={len(cf_tab)} "
+              f"mean={cf_mean:.4f}", flush=True)
 
     llm = LLM(
         model=args.base,
@@ -218,8 +235,13 @@ def main():
                                       proc.tokenizer.pad_token_id or eos_id)
                 g = proc.tokenizer.decode(gid, skip_special_tokens=True)
                 sc, fmt = parse_scores(g, n)
-                sr, raw, p = reward_v4(sc, r["gif_hard"],
-                                       r.get("iou_frame"), fmt, args.tau)
+                if args.reward_mode == "pair":
+                    sr, raw, p = pairwise_reward(sc, r["target"], fmt), 0.0, {
+                        "k": int(sum(1 for v in (sc or []) if v >= args.tau)),
+                        "n_gt": int(sum(r["gif_hard"])), "fmt": int(fmt)}
+                else:
+                    sr, raw, p = reward_v4(sc, r["gif_hard"],
+                                           r.get("iou_frame"), fmt, args.tau)
                 r_on.append(sr)
                 tails.append(gid.tolist())
                 info.append(p)
@@ -229,9 +251,17 @@ def main():
             otail = proc.tokenizer(otxt, add_special_tokens=False)[
                 "input_ids"] + [eos_id]
             sc_o, fmt_o = parse_scores(otxt, n)
-            r_gt, _, p_gt = reward_v4(sc_o, r["gif_hard"],
-                                      r.get("iou_frame"), fmt_o, args.tau)
-            adv_on, adv_gt = orarl_advantage(r_on, r_gt)
+            if args.reward_mode == "pair":
+                r_gt, _, p_gt = pairwise_reward(sc_o, r["target"], fmt_o), 0.0, {
+                    "k": int(sum(1 for v in (sc_o or []) if v >= args.tau)),
+                    "n_gt": int(sum(r["gif_hard"])), "fmt": int(fmt_o)}
+            else:
+                r_gt, _, p_gt = reward_v4(sc_o, r["gif_hard"],
+                                          r.get("iou_frame"), fmt_o, args.tau)
+            cf_r = cf_tab.get(r["vid"]) if cf_tab else None
+            adv_on, adv_gt = orarl_advantage(
+                r_on, r_gt, cf_r=cf_r, cf_lambda=args.cf_lambda,
+                cf_mean=cf_mean)
             traj.append({"vid": r["vid"], "tails": tails,
                          "advs": adv_on, "adv_gt": adv_gt,
                          "oracle_tail": otail, "r_on": r_on,

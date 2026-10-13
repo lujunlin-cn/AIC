@@ -176,6 +176,8 @@ def main():
             [p for p in model.parameters() if p.requires_grad], 1e9)
         opt.step()
         opt.zero_grad()
+        dt = time.time() - t0
+        n_zero = args.segs_per_step - len(losses_log)
 
         # publish adapter: PEFT dir (tmp-dir+rename, atomic) for the vLLM
         # LoRARequest path + legacy .pt state_dict (hot-swap verify parity)

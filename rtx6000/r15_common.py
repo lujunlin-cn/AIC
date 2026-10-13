@@ -145,10 +145,16 @@ def seq_logprob_loss(model, prompt_row, tail_ids_list, advs, eos_id, K=280,
     return torch.stack(losses).sum() if losses else None
 
 
-def orarl_advantage(r_on, r_gt):
-    """Unchanged from r13_grpo_train.py (anchor = 2*w_q, 2026-10-11)."""
+def orarl_advantage(r_on, r_gt, cf_r=None, cf_lambda=0.0, cf_mean=0.0):
+    """r13 anchor (=2*w_q, 2026-10-11) + optional counterfactual de-
+    prioritization (2026-10-13): subtract cf_lambda * (r_template - cf_mean)
+    (pool-centered) BEFORE the directional gain, so an input-agnostic prior
+    template's advantage is structurally zeroed and escape mutations earn
+    gradient. cf_r = this segment's template reward, cf_mean = pool mean."""
     mu = float(np.mean(r_on))
     adv = [r - mu for r in r_on]
+    if cf_r is not None and cf_lambda > 0.0:
+        adv = [a - cf_lambda * (cf_r - cf_mean) for a in adv]
     adv = [a * (1.5 if a > 0 else 1.0) for a in adv]
     mean = float(np.mean(adv))
     adv = [a - mean for a in adv]

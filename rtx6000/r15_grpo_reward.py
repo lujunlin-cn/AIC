@@ -244,3 +244,19 @@ def reward_v4(scores, gif_hard, iou_frame=None, fmt_ok=True, tau=TAU_SEL):
 
 if __name__ == "__v4_tests__":
     pass
+
+
+# ------------- v5 (2026-10-13): pairwise ranking reward -------------
+# Point-estimate rewards (R_F topk / RTW) can be partially harvested by an
+# input-agnostic prior ordering (the "template hill"). A rank-correlation
+# reward is still harvestable by the prior, so it MUST be paired with the
+# counterfactual de-prioritization baseline (orarl_advantage cf_r=...).
+W_PAIR_SP, W_PAIR_FMT = 0.9, 0.1
+
+
+def pairwise_reward(scores, target, fmt_ok=True):
+    """v5: r = 0.9*spearman(scores, target) + 0.1*fmt. Unparsable -> -0.1."""
+    if scores is None or not fmt_ok:
+        return -0.1
+    sp = spearman(np.asarray(scores, float), np.asarray(target, float))
+    return W_PAIR_SP * float(sp) + W_PAIR_FMT * 1.0

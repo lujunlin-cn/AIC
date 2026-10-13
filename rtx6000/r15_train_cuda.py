@@ -60,6 +60,11 @@ def main():
                          "default off = 910A-identical numerics")
     ap.add_argument("--entropy-beta", type=float, default=0.01,
                     help="policy-entropy bonus on tail tokens (anti-collapse)")
+    ap.add_argument("--kl-beta", type=float, default=0.0,
+                    help="KL(current||init-ref) anchor; 0 disables (ref adds "
+                         "a second 4B resident model, step time ~2x)")
+    ap.add_argument("--ref-adapter", default=None,
+                    help="frozen reference adapter (default: adapter-init)")
     ap.add_argument("--probe-every", type=int, default=1)
     ap.add_argument("--collapse-pair-r", type=float, default=0.9,
                     help="same-length pairwise Pearson alarm threshold")
@@ -98,6 +103,18 @@ def main():
             gradient_checkpointing_kwargs={"use_reentrant": False})
         model.enable_input_require_grads()
     model.print_trainable_parameters()
+    ref_model = None
+    if args.kl_beta > 0.0:
+        ref_base = Qwen3_5ForConditionalGeneration.from_pretrained(
+            args.base, torch_dtype=torch.bfloat16,
+            attn_implementation="sdpa").to(dev)
+        ref_model = PeftModel.from_pretrained(
+            ref_base, args.ref_adapter or args.adapter_init,
+            is_trainable=False)
+        ref_model.eval()
+        for p_ in ref_model.parameters():
+            p_.requires_grad_(False)
+        print("ref policy resident (KL anchor)", flush=True)
     print("trainer model ready", flush=True)
 
     opt = torch.optim.AdamW([p for p in model.parameters()
@@ -150,7 +167,8 @@ def main():
             advs = list(t["advs"]) + [t["adv_gt"]]
             loss = seq_logprob_loss(model, prompt_row, tails, advs,
                                     eos_id, K=args.logits_keep,
-                                    entropy_beta=args.entropy_beta)
+                                    entropy_beta=args.entropy_beta,
+                                    ref_model=ref_model, kl_beta=args.kl_beta)
             if loss is not None:
                 (loss / float(max(1, len(trajs)))).backward()
                 losses_log.append(float(loss.detach().cpu()))

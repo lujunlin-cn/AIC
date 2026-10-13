@@ -83,7 +83,7 @@ def truncate_at_eos(ids_1d, eos_id, pad_id):
 
 
 def seq_logprob_loss(model, prompt_row, tail_ids_list, advs, eos_id, K=280,
-                     entropy_beta=0.0):
+                     entropy_beta=0.0, ref_model=None, kl_beta=0.0):
     """Unchanged math from r13_grpo_train.py: policy gradient over the 3+1
     sequences, one forward each (bsz1 accumulation, video tensors shared).
     Loss per sequence = -A * mean token log-prob of the tail."""
@@ -127,6 +127,20 @@ def seq_logprob_loss(model, prompt_row, tail_ids_list, advs, eos_id, K=280,
             # already-computed log_softmax); maximise H -> subtract beta*H
             ent = -(lp.exp() * lp).sum(-1)[m].mean()
             term = term - entropy_beta * ent
+        if ref_model is not None and kl_beta > 0.0:
+            # KL(current || ref) on the same tail positions, against the
+            # frozen init policy (ckpt_030) - the anchoring term that keeps
+            # the policy from drifting into the single-template basin
+            with torch.no_grad():
+                ref_out = ref_model(input_ids=ids, attention_mask=am,
+                                    pixel_values=prompt_row.get("pixel_values"),
+                                    video_grid_thw=prompt_row.get("video_grid_thw"),
+                                    mm_token_type_ids=mmtti,
+                                    logits_to_keep=min(K, ids.shape[1]))
+                lp_ref = torch.log_softmax(ref_out.logits[:, :-1].float(), dim=-1)
+            p_cur = lp.exp()
+            kl = (p_cur * (lp - lp_ref)).sum(-1)[m].mean()
+            term = term + kl_beta * kl
         losses.append(term)
     return torch.stack(losses).sum() if losses else None
 

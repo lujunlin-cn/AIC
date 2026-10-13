@@ -32,7 +32,19 @@ import subprocess
 import sys
 import time
 
+# vLLM 0.31 flashinfer sampler JIT rejects sm_120/cu13 (10-13 finding);
+# native torch sampler is the production path on RTX PRO 6000
+os.environ.setdefault("VLLM_USE_FLASHINFER_SAMPLER", "0")
+
+def _mm_meta(n):
+    """vLLM 0.31 qwen3_vl video metadata: frames are pre-sampled at fps=1.0
+    (same semantics as r15_common.build_inputs' video_metadata)."""
+    return {"fps": 1.0, "frames_indices": list(range(n)),
+            "total_num_frames": n, "do_sample_frames": False}
+
+
 import numpy as np  # noqa: E402
+import torch  # noqa: E402
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from r15_common import (build_texts, load_frames, orarl_advantage,  # noqa: E402
@@ -178,7 +190,8 @@ def main():
         t_ro = time.time()
         texts = build_texts(proc, blk)
         prompts = [{"prompt": t,
-                    "multi_modal_data": {"video": (frames_np(r), 1.0)}}
+                    "multi_modal_data": {"video": (frames_np(r), _mm_meta(
+                        int(frames_np(r).shape[0])))}}
                    for t, r in zip(texts, blk)]
         outs = engine.generate(prompts, sp, lora_request=lreq)
 
@@ -188,7 +201,7 @@ def main():
             gids, r_on, tails, info = [], [], [], []
             for m in range(args.samples):
                 tid = list(outs[j].outputs[m].token_ids)
-                gid = truncate_at_eos(np.array(tid), eos_id,
+                gid = truncate_at_eos(torch.tensor(tid), eos_id,
                                       proc.tokenizer.pad_token_id or eos_id)
                 g = proc.tokenizer.decode(gid, skip_special_tokens=True)
                 sc, fmt = parse_scores(g, n)

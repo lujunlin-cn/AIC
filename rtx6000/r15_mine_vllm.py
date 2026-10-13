@@ -17,7 +17,18 @@ import os
 import sys
 import time
 
+# vLLM 0.31 flashinfer sampler JIT rejects sm_120/cu13 (10-13 finding)
+os.environ.setdefault("VLLM_USE_FLASHINFER_SAMPLER", "0")
+
+def _mm_meta(n):
+    """vLLM 0.31 qwen3_vl video metadata: frames are pre-sampled at fps=1.0
+    (same semantics as r15_common.build_inputs' video_metadata)."""
+    return {"fps": 1.0, "frames_indices": list(range(n)),
+            "total_num_frames": n, "do_sample_frames": False}
+
+
 import numpy as np  # noqa: E402
+import torch  # noqa: E402
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from r15_common import (build_texts, load_frames, parse_scores,  # noqa: E402
@@ -78,7 +89,8 @@ def main():
             texts = build_texts(proc, chunk)
             prompts = [{"prompt": t,
                         "multi_modal_data": {"video": (np.stack(
-                            load_frames(r)), 1.0)}}
+                            load_frames(r)),
+                            _mm_meta(len(r["files"])))}}
                        for t, r in zip(texts, chunk)]
             outs = llm.generate(prompts, sp, lora_request=lreq)
             for j, r in enumerate(chunk):
@@ -87,7 +99,7 @@ def main():
                 for m in range(args.samples):
                     tid = list(outs[j].outputs[m].token_ids)
                     gid = truncate_at_eos(
-                        np.array(tid), eos_id,
+                        torch.tensor(tid), eos_id,
                         proc.tokenizer.pad_token_id or eos_id)
                     g = proc.tokenizer.decode(gid, skip_special_tokens=True)
                     sc, fmt = parse_scores(g, n)

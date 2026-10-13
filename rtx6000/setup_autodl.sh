@@ -8,7 +8,13 @@
 set -euo pipefail
 
 EVAC=/root/autodl-tmp/evac
-PIP=${PIP:--i https://mirrors.aliyun.com/pypi/simple/}
+# AutoDL academic acceleration: proxy for international PyPI/HF; falls back
+# silently on non-AutoDL boxes. With it on, official PyPI beats regional
+# mirrors (0.5MB/s measured on aliyun 10-13 morning).
+if [ -f /etc/network_turbo ]; then
+  source /etc/network_turbo
+fi
+PIP=${PIP:-}
 export HF_ENDPOINT=https://hf-mirror.com
 export HF_HUB_OFFLINE=0
 

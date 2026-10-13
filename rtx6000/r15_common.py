@@ -82,7 +82,8 @@ def truncate_at_eos(ids_1d, eos_id, pad_id):
     return torch.tensor(keep, dtype=ids_1d.dtype)
 
 
-def seq_logprob_loss(model, prompt_row, tail_ids_list, advs, eos_id, K=280):
+def seq_logprob_loss(model, prompt_row, tail_ids_list, advs, eos_id, K=280,
+                     entropy_beta=0.0):
     """Unchanged math from r13_grpo_train.py: policy gradient over the 3+1
     sequences, one forward each (bsz1 accumulation, video tensors shared).
     Loss per sequence = -A * mean token log-prob of the tail."""
@@ -120,7 +121,13 @@ def seq_logprob_loss(model, prompt_row, tail_ids_list, advs, eos_id, K=280):
         m = tgt.ne(-100)
         if int(m.sum()) == 0:
             continue
-        losses.append(-a * tok_lp[m].mean())
+        term = -a * tok_lp[m].mean()
+        if entropy_beta > 0.0:
+            # policy entropy on the same tail positions (full-vocab over the
+            # already-computed log_softmax); maximise H -> subtract beta*H
+            ent = -(lp.exp() * lp).sum(-1)[m].mean()
+            term = term - entropy_beta * ent
+        losses.append(term)
     return torch.stack(losses).sum() if losses else None
 
 

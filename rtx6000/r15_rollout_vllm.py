@@ -113,6 +113,18 @@ def main():
     rows = [r for i, r in enumerate(rows) if i % args.n_workers == args.worker]
     print(f"[w{args.worker}] pool={len(rows)}", flush=True)
 
+    # epoch-segment stream: fresh permutation per epoch so multi-epoch runs
+    # re-shuffle instead of dying at the pool tail (823 segs = 51 steps/epoch)
+    import numpy as _np
+    need = args.steps * args.segs_per_step + args.segs_per_step
+    stream_idx, seed = [], 13
+    while len(stream_idx) < need:
+        stream_idx += list(_np.random.default_rng(seed).permutation(len(rows)))
+        seed += 4
+    stream = [rows[i] for i in stream_idx]
+    print(f"[w{args.worker}] seg stream={len(stream)} "
+          f"(~{len(stream)/args.segs_per_step:.0f} steps)", flush=True)
+
     llm = LLM(
         model=args.base,
         max_model_len=args.max_model_len,
@@ -185,8 +197,8 @@ def main():
                 f"adapter_step{step}", step, lora_dir(step))
                 if args.lora_mode == "lora" else None)
 
-        blk = rows[(step - 1) * args.segs_per_step:
-                   (step - 1) * args.segs_per_step + args.segs_per_step]
+        blk = stream[(step - 1) * args.segs_per_step:
+                     (step - 1) * args.segs_per_step + args.segs_per_step]
         t_ro = time.time()
         texts = build_texts(proc, blk)
         prompts = [{"prompt": t,
@@ -199,6 +211,7 @@ def main():
         for j, r in enumerate(blk):
             n = len(r["gif_hard"])
             gids, r_on, tails, info = [], [], [], []
+            sc_keep = None
             for m in range(args.samples):
                 tid = list(outs[j].outputs[m].token_ids)
                 gid = truncate_at_eos(torch.tensor(tid), eos_id,
@@ -210,6 +223,8 @@ def main():
                 r_on.append(sr)
                 tails.append(gid.tolist())
                 info.append(p)
+                if m == 0:
+                    sc_keep, g_keep = sc, g
             otxt = json.dumps(r["target"])
             otail = proc.tokenizer(otxt, add_special_tokens=False)[
                 "input_ids"] + [eos_id]
@@ -220,7 +235,8 @@ def main():
             traj.append({"vid": r["vid"], "tails": tails,
                          "advs": adv_on, "adv_gt": adv_gt,
                          "oracle_tail": otail, "r_on": r_on,
-                         "r_gt": r_gt, "parts": info})
+                         "r_gt": r_gt, "parts": info,
+                         "scores": sc_keep, "gen_text": g_keep})
         dt = time.time() - t_ro
         fp = os.path.join(args.out, f"traj_step{step}_{args.worker}.jsonl.tmp")
         with open(fp, "w") as f:

@@ -1,0 +1,23 @@
+{
+ "valid": true,
+ "zip_sha256": {
+  "candidate": "501cebce04e5245bc17bacd538bd8f6ff3f881b7595fab7ca001b4fa2403e565",
+  "mask": "631d01042c42e26877dde16fc619fbc9041bd68b6e44b0c412ee5285004b01f4",
+  "spatial": "c0d1befeca78e11f0b4807a84c94d2b31aea3a6884dc0d07e0591bb48d11a468"
+ },
+ "predictions_sha256": "7c9ea1787d8f31e8e94200ef9e96756ea453f6c5af21a4960aa724d7607583a6",
+ "videos": 174,
+ "predictions": 78992,
+ "mask_prediction_count": 78992,
+ "frame_key_mismatch_videos": [],
+ "bbox_mismatch_frames": 0,
+ "non_int_bbox_frames": 78992,
+ "empty_videos": [],
+ "independent": {
+  "valid": true,
+  "videos": 174,
+  "predictions": 78992,
+  "model_size_mb": null,
+  "checker": "independent_submission_check_v1"
+ }
+}

@@ -1,0 +1,10 @@
+{
+ "package": "LFM_V10_PROBEHEAD_SEMIFINAL",
+ "videos": 426,
+ "kept_frames": 183322,
+ "parent": "LFM_V9_B3_VISIONONLY_SEMIFINAL (spatial boxes byte-identical on kept frames)",
+ "temporal_head": "probe recipe frozen-tower TCN (lora_probe_frozen.pt, PHD2 held-out AP 0.7462)",
+ "keep_frac": 0.8,
+ "zip_sha256": "52eeb0d2dc6b91ad2d2e3248b454a4628847b19447abbc21b5e9d3cbd37c19b2",
+ "head_ckpt_sha256": "4aa26ccbdbe5e23d"
+}

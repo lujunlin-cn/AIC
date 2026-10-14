@@ -1,0 +1,37 @@
+{
+ "submission_id": "V2ARB_CKPT030",
+ "status": "PACKAGED_NOT_UPLOADED_ZEROSHOT_VLM_FRAME_SCORER",
+ "uploaded": false,
+ "official_platform_score": null,
+ "parent_baseline": "R12_GATT_LFM_SEMIFINAL (official 35.17, same 426-video drop)",
+ "primary_changed_factor": "temporal scorer only: the R12 GATT ranker (9M params, PHD2-trained) is replaced by Qwen3.5-4B zero-shot frame scoring — 16-64 uniformly sampled frames per video, single generate call, per-frame highlight likelihood 0-1, whole-keyframe keep until 80% of frames; spatial bboxes copied byte-for-byte from LFM_V8_B3_SEMIFINAL; no training of any kind.",
+ "components": [
+  {
+   "name": "LFM2.5-VL-450M (FP16 inference, all parameters incl. SigLIP2 NaFlex encoder + projector + LFM2 LM)",
+   "parameters": 448718848,
+   "bytes": 897484568
+  },
+  {
+   "name": "V8 B3 candidate-utility head (fp32, 2305-512-128 MLP + 2-layer self-attention, 129 legal windows)",
+   "parameters": 1511425,
+   "bytes": 6045700
+  },
+  {
+   "name": "YuNet 2023mar",
+   "parameters": 53104,
+   "bytes": 232589
+  },
+  {
+   "name": "Qwen3.5-4B zero-shot frame scorer (natively multimodal, GDN hybrid; 4.3B params; no training, prompt-only)",
+   "parameters": 4300000000,
+   "bytes": 8600000000
+  }
+ ],
+ "total_parameters": 4750283377,
+ "total_weight_bytes": 9503762857,
+ "declared_model_size_mb": 9503.763,
+ "k_size_implied": 0.9,
+ "video_count": 426,
+ "prediction_count": 196459,
+ "score_parse_failures": 7
+}

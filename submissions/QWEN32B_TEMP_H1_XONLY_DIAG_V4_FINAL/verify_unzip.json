@@ -1,0 +1,25 @@
+{
+ "valid": true,
+ "zip_sha256": {
+  "candidate": "6ecb766e49a02ba8f3807205d3d69d4c7ef4bb7e09cbea2a1512631dc9785dfd",
+  "base": "631d01042c42e26877dde16fc619fbc9041bd68b6e44b0c412ee5285004b01f4",
+  "override": "519a718a2f16d499cf0a2b99bd8c5525bed34440d5e8b0a3dad40a27f63eaade"
+ },
+ "predictions_sha256": "902a794a71120e6b3296b40f0dba5cd1b0a32bdfe80e2f805fdfbb466fbef14b",
+ "videos": 174,
+ "predictions": 78992,
+ "videos_by_source": {
+  "override": 55,
+  "base": 119
+ },
+ "frame_key_mismatch_vs_base": [],
+ "rows_not_equal_declared_source": [],
+ "empty_videos": [],
+ "independent": {
+  "valid": true,
+  "videos": 174,
+  "predictions": 78992,
+  "model_size_mb": null,
+  "checker": "independent_submission_check_v1"
+ }
+}

@@ -483,3 +483,38 @@ The frozen InternVideo2 Stage1-1B K700 candidate received official platform scor
 - Conclusion：撤回 C3。P0 改做**随机排序探针**测 d（可识别，成本 2 次提交）。
   P1 用 AHA relevance 头把 lift 从 1.05 推向 ≥1.17。证据 `scripts/r15d_ceiling_frontier.py`、
   `docs/r15d_ceiling_and_identifiability.md`。
+
+## R21（2026-10-15）Claude 截图方向实物审计 + R17/R18/R19 补充（CPU 只读，0 GPU，0 训练）
+
+- Hypothesis：近期用于 steering 的本地数字（内容上限、CLIP 优于 VPB、均匀窗失败、shot 优势）
+  是否为可复现的实物事实。
+- Change：无模型改动。读原脚本/日志/缓存/既存 checkpoint + CPU 冻结回放 + 数学反例。
+  远端 `R21_CLAUDE_AUDIT_20261015`，commit `d45cc09`，干净源码 `a7e4a51`，3 子任务全 exit 0（4.2 s）。
+- Result：**多数不成立。**
+  - **REJECTED**：`0.3340` 是内容上限（实为源全在 train 且用于选模的泄漏读数）；
+    残差 B 是"纯内容"（常数预测得 B=1.0 未用图像；位置 ramp 得 0.882349）；
+    平均曲线相关高 ⇒ 无内容（完美预测时同样 =1）；CLIP `0.7404` 优于 VPB
+    （仅 19 个非恒定段有效、14 段同源；**全视频一致训练均值特征仍得 0.699287**，
+    位置曲线 0.731791，与原始值只差 0.008639）；LFM 已被排除（NOT IDENTIFIED）。
+  - **不可用**：`−0.0994` 均匀窗失败（812 行标签行号读 2508 行 RGB，124/125 源错配）；
+    `0.7085` shot 优势（未做镜头边界检测，跨片段 Pearson ≠ 帧内 Spearman）。
+  - **新增阻断**：1979/2508 MrHiSum `gif_hard` 全零（全池 79.07%，非 87%），构造器未恢复；
+    2508 行 = 1329 规范源；VPB 头被改成 ReLU 且漏 norm；确认池耗尽。
+  - **R17**：整轴训练 block − 短窗 block = +0.002011，**未过 0.005 开发门**；
+    头对位置控制仅 +0.0033。
+  - **R18**：32 源中 29 过轴一致性门，**3 源永久隔离**；映射规则 7610/8000 匹配；
+    exposure_v3 记 35,419 事件 / 511 角色冲突。无晋级。
+  - **R19**：完整 10 人 GT 下块排序 > 点排序（keep0.85 **+0.006746** CI[0.002214,0.011612]；
+    keep0.15 block48−block12 **+0.100858** CI[0.081642,0.121294]；rater 不一致下限 0.337965），
+    **但是 GT 辅助 oracle，非可学增益**；3 源恢复尝试 `PROBE_FAILED` HTTP 403，隔离维持。
+- Size：无变化。
+- Training Time：R17 12 臂共 173.13 s；R21 3 子任务 4.2 s。
+- Conclusion：**本地尺子全部失效**，方向改为先重建测量仪器。
+  **对 E1.1 的修正（我独立复核）**：R21 泄漏结论**不适用** R16 的 T1\*/T1S\* 臂 ——
+  `public_uniform_group_v1.json` 实测 121/40/42 源、三向交集全 0（裸 11 字符 ID 比对），
+  `T1S_uniform_s13_v1` 的 42 eval 源 ∩ train = 0。故 E1.1 判决成立**但理由更换**：
+  计划表 §1 的「模型也塌 → 内容不存在，35.52 终局」比
+  `r15b_content_signal_verdict.py` 自身判决文本更激进，且与 R21 冲突；
+  采用脚本版本 —— **"本协议下可学信号弱" ≠ "任务无内容信号"**。
+  8 条臂全部落在控制带 [0.2404, 0.2470] 的 ±0.008 内。残留待核：`manifest_sha256` 声明值
+  `a5de5742…` 与实测 `016a3f03…` 不一致。计划见 `docs/r21_direction_and_plan_20261015.md`。

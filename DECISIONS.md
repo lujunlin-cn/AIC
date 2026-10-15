@@ -919,3 +919,12 @@ Status：Accepted。包已建成并通过独立 validator（`R23_RANDPROBE_P250`
 rho=p 是随机抽样的期望关系，有限样本不是恒等式，Rbar_i 也不会从宏平均中无条件消失。
 18/26 只作为同赛段官方观测保留，不宣称精确密度或已证实的排序天花板。
 按用户授权执行 R24：现算 VPB point/block × seeds13/17、公平 CLIP 对照、AHA 真实视觉 smoke。
+
+## 2026-10-15：R24判决
+
+Decision：暂停当前12帧block配方；保持现役可提交版本，不替换CLIP，不开启预留源评估。
+Evidence：block−point两seed−.002173/−.001943，未通过≥.005且两seed非负并胜控制的门。
+表示对比亦未稳定超越位置控制；不将公开摘要F映射为复赛分数。
+AHA按有界失败协议记录缺wandb，未作视觉或质量结论。
+Next：先检查时间采样分辨率的oracle损失，避免继续扫当前头；空间瓶颈仍未排除。
+报告：reports/r24/summary.md。Status：Accepted。

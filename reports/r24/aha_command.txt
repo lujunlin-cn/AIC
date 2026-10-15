@@ -1,0 +1,1 @@
+timeout --signal=TERM --kill-after=30s 20m /root/autodl-tmp/aha_env/bin/python -u code/r24_aha_visual_smoke.py

@@ -1,0 +1,43 @@
+{
+  "vpb": {
+    "weight_sha256": "e306974d4814178d6ef685179e434073f6605b2964a22d43e63a73cab4e67496",
+    "weight_bytes": 228815765,
+    "preprocess": "RGB /255, cv2 INTER_AREA 288 square",
+    "seconds": 3.141007900238037
+  },
+  "clip": {
+    "weights": {
+      "model.safetensors": "1b6e845e7bb0763d92f8b6987fd0ea446a4f718b82f727da000cfa55014df79a"
+    },
+    "weight_bytes": 598530372,
+    "preprocess": {
+      "crop_size": {
+        "height": 224,
+        "width": 224
+      },
+      "do_center_crop": true,
+      "do_convert_rgb": true,
+      "do_normalize": true,
+      "do_rescale": true,
+      "do_resize": true,
+      "image_mean": [
+        0.48145466,
+        0.4578275,
+        0.40821073
+      ],
+      "image_processor_type": "CLIPImageProcessor",
+      "image_std": [
+        0.26862954,
+        0.26130258,
+        0.27577711
+      ],
+      "resample": 3,
+      "rescale_factor": 0.00392156862745098,
+      "size": {
+        "shortest_edge": 224
+      }
+    },
+    "output": "vision pooler_output768, no projection adapter",
+    "seconds": 3.9558026790618896
+  }
+}

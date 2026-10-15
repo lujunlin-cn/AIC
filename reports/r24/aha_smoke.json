@@ -1,0 +1,9 @@
+{
+  "status": "FAILED",
+  "scope": "public TRAIN visual smoke, no quality/competition eligibility claim",
+  "offline": true,
+  "error_type": "ModuleNotFoundError",
+  "error": "No module named 'wandb'",
+  "traceback": "Traceback (most recent call last):\n  File \"/root/autodl-tmp/experiments/R24_EXEC_20261015/code/r24_aha_visual_smoke.py\", line 12, in <module>\n    from models.live_llava.video_head_live_llava_qwen import build_video_head_live_llava_qwen\n  File \"/root/autodl-tmp/aha_repo/models/__init__.py\", line 4, in <module>\n    from .live_llava.video_head_live_llava_qwen import build_video_head_live_llava_qwen\n  File \"/root/autodl-tmp/aha_repo/models/live_llava/video_head_live_llava_qwen.py\", line 18, in <module>\n    import wandb\nModuleNotFoundError: No module named 'wandb'\n",
+  "wall_s": 2.455077648162842
+}

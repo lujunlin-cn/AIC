@@ -848,3 +848,14 @@ zip 内 `namelist==['predictions.jsonl']` 与 B3 同构。
 rho=p 是随机抽样的期望关系，有限样本不是恒等式，Rbar_i 也不会从宏平均中无条件消失。
 18/26 只作为同赛段官方观测保留，不宣称精确密度或已证实的排序天花板。
 按用户授权执行 R24：现算 VPB point/block × seeds13/17、公平 CLIP 对照、AHA 真实视觉 smoke。
+
+## R24 — 2026-10-15 干净对照与AHA有界尝试
+
+重新抽取26train/14dev公共VideoXum的VPB与CLIP特征，12全轴采样；两监督×两seed×两表示共8臂。
+固定300epoch最终头，无dev选epoch；768→512 GELU→1、train-only标准化、soft BCE。
+F@.85：VPB point .296544/.298774；block .294371/.296831；CLIP point .292495/.286712；block .279953/.284288。
+位置/同分控制.297467，随机.285002，全选.292570。block−point均值−.002058，两seed负，门失败。
+14预留源未打开；不晋级，不替换比赛包。不支持CLIP替换，但CI跨零，不作总体优劣推断。
+AHA2.455秒失败于缺wandb导入；未加载、无视觉输出，不算smoke通过。
+原帧指标独立重算8×3精确相等；checkpoint重放误差<1e−5。每头约.55–.70秒，外层45min timeout。
+完整协议/命令/日志/SHA/逐源结果：[reports/r24/summary.md](reports/r24/summary.md)。

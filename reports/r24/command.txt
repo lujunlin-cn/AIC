@@ -1,0 +1,1 @@
+timeout --signal=TERM --kill-after=30s 45m /root/miniconda3/envs/train/bin/python -u code/r24_clean_compare.py --config code/R24_EXEC_20261015.json

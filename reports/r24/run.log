@@ -1,0 +1,81 @@
+VPB dXSlCw8AXv0 (12, 768)
+VPB XCwPsQwzfiA (12, 768)
+VPB aXm3sPITCKM (12, 768)
+VPB mTmcz5NWNQA (12, 768)
+VPB IV47aK7qJdY (12, 768)
+VPB UoX2xhYPD38 (12, 768)
+VPB 1iIG5D3jTk4 (12, 768)
+VPB DXG4djsPk7s (12, 768)
+VPB r82RY124wVY (12, 768)
+VPB ER0UPx6-VcM (12, 768)
+VPB QbhMOqg9Tmg (12, 768)
+VPB Cq7Myyfbtn0 (12, 768)
+VPB HoViId2LHl8 (12, 768)
+VPB Ib3XqmBqy10 (12, 768)
+VPB Yr2unlRQZa0 (12, 768)
+VPB VLQQVNIZQqo (12, 768)
+VPB Lml6HGhM4yg (12, 768)
+VPB fsz79uPkUSs (12, 768)
+VPB 4b2_OpAGwW0 (12, 768)
+VPB 8Ztw2YrUHRE (12, 768)
+VPB vycd0CJTwoA (12, 768)
+VPB NOxiMgQMeuk (12, 768)
+VPB jsu65VwKf74 (12, 768)
+VPB _Xydl5mYkQ8 (12, 768)
+VPB lue8XE3MEe8 (12, 768)
+VPB c4GQ3WTOeAA (12, 768)
+VPB z93quI8Gxx4 (12, 768)
+VPB UF2v4emX7rc (12, 768)
+VPB wWOH-b4PTq4 (12, 768)
+VPB uXX2lSVAXq8 (12, 768)
+VPB pLcrLi5oAvU (12, 768)
+VPB 5jfQNanBKAM (12, 768)
+VPB lPYV3qFuXOI (12, 768)
+VPB oYhVH1vIXFM (12, 768)
+VPB Gxjfc5O6AAc (12, 768)
+VPB yo3s6V19YtQ (12, 768)
+VPB OVRYoPA6h-Y (12, 768)
+VPB 2b_hjshny54 (12, 768)
+VPB UgrOTFBD7tA (12, 768)
+VPB 0w2XFd-Q9Eg (12, 768)
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 9884.03it/s]
+[transformers] [1mCLIPVisionModel LOAD REPORT[0m from: /root/autodl-tmp/vpb/clip-vit-base-patch16
+Key                                                          | Status     |  | 
+-------------------------------------------------------------+------------+--+-
+text_model.encoder.layers.{0...11}.self_attn.out_proj.bias   | UNEXPECTED |  | 
+text_model.encoder.layers.{0...11}.layer_norm1.bias          | UNEXPECTED |  | 
+text_model.encoder.layers.{0...11}.self_attn.v_proj.weight   | UNEXPECTED |  | 
+text_model.encoder.layers.{0...11}.self_attn.v_proj.bias     | UNEXPECTED |  | 
+text_model.encoder.layers.{0...11}.mlp.fc1.bias              | UNEXPECTED |  | 
+text_model.encoder.layers.{0...11}.self_attn.q_proj.bias     | UNEXPECTED |  | 
+text_model.encoder.layers.{0...11}.self_attn.out_proj.weight | UNEXPECTED |  | 
+text_model.encoder.layers.{0...11}.self_attn.q_proj.weight   | UNEXPECTED |  | 
+text_model.encoder.layers.{0...11}.self_attn.k_proj.bias     | UNEXPECTED |  | 
+text_model.encoder.layers.{0...11}.mlp.fc2.weight            | UNEXPECTED |  | 
+text_model.encoder.layers.{0...11}.layer_norm1.weight        | UNEXPECTED |  | 
+text_model.encoder.layers.{0...11}.self_attn.k_proj.weight   | UNEXPECTED |  | 
+text_model.encoder.layers.{0...11}.mlp.fc2.bias              | UNEXPECTED |  | 
+text_model.final_layer_norm.weight                           | UNEXPECTED |  | 
+text_model.encoder.layers.{0...11}.layer_norm2.bias          | UNEXPECTED |  | 
+text_model.embeddings.position_embedding.weight              | UNEXPECTED |  | 
+text_model.encoder.layers.{0...11}.layer_norm2.weight        | UNEXPECTED |  | 
+text_model.encoder.layers.{0...11}.mlp.fc1.weight            | UNEXPECTED |  | 
+text_model.final_layer_norm.bias                             | UNEXPECTED |  | 
+text_model.embeddings.token_embedding.weight                 | UNEXPECTED |  | 
+text_projection.weight                                       | UNEXPECTED |  | 
+visual_projection.weight                                     | UNEXPECTED |  | 
+logit_scale                                                  | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+/root/autodl-tmp/experiments/R24_EXEC_20261015/code/r24_clean_compare.py:109: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  loss.backward(); opt.step(); losses.append(float(loss))
+vpb_point_s13 {'0.85': 0.29654448354618607, '0.6': 0.295809114499013, '0.25': 0.2250540628008674}
+vpb_point_s17 {'0.85': 0.2987738434900609, '0.6': 0.29718932217093325, '0.25': 0.2439051020753355}
+vpb_block_s13 {'0.85': 0.2943714757953532, '0.6': 0.28386461974174937, '0.25': 0.24083094968788507}
+vpb_block_s17 {'0.85': 0.2968306349217996, '0.6': 0.2773831971272536, '0.25': 0.24605769967837207}
+clip_point_s13 {'0.85': 0.2924945763536596, '0.6': 0.27574330725490503, '0.25': 0.18585270680771132}
+clip_point_s17 {'0.85': 0.2867118154403849, '0.6': 0.2686391632813714, '0.25': 0.18730970051550408}
+clip_block_s13 {'0.85': 0.2799529293888924, '0.6': 0.2725606111535685, '0.25': 0.20379411492769475}
+clip_block_s17 {'0.85': 0.2842877530658023, '0.6': 0.27107406336695317, '0.25': 0.20919311118339579}

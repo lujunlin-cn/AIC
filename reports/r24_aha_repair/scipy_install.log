@@ -1,0 +1,8 @@
+Looking in indexes: http://mirrors.aliyun.com/pypi/simple
+Processing ./scipy-1.13.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+Installing collected packages: scipy
+  Attempting uninstall: scipy
+    Found existing installation: scipy 1.18.1
+    Uninstalling scipy-1.18.1:
+      Successfully uninstalled scipy-1.18.1
+Successfully installed scipy-1.13.1

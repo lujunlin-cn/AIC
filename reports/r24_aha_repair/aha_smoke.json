@@ -1,0 +1,82 @@
+{
+  "status": "PASS",
+  "scope": "public TRAIN visual smoke, no quality/competition eligibility claim",
+  "offline": true,
+  "precision": "bf16",
+  "frame_sha256": [
+    "743366784405e777efd392629ee1d62e029c1d85dc5eadd09bcecb939ab38341",
+    "65425eff5db827a60c9b3dd948193bb878fe0ba75c04aa2bb5a29cdde080020a"
+  ],
+  "sample_seconds": [
+    20,
+    150
+  ],
+  "head_identity": {
+    "informative_head": {
+      "adapter_key": "base_model.model.informative_head.weight",
+      "max_abs_difference": 0.0
+    },
+    "relevance_head": {
+      "adapter_key": "base_model.model.relevance_head.weight",
+      "max_abs_difference": 0.0
+    },
+    "uncertainty_head": {
+      "adapter_key": "base_model.model.uncertainty_head.weight",
+      "max_abs_difference": 0.0
+    }
+  },
+  "load_seconds": 19.673187017440796,
+  "visual_embedding_finite": true,
+  "output_finite": {
+    "informative_logits": true,
+    "relevance_logits": true,
+    "uncertainty": true
+  },
+  "visual_response_max_abs_difference": 2.05078125,
+  "repeat_max_abs_difference": 0.0,
+  "outputs": [
+    {
+      "informative_logits": [
+        3.640625,
+        -3.765625
+      ],
+      "relevance_logits": [
+        0.20055769383907318
+      ],
+      "uncertainty": [
+        -0.62109375
+      ],
+      "seconds": 0.42780613899230957
+    },
+    {
+      "informative_logits": [
+        4.25,
+        -5.53125
+      ],
+      "relevance_logits": [
+        0.2568320035934448
+      ],
+      "uncertainty": [
+        -2.671875
+      ],
+      "seconds": 0.07470011711120605
+    },
+    {
+      "informative_logits": [
+        3.640625,
+        -3.765625
+      ],
+      "relevance_logits": [
+        0.20055769383907318
+      ],
+      "uncertainty": [
+        -0.62109375
+      ],
+      "seconds": 0.07448267936706543
+    }
+  ],
+  "peak_vram_bytes": 18632761344,
+  "actual_parameter_count": 8632726048,
+  "loaded_parameter_bytes": 17346192448,
+  "wall_s": 20.805915355682373
+}

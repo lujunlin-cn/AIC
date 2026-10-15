@@ -1,0 +1,2 @@
+361bc2eb255242af72ebf534fa000e2f52b08ac2bfcf4bce01231f2b31fc974c  r24_aha_visual_smoke.py
+7137990558fad19105ff325c4de3cafbe91d8c9f1b3a68e2aa0ef22a7ace0cef  r24_resume_siglip.py

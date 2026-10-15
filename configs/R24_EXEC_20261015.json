@@ -1,0 +1,21 @@
+{
+  "id": "R24_EXEC_20261015",
+  "hypothesis": "Block-averaged supervision matches coarse temporal output better than point labels; representation comparison must use identical source split and head.",
+  "data_root": "/root/autodl-tmp/experiments/R22_INSTRUMENT_20261015",
+  "output": "/root/autodl-tmp/experiments/R24_EXEC_20261015",
+  "samples": 12,
+  "seeds": [13, 17],
+  "epochs": 300,
+  "lr": 0.001,
+  "weight_decay": 0.01,
+  "head": "768-512-GELU-1",
+  "loss": "BCEWithLogits soft targets",
+  "selection": "fixed final epoch, no dev checkpoint selection",
+  "primary_keep": 0.85,
+  "secondary_keep": [0.6, 0.25],
+  "gate": "mean paired block-point >=0.005; both seeds nonnegative; block beats all four controls",
+  "training_timeout": "45m",
+  "aha_timeout": "20m",
+  "protected": "not opened",
+  "risks": ["40-source small selected dev", "12 samples can miss short events", "public summary labels differ from competition highlights", "backbone preprocessing differs by pretrained contract"]
+}

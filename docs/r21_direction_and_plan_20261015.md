@@ -1,5 +1,7 @@
 # R21 审计后的方向与执行计划
 
+> 2026-10-15 R23后更正：本文中的精确随机rho=p、宏平均抵消、唯一密度反解、39.54严格天花板及9B量纲均不作为当前结论。以 STATUS.md / 01 为准。阶段2/3/4实验协议继续执行。
+
 日期：2026-10-15
 状态：**本文取代 `docs/r15b_experiment_plan_table.md` §1 的 E1.1 判据，并修正
 `docs/keep_scan_closure.md` 与 `docs/r15d_ceiling_and_identifiability.md` 中依赖

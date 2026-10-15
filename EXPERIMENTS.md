@@ -467,3 +467,19 @@ The frozen InternVideo2 Stage1-1B K700 candidate received official platform scor
 - F1 配方审计闭环（pairwise 唯一正确损失，BCE/MSE 证伪）但该能力不迁移平台。
 - 剩余未测轴：①PHD2 域 × pairwise 损失臂（R12 五臂未测）②27B 域内蒸馏
   （JSON 率 85.4% 过门槛，推理合规）③输出形态/空间已关闭。
+
+## R15d（2026-10-15）官方指标天花板前沿 + (d,R̄) 不可识别性（解析，无训练）
+
+- Hypothesis：`keep_scan_closure.md` §3 反解出的"空间轴不是瓶颈（R̄=1.00）"可被证伪。
+- Change：无模型改动；纯解析反解官方公式 `F_i = 2·S_IoU/(N_pred+N_gt)`。
+- Result：**证伪成立**。测得的 6 个官方分数无法识别 (d, R̄)，d 只在 `[0.21029, +∞)` 上有下界；
+  文档采用值 0.2103 是该下界，即 R̄ 的最大值，从最有利情形外推。
+  - 现役 p=0.8534 的**排序天花板 = 39.54 分**（d=0.2103；d=1.0 时为 37.50），**已在 89.8%**。
+  - 现役 keep 率下**不可能达到 40 分**（需 keep ≤0.841）。
+  - lift = ρ/p 实测仅 **1.053**（p=0.8534）～**1.161**（p=0.5451, d=0.4）；随机 ≡ 1.000。
+  - 修好空间到 R̄=1 值 **+0.00**（R̄=1 世界）～**+9.42**（R̄=0.784 世界）。
+- Size：无变化。
+- Training Time：0。
+- Conclusion：撤回 C3。P0 改做**随机排序探针**测 d（可识别，成本 2 次提交）。
+  P1 用 AHA relevance 头把 lift 从 1.05 推向 ≥1.17。证据 `scripts/r15d_ceiling_frontier.py`、
+  `docs/r15d_ceiling_and_identifiability.md`。

@@ -150,3 +150,11 @@
 - [x] Reclassify G/E01 `17.46` as shard coverage failure.
 - [ ] Build a submission preflight that rejects any ZIP whose JSONL coverage is not exactly 174 IDs before upload.
 - [ ] Move next official candidate design from frozen foundation swap to temporal/spatial adaptation with train/dev evidence.
+
+## P0 — R23 探针（2026-10-15 建成，待提交）
+
+- [x] 探针包建成 + 三层验证（合成干跑 / 闭环 / 真包 validator）。
+- [x] 更正读数形式为逐视频精确期望；更正主读数点 p 0.5→0.25；声明尺寸改整字段省略。
+- [ ] **用户上传** `R23_RANDPROBE_P250` 与 `_P500`（每日 5 次额度，占 2 次）。
+- [ ] 用两份官方分反解 `d`，并核对两个估计量自洽（不自洽⇒先查锚点与真实 p）。
+- [ ] 结果写入 `STATUS.md` 官方轴一节（当前 `d ≥ 0.21029` 只有下界，无点估计）。

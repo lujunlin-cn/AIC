@@ -105,8 +105,12 @@ def main(argv=None):
     ap.add_argument("--index", required=True)
     ap.add_argument("--submission", required=True)
     ap.add_argument("--weight-bytes", type=int)
+    ap.add_argument("--allow-missing-size", action="store_true",
+                    help="允许整包省略 model_size_mb（锚点包 LFM_V8_B3_SEMIFINAL 的写法："
+                         "该包在复赛已获官方分 34.75 且无此字段）")
     args = ap.parse_args(argv)
-    print(json.dumps(check(args.index, args.submission, args.weight_bytes), indent=2))
+    print(json.dumps(check(args.index, args.submission, args.weight_bytes,
+                           require_size=not args.allow_missing_size), indent=2))
 
 
 if __name__ == "__main__":

@@ -1,0 +1,15 @@
+{
+  "experiment_id": "R25_AHA_BF16_K085",
+  "date": "2026-10-15",
+  "stage": "semifinal",
+  "official_platform_score": 35.18,
+  "score_source": "user_report",
+  "platform_independently_verified": false,
+  "local_zip_sha256": "736aa5e6a9644b293c2d282bfd79d74f8eecb37db9e77dc4124e12a434df8cec",
+  "uploaded_zip_sha256_independently_verified": false,
+  "association_basis": "user-reported package name; local delivered ZIP hash verified, uploaded bytes not independently inspected",
+  "delta_vs_best_recorded": -0.34,
+  "delta_vs_allframe_anchor": 0.43,
+  "decision": "not_promoted",
+  "report": "reports/r25_score_analysis/summary.md"
+}

@@ -878,6 +878,17 @@ Change：仅替换时间评分为relevance probability＋informativeness probabi
 Control：426同赛段视频、固定B3空间框。R23为随机抽帧，不是AHA。
 完整AHA8,030,363,168参数，空间450,283,377参数，总8,480,646,545参数≤9B。
 旧9GB文件上限解释撤回，以用户确认官方参数口径为准；初赛分数不参与比较。
-Result：已完成并校验提交ZIP，待用户上传，官方分数unknown；现役35.52不变。
+Result：2026-10-15用户报告复赛官方35.18，较35.52低0.34、较全帧34.75高0.43；未独立核验平台上传SHA，不晋级。
 BF16不同token/head矩阵形状造成数值差，放宽容差尝试未采用；最终恢复原生完整token评分头形状，全426视频重新计算，原生前向交叉检查<1e-5。
 记录：reports/r25_aha_submit/summary.md；不是以模型容量或单帧smoke宣称提升。
+
+
+## 2026-10-15：R25回分与原因审计
+
+Hypothesis：35分平台期可能涉及预算/位置偏差、AHA任务适配和共享空间误差，不能由模型容量解释。
+Analysis：本地ZIP及426视频双校验再次通过；实际87.5076%保留、宏平均88.7453%，比逐视频精确85%多5870帧。
+首采样帧仅28/426保留，前/中/后三分之一宏平均保留77.12%/98.77%/90.30%，297条仅一个保留区间。
+上游取点、头变换一致；generic query、等权融合、cache和文本顺序与作者路径有差异，尚未测定因果影响。
+Conclusion：维持35.52，不宣称35是天花板或空间已证实为主因；预注册公共dev位置控制、精确预算和固定掩码空间对照。
+Blocker：AutoDL40206域名及公共DNS直连均关闭，raw头分数分析未执行。未训练、未打开预留14、未生成或上传新候选。
+证据：reports/r25_score_analysis/summary.md、package_audit.json、official_score_event.json；复现脚本scripts/r25_analyze_package.py。

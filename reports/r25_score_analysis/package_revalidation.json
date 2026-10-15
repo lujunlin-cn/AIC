@@ -1,0 +1,30 @@
+{
+  "valid": true,
+  "independent": {
+    "valid": true,
+    "videos": 426,
+    "predictions": 204907,
+    "model_size_mb": 8480.646545,
+    "checker": "independent_submission_check_v1"
+  },
+  "zip_sha256": "736aa5e6a9644b293c2d282bfd79d74f8eecb37db9e77dc4124e12a434df8cec",
+  "total_parameters": 8480646545,
+  "parameter_limit": 9000000000,
+  "native_forward_max_abs_difference": 0.0,
+  "keep_fraction": 0.8750763370188632,
+  "constant_score_videos": 0,
+  "zip_root": [
+    "predictions.jsonl"
+  ],
+  "contract_summary": {
+    "valid": true,
+    "video_count": 426,
+    "prediction_count": 204907,
+    "model_size_mb": 8480.646545,
+    "model_params_b": null,
+    "stage": "final",
+    "validator": "local_rules_2026-09-24_not_official",
+    "issues_count": 426
+  },
+  "official_score_record": "official_score_event.json (validator itself does not fetch scores)"
+}

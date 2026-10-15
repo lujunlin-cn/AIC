@@ -1,8 +1,8 @@
 {
   "submission_id": "R25_AHA_BF16_K085",
-  "status": "PACKAGED_NOT_UPLOADED",
-  "uploaded": false,
-  "official_platform_score": null,
+  "status": "OFFICIAL_SCORE_REPORTED_NOT_PROMOTED",
+  "uploaded": true,
+  "official_platform_score": 35.18,
   "run": {
     "experiment_id": "R25_AHA_BF16_K085",
     "model": "/root/autodl-tmp/experiments/R25_AHA_SUBMIT_20261015/merged_llava_bf16_v2",
@@ -3918,5 +3918,9 @@
   "zip_sha256": "736aa5e6a9644b293c2d282bfd79d74f8eecb37db9e77dc4124e12a434df8cec",
   "zip_bytes": 1506818,
   "wall_s": 1248.9702875614166,
-  "peak_vram_bytes": 18001440768
+  "peak_vram_bytes": 18001440768,
+  "official_score_source": "user_report_2026-10-15",
+  "platform_independently_verified": false,
+  "uploaded_zip_sha256_independently_verified": false,
+  "score_event": "reports/r25_score_analysis/official_score_event.json"
 }

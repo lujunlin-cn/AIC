@@ -1,0 +1,116 @@
+{
+  "schema": "r25_package_aggregate_audit_v1",
+  "zip_sha256": "736aa5e6a9644b293c2d282bfd79d74f8eecb37db9e77dc4124e12a434df8cec",
+  "index_sha256": "02d52321e82a70cafd33d566319b2ebf5e405af43946d6da32181eccdbc46a93",
+  "videos": 426,
+  "total_frames": 234159,
+  "kept_frames": 204907,
+  "exact_085_budget_frames": 199037,
+  "excess_frames_over_rounded_budget": 5870,
+  "micro_keep": 0.8750763370188632,
+  "macro_keep": 0.8874527667772808,
+  "per_video_keep": {
+    "n": 426,
+    "min": 0.8490566037735849,
+    "p10": 0.8542141230068337,
+    "median": 0.8797284901852871,
+    "p90": 0.9352226720647774,
+    "max": 1.0,
+    "mean": 0.8874527667772808
+  },
+  "all_selected_videos": 3,
+  "sample_counts": {
+    "n": 426,
+    "min": 4,
+    "p10": 8.0,
+    "median": 15.0,
+    "p90": 37.0,
+    "max": 286,
+    "mean": 20.354460093896712
+  },
+  "selected_run_counts": {
+    "n": 426,
+    "min": 1,
+    "p10": 1.0,
+    "median": 1.0,
+    "p90": 3.0,
+    "max": 26,
+    "mean": 1.6220657276995305
+  },
+  "whole_cell_splits": 0,
+  "duration_groups": [
+    {
+      "seconds_range": [
+        0,
+        5
+      ],
+      "videos": 6,
+      "macro_keep": 0.913997957857607,
+      "all_selected": 2,
+      "mean_samples": 4.5
+    },
+    {
+      "seconds_range": [
+        5,
+        10
+      ],
+      "videos": 109,
+      "macro_keep": 0.9251167889135934,
+      "all_selected": 1,
+      "mean_samples": 8.18348623853211
+    },
+    {
+      "seconds_range": [
+        10,
+        20
+      ],
+      "videos": 184,
+      "macro_keep": 0.8785720858629024,
+      "all_selected": 0,
+      "mean_samples": 14.673913043478262
+    },
+    {
+      "seconds_range": [
+        20,
+        60
+      ],
+      "videos": 117,
+      "macro_keep": 0.8676807988781712,
+      "all_selected": 0,
+      "mean_samples": 32.64957264957265
+    },
+    {
+      "seconds_range": [
+        60,
+        null
+      ],
+      "videos": 10,
+      "macro_keep": 0.8557243640874266,
+      "all_selected": 0,
+      "mean_samples": 123.2
+    }
+  ],
+  "one_selected_run_videos": 297,
+  "first_sample_selected_videos": 28,
+  "last_sample_selected_videos": 333,
+  "macro_keep_by_time_third": [
+    0.7712202447606734,
+    0.9876846845393565,
+    0.9029797739016304
+  ],
+  "head_score_std": {
+    "n": 426,
+    "min": 0.05484762877272504,
+    "p10": 0.10692942317733642,
+    "median": 0.14009644425252307,
+    "p90": 0.17969415698684477,
+    "max": 0.22349765241517608,
+    "mean": 0.14119940385097374
+  },
+  "maximal_legal_crop_fraction": 1.0,
+  "limitations": [
+    "No GT: no temporal recall, IoU, or component error attribution.",
+    "No raw head scores: no saturation, ties, head correlation, or rank quality measurement.",
+    "Time-third statistics describe masks; they do not establish position bias or accuracy."
+  ]
+}

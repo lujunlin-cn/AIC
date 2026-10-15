@@ -36,7 +36,9 @@ hold125 有 124/125 源错配。
 import argparse
 import hashlib
 import json
+import random
 import time
+import urllib.error
 import urllib.parse
 import urllib.request
 from concurrent.futures import ProcessPoolExecutor
@@ -92,14 +94,19 @@ def probe(url, timeout=30, attempts=3):
 
 
 def download(task):
-    """单个源：有界下载 + 大小校验。失败即记录，不重试。"""
+    """单个源：有界下载 + 大小校验。
+
+    镜像会 429 限流（实测首轮 64 源里 24 个 429）。429 是**传输层**错误，
+    必须与"源不可用"区分：直接记为 failed 会把限流污染成数据可得性结论。
+    故对 429/timeout 做指数退避重试；重试仍败才落 failed，并保留全部尝试记录。
+    """
     row, host, outdir, deadline = task
     vid = row["video_id"]
     target = outdir / "videos" / f"{vid}.mp4"
     part = target.with_suffix(".part")
     rec = {"video_id": vid, "split": row["split"],
            "publisher_size_bytes": row["publisher_size_bytes"],
-           "transport_host": host}
+           "transport_host": host, "attempts": []}
     if target.exists() and target.stat().st_size == row["publisher_size_bytes"]:
         rec.update(status="already_present",
                    sha256=sha256(target), bytes=target.stat().st_size)
@@ -113,29 +120,52 @@ def download(task):
         return rec
     url = row["video_url"].replace(f"https://{ORIGIN}/", f"https://{host}/", 1)
     start = time.monotonic()
-    try:
-        req = urllib.request.Request(
-            url, headers={"User-Agent": "AIC-R22-instrument/1.0"})
-        with urllib.request.urlopen(req, timeout=30) as r, part.open("xb") as f:
-            got = 0
-            while True:
-                b = r.read(1 << 20)
-                if not b:
-                    break
-                got += len(b)
-                if got > MAX_FILE_BYTES or time.monotonic() > deadline:
-                    raise ValueError("byte/time budget exceeded")
-                f.write(b)
-        if got != size:
-            raise ValueError(f"publisher size mismatch {got} vs {size}")
-        part.rename(target)
-        rec.update(status="downloaded_size_verified", bytes=got,
-                   sha256=sha256(target), wall_s=round(time.monotonic() - start, 2))
-    except Exception as e:
-        if part.exists():
-            part.unlink()
-        rec.update(status="failed", error_type=type(e).__name__,
-                   error=str(e)[:180], wall_s=round(time.monotonic() - start, 2))
+
+    # 每个源最多 4 次；退避 4/12/28s，并加 0~3s 抖动打散两个 worker 的相位。
+    last = None
+    for k in range(4):
+        if time.monotonic() > deadline:
+            rec.update(status="time_budget_reached",
+                       wall_s=round(time.monotonic() - start, 2))
+            return rec
+        try:
+            req = urllib.request.Request(
+                url, headers={"User-Agent": "AIC-R22-instrument/1.0"})
+            with urllib.request.urlopen(req, timeout=45) as r, part.open("xb") as f:
+                got = 0
+                while True:
+                    b = r.read(1 << 20)
+                    if not b:
+                        break
+                    got += len(b)
+                    if got > MAX_FILE_BYTES or time.monotonic() > deadline:
+                        raise ValueError("byte/time budget exceeded")
+                    f.write(b)
+            if got != size:
+                raise ValueError(f"publisher size mismatch {got} vs {size}")
+            part.rename(target)
+            rec.update(status="downloaded_size_verified", bytes=got,
+                       sha256=sha256(target), retries=k,
+                       wall_s=round(time.monotonic() - start, 2))
+            rec["attempts"].append({"attempt": k + 1, "ok": True, "bytes": got})
+            return rec
+        except Exception as e:
+            if part.exists():
+                part.unlink()
+            code = getattr(e, "code", None)
+            transient = code in (429, 500, 502, 503, 504) or isinstance(
+                e, (TimeoutError, urllib.error.URLError))
+            last = e
+            rec["attempts"].append({"attempt": k + 1, "ok": False,
+                                    "error_type": type(e).__name__,
+                                    "http_code": code, "error": str(e)[:120],
+                                    "transient": bool(transient)})
+            if not transient:
+                break
+            time.sleep(4 * (2 ** k) + random.uniform(0, 3))
+    rec.update(status="failed", error_type=type(last).__name__,
+               http_code=getattr(last, "code", None), error=str(last)[:180],
+               wall_s=round(time.monotonic() - start, 2))
     return rec
 
 
@@ -148,6 +178,8 @@ def axis_audit(task):
               且 无区间越过实际媒体末尾
     """
     import av  # 延迟导入：CPU 任务，避免主进程依赖
+    # 注意：需要带 av 的解释器（实测 /root/autodl-tmp/aha_env/bin/python, av 13.0.0）。
+    # /root/miniconda3/bin/python 没有 av，会 ModuleNotFoundError。
 
     row, ann, outdir = task
     vid = row["video_id"]
@@ -268,11 +300,22 @@ def main(a):
     prior = a.output / "report.json"
     if a.resume and prior.exists():
         old = json.loads(prior.read_text())
-        report["downloads"] = [r for r in old.get("downloads", [])
-                               if r.get("status") in ("downloaded_size_verified",
-                                                      "already_present")]
-        report["axis"] = old.get("axis", [])
+        # 不预载 downloads/axis：download() 与 axis_audit() 都是幂等的
+        # （前者靠文件存在性返回 already_present，后者对同一份文件结果确定）。
+        # 预载 + 本轮 append 会把同一批源算两遍 —— 上一轮就是这么把 64 源
+        # 计成 99 条的字节量、误触 2GB 上限而中断的。
         report["resumed_from"] = old.get("status")
+        # 失败原因本身是审计证据（如 429 限流），不能因重跑成功就丢掉。
+        report["prior_failed_downloads"] = [
+            {"video_id": r.get("video_id"), "status": r.get("status"),
+             "error_type": r.get("error_type"), "http_code": r.get("http_code"),
+             "error": r.get("error")}
+            for r in old.get("downloads", []) if r.get("status") == "failed"]
+        # 上一轮已判定的轴记录带过来（轴审计是纯 CPU 且耗解码，重跑很贵）；
+        # 本轮只对不在其中的源做审计。
+        report["axis"] = [r for r in old.get("axis", [])
+                          if r.get("status") in
+                          ("ID_DURATION_RAW_SECONDS_CONSISTENT", "AXIS_GATE_FAIL")]
 
     host, precs = probe(cands[0]["video_url"])
     report["probes"] = precs
@@ -300,8 +343,9 @@ def main(a):
 
     ok = {r["video_id"] for r in report["downloads"]
           if r["status"] in ("downloaded_size_verified", "already_present")}
+    done_axis = {r["video_id"] for r in report["axis"]}
     atasks = [(r, ann[r["annotation_id"]], a.output) for r in cands
-              if r["video_id"] in ok]
+              if r["video_id"] in ok and r["video_id"] not in done_axis]
     with ProcessPoolExecutor(max_workers=2) as pool:
         for rec in pool.map(axis_audit, atasks):
             report["axis"].append(rec)

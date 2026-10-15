@@ -1,0 +1,3922 @@
+{
+  "submission_id": "R25_AHA_BF16_K085",
+  "status": "PACKAGED_NOT_UPLOADED",
+  "uploaded": false,
+  "official_platform_score": null,
+  "run": {
+    "experiment_id": "R25_AHA_BF16_K085",
+    "model": "/root/autodl-tmp/experiments/R25_AHA_SUBMIT_20261015/merged_llava_bf16_v2",
+    "parameter_count": 8030363168,
+    "spatial_parameter_count": 450283377,
+    "total_parameters": 8480646545,
+    "parameter_limit": 9000000000,
+    "rule_basis": "user confirmed official 9B parameter limit 2026-10-15",
+    "weight_files": [
+      {
+        "path": "/root/autodl-tmp/experiments/R25_AHA_SUBMIT_20261015/merged_llava_bf16_v2/model-00001-of-00005.safetensors",
+        "bytes": 3945434128,
+        "sha256": "3e2e6449ac52bd84667eeca67066870128f637ba1cea66b45f58ca0697963209"
+      },
+      {
+        "path": "/root/autodl-tmp/experiments/R25_AHA_SUBMIT_20261015/merged_llava_bf16_v2/model-00002-of-00005.safetensors",
+        "bytes": 3864726352,
+        "sha256": "200ad70f24bb5fceef076fc59e1d0eff3b7a73b8907fb4b39b38ca0214a30608"
+      },
+      {
+        "path": "/root/autodl-tmp/experiments/R25_AHA_SUBMIT_20261015/merged_llava_bf16_v2/model-00003-of-00005.safetensors",
+        "bytes": 3864726408,
+        "sha256": "7d0a2da263eb39e2b0b454f4ac9aff992b49af3c77dfb26734624943db5c9ed7"
+      },
+      {
+        "path": "/root/autodl-tmp/experiments/R25_AHA_SUBMIT_20261015/merged_llava_bf16_v2/model-00004-of-00005.safetensors",
+        "bytes": 3295921384,
+        "sha256": "c0b5e5744235d1ee235295f9dc2e2d6481a2b7eeaa7451bf6c95d4db9488e7b1"
+      },
+      {
+        "path": "/root/autodl-tmp/experiments/R25_AHA_SUBMIT_20261015/merged_llava_bf16_v2/model-00005-of-00005.safetensors",
+        "bytes": 1090023840,
+        "sha256": "f62d042d279323ad9cb381e7f275a93250c16788e297956fda389e78bf6394b1"
+      }
+    ],
+    "head_identity": {
+      "informative_head": 0.0,
+      "relevance_head": 0.0,
+      "uncertainty_head": 0.0
+    },
+    "loading_info": {
+      "missing_keys": [],
+      "unexpected_keys": [],
+      "mismatched_keys": [],
+      "error_msgs": []
+    },
+    "precision": "bf16",
+    "attention": "sdpa",
+    "sample_fps": 1,
+    "chunk": 8,
+    "system_prompt": "A multimodal AI assistant is helping users with some activities. Below is their conversation, interleaved with the list of video frames received by the assistant.",
+    "query": "Identify the most informative and important highlights of this video.",
+    "score": "softmax(informative)[1] + sigmoid(relevance)",
+    "keep": 0.85,
+    "index_sha256": "02d52321e82a70cafd33d566319b2ebf5e405af43946d6da32181eccdbc46a93",
+    "spatial_sha256": "2e1dd604629df52618ac1c7f11f1623526adbf0d13d186665d4294091fd89b05",
+    "source_code_sha256": "de6b1e0b2422405ee0d1d5ac5e8216d93c3fcb664a1e4eaa28f987395043b077",
+    "no_training": true,
+    "resume_compatible_code_sha256": null,
+    "validation_revision": "full-token scoring heads; exact full-chunk native comparison <1e-5; recomputed all videos"
+  },
+  "validation": {
+    "valid": true,
+    "videos": 426,
+    "predictions": 204907,
+    "model_size_mb": 8480.646545,
+    "checker": "independent_submission_check_v1"
+  },
+  "video_count": 426,
+  "prediction_count": 204907,
+  "bbox_changes_on_common_frames": 0,
+  "per_video": [
+    {
+      "video_id": "0",
+      "frame_count": 630,
+      "kept": 539,
+      "keep_fraction": 0.8555555555555555,
+      "sample_count": 11,
+      "score_std": 0.11672425513910728,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "1",
+      "frame_count": 513,
+      "kept": 437,
+      "keep_fraction": 0.8518518518518519,
+      "sample_count": 18,
+      "score_std": 0.10998347584110423,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "2",
+      "frame_count": 304,
+      "kept": 287,
+      "keep_fraction": 0.944078947368421,
+      "sample_count": 10,
+      "score_std": 0.15291738929132892,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "3",
+      "frame_count": 246,
+      "kept": 230,
+      "keep_fraction": 0.9349593495934959,
+      "sample_count": 9,
+      "score_std": 0.0885644872774997,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "4",
+      "frame_count": 427,
+      "kept": 381,
+      "keep_fraction": 0.892271662763466,
+      "sample_count": 15,
+      "score_std": 0.12449250417754928,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "5",
+      "frame_count": 209,
+      "kept": 193,
+      "keep_fraction": 0.9234449760765551,
+      "sample_count": 7,
+      "score_std": 0.11278308361581077,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "6",
+      "frame_count": 307,
+      "kept": 261,
+      "keep_fraction": 0.8501628664495114,
+      "sample_count": 11,
+      "score_std": 0.16379032485157652,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "7",
+      "frame_count": 204,
+      "kept": 188,
+      "keep_fraction": 0.9215686274509803,
+      "sample_count": 7,
+      "score_std": 0.08622073224332942,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "8",
+      "frame_count": 176,
+      "kept": 176,
+      "keep_fraction": 1.0,
+      "sample_count": 6,
+      "score_std": 0.1443332154871061,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "9",
+      "frame_count": 208,
+      "kept": 192,
+      "keep_fraction": 0.9230769230769231,
+      "sample_count": 7,
+      "score_std": 0.1488580397313582,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "10",
+      "frame_count": 323,
+      "kept": 277,
+      "keep_fraction": 0.8575851393188855,
+      "sample_count": 11,
+      "score_std": 0.1423030005442106,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "11",
+      "frame_count": 245,
+      "kept": 229,
+      "keep_fraction": 0.9346938775510204,
+      "sample_count": 9,
+      "score_std": 0.05926300880630679,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "12",
+      "frame_count": 148,
+      "kept": 135,
+      "keep_fraction": 0.9121621621621622,
+      "sample_count": 6,
+      "score_std": 0.15501441228456736,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "13",
+      "frame_count": 157,
+      "kept": 141,
+      "keep_fraction": 0.8980891719745223,
+      "sample_count": 6,
+      "score_std": 0.12898149024146352,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "14",
+      "frame_count": 179,
+      "kept": 166,
+      "keep_fraction": 0.9273743016759777,
+      "sample_count": 8,
+      "score_std": 0.18400075700351248,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "15",
+      "frame_count": 125,
+      "kept": 112,
+      "keep_fraction": 0.896,
+      "sample_count": 6,
+      "score_std": 0.1359119653512491,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "16",
+      "frame_count": 130,
+      "kept": 117,
+      "keep_fraction": 0.9,
+      "sample_count": 6,
+      "score_std": 0.12896930804271023,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "17",
+      "frame_count": 239,
+      "kept": 226,
+      "keep_fraction": 0.9456066945606695,
+      "sample_count": 10,
+      "score_std": 0.1676517180741435,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "18",
+      "frame_count": 942,
+      "kept": 810,
+      "keep_fraction": 0.8598726114649682,
+      "sample_count": 32,
+      "score_std": 0.12340734930959381,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "19",
+      "frame_count": 5162,
+      "kept": 4412,
+      "keep_fraction": 0.8547074777218132,
+      "sample_count": 173,
+      "score_std": 0.11569230040593773,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "20",
+      "frame_count": 8574,
+      "kept": 7298,
+      "keep_fraction": 0.8511779799393515,
+      "sample_count": 286,
+      "score_std": 0.11986182958397007,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "21",
+      "frame_count": 1339,
+      "kept": 1143,
+      "keep_fraction": 0.8536221060492906,
+      "sample_count": 45,
+      "score_std": 0.1662469098671185,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "22",
+      "frame_count": 826,
+      "kept": 750,
+      "keep_fraction": 0.9079903147699758,
+      "sample_count": 17,
+      "score_std": 0.12683530822440225,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "23",
+      "frame_count": 165,
+      "kept": 152,
+      "keep_fraction": 0.9212121212121213,
+      "sample_count": 7,
+      "score_std": 0.19223186597283526,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "24",
+      "frame_count": 313,
+      "kept": 267,
+      "keep_fraction": 0.853035143769968,
+      "sample_count": 11,
+      "score_std": 0.16125134104845132,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "25",
+      "frame_count": 636,
+      "kept": 548,
+      "keep_fraction": 0.8616352201257862,
+      "sample_count": 26,
+      "score_std": 0.13027155947910932,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "26",
+      "frame_count": 148,
+      "kept": 135,
+      "keep_fraction": 0.9121621621621622,
+      "sample_count": 6,
+      "score_std": 0.17445863903862863,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "27",
+      "frame_count": 625,
+      "kept": 537,
+      "keep_fraction": 0.8592,
+      "sample_count": 25,
+      "score_std": 0.12085719286264711,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "28",
+      "frame_count": 105,
+      "kept": 92,
+      "keep_fraction": 0.8761904761904762,
+      "sample_count": 5,
+      "score_std": 0.1882022318069645,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "29",
+      "frame_count": 133,
+      "kept": 120,
+      "keep_fraction": 0.9022556390977443,
+      "sample_count": 6,
+      "score_std": 0.1800127502197449,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "30",
+      "frame_count": 300,
+      "kept": 269,
+      "keep_fraction": 0.8966666666666666,
+      "sample_count": 6,
+      "score_std": 0.19402056482525584,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "31",
+      "frame_count": 139,
+      "kept": 126,
+      "keep_fraction": 0.9064748201438849,
+      "sample_count": 6,
+      "score_std": 0.15536229497303314,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "32",
+      "frame_count": 168,
+      "kept": 155,
+      "keep_fraction": 0.9226190476190477,
+      "sample_count": 7,
+      "score_std": 0.17978272144087995,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "33",
+      "frame_count": 539,
+      "kept": 476,
+      "keep_fraction": 0.8831168831168831,
+      "sample_count": 22,
+      "score_std": 0.11911568922644614,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "34",
+      "frame_count": 398,
+      "kept": 361,
+      "keep_fraction": 0.907035175879397,
+      "sample_count": 17,
+      "score_std": 0.15321306339495608,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "35",
+      "frame_count": 253,
+      "kept": 227,
+      "keep_fraction": 0.8972332015810277,
+      "sample_count": 6,
+      "score_std": 0.1893370160365054,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "36",
+      "frame_count": 512,
+      "kept": 455,
+      "keep_fraction": 0.888671875,
+      "sample_count": 22,
+      "score_std": 0.13963054476656422,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "37",
+      "frame_count": 418,
+      "kept": 372,
+      "keep_fraction": 0.8899521531100478,
+      "sample_count": 14,
+      "score_std": 0.09970822139202803,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "38",
+      "frame_count": 139,
+      "kept": 126,
+      "keep_fraction": 0.9064748201438849,
+      "sample_count": 6,
+      "score_std": 0.12513840750287772,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "39",
+      "frame_count": 114,
+      "kept": 98,
+      "keep_fraction": 0.8596491228070176,
+      "sample_count": 4,
+      "score_std": 0.11817667854246759,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "40",
+      "frame_count": 136,
+      "kept": 136,
+      "keep_fraction": 1.0,
+      "sample_count": 5,
+      "score_std": 0.15770067546544916,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "41",
+      "frame_count": 145,
+      "kept": 132,
+      "keep_fraction": 0.9103448275862069,
+      "sample_count": 6,
+      "score_std": 0.2086032846668085,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "42",
+      "frame_count": 140,
+      "kept": 127,
+      "keep_fraction": 0.9071428571428571,
+      "sample_count": 6,
+      "score_std": 0.14977445966644845,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "43",
+      "frame_count": 190,
+      "kept": 177,
+      "keep_fraction": 0.9315789473684211,
+      "sample_count": 8,
+      "score_std": 0.17878887703984578,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "44",
+      "frame_count": 268,
+      "kept": 231,
+      "keep_fraction": 0.8619402985074627,
+      "sample_count": 12,
+      "score_std": 0.19345018583448753,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "45",
+      "frame_count": 239,
+      "kept": 223,
+      "keep_fraction": 0.9330543933054394,
+      "sample_count": 8,
+      "score_std": 0.18012735858528262,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "46",
+      "frame_count": 192,
+      "kept": 179,
+      "keep_fraction": 0.9322916666666666,
+      "sample_count": 8,
+      "score_std": 0.2049788572056432,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "47",
+      "frame_count": 146,
+      "kept": 133,
+      "keep_fraction": 0.910958904109589,
+      "sample_count": 6,
+      "score_std": 0.16180492361740928,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "48",
+      "frame_count": 142,
+      "kept": 129,
+      "keep_fraction": 0.9084507042253521,
+      "sample_count": 6,
+      "score_std": 0.17161044498544642,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "49",
+      "frame_count": 166,
+      "kept": 153,
+      "keep_fraction": 0.9216867469879518,
+      "sample_count": 7,
+      "score_std": 0.20994289024826346,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "50",
+      "frame_count": 177,
+      "kept": 164,
+      "keep_fraction": 0.9265536723163842,
+      "sample_count": 8,
+      "score_std": 0.18459826942456486,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "51",
+      "frame_count": 245,
+      "kept": 229,
+      "keep_fraction": 0.9346938775510204,
+      "sample_count": 9,
+      "score_std": 0.15410927508214065,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "52",
+      "frame_count": 339,
+      "kept": 308,
+      "keep_fraction": 0.9085545722713865,
+      "sample_count": 6,
+      "score_std": 0.1596747933125143,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "53",
+      "frame_count": 142,
+      "kept": 129,
+      "keep_fraction": 0.9084507042253521,
+      "sample_count": 6,
+      "score_std": 0.1102472531128371,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "54",
+      "frame_count": 240,
+      "kept": 227,
+      "keep_fraction": 0.9458333333333333,
+      "sample_count": 10,
+      "score_std": 0.17003220614715206,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "55",
+      "frame_count": 206,
+      "kept": 193,
+      "keep_fraction": 0.9368932038834952,
+      "sample_count": 9,
+      "score_std": 0.13654465249652398,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "56",
+      "frame_count": 406,
+      "kept": 360,
+      "keep_fraction": 0.8866995073891626,
+      "sample_count": 14,
+      "score_std": 0.14105729091536087,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "57",
+      "frame_count": 261,
+      "kept": 245,
+      "keep_fraction": 0.9386973180076629,
+      "sample_count": 9,
+      "score_std": 0.12582588077852683,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "58",
+      "frame_count": 267,
+      "kept": 251,
+      "keep_fraction": 0.9400749063670412,
+      "sample_count": 9,
+      "score_std": 0.17718449154997182,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "59",
+      "frame_count": 179,
+      "kept": 156,
+      "keep_fraction": 0.8715083798882681,
+      "sample_count": 13,
+      "score_std": 0.1475773829362857,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "60",
+      "frame_count": 98,
+      "kept": 90,
+      "keep_fraction": 0.9183673469387755,
+      "sample_count": 7,
+      "score_std": 0.1088476092186101,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "61",
+      "frame_count": 287,
+      "kept": 271,
+      "keep_fraction": 0.9442508710801394,
+      "sample_count": 10,
+      "score_std": 0.12147601441520807,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "62",
+      "frame_count": 909,
+      "kept": 796,
+      "keep_fraction": 0.8756875687568757,
+      "sample_count": 31,
+      "score_std": 0.10505631897164598,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "63",
+      "frame_count": 357,
+      "kept": 311,
+      "keep_fraction": 0.8711484593837535,
+      "sample_count": 12,
+      "score_std": 0.1441285761772079,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "64",
+      "frame_count": 588,
+      "kept": 512,
+      "keep_fraction": 0.8707482993197279,
+      "sample_count": 20,
+      "score_std": 0.13697181796432073,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "65",
+      "frame_count": 261,
+      "kept": 245,
+      "keep_fraction": 0.9386973180076629,
+      "sample_count": 9,
+      "score_std": 0.12582588077852683,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "66",
+      "frame_count": 578,
+      "kept": 510,
+      "keep_fraction": 0.8823529411764706,
+      "sample_count": 20,
+      "score_std": 0.11512707068615426,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "67",
+      "frame_count": 451,
+      "kept": 420,
+      "keep_fraction": 0.9312638580931264,
+      "sample_count": 8,
+      "score_std": 0.13582202812633545,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "68",
+      "frame_count": 440,
+      "kept": 394,
+      "keep_fraction": 0.8954545454545455,
+      "sample_count": 15,
+      "score_std": 0.15218780257186287,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "69",
+      "frame_count": 382,
+      "kept": 338,
+      "keep_fraction": 0.8848167539267016,
+      "sample_count": 14,
+      "score_std": 0.1756780986167875,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "70",
+      "frame_count": 315,
+      "kept": 269,
+      "keep_fraction": 0.8539682539682539,
+      "sample_count": 11,
+      "score_std": 0.18212397927633306,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "71",
+      "frame_count": 320,
+      "kept": 274,
+      "keep_fraction": 0.85625,
+      "sample_count": 11,
+      "score_std": 0.10789912428681342,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "72",
+      "frame_count": 212,
+      "kept": 196,
+      "keep_fraction": 0.9245283018867925,
+      "sample_count": 8,
+      "score_std": 0.12662611076170285,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "73",
+      "frame_count": 285,
+      "kept": 269,
+      "keep_fraction": 0.9438596491228071,
+      "sample_count": 10,
+      "score_std": 0.15991012295809695,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "74",
+      "frame_count": 272,
+      "kept": 256,
+      "keep_fraction": 0.9411764705882353,
+      "sample_count": 10,
+      "score_std": 0.11672977260809089,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "75",
+      "frame_count": 394,
+      "kept": 356,
+      "keep_fraction": 0.9035532994923858,
+      "sample_count": 16,
+      "score_std": 0.13221066303639595,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "76",
+      "frame_count": 390,
+      "kept": 352,
+      "keep_fraction": 0.9025641025641026,
+      "sample_count": 16,
+      "score_std": 0.14043380025276372,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "77",
+      "frame_count": 252,
+      "kept": 214,
+      "keep_fraction": 0.8492063492063492,
+      "sample_count": 11,
+      "score_std": 0.1825606503405912,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "78",
+      "frame_count": 808,
+      "kept": 704,
+      "keep_fraction": 0.8712871287128713,
+      "sample_count": 15,
+      "score_std": 0.12836370804664052,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "79",
+      "frame_count": 650,
+      "kept": 582,
+      "keep_fraction": 0.8953846153846153,
+      "sample_count": 13,
+      "score_std": 0.14482031577022927,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "80",
+      "frame_count": 99,
+      "kept": 99,
+      "keep_fraction": 1.0,
+      "sample_count": 4,
+      "score_std": 0.05484762877272504,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "81",
+      "frame_count": 133,
+      "kept": 120,
+      "keep_fraction": 0.9022556390977443,
+      "sample_count": 6,
+      "score_std": 0.17990444031063937,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "82",
+      "frame_count": 471,
+      "kept": 425,
+      "keep_fraction": 0.9023354564755839,
+      "sample_count": 16,
+      "score_std": 0.1139095072117056,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "83",
+      "frame_count": 1770,
+      "kept": 1530,
+      "keep_fraction": 0.864406779661017,
+      "sample_count": 59,
+      "score_std": 0.07453869418486561,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "84",
+      "frame_count": 442,
+      "kept": 384,
+      "keep_fraction": 0.8687782805429864,
+      "sample_count": 19,
+      "score_std": 0.12294452157642306,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "85",
+      "frame_count": 754,
+      "kept": 660,
+      "keep_fraction": 0.8753315649867374,
+      "sample_count": 26,
+      "score_std": 0.09600725975842338,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "86",
+      "frame_count": 840,
+      "kept": 720,
+      "keep_fraction": 0.8571428571428571,
+      "sample_count": 28,
+      "score_std": 0.1346936943538545,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "87",
+      "frame_count": 120,
+      "kept": 104,
+      "keep_fraction": 0.8666666666666667,
+      "sample_count": 4,
+      "score_std": 0.1199845211268128,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "88",
+      "frame_count": 268,
+      "kept": 252,
+      "keep_fraction": 0.9402985074626866,
+      "sample_count": 9,
+      "score_std": 0.11835178551046828,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "89",
+      "frame_count": 964,
+      "kept": 840,
+      "keep_fraction": 0.8713692946058091,
+      "sample_count": 33,
+      "score_std": 0.10673871652712841,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "90",
+      "frame_count": 247,
+      "kept": 231,
+      "keep_fraction": 0.9352226720647774,
+      "sample_count": 9,
+      "score_std": 0.1102632598077729,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "91",
+      "frame_count": 4652,
+      "kept": 3975,
+      "keep_fraction": 0.8544711951848667,
+      "sample_count": 187,
+      "score_std": 0.0959199395882603,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "92",
+      "frame_count": 163,
+      "kept": 147,
+      "keep_fraction": 0.901840490797546,
+      "sample_count": 6,
+      "score_std": 0.1987059106531759,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "93",
+      "frame_count": 343,
+      "kept": 297,
+      "keep_fraction": 0.8658892128279884,
+      "sample_count": 12,
+      "score_std": 0.1369335837987674,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "94",
+      "frame_count": 361,
+      "kept": 315,
+      "keep_fraction": 0.8725761772853186,
+      "sample_count": 15,
+      "score_std": 0.1449202131553675,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "95",
+      "frame_count": 410,
+      "kept": 364,
+      "keep_fraction": 0.8878048780487805,
+      "sample_count": 14,
+      "score_std": 0.164390904699215,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "96",
+      "frame_count": 547,
+      "kept": 476,
+      "keep_fraction": 0.870201096892139,
+      "sample_count": 19,
+      "score_std": 0.18514283043533808,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "97",
+      "frame_count": 800,
+      "kept": 686,
+      "keep_fraction": 0.8575,
+      "sample_count": 27,
+      "score_std": 0.16043576782062133,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "98",
+      "frame_count": 241,
+      "kept": 211,
+      "keep_fraction": 0.8755186721991701,
+      "sample_count": 9,
+      "score_std": 0.1482558646862395,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "99",
+      "frame_count": 356,
+      "kept": 326,
+      "keep_fraction": 0.9157303370786517,
+      "sample_count": 12,
+      "score_std": 0.11761813013523927,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "100",
+      "frame_count": 1593,
+      "kept": 1367,
+      "keep_fraction": 0.8581293157564344,
+      "sample_count": 54,
+      "score_std": 0.12990258306532823,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "101",
+      "frame_count": 538,
+      "kept": 475,
+      "keep_fraction": 0.8828996282527881,
+      "sample_count": 22,
+      "score_std": 0.1777646939968549,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "102",
+      "frame_count": 240,
+      "kept": 225,
+      "keep_fraction": 0.9375,
+      "sample_count": 9,
+      "score_std": 0.15868372291687236,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "103",
+      "frame_count": 289,
+      "kept": 259,
+      "keep_fraction": 0.8961937716262975,
+      "sample_count": 10,
+      "score_std": 0.1988345813457265,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "104",
+      "frame_count": 405,
+      "kept": 359,
+      "keep_fraction": 0.8864197530864197,
+      "sample_count": 14,
+      "score_std": 0.1111360752768617,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "105",
+      "frame_count": 573,
+      "kept": 496,
+      "keep_fraction": 0.8656195462478184,
+      "sample_count": 20,
+      "score_std": 0.16210423291843587,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "106",
+      "frame_count": 471,
+      "kept": 406,
+      "keep_fraction": 0.861995753715499,
+      "sample_count": 16,
+      "score_std": 0.15100557470224873,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "107",
+      "frame_count": 2209,
+      "kept": 1903,
+      "keep_fraction": 0.8614757808963331,
+      "sample_count": 39,
+      "score_std": 0.1497568427700268,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "108",
+      "frame_count": 241,
+      "kept": 225,
+      "keep_fraction": 0.9336099585062241,
+      "sample_count": 9,
+      "score_std": 0.14177501440437987,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "109",
+      "frame_count": 342,
+      "kept": 296,
+      "keep_fraction": 0.8654970760233918,
+      "sample_count": 12,
+      "score_std": 0.15832320829297847,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "110",
+      "frame_count": 520,
+      "kept": 450,
+      "keep_fraction": 0.8653846153846154,
+      "sample_count": 18,
+      "score_std": 0.13575702692397038,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "111",
+      "frame_count": 557,
+      "kept": 481,
+      "keep_fraction": 0.8635547576301615,
+      "sample_count": 19,
+      "score_std": 0.11395783544498994,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "112",
+      "frame_count": 375,
+      "kept": 330,
+      "keep_fraction": 0.88,
+      "sample_count": 13,
+      "score_std": 0.14913494432573057,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "113",
+      "frame_count": 767,
+      "kept": 660,
+      "keep_fraction": 0.8604954367666232,
+      "sample_count": 26,
+      "score_std": 0.1390099937080516,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "114",
+      "frame_count": 362,
+      "kept": 316,
+      "keep_fraction": 0.8729281767955801,
+      "sample_count": 13,
+      "score_std": 0.1406502702558438,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "115",
+      "frame_count": 279,
+      "kept": 263,
+      "keep_fraction": 0.942652329749104,
+      "sample_count": 10,
+      "score_std": 0.09447749116633983,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "116",
+      "frame_count": 773,
+      "kept": 660,
+      "keep_fraction": 0.8538163001293662,
+      "sample_count": 26,
+      "score_std": 0.132152954176227,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "117",
+      "frame_count": 252,
+      "kept": 236,
+      "keep_fraction": 0.9365079365079365,
+      "sample_count": 9,
+      "score_std": 0.1595485432060236,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "118",
+      "frame_count": 290,
+      "kept": 260,
+      "keep_fraction": 0.896551724137931,
+      "sample_count": 10,
+      "score_std": 0.13160233801827087,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "119",
+      "frame_count": 273,
+      "kept": 242,
+      "keep_fraction": 0.8864468864468864,
+      "sample_count": 10,
+      "score_std": 0.15943268120579673,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "120",
+      "frame_count": 596,
+      "kept": 510,
+      "keep_fraction": 0.8557046979865772,
+      "sample_count": 20,
+      "score_std": 0.1331026091833917,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "121",
+      "frame_count": 442,
+      "kept": 376,
+      "keep_fraction": 0.8506787330316742,
+      "sample_count": 15,
+      "score_std": 0.16521929591980072,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "122",
+      "frame_count": 539,
+      "kept": 460,
+      "keep_fraction": 0.8534322820037106,
+      "sample_count": 11,
+      "score_std": 0.12960559272873223,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "123",
+      "frame_count": 244,
+      "kept": 228,
+      "keep_fraction": 0.9344262295081968,
+      "sample_count": 9,
+      "score_std": 0.14099055919732828,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "124",
+      "frame_count": 422,
+      "kept": 360,
+      "keep_fraction": 0.8530805687203792,
+      "sample_count": 15,
+      "score_std": 0.10818211187629237,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "125",
+      "frame_count": 544,
+      "kept": 480,
+      "keep_fraction": 0.8823529411764706,
+      "sample_count": 19,
+      "score_std": 0.15322271573097546,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "126",
+      "frame_count": 473,
+      "kept": 420,
+      "keep_fraction": 0.8879492600422833,
+      "sample_count": 16,
+      "score_std": 0.12639689471457108,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "127",
+      "frame_count": 727,
+      "kept": 621,
+      "keep_fraction": 0.8541953232462174,
+      "sample_count": 25,
+      "score_std": 0.09501099164994603,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "128",
+      "frame_count": 328,
+      "kept": 291,
+      "keep_fraction": 0.8871951219512195,
+      "sample_count": 14,
+      "score_std": 0.13093664471751496,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "129",
+      "frame_count": 401,
+      "kept": 346,
+      "keep_fraction": 0.8628428927680798,
+      "sample_count": 14,
+      "score_std": 0.12807817792185677,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "130",
+      "frame_count": 265,
+      "kept": 235,
+      "keep_fraction": 0.8867924528301887,
+      "sample_count": 9,
+      "score_std": 0.16808971311193738,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "131",
+      "frame_count": 316,
+      "kept": 270,
+      "keep_fraction": 0.8544303797468354,
+      "sample_count": 11,
+      "score_std": 0.14750965535486793,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "132",
+      "frame_count": 433,
+      "kept": 387,
+      "keep_fraction": 0.8937644341801386,
+      "sample_count": 15,
+      "score_std": 0.14141549127619946,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "133",
+      "frame_count": 253,
+      "kept": 237,
+      "keep_fraction": 0.9367588932806324,
+      "sample_count": 9,
+      "score_std": 0.1044055013408187,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "134",
+      "frame_count": 349,
+      "kept": 316,
+      "keep_fraction": 0.9054441260744985,
+      "sample_count": 12,
+      "score_std": 0.1456872476656195,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "135",
+      "frame_count": 234,
+      "kept": 218,
+      "keep_fraction": 0.9316239316239316,
+      "sample_count": 8,
+      "score_std": 0.1400385011398697,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "136",
+      "frame_count": 424,
+      "kept": 360,
+      "keep_fraction": 0.8490566037735849,
+      "sample_count": 15,
+      "score_std": 0.13537642141418788,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "137",
+      "frame_count": 334,
+      "kept": 291,
+      "keep_fraction": 0.8712574850299402,
+      "sample_count": 12,
+      "score_std": 0.19087343192984504,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "138",
+      "frame_count": 233,
+      "kept": 217,
+      "keep_fraction": 0.9313304721030042,
+      "sample_count": 8,
+      "score_std": 0.16160132409500388,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "139",
+      "frame_count": 393,
+      "kept": 347,
+      "keep_fraction": 0.8829516539440203,
+      "sample_count": 14,
+      "score_std": 0.11802829707834296,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "140",
+      "frame_count": 666,
+      "kept": 570,
+      "keep_fraction": 0.8558558558558559,
+      "sample_count": 23,
+      "score_std": 0.13483773471837812,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "141",
+      "frame_count": 595,
+      "kept": 510,
+      "keep_fraction": 0.8571428571428571,
+      "sample_count": 20,
+      "score_std": 0.15687535993259993,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "142",
+      "frame_count": 446,
+      "kept": 408,
+      "keep_fraction": 0.9147982062780269,
+      "sample_count": 18,
+      "score_std": 0.19042843663518796,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "143",
+      "frame_count": 243,
+      "kept": 227,
+      "keep_fraction": 0.934156378600823,
+      "sample_count": 9,
+      "score_std": 0.12577394887601376,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "144",
+      "frame_count": 275,
+      "kept": 259,
+      "keep_fraction": 0.9418181818181818,
+      "sample_count": 10,
+      "score_std": 0.16202993592224013,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "145",
+      "frame_count": 360,
+      "kept": 330,
+      "keep_fraction": 0.9166666666666666,
+      "sample_count": 12,
+      "score_std": 0.22349765241517608,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "146",
+      "frame_count": 234,
+      "kept": 218,
+      "keep_fraction": 0.9316239316239316,
+      "sample_count": 8,
+      "score_std": 0.16096496265089733,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "147",
+      "frame_count": 294,
+      "kept": 264,
+      "keep_fraction": 0.8979591836734694,
+      "sample_count": 10,
+      "score_std": 0.14578029269784126,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "148",
+      "frame_count": 1315,
+      "kept": 1140,
+      "keep_fraction": 0.8669201520912547,
+      "sample_count": 44,
+      "score_std": 0.11102366572044418,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "149",
+      "frame_count": 505,
+      "kept": 459,
+      "keep_fraction": 0.9089108910891089,
+      "sample_count": 17,
+      "score_std": 0.1551116608224963,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "150",
+      "frame_count": 247,
+      "kept": 231,
+      "keep_fraction": 0.9352226720647774,
+      "sample_count": 9,
+      "score_std": 0.10278705738467196,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "151",
+      "frame_count": 282,
+      "kept": 252,
+      "keep_fraction": 0.8936170212765957,
+      "sample_count": 10,
+      "score_std": 0.12855264379778922,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "152",
+      "frame_count": 401,
+      "kept": 351,
+      "keep_fraction": 0.8753117206982544,
+      "sample_count": 17,
+      "score_std": 0.15148265384575535,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "153",
+      "frame_count": 300,
+      "kept": 284,
+      "keep_fraction": 0.9466666666666667,
+      "sample_count": 10,
+      "score_std": 0.11593255514216202,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "154",
+      "frame_count": 586,
+      "kept": 510,
+      "keep_fraction": 0.8703071672354948,
+      "sample_count": 20,
+      "score_std": 0.1381626115698566,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "155",
+      "frame_count": 238,
+      "kept": 222,
+      "keep_fraction": 0.9327731092436975,
+      "sample_count": 8,
+      "score_std": 0.15071365931193417,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "156",
+      "frame_count": 348,
+      "kept": 300,
+      "keep_fraction": 0.8620689655172413,
+      "sample_count": 12,
+      "score_std": 0.12227559119920012,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "157",
+      "frame_count": 1195,
+      "kept": 1020,
+      "keep_fraction": 0.8535564853556485,
+      "sample_count": 40,
+      "score_std": 0.13470971146514357,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "158",
+      "frame_count": 577,
+      "kept": 510,
+      "keep_fraction": 0.8838821490467937,
+      "sample_count": 20,
+      "score_std": 0.12007377487403799,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "159",
+      "frame_count": 427,
+      "kept": 402,
+      "keep_fraction": 0.9414519906323185,
+      "sample_count": 9,
+      "score_std": 0.14982726462053855,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "160",
+      "frame_count": 430,
+      "kept": 399,
+      "keep_fraction": 0.9279069767441861,
+      "sample_count": 8,
+      "score_std": 0.1811477186946785,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "161",
+      "frame_count": 350,
+      "kept": 312,
+      "keep_fraction": 0.8914285714285715,
+      "sample_count": 14,
+      "score_std": 0.15046058529339668,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "162",
+      "frame_count": 672,
+      "kept": 596,
+      "keep_fraction": 0.8869047619047619,
+      "sample_count": 23,
+      "score_std": 0.1918312212452956,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "163",
+      "frame_count": 492,
+      "kept": 464,
+      "keep_fraction": 0.943089430894309,
+      "sample_count": 10,
+      "score_std": 0.1534254491525839,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "164",
+      "frame_count": 520,
+      "kept": 444,
+      "keep_fraction": 0.8538461538461538,
+      "sample_count": 11,
+      "score_std": 0.20425958112117581,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "165",
+      "frame_count": 449,
+      "kept": 399,
+      "keep_fraction": 0.888641425389755,
+      "sample_count": 9,
+      "score_std": 0.1659418575205133,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "166",
+      "frame_count": 448,
+      "kept": 422,
+      "keep_fraction": 0.9419642857142857,
+      "sample_count": 9,
+      "score_std": 0.1773328924534515,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "167",
+      "frame_count": 539,
+      "kept": 508,
+      "keep_fraction": 0.9424860853432282,
+      "sample_count": 9,
+      "score_std": 0.16128884588533618,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "168",
+      "frame_count": 259,
+      "kept": 243,
+      "keep_fraction": 0.9382239382239382,
+      "sample_count": 9,
+      "score_std": 0.14548664028836472,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "169",
+      "frame_count": 240,
+      "kept": 224,
+      "keep_fraction": 0.9333333333333333,
+      "sample_count": 8,
+      "score_std": 0.1495392358187287,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "170",
+      "frame_count": 439,
+      "kept": 393,
+      "keep_fraction": 0.8952164009111617,
+      "sample_count": 15,
+      "score_std": 0.1484532009051177,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "171",
+      "frame_count": 254,
+      "kept": 238,
+      "keep_fraction": 0.937007874015748,
+      "sample_count": 9,
+      "score_std": 0.16452346046308683,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "172",
+      "frame_count": 292,
+      "kept": 276,
+      "keep_fraction": 0.9452054794520548,
+      "sample_count": 10,
+      "score_std": 0.10247123075757207,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "173",
+      "frame_count": 390,
+      "kept": 360,
+      "keep_fraction": 0.9230769230769231,
+      "sample_count": 13,
+      "score_std": 0.16298608126053077,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "174",
+      "frame_count": 185,
+      "kept": 172,
+      "keep_fraction": 0.9297297297297298,
+      "sample_count": 8,
+      "score_std": 0.1858889938552168,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "175",
+      "frame_count": 304,
+      "kept": 266,
+      "keep_fraction": 0.875,
+      "sample_count": 13,
+      "score_std": 0.12308171025417193,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "176",
+      "frame_count": 195,
+      "kept": 182,
+      "keep_fraction": 0.9333333333333333,
+      "sample_count": 8,
+      "score_std": 0.15636386125796867,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "177",
+      "frame_count": 550,
+      "kept": 487,
+      "keep_fraction": 0.8854545454545455,
+      "sample_count": 22,
+      "score_std": 0.11798822014490877,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "178",
+      "frame_count": 224,
+      "kept": 211,
+      "keep_fraction": 0.9419642857142857,
+      "sample_count": 9,
+      "score_std": 0.16479133191638448,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "179",
+      "frame_count": 192,
+      "kept": 179,
+      "keep_fraction": 0.9322916666666666,
+      "sample_count": 8,
+      "score_std": 0.1417601310191607,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "180",
+      "frame_count": 180,
+      "kept": 167,
+      "keep_fraction": 0.9277777777777778,
+      "sample_count": 8,
+      "score_std": 0.1570450488077711,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "181",
+      "frame_count": 605,
+      "kept": 525,
+      "keep_fraction": 0.8677685950413223,
+      "sample_count": 25,
+      "score_std": 0.14470853560980365,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "182",
+      "frame_count": 453,
+      "kept": 390,
+      "keep_fraction": 0.8609271523178808,
+      "sample_count": 19,
+      "score_std": 0.12213647918970306,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "183",
+      "frame_count": 374,
+      "kept": 336,
+      "keep_fraction": 0.8983957219251337,
+      "sample_count": 15,
+      "score_std": 0.16754129838611137,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "184",
+      "frame_count": 630,
+      "kept": 550,
+      "keep_fraction": 0.873015873015873,
+      "sample_count": 26,
+      "score_std": 0.14015438736517644,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "185",
+      "frame_count": 211,
+      "kept": 198,
+      "keep_fraction": 0.9383886255924171,
+      "sample_count": 9,
+      "score_std": 0.18488453191036633,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "186",
+      "frame_count": 254,
+      "kept": 216,
+      "keep_fraction": 0.8503937007874016,
+      "sample_count": 11,
+      "score_std": 0.15944497897053533,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "187",
+      "frame_count": 282,
+      "kept": 244,
+      "keep_fraction": 0.8652482269503546,
+      "sample_count": 12,
+      "score_std": 0.14108444822518817,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "188",
+      "frame_count": 678,
+      "kept": 600,
+      "keep_fraction": 0.8849557522123894,
+      "sample_count": 28,
+      "score_std": 0.11557594732472207,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "189",
+      "frame_count": 354,
+      "kept": 316,
+      "keep_fraction": 0.8926553672316384,
+      "sample_count": 15,
+      "score_std": 0.12487976914751578,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "190",
+      "frame_count": 855,
+      "kept": 750,
+      "keep_fraction": 0.8771929824561403,
+      "sample_count": 35,
+      "score_std": 0.12229146365567092,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "191",
+      "frame_count": 535,
+      "kept": 475,
+      "keep_fraction": 0.8878504672897196,
+      "sample_count": 22,
+      "score_std": 0.13283468846942853,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "192",
+      "frame_count": 380,
+      "kept": 342,
+      "keep_fraction": 0.9,
+      "sample_count": 16,
+      "score_std": 0.1395150822481337,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "193",
+      "frame_count": 321,
+      "kept": 283,
+      "keep_fraction": 0.881619937694704,
+      "sample_count": 13,
+      "score_std": 0.10037754075964532,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "194",
+      "frame_count": 650,
+      "kept": 587,
+      "keep_fraction": 0.9030769230769231,
+      "sample_count": 26,
+      "score_std": 0.12620407960869567,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "195",
+      "frame_count": 638,
+      "kept": 550,
+      "keep_fraction": 0.8620689655172413,
+      "sample_count": 26,
+      "score_std": 0.14728767172057436,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "196",
+      "frame_count": 370,
+      "kept": 332,
+      "keep_fraction": 0.8972972972972973,
+      "sample_count": 15,
+      "score_std": 0.1424258405676625,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "197",
+      "frame_count": 700,
+      "kept": 612,
+      "keep_fraction": 0.8742857142857143,
+      "sample_count": 28,
+      "score_std": 0.1184885478987753,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "198",
+      "frame_count": 882,
+      "kept": 750,
+      "keep_fraction": 0.8503401360544217,
+      "sample_count": 36,
+      "score_std": 0.09761768594773804,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "199",
+      "frame_count": 1053,
+      "kept": 918,
+      "keep_fraction": 0.8717948717948718,
+      "sample_count": 36,
+      "score_std": 0.12539207663583793,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "200",
+      "frame_count": 420,
+      "kept": 357,
+      "keep_fraction": 0.85,
+      "sample_count": 17,
+      "score_std": 0.1636104289001183,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "201",
+      "frame_count": 275,
+      "kept": 237,
+      "keep_fraction": 0.8618181818181818,
+      "sample_count": 11,
+      "score_std": 0.1308338469689257,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "202",
+      "frame_count": 203,
+      "kept": 190,
+      "keep_fraction": 0.9359605911330049,
+      "sample_count": 9,
+      "score_std": 0.10895722712766415,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "203",
+      "frame_count": 389,
+      "kept": 351,
+      "keep_fraction": 0.9023136246786633,
+      "sample_count": 16,
+      "score_std": 0.13286255221145415,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "204",
+      "frame_count": 327,
+      "kept": 289,
+      "keep_fraction": 0.8837920489296636,
+      "sample_count": 14,
+      "score_std": 0.0818055357434092,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "205",
+      "frame_count": 644,
+      "kept": 556,
+      "keep_fraction": 0.8633540372670807,
+      "sample_count": 26,
+      "score_std": 0.11345524642014597,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "206",
+      "frame_count": 380,
+      "kept": 342,
+      "keep_fraction": 0.9,
+      "sample_count": 16,
+      "score_std": 0.12761373063787707,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "207",
+      "frame_count": 335,
+      "kept": 297,
+      "keep_fraction": 0.8865671641791045,
+      "sample_count": 14,
+      "score_std": 0.09335741119705382,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "208",
+      "frame_count": 427,
+      "kept": 364,
+      "keep_fraction": 0.8524590163934426,
+      "sample_count": 18,
+      "score_std": 0.11144923083211218,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "209",
+      "frame_count": 284,
+      "kept": 246,
+      "keep_fraction": 0.8661971830985915,
+      "sample_count": 12,
+      "score_std": 0.11364995824131585,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "210",
+      "frame_count": 567,
+      "kept": 500,
+      "keep_fraction": 0.8818342151675485,
+      "sample_count": 23,
+      "score_std": 0.09835891658911736,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "211",
+      "frame_count": 887,
+      "kept": 775,
+      "keep_fraction": 0.8737316798196166,
+      "sample_count": 36,
+      "score_std": 0.15202917622535947,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "212",
+      "frame_count": 289,
+      "kept": 251,
+      "keep_fraction": 0.8685121107266436,
+      "sample_count": 12,
+      "score_std": 0.11327812963239889,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "213",
+      "frame_count": 325,
+      "kept": 287,
+      "keep_fraction": 0.8830769230769231,
+      "sample_count": 13,
+      "score_std": 0.15948038923892055,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "214",
+      "frame_count": 348,
+      "kept": 310,
+      "keep_fraction": 0.8908045977011494,
+      "sample_count": 14,
+      "score_std": 0.13236456138575492,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "215",
+      "frame_count": 710,
+      "kept": 622,
+      "keep_fraction": 0.8760563380281691,
+      "sample_count": 29,
+      "score_std": 0.11394367375619616,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "216",
+      "frame_count": 256,
+      "kept": 218,
+      "keep_fraction": 0.8515625,
+      "sample_count": 11,
+      "score_std": 0.13117840140744166,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "217",
+      "frame_count": 299,
+      "kept": 261,
+      "keep_fraction": 0.8729096989966555,
+      "sample_count": 12,
+      "score_std": 0.11776987467810748,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "218",
+      "frame_count": 370,
+      "kept": 332,
+      "keep_fraction": 0.8972972972972973,
+      "sample_count": 15,
+      "score_std": 0.14666031907378582,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "219",
+      "frame_count": 351,
+      "kept": 313,
+      "keep_fraction": 0.8917378917378918,
+      "sample_count": 15,
+      "score_std": 0.1099729629001131,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "220",
+      "frame_count": 395,
+      "kept": 357,
+      "keep_fraction": 0.9037974683544304,
+      "sample_count": 16,
+      "score_std": 0.11834632130381076,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "221",
+      "frame_count": 386,
+      "kept": 348,
+      "keep_fraction": 0.9015544041450777,
+      "sample_count": 16,
+      "score_std": 0.12085399609362629,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "222",
+      "frame_count": 760,
+      "kept": 650,
+      "keep_fraction": 0.8552631578947368,
+      "sample_count": 31,
+      "score_std": 0.11204183170918942,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "223",
+      "frame_count": 502,
+      "kept": 439,
+      "keep_fraction": 0.8745019920318725,
+      "sample_count": 21,
+      "score_std": 0.1223289220545262,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "224",
+      "frame_count": 551,
+      "kept": 488,
+      "keep_fraction": 0.8856624319419237,
+      "sample_count": 23,
+      "score_std": 0.16403685359645845,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "225",
+      "frame_count": 1103,
+      "kept": 950,
+      "keep_fraction": 0.8612873980054397,
+      "sample_count": 45,
+      "score_std": 0.12976022009842503,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "226",
+      "frame_count": 771,
+      "kept": 675,
+      "keep_fraction": 0.8754863813229572,
+      "sample_count": 31,
+      "score_std": 0.12435445282210443,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "227",
+      "frame_count": 587,
+      "kept": 500,
+      "keep_fraction": 0.8517887563884157,
+      "sample_count": 24,
+      "score_std": 0.11421541716069912,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "228",
+      "frame_count": 603,
+      "kept": 527,
+      "keep_fraction": 0.8739635157545605,
+      "sample_count": 21,
+      "score_std": 0.07226742582438711,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "229",
+      "frame_count": 295,
+      "kept": 279,
+      "keep_fraction": 0.9457627118644067,
+      "sample_count": 10,
+      "score_std": 0.12740959841196706,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "230",
+      "frame_count": 320,
+      "kept": 282,
+      "keep_fraction": 0.88125,
+      "sample_count": 13,
+      "score_std": 0.13921787770897878,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "231",
+      "frame_count": 635,
+      "kept": 547,
+      "keep_fraction": 0.8614173228346457,
+      "sample_count": 26,
+      "score_std": 0.11650325107061071,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "232",
+      "frame_count": 479,
+      "kept": 425,
+      "keep_fraction": 0.8872651356993737,
+      "sample_count": 20,
+      "score_std": 0.1184587766509715,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "233",
+      "frame_count": 416,
+      "kept": 378,
+      "keep_fraction": 0.9086538461538461,
+      "sample_count": 17,
+      "score_std": 0.12278314567321384,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "234",
+      "frame_count": 521,
+      "kept": 450,
+      "keep_fraction": 0.8637236084452975,
+      "sample_count": 21,
+      "score_std": 0.13772705607679814,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "235",
+      "frame_count": 922,
+      "kept": 800,
+      "keep_fraction": 0.8676789587852495,
+      "sample_count": 37,
+      "score_std": 0.10073226772530343,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "236",
+      "frame_count": 556,
+      "kept": 475,
+      "keep_fraction": 0.85431654676259,
+      "sample_count": 23,
+      "score_std": 0.12434233921527288,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "237",
+      "frame_count": 722,
+      "kept": 625,
+      "keep_fraction": 0.8656509695290858,
+      "sample_count": 29,
+      "score_std": 0.11141977813722782,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "238",
+      "frame_count": 445,
+      "kept": 382,
+      "keep_fraction": 0.8584269662921349,
+      "sample_count": 18,
+      "score_std": 0.12640086472623271,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "239",
+      "frame_count": 440,
+      "kept": 375,
+      "keep_fraction": 0.8522727272727273,
+      "sample_count": 18,
+      "score_std": 0.14490984131818738,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "240",
+      "frame_count": 487,
+      "kept": 424,
+      "keep_fraction": 0.8706365503080082,
+      "sample_count": 20,
+      "score_std": 0.11568028604504067,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "241",
+      "frame_count": 439,
+      "kept": 375,
+      "keep_fraction": 0.8542141230068337,
+      "sample_count": 18,
+      "score_std": 0.11952817658333909,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "242",
+      "frame_count": 525,
+      "kept": 462,
+      "keep_fraction": 0.88,
+      "sample_count": 21,
+      "score_std": 0.1452722640861019,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "243",
+      "frame_count": 878,
+      "kept": 750,
+      "keep_fraction": 0.8542141230068337,
+      "sample_count": 36,
+      "score_std": 0.11545416579585223,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "244",
+      "frame_count": 395,
+      "kept": 357,
+      "keep_fraction": 0.9037974683544304,
+      "sample_count": 16,
+      "score_std": 0.12789137604314754,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "245",
+      "frame_count": 722,
+      "kept": 634,
+      "keep_fraction": 0.8781163434903048,
+      "sample_count": 29,
+      "score_std": 0.12766117203831603,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "246",
+      "frame_count": 303,
+      "kept": 265,
+      "keep_fraction": 0.8745874587458746,
+      "sample_count": 13,
+      "score_std": 0.08950119261568115,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "247",
+      "frame_count": 486,
+      "kept": 423,
+      "keep_fraction": 0.8703703703703703,
+      "sample_count": 20,
+      "score_std": 0.1422344943651179,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "248",
+      "frame_count": 707,
+      "kept": 625,
+      "keep_fraction": 0.884016973125884,
+      "sample_count": 29,
+      "score_std": 0.12871059201668872,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "249",
+      "frame_count": 609,
+      "kept": 525,
+      "keep_fraction": 0.8620689655172413,
+      "sample_count": 25,
+      "score_std": 0.10373100593978461,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "250",
+      "frame_count": 310,
+      "kept": 272,
+      "keep_fraction": 0.8774193548387097,
+      "sample_count": 13,
+      "score_std": 0.1441414690383862,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "251",
+      "frame_count": 473,
+      "kept": 410,
+      "keep_fraction": 0.8668076109936576,
+      "sample_count": 19,
+      "score_std": 0.118421027407303,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "252",
+      "frame_count": 315,
+      "kept": 277,
+      "keep_fraction": 0.8793650793650793,
+      "sample_count": 13,
+      "score_std": 0.1593100522146567,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "253",
+      "frame_count": 340,
+      "kept": 302,
+      "keep_fraction": 0.888235294117647,
+      "sample_count": 14,
+      "score_std": 0.17960559253280958,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "254",
+      "frame_count": 492,
+      "kept": 429,
+      "keep_fraction": 0.8719512195121951,
+      "sample_count": 20,
+      "score_std": 0.10728670116195418,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "255",
+      "frame_count": 370,
+      "kept": 332,
+      "keep_fraction": 0.8972972972972973,
+      "sample_count": 15,
+      "score_std": 0.09144367815090834,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "256",
+      "frame_count": 353,
+      "kept": 300,
+      "keep_fraction": 0.8498583569405099,
+      "sample_count": 15,
+      "score_std": 0.1332588519422611,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "257",
+      "frame_count": 737,
+      "kept": 631,
+      "keep_fraction": 0.8561736770691994,
+      "sample_count": 25,
+      "score_std": 0.13826113475470636,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "258",
+      "frame_count": 627,
+      "kept": 551,
+      "keep_fraction": 0.8787878787878788,
+      "sample_count": 21,
+      "score_std": 0.1602038606289411,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "259",
+      "frame_count": 1371,
+      "kept": 1175,
+      "keep_fraction": 0.8570386579139314,
+      "sample_count": 46,
+      "score_std": 0.116511033615092,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "260",
+      "frame_count": 300,
+      "kept": 284,
+      "keep_fraction": 0.9466666666666667,
+      "sample_count": 10,
+      "score_std": 0.1242030776037028,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "261",
+      "frame_count": 471,
+      "kept": 425,
+      "keep_fraction": 0.9023354564755839,
+      "sample_count": 16,
+      "score_std": 0.16779362044880958,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "262",
+      "frame_count": 295,
+      "kept": 279,
+      "keep_fraction": 0.9457627118644067,
+      "sample_count": 10,
+      "score_std": 0.2083693526039135,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "263",
+      "frame_count": 298,
+      "kept": 282,
+      "keep_fraction": 0.9463087248322147,
+      "sample_count": 10,
+      "score_std": 0.17292875961163595,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "264",
+      "frame_count": 496,
+      "kept": 450,
+      "keep_fraction": 0.907258064516129,
+      "sample_count": 17,
+      "score_std": 0.1540468311911741,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "265",
+      "frame_count": 500,
+      "kept": 454,
+      "keep_fraction": 0.908,
+      "sample_count": 17,
+      "score_std": 0.14070858030092695,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "266",
+      "frame_count": 330,
+      "kept": 284,
+      "keep_fraction": 0.8606060606060606,
+      "sample_count": 11,
+      "score_std": 0.14660323279962356,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "267",
+      "frame_count": 261,
+      "kept": 245,
+      "keep_fraction": 0.9386973180076629,
+      "sample_count": 9,
+      "score_std": 0.16739634617467705,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "268",
+      "frame_count": 384,
+      "kept": 338,
+      "keep_fraction": 0.8802083333333334,
+      "sample_count": 13,
+      "score_std": 0.17437151027356879,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "269",
+      "frame_count": 305,
+      "kept": 259,
+      "keep_fraction": 0.8491803278688524,
+      "sample_count": 11,
+      "score_std": 0.1695621746933924,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "270",
+      "frame_count": 446,
+      "kept": 400,
+      "keep_fraction": 0.8968609865470852,
+      "sample_count": 15,
+      "score_std": 0.16249196218024156,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "271",
+      "frame_count": 345,
+      "kept": 299,
+      "keep_fraction": 0.8666666666666667,
+      "sample_count": 12,
+      "score_std": 0.14227282520564644,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "272",
+      "frame_count": 354,
+      "kept": 308,
+      "keep_fraction": 0.8700564971751412,
+      "sample_count": 12,
+      "score_std": 0.15796718171241605,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "273",
+      "frame_count": 1823,
+      "kept": 1567,
+      "keep_fraction": 0.85957213384531,
+      "sample_count": 61,
+      "score_std": 0.07203164587240511,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "274",
+      "frame_count": 302,
+      "kept": 286,
+      "keep_fraction": 0.9470198675496688,
+      "sample_count": 11,
+      "score_std": 0.13588070769340124,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "275",
+      "frame_count": 381,
+      "kept": 335,
+      "keep_fraction": 0.8792650918635171,
+      "sample_count": 13,
+      "score_std": 0.16453601936647666,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "276",
+      "frame_count": 1174,
+      "kept": 1008,
+      "keep_fraction": 0.858603066439523,
+      "sample_count": 40,
+      "score_std": 0.09410988867609596,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "277",
+      "frame_count": 1035,
+      "kept": 899,
+      "keep_fraction": 0.8685990338164251,
+      "sample_count": 35,
+      "score_std": 0.11566569211402467,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "278",
+      "frame_count": 573,
+      "kept": 497,
+      "keep_fraction": 0.8673647469458988,
+      "sample_count": 20,
+      "score_std": 0.1393286384180807,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "279",
+      "frame_count": 1633,
+      "kept": 1410,
+      "keep_fraction": 0.863441518677281,
+      "sample_count": 55,
+      "score_std": 0.09852216705348593,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "280",
+      "frame_count": 971,
+      "kept": 840,
+      "keep_fraction": 0.8650875386199794,
+      "sample_count": 33,
+      "score_std": 0.1076670768095359,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "281",
+      "frame_count": 710,
+      "kept": 604,
+      "keep_fraction": 0.8507042253521127,
+      "sample_count": 24,
+      "score_std": 0.10757720317725337,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "282",
+      "frame_count": 1303,
+      "kept": 1137,
+      "keep_fraction": 0.8726016884113584,
+      "sample_count": 44,
+      "score_std": 0.09833951046320175,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "283",
+      "frame_count": 600,
+      "kept": 524,
+      "keep_fraction": 0.8733333333333333,
+      "sample_count": 20,
+      "score_std": 0.1469381450611396,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "284",
+      "frame_count": 1380,
+      "kept": 1214,
+      "keep_fraction": 0.8797101449275362,
+      "sample_count": 46,
+      "score_std": 0.09968639301633628,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "285",
+      "frame_count": 474,
+      "kept": 428,
+      "keep_fraction": 0.9029535864978903,
+      "sample_count": 16,
+      "score_std": 0.1846483627797107,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "286",
+      "frame_count": 460,
+      "kept": 414,
+      "keep_fraction": 0.9,
+      "sample_count": 16,
+      "score_std": 0.1652835757163376,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "287",
+      "frame_count": 312,
+      "kept": 266,
+      "keep_fraction": 0.8525641025641025,
+      "sample_count": 11,
+      "score_std": 0.13464504004511627,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "288",
+      "frame_count": 801,
+      "kept": 695,
+      "keep_fraction": 0.867665418227216,
+      "sample_count": 27,
+      "score_std": 0.11899243949975863,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "289",
+      "frame_count": 902,
+      "kept": 796,
+      "keep_fraction": 0.8824833702882483,
+      "sample_count": 31,
+      "score_std": 0.10670107887040357,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "290",
+      "frame_count": 566,
+      "kept": 490,
+      "keep_fraction": 0.8657243816254417,
+      "sample_count": 19,
+      "score_std": 0.13801357283704602,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "291",
+      "frame_count": 712,
+      "kept": 636,
+      "keep_fraction": 0.8932584269662921,
+      "sample_count": 24,
+      "score_std": 0.1244386758698791,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "292",
+      "frame_count": 204,
+      "kept": 191,
+      "keep_fraction": 0.9362745098039216,
+      "sample_count": 9,
+      "score_std": 0.2057734055464053,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "293",
+      "frame_count": 255,
+      "kept": 217,
+      "keep_fraction": 0.8509803921568627,
+      "sample_count": 11,
+      "score_std": 0.17065728002665242,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "294",
+      "frame_count": 152,
+      "kept": 139,
+      "keep_fraction": 0.9144736842105263,
+      "sample_count": 7,
+      "score_std": 0.17217645452682734,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "295",
+      "frame_count": 277,
+      "kept": 239,
+      "keep_fraction": 0.8628158844765343,
+      "sample_count": 12,
+      "score_std": 0.16679822835794228,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "296",
+      "frame_count": 202,
+      "kept": 186,
+      "keep_fraction": 0.9207920792079208,
+      "sample_count": 7,
+      "score_std": 0.20773719794757736,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "297",
+      "frame_count": 205,
+      "kept": 189,
+      "keep_fraction": 0.9219512195121952,
+      "sample_count": 7,
+      "score_std": 0.1882987076726879,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "298",
+      "frame_count": 135,
+      "kept": 119,
+      "keep_fraction": 0.8814814814814815,
+      "sample_count": 5,
+      "score_std": 0.17513571403381134,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "299",
+      "frame_count": 258,
+      "kept": 220,
+      "keep_fraction": 0.8527131782945736,
+      "sample_count": 11,
+      "score_std": 0.16328705621689907,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "300",
+      "frame_count": 335,
+      "kept": 300,
+      "keep_fraction": 0.8955223880597015,
+      "sample_count": 14,
+      "score_std": 0.12268132850580013,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "301",
+      "frame_count": 398,
+      "kept": 360,
+      "keep_fraction": 0.9045226130653267,
+      "sample_count": 16,
+      "score_std": 0.1650744590525417,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "302",
+      "frame_count": 344,
+      "kept": 298,
+      "keep_fraction": 0.8662790697674418,
+      "sample_count": 12,
+      "score_std": 0.13745808828403372,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "303",
+      "frame_count": 389,
+      "kept": 343,
+      "keep_fraction": 0.8817480719794345,
+      "sample_count": 13,
+      "score_std": 0.14112947947243204,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "304",
+      "frame_count": 204,
+      "kept": 188,
+      "keep_fraction": 0.9215686274509803,
+      "sample_count": 7,
+      "score_std": 0.17043400404952785,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "305",
+      "frame_count": 457,
+      "kept": 390,
+      "keep_fraction": 0.8533916849015317,
+      "sample_count": 16,
+      "score_std": 0.2012893380515309,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "306",
+      "frame_count": 334,
+      "kept": 288,
+      "keep_fraction": 0.8622754491017964,
+      "sample_count": 12,
+      "score_std": 0.1875059016451024,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "307",
+      "frame_count": 475,
+      "kept": 429,
+      "keep_fraction": 0.9031578947368422,
+      "sample_count": 16,
+      "score_std": 0.15821664794775128,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "308",
+      "frame_count": 495,
+      "kept": 425,
+      "keep_fraction": 0.8585858585858586,
+      "sample_count": 20,
+      "score_std": 0.07997089652899923,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "309",
+      "frame_count": 338,
+      "kept": 292,
+      "keep_fraction": 0.863905325443787,
+      "sample_count": 12,
+      "score_std": 0.16537105264223537,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "310",
+      "frame_count": 273,
+      "kept": 235,
+      "keep_fraction": 0.8608058608058609,
+      "sample_count": 11,
+      "score_std": 0.18766875853608062,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "311",
+      "frame_count": 404,
+      "kept": 358,
+      "keep_fraction": 0.8861386138613861,
+      "sample_count": 14,
+      "score_std": 0.1450515065341885,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "312",
+      "frame_count": 169,
+      "kept": 156,
+      "keep_fraction": 0.9230769230769231,
+      "sample_count": 7,
+      "score_std": 0.18751466040465006,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "313",
+      "frame_count": 209,
+      "kept": 193,
+      "keep_fraction": 0.9234449760765551,
+      "sample_count": 7,
+      "score_std": 0.15233876458212797,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "314",
+      "frame_count": 407,
+      "kept": 369,
+      "keep_fraction": 0.9066339066339066,
+      "sample_count": 17,
+      "score_std": 0.14797181405932533,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "315",
+      "frame_count": 628,
+      "kept": 540,
+      "keep_fraction": 0.8598726114649682,
+      "sample_count": 21,
+      "score_std": 0.1057787084671661,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "316",
+      "frame_count": 777,
+      "kept": 664,
+      "keep_fraction": 0.8545688545688546,
+      "sample_count": 32,
+      "score_std": 0.09331691677926733,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "317",
+      "frame_count": 176,
+      "kept": 163,
+      "keep_fraction": 0.9261363636363636,
+      "sample_count": 8,
+      "score_std": 0.16524744375530498,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "318",
+      "frame_count": 1170,
+      "kept": 1004,
+      "keep_fraction": 0.8581196581196581,
+      "sample_count": 39,
+      "score_std": 0.13901654283484796,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "319",
+      "frame_count": 804,
+      "kept": 691,
+      "keep_fraction": 0.8594527363184079,
+      "sample_count": 33,
+      "score_std": 0.08913186274121236,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "320",
+      "frame_count": 810,
+      "kept": 700,
+      "keep_fraction": 0.8641975308641975,
+      "sample_count": 33,
+      "score_std": 0.15013759574400437,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "321",
+      "frame_count": 386,
+      "kept": 348,
+      "keep_fraction": 0.9015544041450777,
+      "sample_count": 16,
+      "score_std": 0.16602813974582792,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "322",
+      "frame_count": 1224,
+      "kept": 1050,
+      "keep_fraction": 0.8578431372549019,
+      "sample_count": 41,
+      "score_std": 0.1081979862642551,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "323",
+      "frame_count": 816,
+      "kept": 700,
+      "keep_fraction": 0.8578431372549019,
+      "sample_count": 33,
+      "score_std": 0.1597133968560064,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "324",
+      "frame_count": 1459,
+      "kept": 1259,
+      "keep_fraction": 0.8629198080877313,
+      "sample_count": 59,
+      "score_std": 0.14756471562370627,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "325",
+      "frame_count": 480,
+      "kept": 417,
+      "keep_fraction": 0.86875,
+      "sample_count": 20,
+      "score_std": 0.13395932978181302,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "326",
+      "frame_count": 335,
+      "kept": 297,
+      "keep_fraction": 0.8865671641791045,
+      "sample_count": 14,
+      "score_std": 0.18245019624842823,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "327",
+      "frame_count": 396,
+      "kept": 358,
+      "keep_fraction": 0.9040404040404041,
+      "sample_count": 16,
+      "score_std": 0.16575246496498205,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "328",
+      "frame_count": 823,
+      "kept": 717,
+      "keep_fraction": 0.8712029161603888,
+      "sample_count": 28,
+      "score_std": 0.14504550394222843,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "329",
+      "frame_count": 841,
+      "kept": 728,
+      "keep_fraction": 0.8656361474435196,
+      "sample_count": 34,
+      "score_std": 0.16237978852259477,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "330",
+      "frame_count": 690,
+      "kept": 614,
+      "keep_fraction": 0.8898550724637682,
+      "sample_count": 23,
+      "score_std": 0.1713260379416456,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "331",
+      "frame_count": 837,
+      "kept": 724,
+      "keep_fraction": 0.8649940262843488,
+      "sample_count": 34,
+      "score_std": 0.1318072218218893,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "332",
+      "frame_count": 824,
+      "kept": 711,
+      "keep_fraction": 0.8628640776699029,
+      "sample_count": 33,
+      "score_std": 0.11989783525513469,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "333",
+      "frame_count": 309,
+      "kept": 271,
+      "keep_fraction": 0.8770226537216829,
+      "sample_count": 13,
+      "score_std": 0.15138184570083746,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "334",
+      "frame_count": 386,
+      "kept": 348,
+      "keep_fraction": 0.9015544041450777,
+      "sample_count": 16,
+      "score_std": 0.14854295627202557,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "335",
+      "frame_count": 918,
+      "kept": 782,
+      "keep_fraction": 0.8518518518518519,
+      "sample_count": 31,
+      "score_std": 0.13438913372962685,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "336",
+      "frame_count": 206,
+      "kept": 175,
+      "keep_fraction": 0.8495145631067961,
+      "sample_count": 9,
+      "score_std": 0.18947277297704357,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "337",
+      "frame_count": 360,
+      "kept": 322,
+      "keep_fraction": 0.8944444444444445,
+      "sample_count": 15,
+      "score_std": 0.1348676563838821,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "338",
+      "frame_count": 650,
+      "kept": 575,
+      "keep_fraction": 0.8846153846153846,
+      "sample_count": 26,
+      "score_std": 0.1444068929619374,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "339",
+      "frame_count": 482,
+      "kept": 419,
+      "keep_fraction": 0.8692946058091287,
+      "sample_count": 20,
+      "score_std": 0.14588158476581087,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "340",
+      "frame_count": 306,
+      "kept": 268,
+      "keep_fraction": 0.8758169934640523,
+      "sample_count": 13,
+      "score_std": 0.13479133958759243,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "341",
+      "frame_count": 300,
+      "kept": 262,
+      "keep_fraction": 0.8733333333333333,
+      "sample_count": 12,
+      "score_std": 0.13365551971123918,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "342",
+      "frame_count": 270,
+      "kept": 232,
+      "keep_fraction": 0.8592592592592593,
+      "sample_count": 11,
+      "score_std": 0.15479053511783097,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "343",
+      "frame_count": 234,
+      "kept": 221,
+      "keep_fraction": 0.9444444444444444,
+      "sample_count": 10,
+      "score_std": 0.11029154908569375,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "344",
+      "frame_count": 536,
+      "kept": 473,
+      "keep_fraction": 0.8824626865671642,
+      "sample_count": 22,
+      "score_std": 0.12372989886219304,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "345",
+      "frame_count": 485,
+      "kept": 422,
+      "keep_fraction": 0.8701030927835052,
+      "sample_count": 20,
+      "score_std": 0.16909275638127838,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "346",
+      "frame_count": 280,
+      "kept": 242,
+      "keep_fraction": 0.8642857142857143,
+      "sample_count": 12,
+      "score_std": 0.12117281635116604,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "347",
+      "frame_count": 184,
+      "kept": 171,
+      "keep_fraction": 0.9293478260869565,
+      "sample_count": 8,
+      "score_std": 0.17620134082165284,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "348",
+      "frame_count": 211,
+      "kept": 186,
+      "keep_fraction": 0.8815165876777251,
+      "sample_count": 9,
+      "score_std": 0.10098460413317974,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "349",
+      "frame_count": 557,
+      "kept": 494,
+      "keep_fraction": 0.8868940754039497,
+      "sample_count": 23,
+      "score_std": 0.11581551246414351,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "350",
+      "frame_count": 535,
+      "kept": 475,
+      "keep_fraction": 0.8878504672897196,
+      "sample_count": 22,
+      "score_std": 0.11308331110390862,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "351",
+      "frame_count": 426,
+      "kept": 363,
+      "keep_fraction": 0.852112676056338,
+      "sample_count": 18,
+      "score_std": 0.14776219855846506,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "352",
+      "frame_count": 343,
+      "kept": 305,
+      "keep_fraction": 0.8892128279883382,
+      "sample_count": 14,
+      "score_std": 0.13650108966334162,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "353",
+      "frame_count": 168,
+      "kept": 152,
+      "keep_fraction": 0.9047619047619048,
+      "sample_count": 6,
+      "score_std": 0.15300300529737967,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "354",
+      "frame_count": 205,
+      "kept": 192,
+      "keep_fraction": 0.9365853658536586,
+      "sample_count": 9,
+      "score_std": 0.14835410801802132,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "355",
+      "frame_count": 280,
+      "kept": 242,
+      "keep_fraction": 0.8642857142857143,
+      "sample_count": 12,
+      "score_std": 0.11491658651266069,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "356",
+      "frame_count": 240,
+      "kept": 227,
+      "keep_fraction": 0.9458333333333333,
+      "sample_count": 10,
+      "score_std": 0.16490432077903963,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "357",
+      "frame_count": 985,
+      "kept": 838,
+      "keep_fraction": 0.8507614213197969,
+      "sample_count": 40,
+      "score_std": 0.139966661545967,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "358",
+      "frame_count": 404,
+      "kept": 350,
+      "keep_fraction": 0.8663366336633663,
+      "sample_count": 17,
+      "score_std": 0.11477750006576597,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "359",
+      "frame_count": 585,
+      "kept": 500,
+      "keep_fraction": 0.8547008547008547,
+      "sample_count": 24,
+      "score_std": 0.13606564897344142,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "360",
+      "frame_count": 300,
+      "kept": 262,
+      "keep_fraction": 0.8733333333333333,
+      "sample_count": 12,
+      "score_std": 0.13543624641536572,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "361",
+      "frame_count": 722,
+      "kept": 625,
+      "keep_fraction": 0.8656509695290858,
+      "sample_count": 29,
+      "score_std": 0.12238833059263111,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "362",
+      "frame_count": 572,
+      "kept": 500,
+      "keep_fraction": 0.8741258741258742,
+      "sample_count": 23,
+      "score_std": 0.10956674921169332,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "363",
+      "frame_count": 353,
+      "kept": 315,
+      "keep_fraction": 0.8923512747875354,
+      "sample_count": 15,
+      "score_std": 0.1263505984816858,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "364",
+      "frame_count": 909,
+      "kept": 773,
+      "keep_fraction": 0.8503850385038504,
+      "sample_count": 31,
+      "score_std": 0.0994788217722872,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "365",
+      "frame_count": 2100,
+      "kept": 1814,
+      "keep_fraction": 0.8638095238095238,
+      "sample_count": 70,
+      "score_std": 0.09031530413236628,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "366",
+      "frame_count": 750,
+      "kept": 644,
+      "keep_fraction": 0.8586666666666667,
+      "sample_count": 25,
+      "score_std": 0.1378849531238812,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "367",
+      "frame_count": 367,
+      "kept": 321,
+      "keep_fraction": 0.8746594005449592,
+      "sample_count": 13,
+      "score_std": 0.17510291605877676,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "368",
+      "frame_count": 315,
+      "kept": 277,
+      "keep_fraction": 0.8793650793650793,
+      "sample_count": 13,
+      "score_std": 0.15772953468276843,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "369",
+      "frame_count": 436,
+      "kept": 373,
+      "keep_fraction": 0.8555045871559633,
+      "sample_count": 18,
+      "score_std": 0.16105596317133355,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "370",
+      "frame_count": 1045,
+      "kept": 907,
+      "keep_fraction": 0.8679425837320575,
+      "sample_count": 42,
+      "score_std": 0.09715182152042567,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "371",
+      "frame_count": 400,
+      "kept": 362,
+      "keep_fraction": 0.905,
+      "sample_count": 16,
+      "score_std": 0.12054138317397559,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "372",
+      "frame_count": 531,
+      "kept": 455,
+      "keep_fraction": 0.8568738229755178,
+      "sample_count": 18,
+      "score_std": 0.13914588675488443,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "373",
+      "frame_count": 1476,
+      "kept": 1275,
+      "keep_fraction": 0.8638211382113821,
+      "sample_count": 60,
+      "score_std": 0.1619342422306264,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "374",
+      "frame_count": 222,
+      "kept": 209,
+      "keep_fraction": 0.9414414414414415,
+      "sample_count": 9,
+      "score_std": 0.17799310390788994,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "375",
+      "frame_count": 721,
+      "kept": 625,
+      "keep_fraction": 0.8668515950069348,
+      "sample_count": 29,
+      "score_std": 0.14802609959895327,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "376",
+      "frame_count": 1088,
+      "kept": 925,
+      "keep_fraction": 0.8501838235294118,
+      "sample_count": 44,
+      "score_std": 0.12425652552688485,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "377",
+      "frame_count": 470,
+      "kept": 407,
+      "keep_fraction": 0.8659574468085106,
+      "sample_count": 19,
+      "score_std": 0.14086038541236406,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "378",
+      "frame_count": 1018,
+      "kept": 880,
+      "keep_fraction": 0.8644400785854617,
+      "sample_count": 41,
+      "score_std": 0.152780321066988,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "379",
+      "frame_count": 2516,
+      "kept": 2163,
+      "keep_fraction": 0.859697933227345,
+      "sample_count": 101,
+      "score_std": 0.15699655774246313,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "380",
+      "frame_count": 1061,
+      "kept": 925,
+      "keep_fraction": 0.8718190386427899,
+      "sample_count": 43,
+      "score_std": 0.15538470804801224,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "381",
+      "frame_count": 354,
+      "kept": 316,
+      "keep_fraction": 0.8926553672316384,
+      "sample_count": 15,
+      "score_std": 0.10123991670812904,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "382",
+      "frame_count": 1069,
+      "kept": 925,
+      "keep_fraction": 0.8652946679139383,
+      "sample_count": 43,
+      "score_std": 0.14395559058127474,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "383",
+      "frame_count": 1160,
+      "kept": 1000,
+      "keep_fraction": 0.8620689655172413,
+      "sample_count": 47,
+      "score_std": 0.1386900260053011,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "384",
+      "frame_count": 2601,
+      "kept": 2213,
+      "keep_fraction": 0.8508266051518647,
+      "sample_count": 105,
+      "score_std": 0.17064488592446744,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "385",
+      "frame_count": 909,
+      "kept": 796,
+      "keep_fraction": 0.8756875687568757,
+      "sample_count": 37,
+      "score_std": 0.1494018348870867,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "386",
+      "frame_count": 1702,
+      "kept": 1452,
+      "keep_fraction": 0.8531139835487661,
+      "sample_count": 69,
+      "score_std": 0.17688567716002226,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "387",
+      "frame_count": 2801,
+      "kept": 2388,
+      "keep_fraction": 0.8525526597643699,
+      "sample_count": 113,
+      "score_std": 0.16850194475718325,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "388",
+      "frame_count": 1668,
+      "kept": 1430,
+      "keep_fraction": 0.8573141486810552,
+      "sample_count": 67,
+      "score_std": 0.16984199268925973,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "389",
+      "frame_count": 902,
+      "kept": 789,
+      "keep_fraction": 0.8747228381374723,
+      "sample_count": 37,
+      "score_std": 0.15532876337771526,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "390",
+      "frame_count": 890,
+      "kept": 777,
+      "keep_fraction": 0.8730337078651685,
+      "sample_count": 36,
+      "score_std": 0.12505321422923096,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "391",
+      "frame_count": 467,
+      "kept": 404,
+      "keep_fraction": 0.8650963597430407,
+      "sample_count": 19,
+      "score_std": 0.15370773999029197,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "392",
+      "frame_count": 627,
+      "kept": 539,
+      "keep_fraction": 0.8596491228070176,
+      "sample_count": 26,
+      "score_std": 0.08042773409087334,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "393",
+      "frame_count": 1416,
+      "kept": 1225,
+      "keep_fraction": 0.8651129943502824,
+      "sample_count": 57,
+      "score_std": 0.09179100700988244,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "394",
+      "frame_count": 1361,
+      "kept": 1165,
+      "keep_fraction": 0.8559882439382807,
+      "sample_count": 46,
+      "score_std": 0.10387318486758633,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "395",
+      "frame_count": 339,
+      "kept": 301,
+      "keep_fraction": 0.887905604719764,
+      "sample_count": 14,
+      "score_std": 0.15171375570854628,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "396",
+      "frame_count": 1328,
+      "kept": 1150,
+      "keep_fraction": 0.8659638554216867,
+      "sample_count": 54,
+      "score_std": 0.22025799417329087,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "397",
+      "frame_count": 1143,
+      "kept": 975,
+      "keep_fraction": 0.8530183727034121,
+      "sample_count": 46,
+      "score_std": 0.12565295480524022,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "398",
+      "frame_count": 772,
+      "kept": 659,
+      "keep_fraction": 0.8536269430051814,
+      "sample_count": 31,
+      "score_std": 0.10712012982754443,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "399",
+      "frame_count": 265,
+      "kept": 227,
+      "keep_fraction": 0.8566037735849057,
+      "sample_count": 11,
+      "score_std": 0.17881557980284232,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "400",
+      "frame_count": 265,
+      "kept": 227,
+      "keep_fraction": 0.8566037735849057,
+      "sample_count": 11,
+      "score_std": 0.13669678814215913,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "401",
+      "frame_count": 558,
+      "kept": 495,
+      "keep_fraction": 0.8870967741935484,
+      "sample_count": 23,
+      "score_std": 0.12289296330806615,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "402",
+      "frame_count": 564,
+      "kept": 501,
+      "keep_fraction": 0.8882978723404256,
+      "sample_count": 23,
+      "score_std": 0.13194409272624577,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "403",
+      "frame_count": 969,
+      "kept": 831,
+      "keep_fraction": 0.8575851393188855,
+      "sample_count": 39,
+      "score_std": 0.1121830500835528,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "404",
+      "frame_count": 1159,
+      "kept": 1000,
+      "keep_fraction": 0.8628127696289906,
+      "sample_count": 47,
+      "score_std": 0.16521312555889828,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "405",
+      "frame_count": 448,
+      "kept": 385,
+      "keep_fraction": 0.859375,
+      "sample_count": 18,
+      "score_std": 0.12984635517316212,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "406",
+      "frame_count": 277,
+      "kept": 239,
+      "keep_fraction": 0.8628158844765343,
+      "sample_count": 12,
+      "score_std": 0.18153367560200864,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "407",
+      "frame_count": 316,
+      "kept": 278,
+      "keep_fraction": 0.879746835443038,
+      "sample_count": 13,
+      "score_std": 0.13413405009118348,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "408",
+      "frame_count": 178,
+      "kept": 165,
+      "keep_fraction": 0.9269662921348315,
+      "sample_count": 8,
+      "score_std": 0.17849837430979187,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "409",
+      "frame_count": 280,
+      "kept": 242,
+      "keep_fraction": 0.8642857142857143,
+      "sample_count": 12,
+      "score_std": 0.15646839783531644,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "410",
+      "frame_count": 359,
+      "kept": 321,
+      "keep_fraction": 0.8941504178272981,
+      "sample_count": 15,
+      "score_std": 0.1598359560718154,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "411",
+      "frame_count": 314,
+      "kept": 276,
+      "keep_fraction": 0.8789808917197452,
+      "sample_count": 13,
+      "score_std": 0.14706843373342432,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "412",
+      "frame_count": 325,
+      "kept": 287,
+      "keep_fraction": 0.8830769230769231,
+      "sample_count": 13,
+      "score_std": 0.13029969228550203,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "413",
+      "frame_count": 597,
+      "kept": 525,
+      "keep_fraction": 0.8793969849246231,
+      "sample_count": 24,
+      "score_std": 0.1263144746904365,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "414",
+      "frame_count": 380,
+      "kept": 325,
+      "keep_fraction": 0.8552631578947368,
+      "sample_count": 16,
+      "score_std": 0.14372527877309924,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "415",
+      "frame_count": 1293,
+      "kept": 1100,
+      "keep_fraction": 0.8507347254447022,
+      "sample_count": 52,
+      "score_std": 0.1498795197021234,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "416",
+      "frame_count": 351,
+      "kept": 313,
+      "keep_fraction": 0.8917378917378918,
+      "sample_count": 15,
+      "score_std": 0.11920151217065537,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "417",
+      "frame_count": 277,
+      "kept": 239,
+      "keep_fraction": 0.8628158844765343,
+      "sample_count": 12,
+      "score_std": 0.17079310406992498,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "418",
+      "frame_count": 197,
+      "kept": 184,
+      "keep_fraction": 0.934010152284264,
+      "sample_count": 8,
+      "score_std": 0.18336726263267844,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "419",
+      "frame_count": 260,
+      "kept": 222,
+      "keep_fraction": 0.8538461538461538,
+      "sample_count": 11,
+      "score_std": 0.15124911407950925,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "420",
+      "frame_count": 183,
+      "kept": 170,
+      "keep_fraction": 0.9289617486338798,
+      "sample_count": 8,
+      "score_std": 0.2221713477001986,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "421",
+      "frame_count": 248,
+      "kept": 235,
+      "keep_fraction": 0.9475806451612904,
+      "sample_count": 10,
+      "score_std": 0.19770197228917022,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "422",
+      "frame_count": 374,
+      "kept": 336,
+      "keep_fraction": 0.8983957219251337,
+      "sample_count": 15,
+      "score_std": 0.11928306700135753,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "423",
+      "frame_count": 240,
+      "kept": 224,
+      "keep_fraction": 0.9333333333333333,
+      "sample_count": 8,
+      "score_std": 0.12599097733971235,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "424",
+      "frame_count": 913,
+      "kept": 800,
+      "keep_fraction": 0.8762322015334063,
+      "sample_count": 37,
+      "score_std": 0.11210210486113516,
+      "native_forward_max_abs_difference": 0.0
+    },
+    {
+      "video_id": "425",
+      "frame_count": 1281,
+      "kept": 1100,
+      "keep_fraction": 0.8587041373926619,
+      "sample_count": 52,
+      "score_std": 0.16454711616052753,
+      "native_forward_max_abs_difference": 0.0
+    }
+  ],
+  "model_size_mb_semantics": "total parameters in millions per user-confirmed official parameter interpretation; NOT weight file MB",
+  "actual_aha_weight_bytes": 16060832112,
+  "spatial_component_bytes_reported": 903762857,
+  "spatial_components_source": "/data/aic/semifinal_20261001/submissions/LFM_V8_B3_SEMIFINAL/manifest.json",
+  "predictions_sha256": "f55a75d4edd955a335405616a2ab6a3a87d5efbd1e680be451e116d8d41d1c81",
+  "zip_sha256": "736aa5e6a9644b293c2d282bfd79d74f8eecb37db9e77dc4124e12a434df8cec",
+  "zip_bytes": 1506818,
+  "wall_s": 1248.9702875614166,
+  "peak_vram_bytes": 18001440768
+}

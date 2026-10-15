@@ -1,0 +1,61 @@
+{
+  "experiment_id": "R25_AHA_BF16_K085",
+  "model": "/root/autodl-tmp/experiments/R25_AHA_SUBMIT_20261015/merged_llava_bf16_v2",
+  "parameter_count": 8030363168,
+  "spatial_parameter_count": 450283377,
+  "total_parameters": 8480646545,
+  "parameter_limit": 9000000000,
+  "rule_basis": "user confirmed official 9B parameter limit 2026-10-15",
+  "weight_files": [
+    {
+      "path": "/root/autodl-tmp/experiments/R25_AHA_SUBMIT_20261015/merged_llava_bf16_v2/model-00001-of-00005.safetensors",
+      "bytes": 3945434128,
+      "sha256": "3e2e6449ac52bd84667eeca67066870128f637ba1cea66b45f58ca0697963209"
+    },
+    {
+      "path": "/root/autodl-tmp/experiments/R25_AHA_SUBMIT_20261015/merged_llava_bf16_v2/model-00002-of-00005.safetensors",
+      "bytes": 3864726352,
+      "sha256": "200ad70f24bb5fceef076fc59e1d0eff3b7a73b8907fb4b39b38ca0214a30608"
+    },
+    {
+      "path": "/root/autodl-tmp/experiments/R25_AHA_SUBMIT_20261015/merged_llava_bf16_v2/model-00003-of-00005.safetensors",
+      "bytes": 3864726408,
+      "sha256": "7d0a2da263eb39e2b0b454f4ac9aff992b49af3c77dfb26734624943db5c9ed7"
+    },
+    {
+      "path": "/root/autodl-tmp/experiments/R25_AHA_SUBMIT_20261015/merged_llava_bf16_v2/model-00004-of-00005.safetensors",
+      "bytes": 3295921384,
+      "sha256": "c0b5e5744235d1ee235295f9dc2e2d6481a2b7eeaa7451bf6c95d4db9488e7b1"
+    },
+    {
+      "path": "/root/autodl-tmp/experiments/R25_AHA_SUBMIT_20261015/merged_llava_bf16_v2/model-00005-of-00005.safetensors",
+      "bytes": 1090023840,
+      "sha256": "f62d042d279323ad9cb381e7f275a93250c16788e297956fda389e78bf6394b1"
+    }
+  ],
+  "head_identity": {
+    "informative_head": 0.0,
+    "relevance_head": 0.0,
+    "uncertainty_head": 0.0
+  },
+  "loading_info": {
+    "missing_keys": [],
+    "unexpected_keys": [],
+    "mismatched_keys": [],
+    "error_msgs": []
+  },
+  "precision": "bf16",
+  "attention": "sdpa",
+  "sample_fps": 1,
+  "chunk": 8,
+  "system_prompt": "A multimodal AI assistant is helping users with some activities. Below is their conversation, interleaved with the list of video frames received by the assistant.",
+  "query": "Identify the most informative and important highlights of this video.",
+  "score": "softmax(informative)[1] + sigmoid(relevance)",
+  "keep": 0.85,
+  "index_sha256": "02d52321e82a70cafd33d566319b2ebf5e405af43946d6da32181eccdbc46a93",
+  "spatial_sha256": "2e1dd604629df52618ac1c7f11f1623526adbf0d13d186665d4294091fd89b05",
+  "source_code_sha256": "de6b1e0b2422405ee0d1d5ac5e8216d93c3fcb664a1e4eaa28f987395043b077",
+  "no_training": true,
+  "resume_compatible_code_sha256": null,
+  "validation_revision": "full-token scoring heads; exact full-chunk native comparison <1e-5; recomputed all videos"
+}

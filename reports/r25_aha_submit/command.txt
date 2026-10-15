@@ -1,0 +1,14 @@
+# Export uses the earlier helper to merge the original BF16 base and adapter.
+# NF4 was also exported during an abandoned size-interpretation attempt; it is NOT used here.
+timeout --signal=TERM --kill-after=30s 40m /root/autodl-tmp/aha_env/bin/python -u r25_aha_export.py --also-quantize --out /root/autodl-tmp/experiments/R25_AHA_SUBMIT_20261015
+# Run under nohup; checkpoints consist of per-video atomic score JSON files.
+timeout --signal=TERM --kill-after=3m 42300s /root/autodl-tmp/aha_env/bin/python -u r25_aha_submit.py --root /root/autodl-tmp/experiments/R25_AHA_SUBMIT_20261015 --model /root/autodl-tmp/experiments/R25_AHA_SUBMIT_20261015/merged_llava_bf16_v2 --index /data/aic/semifinal_20261001/intake/index.enriched.jsonl --spatial /data/aic/semifinal_20261001/submissions/LFM_V8_B3_SEMIFINAL/predictions.jsonl
+
+# Resumed after identical-shape native-forward validation correction; scoring unchanged.
+timeout --signal=TERM --kill-after=3m 42300s /root/autodl-tmp/aha_env/bin/python -u r25_aha_submit.py --root /root/autodl-tmp/experiments/R25_AHA_SUBMIT_20261015 --model /root/autodl-tmp/experiments/R25_AHA_SUBMIT_20261015/merged_llava_bf16_v2 --index /data/aic/semifinal_20261001/intake/index.enriched.jsonl --spatial /data/aic/semifinal_20261001/submissions/LFM_V8_B3_SEMIFINAL/predictions.jsonl --resume-compatible-code-sha 16a2df75e2515f35495e16b234532be7ac95a1ef5a646f6538b131717755974b
+
+# Final validation: native BF16 sigmoid rounding <=0.0021; same-shape uncertainty <1e-5.
+timeout --signal=TERM --kill-after=3m 42300s /root/autodl-tmp/aha_env/bin/python -u r25_aha_submit.py --root /root/autodl-tmp/experiments/R25_AHA_SUBMIT_20261015 --model /root/autodl-tmp/experiments/R25_AHA_SUBMIT_20261015/merged_llava_bf16_v2 --index /data/aic/semifinal_20261001/intake/index.enriched.jsonl --spatial /data/aic/semifinal_20261001/submissions/LFM_V8_B3_SEMIFINAL/predictions.jsonl --resume-compatible-code-sha 16a2df75e2515f35495e16b234532be7ac95a1ef5a646f6538b131717755974b,7523f65f8e078be80d545538da348e459cd9de90dcc146e88ababd90426064c9
+
+# Final native-shape implementation; all videos recomputed into scores_native_shape.
+timeout --signal=TERM --kill-after=3m 42300s /root/autodl-tmp/aha_env/bin/python -u r25_aha_submit.py --root /root/autodl-tmp/experiments/R25_AHA_SUBMIT_20261015 --model /root/autodl-tmp/experiments/R25_AHA_SUBMIT_20261015/merged_llava_bf16_v2 --index /data/aic/semifinal_20261001/intake/index.enriched.jsonl --spatial /data/aic/semifinal_20261001/submissions/LFM_V8_B3_SEMIFINAL/predictions.jsonl

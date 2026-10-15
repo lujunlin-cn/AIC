@@ -1,5 +1,7 @@
 # AGENTS.md — 2026 AIC 通用视频高光剪辑长期实验协议
 
+> **2026-10-15 生效更正：按用户确认的官方口径，总推理参数量 ≤9B。文件字节数不决定参赛资格，量化不减少参数量。本文旧文件体积口径已被本更正替代；文件 bytes 仍作为存储、部署和复现记录。**
+
 ## 0. 项目使命
 
 本仓库用于参加：
@@ -561,89 +563,21 @@ model-size coefficient
 
 ---
 
-# 13. 模型大小是一级指标
+# 13. 模型总参数是合规指标
 
-每次正式实验都必须记录：
-
-```text
-Parameters
-Checkpoint Size
-Inference Weight Size
-FP32 Size
-FP16 Size
-INT8 Size（如适用）
-Competition Size Tier
-Competition Size Coefficient
-```
-
-模型必须符合比赛最大权重限制。
-
-当前具体阈值始终以：
-
-```text
-01_赛事规则与评分标准.md
-```
-
-为准。
-
-如果当前规则仍为：
-
-```text
-<= 100 MB       -> coefficient 1.00
-100~500 MB      -> coefficient 0.95
-500 MB~9 GB     -> coefficient 0.90
-> 9 GB          -> invalid
-```
-
-则优先探索：
-
-```text
-<=100 MB
-```
-
-其次：
-
-```text
-100~500 MB
-```
-
-进入：
-
-```text
->500 MB
-```
-
-必须有实验证据证明原始指标提升足以覆盖 size penalty。
+以01文件及2026-10-15用户确认的官方口径执行：全部推理模型总参数量≤9B。
+记录Parameters、实际推理参数组成、导出文件bytes/SHA256、精度、显存与速度。
+冻结基座和辅助网络计入；量化不降低参数数，不因文件大于9GB否决合规模型。
+100M/500M参数档位的系数按当前比赛阶段记录，不能将初赛或历史系数机械套到复赛官方分。
 
 ---
 
-# 14. 不允许只看参数量估算模型大小
+# 14. 核实完整推理参数组成
 
-必须实际导出比赛推理使用的权重文件并检查。
-
-例如：
-
-```bash
-du -h model.pt
-ls -lh model.pt
-```
-
-如果最终系统同时加载：
-
-```text
-backbone
-detector
-tracker
-OCR model
-adapter
-LoRA
-spatial network
-auxiliary network
-```
-
-则要按比赛规则计算总权重。
-
-不能只报告主 backbone。
+统计backbone、视觉编码器、projector、评分头、未合并adapter/LoRA、detector、tracker、OCR、spatial及其他辅助网络。
+实际部署合并后的权重只计一次，模块别名不重复计数，缓存不免除生成模型的参数。
+必须导出并记录实际文件大小用于存储与复现；文件bytes不是比赛参数上限。
+不能只报告主backbone，也不能把显存占用当作参数量。
 
 ---
 
@@ -732,7 +666,7 @@ Path Smoothing
 优先目标：
 
 ```text
-<=100 MB
+<=100M参数
 ```
 
 A 是整个项目的：
@@ -1968,8 +1902,8 @@ STATUS.md
 
 ```text
 Current Best
-Best <=100MB
-Best <=500MB
+Best <=100M参数
+Best <=500M参数
 Best Overall
 Temporal Best
 Spatial Best
@@ -2110,7 +2044,7 @@ A3
 建立稳定：
 
 ```text
-<=100MB Safe Baseline
+<=100M参数 Safe Baseline
 ```
 
 ## P2

@@ -1,0 +1,3013 @@
+{
+  "valid": true,
+  "independent": {
+    "valid": true,
+    "videos": 426,
+    "predictions": 204907,
+    "model_size_mb": 8480.646545,
+    "checker": "independent_submission_check_v1"
+  },
+  "contract": {
+    "valid": true,
+    "issues": [
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "0",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "1",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "2",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "3",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "4",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "5",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "6",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "7",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "8",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "9",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "10",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "11",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "12",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "13",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "14",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "15",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "16",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "17",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "18",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "19",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "20",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "21",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "22",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "23",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "24",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "25",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "26",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "27",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "28",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "29",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "30",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "31",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "32",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "33",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "34",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "35",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "36",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "37",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "38",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "39",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "40",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "41",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "42",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "43",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "44",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "45",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "46",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "47",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "48",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "49",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "50",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "51",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "52",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "53",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "54",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "55",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "56",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "57",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "58",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "59",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "60",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "61",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "62",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "63",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "64",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "65",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "66",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "67",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "68",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "69",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "70",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "71",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "72",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "73",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "74",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "75",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "76",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "77",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "78",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "79",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "80",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "81",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "82",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "83",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "84",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "85",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "86",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "87",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "88",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "89",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "90",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "91",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "92",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "93",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "94",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "95",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "96",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "97",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "98",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "99",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "100",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "101",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "102",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "103",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "104",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "105",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "106",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "107",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "108",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "109",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "110",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "111",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "112",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "113",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "114",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "115",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "116",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "117",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "118",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "119",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "120",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "121",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "122",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "123",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "124",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "125",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "126",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "127",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "128",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "129",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "130",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "131",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "132",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "133",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "134",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "135",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "136",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "137",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "138",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "139",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "140",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "141",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "142",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "143",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "144",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "145",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "146",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "147",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "148",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "149",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "150",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "151",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "152",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "153",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "154",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "155",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "156",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "157",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "158",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "159",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "160",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "161",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "162",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "163",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "164",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "165",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "166",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "167",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "168",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "169",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "170",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "171",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "172",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "173",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "174",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "175",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "176",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "177",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "178",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "179",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "180",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "181",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "182",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "183",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "184",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "185",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "186",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "187",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "188",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "189",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "190",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "191",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "192",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "193",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "194",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "195",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "196",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "197",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "198",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "199",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "200",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "201",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "202",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "203",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "204",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "205",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "206",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "207",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "208",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "209",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "210",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "211",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "212",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "213",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "214",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "215",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "216",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "217",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "218",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "219",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "220",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "221",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "222",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "223",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "224",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "225",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "226",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "227",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "228",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "229",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "230",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "231",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "232",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "233",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "234",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "235",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "236",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "237",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "238",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "239",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "240",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "241",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "242",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "243",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "244",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "245",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "246",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "247",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "248",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "249",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "250",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "251",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "252",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "253",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "254",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "255",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "256",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "257",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "258",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "259",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "260",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "261",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "262",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "263",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "264",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "265",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "266",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "267",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "268",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "269",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "270",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "271",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "272",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "273",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "274",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "275",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "276",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "277",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "278",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "279",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "280",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "281",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "282",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "283",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "284",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "285",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "286",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "287",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "288",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "289",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "290",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "291",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "292",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "293",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "294",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "295",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "296",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "297",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "298",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "299",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "300",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "301",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "302",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "303",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "304",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "305",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "306",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "307",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "308",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "309",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "310",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "311",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "312",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "313",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "314",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "315",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "316",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "317",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "318",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "319",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "320",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "321",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "322",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "323",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "324",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "325",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "326",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "327",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "328",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "329",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "330",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "331",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "332",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "333",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "334",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "335",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "336",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "337",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "338",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "339",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "340",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "341",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "342",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "343",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "344",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "345",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "346",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "347",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "348",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "349",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "350",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "351",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "352",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "353",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "354",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "355",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "356",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "357",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "358",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "359",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "360",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "361",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "362",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "363",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "364",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "365",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "366",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "367",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "368",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "369",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "370",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "371",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "372",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "373",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "374",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "375",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "376",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "377",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "378",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "379",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "380",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "381",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "382",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "383",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "384",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "385",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "386",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "387",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "388",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "389",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "390",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "391",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "392",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "393",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "394",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "395",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "396",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "397",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "398",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "399",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "400",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "401",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "402",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "403",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "404",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "405",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "406",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "407",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "408",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "409",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "410",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "411",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "412",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "413",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "414",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "415",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "416",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "417",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "418",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "419",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "420",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "421",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "422",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "423",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "424",
+        "prediction_index": null,
+        "severity": "warning"
+      },
+      {
+        "code": "model_params_missing",
+        "message": "legacy MB-only row; declare model_params_b for semifinal",
+        "video_id": "425",
+        "prediction_index": null,
+        "severity": "warning"
+      }
+    ],
+    "video_count": 426,
+    "prediction_count": 204907,
+    "model_size_mb": 8480.646545,
+    "model_params_b": null,
+    "stage": "final",
+    "validator": "local_rules_2026-09-24_not_official"
+  },
+  "zip_sha256": "736aa5e6a9644b293c2d282bfd79d74f8eecb37db9e77dc4124e12a434df8cec",
+  "total_parameters": 8480646545,
+  "parameter_limit": 9000000000,
+  "native_forward_max_abs_difference": 0.0,
+  "keep_fraction": 0.8750763370188632,
+  "constant_score_videos": 0,
+  "zip_root": [
+    "predictions.jsonl"
+  ],
+  "official_score": null
+}

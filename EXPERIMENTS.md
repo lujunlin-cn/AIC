@@ -518,3 +518,50 @@ The frozen InternVideo2 Stage1-1B K700 candidate received official platform scor
   采用脚本版本 —— **"本协议下可学信号弱" ≠ "任务无内容信号"**。
   8 条臂全部落在控制带 [0.2404, 0.2470] 的 ±0.008 内。残留待核：`manifest_sha256` 声明值
   `a5de5742…` 与实测 `016a3f03…` 不一致。计划见 `docs/r21_direction_and_plan_20261015.md`。
+
+---
+
+## 阶段 0（2026-10-15）R21 阻断清单收口：0.1 / 0.2 / 0.3（CPU 只读，0 GPU，0 训练，0 提交）
+
+- **Hypothesis**：R21 列出的五项阻断中，生成器/哈希/额度三项是文书与溯源问题，
+  闭掉它们不需要算力，但决定阶段 1 之后的实验是否可解释。
+- **Change**：不改任何模型与数据；只做溯源核对与文档收口。
+- **Result**：
+
+  **0.1 提交额度** —— 官方额度是**每天 5 次**，不是总量稀缺。用户 2026-10-06 更正。
+  `reports/r6/claim_ledger.md` 记「memory 已存」但该 memory 文件从未写盘（本次补写
+  `memory/aic-submission-quota-daily.md`）。此前按"总量稀缺"设计的 hour-36 一次性决策、
+  D/S-T 诊断包与真候选互斥的 slot_strategy **作废**。
+  ⇒ **随机排序探针可负担**，从"需先确认额度"变为可执行。
+
+  **0.2 `manifest_sha256` 不一致 —— 虚惊，撤销**。`T1S_uniform_s13_v1/config.json` 声明的
+  `a5de5742f51a…` 指向 `R16_EXEC/temporal_rgb_v1/manifest.jsonl`（**特征池清单**），
+  不是划分文件；该路径下 `public_uniform_group_v1.json` 实测 `016a3f034086…`，本就不同名。
+  另：两个划分副本（`016a3f03` 与 `48cb0c2c`）字节内容不同但**分区逐字段完全相同**
+  （121/40/42，`indices` 968/320/336，`positive_rows` 344/107/142）——差异来自格式化。
+  ⇒ R16 源级划分**认证通过**，§2 的"待核实"项关闭，T1/T1S 8 条臂读数继续有效。
+
+  **0.3 MrHiSum `gif_hard` —— 裁定 `PLACEHOLDER_OR_FAILURE`**。决定性证据在
+  `/root/AIC/scripts/r14_assemble_sft_v2.py:107`：
+
+  ```
+  else:                                    # source == "mrhs"
+      ...
+      gif_hard = [0] * 12          # 字面常量，不是计算出来的
+      gif_soft = soft
+  ```
+
+  同文件 PHD2 分支（84–100 行）**确实计算** `gif_hard`。上游 `r13_sft_data_build.py:129`
+  对 `mrhs` 写 `"gif_hard": None`，而 `r13_grpo_pool.py:27-30` **依赖该 `None`**
+  把 MrHiSum 排除出 GRPO 池 ⇒ v2 把 `None` 换成 `[0]*12`，语义从显式"无标签"
+  静默变成貌似合法的"这 12 帧都不是高光"。
+  MrHiSum 原生标注只有 `gtscore` / `change_points` / `gt_summary`，**无帧级硬标签**。
+  三个流传的全零比例在不同分母上均复现：**0.9%**=仅 PHD2 子组 / **87%**=holdout-125 /
+  **79.07%**=完整池（1983/2508）。`gif_soft` 完好（0% 全零）。
+- **Size**：无变化。
+- **Training Time**：0（纯 CPU 只读溯源 + 文书）。
+- **Conclusion**：R21 五项阻断中 **1 项裁定（占位符）、1 项撤销（虚惊）、1 项闭掉（额度）**，
+  余下 2 项（源身份未绑定 / 缓存合同破裂 / 确认池耗尽）由阶段 1 仪器重建处理，0.4 后台核实中。
+  文档同步收口：`STATUS.md` 阻断 1、`DECISIONS.md` 新增「2026-10-15（补）」节。
+  **副作用**：任何依赖 `gif_hard` 的历史数字（含 GRPO 池构成）都建立在占位符上，需重算；
+  弱监督线因 `gif_soft` 完好不受影响。

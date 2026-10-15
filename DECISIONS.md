@@ -442,3 +442,37 @@ Consequence：
 - 新增 P0：**随机排序探针** —— 空间 bbox 逐字节复制 B3（R̄ 恒定），时间换固定伪随机排列，
   此时 `ρ ≡ p` 精确成立，得 `S_rand(p)=F_ANCHOR·(1+d)·p/(p+d)`，**只剩 d 一个未知量**。
   p=0.5 单点即可分辨 d∈[0.21,1.0]（极差 6.4 分，大于全部 6 次实测总跨度 2.95 分）。详见 `docs/r15d_ceiling_and_identifiability.md` §4。
+
+## 2026-10-15：分数口径结案 —— 6 个实测点同一单位，混用合法，禁止 /k_size 换算
+
+Status：Accepted（结案，关闭 U3）。
+
+**问题**：锚点 `F_ANCHOR = 34.75`（v8b3 全帧）测于 ~10-02，keep 扫描 6 点测于 10-14，
+中间隔 10-05 的 k_size 取消。若锚点带 k、扫描点不带（或反之），6 点不可混，`d` 反解全部作废。
+
+**裁定：同一单位，混用合法。**
+
+Evidence：
+1. `reports/r5/score_ledger.json`（10-04）逐条记 `score_platform` 与 `score_raw_percent`
+   **同值**，`score_unit: "raw_no_size_penalty"`；并把 `raw F = 38.83 = 34.95/0.90`
+   明列于 **`withdrawn_conversions`**（"conversions from score/k_size are BANNED"）。
+   ⇒ 平台**从来不在回分里乘 k_size**；34.75 自始至终是 F_video×100 本身。
+2. **配对实验判定机制**（`reports/20261003_v10_exploration_report.md`）：同一预测集，
+   声明尺寸 862 MB（k=0.90 档）→ 178 MB（k=0.95 档），两分 **34.75 vs 34.73（Δ0.02）**。
+   若 k 作用于回分，Δ 应为 ~1.9 分。实测 Δ0.02 ⇒ **回分与尺寸无关**，k 在内部核算、
+   不进返回值。10-05 取消它只是删掉一个从未生效的乘数 ⇒ **不产生单位断裂**。
+3. `submissions/LFM_V11_VTREPLAY_SEMIFINAL/manifest.json`：`scored_at 2026-10-04`，
+   `score_unit: raw_no_size_penalty`，operator-confirmed。
+
+Consequence：
+- `scripts/r15d_ceiling_frontier.py` / `scripts/r15d_random_probe_package.py` 的
+  `F_ANCHOR = 34.75` **正确，不改**。`d ≥ 0.21029`、p=0.8534 天花板 39.54、
+  "现役 89.8% 天花板"、"现役 keep 率下 40 分不可达" 全部保持。
+- **反而是 `34.75/0.90 = 38.61` 那个换算是错的** —— 它正是 ledger 已撤回的那类操作。
+  若曾按 38.61 重算，会把下界推到 ≈0.2393、天花板推到 ≈43.8，是**虚假**地推翻现结论。
+- 唯一残留不确定：六点是否同**阶段**（同一测试集/同一评分窗口）。但 10-02 与 10-14
+  同属复赛，无阶段变更记录，且 ledger 把 45.0 的"对手情报"与 34.95 并列在同一
+  `raw_no_size_penalty` 口径下 —— 无证据支持阶段断裂，维持同单位。
+
+Method lesson（并入铁律）：本类"单位疑虑"应当**先查 ledger/manifest 的显式字段**，
+再考虑改动已提交的分析；本次若径直 rescale，会在"修正"的名义下注入一个更大的错误。

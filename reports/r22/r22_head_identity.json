@@ -1,0 +1,68 @@
+{
+  "sft_sha256": "8027971c14b117468e14ebccaf8348ccd31a2a1786b4195ef53b66240c5f230c",
+  "head": "/root/autodl-tmp/vpb/vp_score_head.pt",
+  "head_report": {
+    "tag": "temporal/gif_hard",
+    "best_holdout_spearman": 0.5696324319689352,
+    "train_spearman": 0.7480315169526144,
+    "hold_predpred_pearson": 0.11989494483710218,
+    "pred_range_p5_p95": [
+      -0.19276073575019836,
+      0.7212610244750977
+    ],
+    "epochs_used": 39
+  },
+  "head_target": "gif_hard",
+  "head_feat": "temporal",
+  "checkpoint_recorded_value": 0.5696324319689352,
+  "norm_sd_min": 0.09212812036275864,
+  "norm_sd_zeros": 0,
+  "holdout_seed": 13,
+  "holdout_n": 125,
+  "variants": {
+    "A_restored_identity_norm_gelu": {
+      "spearman": 0.5696324319689352,
+      "delta_vs_ckpt": 0.0,
+      "note": "恢复的真身：训练用路径"
+    },
+    "A2_norm_but_relu": {
+      "spearman": 0.5736808711916308,
+      "delta_vs_ckpt": 0.004048439222695599,
+      "note": "只换激活"
+    },
+    "B_audited_copy_no_norm_relu": {
+      "spearman": 0.5616186094089699,
+      "delta_vs_ckpt": -0.0080138225599653,
+      "note": "被审计副本的做法"
+    },
+    "C_no_norm_gelu": {
+      "spearman": 0.5562483757405177,
+      "delta_vs_ckpt": -0.01338405622841754,
+      "note": "只去归一化"
+    },
+    "A_spatial_restored": {
+      "spearman": 0.02592232556114024,
+      "delta_vs_ckpt": -0.5437101064077949,
+      "note": "用 spatial 特征（对照）"
+    },
+    "B_spatial_audited": {
+      "spearman": -0.017380847393570195,
+      "delta_vs_ckpt": -0.5870132793625054,
+      "note": "spatial + 审计副本（对照）"
+    }
+  },
+  "acceptance": {
+    "criterion": "恢复身份复算 − ckpt 记录的 best_holdout_spearman，|Δ| < 1e-6",
+    "delta": 0.0,
+    "verdict": "PASS",
+    "what_a_pass_simultaneously_verifies": [
+      "头激活身份（GELU）",
+      "特征标准化 (x-mu)/sd 由 ckpt 携带",
+      "输入预处理 /255.0",
+      "特征缓存可重绑到训练时干净视图",
+      "行对齐可重建",
+      "holdout 划分 default_rng(13)[:125]"
+    ],
+    "audited_copy_bias": -0.0080138225599653
+  }
+}

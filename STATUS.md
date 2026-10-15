@@ -38,9 +38,18 @@
    标 `label_status=placeholder`，不当真负、不删行；`gif_soft` 完好不受影响。
    全池全零 **79.07%**（0.9%=仅PHD2 / 87%=holdout125 各自分母不同，不矛盾）。
 2. 源身份未绑定：2508 行 = **1329** 规范源；legacy hold125 有 98 行同源。
-3. 缓存合同破裂：禁止跨池复用行号（`0.3340`、`−0.0994` 两次翻车的直接原因）。
-4. VPB 头身份不一致：被审计副本改成 ReLU 且漏 checkpoint 的 `norm=(mu,sd)`。
-5. 确认池耗尽：LIVE 1800 源全 exposure；227 reserve ≡ 旧 R11 confirmation。
+3. **缓存合同破裂 —— 机制已定位（R22c）**：`train_vp_head.py:56` 有
+   `assert len(vids)==len(rows)`，但 `e04_compare.py:118-124` / `resid_e03.py:85-93`
+   只有 `concat → argsort(order)`，**无断言无截断**，把 2700 行缓存喂给索引域 <2508 的
+   `hold_idx` ⇒ **静默行号错配**。禁令：禁止跨池复用行号；评估路径必须自带长度断言。
+4. **VPB 头身份不一致 —— 已恢复（R22c）**：真身是 `/255.0` + `(x−mu)/sd` + **GELU**
+   （`train_vp_head.py:86/106`、`extract_features.py:65`）；四处副本改成 ReLU 且漏归一化。
+   按真身复算已**精确重现** ckpt 记录的 `0.5696324319689352`（Δ=+0.000e+00）。
+5. **抽特征不可复现（R22c 新）**：`vpb_artifacts/feat` 盘上缓存**重算不出来**
+   （未被改写过的 `shard_0` 缺口一样大，单行最高 0.1298 ≈1.45σ；fp16/fp32 权重实测相同）。
+   且 `shard_3of4` 被追加过 192 行重复 vid。
+   **处置：阶段 2 起冻结 VPB 特征必须现算，禁止复用该缓存**，并记录当次权重 sha256。
+6. 确认池耗尽：LIVE 1800 源全 exposure；227 reserve ≡ 旧 R11 confirmation。
 
 ## 已作废的本地读数
 
@@ -64,8 +73,8 @@ R16_EXEC 的 T1/T1S 8 条臂（源级互斥：121/40/42，三向交集全 0）�
 | 阶段 | 内容 | 成本 | 阻塞 |
 |---|---|---|---|
 | 0 | 全部 **闭**：额度=每日5次 · manifest sha（虚惊）· gif_hard（占位符）· 35.52 包审计完成 | 0 GPU，~1h | — |
-| 1 | 全部 **闭**：64 源到手（1.395 GB）· **54 过轴门 / 10 隔离** · 源级绑定 + 双 sha | CPU 有界，280 s | — |
-| 2 | 判决实验：冻结 VPB point-vs-block ×2 seed，开发门 ΔF@0.85 ≥0.005 | 单卡，每臂 <10min | **输入条件已满足** |
+| 1 | 全部 **闭（4/4）**：64 源（1.395 GB）· **54 过轴门 / 10 隔离** · 源级绑定 + 双 sha · **缓存重绑 `aligned=true` 冻结 2508 行** · **头身份恢复并精确重现 0.5696324319689352** | CPU 有界，280 s | — |
+| 2 | 判决实验：冻结 VPB point-vs-block ×2 seed，开发门 ΔF@0.85 ≥0.005 | 单卡，每臂 <10min | **输入条件已满足**（干净视图 + 正确头身份齐备）；**特征须现算** |
 | 3 | 表示比较：VPB vs CLIP（同头/同初始化/同归一化） | 同上 | 阶段 1 |
 | 4 | AHA 有界真实视觉 smoke（单卡 ≤20min） | 单卡 | 并行 |
 | 5 | 空间：LFM vs DINO | — | **需新 native x/y 人工 GT** |
@@ -79,8 +88,9 @@ R16_EXEC 的 T1/T1S 8 条臂（源级互斥：121/40/42，三向交集全 0）�
 它决定「现役拿不到 40 分」是真结论还是窄窗近似失效 ⇒ 见本轮降级条目。
 最省解法仍是随机排序探针（一次同时钉死 d 与真实 p）。
 
-阶段 0/1 结论与证据见 `DECISIONS.md`「2026-10-15（补 / 补 2 / 补 3）」三节、
-`EXPERIMENTS.md` R22 / R22b 两节。仪器报告 `reports/r22/r22_instrument_report.json`。
+阶段 0/1 结论与证据见 `DECISIONS.md`「2026-10-15（补 / 补 2 / 补 3 / 补 4）」四节、
+`EXPERIMENTS.md` R22 / R22b / R22c 三节。仪器报告 `reports/r22/r22_instrument_report.json`。
+阶段 1 两个执行器：`scripts/r22_rebind_cache.py`、`scripts/r22_head_identity.py`。
 
 ## Failed Ideas（勿重开）
 

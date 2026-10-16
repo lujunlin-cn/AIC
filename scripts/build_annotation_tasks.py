@@ -49,18 +49,27 @@ def main() -> None:
             "intentionally off for the blind first-pass annotation."
         ),
     )
+    ap.add_argument(
+        "--video-id",
+        action="append",
+        dest="video_ids",
+        help="Restrict output to one or more manifest video IDs; repeat the flag.",
+    )
     args = ap.parse_args()
 
     cfg = json.loads(args.config.read_text(encoding="utf-8"))
     overlap = set(cfg["annotators"]["overlap_video_ids"])
     single = set(cfg["annotators"]["single_annotator_video_ids"])
     tasks: list[dict] = []
+    requested_video_ids = set(args.video_ids or [])
     document_root = args.document_root.resolve() if args.document_root else None
     if args.image_mode == "label-studio-local-files" and document_root is None:
         # artifacts/<batch>/frames/... -> repository root
         document_root = args.frames.resolve().parents[2]
     for item in cfg["items"]:
         vid = item["video_id"]
+        if requested_video_ids and vid not in requested_video_ids:
+            continue
         frame_dir = args.frames / vid
         paths = sorted(frame_dir.glob("*.jpg"), key=lambda p: float(p.stem))
         if len(paths) != cfg["clip_duration_seconds"]:
@@ -103,6 +112,11 @@ def main() -> None:
                 })
             tasks.append(task)
     args.output.parent.mkdir(parents=True, exist_ok=True)
+    if requested_video_ids:
+        present = {task["data"]["video_id"] for task in tasks}
+        missing = requested_video_ids - present
+        if missing:
+            raise SystemExit(f"unknown video IDs: {sorted(missing)}")
     args.output.write_text(json.dumps(tasks, ensure_ascii=False, indent=2) + "\n",
                            encoding="utf-8")
     print(json.dumps({"tasks": len(tasks), "videos": len(cfg["items"]),

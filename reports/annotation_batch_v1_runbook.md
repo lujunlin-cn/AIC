@@ -30,10 +30,10 @@ label-studio start
 创建项目时把 [`configs/label_studio_annotation_v1.xml`](../configs/label_studio_annotation_v1.xml) 作为 labeling interface，然后导入：
 
 ```text
-artifacts/annotation_batch_v1/label_studio_tasks_local_files.json
+artifacts/annotation_batch_v1/label_studio_tasks_smoke_local_files.json
 ```
 
-该文件含 360 个任务，图像路径形如 `/data/local-files/?d=artifacts/...`。当前任务是盲标版本：只含视频 ID 和时间，不含类别、抽样原因或 QVH query；这些信息只在独立 manifest 中，供标注完成后比较。如果 Label Studio 环境允许浏览器直接读本机文件，也可使用同目录的 `label_studio_tasks.json`（`file://` 路径版本）。
+先导入这个 60 任务的 smoke 文件；验收后再导入完整文件 `artifacts/annotation_batch_v1/label_studio_tasks_local_files.json`（360 个任务）。图像路径形如 `/data/local-files/?d=artifacts/...`。当前任务是盲标版本：只含视频 ID 和时间，不含类别、抽样原因或 QVH query；这些信息只在独立 manifest 中，供标注完成后比较。如果 Label Studio 环境允许浏览器直接读本机文件，也可使用同目录的 `label_studio_tasks.json`（`file://` 路径版本）。
 
 先只标以下两个视频验收界面和导出：
 

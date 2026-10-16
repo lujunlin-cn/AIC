@@ -1,0 +1,31 @@
+{
+  "submission_id": "R35_VT_UNION90_B3",
+  "status": "PACKAGED_NOT_UPLOADED",
+  "official_score": null,
+  "method": "union of replay and exactdp temporal heads + B3 spatial boxes",
+  "video_count": 426,
+  "prediction_count": 210827,
+  "actual_keep_fraction": 0.9003583035458812,
+  "target_keep": 0.9,
+  "total_parameters": 450776179,
+  "model_params_b": 0.450776179,
+  "model_size_mb_semantics": "total inference parameters / 1e6, not file bytes",
+  "parameter_components": {
+    "B3_spatial": 450283377,
+    "temporal_heads": 492802
+  },
+  "predictions_sha256": "a19348c19e8aaddb3404f165ef5e3f0b19a7f3dac2c5cc87cce57e145f448a80",
+  "zip_sha256": "05db5b55c0f202bf7b1cfc23b2f93ab595be757b56b9b01163ac33429d2b82fb",
+  "zip_bytes": 1456473,
+  "index_sha256": "02d52321e82a70cafd33d566319b2ebf5e405af43946d6da32181eccdbc46a93",
+  "source": "AIC 426 remote frozen temporal cache; no GT or official test labels",
+  "validation": {
+    "independent_checker": "PASS",
+    "contract": "PASS"
+  },
+  "limitations": [
+    "not uploaded",
+    "no official score",
+    "B3 boxes reused on selected frames"
+  ]
+}

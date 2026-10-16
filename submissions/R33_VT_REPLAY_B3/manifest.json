@@ -1,0 +1,31 @@
+{
+  "submission_id": "R33_VT_REPLAY_B3",
+  "status": "PACKAGED_NOT_UPLOADED",
+  "official_score": null,
+  "method": "replay temporal head + B3 spatial boxes",
+  "video_count": 426,
+  "prediction_count": 183505,
+  "actual_keep_fraction": 0.7836769033007487,
+  "target_keep": 0.8,
+  "total_parameters": 450529778,
+  "model_params_b": 0.45052977800000005,
+  "model_size_mb_semantics": "total inference parameters / 1e6, not file bytes",
+  "parameter_components": {
+    "B3_spatial": 450283377,
+    "temporal_heads": 246401
+  },
+  "predictions_sha256": "7d18cc90bcda4a858e93eaebd74c543e0efd10c6aca4655514638b1999bb7d52",
+  "zip_sha256": "5b3ac81986129ac974beef4e62ceb2520f9e63836444d709120eceff80d9196f",
+  "zip_bytes": 1276445,
+  "index_sha256": "02d52321e82a70cafd33d566319b2ebf5e405af43946d6da32181eccdbc46a93",
+  "source": "AIC 426 remote frozen temporal cache; no GT or official test labels",
+  "validation": {
+    "independent_checker": "PASS",
+    "contract": "PASS"
+  },
+  "limitations": [
+    "not uploaded",
+    "no official score",
+    "B3 boxes reused on selected frames"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "submission_id": "R36_VT_CONSENSUS85_B3",
+  "status": "PACKAGED_NOT_UPLOADED",
+  "official_score": null,
+  "method": "agreement-first replay/exactdp, center fill to exact 85% budget + B3",
+  "video_count": 426,
+  "prediction_count": 199037,
+  "actual_keep_fraction": 0.8500079006145397,
+  "target_keep": 0.85,
+  "total_parameters": 450776179,
+  "model_params_b": 0.450776179,
+  "model_size_mb_semantics": "total inference parameters / 1e6, not file bytes",
+  "parameter_components": {
+    "B3_spatial": 450283377,
+    "temporal_heads": 492802
+  },
+  "predictions_sha256": "b0e35536ec7793a2772ed62507a617e405085701a60bbc2803d6029edb20c93c",
+  "zip_sha256": "23fc547d2c5e9f22eb2146514d3a6d520f600bf5d2e631777ae5fcad822cfbd0",
+  "zip_bytes": 1380935,
+  "index_sha256": "02d52321e82a70cafd33d566319b2ebf5e405af43946d6da32181eccdbc46a93",
+  "source": "AIC 426 remote frozen temporal cache; no GT or official test labels",
+  "validation": {
+    "independent_checker": "PASS",
+    "contract": "PASS"
+  },
+  "limitations": [
+    "not uploaded",
+    "no official score",
+    "B3 boxes reused on selected frames"
+  ]
+}

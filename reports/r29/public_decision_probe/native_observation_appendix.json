@@ -1,0 +1,481 @@
+{
+  "scope": "Descriptive appendix to preregistered probe; no fitting, no DEV selection",
+  "protected_opened": false,
+  "parent_metrics_sha256": "9c581ad2a8bd36ec00420ac7da190e265e3d961a9fa0ab17ec0c1597c903ca6d",
+  "script_sha256": "60a319306c0981b979707e0f09ff755d5240ecf6c672c3eabd8122a8f9485827",
+  "command": "OPENBLAS_NUM_THREADS=1 python reports/r29/public_decision_probe/native_observation_recompute.py",
+  "seconds": 0.09030689799692482,
+  "summary": {
+    "train": {
+      "native_aha_requested": {
+        "mean": 127.76923076923077,
+        "min": 20.0,
+        "max": 239.0
+      },
+      "native_aha_unique_frames": {
+        "mean": 127.34615384615384,
+        "min": 20.0,
+        "max": 239.0
+      },
+      "max_sampling_gap_s": {
+        "mean": 1.4553349501409742,
+        "min": 1.0,
+        "max": 5.372033333333334
+      },
+      "mean_rater_runs": {
+        "mean": 3.1115384615384616,
+        "min": 2.0,
+        "max": 5.0
+      },
+      "mean_rater_unobserved_runs": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "mean_rater_positive_mass_in_unobserved_runs": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    "dev": {
+      "native_aha_requested": {
+        "mean": 133.78571428571428,
+        "min": 19.0,
+        "max": 203.0
+      },
+      "native_aha_unique_frames": {
+        "mean": 133.21428571428572,
+        "min": 19.0,
+        "max": 203.0
+      },
+      "max_sampling_gap_s": {
+        "mean": 1.3124047619047647,
+        "min": 1.0,
+        "max": 5.366666666666674
+      },
+      "mean_rater_runs": {
+        "mean": 4.142857142857143,
+        "min": 2.0,
+        "max": 13.0
+      },
+      "mean_rater_unobserved_runs": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "mean_rater_positive_mass_in_unobserved_runs": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      }
+    }
+  },
+  "sources": [
+    {
+      "video_id": "dXSlCw8AXv0",
+      "split": "train",
+      "native_aha_requested": 207,
+      "native_aha_unique_frames": 207,
+      "max_sampling_gap_s": 1.0010000000000048,
+      "mean_rater_runs": 3.0,
+      "mean_rater_unobserved_runs": 0.0,
+      "mean_rater_positive_mass_in_unobserved_runs": 0.0
+    },
+    {
+      "video_id": "XCwPsQwzfiA",
+      "split": "train",
+      "native_aha_requested": 177,
+      "native_aha_unique_frames": 177,
+      "max_sampling_gap_s": 1.0010000000000048,
+      "mean_rater_runs": 4.0,
+      "mean_rater_unobserved_runs": 0.0,
+      "mean_rater_positive_mass_in_unobserved_runs": 0.0
+    },
+    {
+      "video_id": "aXm3sPITCKM",
+      "split": "train",
+      "native_aha_requested": 181,
+      "native_aha_unique_frames": 181,
+      "max_sampling_gap_s": 1.003143181970188,
+      "mean_rater_runs": 3.0,
+      "mean_rater_unobserved_runs": 0.0,
+      "mean_rater_positive_mass_in_unobserved_runs": 0.0
+    },
+    {
+      "video_id": "mTmcz5NWNQA",
+      "split": "train",
+      "native_aha_requested": 185,
+      "native_aha_unique_frames": 179,
+      "max_sampling_gap_s": 5.372033333333334,
+      "mean_rater_runs": 3.0,
+      "mean_rater_unobserved_runs": 0.0,
+      "mean_rater_positive_mass_in_unobserved_runs": 0.0
+    },
+    {
+      "video_id": "IV47aK7qJdY",
+      "split": "train",
+      "native_aha_requested": 55,
+      "native_aha_unique_frames": 55,
+      "max_sampling_gap_s": 1.0010000000000048,
+      "mean_rater_runs": 3.0,
+      "mean_rater_unobserved_runs": 0.0,
+      "mean_rater_positive_mass_in_unobserved_runs": 0.0
+    },
+    {
+      "video_id": "UoX2xhYPD38",
+      "split": "train",
+      "native_aha_requested": 82,
+      "native_aha_unique_frames": 82,
+      "max_sampling_gap_s": 1.0,
+      "mean_rater_runs": 4.0,
+      "mean_rater_unobserved_runs": 0.0,
+      "mean_rater_positive_mass_in_unobserved_runs": 0.0
+    },
+    {
+      "video_id": "1iIG5D3jTk4",
+      "split": "train",
+      "native_aha_requested": 97,
+      "native_aha_unique_frames": 97,
+      "max_sampling_gap_s": 1.0010000000000048,
+      "mean_rater_runs": 2.0,
+      "mean_rater_unobserved_runs": 0.0,
+      "mean_rater_positive_mass_in_unobserved_runs": 0.0
+    },
+    {
+      "video_id": "DXG4djsPk7s",
+      "split": "train",
+      "native_aha_requested": 20,
+      "native_aha_unique_frames": 20,
+      "max_sampling_gap_s": 1.0,
+      "mean_rater_runs": 2.0,
+      "mean_rater_unobserved_runs": 0.0,
+      "mean_rater_positive_mass_in_unobserved_runs": 0.0
+    },
+    {
+      "video_id": "r82RY124wVY",
+      "split": "train",
+      "native_aha_requested": 101,
+      "native_aha_unique_frames": 101,
+      "max_sampling_gap_s": 1.0010000000000048,
+      "mean_rater_runs": 3.0,
+      "mean_rater_unobserved_runs": 0.0,
+      "mean_rater_positive_mass_in_unobserved_runs": 0.0
+    },
+    {
+      "video_id": "ER0UPx6-VcM",
+      "split": "train",
+      "native_aha_requested": 78,
+      "native_aha_unique_frames": 76,
+      "max_sampling_gap_s": 4.208333333333336,
+      "mean_rater_runs": 2.9,
+      "mean_rater_unobserved_runs": 0.0,
+      "mean_rater_positive_mass_in_unobserved_runs": 0.0
+    },
+    {
+      "video_id": "QbhMOqg9Tmg",
+      "split": "train",
+      "native_aha_requested": 227,
+      "native_aha_unique_frames": 227,
+      "max_sampling_gap_s": 1.0010000000000048,
+      "mean_rater_runs": 2.0,
+      "mean_rater_unobserved_runs": 0.0,
+      "mean_rater_positive_mass_in_unobserved_runs": 0.0
+    },
+    {
+      "video_id": "Cq7Myyfbtn0",
+      "split": "train",
+      "native_aha_requested": 118,
+      "native_aha_unique_frames": 118,
+      "max_sampling_gap_s": 1.0189525168127176,
+      "mean_rater_runs": 3.0,
+      "mean_rater_unobserved_runs": 0.0,
+      "mean_rater_positive_mass_in_unobserved_runs": 0.0
+    },
+    {
+      "video_id": "HoViId2LHl8",
+      "split": "train",
+      "native_aha_requested": 136,
+      "native_aha_unique_frames": 136,
+      "max_sampling_gap_s": 1.0010000000000048,
+      "mean_rater_runs": 4.0,
+      "mean_rater_unobserved_runs": 0.0,
+      "mean_rater_positive_mass_in_unobserved_runs": 0.0
+    },
+    {
+      "video_id": "Ib3XqmBqy10",
+      "split": "train",
+      "native_aha_requested": 202,
+      "native_aha_unique_frames": 199,
+      "max_sampling_gap_s": 5.159999999999997,
+      "mean_rater_runs": 3.0,
+      "mean_rater_unobserved_runs": 0.0,
+      "mean_rater_positive_mass_in_unobserved_runs": 0.0
+    },
+    {
+      "video_id": "Yr2unlRQZa0",
+      "split": "train",
+      "native_aha_requested": 119,
+      "native_aha_unique_frames": 119,
+      "max_sampling_gap_s": 1.0010000000000048,
+      "mean_rater_runs": 3.0,
+      "mean_rater_unobserved_runs": 0.0,
+      "mean_rater_positive_mass_in_unobserved_runs": 0.0
+    },
+    {
+      "video_id": "VLQQVNIZQqo",
+      "split": "train",
+      "native_aha_requested": 53,
+      "native_aha_unique_frames": 53,
+      "max_sampling_gap_s": 1.0010000000000048,
+      "mean_rater_runs": 3.0,
+      "mean_rater_unobserved_runs": 0.0,
+      "mean_rater_positive_mass_in_unobserved_runs": 0.0
+    },
+    {
+      "video_id": "Lml6HGhM4yg",
+      "split": "train",
+      "native_aha_requested": 45,
+      "native_aha_unique_frames": 45,
+      "max_sampling_gap_s": 1.0652463382157116,
+      "mean_rater_runs": 2.0,
+      "mean_rater_unobserved_runs": 0.0,
+      "mean_rater_positive_mass_in_unobserved_runs": 0.0
+    },
+    {
+      "video_id": "fsz79uPkUSs",
+      "split": "train",
+      "native_aha_requested": 200,
+      "native_aha_unique_frames": 200,
+      "max_sampling_gap_s": 1.0,
+      "mean_rater_runs": 4.0,
+      "mean_rater_unobserved_runs": 0.0,
+      "mean_rater_positive_mass_in_unobserved_runs": 0.0
+    },
+    {
+      "video_id": "4b2_OpAGwW0",
+      "split": "train",
+      "native_aha_requested": 239,
+      "native_aha_unique_frames": 239,
+      "max_sampling_gap_s": 1.0010000000000048,
+      "mean_rater_runs": 2.0,
+      "mean_rater_unobserved_runs": 0.0,
+      "mean_rater_positive_mass_in_unobserved_runs": 0.0
+    },
+    {
+      "video_id": "8Ztw2YrUHRE",
+      "split": "train",
+      "native_aha_requested": 162,
+      "native_aha_unique_frames": 162,
+      "max_sampling_gap_s": 1.0,
+      "mean_rater_runs": 5.0,
+      "mean_rater_unobserved_runs": 0.0,
+      "mean_rater_positive_mass_in_unobserved_runs": 0.0
+    },
+    {
+      "video_id": "vycd0CJTwoA",
+      "split": "train",
+      "native_aha_requested": 112,
+      "native_aha_unique_frames": 112,
+      "max_sampling_gap_s": 1.0,
+      "mean_rater_runs": 3.0,
+      "mean_rater_unobserved_runs": 0.0,
+      "mean_rater_positive_mass_in_unobserved_runs": 0.0
+    },
+    {
+      "video_id": "NOxiMgQMeuk",
+      "split": "train",
+      "native_aha_requested": 131,
+      "native_aha_unique_frames": 131,
+      "max_sampling_gap_s": 1.0,
+      "mean_rater_runs": 3.0,
+      "mean_rater_unobserved_runs": 0.0,
+      "mean_rater_positive_mass_in_unobserved_runs": 0.0
+    },
+    {
+      "video_id": "jsu65VwKf74",
+      "split": "train",
+      "native_aha_requested": 146,
+      "native_aha_unique_frames": 146,
+      "max_sampling_gap_s": 1.0,
+      "mean_rater_runs": 4.0,
+      "mean_rater_unobserved_runs": 0.0,
+      "mean_rater_positive_mass_in_unobserved_runs": 0.0
+    },
+    {
+      "video_id": "_Xydl5mYkQ8",
+      "split": "train",
+      "native_aha_requested": 57,
+      "native_aha_unique_frames": 57,
+      "max_sampling_gap_s": 1.0010000000000048,
+      "mean_rater_runs": 3.0,
+      "mean_rater_unobserved_runs": 0.0,
+      "mean_rater_positive_mass_in_unobserved_runs": 0.0
+    },
+    {
+      "video_id": "lue8XE3MEe8",
+      "split": "train",
+      "native_aha_requested": 86,
+      "native_aha_unique_frames": 86,
+      "max_sampling_gap_s": 1.0,
+      "mean_rater_runs": 4.0,
+      "mean_rater_unobserved_runs": 0.0,
+      "mean_rater_positive_mass_in_unobserved_runs": 0.0
+    },
+    {
+      "video_id": "c4GQ3WTOeAA",
+      "split": "train",
+      "native_aha_requested": 106,
+      "native_aha_unique_frames": 106,
+      "max_sampling_gap_s": 1.0,
+      "mean_rater_runs": 3.0,
+      "mean_rater_unobserved_runs": 0.0,
+      "mean_rater_positive_mass_in_unobserved_runs": 0.0
+    },
+    {
+      "video_id": "z93quI8Gxx4",
+      "split": "dev",
+      "native_aha_requested": 60,
+      "native_aha_unique_frames": 60,
+      "max_sampling_gap_s": 1.0,
+      "mean_rater_runs": 3.0,
+      "mean_rater_unobserved_runs": 0.0,
+      "mean_rater_positive_mass_in_unobserved_runs": 0.0
+    },
+    {
+      "video_id": "UF2v4emX7rc",
+      "split": "dev",
+      "native_aha_requested": 70,
+      "native_aha_unique_frames": 70,
+      "max_sampling_gap_s": 1.0010000000000048,
+      "mean_rater_runs": 3.0,
+      "mean_rater_unobserved_runs": 0.0,
+      "mean_rater_positive_mass_in_unobserved_runs": 0.0
+    },
+    {
+      "video_id": "wWOH-b4PTq4",
+      "split": "dev",
+      "native_aha_requested": 149,
+      "native_aha_unique_frames": 149,
+      "max_sampling_gap_s": 1.0,
+      "mean_rater_runs": 2.0,
+      "mean_rater_unobserved_runs": 0.0,
+      "mean_rater_positive_mass_in_unobserved_runs": 0.0
+    },
+    {
+      "video_id": "uXX2lSVAXq8",
+      "split": "dev",
+      "native_aha_requested": 163,
+      "native_aha_unique_frames": 155,
+      "max_sampling_gap_s": 5.366666666666674,
+      "mean_rater_runs": 3.0,
+      "mean_rater_unobserved_runs": 0.0,
+      "mean_rater_positive_mass_in_unobserved_runs": 0.0
+    },
+    {
+      "video_id": "pLcrLi5oAvU",
+      "split": "dev",
+      "native_aha_requested": 175,
+      "native_aha_unique_frames": 175,
+      "max_sampling_gap_s": 1.0010000000000048,
+      "mean_rater_runs": 4.0,
+      "mean_rater_unobserved_runs": 0.0,
+      "mean_rater_positive_mass_in_unobserved_runs": 0.0
+    },
+    {
+      "video_id": "5jfQNanBKAM",
+      "split": "dev",
+      "native_aha_requested": 70,
+      "native_aha_unique_frames": 70,
+      "max_sampling_gap_s": 1.0010000000000048,
+      "mean_rater_runs": 3.0,
+      "mean_rater_unobserved_runs": 0.0,
+      "mean_rater_positive_mass_in_unobserved_runs": 0.0
+    },
+    {
+      "video_id": "lPYV3qFuXOI",
+      "split": "dev",
+      "native_aha_requested": 146,
+      "native_aha_unique_frames": 146,
+      "max_sampling_gap_s": 1.0,
+      "mean_rater_runs": 5.0,
+      "mean_rater_unobserved_runs": 0.0,
+      "mean_rater_positive_mass_in_unobserved_runs": 0.0
+    },
+    {
+      "video_id": "oYhVH1vIXFM",
+      "split": "dev",
+      "native_aha_requested": 135,
+      "native_aha_unique_frames": 135,
+      "max_sampling_gap_s": 1.0010000000000048,
+      "mean_rater_runs": 6.0,
+      "mean_rater_unobserved_runs": 0.0,
+      "mean_rater_positive_mass_in_unobserved_runs": 0.0
+    },
+    {
+      "video_id": "Gxjfc5O6AAc",
+      "split": "dev",
+      "native_aha_requested": 134,
+      "native_aha_unique_frames": 134,
+      "max_sampling_gap_s": 1.0,
+      "mean_rater_runs": 3.0,
+      "mean_rater_unobserved_runs": 0.0,
+      "mean_rater_positive_mass_in_unobserved_runs": 0.0
+    },
+    {
+      "video_id": "yo3s6V19YtQ",
+      "split": "dev",
+      "native_aha_requested": 185,
+      "native_aha_unique_frames": 185,
+      "max_sampling_gap_s": 1.0010000000000048,
+      "mean_rater_runs": 3.0,
+      "mean_rater_unobserved_runs": 0.0,
+      "mean_rater_positive_mass_in_unobserved_runs": 0.0
+    },
+    {
+      "video_id": "OVRYoPA6h-Y",
+      "split": "dev",
+      "native_aha_requested": 198,
+      "native_aha_unique_frames": 198,
+      "max_sampling_gap_s": 1.0,
+      "mean_rater_runs": 13.0,
+      "mean_rater_unobserved_runs": 0.0,
+      "mean_rater_positive_mass_in_unobserved_runs": 0.0
+    },
+    {
+      "video_id": "2b_hjshny54",
+      "split": "dev",
+      "native_aha_requested": 166,
+      "native_aha_unique_frames": 166,
+      "max_sampling_gap_s": 1.0010000000000048,
+      "mean_rater_runs": 3.0,
+      "mean_rater_unobserved_runs": 0.0,
+      "mean_rater_positive_mass_in_unobserved_runs": 0.0
+    },
+    {
+      "video_id": "UgrOTFBD7tA",
+      "split": "dev",
+      "native_aha_requested": 203,
+      "native_aha_unique_frames": 203,
+      "max_sampling_gap_s": 1.0010000000000048,
+      "mean_rater_runs": 4.0,
+      "mean_rater_unobserved_runs": 0.0,
+      "mean_rater_positive_mass_in_unobserved_runs": 0.0
+    },
+    {
+      "video_id": "0w2XFd-Q9Eg",
+      "split": "dev",
+      "native_aha_requested": 19,
+      "native_aha_unique_frames": 19,
+      "max_sampling_gap_s": 1.0,
+      "mean_rater_runs": 3.0,
+      "mean_rater_unobserved_runs": 0.0,
+      "mean_rater_positive_mass_in_unobserved_runs": 0.0
+    }
+  ],
+  "limitations": [
+    "1fps positive-run miss is annotation coverage, not event observability or a bound on learnable utility",
+    "Actual PTS gaps can reflect unavailable/uneven media; no interpolation of GT",
+    "12/24/48 results concern the coarse sparse policy, not the denser frozen AHA input"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "experiment_id": "R29_BREAKTHROUGH_20261016",
+  "date": "2026-10-16",
+  "code_parent": "d3e6a40",
+  "scope": "Discriminating public-data research; no official-test annotation/training, no automatic upload, no protected-source access",
+  "inherited_best": "R26 center85+B3, user-reported 36.04; platform-upload SHA not independently verified",
+  "competing_explanations": [
+    "Existing scores contain useful content information but inappropriate calibration/denominator/selection discards it",
+    "Sparse generic-query AHA observations and supervision fail to identify summary utility beyond transferable position information",
+    "Spatial candidate selection/representation loses attainable crop utility even where temporal selection is fixed"
+  ],
+  "primary_discriminator": {
+    "task": "TRAIN-only calibration and set decisions on exposed source-isolated full-axis public temporal labels",
+    "protocol": "reports/r29/temporal_probe_config.json, frozen before probe execution",
+    "data": "26 TRAIN and 14 exposed DEV VideoXum sources; original raw-seconds axis and ten annotators",
+    "claim_boundary": "Temporal summary proxy, not AIC joint F or independent confirmation",
+    "resource": "CPU only, <=30 minutes, no encoder training",
+    "stop": "Fail binding/PTS/finite checks => stop affected calculation; no hyperparameter search on DEV"
+  },
+  "spatial_discriminator": {
+    "task": "Finish unchanged R28 engineering pilot, preserve and validate original 13 rows, generate remaining 11",
+    "protocol": "configs/R28_SPATIAL_PUBLIC_PILOT.json",
+    "data": "Four previously exposed RV sources, three PNG frames per source, two target ratios, six annotators",
+    "control": "Same PNG/ratio/geometry, centered crop; B3 weights missing so no B3 comparison claim",
+    "resource": "One idle RTX4080 32760MiB, outer timeout20m + kill-after30s, no training",
+    "stop": "Input identity mismatch, foreign GPU process, OOM, timeout or invalid geometry; preserve partial outputs",
+    "promotion": "Engineering completion only; cannot promote an official candidate or tune prompts on these labels"
+  },
+  "mathematical_discriminator": "Executable finite-posterior counterexamples, checked by exhaustive set/crop enumeration; not evidence of empirical gain",
+  "round_budget": {
+    "cpu_minutes": 30,
+    "gpu_minutes": 20,
+    "new_downloads": "Only an explicit allowlist of exposed public evidence, approximately6.3MB; reuse model assets",
+    "new_paid_resources": false,
+    "formal_training": false
+  },
+  "decision_gate": "Choose next investment from observed necessity: decision-only salvage requires source-paired improvement beyond matched-budget position; alternative spatial representation requires aligned B3/native-geometry evidence; observation oracle alone is not learnability proof"
+}

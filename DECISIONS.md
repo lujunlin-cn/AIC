@@ -2,6 +2,24 @@
 
 > 当前规则更正（2026-10-15）：总推理参数≤9B，文件bytes仅作工程记录；下文旧字节否决及AHA只能teacher的判断已撤回，最终决策见末尾R25节。
 
+## 2026-10-16：R29——先有效监督与源外增量，停止当前标量挽救配方
+
+Status：Accepted for next research allocation；无新部署候选。
+
+Evidence：同85%公共时间预算下位置＋AHA两头比位置−.003262，源级95%CI[−.008499,+.001084]，未过冻结门；plugin的增量CI跨零。40公共源所有标注正run均被实际1fps采样命中，不能用12点完全漏采解释当前AHA。R28续跑完整24项显示Qwen20项输出中心，候选GT辅助oracle显著更高，但无B3同帧，提示0.5锚定仍是替代解释。详见`reports/r29/summary.md`，独立算术review不等于新源确认。
+
+Decision：冻结现有两标量校准/keep配方，保留中心85＋B3安全包。主攻可追溯原生监督＋任务特定读出，检验内容相对位置的源外增量；空间候选读出为备选，不凭oracle差距直接换LFM。先判断信息是否可观测、监督是否奖励目标，再选新表示/训练位置。新人工native联合GT尚缺，不以教师框补真值；普通独立诊断继续。
+
+Reversal：新源同K稳定增量可重开现有分数决策；相同静态输入不可判而短连续输入可判则改观测；目标可靠可见而读出无法拟合才升级表示；训练成功跨源失败优先审查标注政策和域。计划协议`configs/R29_NEXT_SUPERVISION_STAGE.json`尚未执行。
+
+## 2026-10-16：官网规则重新核实，新候选使用model_params_b
+
+Status：Accepted（当前一手官网证据）。
+
+Evidence：当前赛题页/复赛通知直接HTTPS获取，公式图目视确认，hash/摘录在`reports/r29/official_rules/evidence.json`。全部实际推理模型≤9B、共享计一次、量化不减参数；当前Score=100F，无k_size；工程要求`model_params_b`。截止结果10月23日20:00、材料10月25日23:59，每日5次。
+
+Decision：新包按总参数/10^9申报，更新01；旧回分ZIP与SHA保持原件，旧字段只记历史构建。尚未取得登录后schema及同版本可运行evaluator，不声称平台兼容已核验。
+
 ## 2026-09-30：V6-NEXT10H——T1 不出包、E5 判负、E1-AUTO 达扩展标准
 
 Status：Accepted（预注册规则执行）。

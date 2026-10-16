@@ -1,0 +1,61 @@
+{
+  "verified_date": "2026-10-16",
+  "method": "Direct HTTPS fetch of current notice and track page; formula PNG visually inspected; no login or executable official evaluator acquired",
+  "pages": [
+    {
+      "url": "https://www.aicomp.cn/notice/notice-3/5307.html",
+      "observed_utc": "2026-10-16T10:18:10.391427+00:00",
+      "sha256": "909e8e22afa8b8de15d6835b131a84a66cbd13485b58f233fed701357d14b843",
+      "bytes": 21676,
+      "excerpts": [
+        "3.复赛赛题结果文档提交截止时间：10月23日20:00；",
+        "4.复赛作品文档提交截止时间：10月25日23:59。",
+        "3.复赛成绩。复赛阶段，参赛团队每日可提交5次赛题结果文档，最终以复赛阶段排行榜最高得分为最终成绩（因排行榜存在算分延迟，最终成绩以组委会公示结果为准）。",
+        "复赛评测。复赛阶段实际推理所使用的主模型及辅助模型总参数量不得超过 9B。参赛团队须在技术报告中如实填写模型总参数量。参数统计口径及违规处理方式详见《基于视频大模型的通用视频高光剪辑算法赛题规则》（附件 1）。"
+      ]
+    },
+    {
+      "url": "https://www.aicomp.cn/tracks/tracks-6/4267.html",
+      "observed_utc": "2026-10-16T10:18:10.642430+00:00",
+      "sha256": "8096d3ac0cc131260704aa678b86d0c6ccc24728a46ff8c2e27914163cd6cb55",
+      "bytes": 48247,
+      "excerpts": [
+        "赛方不提供训练集，参赛者可自行使用合规公开视频数据、公开数据集、自建数据和公开预训练模型进行算法训练与优化，并需在技术报告中说明数据来源、采集或清洗方式、使用范围和许可证情况。赛方仅提供样例数据、数据格式说明、提交样例、基础评测脚本以及初赛、复赛、半决赛阶段测试集。测试集不开放标注，仅可用于赛事提交评测；参赛者不得将测试数据上传至公开平台、第三方模型服务、公开仓库或社交媒体，不得私自传播、共享、转存、人工标注、用于模型训练或反向构造规则。",
+        "参赛方案应在规定评测环境和时间限制内完成测试视频推理，输出JSONL预测结果文件需满足赛方格式要求，并正确填写model_params_b。提交代码应包含清晰的环境依赖、模型加载说明、推理入口、结果生成逻辑和必要的异常处理，确保评审团队能够复现线上提交结果并核验模型参数量。",
+        "本赛题采用自动评测为主、人工复核为辅的评价方式。自动评测以视频平均连续IoU加权F分数作为最终指标：先对每个视频分别计算连续IoU加权，再对所有视频取平均。评测程序同时保留每条有效预测的真实值、按视频统计的平均、每个视频的和最终平均分，便于结果复核与误差分析。",
+        "参赛团队须在技术报告中如实填写模型总参数量。模型总参数量按生成提交结果时实际加载的全部模型参数张量元素数之和计算，包括主模型、Adapter/LoRA、检测、分割、跟踪及其他辅助模型；共享参数仅计一次。量化仅改变存储精度，不减少参数量；算法代码、依赖库、运行环境和测试数据不计入。1B等于10亿参数。核定模型总参数量超过9B时， 成绩可判定为无效。填报值与实际提交模型不一致时，以赛方核定值为准。",
+        "初赛和复赛采用自动评测方式，排行榜依据视频平均连续加权分数排序。初赛成绩主要用于算法验证和有效提交判断，复赛成绩用于省赛排名和决赛晋级。",
+        "自动评测根据统一测试集和统一评测脚本计算。参赛者需保证提交的JSONL文件能够被评测程序正确解析，且不得修改测试集原始video_id、视频文件名或读取路径等索引信息。对于帧号越界、坐标越界、字段缺失、数值包含NaN、视频编号无法匹配、JSONL结果文件结构错误等情况，评测程序可直接判定对应样本或对应提交无效。提交格式错误、无法运行或无法复现的成绩视为无效成绩。",
+        "允许使用公开预训练权重、通用视觉/视频基础模型和开源多模态模型，但不得包含赛事测试集或未授权私有数据。禁止调用商业闭源模型API、在线人工服务或外部云端推理服务完成测试集推理，除非赛方另行明确允许。提交结果必须由参赛队伍提交的代码和模型自动生成，赛方有权要求现场或离线复现。",
+        "赛事提供的样例数据和测试数据仅限本次比赛使用，不得传播、转售或用于非赛事相关商业用途。未经赛方许可，不得将测试集上传至公开平台、第三方模型服务、公开仓库、社交媒体或其他外部系统，不得以任何形式共享、转存、人工标注、人工修正预测结果、用于模型训练或反向构造规则。参赛者可使用合规公开数据集或自建数据进行训练，但须在技术报告中完整披露数据来源、采集/清洗方式、许可证和使用范围。"
+      ]
+    }
+  ],
+  "formula_image": {
+    "url": "https://www.aicomp.cn/wp-content/uploads/2026/09/1-1.png",
+    "sha256": "dd99ffc62adaed80e2532224b7d1400cec18045c4b9ffec662374933430beaf9",
+    "bytes": 47511,
+    "visually_confirmed": [
+      "P=S_IoU/Npred; R=S_IoU/Ngt; F=2PR/(P+R)",
+      "empty/empty F=1; only one empty F=0",
+      "equal-video macro F",
+      "Score=100*Fvideo; no k_size in current image"
+    ]
+  },
+  "current_conclusions": {
+    "parameter_cap": 9000000000,
+    "shared_parameters_count_once": true,
+    "quantization_reduces_parameter_count": false,
+    "required_engineering_field": "model_params_b",
+    "results_deadline": "2026-10-23 20:00",
+    "materials_deadline": "2026-10-25 23:59",
+    "daily_submission_limit": 5
+  },
+  "not_verified": [
+    "logged-in platform schema behavior",
+    "same-version executable official evaluator",
+    "numeric hardware/time limit",
+    "actual uploaded package SHA for user-reported scores"
+  ],
+  "historical": "2026-09-24 attachment byte-based text is retained as history and superseded by current page for active rule interpretation"
+}

@@ -1,0 +1,25 @@
+{
+  "experiment_id": "R29_BREAKTHROUGH_20261016",
+  "checked_utc": "2026-10-16T10:49:12.941388+00:00",
+  "git_head": "d3e6a40e417321be67229f2add54aca34f80d858",
+  "python_ast_files": 9,
+  "json_configs": 3,
+  "registry_rows": 299,
+  "public_payload_hashes": 132,
+  "checks": {
+    "python_ast": "PASS",
+    "bash_syntax": "PASS",
+    "git_diff_check": "PASS",
+    "json_and_jsonl_parse": "PASS",
+    "public_input_sha256": "PASS",
+    "gpu_final_snapshot": "PASS",
+    "sensitive_pattern_scan": "PASS",
+    "untracked_user_prompt_excluded": "PASS"
+  },
+  "scope": "Closeout checks only; no experiment rerun",
+  "excluded_from_commit": [
+    "gpt6_astra_ultra_breakthrough.txt",
+    "artifacts/r29/public_evidence",
+    "artifacts/r29/exposed_public_evidence.tar.gz"
+  ]
+}

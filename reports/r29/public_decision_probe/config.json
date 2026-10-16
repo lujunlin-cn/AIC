@@ -1,0 +1,61 @@
+{
+  "experiment_id": "R29_PUBLIC_DECISION_PROBE_20261016",
+  "frozen_before_execution": true,
+  "axis_report": "reports/r22/r22_instrument_report.json",
+  "identity_metrics": "reports/r26/public_metrics.json",
+  "data_root": "artifacts/r29/public_evidence/R22_INSTRUMENT_20261015",
+  "scores_root": "artifacts/r29/public_evidence/R26_DIAG_20261016/scores_native_shape",
+  "output": "reports/r29/public_decision_probe",
+  "ridge": 0.001,
+  "primary_keep": 0.85,
+  "diagnostic_keeps": [
+    0.25,
+    0.6,
+    0.85
+  ],
+  "observation_counts": [
+    12,
+    24,
+    48
+  ],
+  "bootstrap_seed": 20261016,
+  "bootstrap_replicates": 10000,
+  "contrasts": [
+    [
+      "position_heads_fixed85",
+      "position_fixed85"
+    ],
+    [
+      "position_heads_plugin",
+      "position_heads_fixed85"
+    ],
+    [
+      "position_heads_plugin",
+      "position_at_position_heads_plugin_K"
+    ],
+    [
+      "position_heads_plugin",
+      "all"
+    ]
+  ],
+  "question": "Do frozen AHA heads offer public temporal information conditional on a TRAIN-only cubic position model, or is denominator/calibration responsible for useful information being discarded?",
+  "hypothesis": "If AHA contains transferable information beyond position, position+heads should beat position alone under exact matched85 budgets; if simple probability/count calibration is the missing mechanism, TRAIN-only plugin should improve its fixed85 decoder and beat position at its own K.",
+  "alternative": "Generic-query AHA heads and their available observation/target contract do not encode transferable summary utility; changing a denominator cannot repair this.",
+  "models": "Three source-macro logistic models: cubic normalized position, informativeness+relevance, and both. Fixed L2 ridge1e-3; no DEV selection. Native 1fps heads broadcast by nearest actual sampled PTS. Fit all TRAIN frames with each source weight1/26.",
+  "independent_unit": "original source video; ten annotators averaged within source before macro mean and source-paired bootstrap",
+  "practical_gate": "For the primary content-increment contrast, DEV macro delta>=0.005 and paired source-bootstrap95% interval lower bound>0. Gate reflects needing a nontrivial public diagnostic signal before more expensive semantic inference; not an official-score effect threshold.",
+  "resource": "CPU only; timeout30m; no encoder training, GPU or official/protected data",
+  "stop": "Axis/hash/PTS/source mismatch, NaN/Inf, nonconvergence, control disagreement with R26 at1e-12, or timeout. Preserve failure; no DEV retuning.",
+  "scope": "Exposed public VideoXum temporal mechanism diagnostic; not official joint score",
+  "limitations": [
+    "14 DEV sources already exposed in R24/R26; no independent confirmation claim",
+    "VideoXum shortened-summary annotation policy differs from generic excitingness and AIC",
+    "No crop GT and no official score inference",
+    "The plugin uses an expected-numerator/expected-denominator approximation, not an exact posterior Bayes decision",
+    "Position conditioning is limited to this fixed cubic specification; no universal content-causality claim",
+    "GT-assisted diagnostics are nondeployable and use full GT unavailable to the actual input",
+    "GT block-mean broadcast is one feasible diagnostic recipe, not an upper bound on input learnability",
+    "Annotation-positive runs are not assumed to be physical events",
+    "The practical gate is a resource allocation criterion; its numerical choice is not a statistical law"
+  ]
+}

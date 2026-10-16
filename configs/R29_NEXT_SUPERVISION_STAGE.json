@@ -1,0 +1,51 @@
+{
+  "stage_id": "R29_NEXT_VALID_NATIVE_SUPERVISION",
+  "status": "DESIGNED_NOT_EXECUTED_NOT_A_TRAINING_LAUNCH",
+  "date": "2026-10-16",
+  "parent_evidence": "reports/r29/summary.md",
+  "primary_question": "Can target-defined valid public supervision produce a source-held-out content increment beyond position, and is the discriminating information observable in the actual input?",
+  "data_contract": {
+    "pilot_sources": 12,
+    "native_orientation": {"portrait": 6, "landscape": 6},
+    "source_geometry_assignment": {
+      "freeze_before_annotation": "Per-source decoded W/H after rotation handling, targetRatioWH and computed free_axis",
+      "landscape_targetRatioWH": [9, 16],
+      "portrait_targetRatioWH": [16, 9],
+      "required_verified_free_axis_counts": {"x": 6, "y": 6},
+      "validation": "Compute maximal legal crop from actual W/H and target ratio; no full-axis substitute or rotation augmentation; orientation counts alone do not establish free-axis coverage",
+      "scope": "Mechanism coverage sample, not an estimate of competition domain prevalence"
+    },
+    "selection": "Legal public original sources; verify source/session, license, media SHA, rotation, decoded frame and PTS; select without model-error inspection; do not use official or protected data",
+    "source_split": "Freeze source/session assignment before annotation is used for fitting; historically exposed sources development only; pilot is not automatically independent confirmation",
+    "temporal": "Complete original-axis labels from two independent humans; excitingness, summary and unknown kept distinct; preserve per-rater budgets, disagreement and validity; do not convert unknown to zero",
+    "spatial": "Four frames/source: two uniform, two selected by frozen content criteria without model predictions; two blind annotators; native target ratio, retained subjects/relationships, max-window offset first, variable scale separately; retain individual frames and multiple plausible boxes",
+    "teacher_policy": "No teacher box or generated score may be recorded as human GT",
+    "difficulty_pairs": "Within-source ordinary/key-result or incomplete/complete events; diagnosis only, not prevalence calibration or population F estimation"
+  },
+  "minimal_competition": [
+    "Source-isolated position/domain control vs same-input compact content readout under matched K",
+    "Same legal event in actual static observations vs short continuous process; test human observability before choosing motion representation",
+    "Same native frame: center, restored B3, fixed candidate GT oracle, constrained readout; separate candidate geometry from ranking and representation"
+  ],
+  "resource_budget": {
+    "metadata_cpu_minutes_max": 60,
+    "media_download_bytes_max": 2000000000,
+    "media_recovery_minutes_max": 40,
+    "human_time": "Measure a one-source two-rater pilot before extrapolation; no annotation service/channel or paid budget currently provided",
+    "small_gpu_probe_minutes_max": 45,
+    "formal_training": "Not launched; profile and communicate data/control/resource evidence before any formal expansion; planned <=10.5h, timeout11h50m, recoverable checkpoints"
+  },
+  "gates": {
+    "before_fitting": "Valid identity/PTS/labels, source-session partition, explicit objective, annotator process, fixed comparison and practical gate written before candidate results; sample size justified by pilot source variance and cost",
+    "change_observation": "Human/controlled baseline cannot separate state under actual input, can with local continuous input",
+    "change_representation": "Target reliable and visible, current readout cannot fit despite controlled optimization; compare information-preserving readout before encoder expansion",
+    "policy_transfer": "Fits TRAIN but fails source-held-out evaluation; inspect domain/annotation policy before increasing capacity",
+    "promotion": "Independent source joint temporal+native crop GT, total deployed parameters<=9B, actual inference profile and new schema validation, then user platform upload with SHA binding"
+  },
+  "stop": [
+    "Invalid media-label/PTS mapping, unauthorized data, leakage or resource conflict",
+    "Cannot operationalize target or record validity; do not expand ambiguous labels",
+    "Repeated fair tests lack source-held-out practical increment and offer no new mechanism",
+    "External annotation access unavailable: mark only this dependency, continue independent work"
+  ]
+}

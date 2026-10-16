@@ -1,0 +1,32 @@
+{
+  "started_utc": "2026-10-16T10:24:28.029945+00:00",
+  "command": [
+    "/usr/bin/time",
+    "-v",
+    "timeout",
+    "--signal=TERM",
+    "--kill-after=30s",
+    "30m",
+    "/home/hajimi2025/miniforge3/bin/python",
+    "scripts/r29_public_decision_probe.py",
+    "--config",
+    "reports/r29/temporal_probe_config.json"
+  ],
+  "python": "3.13.12 | packaged by conda-forge | (main, Feb  5 2026, 05:43:35) [GCC 14.3.0]",
+  "executable": "/home/hajimi2025/miniforge3/bin/python",
+  "platform": "Linux-6.17.0-1026-nvidia-aarch64-with-glibc2.39",
+  "numpy": "2.4.4",
+  "scipy": "1.17.1",
+  "git_commit": "d3e6a40e417321be67229f2add54aca34f80d858",
+  "code_and_config_sha256": {
+    "scripts/r29_public_decision_probe.py": "efe9a8ea0da5d4af1231eb4cd8f008ef30f44563e3234b438670899d7436fe3a",
+    "reports/r29/temporal_probe_config.json": "57cff3487b9fbe6e6ebdbab1cfb491b0ea1630c6e2a39ddc13f4f9c0ead9b5c4"
+  },
+  "thread_env": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1"
+  },
+  "exit_status": 0,
+  "wall_seconds": 1.0248830849886872,
+  "completed_utc": "2026-10-16T10:24:29.057020+00:00"
+}

@@ -916,3 +916,43 @@ Evidence: reports/r26/official_analysis.md、official_score_events.json；report
 用户报告R27_CENTER075_B3=35.87、R27_CENTER095_B3=35.39，较中心85+B3=36.04分别−0.17/−0.65；本地ZIP SHA一致，平台上传SHA未独立核验。停止预算/位置扫描，EARLY/LATE暂停，保留安全基线。
 R28实际完成426视频234159帧空间缓存回放，最大坐标差0；x/y/全画面126/141/159视频，4913使用关键帧全ok_head，无回退。记录路径中的B3_s0头/LFM基座缺失，不能声称原视频部署通过。历史插值/加密/检测先验不重复；B3已是candidate-utility，优先主体评分、视觉表示、真实原生几何标注。
 Qwen3.5-4B两分片738tensor映射完整；公共4源×3帧×2ratio工程pilot配置先冻结，独立环境，20min超时，无训练、无官方视频推理、预留14源未打开。读数及运行状态见reports/r28；公共pilot不直接晋级或预测官方分。
+
+## R29 — 2026-10-16：效用决策、有效监督与空间选择的判别收口
+
+父代码`d3e6a40e417321be67229f2add54aca34f80d858`。主协议`configs/R29_BREAKTHROUGH_20261016.json`；完整推导、逐源结果、失败例与证据边界见`reports/r29/summary.md`。本轮没有正式模型训练、官方测试训练/标注、protected14访问、新提交包或官方新回分。以下数字均非官方联合成绩。
+
+### R29_DECISION_THEORY：未知GT数量会改变最优排序与预算
+
+Hypothesis：最终目标是条件期望`E[2ΣY_f IoU/(K+M)|X]`，未知M与联合crop收益使边际高光概率或期望之比不总是充分决策量。固定K按`max_b E[Y_f IoU(b,B_f)/(K+M)|X]`选top K；可变K须重新计算。已知M时有精确简化，不需假设帧独立。
+Result：P(1110)=.6、P(0001)=.4且K=1，前三帧边际概率更高，但选其中一帧E[F]=.30、选第四帧=.40。独立p=(.9,.4)且完美crop时插件全选，真实单选.78高于全选.746667。240次全动作穷举、51200个已知M等式、40640个增删等式、81个独立排序、24个多项式解码对照全部通过，最大精确误差0。
+Cost/Conclusion：CPU3.7933s、exit0；48个合成概率解码约.00779s。证明近似可能改变动作，不证明项目后验可识别、可校准或官方可涨分。协议`reports/r29/decision_theory_protocol.json`，代码`scripts/r29_decision_theory.py`，结果`reports/r29/decision_theory.json`。
+
+### R29_PUBLIC_DECISION_PROBE_20261016：已有AHA两标量未过内容增量门
+
+Hypothesis：若两标量包含可迁移效用，在相同85%原帧预算下，TRAIN-only位置＋头应超过位置；若主要损失来自概率/数量校准，插件应改善自身固定预算并超过同K位置控制。预先冻结实用门：主对照delta≥.005且源级配对95%区间下界>0。
+Change/Control：26TRAIN源宏平均BCE拟合三个固定logistic读出（cubic位置、info＋rel、二者），ridge=.001；真实PTS最近采样广播、精确原帧K。14已暴露DEV源，十人先逐人F再源内平均，源级配对bootstrap10000次、seed20261016；无DEV选模。
+Result：位置固定85 F=.297467；位置＋头=.294206，差−.003262、95%CI[−.008499,+.001084]，未过门。位置＋头插件=.302208，较自身固定85差+.008003[−.008254,+.025267]，较同K位置差+.003536[−.008390,+.016137]；全选=.292570，不能宣称校准挽救成功。插件是期望分子/分母近似，不是精确后验解码。
+Observation：12/24/48均匀取点完全未命中run中的正例质量分别35.412%/14.075%/4.479%，但这些run不是物理事件、三组采样非嵌套干预；实际AHA 1fps命中40源×10人全部正run。命中一点不证明观察到关键动作/音频，稀疏12帧漏采不足以解释当前AHA。
+Verification/Cost：CPU全命令1.0249s、exit0（计算内部.5878s）；只训练小logistic校准器，无encoder/正式训练。独立实现复算520源×arm最大F差0，160同K、42R26控制、42观测与42GT辅助固定K界及四个bootstrap对照通过；不是独立新源确认。
+Conclusion：停止当前两标量校准配方；未否定完整AHA特征、其他合法query/观测/监督。证据`reports/r29/public_decision_probe/metrics.json`、`temporal_independent_review.json`、`temporal_probe_environment.json`。
+
+### R29_R28_SPATIAL_CONTINUATION：保留中断历史后完成原pilot
+
+R28的`INTERRUPTED_SSH_RESULTS_NOT_RETRIEVED`原记录保留；新40188/westd端点恢复13条旧预测，核验原图SHA与已冻结prompt，仅补11条，共四个已暴露RV源×3帧×2ratio=24项。不是新源确认，也没有同帧B3对照。
+Result：连续IoU源宏平均Qwen=.599645、center=.579117；x轴=.456114/.415057，y轴=.743177/.743177。20/24输出中心、y轴12/12中心。原生RV像素口径另报.601083/.580877，不能混用指标口径。24/24解析有效；独立复算最大误差2.22e−16。
+Cost：GPU0 RTX4080、先查空闲；总27.2867s、新11条生成14.0396s、peak allocated9358655488B、exit0。运行时唯一模型参数4539265536，仅公共pilot组件，不是新部署组合申报。没有训练或新比赛候选。
+Conclusion：生成坐标路径存在选择失败，提示唯一数值例`center=.5`的锚定、坐标接口与视觉理解均为竞争解释，尚不能归因LFM。记录`reports/r29/spatial_completion/spatial_continuation/metrics.json`与`reports/r29/spatial_review.md`；原R28日志及13条原件另存`reports/r29/recovered_r28/`。
+
+### R29_SPATIAL_GT_ASSISTED_DIAGNOSTIC：候选充分性与选择误差分开
+
+Hypothesis：在固定最大窗几何下，当前center输出错过已有高IoU偏移候选；竞争解释为该几何本身不足。先冻结探索协议，再逐项穷举129合法自由轴偏移，六人工框平均连续IoU；仅四个已暴露源，原Qwen及其最近格投影均固定，无新模型推理或GT选prompt。
+Result：all中心/Qwen/投影/oracle=.579117/.599645/.600223/.868315；x=.415057/.456114/.457268/.854424；y=.743177/.743177/.743177/.882205。034 f240/f360的x轴Qwen IoU=0，合法候选GT辅助最优=.947777/.966675。
+Cost/Conclusion：CPU.00597s。这些帧上的固定几何容纳合适候选，当前自由坐标选择未找到；oracle不证明输入可学、LFM/B3失败、独立泛化或官方收益。下一步优先原生x/y监督和同输入B3控制，不能用teacher框代人工GT。协议`configs/R29_SPATIAL_GT_ASSISTED_DIAGNOSTIC.json`，结果`reports/r29/spatial_oracle.json`，失败例`reports/r29/spatial_failure_cases.png`。
+
+### R29_AHA_TRANSFER_PRIMARY_SOURCE_CHECK：教师目标与部署合同并不等价
+
+一手论文2509.16421v2及作者checkout`41473169504ae3793811066ffd398bc69094e499`核查：relevance监督为归一化YouTube replay、query由原标题模板生成；informativeness正例为每caption片段50%至随机50–75%理解点，属于局部阶段启发式，不等于人工精彩度或全片中心捷径。原始序列化预处理未重建，不冒充训练数据重现。
+作者inference对raw logvariance取exp后融合，论文描述clamped logvariance；query专用sink重初始化在当前源码被注释。R25/R26的泛化query、info＋rel等权和增长past不能称完整论文推荐系统；没有证据证明补融合/cache就提分。三head均未学习native crop效用。
+Conclusion：结合公共同K对照，停止当前直接替换配方；保留能被合法TRAIN选定、同观测同K位置控制的源外增量推翻的边界。不以论文mAP替代联合F、不用官方回分搜query/fusion。CPU只读，无训练/GPU/重复下载/参数重计。证据`reports/r29/aha_transfer_check.md`及`aha_transfer_evidence.json`。
+
+**阶段决策**：主攻可追溯有效原生监督、任务分离读出与源外内容增量；空间候选读出作备选。中心85＋B3用户报告36.04继续安全基线；本轮新官方Score=null，无独立确认、无新可上传候选。新监督阶段协议已写但未执行，不能把标注/训练计划登记成已完成实验。

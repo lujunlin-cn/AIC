@@ -1,0 +1,69 @@
+{
+  "experiment_id": "R29_SPATIAL_PUBLIC_CPU_REVIEW",
+  "host": "spark-e602",
+  "python": "3.13.12 | packaged by conda-forge | (main, Feb  5 2026, 05:43:35) [GCC 14.3.0]",
+  "platform": "Linux-6.17.0-1026-nvidia-aarch64-with-glibc2.39",
+  "pillow": "12.2.0",
+  "resources": "Local CPU; no remote/GPU, protected14 or official-test access by this review",
+  "commands": [
+    {
+      "command": "python3 -m py_compile scripts/r29_spatial_continue.py scripts/r29_spatial_recompute.py scripts/r29_spatial_oracle.py",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 scripts/r29_spatial_recompute.py --predictions reports/r29/spatial_completion/spatial_continuation/predictions.jsonl --sampled-gt reports/r29/spatial_completion/spatial_continuation/sampled_gt.json --output reports/r29/spatial_recompute.json",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 scripts/r29_spatial_oracle.py --protocol configs/R29_SPATIAL_GT_ASSISTED_DIAGNOSTIC.json --predictions reports/r29/spatial_completion/spatial_continuation/predictions.jsonl --sampled-gt reports/r29/spatial_completion/spatial_continuation/sampled_gt.json --output reports/r29/spatial_oracle.json",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 scripts/r29_spatial_contact_sheet.py --oracle reports/r29/spatial_oracle.json --sampled-gt reports/r29/spatial_completion/spatial_continuation/sampled_gt.json --image-root artifacts/r29/public_evidence/public_rv_images --output reports/r29/spatial_failure_cases.png",
+      "exit_code": 0
+    }
+  ],
+  "files": {
+    "configs/R29_SPATIAL_GT_ASSISTED_DIAGNOSTIC.json": {
+      "bytes": 2213,
+      "sha256": "760c095523464c30336a9d6d438ff6e27501160b42a9dd8afd217b6d306c156d"
+    },
+    "scripts/r29_spatial_continue.py": {
+      "bytes": 14038,
+      "sha256": "8fbf88dec2a2363d9dbd0c9ca169fd30561cbf821af2fb02acf9b77aa7c777b5"
+    },
+    "scripts/r29_spatial_recompute.py": {
+      "bytes": 5708,
+      "sha256": "d8d6f01f31fff1bd6e3c4d97ab65cf1a8df2049cd8218e378edf46eaf5c26adc"
+    },
+    "scripts/r29_spatial_oracle.py": {
+      "bytes": 6752,
+      "sha256": "6f2e6d8fdea513ded45d672b838fd3203a5f9bd2f5923eccdc05ced026f143e2"
+    },
+    "scripts/r29_spatial_contact_sheet.py": {
+      "bytes": 3810,
+      "sha256": "0b39ef705194745ca6103d7c426aee8fe3b750337ba6e4607f44a6ffea10b702"
+    },
+    "reports/r29/spatial_completion/spatial_continuation/predictions.jsonl": {
+      "bytes": 22911,
+      "sha256": "6ec82c74f7bfe9466c239dbe59be62dd8b0ede2dd3f56c0a191164eae36c8113"
+    },
+    "reports/r29/spatial_completion/spatial_continuation/sampled_gt.json": {
+      "bytes": 19439,
+      "sha256": "a79a996c22a8d73a729034d40bf9eb00343a8f930c8c91c2d6cdbd73709f7776"
+    },
+    "reports/r29/spatial_recompute.json": {
+      "bytes": 18839,
+      "sha256": "86b5ebe350ac0bba5b30e8af901c4ddadad7b0bcd6e219cddf2c95b4d9964fbc"
+    },
+    "reports/r29/spatial_oracle.json": {
+      "bytes": 105070,
+      "sha256": "66a1a526b759018ad24d419a6558b51750ec7b9f81baf5c72ddac4731663e2e2"
+    },
+    "reports/r29/spatial_failure_cases.png": {
+      "bytes": 127325,
+      "sha256": "acc2c128f794a5e46f7e9b2687ca710142c30be23617c486adf0f1e288ddd3ba"
+    }
+  },
+  "claims": "Arithmetic recomputation and same-source exploratory candidate adequacy only; no independent new-source confirmation"
+}

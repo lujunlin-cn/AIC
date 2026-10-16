@@ -1,0 +1,27 @@
+{
+  "retrieved_utc": "2026-10-16T10:26:27.025326+00:00",
+  "scope": "First-party label-generation provenance only; no new datasets",
+  "sources": [
+    {
+      "path": "reports/r29/temporal_sources/videoxum_github_readme.md",
+      "url": "https://raw.githubusercontent.com/jylins/videoxum/main/README.md",
+      "sha256": "ae13dd5f15ab8f56f89cf937438201dc108ed633377f1666f37a89d3407aea16",
+      "bytes": 9280,
+      "status": "retrieved"
+    },
+    {
+      "path": "reports/r29/temporal_sources/videoxum_hf_readme.md",
+      "url": "https://huggingface.co/datasets/jylins/videoxum/raw/main/README.md",
+      "sha256": "fbf2e4b18883f3c9c7792703901cf529232b4ba2582cac932efad249fc1f0d71",
+      "bytes": 4301,
+      "status": "retrieved"
+    },
+    {
+      "path": "reports/r29/temporal_sources/mrhisum_github_readme.md",
+      "url": "https://raw.githubusercontent.com/MRHiSum/MR.HiSum/main/README.md",
+      "sha256": "e09bee6b1599e6cc97d8c2fa8d3121e30060cc4c4918076053ab42519ff28d1c",
+      "bytes": 8132,
+      "status": "retrieved"
+    }
+  ]
+}

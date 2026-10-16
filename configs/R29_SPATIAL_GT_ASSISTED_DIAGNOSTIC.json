@@ -1,0 +1,23 @@
+{
+  "experiment_id": "R29_SPATIAL_GT_ASSISTED_DIAGNOSTIC",
+  "registered_before_oracle_computation": true,
+  "status": "exploratory_after_qwen_pilot_observation",
+  "input_predictions": "reports/r29/spatial_completion/spatial_continuation/predictions.jsonl",
+  "input_sampled_gt": "reports/r29/spatial_completion/spatial_continuation/sampled_gt.json",
+  "sources": ["031", "032", "033", "034"],
+  "expected_rows": 24,
+  "annotations_per_row": 6,
+  "candidate_count": 129,
+  "geometry": "Unchanged maximum-size axis-aligned window for requested ratio in original image; equally spaced legal free-axis offsets including both endpoints; no scale search.",
+  "utility": "Arithmetic mean of continuous-area IoU against all six original human annotations; raw coordinates, no rounding, no inclusive +1.",
+  "oracle": "Exhaustive maximum utility over the 129 candidates; ties select smallest candidate index.",
+  "qwen_projection": "Nearest legal candidate by free-axis offset to the already produced Qwen crop; ties select smallest candidate index; no new inference.",
+  "controls": ["center", "original_qwen", "projected_qwen", "gt_assisted_oracle"],
+  "aggregation": "Mean within each original source, then equal-weight source mean; report all, x-slide, and y-slide separately plus every row.",
+  "hypothesis": "Some existing Qwen center outputs miss high-IoU off-center candidates even with maximum-window geometry held fixed.",
+  "competing_explanation": "The legal maximum-window candidate set itself cannot match the annotations; oracle utility would then remain low.",
+  "claim_boundary": "Same four exposed public sources, GT-assisted posthoc diagnostic. Oracle measures candidate-set adequacy on these rows, not observable information, learnability, independent generalization, B3 performance, or official score.",
+  "independent_unit": "Original source video, n=4; ratios, frames and annotations are repeated measurements.",
+  "algorithm_selection": "No prompt, model, candidate count, geometry, annotation aggregation or projection tuning from this diagnostic.",
+  "resource_budget": "Local CPU only, 24*129*6 rectangle IoU comparisons plus controls; no remote or GPU; no protected or official-test data."
+}

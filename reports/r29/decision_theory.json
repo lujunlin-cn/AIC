@@ -1,0 +1,958 @@
+{
+  "experiment_id": "R29_DECISION_THEORY",
+  "evidence_level": "synthetic exact validation",
+  "examples": {
+    "fixed_k_ranking_reversal": {
+      "posterior": [
+        {
+          "probability": {
+            "fraction": "3/5",
+            "decimal": 0.6
+          },
+          "labels": [
+            1,
+            1,
+            1,
+            0
+          ],
+          "ious": [
+            [
+              {
+                "fraction": "1",
+                "decimal": 1.0
+              }
+            ],
+            [
+              {
+                "fraction": "1",
+                "decimal": 1.0
+              }
+            ],
+            [
+              {
+                "fraction": "1",
+                "decimal": 1.0
+              }
+            ],
+            [
+              {
+                "fraction": "1",
+                "decimal": 1.0
+              }
+            ]
+          ]
+        },
+        {
+          "probability": {
+            "fraction": "2/5",
+            "decimal": 0.4
+          },
+          "labels": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "ious": [
+            [
+              {
+                "fraction": "1",
+                "decimal": 1.0
+              }
+            ],
+            [
+              {
+                "fraction": "1",
+                "decimal": 1.0
+              }
+            ],
+            [
+              {
+                "fraction": "1",
+                "decimal": 1.0
+              }
+            ],
+            [
+              {
+                "fraction": "1",
+                "decimal": 1.0
+              }
+            ]
+          ]
+        }
+      ],
+      "marginal_p": [
+        {
+          "fraction": "3/5",
+          "decimal": 0.6
+        },
+        {
+          "fraction": "3/5",
+          "decimal": 0.6
+        },
+        {
+          "fraction": "3/5",
+          "decimal": 0.6
+        },
+        {
+          "fraction": "2/5",
+          "decimal": 0.4
+        }
+      ],
+      "fixed_k_1": {
+        "best": {
+          "k": 1,
+          "action": [
+            [
+              3,
+              0
+            ]
+          ],
+          "expected_f": {
+            "fraction": "2/5",
+            "decimal": 0.4
+          }
+        },
+        "by_k": [
+          {
+            "k": 1,
+            "action": [
+              [
+                3,
+                0
+              ]
+            ],
+            "expected_f": {
+              "fraction": "2/5",
+              "decimal": 0.4
+            }
+          }
+        ]
+      },
+      "all_k": {
+        "best": {
+          "k": 4,
+          "action": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              3,
+              0
+            ]
+          ],
+          "expected_f": {
+            "fraction": "118/175",
+            "decimal": 0.6742857142857143
+          }
+        },
+        "by_k": [
+          {
+            "k": 0,
+            "action": [],
+            "expected_f": {
+              "fraction": "0",
+              "decimal": 0.0
+            }
+          },
+          {
+            "k": 1,
+            "action": [
+              [
+                3,
+                0
+              ]
+            ],
+            "expected_f": {
+              "fraction": "2/5",
+              "decimal": 0.4
+            }
+          },
+          {
+            "k": 2,
+            "action": [
+              [
+                0,
+                0
+              ],
+              [
+                3,
+                0
+              ]
+            ],
+            "expected_f": {
+              "fraction": "38/75",
+              "decimal": 0.5066666666666667
+            }
+          },
+          {
+            "k": 3,
+            "action": [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                2,
+                0
+              ]
+            ],
+            "expected_f": {
+              "fraction": "3/5",
+              "decimal": 0.6
+            }
+          },
+          {
+            "k": 4,
+            "action": [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                2,
+                0
+              ],
+              [
+                3,
+                0
+              ]
+            ],
+            "expected_f": {
+              "fraction": "118/175",
+              "decimal": 0.6742857142857143
+            }
+          }
+        ]
+      },
+      "select_frame_0_exact": {
+        "fraction": "3/10",
+        "decimal": 0.3
+      },
+      "select_frame_3_exact": {
+        "fraction": "2/5",
+        "decimal": 0.4
+      },
+      "select_frame_0_plugin": {
+        "fraction": "3/8",
+        "decimal": 0.375
+      },
+      "select_frame_3_plugin": {
+        "fraction": "1/4",
+        "decimal": 0.25
+      }
+    },
+    "independent_budget_mismatch": {
+      "posterior": [
+        {
+          "probability": {
+            "fraction": "3/50",
+            "decimal": 0.06
+          },
+          "labels": [
+            0,
+            0
+          ],
+          "ious": [
+            [
+              {
+                "fraction": "1",
+                "decimal": 1.0
+              }
+            ],
+            [
+              {
+                "fraction": "1",
+                "decimal": 1.0
+              }
+            ]
+          ]
+        },
+        {
+          "probability": {
+            "fraction": "1/25",
+            "decimal": 0.04
+          },
+          "labels": [
+            0,
+            1
+          ],
+          "ious": [
+            [
+              {
+                "fraction": "1",
+                "decimal": 1.0
+              }
+            ],
+            [
+              {
+                "fraction": "1",
+                "decimal": 1.0
+              }
+            ]
+          ]
+        },
+        {
+          "probability": {
+            "fraction": "27/50",
+            "decimal": 0.54
+          },
+          "labels": [
+            1,
+            0
+          ],
+          "ious": [
+            [
+              {
+                "fraction": "1",
+                "decimal": 1.0
+              }
+            ],
+            [
+              {
+                "fraction": "1",
+                "decimal": 1.0
+              }
+            ]
+          ]
+        },
+        {
+          "probability": {
+            "fraction": "9/25",
+            "decimal": 0.36
+          },
+          "labels": [
+            1,
+            1
+          ],
+          "ious": [
+            [
+              {
+                "fraction": "1",
+                "decimal": 1.0
+              }
+            ],
+            [
+              {
+                "fraction": "1",
+                "decimal": 1.0
+              }
+            ]
+          ]
+        }
+      ],
+      "marginal_p": [
+        {
+          "fraction": "9/10",
+          "decimal": 0.9
+        },
+        {
+          "fraction": "2/5",
+          "decimal": 0.4
+        }
+      ],
+      "exact": {
+        "best": {
+          "k": 1,
+          "action": [
+            [
+              0,
+              0
+            ]
+          ],
+          "expected_f": {
+            "fraction": "39/50",
+            "decimal": 0.78
+          }
+        },
+        "by_k": [
+          {
+            "k": 0,
+            "action": [],
+            "expected_f": {
+              "fraction": "3/50",
+              "decimal": 0.06
+            }
+          },
+          {
+            "k": 1,
+            "action": [
+              [
+                0,
+                0
+              ]
+            ],
+            "expected_f": {
+              "fraction": "39/50",
+              "decimal": 0.78
+            }
+          },
+          {
+            "k": 2,
+            "action": [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "expected_f": {
+              "fraction": "56/75",
+              "decimal": 0.7466666666666667
+            }
+          }
+        ]
+      },
+      "plugin_action": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "plugin_scores": [
+        {
+          "fraction": "3/50",
+          "decimal": 0.06
+        },
+        {
+          "fraction": "18/23",
+          "decimal": 0.782608695652174
+        },
+        {
+          "fraction": "26/33",
+          "decimal": 0.7878787878787878
+        }
+      ],
+      "regret_exact_f": {
+        "fraction": "1/30",
+        "decimal": 0.03333333333333333
+      }
+    },
+    "crop_choice_depends_on_k": {
+      "posterior": [
+        {
+          "probability": {
+            "fraction": "13/20",
+            "decimal": 0.65
+          },
+          "labels": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "ious": [
+            [
+              {
+                "fraction": "1",
+                "decimal": 1.0
+              },
+              {
+                "fraction": "0",
+                "decimal": 0.0
+              }
+            ],
+            [
+              {
+                "fraction": "1",
+                "decimal": 1.0
+              },
+              {
+                "fraction": "1",
+                "decimal": 1.0
+              }
+            ],
+            [
+              {
+                "fraction": "1",
+                "decimal": 1.0
+              },
+              {
+                "fraction": "1",
+                "decimal": 1.0
+              }
+            ],
+            [
+              {
+                "fraction": "1",
+                "decimal": 1.0
+              },
+              {
+                "fraction": "1",
+                "decimal": 1.0
+              }
+            ]
+          ]
+        },
+        {
+          "probability": {
+            "fraction": "7/20",
+            "decimal": 0.35
+          },
+          "labels": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "ious": [
+            [
+              {
+                "fraction": "0",
+                "decimal": 0.0
+              },
+              {
+                "fraction": "1",
+                "decimal": 1.0
+              }
+            ],
+            [
+              {
+                "fraction": "1",
+                "decimal": 1.0
+              },
+              {
+                "fraction": "1",
+                "decimal": 1.0
+              }
+            ],
+            [
+              {
+                "fraction": "1",
+                "decimal": 1.0
+              },
+              {
+                "fraction": "1",
+                "decimal": 1.0
+              }
+            ],
+            [
+              {
+                "fraction": "1",
+                "decimal": 1.0
+              },
+              {
+                "fraction": "1",
+                "decimal": 1.0
+              }
+            ]
+          ]
+        }
+      ],
+      "frame_0_scores_k1": [
+        {
+          "fraction": "13/50",
+          "decimal": 0.26
+        },
+        {
+          "fraction": "7/20",
+          "decimal": 0.35
+        }
+      ],
+      "frame_0_scores_k4": [
+        {
+          "fraction": "13/80",
+          "decimal": 0.1625
+        },
+        {
+          "fraction": "7/50",
+          "decimal": 0.14
+        }
+      ],
+      "interpretation": "Crop left/right are nonoverlapping legal equal-size windows; the latent GT frame-0 box is correlated with video M."
+    },
+    "highlight_probability_conflicts_with_joint_utility": {
+      "posterior": [
+        {
+          "probability": {
+            "fraction": "1/25",
+            "decimal": 0.04
+          },
+          "labels": [
+            0,
+            0
+          ],
+          "ious": [
+            [
+              {
+                "fraction": "1/5",
+                "decimal": 0.2
+              }
+            ],
+            [
+              {
+                "fraction": "4/5",
+                "decimal": 0.8
+              }
+            ]
+          ]
+        },
+        {
+          "probability": {
+            "fraction": "3/50",
+            "decimal": 0.06
+          },
+          "labels": [
+            0,
+            1
+          ],
+          "ious": [
+            [
+              {
+                "fraction": "1/5",
+                "decimal": 0.2
+              }
+            ],
+            [
+              {
+                "fraction": "4/5",
+                "decimal": 0.8
+              }
+            ]
+          ]
+        },
+        {
+          "probability": {
+            "fraction": "9/25",
+            "decimal": 0.36
+          },
+          "labels": [
+            1,
+            0
+          ],
+          "ious": [
+            [
+              {
+                "fraction": "1/5",
+                "decimal": 0.2
+              }
+            ],
+            [
+              {
+                "fraction": "4/5",
+                "decimal": 0.8
+              }
+            ]
+          ]
+        },
+        {
+          "probability": {
+            "fraction": "27/50",
+            "decimal": 0.54
+          },
+          "labels": [
+            1,
+            1
+          ],
+          "ious": [
+            [
+              {
+                "fraction": "1/5",
+                "decimal": 0.2
+              }
+            ],
+            [
+              {
+                "fraction": "4/5",
+                "decimal": 0.8
+              }
+            ]
+          ]
+        }
+      ],
+      "fixed_k1": {
+        "best": {
+          "k": 1,
+          "action": [
+            [
+              1,
+              0
+            ]
+          ],
+          "expected_f": {
+            "fraction": "42/125",
+            "decimal": 0.336
+          }
+        },
+        "by_k": [
+          {
+            "k": 1,
+            "action": [
+              [
+                1,
+                0
+              ]
+            ],
+            "expected_f": {
+              "fraction": "42/125",
+              "decimal": 0.336
+            }
+          }
+        ]
+      },
+      "marginal_p": [
+        {
+          "fraction": "9/10",
+          "decimal": 0.9
+        },
+        {
+          "fraction": "3/5",
+          "decimal": 0.6
+        }
+      ],
+      "crop_iou_conditional_positive": [
+        {
+          "fraction": "1/5",
+          "decimal": 0.2
+        },
+        {
+          "fraction": "4/5",
+          "decimal": 0.8
+        }
+      ],
+      "select_frame_0_exact": {
+        "fraction": "18/125",
+        "decimal": 0.144
+      },
+      "select_frame_1_exact": {
+        "fraction": "42/125",
+        "decimal": 0.336
+      },
+      "interpretation": "The lower-probability frame wins after crop utility is included."
+    }
+  },
+  "proxy_counterexamples": {
+    "macro_vs_pooled": {
+      "videos": [
+        {
+          "n_frames": 100,
+          "m": 100
+        },
+        {
+          "n_frames": 1,
+          "m": 1
+        }
+      ],
+      "A": {
+        "per_video_k": [
+          100,
+          0
+        ],
+        "per_video_reward": [
+          100,
+          0
+        ],
+        "macro_f": {
+          "fraction": "1/2",
+          "decimal": 0.5
+        },
+        "pooled_f": {
+          "fraction": "200/201",
+          "decimal": 0.9950248756218906
+        }
+      },
+      "B": {
+        "per_video_k": [
+          80,
+          1
+        ],
+        "per_video_reward": [
+          80,
+          1
+        ],
+        "macro_f": {
+          "fraction": "17/18",
+          "decimal": 0.9444444444444444
+        },
+        "pooled_f": {
+          "fraction": "81/91",
+          "decimal": 0.8901098901098901
+        }
+      }
+    },
+    "spearman_vs_f": {
+      "labels": [
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
+      "k": 1,
+      "A": {
+        "scores": [
+          5,
+          1,
+          4,
+          3,
+          2
+        ],
+        "spearman": 0.0,
+        "f": {
+          "fraction": "2/3",
+          "decimal": 0.6666666666666666
+        }
+      },
+      "B": {
+        "scores": [
+          4,
+          3,
+          5,
+          2,
+          1
+        ],
+        "spearman": 0.28867513459481287,
+        "f": {
+          "fraction": "0",
+          "decimal": 0.0
+        }
+      }
+    },
+    "all_frame_crop_mean_vs_joint_f": {
+      "labels": [
+        1,
+        0
+      ],
+      "selected_frames": [
+        0,
+        1
+      ],
+      "A": {
+        "ious": [
+          {
+            "fraction": "9/10",
+            "decimal": 0.9
+          },
+          {
+            "fraction": "1/10",
+            "decimal": 0.1
+          }
+        ],
+        "mean_iou": {
+          "fraction": "1/2",
+          "decimal": 0.5
+        },
+        "joint_f": {
+          "fraction": "3/5",
+          "decimal": 0.6
+        }
+      },
+      "B": {
+        "ious": [
+          {
+            "fraction": "4/5",
+            "decimal": 0.8
+          },
+          {
+            "fraction": "9/10",
+            "decimal": 0.9
+          }
+        ],
+        "mean_iou": {
+          "fraction": "17/20",
+          "decimal": 0.85
+        },
+        "joint_f": {
+          "fraction": "8/15",
+          "decimal": 0.5333333333333333
+        }
+      },
+      "note": "Auxiliary crop GT exists for both synthetic frames; the competition rewards only Y=1. This is not a multiplication of separate datasets' metrics."
+    }
+  },
+  "verification": {
+    "seed": 20261016,
+    "random_posteriors": 40,
+    "frames": 4,
+    "crop_candidates": 3,
+    "decoder_vs_all_actions_comparisons": 240,
+    "known_m_plugin_equalities": 51200,
+    "realized_add_delete_equalities": 40640,
+    "independent_bernoulli_pair_order_checks": 81,
+    "polynomial_independent_decoder_vs_exact_checks": 24,
+    "maximum_exact_difference": {
+      "fraction": "0",
+      "decimal": 0.0
+    },
+    "status": "PASS"
+  },
+  "independent_decoder_profile": {
+    "synthetic_probabilities": 48,
+    "seconds": 0.007786068017594516,
+    "best": {
+      "k": 32,
+      "selected_frames": [
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47
+      ],
+      "expected_f": 0.7249611494487535
+    },
+    "note": "CPU decoder timing only; these are invented probabilities, not 48 video observations."
+  },
+  "reproducibility": {
+    "python": "3.13.12",
+    "platform": "Linux-6.17.0-1026-nvidia-aarch64-with-glibc2.39",
+    "script_sha256": "c103281b24bf2bdca7251edb84759bf5fbd1d3bccbecc7f9683313cd9b843fbe",
+    "protocol_sha256": "5cfe51540500068527cfbcb1bb722342f02b894fb230b52a391c4c2600f72fc2",
+    "git_commit": "d3e6a40e417321be67229f2add54aca34f80d858",
+    "command": "timeout 5m python3 scripts/r29_decision_theory.py --output reports/r29/decision_theory.json",
+    "wall_seconds": 3.793321523000486,
+    "exit_status": 0,
+    "gpu_used": false,
+    "note": "Git commit identifies parent state; script SHA identifies this initially uncommitted implementation."
+  }
+}

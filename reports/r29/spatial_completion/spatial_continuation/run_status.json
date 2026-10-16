@@ -1,0 +1,12 @@
+{
+  "experiment_id": "R29_R28_SPATIAL_CONTINUATION",
+  "status": "COMPLETE",
+  "config_sha256": "52ee988dd66cb9e69b78b2eae034600766209234416917f6ba81c916b1912530",
+  "previous_sha256": "4ff041352250a0d9b70bf2f8ca62c583d44648ffa1749961ed6982178f0759df",
+  "script_sha256": "8fbf88dec2a2363d9dbd0c9ca169fd30561cbf821af2fb02acf9b77aa7c777b5",
+  "expected_rows": 24,
+  "previous_rows": 13,
+  "scope": "Frozen R28 public engineering pilot continuation; no official inference, no fresh holdout, no aligned B3 control",
+  "rows": 24,
+  "elapsed_seconds": 27.28874611109495
+}

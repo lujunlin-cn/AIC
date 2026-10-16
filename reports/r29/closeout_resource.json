@@ -1,0 +1,22 @@
+{
+  "checked_utc": "2026-10-16T10:41:20.873435+00:00",
+  "command": [
+    "ssh",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=8",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "-o",
+    "HostKeyAlias=[connect.westc.seetacloud.com]:40206",
+    "-p",
+    "40188",
+    "root@connect.westd.seetacloud.com",
+    "nvidia-smi --query-gpu=index,name,memory.total,memory.used,utilization.gpu --format=csv && nvidia-smi --query-compute-apps=pid,process_name,used_gpu_memory --format=csv"
+  ],
+  "exit_code": 0,
+  "stdout": "index, name, memory.total [MiB], memory.used [MiB], utilization.gpu [%]\n0, NVIDIA GeForce RTX 4080, 32760 MiB, 1 MiB, 0 %\npid, process_name, used_gpu_memory [MiB]\n",
+  "stderr": "",
+  "scope": "Read-only final resource check; no tasks started or processes stopped"
+}

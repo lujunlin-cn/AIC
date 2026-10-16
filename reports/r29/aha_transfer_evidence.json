@@ -1,0 +1,206 @@
+{
+  "experiment": "R29_AHA_TRANSFER_PRIMARY_SOURCE_CHECK",
+  "date": "2026-10-16",
+  "status": "completed",
+  "mode": "CPU, read-only primary-source review; no model loading or GPU usage",
+  "paper": {
+    "url": "https://arxiv.org/html/2509.16421v2",
+    "local_temporary_path": "/tmp/r29_aha_paper.html",
+    "bytes": 521605,
+    "sha256": "09eb12624a2a3db9ebcc11c89fae749741227cea0a4de359b6f21d42b15715c8",
+    "quotes": [
+      {
+        "section_id": "S1",
+        "quote": "Given a natural language task description, our model, Aha , performs OHD by employing a lightweight, autoregressive scoring mechanism focused directly on highlight detection. This allows Aha to operate effectively on traditional HD benchmarks in a truly online fashion, without requiring benchmark modifications or non-causal smoothing, and achieving SOTA performance even in zero-shot settings. Our main contributions are: Aha Framework for Efficien",
+        "locator": "HTML element id S1",
+        "exact_substring": true
+      },
+      {
+        "section_id": "S3",
+        "quote": "Frames from the 50% mark up to this point are labeled informative ( i t = 1 i_{t}=1 ); others before or after are labeled non-informative ( i t = 0 i_{t}=0 ). This reflects the intuition that early frames lack context and later ones become redundant once understanding is achieved. The informativeness head is trained using BCE loss (Eq. 3 ), with the hypothesis that this signal correlates with highlight moments in OHD. Crucially, our framework is ",
+        "locator": "HTML element id S3",
+        "exact_substring": true
+      },
+      {
+        "section_id": "S3",
+        "quote": "The corresponding YouTube replay counts (engagement scores [ 15 ] ) are then normalized to a [ 0 , 1 ] [0,1] range, serving as our primary relevance signal r t r_{t} , the ground truth scores for the relevance head’s Smooth L1 loss (Eq. 1a ).\nWhile this engagement based signal enables scalability far beyond manually labeled datasets, we acknowledge it is an imperfect proxy for true importance. It may introduce biases by amplifying content designe",
+        "locator": "HTML element id S3",
+        "exact_substring": true
+      },
+      {
+        "section_id": "S3",
+        "quote": "programmatically transforming each video’s original YouTube title into diverse natural language queries using predefined templates (e.g., a title “Exploring the Riemann Hypothesis” might become \"What segment of the video addresses ‘Exploring the Riemann Hypothesis’?”’); see Appendix H .\nFinally, to simulate real-world video stream degradation and enhance model robustness, we introduce \"quality dropouts\": 5–20% of each video’s duration is randomly",
+        "locator": "HTML element id S3",
+        "exact_substring": true
+      },
+      {
+        "section_id": "S3",
+        "quote": "a 10:7 ratio for α : β \\alpha:\\beta ). For optimal domain-adapted performance, all four parameters are tuned via a lightweight grid search. Our results in Section 4.1 are presented for both settings to demonstrate the model’s capabilities. 3.3 Video Datasets for Prediction Head Supervision We train Aha using a combination of existing video-language datasets and a novel dataset tailored for highlight relevance in videos. These datasets supervise d",
+        "locator": "HTML element id S3",
+        "exact_substring": true
+      },
+      {
+        "section_id": "A2.SS5",
+        "quote": "An ambiguous prompt was defined as a high-level categorical description of the specific task (e.g., using \"Vehicle Maintenance\" for a video on changing tires). An irrelevant prompt was defined as a task description sampled from a video in a completely different category. Performance was measured by the change in top-5 mAP relative to the baseline score achieved with the original, specific prompt (93.0 mAP). The results, summarized in Table 10 , d",
+        "locator": "HTML element id A2.SS5",
+        "exact_substring": true
+      },
+      {
+        "section_id": "A4.SS1",
+        "quote": "This point is randomly sampled to occur between 50% and 75% of the segment’s duration. 3. Label Assignment: Frames from the 50% mark up to the \"point of sufficient understanding\" are labeled as informative ( i t = 1 i_{t}=1 ). All other frames in the segment (before 50% or after the point) are labeled non-informative ( i t = 0 i_{t}=0 ). The underlying intuition is that initial frames may lack context, while frames after understanding is achieved",
+        "locator": "HTML element id A4.SS1",
+        "exact_substring": true
+      },
+      {
+        "section_id": "A3.SS4",
+        "quote": "α = 0.7 , β = 1.0 , ϵ = − 2.9 , \\alpha=0.7,\\beta=1.0,\\epsilon=-2.9, and τ u = 0.3 \\tau_{u}=0.3 , provides a highly robust baseline that already surpasses prior state-of-the-art. The Static (Grid Search) method further boosts performance to achieve the optimal score, confirming the value of lightweight domain adaptation, though its outcome is sensitive to the validation data. The specific domain-adapted parameters found via this grid search, which",
+        "locator": "HTML element id A3.SS4",
+        "exact_substring": true
+      },
+      {
+        "section_id": "A6.SS3",
+        "quote": "exclusively the natural language task objective tokens ( 𝒬 \\mathcal{Q} ) . This ensures that the model’s long-term memory is persistently and exclusively focused on its primary goal, preventing it from being diluted by less relevant initial context.",
+        "locator": "HTML element id A6.SS3",
+        "exact_substring": true
+      }
+    ]
+  },
+  "author_repository": {
+    "url": "https://github.com/aiden200/Aha-",
+    "commit": "41473169504ae3793811066ffd398bc69094e499",
+    "remote_path": "/root/autodl-tmp/aha_repo",
+    "files": {
+      "test/inference.py": {
+        "sha256": "ed3a74411dce3ef46ec4108dbd36e26ef63b50f21d6a1654861424c3ad6b23f1",
+        "lines": {
+          "133": "def _init_cache(self, window_length=2048, num_sink_tokens=32, instruction_ids= None):",
+          "227": "uncertainty_score = torch.exp(outputs.uncertainty[0, -1]).item()",
+          "250": "# if self.sink_cache and not self.first_query_processed:",
+          "252": "#     self._init_cache(instruction_ids=query_ids)"
+        }
+      },
+      "models/live_llava/video_head_live_llava_qwen.py": {
+        "sha256": "cbc3e5a75d5e8223b17479874af9aa52da1a0eb9028eb30fe62ba612c516e702",
+        "lines": {
+          "187": "relevance_logits = torch.sigmoid(relevance_logits)",
+          "188": "log_variance = self.uncertainty_head(hidden_states_no_grad).float()",
+          "258": "log_variance_clamped = torch.clamp(log_variance, min=min_log_var, max=max_log_var)",
+          "327": "uncertainty=log_variance # uncertainty"
+        }
+      },
+      "test/grid_search.py": {
+        "sha256": "4e41c91768156c7c0d11563d82fe26d6a9d1c03318ff45f289e74310619cd4f0",
+        "lines": {
+          "60": "curr_pred_score = alpha * e[\"informative_score\"] + beta * e['relevance_score']",
+          "64": "curr_pred_score -= penalty",
+          "337": "\"epsilon\": np.linspace(-5, 5, 15), # Uncertainty"
+        }
+      },
+      "test/sink_cache.py": {
+        "sha256": "ce86e5568a1abf4f57c18e7eeaa1e3552cd911375a70dc82df72ea0e78fe3c2f",
+        "lines": {
+          "7": "class SinkCache(Cache):",
+          "8": "is_sliding = True"
+        }
+      },
+      "data/HIHD.py": {
+        "sha256": "3edc22262f62d6ad8c4b5e3c91ff78491f2639a3b097f79351998395c23f2b2c",
+        "lines": {
+          "92": "def get_informative_labels(self, conversation):",
+          "93": "# this label is for captioning and qa task, no need to learn here",
+          "94": "return None"
+        }
+      },
+      "data/stream.py": {
+        "sha256": "2c4377ccd5dff56afe3e990f07e24d47f64c7dd503e8232a9e49f010b4384e76",
+        "lines": {
+          "181": "informative_labels += [0] * (turn['num_frames'] - response_frame_num)",
+          "182": "informative_labels += [int(next_role == 'assistant')] * response_frame_num"
+        }
+      }
+    },
+    "method": "StrictHostKeyChecking=yes SSH read-only reads; new 40188 westd endpoint verified with previously trusted 40206 host-key alias; no assets downloaded."
+  },
+  "project_source": {
+    "scripts/r25_aha_submit.py": {
+      "sha256": "de6b1e0b2422405ee0d1d5ac5e8216d93c3fcb664a1e4eaa28f987395043b077",
+      "locators": [
+        {
+          "line": 50,
+          "text": "query='Identify the most informative and important highlights of this video.'"
+        },
+        {
+          "line": 55,
+          "text": "info=model.informative_head(h).float().softmax(-1)[...,1]"
+        },
+        {
+          "line": 56,
+          "text": "rel=model.relevance_head(h).float().sigmoid().squeeze(-1)"
+        },
+        {
+          "line": 57,
+          "text": "unc=model.uncertainty_head(h).float().squeeze(-1)"
+        },
+        {
+          "line": 61,
+          "text": "past=None; out=[]; native_diff=None"
+        },
+        {
+          "line": 73,
+          "text": "result=model.model(inputs_embeds=inp,past_key_values=past,use_cache=True,return_dict=True)"
+        },
+        {
+          "line": 85,
+          "text": "past=result.past_key_values"
+        },
+        {
+          "line": 98,
+          "text": "run=dict(experiment_id='R25_AHA_BF16_K085',model=args.model,parameter_count=params,spatial_parameter_count=spatial_params,total_parameters=params+spatial_params,parameter_limit=9_000_000_000,rule_basis='user confirmed official 9B parameter limit 2026-10-15',weight_files=weight_files,head_identity=head_identity,loading_info=loading,precision='bf16',attention='sdpa',sample_fps=1,chunk=args.chunk,system_prompt=system,query=query,score='softmax(informative)[1] + sigmoid(relevance)',keep=args.keep,index_sha256=sha(args.index),spatial_sha256=sha(args.spatial),source_code_sha256=sha(__file__),no_training=True,resume_compatible_code_sha256=args.resume_compatible_code_sha,validation_revision='full-token scoring heads; exact full-chunk native comparison <1e-5; recomputed all videos')"
+        }
+      ]
+    },
+    "scripts/r26_public_score.py": {
+      "sha256": "d9cad707cc8b295dbd4a94514f8828b98da7bce930b6ee432d8c79113dfaee93",
+      "locators": [
+        {
+          "line": 50,
+          "text": "query='Identify the most informative and important highlights of this video.'"
+        },
+        {
+          "line": 55,
+          "text": "info=model.informative_head(h).float().softmax(-1)[...,1]"
+        },
+        {
+          "line": 56,
+          "text": "rel=model.relevance_head(h).float().sigmoid().squeeze(-1)"
+        },
+        {
+          "line": 57,
+          "text": "unc=model.uncertainty_head(h).float().squeeze(-1)"
+        },
+        {
+          "line": 61,
+          "text": "past=None; out=[]; native_diff=None"
+        },
+        {
+          "line": 73,
+          "text": "result=model.model(inputs_embeds=inp,past_key_values=past,use_cache=True,return_dict=True)"
+        },
+        {
+          "line": 85,
+          "text": "past=result.past_key_values"
+        },
+        {
+          "line": 100,
+          "text": "write(root/'public_run.json',dict(config=c,source_code_sha256=sha(__file__),parameter_count=params,system=system,query=query,loading=loading,head_identity=head_identity,weight_files=weight_files))"
+        }
+      ]
+    }
+  },
+  "limits": [
+    "Paper heuristic verified; serialized historical Shot2Story/COIN training generation not reconstructed.",
+    "Exact deployed transformer cache class/config not instantiated.",
+    "No parameter count repeated.",
+    "No fresh-source or official-score claim."
+  ]
+}

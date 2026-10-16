@@ -1,0 +1,429 @@
+{
+  "status": "RECOMPUTED",
+  "rows": 13,
+  "expected_rows": 24,
+  "complete": false,
+  "sources": 3,
+  "max_abs_saved_metric_error": 2.220446049250313e-16,
+  "saved_metrics_match": true,
+  "parse_valid": 13,
+  "negative_gt_coordinates": 0,
+  "results": {
+    "all": {
+      "iou": {
+        "model_source_macro": 0.6500815445936015,
+        "center_source_macro": 0.5666402174503916,
+        "delta_source_macro": 0.08344132714320997,
+        "per_source": {
+          "031": {
+            "model": 0.6377482276528569,
+            "center": 0.6377482276528569,
+            "delta": 0.0
+          },
+          "032": {
+            "model": 0.7583968192850615,
+            "center": 0.6896139837085044,
+            "delta": 0.06878283557655734
+          },
+          "033": {
+            "model": 0.5540995868428861,
+            "center": 0.3725584409898135,
+            "delta": 0.18154114585307257
+          }
+        }
+      },
+      "iou_native_rv": {
+        "model_source_macro": 0.6505161060621582,
+        "center_source_macro": 0.5689256058765596,
+        "delta_source_macro": 0.08159050018559856,
+        "per_source": {
+          "031": {
+            "model": 0.6392953830251944,
+            "center": 0.6392953830251944,
+            "delta": 0.0
+          },
+          "032": {
+            "model": 0.7592966400681657,
+            "center": 0.6913613597608848,
+            "delta": 0.06793528030728097
+          },
+          "033": {
+            "model": 0.5529562950931143,
+            "center": 0.37612007484359955,
+            "delta": 0.17683622024951473
+          }
+        }
+      },
+      "iou_continuous_clamped_gt": {
+        "model_source_macro": 0.6500815445936015,
+        "center_source_macro": 0.5666402174503916,
+        "delta_source_macro": 0.08344132714320997,
+        "per_source": {
+          "031": {
+            "model": 0.6377482276528569,
+            "center": 0.6377482276528569,
+            "delta": 0.0
+          },
+          "032": {
+            "model": 0.7583968192850615,
+            "center": 0.6896139837085044,
+            "delta": 0.06878283557655734
+          },
+          "033": {
+            "model": 0.5540995868428861,
+            "center": 0.3725584409898135,
+            "delta": 0.18154114585307257
+          }
+        }
+      }
+    },
+    "horizontal": {
+      "iou": {
+        "model_source_macro": 0.6061345854435435,
+        "center_source_macro": 0.4997656464414811,
+        "delta_source_macro": 0.10636893900206242,
+        "per_source": {
+          "031": {
+            "model": 0.5857170668269217,
+            "center": 0.5857170668269217,
+            "delta": 0.0
+          },
+          "032": {
+            "model": 0.6785871026608227,
+            "center": 0.5410214315077081,
+            "delta": 0.1375656711531147
+          },
+          "033": {
+            "model": 0.5540995868428861,
+            "center": 0.3725584409898135,
+            "delta": 0.18154114585307257
+          }
+        }
+      },
+      "iou_native_rv": {
+        "model_source_macro": 0.6065688328439596,
+        "center_source_macro": 0.5023332392226006,
+        "delta_source_macro": 0.10423559362135888,
+        "per_source": {
+          "031": {
+            "model": 0.5872703171278852,
+            "center": 0.5872703171278852,
+            "delta": 0.0
+          },
+          "032": {
+            "model": 0.6794798863108792,
+            "center": 0.5436093256963174,
+            "delta": 0.13587056061456193
+          },
+          "033": {
+            "model": 0.5529562950931143,
+            "center": 0.37612007484359955,
+            "delta": 0.17683622024951473
+          }
+        }
+      },
+      "iou_continuous_clamped_gt": {
+        "model_source_macro": 0.6061345854435435,
+        "center_source_macro": 0.4997656464414811,
+        "delta_source_macro": 0.10636893900206242,
+        "per_source": {
+          "031": {
+            "model": 0.5857170668269217,
+            "center": 0.5857170668269217,
+            "delta": 0.0
+          },
+          "032": {
+            "model": 0.6785871026608227,
+            "center": 0.5410214315077081,
+            "delta": 0.1375656711531147
+          },
+          "033": {
+            "model": 0.5540995868428861,
+            "center": 0.3725584409898135,
+            "delta": 0.18154114585307257
+          }
+        }
+      }
+    },
+    "vertical": {
+      "iou": {
+        "model_source_macro": 0.7639929621940462,
+        "center_source_macro": 0.7639929621940462,
+        "delta_source_macro": 0.0,
+        "per_source": {
+          "031": {
+            "model": 0.6897793884787919,
+            "center": 0.6897793884787919,
+            "delta": 0.0
+          },
+          "032": {
+            "model": 0.8382065359093005,
+            "center": 0.8382065359093005,
+            "delta": 0.0
+          }
+        }
+      },
+      "iou_native_rv": {
+        "model_source_macro": 0.7652169213739779,
+        "center_source_macro": 0.7652169213739779,
+        "delta_source_macro": 0.0,
+        "per_source": {
+          "031": {
+            "model": 0.6913204489225037,
+            "center": 0.6913204489225037,
+            "delta": 0.0
+          },
+          "032": {
+            "model": 0.8391133938254521,
+            "center": 0.8391133938254521,
+            "delta": 0.0
+          }
+        }
+      },
+      "iou_continuous_clamped_gt": {
+        "model_source_macro": 0.7639929621940462,
+        "center_source_macro": 0.7639929621940462,
+        "delta_source_macro": 0.0,
+        "per_source": {
+          "031": {
+            "model": 0.6897793884787919,
+            "center": 0.6897793884787919,
+            "delta": 0.0
+          },
+          "032": {
+            "model": 0.8382065359093005,
+            "center": 0.8382065359093005,
+            "delta": 0.0
+          }
+        }
+      }
+    }
+  },
+  "per_frame": [
+    {
+      "video_id": "031",
+      "frame": 150,
+      "ratio": [
+        1,
+        3
+      ],
+      "axis": "horizontal",
+      "parse_valid": true,
+      "center": 0.5,
+      "iou": 0.6423575366723001,
+      "center_iou": 0.6423575366723001,
+      "iou_continuous_clamped_gt": 0.6423575366723001,
+      "center_iou_continuous_clamped_gt": 0.6423575366723001,
+      "iou_native_rv": 0.643681811223507,
+      "center_iou_native_rv": 0.643681811223507
+    },
+    {
+      "video_id": "031",
+      "frame": 150,
+      "ratio": [
+        3,
+        1
+      ],
+      "axis": "vertical",
+      "parse_valid": true,
+      "center": 0.5,
+      "iou": 0.7272813610444849,
+      "center_iou": 0.7272813610444849,
+      "iou_continuous_clamped_gt": 0.7272813610444849,
+      "center_iou_continuous_clamped_gt": 0.7272813610444849,
+      "iou_native_rv": 0.728636527857559,
+      "center_iou_native_rv": 0.728636527857559
+    },
+    {
+      "video_id": "031",
+      "frame": 270,
+      "ratio": [
+        1,
+        3
+      ],
+      "axis": "horizontal",
+      "parse_valid": true,
+      "center": 0.5,
+      "iou": 0.6324132990751592,
+      "center_iou": 0.6324132990751592,
+      "iou_continuous_clamped_gt": 0.6324132990751592,
+      "center_iou_continuous_clamped_gt": 0.6324132990751592,
+      "iou_native_rv": 0.6338324660615412,
+      "center_iou_native_rv": 0.6338324660615412
+    },
+    {
+      "video_id": "031",
+      "frame": 270,
+      "ratio": [
+        3,
+        1
+      ],
+      "axis": "vertical",
+      "parse_valid": true,
+      "center": 0.5,
+      "iou": 0.7560574796884841,
+      "center_iou": 0.7560574796884841,
+      "iou_continuous_clamped_gt": 0.7560574796884841,
+      "center_iou_continuous_clamped_gt": 0.7560574796884841,
+      "iou_native_rv": 0.7573125508509256,
+      "center_iou_native_rv": 0.7573125508509256
+    },
+    {
+      "video_id": "031",
+      "frame": 420,
+      "ratio": [
+        1,
+        3
+      ],
+      "axis": "horizontal",
+      "parse_valid": true,
+      "center": 0.5,
+      "iou": 0.482380364733306,
+      "center_iou": 0.482380364733306,
+      "iou_continuous_clamped_gt": 0.482380364733306,
+      "center_iou_continuous_clamped_gt": 0.482380364733306,
+      "iou_native_rv": 0.4842966740986076,
+      "center_iou_native_rv": 0.4842966740986076
+    },
+    {
+      "video_id": "031",
+      "frame": 420,
+      "ratio": [
+        3,
+        1
+      ],
+      "axis": "vertical",
+      "parse_valid": true,
+      "center": 0.5,
+      "iou": 0.5859993247034067,
+      "center_iou": 0.5859993247034067,
+      "iou_continuous_clamped_gt": 0.5859993247034067,
+      "center_iou_continuous_clamped_gt": 0.5859993247034067,
+      "iou_native_rv": 0.5880122680590262,
+      "center_iou_native_rv": 0.5880122680590262
+    },
+    {
+      "video_id": "032",
+      "frame": 90,
+      "ratio": [
+        1,
+        3
+      ],
+      "axis": "horizontal",
+      "parse_valid": true,
+      "center": 0.6666666748352051,
+      "iou": 0.6230480529987008,
+      "center_iou": 0.21035103953935677,
+      "iou_continuous_clamped_gt": 0.6230480529987008,
+      "center_iou_continuous_clamped_gt": 0.21035103953935677,
+      "iou_native_rv": 0.6219187256186672,
+      "center_iou_native_rv": 0.21430704377498141
+    },
+    {
+      "video_id": "032",
+      "frame": 90,
+      "ratio": [
+        3,
+        1
+      ],
+      "axis": "vertical",
+      "parse_valid": true,
+      "center": 0.5,
+      "iou": 0.790473371667345,
+      "center_iou": 0.790473371667345,
+      "iou_continuous_clamped_gt": 0.790473371667345,
+      "center_iou_continuous_clamped_gt": 0.790473371667345,
+      "iou_native_rv": 0.7916244917885766,
+      "center_iou_native_rv": 0.7916244917885766
+    },
+    {
+      "video_id": "032",
+      "frame": 210,
+      "ratio": [
+        1,
+        3
+      ],
+      "axis": "horizontal",
+      "parse_valid": true,
+      "center": 0.5,
+      "iou": 0.905594686887571,
+      "center_iou": 0.905594686887571,
+      "iou_continuous_clamped_gt": 0.905594686887571,
+      "center_iou_continuous_clamped_gt": 0.905594686887571,
+      "iou_native_rv": 0.9063319033437832,
+      "center_iou_native_rv": 0.9063319033437832
+    },
+    {
+      "video_id": "032",
+      "frame": 210,
+      "ratio": [
+        3,
+        1
+      ],
+      "axis": "vertical",
+      "parse_valid": true,
+      "center": 0.5,
+      "iou": 0.8540653899108838,
+      "center_iou": 0.8540653899108838,
+      "iou_continuous_clamped_gt": 0.8540653899108838,
+      "center_iou_continuous_clamped_gt": 0.8540653899108838,
+      "iou_native_rv": 0.8548887389199376,
+      "center_iou_native_rv": 0.8548887389199376
+    },
+    {
+      "video_id": "032",
+      "frame": 300,
+      "ratio": [
+        1,
+        3
+      ],
+      "axis": "horizontal",
+      "parse_valid": true,
+      "center": 0.5,
+      "iou": 0.5071185680961963,
+      "center_iou": 0.5071185680961963,
+      "iou_continuous_clamped_gt": 0.5071185680961963,
+      "center_iou_continuous_clamped_gt": 0.5071185680961963,
+      "iou_native_rv": 0.5101890299701873,
+      "center_iou_native_rv": 0.5101890299701873
+    },
+    {
+      "video_id": "032",
+      "frame": 300,
+      "ratio": [
+        3,
+        1
+      ],
+      "axis": "vertical",
+      "parse_valid": true,
+      "center": 0.5,
+      "iou": 0.8700808461496728,
+      "center_iou": 0.8700808461496728,
+      "iou_continuous_clamped_gt": 0.8700808461496728,
+      "center_iou_continuous_clamped_gt": 0.8700808461496728,
+      "iou_native_rv": 0.8708269507678424,
+      "center_iou_native_rv": 0.8708269507678424
+    },
+    {
+      "video_id": "033",
+      "frame": 210,
+      "ratio": [
+        1,
+        3
+      ],
+      "axis": "horizontal",
+      "parse_valid": true,
+      "center": 0.64,
+      "iou": 0.5540995868428861,
+      "center_iou": 0.3725584409898135,
+      "iou_continuous_clamped_gt": 0.5540995868428861,
+      "center_iou_continuous_clamped_gt": 0.3725584409898135,
+      "iou_native_rv": 0.5529562950931143,
+      "center_iou_native_rv": 0.37612007484359955
+    }
+  ],
+  "predictions_sha256": "4ff041352250a0d9b70bf2f8ca62c583d44648ffa1749961ed6982178f0759df",
+  "sampled_gt_sha256": "178cb21ebb9b568cc80917c6444545462fbf8e2bd2e243843c804b70e6889717",
+  "script_sha256": "d8d6f01f31fff1bd6e3c4d97ab65cf1a8df2049cd8218e378edf46eaf5c26adc",
+  "scope": "Independent arithmetic recomputation; same four exposed sources, not an independent generalization test or B3 comparison"
+}

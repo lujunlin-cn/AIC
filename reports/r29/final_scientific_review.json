@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-16",
+  "reviewer": "/root/temporal_evidence",
+  "scope": "Read-only scientific closeout review of summary, 01, STATUS and the unexecuted next-stage protocol; distinct from independent arithmetic recomputation",
+  "findings": [
+    {
+      "issue": "Original video was called the statistical independent unit without acknowledging cross-source author/program/session dependence",
+      "resolution": "Summary and temporal report now describe source as the resampling unit and state the approximate independence/exchangeability assumption and unexcluded session dependence",
+      "frozen_protocol_changed": false
+    },
+    {
+      "issue": "Six portrait and six landscape sources do not alone freeze target ratio or guarantee x/y free-axis coverage",
+      "resolution": "Unexecuted next-stage protocol freezes actual W/H, landscape to 9:16 and portrait to 16:9 target ratios, and computed six-x/six-y coverage before annotation; summary/spatial protocol text synchronized",
+      "current_experiment_results_changed": false
+    }
+  ],
+  "other_result": "No additional contradiction in principal reported numbers or attribution found in this scoped review; this is not independent new-source confirmation",
+  "additional_contract": "reports/r29/pipeline_contract.md",
+  "principal_investigator_addendum": "Main summary explicitly distinguishes public actual-PTS coverage from R25 official metadata-FPS sampling and identifies existing B3 129-candidate utility learning as inherited rather than a new algorithm"
+}

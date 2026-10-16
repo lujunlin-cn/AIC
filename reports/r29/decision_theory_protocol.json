@@ -1,0 +1,19 @@
+{
+  "experiment_id": "R29_DECISION_THEORY",
+  "date": "2026-10-16",
+  "kind": "synthetic exact mechanism experiment, not empirical competition evidence",
+  "hypothesis": "Uncertain positive-set size and crop quality can make marginal highlight ranking and a ratio-of-expectations budget decoder disagree with the Bayes action for expected per-video joint F.",
+  "counter_hypothesis": "If M is known, unweighted marginal expected joint utility is sufficient for every fixed K; if perfect equal crops and conditionally independent Bernoulli labels hold, marginal highlight ordering remains correct even though K selection can fail.",
+  "predefined_examples": [
+    "four frames: probability 3/5 of labels 1110, probability 2/5 of labels 0001, perfect crops",
+    "two independent Bernoulli frames with p=(9/10,2/5), perfect crops",
+    "four frames: probability 13/20 of labels 1111 and crop-left, probability 7/20 of labels 1000 and crop-right"
+  ],
+  "primary_validation": "Finite-posterior analytical decoder equals independent enumeration of all legal subsets and candidate crops exactly, using rational arithmetic.",
+  "independent_unit": "A synthetic finite posterior, not a video or observed frame.",
+  "effect_gate": "An exact inequality refutes universal equivalence; it says nothing about empirical effect size.",
+  "coverage": "Known-M, unknown-M, spatial-utility, empty-set, marginal/add-delete and macro-average edge cases.",
+  "resources": "CPU only, no downloads, no official-test inputs, planned <20 minutes.",
+  "stopping_rule": "Stop on any equality assertion failure; do not select examples based on competition scores.",
+  "limitation": "Posterior supplied by construction. Its estimability, calibration and transfer are not established. Official evaluator version remains unavailable. Empty-empty=1 follows 01, not a newly executed official evaluator."
+}

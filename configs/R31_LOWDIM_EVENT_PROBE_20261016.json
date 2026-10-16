@@ -1,0 +1,16 @@
+{
+  "experiment_id": "R31_LOWDIM_EVENT_PROBE_20261016",
+  "axis_report": "reports/r22/r22_instrument_report.json",
+  "identity_metrics": "reports/r26/public_metrics.json",
+  "data_root": "artifacts/r29/public_evidence/R22_INSTRUMENT_20261015",
+  "feature_root": "artifacts/r29/public_evidence/R24_EXEC_20261015",
+  "bindings": "artifacts/r29/public_evidence/bindings.json",
+  "output": "reports/r31/lowdim_event_probe",
+  "pca_components": 4,
+  "ridge": 1.0,
+  "keep": 0.85,
+  "arms": ["position", "low", "pca", "low_pca"],
+  "contrasts": [["low85", "center85"], ["pca85", "center85"], ["low_pca85", "center85"]],
+  "scope": "Exposed public VideoXum diagnostic; 12 native VPB observations, low-dimensional event-state summaries, TRAIN-only fit, exact 85% budget",
+  "limitations": ["DEV was exposed in R24/R26 and is not independent confirmation.", "VideoXum labels are not AIC labels.", "No official/protected labels, artificial annotations, or upload used.", "Probe is not a deployable model until it passes source and system controls."]
+}

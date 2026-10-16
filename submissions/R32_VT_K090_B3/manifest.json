@@ -1,0 +1,48 @@
+{
+  "submission_id": "R32_VT_K090_B3",
+  "status": "PACKAGED_NOT_UPLOADED",
+  "official_score": null,
+  "method": "remote temporal_k0.90 frozen AIC inference cache + B3 spatial boxes",
+  "video_count": 426,
+  "prediction_count": 207292,
+  "keep_target": 0.9,
+  "total_parameters": 450529778,
+  "model_params_b": 0.450529778,
+  "parameter_components": {
+    "B3_spatial": 450283377,
+    "temporal_TCN": 246401
+  },
+  "model_size_mb_semantics": "total inference parameters / 1e6, not file bytes",
+  "index_path": "/tmp/aic_r32/index.jsonl",
+  "index_sha256": "02d52321e82a70cafd33d566319b2ebf5e405af43946d6da32181eccdbc46a93",
+  "predictions_sha256": "94ce6b3bb0395846f0979463171939e8b5f6921572448bb3aedde2d8e7e4a48e",
+  "source_cache": "/root/autodl-tmp/evac/data/aic/semifinal_20261001/temporal_k0.90/predictions.jsonl",
+  "limitations": [
+    "temporal cache provenance and exact model checkpoint are recorded remotely; no official score yet",
+    "candidate is not the R31 lowdim probe deployment",
+    "B3 boxes are reused on selected frames; no new spatial inference"
+  ],
+  "validation": {
+    "independent": {
+      "valid": true,
+      "videos": 426,
+      "predictions": 207292,
+      "model_size_mb": 450.529778,
+      "checker": "independent_submission_check_v1"
+    },
+    "contract": {
+      "valid": true,
+      "issues": [],
+      "video_count": 426,
+      "prediction_count": 207292,
+      "model_size_mb": 450.529778,
+      "model_params_b": 0.450529778,
+      "stage": "final",
+      "validator": "local_rules_2026-09-24_not_official"
+    }
+  },
+  "zip_sha256": "9d6f148b4e42c48ff8553edd052f226503d4d304a1c046a3a496dc16aab3a434",
+  "zip_bytes": 1439045,
+  "actual_total_frame_count": 234159,
+  "actual_keep_fraction": 0.8852617238713866
+}

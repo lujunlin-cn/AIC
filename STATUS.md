@@ -163,3 +163,7 @@ AHA修复证据：[reports/r24_aha_repair/summary.md](reports/r24_aha_repair/sum
 
 停止R27预算/位置扫描。完整426视频B3缓存路径误差0；记录路径的B3头和LFM基座缺失，旧RV原视频符号链接也已失效，缓存存在不等于数据/权重完整。空间方向优先主体评分、表示与原生几何数据，避免重复旧插值/加密/检测先验。
 Qwen3.5-4B公共4源24预测pilot已加载并产出部分结果，随后SSH断开，完整metrics未取回，**不宣称收益或完成**。恢复后先取回结果，不直接推理官方集。见`reports/r28/summary.md`、`pilot_status.json`；预留14源未打开。
+
+## R31/R32 交接（2026-10-16）
+
+R31低维事件状态probe：DEV `.302285` 高于中心 `.288381`，但暴露DEV、源级CI跨零，且没有AIC对应特征，不作为部署收益。R32使用AIC 426冻结 `temporal_k0.90` 时间选择与B3空间框：426/426视频，207292帧，实际保留率 `.885262`，总推理参数 `450,529,778 = 0.450529778B`。`submissions/R32_VT_K090_B3/` 已含 `predictions.jsonl`、确定性ZIP、manifest和SHA256；独立checker与semifinal contract均通过。R32尚未上传、官方分数为null；用户上传时保留 `R26_POS_CENTER_EXACT085_B3` 回滚。ZIP SHA：`9d6f148b4e42c48ff8553edd052f226503d4d304a1c046a3a496dc16aab3a434`。

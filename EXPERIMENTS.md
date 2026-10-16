@@ -987,3 +987,15 @@ R35并集为210827帧，R36先保留两头共同帧，再用中心85包的合法
 ## R37–R41 内容驱动时间决策（2026-10-16）
 
 用户拒绝 keep/位置扫参后，基于冻结768D视觉状态构造五个固定机制候选，统一继承B3空间框和每视频floor(0.85N)预算。R37事件转折、R38转折窗口、R39冗余压缩、R40状态新颖性覆盖、R41内容门控弱监督头。五包426/426、198842帧、450529778参数，独立checker全部通过。详细机制与限制见`reports/r37_content_candidates_20261016.md`。暂无本地联合GT或官方分数，不能声称已提升；优先验证R41，其次R40。
+
+## R42 — 2026-10-16：小规模人工先验诊断批次（未完成标注）
+
+**Hypothesis**：当前中心时间策略长期停在约36分，可能是目标语义、过程/音频可观测性或时间—空间联合效用错位；12个源视频的盲标可以区分这些机制，成本低于继续换模型。
+
+**Data / change**：从 AutoDL 已有 `QVH_NATIVE_CANDIDATES` 按预先冻结的 metadata-only 规则抽取12个公开源视频，每个30秒；导出360张1fps JPEG和12个低码率MP4，约25MB。6个视频双人重叠，6个单人。Label Studio任务默认不包含类别、抽样原因、assignment或QVH query；这些字段仅在独立manifest中用于事后分析。
+
+**Labels**：通用高光等级、事件阶段、是否需要前后过程/声音语言、事件类型、置信度；高光核心另标目标比例构图窗口及原因。首轮不显示QVH query，先播放片段再看逐帧图。
+
+**验收**：任务数360，素材12个视频/360张图；本地目录 `artifacts/annotation_batch_v1/`；配置与操作说明见 `configs/ANNOTATION_BATCH_V1.json`、`configs/label_studio_annotation_v1.xml`、`reports/annotation_batch_v1_runbook.md`、`reports/annotation_protocol_v1.md`。人工结果尚未产生，不报告模型收益或官方分。
+
+**Decision gate**：若高光核心多数需要前后过程，优先增加时序观测/事件结构；若多数依赖声音或语言，转音频/OCR小模块；若人工通用高光与QVH query系统性错位，停止直接混合QVH软标签；若高光与稳定构图窗口经常冲突，改联合时间—空间效用。若四项均不明显，才回到冻结视觉读出和部署合同。

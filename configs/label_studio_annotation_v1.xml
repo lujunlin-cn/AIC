@@ -1,0 +1,69 @@
+<View>
+  <Header value="$video_id | exported time $time_sec s | source offset $source_offset_sec s" />
+  <Image name="image" value="$image" zoom="true" />
+
+  <Header value="1. 标通用高光，不要把‘画面好看’当成高光。高光是值得进入短片的内容或结果。" />
+  <Choices name="generic_highlight" toName="image" choice="single-radio" showInline="true">
+    <Choice value="0普通" />
+    <Choice value="1有信息" />
+    <Choice value="2值得保留" />
+    <Choice value="3高光核心" />
+    <Choice value="不确定" />
+  </Choices>
+
+  <Choices name="event_phase" toName="image" choice="single-radio" showInline="true">
+    <Choice value="铺垫" />
+    <Choice value="进行中" />
+    <Choice value="完成或结果" />
+    <Choice value="结果后反应" />
+    <Choice value="无事件或无法判断" />
+  </Choices>
+  <Choices name="needs_context" toName="image" choice="single-radio" showInline="true">
+    <Choice value="当前帧足够" />
+    <Choice value="需要前后过程" />
+    <Choice value="需要声音或语言" />
+    <Choice value="无法判断" />
+  </Choices>
+  <Choices name="event_type" toName="image" choice="single-radio" showInline="true">
+    <Choice value="动作" />
+    <Choice value="结果或揭示" />
+    <Choice value="情绪或反应" />
+    <Choice value="人物互动" />
+    <Choice value="信息或字幕" />
+    <Choice value="视觉奇观或场景" />
+    <Choice value="其他" />
+    <Choice value="无事件" />
+  </Choices>
+  <Choices name="query_relevance" toName="image" choice="single-radio" showInline="true">
+    <Choice value="未看查询" />
+    <Choice value="查询无关" />
+    <Choice value="部分相关" />
+    <Choice value="直接相关" />
+  </Choices>
+  <Choices name="confidence" toName="image" choice="single-radio" showInline="true">
+    <Choice value="高" />
+    <Choice value="中" />
+    <Choice value="低" />
+  </Choices>
+
+  <Header value="仅当通用高光为 2 或 3 时标框；框表示目标比例下你愿意保留的构图窗口，不是紧致检测框。没有合理窗口就不画。" />
+  <RectangleLabels name="crop_box" toName="image" smart="true">
+    <Label value="主体" background="#1f77b4" />
+    <Label value="多人或互动" background="#ff7f0e" />
+    <Label value="整体画面或景别" background="#2ca02c" />
+    <Label value="字幕或屏幕信息" background="#d62728" />
+  </RectangleLabels>
+  <Choices name="crop_reason" toName="image" choice="multiple" showInline="true">
+    <Choice value="主体完整" />
+    <Choice value="动作关系" />
+    <Choice value="结果信息" />
+    <Choice value="字幕保留" />
+    <Choice value="整体构图" />
+  </Choices>
+  <Choices name="composition_confidence" toName="image" choice="single-radio" showInline="true">
+    <Choice value="高" />
+    <Choice value="中" />
+    <Choice value="低或无合理框" />
+  </Choices>
+  <TextArea name="annotator_note" toName="image" rows="2" placeholder="只记录能改变判断的原因或歧义" />
+</View>

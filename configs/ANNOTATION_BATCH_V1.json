@@ -1,0 +1,281 @@
+{
+  "batch_id": "AIC_MANUAL_ANNOTATION_V1",
+  "purpose": "Small mechanism diagnostic set: generic highlight, event phase, context dependence, and composition utility.",
+  "source_dataset": "QVH_NATIVE_CANDIDATES",
+  "source_records": "/root/autodl-tmp/evac/data/aic/datasets/QVH_NATIVE_CANDIDATES/records.jsonl",
+  "selection_rule": "Metadata-only stratified selection fixed before viewing model predictions. Each item is a 30 s window from a public QVHighlights source clip; QVH query labels are retained only for post-hoc comparison.",
+  "clip_duration_seconds": 30,
+  "frame_export_fps": 1,
+  "annotators": {
+    "overlap_video_ids": [
+      "B6AEPicK9Bk_210.0_360.0",
+      "rAHQY2FHcOo_210.0_360.0",
+      "eLlUVxVLiLU_60.0_210.0",
+      "m6U-5Hck5z0_60.0_210.0",
+      "bGU97Zw6Jfg_60.0_210.0",
+      "GtJXHRFhm0E_210.0_360.0"
+    ],
+    "single_annotator_video_ids": [
+      "vprHvWMX1YU_210.0_360.0",
+      "HISG6jkZBfs_210.0_360.0",
+      "uJ97MxBs4qU_210.0_360.0",
+      "jgvQzWAhoiw_210.0_360.0",
+      "yXR17NNJgdU_210.0_360.0",
+      "P6KTyi4s4Bc_210.0_360.0"
+    ]
+  },
+  "items": [
+    {
+      "video_id": "B6AEPicK9Bk_210.0_360.0",
+      "category": "action_result",
+      "source_group": "B6AEPicK9Bk",
+      "source_file": "B6AEPicK9Bk_210.0_360.0.mp4",
+      "clip_start_seconds": 110,
+      "clip_end_seconds": 140,
+      "reason": "object handoff and eating; tests whether result beats preparation",
+      "qvh_query": "Man holds out a sandwich to the camera.",
+      "qvh_relevant_windows": [
+        [
+          122,
+          136
+        ]
+      ],
+      "qvh_mean_label": 0.642857
+    },
+    {
+      "video_id": "rAHQY2FHcOo_210.0_360.0",
+      "category": "action_result",
+      "source_group": "rAHQY2FHcOo",
+      "source_file": "rAHQY2FHcOo_210.0_360.0.mp4",
+      "clip_start_seconds": 0,
+      "clip_end_seconds": 30,
+      "reason": "bike tricks; tests completion and motion",
+      "qvh_query": "A man does a series of bike tricks on a trampoline.",
+      "qvh_relevant_windows": [
+        [
+          10,
+          24
+        ]
+      ],
+      "qvh_mean_label": 0.666667
+    },
+    {
+      "video_id": "vprHvWMX1YU_210.0_360.0",
+      "category": "action_result",
+      "source_group": "vprHvWMX1YU",
+      "source_file": "vprHvWMX1YU_210.0_360.0.mp4",
+      "clip_start_seconds": 10,
+      "clip_end_seconds": 40,
+      "reason": "rapids entry and exit; tests process versus outcome",
+      "qvh_query": "Man goes in rapids then gets out.",
+      "qvh_relevant_windows": [
+        [
+          20,
+          34
+        ]
+      ],
+      "qvh_mean_label": 0.738095
+    },
+    {
+      "video_id": "eLlUVxVLiLU_60.0_210.0",
+      "category": "danger_context",
+      "source_group": "eLlUVxVLiLU",
+      "source_file": "eLlUVxVLiLU_60.0_210.0.mp4",
+      "clip_start_seconds": 0,
+      "clip_end_seconds": 30,
+      "reason": "surrender with repeated hand movement; tests context-dependent value",
+      "qvh_query": "A gunmen surrenders to police with his hands up, but one hand repeatedly reaches for his rifle",
+      "qvh_relevant_windows": [
+        [
+          12,
+          62
+        ]
+      ],
+      "qvh_mean_label": 0.45
+    },
+    {
+      "video_id": "HISG6jkZBfs_210.0_360.0",
+      "category": "event_result",
+      "source_group": "HISG6jkZBfs",
+      "source_file": "HISG6jkZBfs_210.0_360.0.mp4",
+      "clip_start_seconds": 110,
+      "clip_end_seconds": 140,
+      "reason": "fire escalation; tests visual event peak and aftermath",
+      "qvh_query": "A building is burning and being consumed completely by the flames at night.",
+      "qvh_relevant_windows": [
+        [
+          122,
+          150
+        ]
+      ],
+      "qvh_mean_label": 0.827381
+    },
+    {
+      "video_id": "uJ97MxBs4qU_210.0_360.0",
+      "category": "action_context",
+      "source_group": "uJ97MxBs4qU",
+      "source_file": "uJ97MxBs4qU_210.0_360.0.mp4",
+      "clip_start_seconds": 0,
+      "clip_end_seconds": 30,
+      "reason": "riding near pyramids; tests action plus scene context",
+      "qvh_query": "A man is riding a horse near the ancient Egyptian pyramids.",
+      "qvh_relevant_windows": [
+        [
+          12,
+          26
+        ]
+      ],
+      "qvh_mean_label": 0.892857
+    },
+    {
+      "video_id": "jgvQzWAhoiw_210.0_360.0",
+      "category": "talking_information",
+      "source_group": "jgvQzWAhoiw",
+      "source_file": "jgvQzWAhoiw_210.0_360.0.mp4",
+      "clip_start_seconds": 0,
+      "clip_end_seconds": 30,
+      "reason": "talking-head product explanation; tests information value without visible action",
+      "qvh_query": "A lady talks about her deodorant",
+      "qvh_relevant_windows": [
+        [
+          0,
+          10
+        ],
+        [
+          12,
+          64
+        ]
+      ],
+      "qvh_mean_label": 0.895161
+    },
+    {
+      "video_id": "m6U-5Hck5z0_60.0_210.0",
+      "category": "talking_information",
+      "source_group": "m6U-5Hck5z0",
+      "source_file": "m6U-5Hck5z0_60.0_210.0.mp4",
+      "clip_start_seconds": 40,
+      "clip_end_seconds": 70,
+      "reason": "talking head at laptop; tests static frame versus speech context",
+      "qvh_query": "A bearded man in white sits before a mac laptop while talking.",
+      "qvh_relevant_windows": [
+        [
+          50,
+          64
+        ]
+      ],
+      "qvh_mean_label": 0.869048
+    },
+    {
+      "video_id": "yXR17NNJgdU_210.0_360.0",
+      "category": "multi_person_information",
+      "source_group": "yXR17NNJgdU",
+      "source_file": "yXR17NNJgdU_210.0_360.0.mp4",
+      "clip_start_seconds": 36,
+      "clip_end_seconds": 66,
+      "reason": "stage speech with interpreter; tests competing subjects and readable content",
+      "qvh_query": "Three men and a sign language interpreter are giving a speech on a stage.",
+      "qvh_relevant_windows": [
+        [
+          46,
+          58
+        ],
+        [
+          60,
+          66
+        ],
+        [
+          68,
+          80
+        ],
+        [
+          88,
+          98
+        ],
+        [
+          100,
+          110
+        ],
+        [
+          112,
+          130
+        ],
+        [
+          142,
+          150
+        ]
+      ],
+      "qvh_mean_label": 0.701754
+    },
+    {
+      "video_id": "bGU97Zw6Jfg_60.0_210.0",
+      "category": "scenic_event",
+      "source_group": "bGU97Zw6Jfg",
+      "source_file": "bGU97Zw6Jfg_60.0_210.0.mp4",
+      "clip_start_seconds": 10,
+      "clip_end_seconds": 40,
+      "reason": "aerial mountain views; tests scenic novelty and shot changes",
+      "qvh_query": "Different aerial shots that show off the snowy mountain.",
+      "qvh_relevant_windows": [
+        [
+          20,
+          28
+        ],
+        [
+          46,
+          48
+        ],
+        [
+          50,
+          70
+        ],
+        [
+          124,
+          150
+        ]
+      ],
+      "qvh_mean_label": 0.75
+    },
+    {
+      "video_id": "GtJXHRFhm0E_210.0_360.0",
+      "category": "people_context",
+      "source_group": "GtJXHRFhm0E",
+      "source_file": "GtJXHRFhm0E_210.0_360.0.mp4",
+      "clip_start_seconds": 96,
+      "clip_end_seconds": 126,
+      "reason": "masked shopping; tests ordinary activity with sparse event cues",
+      "qvh_query": "Masked man goes grocery shopping.",
+      "qvh_relevant_windows": [
+        [
+          106,
+          118
+        ],
+        [
+          120,
+          124
+        ]
+      ],
+      "qvh_mean_label": 0.864583
+    },
+    {
+      "video_id": "P6KTyi4s4Bc_210.0_360.0",
+      "category": "action_result",
+      "source_group": "P6KTyi4s4Bc",
+      "source_file": "P6KTyi4s4Bc_210.0_360.0.mp4",
+      "clip_start_seconds": 80,
+      "clip_end_seconds": 110,
+      "reason": "child playing at beach; tests motion, reaction, and scene composition",
+      "qvh_query": "A little kid playing on the beach water",
+      "qvh_relevant_windows": [
+        [
+          90,
+          126
+        ],
+        [
+          138,
+          150
+        ]
+      ],
+      "qvh_mean_label": 0.826389
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "R27_CENTER075_B3": {
+    "prediction_count": 175623,
+    "added_vs_best": 0,
+    "removed_vs_best": 23414,
+    "zip_sha256": "32debd144b9bdd67f6d5573f7a395f5ccf55754d6ffbdd902d169bb99fb9ed94"
+  },
+  "R27_CENTER095_B3": {
+    "prediction_count": 222454,
+    "added_vs_best": 23417,
+    "removed_vs_best": 0,
+    "zip_sha256": "7e87584d8c54ff619d9469a53045b0b5107795c72e628a3cfcfa3d6ca2015a1d"
+  },
+  "R27_EARLY085_B3": {
+    "prediction_count": 199037,
+    "added_vs_best": 11705,
+    "removed_vs_best": 11705,
+    "zip_sha256": "2e4ae4395eaf114f7e59900e72543f9d5f7cbe9c43ca666eb52f9f96c09c9251"
+  },
+  "R27_LATE085_B3": {
+    "prediction_count": 199037,
+    "added_vs_best": 11705,
+    "removed_vs_best": 11705,
+    "zip_sha256": "2552877aca333f726d52153ed4177de53a1fb8edbe6190b4478ccfa73717f5af"
+  }
+}

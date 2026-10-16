@@ -1,0 +1,56 @@
+{
+  "experiment_id": "R27_CENTER_WINDOW_20261016",
+  "date": "2026-10-16",
+  "git_parent_commit": "d67ce8e681f216ae0d6c6a7fb83bcf7258ae7b5a",
+  "hypothesis": "Center85+B3 scored36.04; isolate trimming amount from asymmetric temporal placement before changing content models or spatial boxes.",
+  "change": "One scalar per arm: keep or normalized window shift; all B3 boxes frozen.",
+  "expected_effect": "Identify whether the improvement is budget-dependent or position-dependent; no score forecast.",
+  "risk": "Four exploratory official comparisons; aggregate only, no confidence interval or per-video GT. Test score feedback can overfit; no further grid without mechanism.",
+  "control": "R26_POS_CENTER_EXACT085_B3: k=round(.85*N), start=(N-k)//2; identical framewise B3 boxes.",
+  "index": "/tmp/r25_index.jsonl",
+  "index_sha256": "02d52321e82a70cafd33d566319b2ebf5e405af43946d6da32181eccdbc46a93",
+  "spatial": "artifacts/r26/b3_allframes.jsonl",
+  "spatial_sha256": "2e1dd604629df52618ac1c7f11f1623526adbf0d13d186665d4294091fd89b05",
+  "baseline": "submissions/R26_DIAG/R26_POS_CENTER_EXACT085_B3",
+  "baseline_zip_sha256": "95d079da9b1f845e967509dcb5a3bebc057e8501b582cdc4858af4fc7b60a981",
+  "baseline_score": 36.04,
+  "parameters": 450283377,
+  "parameter_limit": 9000000000,
+  "training": false,
+  "training_time": 0,
+  "gpu_ids": [],
+  "protected_sources_opened": false,
+  "seed": null,
+  "arms": [
+    {
+      "name": "R27_CENTER075_B3",
+      "keep": 0.75,
+      "shift": 0
+    },
+    {
+      "name": "R27_CENTER095_B3",
+      "keep": 0.95,
+      "shift": 0
+    },
+    {
+      "name": "R27_EARLY085_B3",
+      "keep": 0.85,
+      "shift": -0.05
+    },
+    {
+      "name": "R27_LATE085_B3",
+      "keep": 0.85,
+      "shift": 0.05
+    }
+  ],
+  "start_rule": "(N-round(keep*N))//2 + round(shift*N); assert legal; Python round ties-to-even",
+  "submission_priority": [
+    "R27_CENTER095_B3",
+    "R27_CENTER075_B3",
+    "R27_EARLY085_B3",
+    "R27_LATE085_B3"
+  ],
+  "stop_rule": "If all arms <=36.04 retain center85, stop position/budget scans and prioritize fixed-mask spatial supervision. If one improves, freeze it; require a new explicit hypothesis before further official tuning.",
+  "output": "submissions/R27_CENTER",
+  "report": "reports/r27"
+}

@@ -1,8 +1,8 @@
 {
   "submission_id": "R26_R25MASK_CENTER",
-  "status": "PACKAGED_NOT_UPLOADED",
-  "official_score": null,
-  "uploaded": false,
+  "status": "OFFICIAL_SCORE_USER_REPORTED",
+  "official_score": 30.23,
+  "uploaded": true,
   "total_parameters": 8030363168,
   "aha_weight_bytes": 16060832112,
   "spatial_weight_bytes_reported": 0,
@@ -34,5 +34,8 @@
     "validator": "local_rules_2026-09-24_not_official"
   },
   "fixed_mask": true,
-  "same_boxes_as_b3": false
+  "same_boxes_as_b3": false,
+  "official_score_source": "user_report_2026-10-16",
+  "platform_independently_verified": false,
+  "uploaded_zip_sha256_independently_verified": false
 }

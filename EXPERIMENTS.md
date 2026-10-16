@@ -902,3 +902,11 @@ Result：sum公共F@.85=.290883，prefix/train_position=.297467，center=.288381
 Budget：204907→199037帧，消除5870超额；同一mask空间控制204907帧不变，116620框改变。三ZIP426/426双validator无issues、参数合规，官方分null，未上传。
 Training：0；公共推理488.76s，GPU0 RTX4080，峰值allocated17860467712B。现役35.52保留，不因本地公开摘要指标晋级或宣称容量问题。
 Evidence：reports/r26/summary.md、diagnostics.json、public_metrics.json；配置configs/R26_DIAG_20261016.json。
+
+## R26 官方回分与R27中心窗口实验（2026-10-16）
+
+用户报告中心85+B3=36.04、精确AHA+B3=35.07、R25mask中心空间=30.23；本地ZIP SHA与冻结manifest重核一致，平台上传SHA未独立核验。分别说明中心排序高0.97、预算修复低0.11、B3空间高4.95。仅比较复赛，不能将联合IoU增益当纯时间语义精度或空间误差占比。中心85晋级安全基线，旧35.52保留。
+
+R27假设：最佳中心时间窗收益依赖预算/端点位置；仅改变keep(.75/.95)或shift(−.05/+.05，keep=.85)，保持B3所有框。配置在运行前保存；CPU缓存重组7.93s，4×426视频双validator通过，复建最佳199037帧及框完全一致；新包预测数175623/222454/199037/199037，450283377参数。0训练、0新增GPU推理，预留14源未打开。当前四项官方分null，不能宣称性能提升。顺序95、75、前移、后移，全部不超36.04则停止扫描。
+
+Evidence: reports/r26/official_analysis.md、official_score_events.json；reports/r27/summary.md、run.json与四份manifest；configs/R27_CENTER_WINDOW_20261016.json；scripts/r27_center_windows.py。

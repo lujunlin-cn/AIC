@@ -239,9 +239,9 @@
   "packages": {
     "R26_AHA_EXACT085_B3": {
       "submission_id": "R26_AHA_EXACT085_B3",
-      "status": "PACKAGED_NOT_UPLOADED",
-      "official_score": null,
-      "uploaded": false,
+      "status": "OFFICIAL_SCORE_USER_REPORTED",
+      "official_score": 35.07,
+      "uploaded": true,
       "total_parameters": 8480646545,
       "aha_weight_bytes": 16060832112,
       "spatial_weight_bytes_reported": 903762857,
@@ -263,13 +263,15 @@
         "checker": "independent_submission_check_v1"
       },
       "fixed_mask": false,
-      "same_boxes_as_b3": true
+      "same_boxes_as_b3": true,
+      "official_score_source": "user_report_2026-10-16",
+      "uploaded_zip_sha256_independently_verified": false
     },
     "R26_POS_CENTER_EXACT085_B3": {
       "submission_id": "R26_POS_CENTER_EXACT085_B3",
-      "status": "PACKAGED_NOT_UPLOADED",
-      "official_score": null,
-      "uploaded": false,
+      "status": "OFFICIAL_SCORE_USER_REPORTED",
+      "official_score": 36.04,
+      "uploaded": true,
       "total_parameters": 450283377,
       "aha_weight_bytes": 0,
       "spatial_weight_bytes_reported": 903762857,
@@ -291,13 +293,15 @@
         "checker": "independent_submission_check_v1"
       },
       "fixed_mask": false,
-      "same_boxes_as_b3": true
+      "same_boxes_as_b3": true,
+      "official_score_source": "user_report_2026-10-16",
+      "uploaded_zip_sha256_independently_verified": false
     },
     "R26_R25MASK_CENTER": {
       "submission_id": "R26_R25MASK_CENTER",
-      "status": "PACKAGED_NOT_UPLOADED",
-      "official_score": null,
-      "uploaded": false,
+      "status": "OFFICIAL_SCORE_USER_REPORTED",
+      "official_score": 30.23,
+      "uploaded": true,
       "total_parameters": 8030363168,
       "aha_weight_bytes": 16060832112,
       "spatial_weight_bytes_reported": 0,
@@ -319,13 +323,15 @@
         "checker": "independent_submission_check_v1"
       },
       "fixed_mask": true,
-      "same_boxes_as_b3": false
+      "same_boxes_as_b3": false,
+      "official_score_source": "user_report_2026-10-16",
+      "uploaded_zip_sha256_independently_verified": false
     }
   },
   "limitations": [
     "No official GT: distributions do not establish ranking error or spatial quality",
-    "Official platform scores are pending user upload",
     "Position control eliminates AHA and spatial control eliminates B3; declared inference parameter totals therefore differ",
-    "Public VideoXum temporal F1 cannot predict official score"
+    "Public VideoXum temporal F1 cannot predict official score",
+    "Scores user-reported; uploaded bytes not independently verified"
   ]
 }

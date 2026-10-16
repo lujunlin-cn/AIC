@@ -31,3 +31,6 @@ submissions/foundation_20260926/
 # Official test predictions/ZIP remain local; audit summaries are under reports.
 submissions/R25_AHA_BF16_K085/
 submissions/R26_DIAG/
+
+# R27 private official frame predictions and deliverable ZIPs
+/submissions/R27_CENTER/

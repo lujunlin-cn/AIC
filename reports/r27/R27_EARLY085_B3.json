@@ -1,0 +1,51 @@
+{
+  "submission_id": "R27_EARLY085_B3",
+  "status": "PACKAGED_NOT_UPLOADED",
+  "official_score": null,
+  "uploaded": false,
+  "arm": {
+    "name": "R27_EARLY085_B3",
+    "keep": 0.85,
+    "shift": -0.05
+  },
+  "total_parameters": 450283377,
+  "parameter_limit": 9000000000,
+  "parameter_components": {
+    "LFM": 448718848,
+    "spatial_head": 1511425,
+    "YuNet": 53104
+  },
+  "spatial_weight_bytes_reported": 903762857,
+  "precision": "cached frozen B3 boxes, no new neural inference",
+  "model_size_mb_semantics": "total inference parameters / 1e6, NOT file bytes",
+  "index_sha256": "02d52321e82a70cafd33d566319b2ebf5e405af43946d6da32181eccdbc46a93",
+  "spatial_sha256": "2e1dd604629df52618ac1c7f11f1623526adbf0d13d186665d4294091fd89b05",
+  "baseline_zip_sha256": "95d079da9b1f845e967509dcb5a3bebc057e8501b582cdc4858af4fc7b60a981",
+  "config_sha256": "9f232e8bf70cefc73324dd04d682fe1884d7474a010507ae20fa0a444473aadd",
+  "source_code_sha256": "4b6006bfa13415bef39d6325ff77ec6e6793d4de005e78d104b3b767c96d62d4",
+  "predictions_sha256": "89fd4bc135ae6161ca1ef03480acdfdbbcda30031f4741ac76adcd50e134991b",
+  "zip_sha256": "2e4ae4395eaf114f7e59900e72543f9d5f7cbe9c43ca666eb52f9f96c09c9251",
+  "zip_bytes": 1364712,
+  "video_count": 426,
+  "prediction_count": 199037,
+  "added_vs_best": 11705,
+  "removed_vs_best": 11705,
+  "same_boxes_as_b3": true,
+  "validation": {
+    "valid": true,
+    "videos": 426,
+    "predictions": 199037,
+    "model_size_mb": 450.283377,
+    "checker": "independent_submission_check_v1"
+  },
+  "contract": {
+    "valid": true,
+    "issues": [],
+    "video_count": 426,
+    "prediction_count": 199037,
+    "model_size_mb": 450.283377,
+    "model_params_b": 0.450283377,
+    "stage": "final",
+    "validator": "local_rules_2026-09-24_not_official"
+  }
+}

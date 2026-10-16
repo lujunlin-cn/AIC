@@ -1,0 +1,26 @@
+[
+  {
+    "submission_id": "R26_POS_CENTER_EXACT085_B3",
+    "official_score": 36.04,
+    "local_zip_sha256": "95d079da9b1f845e967509dcb5a3bebc057e8501b582cdc4858af4fc7b60a981",
+    "score_source": "user_report_2026-10-16",
+    "platform_independently_verified": false,
+    "uploaded_zip_sha256_independently_verified": false
+  },
+  {
+    "submission_id": "R26_AHA_EXACT085_B3",
+    "official_score": 35.07,
+    "local_zip_sha256": "d740b68dcafea20ecda4cb125f1754062798e576d6956a95e8c3e9ff17c63ffc",
+    "score_source": "user_report_2026-10-16",
+    "platform_independently_verified": false,
+    "uploaded_zip_sha256_independently_verified": false
+  },
+  {
+    "submission_id": "R26_R25MASK_CENTER",
+    "official_score": 30.23,
+    "local_zip_sha256": "c2ba52a6d6fea532eff53bc5c68b4c63058b86c7949a548ab0d05ca461d68f2d",
+    "score_source": "user_report_2026-10-16",
+    "platform_independently_verified": false,
+    "uploaded_zip_sha256_independently_verified": false
+  }
+]

@@ -1,0 +1,7 @@
+{
+  "sha256": {
+    "scripts/r27_center_windows.py": "4b6006bfa13415bef39d6325ff77ec6e6793d4de005e78d104b3b767c96d62d4",
+    "configs/R27_CENTER_WINDOW_20261016.json": "9f232e8bf70cefc73324dd04d682fe1884d7474a010507ae20fa0a444473aadd"
+  },
+  "git_parent_commit": "d67ce8e681f216ae0d6c6a7fb83bcf7258ae7b5a"
+}

@@ -27,7 +27,7 @@ python scripts/r26_plot_diagnostics.py
 
 公共指标：逐原帧10份人工摘要mask，分别算F1后按标注者均值、再按源宏平均；CI为14源配对bootstrap10000次、seed20261016。不是官方联合时空Score。不依据DEV选择head、预算、阈值或seed。随机对照每源每seed固定重置，不必与R24随机数流相同。
 
-官方对照ZIP使用固定时间戳/压缩参数，输入和Python/zlib版本相同时可重建字节；每包根目录仅predictions.jsonl。独立validator与项目contract均校验完整426视频。所有新包尚未上传，不写入虚构官方分。
+官方对照ZIP使用固定时间戳/压缩参数，输入和Python/zlib版本相同时可重建字节；每包根目录仅predictions.jsonl。独立validator与项目contract均校验完整426视频。R26三包现已用户回报分数，见official_score_events.json；未独立核对平台上传SHA。重跑构建脚本会生成原始“待上传”manifest，不得覆盖后续分数事件作为当前状态。
 
 参数组成：AHA8,030,363,168；B3=LFM2.5-VL448,718,848 + spatial head1,511,425 + YuNet53,104 =450,283,377。文件bytes只用于存储与复现，model_size_mb兼容字段沿用参数百万单位并显式记录语义。无AHA的position控制450,283,377参数，无B3的center空间控制8,030,363,168参数；不虚报同参数。当前项目记录复赛回分不乘k_size；参数仍如实声明。
 

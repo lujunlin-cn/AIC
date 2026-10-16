@@ -1,8 +1,8 @@
 {
   "submission_id": "R26_POS_CENTER_EXACT085_B3",
-  "status": "PACKAGED_NOT_UPLOADED",
-  "official_score": null,
-  "uploaded": false,
+  "status": "OFFICIAL_SCORE_USER_REPORTED",
+  "official_score": 36.04,
+  "uploaded": true,
   "total_parameters": 450283377,
   "aha_weight_bytes": 0,
   "spatial_weight_bytes_reported": 903762857,
@@ -34,5 +34,8 @@
     "validator": "local_rules_2026-09-24_not_official"
   },
   "fixed_mask": false,
-  "same_boxes_as_b3": true
+  "same_boxes_as_b3": true,
+  "official_score_source": "user_report_2026-10-16",
+  "platform_independently_verified": false,
+  "uploaded_zip_sha256_independently_verified": false
 }

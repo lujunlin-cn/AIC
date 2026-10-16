@@ -1,0 +1,1 @@
+PYTHONPATH=. python scripts/r27_center_windows.py --config configs/R27_CENTER_WINDOW_20261016.json > reports/r27/build.log

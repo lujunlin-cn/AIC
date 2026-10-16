@@ -964,3 +964,10 @@ Decision：保留35.52现役；暂停直接扩展当前generic-query、full-hist
 Evidence：26TRAIN/14DEV F@精确.85 AHA=.290883，prefix/train_position=.297467、center=.288381，主要配对CI跨零；因果静态帧也有分数变化。整cell预算超额5870帧是实现事实，不是已证实分数损失。
 Next：三个R26包已双校验，分别与正确控制做官方比较；不自动上传，不预测新分数。空间仅几何与固定mask对照，尚无GT归因。后续只在TRAIN选择去趋势/cache/query单变量。
 Status：Accepted；AutoDL恢复，公共40源与raw排查完成，预留14未打开。详见reports/r26/summary.md。
+
+## 2026-10-16：中心85+B3晋级36.04，保留B3并执行有限中心窗口对照
+
+Decision: 新安全基线R26_POS_CENTER_EXACT085_B3；停止把当前generic-query AHA排序直接当默认时间分支。保留B3框，执行R27中心75/95及85前/后移5%四臂；不自动扩网格。
+Evidence: 同预算同B3中心36.04 > AHA35.07（+0.97）；精确预算35.07 < R25整cell35.18（−0.11）；同R25 mask的B3空间35.18 > 中心框30.23（+4.95）。用户报告，平台上传字节未独立核验。
+Limits: 联合指标不能拆成纯时间/空间误差份额；公共DEV不预测官方胜者；未验证统计显著；完整B3作品部署材料待闭环。
+Status: Accepted，R27四包已生成并双校验，官方分待回报。

@@ -18,24 +18,38 @@ artifacts/annotation_batch_v1/
 
 这轮只下载这个小批次，不再把 TVSum、SumMe、VideoXum 或 LIVE-YT 整库搬到电脑。它们的摘要/构图标注政策与 AIC 不同，先用同一批原视频同时做时间、上下文和构图标注，才能判断路线是否需要改变。若这轮结果仍无法区分机制，再从同一 `QVH_NATIVE_CANDIDATES` 清单补 6 个源视频；在结果出来前不扩大数据集。
 
-## 在 Label Studio 中导入
+## Label Studio 常驻服务与访问
 
-推荐使用本地文件服务路径版本：
+Label Studio 已配置为用户级 systemd 常驻服务，当前监听本机
+`127.0.0.1:18081`，并通过 FRP 中转到公网：
 
-```bash
-cd /home/hajimi2025/AIC
-export LABEL_STUDIO_LOCAL_FILES_SERVING_ENABLED=true
-export LABEL_STUDIO_LOCAL_FILES_DOCUMENT_ROOT=/home/hajimi2025/AIC
-label-studio start
+```text
+http://47.108.220.174:3002
 ```
 
-创建项目时把 [`configs/label_studio_annotation_v1.xml`](../configs/label_studio_annotation_v1.xml) 作为 labeling interface，然后导入：
+服务配置文件为 `~/.config/systemd/user/label-studio.service`，本地文件服务根目录为仓库根目录。服务状态可检查：
+
+```bash
+systemctl --user is-enabled label-studio.service
+systemctl --user is-active label-studio.service
+curl http://127.0.0.1:18081/health
+curl http://47.108.220.174:3002/health
+```
+
+FRP 客户端由系统级 `frpc.service` 常驻，代理名为 `label-studio`，映射
+`127.0.0.1:18081 -> 47.108.220.174:3002`。不要再用临时的 `label-studio start` 进程占用端口。
+
+登录账号使用项目管理员账号；密码不写入仓库或本说明。
+
+### 导入任务
+
+项目 `AIC Manual Highlight Smoke v1`（ID 1）已经创建，interface 使用 [`configs/label_studio_annotation_v1.xml`](../configs/label_studio_annotation_v1.xml)，当前已导入 60 个 Smoke 任务：
 
 ```text
 artifacts/annotation_batch_v1/label_studio_tasks_smoke_local_files.json
 ```
 
-先导入这个 60 任务的 smoke 文件；验收后再导入完整文件 `artifacts/annotation_batch_v1/label_studio_tasks_local_files.json`（360 个任务）。图像路径形如 `/data/local-files/?d=artifacts/...`。当前任务是盲标版本：只含视频 ID 和时间，不含类别、抽样原因或 QVH query；这些信息只在独立 manifest 中，供标注完成后比较。如果 Label Studio 环境允许浏览器直接读本机文件，也可使用同目录的 `label_studio_tasks.json`（`file://` 路径版本）。
+Smoke 验收通过后，完整文件 `artifacts/annotation_batch_v1/label_studio_tasks_local_files.json` 共 360 个任务，包含 Smoke 的 60 个任务。为避免重复导入，建议新建一个正式项目并导入完整文件，或先在 Smoke 项目中删除已有任务再导入完整文件。图像路径形如 `/data/local-files/?d=artifacts/...`。当前任务是盲标版本：只含视频 ID 和时间，不含类别、抽样原因或 QVH query；这些信息只在独立 manifest 中，供标注完成后比较。如果 Label Studio 环境允许浏览器直接读本机文件，也可使用同目录的 `label_studio_tasks.json`（`file://` 路径版本）。
 
 先只标以下两个视频验收界面和导出：
 

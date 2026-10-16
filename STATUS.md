@@ -181,3 +181,5 @@ Label Studio 导入任务已改为盲标版本：任务只含图像、视频 ID 
 当前状态：素材和任务已生成、SHA 已核对；尚无人工结果，因此尚无新的模型或官方分数结论。结果出来前不扩大数据集，也不开展无机制的提交包扫描。
 
 **标注标准 v1.1 已冻结**：先完整播放带声音的 30 秒片段建立事件时间线，再逐帧判断；`0/1/2/3/不确定` 按同一视频内部的保留价值裁决，过程/声音依赖单独记录。由于本批次没有 `targetRatioWH`，`crop_box` 明确是自由比例构图可行性诊断，不是 native crop GT；只有高光 2/3 才画框，没有稳定窗口可留空。Label Studio 核心字段已设为必填，首轮 `query_relevance` 只允许“未看查询”。协议、XML和manifest的版本字段已同步为 v1.1。
+
+**Label Studio 部署已验收（2026-10-16）**：用户级 `label-studio.service` 已 enabled/active，监听 `127.0.0.1:18081`；系统级 `frpc.service` 已 enabled/active，将其转发到 `http://47.108.220.174:3002`。公网 `/health`、登录、项目 API 和 Smoke 图片访问均已通过。项目 `AIC Manual Highlight Smoke v1`（ID 1）当前有 60 个未标注任务；先完成 `B6AEPicK9Bk_210.0_360.0` 与 `rAHQY2FHcOo_210.0_360.0` 的导出验收，再导入完整 360 任务，避免重复导入 Smoke 子集。

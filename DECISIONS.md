@@ -12,6 +12,12 @@ Decision：冻结现有两标量校准/keep配方，保留中心85＋B3安全包
 
 Reversal：新源同K稳定增量可重开现有分数决策；相同静态输入不可判而短连续输入可判则改观测；目标可靠可见而读出无法拟合才升级表示；训练成功跨源失败优先审查标注政策和域。计划协议`configs/R29_NEXT_SUPERVISION_STAGE.json`尚未执行。
 
+## 2026-10-16：R30——高维 VPB 动态读出未过源外门
+
+Decision：不把 12 点 VPB 全维相邻差分读出升级为主路线，也不据此启动更大时序模型。静态 VPB 只有小幅且不确定的开发增量；动态差分 DEV 下降，且 TRAIN/DEV 落差显示过拟合。下一判别为低维、强正则事件状态特征；失败后转音频/事件结构或空间合同恢复。
+
+Evidence：`reports/r30/summary.md`；配置 `configs/R30_DYNAMIC_CONTENT_PROBE_20261016.json`；脚本 `scripts/r30_dynamic_content_probe.py`。所有输入来自已绑定 R29 公共证据，未访问 protected/test。
+
 ## 2026-10-16：官网规则重新核实，新候选使用model_params_b
 
 Status：Accepted（当前一手官网证据）。

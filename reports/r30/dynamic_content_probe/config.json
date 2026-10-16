@@ -1,0 +1,43 @@
+{
+  "experiment_id": "R30_DYNAMIC_CONTENT_PROBE_20261016",
+  "frozen_before_execution": true,
+  "axis_report": "reports/r22/r22_instrument_report.json",
+  "identity_metrics": "reports/r26/public_metrics.json",
+  "data_root": "artifacts/r29/public_evidence/R22_INSTRUMENT_20261015",
+  "feature_root": "artifacts/r29/public_evidence/R24_EXEC_20261015",
+  "bindings": "artifacts/r29/public_evidence/bindings.json",
+  "scores_root": "artifacts/r29/public_evidence/R26_DIAG_20261016/scores_native_shape",
+  "output": "reports/r30/dynamic_content_probe",
+  "ridge": 0.01,
+  "keep": 0.85,
+  "arms": [
+    "position",
+    "static",
+    "dynamic",
+    "static_dynamic"
+  ],
+  "contrasts": [
+    [
+      "static85",
+      "position_center85"
+    ],
+    [
+      "dynamic85",
+      "position_center85"
+    ],
+    [
+      "static_dynamic85",
+      "position_center85"
+    ]
+  ],
+  "scope": "Exposed public VideoXum mechanism diagnostic; frozen 12-point VPB observations, TRAIN-only readout, exact 85% budget",
+  "hypothesis": "Adjacent VPB change contains transferable event-state information beyond cubic position; static and dynamic readouts should improve source-macro F on DEV.",
+  "practical_gate": "At least one content arm delta >=0.005 with source bootstrap 95% lower bound >0 before spending on denser observation or full training.",
+  "limitations": [
+    "DEV sources were previously exposed in R24/R26 and are not independent confirmation.",
+    "VideoXum summary labels differ from AIC high-light semantics and contain unknown annotation policy.",
+    "VPB features are frozen and only 12 observations are available; negative result does not reject audio or richer event structure.",
+    "No official test labels, protected sources, artificial labels, or upload are used.",
+    "Linear readout is a mechanism probe, not a deployable competition model."
+  ]
+}

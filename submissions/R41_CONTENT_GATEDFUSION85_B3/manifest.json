@@ -1,0 +1,29 @@
+{
+  "submission_id": "R41_CONTENT_GATEDFUSION85_B3",
+  "status": "PACKAGED_NOT_UPLOADED",
+  "uploaded": false,
+  "official_platform_score": null,
+  "mechanism": "gated_fusion",
+  "parent": "R26_POS_CENTER_EXACT085_B3 spatial B3 predictions",
+  "changed_factor": "content-driven temporal frame set only",
+  "video_count": 426,
+  "prediction_count": 198842,
+  "per_video_budget": "floor(0.85*N)",
+  "total_parameters": 450529778,
+  "model_params_b": 0.450529778,
+  "feature_source": "/tmp/aic_next/feat/temporal_feats (remote frozen 768D features)",
+  "weak_priors": [
+    "/tmp/aic_next/replay.jsonl",
+    "/tmp/aic_next/exactdp.jsonl"
+  ],
+  "predictions_sha256": "2e69eb96a05cdcbc9ad67ab0a746a1db32d35544c5920196e2d0ba5c74a50288",
+  "zip_sha256": "1c88254c061f2a9acdfc5ebf9fa6f68156317bc388b548bec177bd69b7877c85",
+  "zip_bytes": 1383775,
+  "independent_check": {
+    "valid": true,
+    "videos": 426,
+    "predictions": 198842,
+    "model_size_mb": 450.529778,
+    "checker": "independent_submission_check_v1"
+  }
+}

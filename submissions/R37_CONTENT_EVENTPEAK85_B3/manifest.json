@@ -1,0 +1,29 @@
+{
+  "submission_id": "R37_CONTENT_EVENTPEAK85_B3",
+  "status": "PACKAGED_NOT_UPLOADED",
+  "uploaded": false,
+  "official_platform_score": null,
+  "mechanism": "event_peak",
+  "parent": "R26_POS_CENTER_EXACT085_B3 spatial B3 predictions",
+  "changed_factor": "content-driven temporal frame set only",
+  "video_count": 426,
+  "prediction_count": 198842,
+  "per_video_budget": "floor(0.85*N)",
+  "total_parameters": 450529778,
+  "model_params_b": 0.450529778,
+  "feature_source": "/tmp/aic_next/feat/temporal_feats (remote frozen 768D features)",
+  "weak_priors": [
+    "/tmp/aic_next/replay.jsonl",
+    "/tmp/aic_next/exactdp.jsonl"
+  ],
+  "predictions_sha256": "0fb57cbba6d10b30974feb24792265cb409ac7a0c300d1cd34f0c81900e3856a",
+  "zip_sha256": "06a66f2db5f03d371feca585f6ba683d62725ae72b7e654005320cc6e803f6ad",
+  "zip_bytes": 1403520,
+  "independent_check": {
+    "valid": true,
+    "videos": 426,
+    "predictions": 198842,
+    "model_size_mb": 450.529778,
+    "checker": "independent_submission_check_v1"
+  }
+}

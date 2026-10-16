@@ -12,7 +12,9 @@ artifacts/annotation_batch_v1/
 
 其中 6 个视频做双人重叠标注，另外 6 个先做单人标注。选择覆盖动作结果、危险动作、讲话信息、多人舞台、景观、普通活动等对当前路线有区分力的类型。QVHighlights 的 query 只留在 manifest 中，第一遍不展示给标注者。
 
-完整选择、时间窗和原因见 [`configs/ANNOTATION_BATCH_V1.json`](../configs/ANNOTATION_BATCH_V1.json)；字段协议见 [`reports/annotation_protocol_v1.md`](annotation_protocol_v1.md)。
+完整选择、时间窗和原因见 [`configs/ANNOTATION_BATCH_V1.json`](../configs/ANNOTATION_BATCH_V1.json)；逐帧判断流程见 [`reports/annotation_protocol_v1.md`](annotation_protocol_v1.md)。当前协议版本为 v1.1：先完整播放并建立时间线，再逐帧判断；0/1/2/3 按同一视频内部相对保留价值区分，不确定不能改写成 0。
+
+这批任务没有逐视频 `targetRatioWH`。因此 `crop_box` 只表示自由比例的构图可行性诊断，不是官方 native crop GT，也不用于直接训练空间框回归；必须先判断高光等级为 2/3，才决定是否存在稳定合理窗口。
 
 这轮只下载这个小批次，不再把 TVSum、SumMe、VideoXum 或 LIVE-YT 整库搬到电脑。它们的摘要/构图标注政策与 AIC 不同，先用同一批原视频同时做时间、上下文和构图标注，才能判断路线是否需要改变。若这轮结果仍无法区分机制，再从同一 `QVH_NATIVE_CANDIDATES` 清单补 6 个源视频；在结果出来前不扩大数据集。
 

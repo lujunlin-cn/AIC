@@ -277,5 +277,12 @@
       ],
       "qvh_mean_label": 0.826389
     }
-  ]
+  ],
+  "annotation_contract": {
+    "protocol_version": "v1.1",
+    "crop_annotation_mode": "free_rectangle_diagnostic_not_native_gt",
+    "target_ratio_wh": null,
+    "blind_first_pass": true,
+    "full_video_audio_review_required": true
+  }
 }

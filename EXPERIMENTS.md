@@ -999,3 +999,5 @@ R35并集为210827帧，R36先保留两头共同帧，再用中心85包的合法
 **验收**：任务数360，素材12个视频/360张图；本地目录 `artifacts/annotation_batch_v1/`；配置与操作说明见 `configs/ANNOTATION_BATCH_V1.json`、`configs/label_studio_annotation_v1.xml`、`reports/annotation_batch_v1_runbook.md`、`reports/annotation_protocol_v1.md`。人工结果尚未产生，不报告模型收益或官方分。
 
 **Decision gate**：若高光核心多数需要前后过程，优先增加时序观测/事件结构；若多数依赖声音或语言，转音频/OCR小模块；若人工通用高光与QVH query系统性错位，停止直接混合QVH软标签；若高光与稳定构图窗口经常冲突，改联合时间—空间效用。若四项均不明显，才回到冻结视觉读出和部署合同。
+
+**Protocol v1.1（已冻结）**：先完整播放并建立事件时间线，再按 1 fps 逐帧标注；`0/1/2/3/不确定` 有明确裁决树，不能把证据不足写成 0；`needs_context` 单独记录前后过程与声音/语言依赖。该批次无 `targetRatioWH`，构图框只作自由比例可行性诊断，不作为 native crop GT；只对高光 2/3 画框，双人结果保留为分布，不平均成唯一框。没有人工导出结果前，不启动训练或提交包。

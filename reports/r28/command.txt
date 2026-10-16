@@ -1,0 +1,3 @@
+cd /root/autodl-tmp/experiments/R28_SPATIAL_AUDIT
+timeout --signal=TERM --kill-after=30s 10m /root/autodl-tmp/aha_env/bin/python r28_spatial_asset_audit.py --output audit.json
+timeout --signal=TERM --kill-after=30s 20m qwen_env/bin/python r28_spatial_public_pilot.py --config R28_SPATIAL_PUBLIC_PILOT.json --output public_pilot_cached

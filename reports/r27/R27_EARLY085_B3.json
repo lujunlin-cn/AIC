@@ -1,6 +1,6 @@
 {
   "submission_id": "R27_EARLY085_B3",
-  "status": "PACKAGED_NOT_UPLOADED",
+  "status": "PAUSED_NOT_UPLOADED",
   "official_score": null,
   "uploaded": false,
   "arm": {
@@ -47,5 +47,6 @@
     "model_params_b": 0.450283377,
     "stage": "final",
     "validator": "local_rules_2026-09-24_not_official"
-  }
+  },
+  "pause_reason": "User requested moving away from center-window scans after 75/95 failed to beat 36.04."
 }

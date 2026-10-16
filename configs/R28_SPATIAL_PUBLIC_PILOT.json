@@ -1,0 +1,47 @@
+{
+  "experiment_id": "R28_SPATIAL_PUBLIC_PILOT",
+  "status": "preregistered_before_inference",
+  "hypothesis": "A different spatial representation and explicit ratio-conditioned subject selection may address the historical B3 candidate ranking gap; larger capacity alone is not the hypothesis.",
+  "change": "Qwen3.5-4B predicts one normalized free-axis center, replacing the learned spatial scorer; retain maximum legal window geometry.",
+  "expected_effect": "A measurable alternative subject-choice behavior; improvement is unproven.",
+  "risk": "Grounding error, center bias, prompt sensitivity, older exposed public sources, poor transfer to native portrait geometry and official joint metric.",
+  "control": "Same decoded frame, target ratio, maximum window geometry and six-annotator GT; centered window control. This is not an aligned B3 comparison.",
+  "model": "/data/aic/pretrained/Qwen3.5-4B",
+  "sources": [
+    "031",
+    "032",
+    "033",
+    "034"
+  ],
+  "public_video_root": "/data/aic/datasets/DHF1K/rv_dev_031_100",
+  "annotation_root": "/data/aic/datasets/RetargetVid/annotations_all",
+  "frame_fractions": [
+    0.25,
+    0.5,
+    0.75
+  ],
+  "ratios": [
+    [
+      1,
+      3
+    ],
+    [
+      3,
+      1
+    ]
+  ],
+  "max_image_side": 640,
+  "prompt_template": "Choose the best crop for this video frame. The crop aspect ratio is {rw}:{rh}. Keep the main subject and important action visible. The crop uses the largest possible window inside the image, so only its {axis} position can change. Return exactly a JSON object with one number: {\"center\": 0.5}. center is the desired crop center along the {axis} axis in normalized original-image coordinates from 0 to 1. Return no explanation.",
+  "thinking": false,
+  "do_sample": false,
+  "max_new_tokens": 128,
+  "parse_failure": "record invalid response and fall back to center; count failures in unconditional metrics",
+  "timeout_minutes": 20,
+  "seed": 20261016,
+  "readout": "mean annotator IoU, per-source delta vs center, valid parse rate, runtime and peak VRAM; four sources are engineering diagnostics, not statistical efficacy evidence",
+  "stop_rule": "No official inference or package promotion from this pilot. Do not tune prompt on these labels. Require an aligned B3 comparator and broader native x/y public evidence before official candidate.",
+  "protected_sources_access": false,
+  "training": false,
+  "public_keyframe_root": "/data/aic/experiments/QWEN_RV200_KEYFRAMES/d1",
+  "sampling_amendment": "Before any prediction: original RV AVI symlinks are broken. Use cached named-frame PNG nearest to each preregistered fraction (tie earlier), record PNG SHA. No GT metric or generated response had been inspected."
+}

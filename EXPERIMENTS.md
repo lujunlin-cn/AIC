@@ -910,3 +910,9 @@ Evidence：reports/r26/summary.md、diagnostics.json、public_metrics.json；配
 R27假设：最佳中心时间窗收益依赖预算/端点位置；仅改变keep(.75/.95)或shift(−.05/+.05，keep=.85)，保持B3所有框。配置在运行前保存；CPU缓存重组7.93s，4×426视频双validator通过，复建最佳199037帧及框完全一致；新包预测数175623/222454/199037/199037，450283377参数。0训练、0新增GPU推理，预留14源未打开。当前四项官方分null，不能宣称性能提升。顺序95、75、前移、后移，全部不超36.04则停止扫描。
 
 Evidence: reports/r26/official_analysis.md、official_score_events.json；reports/r27/summary.md、run.json与四份manifest；configs/R27_CENTER_WINDOW_20261016.json；scripts/r27_center_windows.py。
+
+## 2026-10-16：R27扫描收口，R28转空间主体评分
+
+用户报告R27_CENTER075_B3=35.87、R27_CENTER095_B3=35.39，较中心85+B3=36.04分别−0.17/−0.65；本地ZIP SHA一致，平台上传SHA未独立核验。停止预算/位置扫描，EARLY/LATE暂停，保留安全基线。
+R28实际完成426视频234159帧空间缓存回放，最大坐标差0；x/y/全画面126/141/159视频，4913使用关键帧全ok_head，无回退。记录路径中的B3_s0头/LFM基座缺失，不能声称原视频部署通过。历史插值/加密/检测先验不重复；B3已是candidate-utility，优先主体评分、视觉表示、真实原生几何标注。
+Qwen3.5-4B两分片738tensor映射完整；公共4源×3帧×2ratio工程pilot配置先冻结，独立环境，20min超时，无训练、无官方视频推理、预留14源未打开。读数及运行状态见reports/r28；公共pilot不直接晋级或预测官方分。

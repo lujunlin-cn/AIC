@@ -1,0 +1,56 @@
+{
+  "experiment_id": "R28_SPATIAL_AUDIT",
+  "videos": 426,
+  "frames": 234159,
+  "prediction_sha256": "2e1dd604629df52618ac1c7f11f1623526adbf0d13d186665d4294091fd89b05",
+  "axis_video_counts": {
+    "1": 141,
+    "0": 126,
+    "None": 159
+  },
+  "fullframe_geometry_frames": 101145,
+  "source_frame_counts": {
+    "qwen": 133014,
+    "full": 101145
+  },
+  "point_status_counts": {
+    "ok_head": 4913
+  },
+  "max_abs_replay_diff_px": 0.0,
+  "replay_mismatches": [],
+  "replay_exact": true,
+  "missing_recorded_assets": [
+    "/data/aic/experiments_910a/LFM_V8/arms/B3_s0/head_s.pt",
+    "/data/aic/pretrained/lfm2_5_vl_450m"
+  ],
+  "qwen_checkpoint": {
+    "path": "/data/aic/pretrained/Qwen3.5-4B",
+    "index_sha256": "cf3f798ee02ba45f9622aa8892a47369ab667d0afbf154ee7c2212de42e6302d",
+    "indexed_tensors": 738,
+    "mapping_exact": true,
+    "shards": [
+      {
+        "name": "model.safetensors-00001-of-00002.safetensors",
+        "bytes": 5329398688,
+        "sha256": "26a93f066e1916adb13453dae5a0c707c0fbc71299ed98779571a907b8e74c61",
+        "stored_elements": 2664693760,
+        "dtypes": {
+          "BF16": 87
+        }
+      },
+      {
+        "name": "model.safetensors-00002-of-00002.safetensors",
+        "bytes": 3990429408,
+        "sha256": "cb544bd9bfae93dc59b0f22b292f5933573854a7f9b97835c67060d7d910e188",
+        "stored_elements": 1995171328,
+        "dtypes": {
+          "F32": 48,
+          "BF16": 603
+        }
+      }
+    ],
+    "stored_tensor_elements": 4659865088,
+    "parameter_note": "Stored tensor elements are a checkpoint audit, not a runtime unique-parameter certification. Check tied weights and buffers before submission."
+  },
+  "scope": "No official video decoding or GT access. Replay uses cached inference points and observations only. No protected public source access."
+}

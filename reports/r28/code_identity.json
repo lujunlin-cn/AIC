@@ -1,0 +1,10 @@
+{
+  "git_parent_commit": "d53bae1ab4ec0c09f8722849ea9c815d9efcc5d7",
+  "sha256": {
+    "scripts/r28_spatial_asset_audit.py": "8e1040d9e9ca7ce23a37b4825a6654d6da28df160c39099067a10c483e1c5ad9",
+    "scripts/r28_spatial_public_pilot.py": "7319a0e11a95206db79ec3305d456d38c7f5c4777d10e9f1d5e784904d69c2fb",
+    "configs/R28_SPATIAL_PUBLIC_PILOT.json": "52ee988dd66cb9e69b78b2eae034600766209234416917f6ba81c916b1912530",
+    "aic/max_window_path.py": "d270d9486a93078c4a7077e8b46b4ee09edaba90524dcb6354b5a0aa443d6e3f",
+    "aic/contract.py": "231a2bdcad5c6e809ac402410f0be676ebf5f80d5ca4fe16ddbbbaf6a53fd3b1"
+  }
+}

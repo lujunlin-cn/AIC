@@ -1,0 +1,38 @@
+{
+  "experiment_id": "R28_SPATIAL_PUBLIC_PILOT",
+  "date": "2026-10-16",
+  "status": "INTERRUPTED_SSH_RESULTS_NOT_RETRIEVED",
+  "training_time": 0,
+  "host": "AutoDL40206",
+  "gpu_ids": [
+    0
+  ],
+  "config": "configs/R28_SPATIAL_PUBLIC_PILOT.json",
+  "prediction_rows_confirmed_in_live_log": 7,
+  "confirmed_sources": [
+    "031",
+    "032"
+  ],
+  "complete_metrics_retrieved": false,
+  "failures": [
+    {
+      "category": "dependency",
+      "error": "cv2 missing in isolated env",
+      "resolution": "installed opencv-python-headless, then removed decoding dependency when adopting cached PNGs"
+    },
+    {
+      "category": "data_availability",
+      "error": "RV AVI symlinks point to missing /data/aic/external_datasets/DHF1K/raw/video",
+      "resolution": "Before any predictions, amended sampling to nearest public cached keyframes; record per-image SHA"
+    },
+    {
+      "category": "remote_connection",
+      "error": "Connection closed by 198.18.0.6 port 40206; active SSH exited255",
+      "resolution": "Bounded reconnection attempts unsuccessful; remote completion unknown. Retrieve metrics and log before further inference."
+    }
+  ],
+  "protected_evaluated": false,
+  "official_video_inference": false,
+  "official_candidate_promoted": false,
+  "report": "reports/r28/summary.md"
+}

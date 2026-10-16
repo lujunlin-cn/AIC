@@ -1,0 +1,12 @@
+{
+  "gpu": "NVIDIA GeForce RTX4080",
+  "gpu_total_mib": 32760,
+  "gpu_used_before_launch_mib": 0,
+  "python": "3.12.3 (venv metadata)",
+  "torch": "2.8.0+cu128",
+  "transformers": "5.19.0",
+  "environment_path": "/root/autodl-tmp/experiments/R28_SPATIAL_AUDIT/qwen_env",
+  "full_freeze_remote": "/root/autodl-tmp/experiments/R28_SPATIAL_AUDIT/environment.txt",
+  "full_freeze_retrieved": false,
+  "note": "Observed before connection interruption; complete GPU-run metrics unavailable."
+}

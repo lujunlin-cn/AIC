@@ -58,9 +58,9 @@
   "packages": {
     "R27_CENTER075_B3": {
       "submission_id": "R27_CENTER075_B3",
-      "status": "PACKAGED_NOT_UPLOADED",
-      "official_score": null,
-      "uploaded": false,
+      "status": "SCORED_NOT_PROMOTED",
+      "official_score": 35.87,
+      "uploaded": true,
       "arm": {
         "name": "R27_CENTER075_B3",
         "keep": 0.75,
@@ -105,13 +105,15 @@
         "model_params_b": 0.450283377,
         "stage": "final",
         "validator": "local_rules_2026-09-24_not_official"
-      }
+      },
+      "score_source": "user_report_2026-10-16",
+      "uploaded_zip_sha256_independently_verified": false
     },
     "R27_CENTER095_B3": {
       "submission_id": "R27_CENTER095_B3",
-      "status": "PACKAGED_NOT_UPLOADED",
-      "official_score": null,
-      "uploaded": false,
+      "status": "SCORED_NOT_PROMOTED",
+      "official_score": 35.39,
+      "uploaded": true,
       "arm": {
         "name": "R27_CENTER095_B3",
         "keep": 0.95,
@@ -156,11 +158,13 @@
         "model_params_b": 0.450283377,
         "stage": "final",
         "validator": "local_rules_2026-09-24_not_official"
-      }
+      },
+      "score_source": "user_report_2026-10-16",
+      "uploaded_zip_sha256_independently_verified": false
     },
     "R27_EARLY085_B3": {
       "submission_id": "R27_EARLY085_B3",
-      "status": "PACKAGED_NOT_UPLOADED",
+      "status": "PAUSED_NOT_UPLOADED",
       "official_score": null,
       "uploaded": false,
       "arm": {
@@ -207,11 +211,12 @@
         "model_params_b": 0.450283377,
         "stage": "final",
         "validator": "local_rules_2026-09-24_not_official"
-      }
+      },
+      "pause_reason": "User requested moving away from center-window scans after 75/95 failed to beat 36.04."
     },
     "R27_LATE085_B3": {
       "submission_id": "R27_LATE085_B3",
-      "status": "PACKAGED_NOT_UPLOADED",
+      "status": "PAUSED_NOT_UPLOADED",
       "official_score": null,
       "uploaded": false,
       "arm": {
@@ -258,7 +263,8 @@
         "model_params_b": 0.450283377,
         "stage": "final",
         "validator": "local_rules_2026-09-24_not_official"
-      }
+      },
+      "pause_reason": "User requested moving away from center-window scans after 75/95 failed to beat 36.04."
     }
   },
   "baseline_replayed_frames": 199037,
@@ -275,5 +281,26 @@
   "git_parent_commit": "d67ce8e681f216ae0d6c6a7fb83bcf7258ae7b5a",
   "protected_sources_opened": false,
   "training": false,
-  "official_upload_performed": false
+  "official_upload_performed": false,
+  "official_feedback": [
+    {
+      "submission_id": "R27_CENTER075_B3",
+      "official_score": 35.87,
+      "delta_vs_center085": -0.17,
+      "local_zip_sha256": "32debd144b9bdd67f6d5573f7a395f5ccf55754d6ffbdd902d169bb99fb9ed94",
+      "score_source": "user_report_2026-10-16",
+      "platform_independently_verified": false,
+      "uploaded_zip_sha256_independently_verified": false
+    },
+    {
+      "submission_id": "R27_CENTER095_B3",
+      "official_score": 35.39,
+      "delta_vs_center085": -0.65,
+      "local_zip_sha256": "7e87584d8c54ff619d9469a53045b0b5107795c72e628a3cfcfa3d6ca2015a1d",
+      "score_source": "user_report_2026-10-16",
+      "platform_independently_verified": false,
+      "uploaded_zip_sha256_independently_verified": false
+    }
+  ],
+  "current_decision": "Retain CENTER085=36.04; pause early/late and stop budget/position scans; prioritize spatial scoring and subject selection."
 }

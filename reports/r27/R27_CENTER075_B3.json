@@ -1,8 +1,8 @@
 {
   "submission_id": "R27_CENTER075_B3",
-  "status": "PACKAGED_NOT_UPLOADED",
-  "official_score": null,
-  "uploaded": false,
+  "status": "SCORED_NOT_PROMOTED",
+  "official_score": 35.87,
+  "uploaded": true,
   "arm": {
     "name": "R27_CENTER075_B3",
     "keep": 0.75,
@@ -47,5 +47,7 @@
     "model_params_b": 0.450283377,
     "stage": "final",
     "validator": "local_rules_2026-09-24_not_official"
-  }
+  },
+  "score_source": "user_report_2026-10-16",
+  "uploaded_zip_sha256_independently_verified": false
 }

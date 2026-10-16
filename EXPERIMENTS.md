@@ -892,3 +892,13 @@ Analysis：本地ZIP及426视频双校验再次通过；实际87.5076%保留、�
 Conclusion：维持35.52，不宣称35是天花板或空间已证实为主因；预注册公共dev位置控制、精确预算和固定掩码空间对照。
 Blocker：AutoDL40206域名及公共DNS直连均关闭，raw头分数分析未执行。未训练、未打开预留14、未生成或上传新候选。
 证据：reports/r25_score_analysis/summary.md、package_audit.json、official_score_event.json；复现脚本scripts/r25_analyze_package.py。
+
+
+## 2026-10-16：R26选帧/预算/位置/空间诊断完成
+
+Hypothesis：R25平台期涉及预算实现、因果位置与任务适配，空间待隔离。
+Change/Control：复用426原评分+B3；精确85%仅截断末cell；固定原mask仅换中心空间；26TRAIN/14DEV以冻结R25协议比较head及位置控制，未打开预留14。
+Result：sum公共F@.85=.290883，prefix/train_position=.297467，center=.288381；对上述控制CI均跨零。info/时间rho中位+.635、rel/时间−.827。静态同图16帧sum范围.107329，chunk8/1总分最大差.017685。
+Budget：204907→199037帧，消除5870超额；同一mask空间控制204907帧不变，116620框改变。三ZIP426/426双validator无issues、参数合规，官方分null，未上传。
+Training：0；公共推理488.76s，GPU0 RTX4080，峰值allocated17860467712B。现役35.52保留，不因本地公开摘要指标晋级或宣称容量问题。
+Evidence：reports/r26/summary.md、diagnostics.json、public_metrics.json；配置configs/R26_DIAG_20261016.json。

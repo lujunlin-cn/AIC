@@ -1,0 +1,29 @@
+{
+  "experiment_id": "R26_DIAG_20261016",
+  "hypothesis": "Separate AHA content ranking from causal position, whole-cell budget overshoot and spatial cropping",
+  "change": [
+    "Public source-disjoint 26 train / 14 dev AHA vs position controls",
+    "Exact 85% frame budgets with frozen R25 scores and B3 boxes",
+    "Frozen R25 mask with centered maximum legal crops"
+  ],
+  "expected_effect": "Identify which component has measured evidence; official scores remain pending",
+  "risk": "Public temporal F1 is not official spatial-temporal score; dev previously observed",
+  "control": "Frozen R25 generic query/1fps/BF16/full-history; same source bindings and frame-level human masks",
+  "data_root": "/root/autodl-tmp/experiments/R22_INSTRUMENT_20261015",
+  "output": "/root/autodl-tmp/experiments/R26_DIAG_20261016",
+  "model": "/root/autodl-tmp/experiments/R25_AHA_SUBMIT_20261015/merged_llava_bf16_v2",
+  "primary_keep": 0.85,
+  "secondary_keep": [
+    0.6,
+    0.25
+  ],
+  "chunk": 8,
+  "bootstrap_seed": 20261016,
+  "bootstrap_replicates": 10000,
+  "protected_sources_opened": false,
+  "training": false,
+  "timeout_seconds": 42300,
+  "position_fit": "degree3 least squares on TRAIN frame-level label density by normalized time only",
+  "exact_selection": "rank nearest-sample cells by score stable; final cell truncate nearest to sample, earlier frame ties",
+  "parameter_limit": 9000000000
+}

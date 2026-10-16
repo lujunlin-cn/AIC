@@ -1,0 +1,73 @@
+{
+  "config": {
+    "experiment_id": "R26_DIAG_20261016",
+    "hypothesis": "Separate AHA content ranking from causal position, whole-cell budget overshoot and spatial cropping",
+    "change": [
+      "Public source-disjoint 26 train / 14 dev AHA vs position controls",
+      "Exact 85% frame budgets with frozen R25 scores and B3 boxes",
+      "Frozen R25 mask with centered maximum legal crops"
+    ],
+    "expected_effect": "Identify which component has measured evidence; official scores remain pending",
+    "risk": "Public temporal F1 is not official spatial-temporal score; dev previously observed",
+    "control": "Frozen R25 generic query/1fps/BF16/full-history; same source bindings and frame-level human masks",
+    "data_root": "/root/autodl-tmp/experiments/R22_INSTRUMENT_20261015",
+    "output": "/root/autodl-tmp/experiments/R26_DIAG_20261016",
+    "model": "/root/autodl-tmp/experiments/R25_AHA_SUBMIT_20261015/merged_llava_bf16_v2",
+    "primary_keep": 0.85,
+    "secondary_keep": [
+      0.6,
+      0.25
+    ],
+    "chunk": 8,
+    "bootstrap_seed": 20261016,
+    "bootstrap_replicates": 10000,
+    "protected_sources_opened": false,
+    "training": false,
+    "timeout_seconds": 42300,
+    "position_fit": "degree3 least squares on TRAIN frame-level label density by normalized time only",
+    "exact_selection": "rank nearest-sample cells by score stable; final cell truncate nearest to sample, earlier frame ties",
+    "parameter_limit": 9000000000
+  },
+  "source_code_sha256": "d9cad707cc8b295dbd4a94514f8828b98da7bce930b6ee432d8c79113dfaee93",
+  "parameter_count": 8030363168,
+  "system": "A multimodal AI assistant is helping users with some activities. Below is their conversation, interleaved with the list of video frames received by the assistant.",
+  "query": "Identify the most informative and important highlights of this video.",
+  "loading": {
+    "missing_keys": [],
+    "unexpected_keys": [],
+    "mismatched_keys": [],
+    "error_msgs": []
+  },
+  "head_identity": {
+    "informative_head": 0.0,
+    "relevance_head": 0.0,
+    "uncertainty_head": 0.0
+  },
+  "weight_files": [
+    {
+      "path": "/root/autodl-tmp/experiments/R25_AHA_SUBMIT_20261015/merged_llava_bf16_v2/model-00001-of-00005.safetensors",
+      "bytes": 3945434128,
+      "sha256": "3e2e6449ac52bd84667eeca67066870128f637ba1cea66b45f58ca0697963209"
+    },
+    {
+      "path": "/root/autodl-tmp/experiments/R25_AHA_SUBMIT_20261015/merged_llava_bf16_v2/model-00002-of-00005.safetensors",
+      "bytes": 3864726352,
+      "sha256": "200ad70f24bb5fceef076fc59e1d0eff3b7a73b8907fb4b39b38ca0214a30608"
+    },
+    {
+      "path": "/root/autodl-tmp/experiments/R25_AHA_SUBMIT_20261015/merged_llava_bf16_v2/model-00003-of-00005.safetensors",
+      "bytes": 3864726408,
+      "sha256": "7d0a2da263eb39e2b0b454f4ac9aff992b49af3c77dfb26734624943db5c9ed7"
+    },
+    {
+      "path": "/root/autodl-tmp/experiments/R25_AHA_SUBMIT_20261015/merged_llava_bf16_v2/model-00004-of-00005.safetensors",
+      "bytes": 3295921384,
+      "sha256": "c0b5e5744235d1ee235295f9dc2e2d6481a2b7eeaa7451bf6c95d4db9488e7b1"
+    },
+    {
+      "path": "/root/autodl-tmp/experiments/R25_AHA_SUBMIT_20261015/merged_llava_bf16_v2/model-00005-of-00005.safetensors",
+      "bytes": 1090023840,
+      "sha256": "f62d042d279323ad9cb381e7f275a93250c16788e297956fda389e78bf6394b1"
+    }
+  ]
+}

@@ -956,3 +956,11 @@ Decision：现役最佳记录35.52保留；不因AHA为8B就继续盲目扩模�
 Evidence：R25用户报告35.18，全帧34.75；双校验426/426通过。预算87.51%而非85%，首采样仅28条保留，中段98.77%保留，内容排序优势未证明。
 Next：固定公共dev质量门与位置控制；逐视频精确预算控制；相同时间掩码空间控制。位置统计不能替代GT，也不能反推统一密度/分数天花板。
 Status：Accepted；raw头诊断受AutoDL SSH关闭阻塞。详见reports/r25_score_analysis/summary.md。
+
+
+## 2026-10-16：R26公共排序未建立位置控制优势，交付预算/空间隔离包
+
+Decision：保留35.52现役；暂停直接扩展当前generic-query、full-history、等权双头配方。参数容量与文件bytes不是已证实阻塞。
+Evidence：26TRAIN/14DEV F@精确.85 AHA=.290883，prefix/train_position=.297467、center=.288381，主要配对CI跨零；因果静态帧也有分数变化。整cell预算超额5870帧是实现事实，不是已证实分数损失。
+Next：三个R26包已双校验，分别与正确控制做官方比较；不自动上传，不预测新分数。空间仅几何与固定mask对照，尚无GT归因。后续只在TRAIN选择去趋势/cache/query单变量。
+Status：Accepted；AutoDL恢复，公共40源与raw排查完成，预留14未打开。详见reports/r26/summary.md。

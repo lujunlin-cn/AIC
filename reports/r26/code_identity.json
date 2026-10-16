@@ -1,0 +1,10 @@
+{
+  "parent_commit": "b56a9e7",
+  "files": {
+    "scripts/r26_public_score.py": "d9cad707cc8b295dbd4a94514f8828b98da7bce930b6ee432d8c79113dfaee93",
+    "scripts/r26_plot_diagnostics.py": "b1922412bb3a358bf232c0d85cd0f8e2b9d2a2c02ad0ac23258cbc6683821a41",
+    "scripts/r26_build_diagnostics.py": "e52fde746929648ba4df490b4bfb19876ecc8dfbd3003dc3ab0b5aeb80ea4075",
+    "scripts/r26_public_evaluate.py": "c2afa7f9727ff58125091fc9018bd937c312021dbec6333bf01af7c5ee65366c",
+    "configs/R26_DIAG_20261016.json": "a3c8124942e29104c53ed7be9a0493787cc2133b349d4fb659917e4d5d43fa09"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "submission_id": "R26_POS_CENTER_EXACT085_B3",
+  "status": "PACKAGED_NOT_UPLOADED",
+  "official_score": null,
+  "uploaded": false,
+  "total_parameters": 450283377,
+  "aha_weight_bytes": 0,
+  "spatial_weight_bytes_reported": 903762857,
+  "precision": "bf16 AHA; cached frozen B3 boxes where used",
+  "parameter_limit": 9000000000,
+  "model_size_mb_semantics": "total inference parameters / 1e6, NOT file bytes",
+  "index_sha256": "02d52321e82a70cafd33d566319b2ebf5e405af43946d6da32181eccdbc46a93",
+  "r25_zip_sha256": "736aa5e6a9644b293c2d282bfd79d74f8eecb37db9e77dc4124e12a434df8cec",
+  "spatial_sha256": "2e1dd604629df52618ac1c7f11f1623526adbf0d13d186665d4294091fd89b05",
+  "code_sha256": "e52fde746929648ba4df490b4bfb19876ecc8dfbd3003dc3ab0b5aeb80ea4075",
+  "predictions_sha256": "4af2d6ae656450936577a5cd53ed0368986b5016a53640a2b37483034e2256a4",
+  "zip_sha256": "95d079da9b1f845e967509dcb5a3bebc057e8501b582cdc4858af4fc7b60a981",
+  "zip_bytes": 1395654,
+  "validation": {
+    "valid": true,
+    "videos": 426,
+    "predictions": 199037,
+    "model_size_mb": 450.283377,
+    "checker": "independent_submission_check_v1"
+  },
+  "contract": {
+    "valid": true,
+    "issues": [],
+    "video_count": 426,
+    "prediction_count": 199037,
+    "model_size_mb": 450.283377,
+    "model_params_b": 0.450283377,
+    "stage": "final",
+    "validator": "local_rules_2026-09-24_not_official"
+  },
+  "fixed_mask": false,
+  "same_boxes_as_b3": true
+}

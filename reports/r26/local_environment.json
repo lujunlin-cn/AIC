@@ -1,0 +1,6 @@
+{
+  "python": "3.13.12",
+  "platform": "Linux-6.17.0-1026-nvidia-aarch64-with-glibc2.39",
+  "numpy": "2.4.4",
+  "zlib": "1.3.1"
+}

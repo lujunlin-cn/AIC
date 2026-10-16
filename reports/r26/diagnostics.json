@@ -1,0 +1,331 @@
+{
+  "scope": "Test aggregate diagnostics only; no GT and no accuracy attribution",
+  "videos": 426,
+  "total_frames": 234159,
+  "old_predictions": 204907,
+  "exact_predictions": 199037,
+  "excess": 5870,
+  "excess_per_video": {
+    "n": 426,
+    "mean": 13.779342723004694,
+    "p10": 2.0,
+    "median": 13.5,
+    "p90": 24.0,
+    "min": 0.0,
+    "max": 50.0
+  },
+  "mask_distributions": {
+    "R25_original": {
+      "macro_keep": 0.8874527667772809,
+      "macro_keep_by_third": [
+        0.7712202447606732,
+        0.9876846845393569,
+        0.9029797739016308
+      ],
+      "one_run_videos": 297,
+      "first_sample_kept": 28,
+      "last_sample_kept": 333
+    },
+    "R26_AHA_EXACT085_B3": {
+      "macro_keep": 0.8499811679694937,
+      "macro_keep_by_third": [
+        0.694543571681305,
+        0.9841318017074383,
+        0.8705687255864695
+      ],
+      "one_run_videos": 18,
+      "first_sample_kept": 28,
+      "last_sample_kept": 333
+    },
+    "R26_POS_CENTER_EXACT085_B3": {
+      "macro_keep": 0.8499811679694937,
+      "macro_keep_by_third": [
+        0.7764659918761468,
+        1.0,
+        0.7735172904391473
+      ],
+      "one_run_videos": 426,
+      "first_sample_kept": 0,
+      "last_sample_kept": 74
+    },
+    "R26_R25MASK_CENTER": {
+      "macro_keep": 0.8874527667772809,
+      "macro_keep_by_third": [
+        0.7712202447606732,
+        0.9876846845393569,
+        0.9029797739016308
+      ],
+      "one_run_videos": 297,
+      "first_sample_kept": 28,
+      "last_sample_kept": 333
+    }
+  },
+  "head_diagnostics": {
+    "info_std": {
+      "n": 426,
+      "mean": 0.1543163973445807,
+      "p10": 0.1060433902093968,
+      "median": 0.15534854815636467,
+      "p90": 0.20406677127629508,
+      "min": 0.05843714948243303,
+      "max": 0.22862189099582458
+    },
+    "rel_std": {
+      "n": 426,
+      "mean": 0.06568154698539867,
+      "p10": 0.03681567271717024,
+      "median": 0.06578602638453512,
+      "p90": 0.09438420655635071,
+      "min": 0.015563990790168233,
+      "max": 0.11321550884165353
+    },
+    "sum_std": {
+      "n": 426,
+      "mean": 0.14119940385097374,
+      "p10": 0.10692942317733642,
+      "median": 0.14009644425252307,
+      "p90": 0.17969415698684477,
+      "min": 0.05484762877272504,
+      "max": 0.22349765241517608
+    },
+    "info_rel_rho": {
+      "n": 426,
+      "mean": -0.33267342838158587,
+      "p10": -0.901048951048951,
+      "median": -0.37088323728297645,
+      "p90": 0.2602841803568476,
+      "min": -1.0,
+      "max": 0.75
+    },
+    "sum_time_rho": {
+      "n": 426,
+      "mean": 0.28334958478345795,
+      "p10": -0.46986263212678303,
+      "median": 0.28528138528138525,
+      "p90": 0.9856540518305225,
+      "min": -0.9129756143172566,
+      "max": 1.0
+    },
+    "info_time_rho": {
+      "n": 426,
+      "mean": 0.5305033299470663,
+      "p10": -0.11147711553530312,
+      "median": 0.6346198156682028,
+      "p90": 1.0,
+      "min": -0.6978546916756561,
+      "max": 1.0
+    },
+    "rel_time_rho": {
+      "n": 426,
+      "mean": -0.7069941157441038,
+      "p10": -0.9585909786107056,
+      "median": -0.8266705829837722,
+      "p90": -0.294327731092437,
+      "min": -1.0,
+      "max": 0.6993006993006995
+    },
+    "first_minus_rest": {
+      "n": 426,
+      "mean": -0.3398259656021912,
+      "p10": -0.4574133838766131,
+      "median": -0.34940567419638796,
+      "p90": -0.2071795960250608,
+      "min": -0.5701380078954732,
+      "max": 0.060215584363322694
+    },
+    "unique_fraction": {
+      "n": 426,
+      "mean": 0.9998502091257224,
+      "p10": 1.0,
+      "median": 1.0,
+      "p90": 1.0,
+      "min": 0.9743589743589743,
+      "max": 1.0
+    },
+    "info_saturation": {
+      "n": 426,
+      "mean": 0.07348190934457778,
+      "p10": 0.024695121951219513,
+      "median": 0.06666666666666667,
+      "p90": 0.125,
+      "min": 0.0,
+      "max": 0.25
+    },
+    "rel_saturation": {
+      "n": 426,
+      "mean": 0.0,
+      "p10": 0.0,
+      "median": 0.0,
+      "p90": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  "macro_head_time_deciles": [
+    {
+      "bin": 0,
+      "n_videos": 426,
+      "info": 0.07759693565917353,
+      "rel": 0.49876093412701256,
+      "unc": -2.1367030898379404
+    },
+    {
+      "bin": 1,
+      "n_videos": 419,
+      "info": 0.2845715402122747,
+      "rel": 0.48690850056344054,
+      "unc": -2.058602875855221
+    },
+    {
+      "bin": 2,
+      "n_videos": 404,
+      "info": 0.39097631298942065,
+      "rel": 0.46016488680496265,
+      "unc": -2.154338553767403
+    },
+    {
+      "bin": 3,
+      "n_videos": 398,
+      "info": 0.440236794328472,
+      "rel": 0.44100990982655347,
+      "unc": -2.1828107152285923
+    },
+    {
+      "bin": 4,
+      "n_videos": 390,
+      "info": 0.46456750711390987,
+      "rel": 0.4197090092657236,
+      "unc": -2.2300469087290633
+    },
+    {
+      "bin": 5,
+      "n_videos": 408,
+      "info": 0.4757761752571763,
+      "rel": 0.40645188012349165,
+      "unc": -2.267794496801573
+    },
+    {
+      "bin": 6,
+      "n_videos": 390,
+      "info": 0.48200850605942674,
+      "rel": 0.3862368870323376,
+      "unc": -2.315980144500383
+    },
+    {
+      "bin": 7,
+      "n_videos": 402,
+      "info": 0.4641725638640894,
+      "rel": 0.3735740198788883,
+      "unc": -2.3645562424144235
+    },
+    {
+      "bin": 8,
+      "n_videos": 404,
+      "info": 0.4541982288550152,
+      "rel": 0.35980371356128915,
+      "unc": -2.396247157841969
+    },
+    {
+      "bin": 9,
+      "n_videos": 388,
+      "info": 0.439769141338608,
+      "rel": 0.3397133184351992,
+      "unc": -2.4479849245546315
+    }
+  ],
+  "center_spatial_changed_boxes": 116620,
+  "exact_b3_identity_checked": 199037,
+  "aha_exact_vs_center_temporal_xor": 36932,
+  "packages": {
+    "R26_AHA_EXACT085_B3": {
+      "submission_id": "R26_AHA_EXACT085_B3",
+      "status": "PACKAGED_NOT_UPLOADED",
+      "official_score": null,
+      "uploaded": false,
+      "total_parameters": 8480646545,
+      "aha_weight_bytes": 16060832112,
+      "spatial_weight_bytes_reported": 903762857,
+      "precision": "bf16 AHA; cached frozen B3 boxes where used",
+      "parameter_limit": 9000000000,
+      "model_size_mb_semantics": "total inference parameters / 1e6, NOT file bytes",
+      "index_sha256": "02d52321e82a70cafd33d566319b2ebf5e405af43946d6da32181eccdbc46a93",
+      "r25_zip_sha256": "736aa5e6a9644b293c2d282bfd79d74f8eecb37db9e77dc4124e12a434df8cec",
+      "spatial_sha256": "2e1dd604629df52618ac1c7f11f1623526adbf0d13d186665d4294091fd89b05",
+      "code_sha256": "e52fde746929648ba4df490b4bfb19876ecc8dfbd3003dc3ab0b5aeb80ea4075",
+      "predictions_sha256": "32f0dc767b4e07e5edf6fefaef12bdc0cfaf097f56a4fbaf1d57b6f9c7e4ed88",
+      "zip_sha256": "d740b68dcafea20ecda4cb125f1754062798e576d6956a95e8c3e9ff17c63ffc",
+      "zip_bytes": 1395331,
+      "validation": {
+        "valid": true,
+        "videos": 426,
+        "predictions": 199037,
+        "model_size_mb": 8480.646545,
+        "checker": "independent_submission_check_v1"
+      },
+      "fixed_mask": false,
+      "same_boxes_as_b3": true
+    },
+    "R26_POS_CENTER_EXACT085_B3": {
+      "submission_id": "R26_POS_CENTER_EXACT085_B3",
+      "status": "PACKAGED_NOT_UPLOADED",
+      "official_score": null,
+      "uploaded": false,
+      "total_parameters": 450283377,
+      "aha_weight_bytes": 0,
+      "spatial_weight_bytes_reported": 903762857,
+      "precision": "bf16 AHA; cached frozen B3 boxes where used",
+      "parameter_limit": 9000000000,
+      "model_size_mb_semantics": "total inference parameters / 1e6, NOT file bytes",
+      "index_sha256": "02d52321e82a70cafd33d566319b2ebf5e405af43946d6da32181eccdbc46a93",
+      "r25_zip_sha256": "736aa5e6a9644b293c2d282bfd79d74f8eecb37db9e77dc4124e12a434df8cec",
+      "spatial_sha256": "2e1dd604629df52618ac1c7f11f1623526adbf0d13d186665d4294091fd89b05",
+      "code_sha256": "e52fde746929648ba4df490b4bfb19876ecc8dfbd3003dc3ab0b5aeb80ea4075",
+      "predictions_sha256": "4af2d6ae656450936577a5cd53ed0368986b5016a53640a2b37483034e2256a4",
+      "zip_sha256": "95d079da9b1f845e967509dcb5a3bebc057e8501b582cdc4858af4fc7b60a981",
+      "zip_bytes": 1395654,
+      "validation": {
+        "valid": true,
+        "videos": 426,
+        "predictions": 199037,
+        "model_size_mb": 450.283377,
+        "checker": "independent_submission_check_v1"
+      },
+      "fixed_mask": false,
+      "same_boxes_as_b3": true
+    },
+    "R26_R25MASK_CENTER": {
+      "submission_id": "R26_R25MASK_CENTER",
+      "status": "PACKAGED_NOT_UPLOADED",
+      "official_score": null,
+      "uploaded": false,
+      "total_parameters": 8030363168,
+      "aha_weight_bytes": 16060832112,
+      "spatial_weight_bytes_reported": 0,
+      "precision": "bf16 AHA; cached frozen B3 boxes where used",
+      "parameter_limit": 9000000000,
+      "model_size_mb_semantics": "total inference parameters / 1e6, NOT file bytes",
+      "index_sha256": "02d52321e82a70cafd33d566319b2ebf5e405af43946d6da32181eccdbc46a93",
+      "r25_zip_sha256": "736aa5e6a9644b293c2d282bfd79d74f8eecb37db9e77dc4124e12a434df8cec",
+      "spatial_sha256": "2e1dd604629df52618ac1c7f11f1623526adbf0d13d186665d4294091fd89b05",
+      "code_sha256": "e52fde746929648ba4df490b4bfb19876ecc8dfbd3003dc3ab0b5aeb80ea4075",
+      "predictions_sha256": "3618bdbabede345a1adde6bc4e742469159ec6a003857e7e1497dde25ced3c69",
+      "zip_sha256": "c2ba52a6d6fea532eff53bc5c68b4c63058b86c7949a548ab0d05ca461d68f2d",
+      "zip_bytes": 406445,
+      "validation": {
+        "valid": true,
+        "videos": 426,
+        "predictions": 204907,
+        "model_size_mb": 8030.363168,
+        "checker": "independent_submission_check_v1"
+      },
+      "fixed_mask": true,
+      "same_boxes_as_b3": false
+    }
+  },
+  "limitations": [
+    "No official GT: distributions do not establish ranking error or spatial quality",
+    "Official platform scores are pending user upload",
+    "Position control eliminates AHA and spatial control eliminates B3; declared inference parameter totals therefore differ",
+    "Public VideoXum temporal F1 cannot predict official score"
+  ]
+}

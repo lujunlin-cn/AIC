@@ -219,7 +219,7 @@
           "macro_mae": 0.9695067561335033,
           "macro_spearman": 0.17456451133838335
         },
-        "D3_AUDIO_GATE": {
+        "D3_AUDIO_LOWLEVEL": {
           "source": {
             "B6AEPicK9Bk_210.0_360.0": {
               "mae": 1.117624855041504,
@@ -488,7 +488,7 @@
           "macro_mae": 0.23204901035195022,
           "macro_spearman": 0.20819386853661528
         },
-        "D3_AUDIO_GATE": {
+        "D3_AUDIO_LOWLEVEL": {
           "source": {
             "B6AEPicK9Bk_210.0_360.0": {
               "mae": 0.38749322295188904,
@@ -757,7 +757,7 @@
           "macro_mae": 0.3902476535751102,
           "macro_spearman": 0.12808704226996398
         },
-        "D3_AUDIO_GATE": {
+        "D3_AUDIO_LOWLEVEL": {
           "source": {
             "B6AEPicK9Bk_210.0_360.0": {
               "mae": 0.4492777197257332,

@@ -53,10 +53,10 @@
       "purpose": "observable temporal increment"
     },
     {
-      "id": "D3_AUDIO_GATE",
+      "id": "D3_AUDIO_LOWLEVEL",
       "features": ["D2", "RMS", "spectral change", "speech/silence reliability mask"],
       "targets": ["generic ordinal grade", "audio/language dependency"],
-      "purpose": "audio increment and reliability gating"
+      "purpose": "low-level audio increment; reliability gating remains untested"
     }
   ],
   "evaluation": {

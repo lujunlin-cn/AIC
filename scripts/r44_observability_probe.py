@@ -152,7 +152,7 @@ def main() -> None:
         "D0_CENTER": x[:, :1],
         "D1_STATIC": x[:, :8],
         "D2_LOCAL_CONTEXT": x[:, :11],
-        "D3_AUDIO_GATE": np.concatenate([x[:, :11], aud], axis=1),
+        "D3_AUDIO_LOWLEVEL": np.concatenate([x[:, :11], aud], axis=1),
     }
     out = {
         "experiment_id": "R44_DIAG_001",

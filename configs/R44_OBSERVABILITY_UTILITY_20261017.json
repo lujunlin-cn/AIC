@@ -1,6 +1,6 @@
 {
   "experiment_id": "R44_OBSERVABILITY_UTILITY_20261017",
-  "status": "DESIGNED_NOT_EXECUTED",
+  "status": "DIAGNOSTIC_001_COMPLETED_NEXT_READOUT_NOT_STARTED",
   "date": "2026-10-17",
   "parent": "R26_POS_CENTER_EXACT085_B3",
   "primary_question": "Does a conservative content readout add source-held-out utility beyond center position when the target is separated into generic value, ongoing action, result/reaction, and information dependency?",
@@ -79,5 +79,11 @@
     "gain exists only on the same-account overlap or one source",
     "content score needs an unconstrained replacement of center frames to appear better",
     "a proposed candidate changes spatial boxes, budget, or test supervision at the same time"
-  ]
+  ],
+  "diagnostic_001": {
+    "report": "reports/r44_diag_001_observability_20261017.json",
+    "status": "completed_cpu",
+    "finding": "D2 local state descriptors reduce held-out generic-grade MAE, but neither phase nor dependency targets improve; low-level audio features do not provide a stable increment",
+    "next": "fit a capacity-limited local-state residual with center frozen; keep audio-only branch paused"
+  }
 }

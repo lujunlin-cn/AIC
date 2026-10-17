@@ -7,6 +7,8 @@
 
 标注界面已升为v1.2：取消“未看查询”的逐帧必填确认，等级0/1可跳过信息依赖，等级2/3请填写；整段允许没有高光。保留旧字段及已有草稿/标注，操作标准见`reports/annotation_protocol_v1.md`。
 
+**R42 Smoke质量检查（2026-10-17）**：60/60正式标注、2原视频源、1位标注者；四核心字段及图片/时间映射零错误，43/43等级2/3有信息依赖。时间等级有可解释结构，可作源内描述诊断；空间需针对性校准：11帧多框、1个近零误框、1帧等级1留框，另有构图说明/可行性漏填，自动旗标共18题。51/52阶段建议回看。无需重标全部，不因正例密度强制降级；保留原始结果和草稿，不自动合并/修改。修订验收前暂不导入其余300任务。报告及题号见[质量报告](reports/r42_smoke_quality_20261017/review.md)。没有训练、独立确认或新提交包。
+
 ## R39–R41 官方回分（2026-10-17）
 
 用户报告 **R41=35.19、R40=34.15、R39=34.48**，相对 R26 中心85+B3 的36.04分别 **−0.85、−1.89、−1.56**，均不晋级。三份本地 ZIP 的 SHA、426视频完整性及包内 predictions SHA 已重新核验；平台与实际上传字节未独立核验。回分事件见 `reports/r37_content_candidates/official_score_events.json`，分析见同目录 `official_score_analysis_20261017.md`。
@@ -190,6 +192,6 @@ Label Studio 导入任务已改为盲标版本：任务只含图像、上下文�
 
 **标注标准 v1.1 已冻结**：先完整播放带声音的 30 秒片段建立事件时间线，再逐帧判断；`0/1/2/3/不确定` 按同一视频内部的保留价值裁决，过程/声音依赖单独记录。由于本批次没有 `targetRatioWH`，`crop_box` 明确是自由比例构图可行性诊断，不是 native crop GT；只有高光 2/3 才画框，没有稳定窗口可留空。Label Studio 核心字段已设为必填，首轮 `query_relevance` 只允许“未看查询”。协议、XML和manifest的版本字段已同步为 v1.1。
 
-**Label Studio 部署已验收（2026-10-16）**：用户级 `label-studio.service` 已 enabled/active，监听 `127.0.0.1:18081`；系统级 `frpc.service` 已 enabled/active，将其转发到 `http://47.108.220.174:3002`。公网 `/health`、登录、项目 API 和 Smoke 图片访问均已通过。项目 `AIC Manual Highlight Smoke v1`（ID 1）当前有 60 个未标注任务；先完成 `B6AEPicK9Bk_210.0_360.0` 与 `rAHQY2FHcOo_210.0_360.0` 的导出验收，再导入完整 360 任务，避免重复导入 Smoke 子集。
+**Label Studio 部署已验收（2026-10-16）**：用户级 `label-studio.service` 已 enabled/active，监听 `127.0.0.1:18081`；系统级 `frpc.service` 已 enabled/active，将其转发到 `http://47.108.220.174:3002`。公网 `/health`、登录、项目 API 和 Smoke 图片访问均已通过。项目 `AIC Manual Highlight Smoke v1`（ID 1）部署时导入60个未标注任务，2026-10-17已完成60份正式标注；质量检查见本文件顶部。先修订并验收Smoke，再按video_id+time_sec去重导入其余300任务。
 
 **视频入口补齐（2026-10-17）**：在现有60任务中原位补充`context_video`，图片上方显示完整30秒有声标注窗口，任务ID和已有标注/草稿保留。完整360任务生成器同步支持视频路径。数据库备份置于本机Label Studio私有目录；验收结果见`reports/annotation_video_player_20261017.json`。操作：打开项目任务，先在顶部播放器看完并打开声音，再按图片时间顺序标注；换video_id后再完整看新窗口。原始长视频全片未加入本批次。

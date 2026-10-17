@@ -1,0 +1,74 @@
+{
+  "review_date": "2026-10-17",
+  "reviewer": "Codex visual review in the current agent session",
+  "review_type": "Single model review, not an independent human annotation or ground truth",
+  "export_sha256": "99f97f081afd8d934f6d18873a3d819e8fcacbe1923e6604363116c95e195dfe",
+  "scope": {
+    "ordered_frames_reviewed": 60,
+    "original_source_count": 2,
+    "example_task_ids": [1, 7, 20, 24, 34, 51, 52, 54, 56, 57, 59, 60],
+    "examples_at_exported_resolution": true,
+    "audio_independently_listened": false,
+    "full_motion_video_independently_reviewed": false,
+    "limitations": "Sequential 1fps images reveal visible phases and crop interpretation; they cannot resolve brief transitions, spoken meaning, successful completion between samples, or human labeling accuracy."
+  },
+  "visual_artifacts": [
+    {
+      "path": "artifacts/annotation_batch_v1/exports/smoke_20261017_112224/B6AEPicK9Bk_210.0_360.0_overview.jpg",
+      "sha256": "da0fa715ea211e18ebce45789443248af145b595f6731202d7628bbed265df7f"
+    },
+    {
+      "path": "artifacts/annotation_batch_v1/exports/smoke_20261017_112224/rAHQY2FHcOo_210.0_360.0_overview.jpg",
+      "sha256": "f9a158d59edcd0c35652be0e25413c3e5cc2b746ff49b860dd1bb8effc0e3702"
+    },
+    {
+      "path": "artifacts/annotation_batch_v1/exports/smoke_20261017_112224/review_examples.jpg",
+      "sha256": "7dcb620fbc7a9977d4f3213599f3b4c46a0d83cd27614848cd4f6a7ff1a3da53"
+    }
+  ],
+  "findings": [
+    {
+      "task_id": 51,
+      "code": "event_phase_visual_review",
+      "priority": "review",
+      "action": "20秒仍为腾空动作，未见反应主体；回放后复核为进行中或完成或结果，不因此降低高光等级"
+    },
+    {
+      "task_id": 52,
+      "code": "event_phase_visual_review",
+      "priority": "review",
+      "action": "21秒仍在腾空或落地过程；结果后反应应有表情或观众反馈等依据，回放核实阶段"
+    },
+    {
+      "task_id": 37,
+      "code": "context_hindsight_spotcheck",
+      "priority": "optional_spotcheck",
+      "action": "仅抽查信息依赖：依据是当前姿态已有价值，还是看完才知道动作成功；前者保留当前帧足够，不机械更改"
+    },
+    {
+      "task_id": 51,
+      "code": "context_hindsight_spotcheck",
+      "priority": "optional_spotcheck",
+      "action": "抽查当前帧足够是否依赖看完后知道成功落地；仅当价值依据需前后状态时改信息依赖"
+    },
+    {
+      "task_id": 52,
+      "code": "context_hindsight_spotcheck",
+      "priority": "optional_spotcheck",
+      "action": "抽查当前帧足够是否依赖看完后知道成功落地；仅当价值依据需前后状态时改信息依赖"
+    },
+    {
+      "task_id": 56,
+      "code": "context_hindsight_spotcheck",
+      "priority": "optional_spotcheck",
+      "action": "若价值来自命中结果且此图可见，可保留当前帧足够；若来自投掷过程或台词，按实际依赖填写"
+    }
+  ],
+  "interpretation": {
+    "temporal": "Visible, interpretable differences across content and transitions; descriptive use within two sources only",
+    "spatial": "Multiple region boxes sometimes encode separate objects; calibration to one coherent retained window is required",
+    "density": "No positive fraction or grade-3 quota is imposed; these source videos are already edited",
+    "uncertain": "Food-display phase may depend on spoken evaluation; no correction asserted without listening",
+    "next_step": "Targeted human review before extending the batch; no labels rewritten and no training started"
+  }
+}

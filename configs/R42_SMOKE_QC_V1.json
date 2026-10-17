@@ -1,0 +1,14 @@
+{
+  "protocol_version": "1.2",
+  "purpose": "Annotation smoke quality review, not model selection or official GT validation",
+  "required_choices": ["generic_highlight", "event_phase", "event_type", "confidence"],
+  "positive_grades": ["2值得保留", "3高光核心"],
+  "context_required_for_review": "Grades 2/3 only; missing means missing, never current-frame-sufficient",
+  "near_degenerate_min_side_pixels": 2.0,
+  "near_degenerate_reason": "Less than two preview pixels cannot retain a visible subject, interaction, or information; this is an error flag, not a competition crop-size rule",
+  "crop_policy": "One coherent window on grade 2/3; no box is allowed when no stable window exists and composition confidence records this",
+  "density_policy": "Report grade counts without imposing a target positive fraction",
+  "draft_policy": "Never merge drafts into completed labels; report conflicts separately",
+  "mutation_policy": "Read-only export and analysis; never rewrite labels or import new tasks",
+  "independent_unit": "Original source video; 60 adjacent frames from two sources are not 60 independent quality observations"
+}

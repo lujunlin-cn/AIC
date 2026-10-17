@@ -7,7 +7,7 @@
 
   <Image name="image" value="$image" zoom="true" />
 
-  <Header value="1. 通用高光等级（按同一视频内部相对判断）" />
+  <Header value="1. 通用高光等级（按同一视频内部相对判断）。整段没有高光可以全部标0/1，不必凑出2/3。" />
   <Choices name="generic_highlight" toName="image" choice="single-radio" showInline="true" required="true">
     <Choice value="0普通" />
     <Choice value="1有信息" />
@@ -25,8 +25,9 @@
     <Choice value="无事件或无法判断" />
   </Choices>
 
-  <Header value="3. 信息依赖：这个判断描述理解高光需要什么，不会降低高光等级。若同时需要过程和声音，选需要声音或语言，并在备注写同时需要前后过程。" />
-  <Choices name="needs_context" toName="image" choice="single-radio" showInline="true" required="true">
+  <Header value="3. 信息依赖（0/1可跳过；2/3请填写）：为了知道这一帧为什么值得保留，需要什么信息？不是问你实际有没有看过视频。" />
+  <Header value="当前帧足够：这张图已能说明价值；需要前后过程：要看动作前后才知道成功/失败；需要声音或语言：要听台词、语气或掌声才懂；无法判断：看完仍不知道价值来源。同时需要过程与声音时选声音，并在备注补充。" />
+  <Choices name="needs_context" toName="image" choice="single-radio" showInline="true" required="false">
     <Choice value="当前帧足够" />
     <Choice value="需要前后过程" />
     <Choice value="需要声音或语言" />
@@ -44,9 +45,13 @@
     <Choice value="无事件" />
   </Choices>
 
-  <Choices name="query_relevance" toName="image" choice="single-radio" showInline="true" required="true">
-    <Choice value="未看查询" />
-  </Choices>
+  <!-- Retain the legacy field for existing results; blind-pass policy is
+       project metadata and no longer requires a per-frame confirmation. -->
+  <View style="display: none;">
+    <Choices name="query_relevance" toName="image" choice="single-radio" showInline="true" required="false">
+      <Choice value="未看查询" />
+    </Choices>
+  </View>
 
   <Choices name="confidence" toName="image" choice="single-radio" showInline="true" required="true">
     <Choice value="高" />

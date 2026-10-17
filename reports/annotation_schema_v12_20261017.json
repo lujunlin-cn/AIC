@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-17",
+  "project_id": 1,
+  "protocol_version": "1.2",
+  "changes": [
+    "query_relevance retained as hidden optional legacy control",
+    "needs_context optional; skip allowed for non-highlights",
+    "explicit option definitions and no mandatory positive frames"
+  ],
+  "label_config_sha256": "dcdaf62890fa1eb4d2ad61158ebab16a02383f4388dfdc271612c3af0af4684a",
+  "existing_results_unchanged": true,
+  "task_ids_and_data_unchanged": true,
+  "annotation_tables": {
+    "task_completion": {
+      "count": 1,
+      "sha256": "bb1c8dd5ccc1c4c1804fc27f48dac0798ae1d9028e00e49edb94a676a139d99d"
+    },
+    "tasks_annotationdraft": {
+      "count": 1,
+      "sha256": "0115e369c90040198f186bfc68c926f0e855ac7160a68e9d29925f8ff5c847f3"
+    }
+  },
+  "private_backup_directory": "/home/hajimi2025/.local/share/label-studio/backups/video_context_20261017_104222",
+  "backend_config_validation": "PASS",
+  "browser_verification": "PASS",
+  "browser_results": {
+    "task_id": 2,
+    "nonhighlight_submit_validation": "PASS",
+    "query_confirmation_visible": false,
+    "omitted_fields": [
+      "query_relevance",
+      "needs_context"
+    ],
+    "submitted_fields": [
+      "confidence",
+      "event_phase",
+      "event_type",
+      "generic_highlight"
+    ],
+    "all_browser_mutations_blocked": true,
+    "test_annotation_saved": false,
+    "screenshot": "artifacts/annotation_batch_v1/schema_v12_nonhighlight.png",
+    "validation_scope": "Frontend validation reached the annotation POST with four core fields; request blocked before server persistence.",
+    "endpoint": "http://47.108.220.174:3002",
+    "existing_annotation_and_draft_hashes_rechecked": true
+  },
+  "temporary_browser_cookie_file_removed": true
+}

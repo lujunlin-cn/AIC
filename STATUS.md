@@ -5,6 +5,8 @@
 完整计划：`docs/r21_direction_and_plan_20261015.md`；决定：`DECISIONS.md` 2026-10-15 两节；
 实验史：`EXPERIMENTS.md` R21 节。
 
+标注界面已升为v1.2：取消“未看查询”的逐帧必填确认，等级0/1可跳过信息依赖，等级2/3请填写；整段允许没有高光。保留旧字段及已有草稿/标注，操作标准见`reports/annotation_protocol_v1.md`。
+
 ## R39–R41 官方回分（2026-10-17）
 
 用户报告 **R41=35.19、R40=34.15、R39=34.48**，相对 R26 中心85+B3 的36.04分别 **−0.85、−1.89、−1.56**，均不晋级。三份本地 ZIP 的 SHA、426视频完整性及包内 predictions SHA 已重新核验；平台与实际上传字节未独立核验。回分事件见 `reports/r37_content_candidates/official_score_events.json`，分析见同目录 `official_score_analysis_20261017.md`。

@@ -6,6 +6,8 @@
   "labels": {"rows": 540, "sources": 12, "source_held_out": true, "official_gt": false},
   "fixed": {"eta": 0.2, "ridge_alpha": 10.0, "keep": 0.85, "boundary_rule": "none in candidate; R26 full-frame parent set"},
   "spatial": "copy parent B3 boxes byte-for-byte",
+  "total_inference_parameters": 7267097558,
+  "total_inference_parameters_b": 7.267097558,
   "rules": {"official_test_labels_used": false, "official_score_used_for_construction": false, "parameter_limit": 9000000000, "eta_alpha_sweep": false},
   "candidate_builder": "scripts/r45_highfreq_semantic_residual.py",
   "diagnostic": "reports/r45_highfreq_state_20261017/summary.md"

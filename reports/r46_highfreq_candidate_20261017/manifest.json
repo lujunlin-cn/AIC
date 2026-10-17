@@ -11,7 +11,8 @@
   "keep_rule": "round(0.85*N)",
   "temporal_change": "4 fps local state features + interpolated frozen IV2 event score; fixed Ridge alpha=10, eta=0.20",
   "spatial_change": "none; B3 boxes copied byte-for-byte",
-  "declared_parameters": 450283377,
+  "declared_parameters": 7267097558,
+  "declared_parameters_b": 7.267097558,
   "official_test_labels_used": false,
   "official_score_used_for_construction": false,
   "status": "candidate_not_uploaded"

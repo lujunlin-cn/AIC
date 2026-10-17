@@ -23,6 +23,12 @@ from sklearn.preprocessing import StandardScaler
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from scripts.r44_local_state_residual import GRADE, frame_descriptor, _rank01, select
 
+# Full deployed R26/R44 system count (frozen temporal/visual components plus
+# B3 spatial stack).  The new residual has no separate neural checkpoint; it
+# must inherit the complete parent count for the <=9B rule.
+TOTAL_PARAMS_B = 7.267097558
+TOTAL_SIZE_MB = 7267.097558
+
 
 def rows_from(paths: list[Path]) -> list[dict]:
     out = []
@@ -159,7 +165,7 @@ def main() -> None:
         stats.append({"video_id": vid, "n": n, "k": k,
                       "changed": int([p["frame"] for p in preds] != [p["frame"] for p in row["predictions"]])})
         q = dict(row); q["predictions"] = preds
-        q["model_size_mb"] = 450.283377; q["model_params_b"] = 0.450283377
+        q["model_size_mb"] = TOTAL_SIZE_MB; q["model_params_b"] = TOTAL_PARAMS_B
         out.append(q)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     with args.output.open("w") as f:

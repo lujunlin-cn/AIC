@@ -1,0 +1,25 @@
+{
+  "experiment_id": "R44_SCORE_NULL_20261017",
+  "status": "PUBLIC_LABEL_NULL_ONLY",
+  "seed": 1,
+  "trials": 20000,
+  "views": 18,
+  "center_keep": 0.85,
+  "r44_replacements": 6352,
+  "r44_parent_predictions": 199037,
+  "replacement_fraction": 0.031913664293573556,
+  "replacement_model": "per view q=min(K,N-K,Poisson(replacement_fraction*K)); random selected/unselected swaps",
+  "metric": "R44 proxy_f soft grade (grade/3), macro over 18 views",
+  "mean_delta_F": -0.0030576065432123913,
+  "sd_delta_F": 0.004968863125747713,
+  "quantiles_score_points": {
+    "0.025": -1.3066475692820325,
+    "0.05": -1.133990400867507,
+    "0.5": -0.2966336085928954,
+    "0.95": 0.4902962961403922,
+    "0.975": 0.6475982441221779
+  },
+  "p_delta_score_ge_0.05": 0.2369,
+  "threshold_score_points": 0.05,
+  "caveat": "Public annotations are same-account diagnostic labels, not official GT; this null is illustrative and cannot estimate official-score p-values. R44 official evaluator is deterministic; randomness here represents unknown-test utility of near-tie swaps."
+}

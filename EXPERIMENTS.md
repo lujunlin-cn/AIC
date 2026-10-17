@@ -1076,3 +1076,25 @@ Label Studio项目1/2正式标注分别300/300与240/240，结构审计零错误
 **Package result**：426/426 视频、199037 帧、精确预算；419/426 视频相对 R26 改变时间集合，平均替换 14.91 帧；保留帧 B3 框 0 项改变。参数申报 450283377（0.450283377B）；独立 checker 与 ZIP 解压回归通过。候选包 `submissions/R44_HUMAN_CALIBRATED_RESIDUAL_ETA020_B3/`，ZIP SHA `b814699f1bdc71f2fec80e8e0b9465fe600327d44eab731f41f4d75ff6deac9e`，尚未上传，官方分数 null。
 
 **Conclusion**：R26 是父包与回退；R44 是目前唯一完成包级验收的新机制候选。若官方回分不高于 36.04，停止继续扫 `eta`/`alpha`，转向新的可观测信息或空间原生监督；若超过，则以官方回分和上传 SHA 绑定确认，不把公共代理增益当成分数承诺。证据：`reports/r44_human_calibrated_residual_20261017/summary.md`、`reports/r44_residual_002_probe_20261017.json`、`configs/R44_HUMAN_CALIBRATED_RESIDUAL_ETA020_B3.json`。
+
+
+## R44 官方回分与随机微扰分析（2026-10-17）
+
+**Hypothesis / control**：R44 只在 R26 中心 85% 的边界进行人工标签校准残差重排，B3 框和每视频 `round(.85*N)` 预算保持不变。父包 R26 官方分 36.04。
+
+**Official result**：用户报告 R44=`36.09`，Δ=`+0.05`。R44 426/426 视频、199037 帧，ZIP SHA256=`b814699f1bdc71f2fec80e8e0b9465fe600327d44eab731f41f4d75ff6deac9e`；平台上传 SHA 未独立核验。相对 R26 改变 6352/199037 帧（3.19%），B3 框零改变。
+
+**Interpretation**：固定官方 evaluator 下这是该包的真实差异，但增益小到无法与近邻换帧波动区分。20,000 次、18 个公开人工视图的诊断 null（与 R44 相同交换比例）`P(ΔScore≥.05)=.2369`，不能作为官方 p 值，因为人工标签不是比赛 GT。结论为弱信号，不晋级为稳定收益，也不继续 eta/alpha 扫描。完整分析见 `reports/r44_score_analysis_20261017/analysis.md`。
+
+**Next**：冻结 R26 中间区域，仅允许 R44 变化落在中心窗口两端各 5% 的局部边界带，构建 R45；若边界保护仍无实用收益，停止该残差路线。
+
+
+## R45_BOUNDARY_GUARDED_RESIDUAL_B3（2026-10-17）
+
+**假设**：R44 的微小正差若有机制，应该局限在 R26 中心窗口的边缘换帧；冻结中心区域可去除长视频的大跳变与随机近邻波动。竞争解释是 R44 的 +0.05 只是偶然交换，边界保护不会复现。
+
+**预注册改变**：从已生成的 R44 集合出发，只保留新增帧和删除帧均位于 R26 中心窗口两端各 5% 全视频边界带内的交换；其余变更回退到 R26。固定每视频 `round(.85*N)`，不扫 eta/alpha；B3 框沿用 R26，公共帧逐项比对。
+
+**结果**：426/426、199037 帧；R44 的 6352 个交换中保留 5942 个，410 个回退；R45 相对 R26 改变 411 个视频。参数 `450283377`（0.450283377B）。结构审计和 ZIP 往返通过。预测 SHA `f71d233a199b81ff48adcea154e1af792fef921022272afc3d27070bca6d0940`，ZIP SHA `f50506802fa3809d41913e2f3751bddc1ca71d2e9ea60c47e067b220a6d07cb2`。
+
+**状态**：已形成可上传候选，尚无官方回分。该包只检验边界保护机制，不能预先承诺涨分；R26 仍为回退，R44 仍是当前最高已报告分。配置、构建脚本和报告见 `configs/R45_BOUNDARY_GUARDED_RESIDUAL_B3.json`、`scripts/package_r45_boundary_guarded.py`、`reports/r45_boundary_guarded_residual_20261017/summary.md`。

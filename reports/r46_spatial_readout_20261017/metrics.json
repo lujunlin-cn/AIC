@@ -1,0 +1,198 @@
+{
+  "protocol": "R46 spatial candidate-utility oracle audit",
+  "input_sha256": "5cdfb5c8dc36255f2967bfd3f3c0d31756a954a9aed6cef8c56326cb0958d4dc",
+  "claim_boundary": "Public source-level diagnostic only; oracle uses public crop GT and cannot be converted to official score.",
+  "rows": 26562,
+  "pool_results": [
+    {
+      "pool": "live_confirmation",
+      "arm": "B3_s0",
+      "rows": 6810,
+      "sources": 227,
+      "mean_source_iou": {
+        "head_iou": 0.5349456387665198,
+        "center_iou": 0.46875975036710726,
+        "oracle_iou": 0.7818842290748899
+      },
+      "head_minus_center": {
+        "mean": 0.06618588839941264,
+        "ci95": [
+          0.049695251468428785,
+          0.08355844236417032
+        ],
+        "wins": 147,
+        "losses": 80,
+        "n_sources": 227
+      },
+      "oracle_minus_head": {
+        "mean": 0.24693859030837004,
+        "ci95": [
+          0.23131289427312776,
+          0.26295172173274595
+        ],
+        "wins": 227,
+        "losses": 0,
+        "n_sources": 227
+      },
+      "oracle_minus_center": {
+        "mean": 0.3131244787077826,
+        "ci95": [
+          0.29399386600587374,
+          0.3327537224669604
+        ],
+        "wins": 227,
+        "losses": 0,
+        "n_sources": 227
+      },
+      "gap_positive_frame_share": 0.815712187958884,
+      "gap_frame_mean": 0.24693917767988252
+    },
+    {
+      "pool": "live_confirmation_s1",
+      "arm": "B3_s1",
+      "rows": 6810,
+      "sources": 227,
+      "mean_source_iou": {
+        "head_iou": 0.53777906020558,
+        "center_iou": 0.46875975036710726,
+        "oracle_iou": 0.7818842290748899
+      },
+      "head_minus_center": {
+        "mean": 0.06901930983847282,
+        "ci95": [
+          0.0531126787812041,
+          0.08556059765051394
+        ],
+        "wins": 160,
+        "losses": 67,
+        "n_sources": 227
+      },
+      "oracle_minus_head": {
+        "mean": 0.24410516886930983,
+        "ci95": [
+          0.22868105690161528,
+          0.25990971218795883
+        ],
+        "wins": 227,
+        "losses": 0,
+        "n_sources": 227
+      },
+      "oracle_minus_center": {
+        "mean": 0.3131244787077826,
+        "ci95": [
+          0.29399386600587374,
+          0.3327537224669604
+        ],
+        "wins": 227,
+        "losses": 0,
+        "n_sources": 227
+      },
+      "gap_positive_frame_share": 0.8198237885462555,
+      "gap_frame_mean": 0.24410522760646106
+    },
+    {
+      "pool": "live_dev",
+      "arm": "B3_s0",
+      "rows": 3720,
+      "sources": 124,
+      "mean_source_iou": {
+        "head_iou": 0.5401995967741936,
+        "center_iou": 0.46896663978494624,
+        "oracle_iou": 0.7744575537634406
+      },
+      "head_minus_center": {
+        "mean": 0.07123295698924728,
+        "ci95": [
+          0.04689705174731182,
+          0.09575978091397845
+        ],
+        "wins": 80,
+        "losses": 44,
+        "n_sources": 124
+      },
+      "oracle_minus_head": {
+        "mean": 0.23425795698924734,
+        "ci95": [
+          0.21365206787634414,
+          0.2551732970430107
+        ],
+        "wins": 124,
+        "losses": 0,
+        "n_sources": 124
+      },
+      "oracle_minus_center": {
+        "mean": 0.30549091397849465,
+        "ci95": [
+          0.2787802264784946,
+          0.33212094086021515
+        ],
+        "wins": 124,
+        "losses": 0,
+        "n_sources": 124
+      },
+      "gap_positive_frame_share": 0.7994623655913978,
+      "gap_frame_mean": 0.23425852150537638
+    },
+    {
+      "pool": "rv_diag_exposed",
+      "arm": "B3_s0",
+      "rows": 9222,
+      "sources": 70,
+      "mean_source_iou": {
+        "head_iou": 0.6820287592364097,
+        "center_iou": 0.6198289407593467,
+        "oracle_iou": 0.8439017592300033
+      },
+      "head_minus_center": {
+        "mean": 0.06219981847706319,
+        "ci95": [
+          0.0346053956959152,
+          0.09022451516546452
+        ],
+        "wins": 47,
+        "losses": 23,
+        "n_sources": 70
+      },
+      "oracle_minus_head": {
+        "mean": 0.16187299999359334,
+        "ci95": [
+          0.14670567878482452,
+          0.17841182008859854
+        ],
+        "wins": 70,
+        "losses": 0,
+        "n_sources": 70
+      },
+      "oracle_minus_center": {
+        "mean": 0.2240728184706565,
+        "ci95": [
+          0.19402981121512905,
+          0.25545501708955787
+        ],
+        "wins": 70,
+        "losses": 0,
+        "n_sources": 70
+      },
+      "gap_positive_frame_share": 0.9608544784211668,
+      "gap_frame_mean": 0.16253060073736716
+    }
+  ],
+  "seed_consistency": {
+    "n_sources": 227,
+    "mean_s1_minus_s0": 0.002833421439060205,
+    "ci95": [
+      -0.0018064243759177688,
+      0.0075999897209985245
+    ],
+    "corr": 0.9628004877422073
+  },
+  "interpretation": {
+    "supports": "Candidate geometry is generally adequate on these public pools and current B3 candidate ranking leaves substantial attainable utility on the table; a readout/representation/label transfer intervention is more justified than changing candidate count.",
+    "does_not_identify": [
+      "whether the error is frozen visual features, pooling, head optimization, or domain/label policy",
+      "whether a new readout transfers to the 426 competition videos",
+      "whether replacing boxes changes joint official F"
+    ],
+    "next_minimal_experiment": "Train a constrained readout on the same 129 candidate features with source-disjoint public splits, retain B3 candidate geometry, and require source-level gain over frozen B3 and center on both live and RV held-out pools before packaging."
+  }
+}

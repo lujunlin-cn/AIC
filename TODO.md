@@ -292,6 +292,7 @@ R44_DIAG_001已完成CPU留一：局部状态描述子使通用等级MAE 1.0668�
 - [x] 构建`R47_TIMELENS2_CENTER_EXACT085`严格参数合规的中心构图对照。
 - [ ] 等待D3 4fps local-state-only分片完成；合并后构建含`model_params_b`字段的完整包及固定5%边界包。
 - [ ] 统一明日5个提交候选：优先R26、R44、D3或D4中证据较强的一包、R47 V9 B3、V9 B3 center空间对照；R45作为边界机制备用。只提交全量覆盖、ZIP往返和字段checker通过的包。
+- [x] 将明日五包冻结为R26、R44 current-field、R46 D3 local、R47 TimeLens2+V9 B3、R47 V9 B3 center；独立checker与SHA审计见`reports/next_day_five_candidate_audit_20261018.json`。
 - [ ] 记录每次官方回分及上传SHA；不依据一次回分做eta/alpha扫描。
 
 ## P1

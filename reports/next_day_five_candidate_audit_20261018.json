@@ -1,0 +1,72 @@
+{
+  "status": "PACKAGED_NOT_UPLOADED",
+  "submission_limit_tomorrow": 5,
+  "index": "reports/r47_timelens2_index_enriched_426.jsonl",
+  "selection_principle": "keep the known score anchor, one calibrated residual, one high-frequency residual, and a TimeLens2/V9 time-space pair",
+  "candidates": [
+    {
+      "rank": 1,
+      "role": "safe anchor",
+      "submission_id": "R26_POS_CENTER_EXACT085_B3",
+      "path": "submissions/R26_DIAG/R26_POS_CENTER_EXACT085_B3",
+      "official_score": 36.04,
+      "model_params_b": 0.450283377,
+      "predictions_sha256": "4af2d6ae656450936577a5cd53ed0368986b5016a53640a2b37483034e2256a4",
+      "zip_sha256": "95d079da9b1f845e967509dcb5a3bebc057e8501b582cdc4858af4fc7b60a981"
+    },
+    {
+      "rank": 2,
+      "role": "known best calibrated residual",
+      "submission_id": "R44_HUMAN_CALIBRATED_RESIDUAL_ETA020_B3",
+      "path": "submissions/r44_r45_current_20261017/R44_HUMAN_CALIBRATED_RESIDUAL_ETA020_B3",
+      "official_score": 36.09,
+      "model_params_b": 7.267097558,
+      "predictions_sha256": "7e1a278acacea331503f240e31ecdb60645acf4d120f2c904e2e8d5260eaed71",
+      "zip_sha256": "b61ad89f85d84e1157416db69ec55be2cac2a85625bea199495880ae25d5d7e0"
+    },
+    {
+      "rank": 3,
+      "role": "high-frequency local-state residual",
+      "submission_id": "R46_HIGHFREQ_LOCAL_RESIDUAL_B3",
+      "path": "submissions/r46_repack_local_20261017/R46_HIGHFREQ_LOCAL_RESIDUAL_B3",
+      "official_score": null,
+      "public_proxy_delta": 0.02302,
+      "model_params_b": 0.450283377,
+      "predictions_sha256": "ebdf0f1869a83ec425a52c127535cd341e0ea5a546221e4dc4997f46c39004dc",
+      "zip_sha256": "be52cfd428ab53d5c87c29aedd7c331bc803ebef4accd3915522d8e944ce1b3a"
+    },
+    {
+      "rank": 4,
+      "role": "TimeLens2 temporal plus V9 vision-only spatial",
+      "submission_id": "R47_TIMELENS2_V9_B3",
+      "path": "submissions/r47_final_candidates_20261018/R47_TIMELENS2_V9_B3",
+      "official_score": null,
+      "public_proxy_delta": 0.01691,
+      "model_params_b": 8.854531425,
+      "predictions_sha256": "b177c6b389c4804479ba0923b63c13ab0d08a355479a420e68c6737f3974cb30",
+      "zip_sha256": "067f9a47095bb8e7e3a2231ed2829358ef07e0246f94294d1941685e536be9e3"
+    },
+    {
+      "rank": 5,
+      "role": "V9 vision-only spatial control with R26 center time",
+      "submission_id": "R47_V9_B3_CENTER85",
+      "path": "submissions/R47_V9_B3_CENTER85",
+      "official_score": null,
+      "model_params_b": 0.087407729,
+      "public_proxy_delta": null,
+      "predictions_sha256": "97296b35237dafd647c0935a39b91e23b5058b101391b1303c246a4c770947db",
+      "zip_sha256": "730a94be3eb54ee68490a34a4fb33e424ad92810bc75b56b7d7be179c47a8b63"
+    }
+  ],
+  "excluded": {
+    "R48_CONSENSUS_GATED_RESIDUAL_B3": "same D3 family as R46; public gate gain is small and consumes a slot better used by the TimeLens2/V9 control pair",
+    "R49_R52": "diagnostic-only mechanisms below D3; no package"
+  },
+  "audit": {
+    "all_candidates_checker": "independent_submission_check_v1 passed",
+    "all_candidates_videos": 426,
+    "all_candidates_predictions": 199037,
+    "all_candidates_exact_budget": true,
+    "uploaded": false
+  }
+}

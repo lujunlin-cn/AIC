@@ -1145,6 +1145,8 @@ V9候选ZIP SHA=`436e9156c8fd55a04cae88840da95f177d633ae6b3e08665db8918f29c88c56
 
 **Status**：公共判别实验通过“继续构包”门；426视频包正在AutoDL生成。若结构审计通过，R48是D3的机制控制候选；不进行任何进一步阈值/系数扫描。详见`reports/r48_consensus_gated_residual_20261018/summary.md`和`reports/r48_consensus_probe_20261018.json`。
 
+**Package audit**：全量R48已完成，426/426、199037条、精确`round(.85*N)`；相对R26有415个视频变化，平均交换12.65帧，B3框逐项一致。`R48_CONSENSUS_GATED_RESIDUAL_B3` ZIP SHA=`d3efa721eb7c2c5ad4d4fbb2000e7e79b78d667aecfe3355b16dd236ad0aa1d9`；固定5%边界派生包 SHA=`90d6769e771489fc632fef3dbdc41ed306869f4d76d40a361b80924f00f15bb8`。独立checker、根目录ZIP和解压预测SHA通过，均为`PACKAGED_NOT_UPLOADED`。
+
 ## 2026-10-18：R49–R52 时间残差扩展判别
 
 这些实验都使用同一12个公开30秒源、整源留一、固定中心85%代理、`eta=.20`和Ridge `alpha=10`；没有读取官方标签，也没有根据结果生成权重/系数扫描。

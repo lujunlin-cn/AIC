@@ -1,0 +1,44 @@
+[
+  {
+    "submission_id": "R41_CONTENT_GATEDFUSION85_B3",
+    "official_score": 35.19,
+    "baseline_submission_id": "R26_POS_CENTER_EXACT085_B3",
+    "baseline_official_score": 36.04,
+    "delta_from_baseline": -0.85,
+    "local_zip_sha256": "1c88254c061f2a9acdfc5ebf9fa6f68156317bc388b548bec177bd69b7877c85",
+    "local_zip_sha256_verified": true,
+    "score_source": "user_report_2026-10-17",
+    "platform_independently_verified": false,
+    "uploaded_zip_sha256_independently_verified": false,
+    "video_count": 426,
+    "prediction_count": 198842
+  },
+  {
+    "submission_id": "R40_CONTENT_NOVELTY85_B3",
+    "official_score": 34.15,
+    "baseline_submission_id": "R26_POS_CENTER_EXACT085_B3",
+    "baseline_official_score": 36.04,
+    "delta_from_baseline": -1.89,
+    "local_zip_sha256": "183af145bf6ac9a02706d3201d53e4389f2def0799c888d4c8e86e8af57a9699",
+    "local_zip_sha256_verified": true,
+    "score_source": "user_report_2026-10-17",
+    "platform_independently_verified": false,
+    "uploaded_zip_sha256_independently_verified": false,
+    "video_count": 426,
+    "prediction_count": 198842
+  },
+  {
+    "submission_id": "R39_CONTENT_REDUNDANCY85_B3",
+    "official_score": 34.48,
+    "baseline_submission_id": "R26_POS_CENTER_EXACT085_B3",
+    "baseline_official_score": 36.04,
+    "delta_from_baseline": -1.56,
+    "local_zip_sha256": "b014c407a89996781fb2222729ca724ef0c2286bcaad3d5345850b0c24e2c923",
+    "local_zip_sha256_verified": true,
+    "score_source": "user_report_2026-10-17",
+    "platform_independently_verified": false,
+    "uploaded_zip_sha256_independently_verified": false,
+    "video_count": 426,
+    "prediction_count": 198842
+  }
+]

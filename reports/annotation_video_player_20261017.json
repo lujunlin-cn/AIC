@@ -1,0 +1,90 @@
+{
+  "date": "2026-10-17",
+  "project_id": 1,
+  "task_count": 60,
+  "video_count": 2,
+  "task_ids_preserved": true,
+  "annotations_and_drafts_unchanged": true,
+  "annotation_tables": {
+    "tasks_annotationdraft": {
+      "count": 1,
+      "sha256": "4908ed5042984778730299daeed5ad151fa48320b6754ed70eb17504754a1f34"
+    },
+    "task_completion": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  },
+  "backup_directory": "/home/hajimi2025/.local/share/label-studio/backups/video_context_20261017_102614",
+  "label_config_sha256": "2089b1191f29101b787e1280e5b5de520bb27fa1eedaf5f4423d550243434507",
+  "change": "Add context_video URL and context_player HTML to existing tasks; native browser video with controls and a separate-tab link above image; original annotation controls preserved.",
+  "browser_verification": "PASS",
+  "video_storage_id": 2,
+  "video_storage_path": "/home/hajimi2025/AIC/artifacts/annotation_batch_v1/videos",
+  "storage_sync_performed": false,
+  "prechange_backup_directory": "/home/hajimi2025/.local/share/label-studio/backups/video_context_20261017_102551",
+  "initial_media_issue": "Video directory was not authorized by project local-file storage; fixed by registering videos/ without storage sync.",
+  "native_player_reason": "Context playback needs native video controls and sound; no video-frame annotation controls are required.",
+  "webm_backup_directory": "/home/hajimi2025/.local/share/label-studio/backups/webm_context_20261017_103439",
+  "browser_compatibility": "Original H264/AAC MP4 retained; optional VP9/Opus WebM source used first for Chromium codec support.",
+  "webm_conversion": {
+    "sources": 12,
+    "elapsed_seconds": 9.0,
+    "device": "CPU",
+    "parameters": "libvpx-vp9 realtime cpu-used=8 threads=2 crf=36; libopus 32k",
+    "command_template": "ffmpeg -hide_banner -loglevel error -nostdin -n -i INPUT.mp4 -c:v libvpx-vp9 -deadline realtime -cpu-used 8 -row-mt 1 -threads 2 -b:v 0 -crf 36 -c:a libopus -b:a 32k OUTPUT.webm"
+  },
+  "public_base_url": "http://47.108.220.174:3002",
+  "browser": "Chromium 1228 via Playwright 1.64.0",
+  "browser_results": [
+    {
+      "duration": 30.024,
+      "width": 534,
+      "height": 300,
+      "playback_advanced": true,
+      "seek_time": 15,
+      "muted": false,
+      "volume": 1,
+      "current_src": "http://47.108.220.174:3002/data/local-files/?d=artifacts/annotation_batch_v1/videos/B6AEPicK9Bk_210.0_360.0.webm",
+      "error": null,
+      "audio_tracks": null,
+      "decoded_audio_bytes": 25759,
+      "task_id": 1,
+      "video_id": "B6AEPicK9Bk_210.0_360.0",
+      "http_media_status": 206,
+      "content_type": "video/webm",
+      "screenshot": "artifacts/annotation_batch_v1/video_player_smoke_1.png"
+    },
+    {
+      "duration": 30.024,
+      "width": 534,
+      "height": 300,
+      "playback_advanced": true,
+      "seek_time": 15,
+      "muted": false,
+      "volume": 1,
+      "current_src": "http://47.108.220.174:3002/data/local-files/?d=artifacts/annotation_batch_v1/videos/rAHQY2FHcOo_210.0_360.0.webm",
+      "error": null,
+      "audio_tracks": null,
+      "decoded_audio_bytes": 24840,
+      "task_id": 31,
+      "video_id": "rAHQY2FHcOo_210.0_360.0",
+      "http_media_status": 206,
+      "content_type": "video/webm",
+      "screenshot": "artifacts/annotation_batch_v1/video_player_smoke_31.png"
+    }
+  ],
+  "page_errors": [],
+  "audio_validation": "AAC (MP4) and Opus (WebM) tracks present by ffprobe; browser playback unmuted. Human audibility not assessed in headless mode.",
+  "scope": "Complete 30-second annotation windows, not complete original long videos; first two public source clips in smoke project.",
+  "implementation_files": {
+    "scripts/build_annotation_tasks.py": "0603dfe0d3dbc80621b5836136c32bf17cb5bd38458ff18af9507b406c9886d1",
+    "configs/label_studio_annotation_v1.xml": "2089b1191f29101b787e1280e5b5de520bb27fa1eedaf5f4423d550243434507"
+  },
+  "media_file_count": 24,
+  "webm_total_bytes": 27204630,
+  "task_generation_command": "python3 scripts/build_annotation_tasks.py --config configs/ANNOTATION_BATCH_V1.json --frames artifacts/annotation_batch_v1/frames --output artifacts/annotation_batch_v1/label_studio_tasks_local_files.json --image-mode label-studio-local-files",
+  "label_studio_version": "1.20.0",
+  "audio_decoding_verified": true,
+  "automation_cookie_files_removed": 1
+}

@@ -41,6 +41,17 @@ FRP 客户端由系统级 `frpc.service` 常驻，代理名为 `label-studio`，
 
 登录账号使用项目管理员账号；密码不写入仓库或本说明。
 
+### 先看视频，再逐帧标注
+
+1. 打开 [Smoke 项目](http://47.108.220.174:3002/projects/1/data)，登录后点开一条任务。如果已经打开旧页面，按 `Ctrl+F5` 刷新。
+2. 任务上方的播放器展示**完整30秒标注片段**。点击播放、打开声音，先看完一次，了解事件过程和结果；可以暂停、拖动进度条或回放。
+3. 向下看当前图片并填写选项。标题中的 `exported time` 对应播放器中的秒数，`source time` 是源素材时间，不要混用。遇到不确定的帧可以回看播放器。
+4. 提交当前帧，再标同一个 `video_id` 的下一帧；同一视频不需要每帧都从头播放。切换到新的 `video_id` 时，先完整观看新片段。
+
+本批次播放器是从源素材截取的30秒窗口，**不是原始长视频全片**。若事件跨出窗口、无法判断，在该帧选“不确定”、置信度“低”，备注“事件跨出窗口”，不要自行补剧情或查看QVH query。
+
+2026-10-17 已在现有60个Smoke任务中原位补充 `context_video` 和 `context_player` 字段，并增加播放器；保留原任务ID、选择字段、矩形框定义和已有草稿/标注。后续生成的360任务也包含相同视频字段，无需为播放器删除或重新导入现有任务。已实测两个Smoke视频公网播放、音频解码和跳转15秒通过；原MP4保留，新增约27MB的WebM兼容源。播放器下方的“单独打开”链接可在新标签页观看MP4，回到任务页继续打标。
+
 ### 导入任务
 
 项目 `AIC Manual Highlight Smoke v1`（ID 1）已经创建，interface 使用 [`configs/label_studio_annotation_v1.xml`](../configs/label_studio_annotation_v1.xml)，当前已导入 60 个 Smoke 任务：
@@ -49,7 +60,7 @@ FRP 客户端由系统级 `frpc.service` 常驻，代理名为 `label-studio`，
 artifacts/annotation_batch_v1/label_studio_tasks_smoke_local_files.json
 ```
 
-Smoke 验收通过后，完整文件 `artifacts/annotation_batch_v1/label_studio_tasks_local_files.json` 共 360 个任务，包含 Smoke 的 60 个任务。为避免重复导入，建议新建一个正式项目并导入完整文件，或先在 Smoke 项目中删除已有任务再导入完整文件。图像路径形如 `/data/local-files/?d=artifacts/...`。当前任务是盲标版本：只含视频 ID 和时间，不含类别、抽样原因或 QVH query；这些信息只在独立 manifest 中，供标注完成后比较。如果 Label Studio 环境允许浏览器直接读本机文件，也可使用同目录的 `label_studio_tasks.json`（`file://` 路径版本）。
+Smoke 验收通过后，完整文件 `artifacts/annotation_batch_v1/label_studio_tasks_local_files.json` 共 360 个任务，包含 Smoke 的 60 个任务。已有草稿或标注时保留现有任务，只导入其余300条，并按 `video_id + time_sec` 去重；不得直接重复导入360条。也可以另建正式项目，但已有60条结果必须保留并在汇总时去重。图像和视频路径形如 `/data/local-files/?d=artifacts/...`。当前任务是盲标版本：只含图像、上下文视频、视频 ID 和时间，不含类别、抽样原因或 QVH query；这些信息只在独立 manifest 中，供标注完成后比较。浏览器使用local-files版本，`label_studio_tasks.json` 的 `file://` 路径版本只供另行迁移素材时参考。
 
 先只标以下两个视频验收界面和导出：
 

@@ -1,6 +1,8 @@
 <View>
   <Header value="$video_id | exported time $time_sec s | source time $source_time_sec s" />
-  <Header value="先完整播放该 30 秒 MP4 并打开声音，再按 1 fps 图片顺序标注。不要看 query、类别、抽样原因、模型预测或其他人的结果。" />
+  <Header value="先完整播放该 30 秒标注片段并打开声音，再按 1 fps 图片顺序标注。不要看 query、类别、抽样原因、模型预测或其他人的结果。" />
+  <Header value="0. 先看完整标注片段：点击下方播放并打开声音。同一 video_id 看完一次即可；切换 video_id 后重新完整观看。播放器时间是片段内时间，当前图片位于第 $time_sec 秒。" />
+  <HyperText name="context_player" value="$context_player" />
   <Header value="判断树：能指出具体事件/信息/变化吗？不能且确定普通=0；不能且证据不足=不确定；能但只是背景=1；有独立保留价值=2；结果/峰值/不可替代=3。清晰、居中、运动大、画面漂亮或开头结尾不能单独构成高光。" />
 
   <Image name="image" value="$image" zoom="true" />

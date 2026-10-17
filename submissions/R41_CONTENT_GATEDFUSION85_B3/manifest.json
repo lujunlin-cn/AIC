@@ -1,8 +1,8 @@
 {
   "submission_id": "R41_CONTENT_GATEDFUSION85_B3",
-  "status": "PACKAGED_NOT_UPLOADED",
-  "uploaded": false,
-  "official_platform_score": null,
+  "status": "OFFICIAL_SCORE_USER_REPORTED",
+  "uploaded": true,
+  "official_platform_score": 35.19,
   "mechanism": "gated_fusion",
   "parent": "R26_POS_CENTER_EXACT085_B3 spatial B3 predictions",
   "changed_factor": "content-driven temporal frame set only",
@@ -25,5 +25,9 @@
     "predictions": 198842,
     "model_size_mb": 450.529778,
     "checker": "independent_submission_check_v1"
-  }
+  },
+  "score_source": "user_report_2026-10-17",
+  "platform_independently_verified": false,
+  "uploaded_zip_sha256_independently_verified": false,
+  "delta_from_r26_baseline": -0.85
 }

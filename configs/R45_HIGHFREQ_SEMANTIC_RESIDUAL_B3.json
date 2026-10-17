@@ -1,0 +1,12 @@
+{
+  "experiment_id": "R45_HIGHFREQ_SEMANTIC_RESIDUAL_B3",
+  "parent": "R26_POS_CENTER_EXACT085_B3",
+  "change": "temporal residual only: 4fps local state features plus interpolated frozen IV2 event score",
+  "sampling": "4 fps sequential native decode; no random seek; residual linearly interpolated to original frame axis",
+  "labels": {"rows": 540, "sources": 12, "source_held_out": true, "official_gt": false},
+  "fixed": {"eta": 0.2, "ridge_alpha": 10.0, "keep": 0.85, "boundary_rule": "none in candidate; R26 full-frame parent set"},
+  "spatial": "copy parent B3 boxes byte-for-byte",
+  "rules": {"official_test_labels_used": false, "official_score_used_for_construction": false, "parameter_limit": 9000000000, "eta_alpha_sweep": false},
+  "candidate_builder": "scripts/r45_highfreq_semantic_residual.py",
+  "diagnostic": "reports/r45_highfreq_state_20261017/summary.md"
+}

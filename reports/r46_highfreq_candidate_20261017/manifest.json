@@ -1,0 +1,18 @@
+{
+  "experiment_id": "R46_HIGHFREQ_SEMANTIC_B3",
+  "candidate_source": "R45_HIGHFREQ_SEMANTIC_RESIDUAL_B3",
+  "parent": "R26_POS_CENTER_EXACT085_B3",
+  "parent_predictions_sha256": "2e1dd604629df52618ac1c7f11f1623526adbf0d13d186665d4294091fd89b05",
+  "predictions_sha256": "56faf795ff60e245ddf55c3bffaf3d28900897eaeb859c930aedc3bc7b197643",
+  "videos": 426,
+  "predictions": 199037,
+  "changed_videos": 426,
+  "pairwise_swaps_vs_full_parent": 17461,
+  "keep_rule": "round(0.85*N)",
+  "temporal_change": "4 fps local state features + interpolated frozen IV2 event score; fixed Ridge alpha=10, eta=0.20",
+  "spatial_change": "none; B3 boxes copied byte-for-byte",
+  "declared_parameters": 450283377,
+  "official_test_labels_used": false,
+  "official_score_used_for_construction": false,
+  "status": "candidate_not_uploaded"
+}

@@ -1,0 +1,46 @@
+{
+  "protocol": "R53_V9_SPATIAL_DISAGREEMENT_AUDIT",
+  "claim_boundary": "Geometry-only; no AIC native crop GT and no official labels used.",
+  "r26_sha256": null,
+  "v9_sha256": null,
+  "all_frames": {
+    "rows": 234159,
+    "mean_box_iou": 0.9980429422634123,
+    "p01_box_iou": 0.966800028891113,
+    "changed_share": 0.0967846634124676,
+    "ratio": {
+      "16:9": {
+        "rows": 171262,
+        "mean_box_iou": 0.998601960771413,
+        "p01_box_iou": 0.9668077996831804,
+        "changed_share": 0.06777335310810337
+      },
+      "9:16": {
+        "rows": 62897,
+        "mean_box_iou": 0.9965207929126134,
+        "p01_box_iou": 0.9639468915403716,
+        "changed_share": 0.175779448940331
+      }
+    }
+  },
+  "selected_r26_center85": {
+    "rows": 199037,
+    "mean_box_iou": 0.9980056411042234,
+    "p01_box_iou": 0.9668002117288629,
+    "changed_share": 0.09951416068369198,
+    "ratio": {
+      "16:9": {
+        "rows": 145581,
+        "mean_box_iou": 0.9985632150710766,
+        "p01_box_iou": 0.96681039242882,
+        "changed_share": 0.07002974289227303
+      },
+      "9:16": {
+        "rows": 53456,
+        "mean_box_iou": 0.9964871553277252,
+        "p01_box_iou": 0.9637264998243404,
+        "changed_share": 0.17981143370248429
+      }
+    }
+  }
+}

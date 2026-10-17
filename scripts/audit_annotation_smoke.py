@@ -150,12 +150,16 @@ def main() -> None:
                 issue("repair", "positive_missing_context", tid)
             if grade == "不确定" and choices.get("confidence") != "低":
                 issue("repair", "uncertain_without_low_confidence", tid)
+            if grade == "不确定" and qc.get("require_uncertainty_note") and not any(n.strip() for n in notes):
+                issue("incomplete_diagnostic", "uncertain_missing_note", tid)
             if len(boxes) > 1:
                 issue("repair", "multiple_crop_windows", tid, count=len(boxes))
             if boxes and not positive:
                 issue("repair", "box_on_nonhighlight", tid)
             if positive and not boxes and choices.get("composition_confidence") != "低或无合理框":
                 issue("incomplete_diagnostic", "unrecorded_crop_feasibility", tid)
+            if positive and not boxes and qc.get("require_no_crop_note") and not any(n.strip() for n in notes):
+                issue("incomplete_diagnostic", "no_crop_missing_note", tid)
             if boxes and "composition_confidence" not in choices:
                 issue("incomplete_diagnostic", "box_missing_composition_confidence", tid)
             if boxes and "crop_reason" not in choices:

@@ -1,0 +1,86 @@
+{
+  "date": "2026-10-17T03:51:59.757598+00:00",
+  "protocol_version": "1.3",
+  "git_commit_before_changes": "be605fe3022ef6175be10b582d166b92f7a8f825",
+  "private_backup_directory": "/home/hajimi2025/.local/share/label-studio/backups/v13_api_20261017_115157_369681",
+  "config_sha256": "b5c0f961bbb5f00eaf681a20d6d8a568bfd943fc6c49a83f2c363165277ac2d1",
+  "protocol_sha256": "b80905eb005d69263d15f2514241daa652100028e03fd548acb0d07e73027aca",
+  "assignments_sha256": "3089f077899e7c50fc696e78c289aeb15f9da600ae200a4db750463534712efa",
+  "script_sha256": "2541dd5cd72daab1971fcfc7731538f6fde273ce8b9a19ac2b6b51b1a44d02a4",
+  "legacy_annotation_tables": {
+    "task_completion": {
+      "count": 60,
+      "sha256": "ee6c61183826c5078bc6447d2d58d7801413810bee586ca38b99c240a2adfb57"
+    },
+    "tasks_annotationdraft": {
+      "count": 2,
+      "sha256": "d5a341b1583fc762bd8a595797a88961ec8c7d3569242a3815be47dfd9e154c7"
+    }
+  },
+  "command": [
+    "/home/hajimi2025/.venvs/label-studio/bin/python",
+    "scripts/deploy_annotation_v13.py",
+    "--database",
+    "/home/hajimi2025/.local/share/label-studio/label_studio.sqlite3",
+    "--service-environment",
+    "/home/hajimi2025/.config/label-studio/environment",
+    "--assignments",
+    "configs/ANNOTATION_ASSIGNMENTS_V13.json",
+    "--report",
+    "reports/r42_annotation_v13_20261017/idempotence.json"
+  ],
+  "python": "3.12.3",
+  "label_studio": "1.20.0",
+  "projects": [
+    {
+      "role": "A",
+      "project_id": 1,
+      "title": "AIC 高光标注｜标注员甲｜V1.3",
+      "tasks": 300,
+      "new_tasks_imported_this_run": 0,
+      "completed_annotations": 60,
+      "remaining_tasks": 240,
+      "video_count": 10,
+      "task_file_sha256": "2453aeac1769da26d4c602b397181eff86cbd99d863f4d39cfc208855fcfaf6b",
+      "task_file": "artifacts/annotation_batch_v1/label_studio_tasks_v13_A.json",
+      "predictions": 0,
+      "new_task_protocol": "1.3",
+      "legacy_smoke_protocol": "1.2_user_revised_before_v13_deployment"
+    },
+    {
+      "role": "B",
+      "project_id": 2,
+      "title": "AIC 高光标注｜标注员乙｜V1.3",
+      "tasks": 240,
+      "new_tasks_imported_this_run": 0,
+      "completed_annotations": 0,
+      "remaining_tasks": 240,
+      "video_count": 8,
+      "task_file_sha256": "9144d3c410e2300396d02adfe59b3378a47b382f3bae51332963442170688b7e",
+      "task_file": "artifacts/annotation_batch_v1/label_studio_tasks_v13_B.json",
+      "predictions": 0,
+      "new_task_protocol": "1.3",
+      "legacy_smoke_protocol": null
+    }
+  ],
+  "backend_config_validation": "PASS",
+  "unique_frames": 360,
+  "unique_videos": 12,
+  "overlap_frames": 180,
+  "overlap_videos": 6,
+  "existing_results_unchanged": true,
+  "existing_task_data_unchanged": true,
+  "drafts_merged": false,
+  "blind_task_allowlist_pass": true,
+  "account_access_isolation": false,
+  "browser_verification": "not_repeated; see deployment.json",
+  "wall_seconds": 2.9063076619931962,
+  "environment": {
+    "device": "CPU",
+    "gpu_used": false,
+    "formal_training": false
+  },
+  "temporary_verification_session_removed": true,
+  "verification_cookie_file_removed": true,
+  "idempotent_import_validation": "PASS"
+}

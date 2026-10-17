@@ -1,13 +1,10 @@
 <View>
-  <Header value="$video_id | exported time $time_sec s | source time $source_time_sec s" />
-  <Header value="先完整播放该 30 秒标注片段并打开声音，再按 1 fps 图片顺序标注。不要看 query、类别、抽样原因、模型预测或其他人的结果。" />
-  <Header value="0. 先看完整标注片段：点击下方播放并打开声音。同一 video_id 看完一次即可；切换 video_id 后重新完整观看。播放器时间是片段内时间，当前图片位于第 $time_sec 秒。" />
+  <Header value="V1.3｜$video_id｜图片在片段第 $time_sec 秒｜源素材时间 $source_time_sec 秒" />
+  <HyperText name="protocol_help" value="&lt;p&gt;&lt;a href=&quot;/data/local-files/?d=artifacts/annotation_batch_v1/guides/annotation_protocol_v1_3.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;&lt;strong&gt;打开完整打标标准 V1.3（流程、例子与画框说明）&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;先完整看30秒视频并开声音 → 给当前时刻等级 → 填阶段、类型、把握 → 2/3再填依赖和一个构图窗口 → 提交。&lt;/strong&gt;&lt;br&gt;同一视频看完一次即可，换视频后重看。只进自己的项目，不看另一人的答案。没有数量/比例要求；连续精彩可以连续2/3，整段普通也可以全0/1。&lt;/p&gt;" />
   <HyperText name="context_player" value="$context_player" />
-  <Header value="判断树：能指出具体事件/信息/变化吗？不能且确定普通=0；不能且证据不足=不确定；能但只是背景=1；有独立保留价值=2；结果/峰值/不可替代=3。清晰、居中、运动大、画面漂亮或开头结尾不能单独构成高光。" />
-
+  <Header value="判断：证据不够且影响等级→不确定；确定普通→0；背景/普通过程→1；明确值得保留→2；关键动作/结果/信息→3。不要为了去重把相邻高光降级。" />
   <Image name="image" value="$image" zoom="true" />
-
-  <Header value="1. 通用高光等级（按同一视频内部相对判断）。整段没有高光可以全部标0/1，不必凑出2/3。" />
+  <Header value="1. 高光等级：这一时刻有没有明确值得保留的事件或信息？不因清晰、居中、运动大或时间位置单独加分。" />
   <Choices name="generic_highlight" toName="image" choice="single-radio" showInline="true" required="true">
     <Choice value="0普通" />
     <Choice value="1有信息" />
@@ -15,8 +12,7 @@
     <Choice value="3高光核心" />
     <Choice value="不确定" />
   </Choices>
-
-  <Header value="2. 事件阶段：结果和反应同时出现时，按当前帧主要保留价值选择。" />
+  <Header value="2. 事件阶段：普通动作也有阶段。「结果后反应」指表情/庆祝/反馈，不是结果之后的所有画面。" />
   <Choices name="event_phase" toName="image" choice="single-radio" showInline="true" required="true">
     <Choice value="铺垫" />
     <Choice value="进行中" />
@@ -24,16 +20,7 @@
     <Choice value="结果后反应" />
     <Choice value="无事件或无法判断" />
   </Choices>
-
-  <Header value="3. 信息依赖（0/1可跳过；2/3请填写）：为了知道这一帧为什么值得保留，需要什么信息？不是问你实际有没有看过视频。" />
-  <Header value="当前帧足够：这张图已能说明价值；需要前后过程：要看动作前后才知道成功/失败；需要声音或语言：要听台词、语气或掌声才懂；无法判断：看完仍不知道价值来源。同时需要过程与声音时选声音，并在备注补充。" />
-  <Choices name="needs_context" toName="image" choice="single-radio" showInline="true" required="false">
-    <Choice value="当前帧足够" />
-    <Choice value="需要前后过程" />
-    <Choice value="需要声音或语言" />
-    <Choice value="无法判断" />
-  </Choices>
-
+  <Header value="3. 事件类型：选当前主要的一类。没有高光不等于没有事件；普通走路仍可选动作。" />
   <Choices name="event_type" toName="image" choice="single-radio" showInline="true" required="true">
     <Choice value="动作" />
     <Choice value="结果或揭示" />
@@ -44,28 +31,34 @@
     <Choice value="其他" />
     <Choice value="无事件" />
   </Choices>
-
-  <!-- Retain the legacy field for existing results; blind-pass policy is
-       project metadata and no longer requires a per-frame confirmation. -->
-  <View style="display: none;">
-    <Choices name="query_relevance" toName="image" choice="single-radio" showInline="true" required="false">
-      <Choice value="未看查询" />
-    </Choices>
-  </View>
-
+  <Header value="4. 判断把握：这是对判断有多确定，不是精彩程度。等级为不确定时选低，并备注缺什么。" />
   <Choices name="confidence" toName="image" choice="single-radio" showInline="true" required="true">
     <Choice value="高" />
     <Choice value="中" />
     <Choice value="低" />
   </Choices>
-
-  <Header value="仅当通用高光为 2 或 3 时考虑画框。本批次没有 targetRatioWH，框是自由比例的构图可行性诊断，不是官方 native crop GT，也不是紧致检测框。没有稳定合理窗口就不画。" />
+  <Header value="5. 信息依赖：0/1可跳过；2/3请填。问判断价值需要什么证据，不是问有没有看过视频。" />
+  <Header value="图中已能说明价值→当前帧足够；必须对比前后状态/动作结果→前后过程；关键含义在台词/语气/声音→声音或语言；仍缺证据→无法判断。过程与声音都需要时选声音，并备注。" />
+  <Choices name="needs_context" toName="image" choice="single-radio" showInline="true" required="false">
+    <Choice value="当前帧足够" />
+    <Choice value="需要前后过程" />
+    <Choice value="需要声音或语言" />
+    <Choice value="无法判断" />
+  </Choices>
+  <View style="display: none;">
+    <Choices name="query_relevance" toName="image" choice="single-radio" showInline="true" required="false">
+      <Choice value="未看查询" />
+    </Choices>
+  </View>
+  <Header value="6. 构图：仅2/3考虑。一帧最多一个完整保留窗口，像观众最后看到的画面；不要分别框人、物、字幕，不要紧紧圈脸。可以接近整图。本批不限制比例。" />
+  <Header value="下方四种框标签只选一个主要理由，再画一个窗口；多人/人和物/字幕需要一起保留时放进同一个框。误画第二个要删除。" />
   <RectangleLabels name="crop_box" toName="image" smart="true">
     <Label value="主体" background="#1f77b4" />
     <Label value="多人或互动" background="#ff7f0e" />
     <Label value="整体画面或景别" background="#2ca02c" />
     <Label value="字幕或屏幕信息" background="#d62728" />
   </RectangleLabels>
+  <Header value="画框理由：有框时填写，可多选。" />
   <Choices name="crop_reason" toName="image" choice="multiple" showInline="true">
     <Choice value="主体完整" />
     <Choice value="动作关系" />
@@ -73,10 +66,12 @@
     <Choice value="字幕保留" />
     <Choice value="整体构图" />
   </Choices>
+  <Header value="构图把握：2/3有框请填；无合理窗口则不画，选低或无合理框并备注。不要因难裁剪降低高光等级。" />
   <Choices name="composition_confidence" toName="image" choice="single-radio" showInline="true">
     <Choice value="高" />
     <Choice value="中" />
     <Choice value="低或无合理框" />
   </Choices>
-  <TextArea name="annotator_note" toName="image" rows="2" placeholder="只记录改变判断的证据或歧义；音频不可用写 audio_unavailable" />
+  <Header value="备注：不确定、听不懂、事件超出片段、无合理窗口或另有合理构图时，写一句具体原因。" />
+  <TextArea name="annotator_note" toName="image" rows="2" placeholder="例如：关键结果被挡住 / 听不懂语言 / 同时需要前后过程 / 主体分散难裁剪；音频不可用写 audio_unavailable" />
 </View>

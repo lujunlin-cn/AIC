@@ -1,0 +1,16 @@
+{
+  "protocol_version": "1.3",
+  "purpose": "Two-annotator diagnostic QC; not official GT validation or model selection",
+  "required_choices": ["generic_highlight", "event_phase", "event_type", "confidence"],
+  "positive_grades": ["2值得保留", "3高光核心"],
+  "context_required_for_review": "Grades 2/3 only; absence is missing, never current-frame-sufficient",
+  "near_degenerate_min_side_pixels": 2.0,
+  "near_degenerate_reason": "Less than two preview pixels cannot express a visible composition; not a competition crop-size rule",
+  "crop_policy": "At most one coherent free-ratio window on grade 2/3; no crop requires low/no-feasible confidence and a reason",
+  "density_policy": "No count, percentage, or deduplication quota; adjacent key moments may all receive grade 3",
+  "require_uncertainty_note": true,
+  "require_no_crop_note": true,
+  "draft_policy": "Never merge drafts into formal labels",
+  "mutation_policy": "QC only reads snapshots and never rewrites human labels",
+  "independent_unit": "Original source video; four new matched-protocol overlap sources are primary, two legacy smoke sources reported separately"
+}

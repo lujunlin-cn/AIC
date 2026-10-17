@@ -1,0 +1,7 @@
+task_id,video_id,time_sec,priority,issue_codes,evidence,suggested_action,task_url
+34,rAHQY2FHcOo_210.0_360.0,3.0,repair,multiple_crop_windows,automated_contract_check,只保留一个能表达事件价值的完整窗口；不要分别框对象，也不要机械取并集,http://47.108.220.174:3002/projects/1/data?task=34
+35,rAHQY2FHcOo_210.0_360.0,4.0,repair,multiple_crop_windows,automated_contract_check,只保留一个能表达事件价值的完整窗口；不要分别框对象，也不要机械取并集,http://47.108.220.174:3002/projects/1/data?task=35
+38,rAHQY2FHcOo_210.0_360.0,7.0,repair,multiple_crop_windows,automated_contract_check,只保留一个能表达事件价值的完整窗口；不要分别框对象，也不要机械取并集,http://47.108.220.174:3002/projects/1/data?task=38
+57,rAHQY2FHcOo_210.0_360.0,26.0,repair,multiple_crop_windows,automated_contract_check,只保留一个能表达事件价值的完整窗口；不要分别框对象，也不要机械取并集,http://47.108.220.174:3002/projects/1/data?task=57
+59,rAHQY2FHcOo_210.0_360.0,28.0,repair,multiple_crop_windows,automated_contract_check,只保留一个能表达事件价值的完整窗口；不要分别框对象，也不要机械取并集,http://47.108.220.174:3002/projects/1/data?task=59
+60,rAHQY2FHcOo_210.0_360.0,29.0,repair,multiple_crop_windows,automated_contract_check,只保留一个能表达事件价值的完整窗口；不要分别框对象，也不要机械取并集,http://47.108.220.174:3002/projects/1/data?task=60

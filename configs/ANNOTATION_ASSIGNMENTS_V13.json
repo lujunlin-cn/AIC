@@ -1,0 +1,52 @@
+{
+  "batch_id": "AIC_MANUAL_ANNOTATION_V1",
+  "protocol_version": "1.3",
+  "date": "2026-10-17",
+  "source_manifest": "configs/ANNOTATION_BATCH_V1.json",
+  "selection_policy": "Original six overlap sources unchanged; first four original single-source IDs assigned A, last two B. Balance remaining task counts without using annotation outcomes.",
+  "task_key": ["video_id", "time_sec"],
+  "expected_unique_frames": 360,
+  "expected_total_tasks": 540,
+  "expected_overlap_frames": 180,
+  "existing_smoke_tasks": 60,
+  "existing_smoke_protocol": "1.2_user_revised_before_v13_deployment",
+  "primary_agreement_sources": "Four new overlap sources, both annotated under v1.3; two legacy smoke overlaps reported separately",
+  "access_policy": "Separate projects; no account-level access isolation is claimed. Do not view the other project or exchange results.",
+  "projects": [
+    {
+      "role": "A",
+      "existing_project_id": 1,
+      "title": "AIC 高光标注｜标注员甲｜V1.3",
+      "expected_tasks": 300,
+      "expected_new_tasks": 240,
+      "video_ids": [
+        "B6AEPicK9Bk_210.0_360.0",
+        "rAHQY2FHcOo_210.0_360.0",
+        "eLlUVxVLiLU_60.0_210.0",
+        "m6U-5Hck5z0_60.0_210.0",
+        "bGU97Zw6Jfg_60.0_210.0",
+        "GtJXHRFhm0E_210.0_360.0",
+        "vprHvWMX1YU_210.0_360.0",
+        "HISG6jkZBfs_210.0_360.0",
+        "uJ97MxBs4qU_210.0_360.0",
+        "jgvQzWAhoiw_210.0_360.0"
+      ]
+    },
+    {
+      "role": "B",
+      "title": "AIC 高光标注｜标注员乙｜V1.3",
+      "expected_tasks": 240,
+      "expected_new_tasks": 240,
+      "video_ids": [
+        "B6AEPicK9Bk_210.0_360.0",
+        "rAHQY2FHcOo_210.0_360.0",
+        "eLlUVxVLiLU_60.0_210.0",
+        "m6U-5Hck5z0_60.0_210.0",
+        "bGU97Zw6Jfg_60.0_210.0",
+        "GtJXHRFhm0E_210.0_360.0",
+        "yXR17NNJgdU_210.0_360.0",
+        "P6KTyi4s4Bc_210.0_360.0"
+      ]
+    }
+  ]
+}

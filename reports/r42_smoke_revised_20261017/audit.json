@@ -1,0 +1,2204 @@
+{
+  "purpose": "Annotation smoke quality review, not model selection or official GT validation",
+  "protocol_version": "1.2",
+  "provenance": {
+    "export_sha256": "9d501a6b1067ff064071572744f3878e8fd01552c1d68c67ada451eb05fbdcf6",
+    "label_config_sha256": "dc170029b5efbe78da21c730671ed3cdd495e727022b9ea457c80d480fc485b6",
+    "qc_config_sha256": "4f1bd615ba64d817a8f59eb8ea1318c325d7d44be19b5e20fbf684d6aea8af19",
+    "manifest_sha256": "b0d4a711e8dfc1ae385c5e9f314876412730a32a8aea459954c49d9b9147b6ce",
+    "script_sha256": "71c73dcd9f8555914782e57db012db0457882a12ba3f79a234fa3a195d618c74",
+    "git_commit": "be605fe3022ef6175be10b582d166b92f7a8f825",
+    "python": "3.13.12",
+    "command": [
+      "scripts/audit_annotation_smoke.py",
+      "--export",
+      "artifacts/annotation_batch_v1/exports/smoke_revised_v12_20261017/raw_export.json",
+      "--label-config",
+      "artifacts/annotation_batch_v1/exports/smoke_revised_v12_20261017/label_config.xml",
+      "--qc-config",
+      "configs/R42_SMOKE_QC_V1.json",
+      "--manifest",
+      "configs/ANNOTATION_BATCH_V1.json",
+      "--document-root",
+      "/home/hajimi2025/AIC",
+      "--output",
+      "reports/r42_smoke_revised_20261017",
+      "--sheets",
+      "artifacts/annotation_batch_v1/smoke_revised_qc"
+    ],
+    "exported_at_utc": "2026-10-17T03:42:15.306407+00:00",
+    "export_method": "SQLite read-only transaction; completed annotations and drafts separate"
+  },
+  "tasks": 60,
+  "completed_annotations": 60,
+  "cancelled_annotation_ids": [],
+  "annotator_count": 1,
+  "source_count": 2,
+  "video_window_count": 2,
+  "draft_count": 2,
+  "draft_conflicts": [
+    {
+      "task_id": 4,
+      "draft_id": 6,
+      "annotation_id": 4,
+      "action": "Keep formal result; never merge stale draft automatically"
+    },
+    {
+      "task_id": 11,
+      "draft_id": 61,
+      "annotation_id": 11,
+      "action": "Keep formal result; never merge stale draft automatically"
+    }
+  ],
+  "core_and_mapping_errors": 0,
+  "issue_counts": {
+    "multiple_crop_windows": 6
+  },
+  "issues": [
+    {
+      "level": "repair",
+      "code": "multiple_crop_windows",
+      "task_id": 34,
+      "count": 3
+    },
+    {
+      "level": "repair",
+      "code": "multiple_crop_windows",
+      "task_id": 35,
+      "count": 3
+    },
+    {
+      "level": "repair",
+      "code": "multiple_crop_windows",
+      "task_id": 38,
+      "count": 2
+    },
+    {
+      "level": "repair",
+      "code": "multiple_crop_windows",
+      "task_id": 57,
+      "count": 2
+    },
+    {
+      "level": "repair",
+      "code": "multiple_crop_windows",
+      "task_id": 59,
+      "count": 2
+    },
+    {
+      "level": "repair",
+      "code": "multiple_crop_windows",
+      "task_id": 60,
+      "count": 2
+    }
+  ],
+  "per_source": {
+    "B6AEPicK9Bk_210.0_360.0": {
+      "frames": 30,
+      "seconds": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0,
+        5.0,
+        6.0,
+        7.0,
+        8.0,
+        9.0,
+        10.0,
+        11.0,
+        12.0,
+        13.0,
+        14.0,
+        15.0,
+        16.0,
+        17.0,
+        18.0,
+        19.0,
+        20.0,
+        21.0,
+        22.0,
+        23.0,
+        24.0,
+        25.0,
+        26.0,
+        27.0,
+        28.0,
+        29.0
+      ],
+      "distributions": {
+        "generic_highlight": {
+          "0普通": 11,
+          "3高光核心": 11,
+          "1有信息": 2,
+          "2值得保留": 6
+        },
+        "event_phase": {
+          "铺垫": 7,
+          "进行中": 8,
+          "完成或结果": 4,
+          "无事件或无法判断": 6,
+          "结果后反应": 5
+        },
+        "event_type": {
+          "人物互动": 12,
+          "结果或揭示": 9,
+          "视觉奇观或场景": 2,
+          "动作": 1,
+          "情绪或反应": 1,
+          "无事件": 5
+        },
+        "confidence": {
+          "高": 22,
+          "中": 8
+        },
+        "needs_context": {
+          "无法判断": 8,
+          "需要声音或语言": 4,
+          "当前帧足够": 11,
+          "MISSING": 1,
+          "需要前后过程": 6
+        }
+      },
+      "highlight_frames": 17,
+      "highlight_context": {
+        "当前帧足够": 11,
+        "需要前后过程": 6
+      },
+      "box_count": 17,
+      "frames_with_box": 17
+    },
+    "rAHQY2FHcOo_210.0_360.0": {
+      "frames": 30,
+      "seconds": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0,
+        5.0,
+        6.0,
+        7.0,
+        8.0,
+        9.0,
+        10.0,
+        11.0,
+        12.0,
+        13.0,
+        14.0,
+        15.0,
+        16.0,
+        17.0,
+        18.0,
+        19.0,
+        20.0,
+        21.0,
+        22.0,
+        23.0,
+        24.0,
+        25.0,
+        26.0,
+        27.0,
+        28.0,
+        29.0
+      ],
+      "distributions": {
+        "generic_highlight": {
+          "1有信息": 3,
+          "2值得保留": 18,
+          "3高光核心": 9
+        },
+        "event_phase": {
+          "铺垫": 2,
+          "进行中": 21,
+          "完成或结果": 6,
+          "结果后反应": 1
+        },
+        "event_type": {
+          "无事件": 1,
+          "动作": 25,
+          "结果或揭示": 2,
+          "人物互动": 2
+        },
+        "confidence": {
+          "高": 15,
+          "中": 15
+        },
+        "needs_context": {
+          "无法判断": 1,
+          "当前帧足够": 29
+        }
+      },
+      "highlight_frames": 27,
+      "highlight_context": {
+        "当前帧足够": 27
+      },
+      "box_count": 35,
+      "frames_with_box": 27
+    }
+  },
+  "frames": [
+    {
+      "task_id": 1,
+      "annotation_id": 1,
+      "video_id": "B6AEPicK9Bk_210.0_360.0",
+      "source_group": "B6AEPicK9Bk",
+      "time_sec": 0.0,
+      "source_time_sec": 110.0,
+      "choices": {
+        "generic_highlight": "0普通",
+        "event_phase": "铺垫",
+        "needs_context": "无法判断",
+        "event_type": "人物互动",
+        "confidence": "高",
+        "composition_confidence": "低或无合理框",
+        "query_relevance": "未看查询"
+      },
+      "boxes": [],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/00.jpg"
+    },
+    {
+      "task_id": 2,
+      "annotation_id": 2,
+      "video_id": "B6AEPicK9Bk_210.0_360.0",
+      "source_group": "B6AEPicK9Bk",
+      "time_sec": 1.0,
+      "source_time_sec": 111.0,
+      "choices": {
+        "generic_highlight": "0普通",
+        "event_phase": "铺垫",
+        "confidence": "高",
+        "event_type": "人物互动",
+        "needs_context": "无法判断"
+      },
+      "boxes": [],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/01.jpg"
+    },
+    {
+      "task_id": 3,
+      "annotation_id": 3,
+      "video_id": "B6AEPicK9Bk_210.0_360.0",
+      "source_group": "B6AEPicK9Bk",
+      "time_sec": 2.0,
+      "source_time_sec": 112.0,
+      "choices": {
+        "event_phase": "铺垫",
+        "needs_context": "需要声音或语言",
+        "generic_highlight": "0普通",
+        "event_type": "人物互动",
+        "confidence": "高"
+      },
+      "boxes": [],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/02.jpg"
+    },
+    {
+      "task_id": 4,
+      "annotation_id": 4,
+      "video_id": "B6AEPicK9Bk_210.0_360.0",
+      "source_group": "B6AEPicK9Bk",
+      "time_sec": 3.0,
+      "source_time_sec": 113.0,
+      "choices": {
+        "generic_highlight": "0普通",
+        "event_phase": "铺垫",
+        "needs_context": "需要声音或语言",
+        "event_type": "人物互动",
+        "confidence": "高"
+      },
+      "boxes": [],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/03.jpg"
+    },
+    {
+      "task_id": 5,
+      "annotation_id": 5,
+      "video_id": "B6AEPicK9Bk_210.0_360.0",
+      "source_group": "B6AEPicK9Bk",
+      "time_sec": 4.0,
+      "source_time_sec": 114.0,
+      "choices": {
+        "generic_highlight": "0普通",
+        "event_phase": "铺垫",
+        "needs_context": "需要声音或语言",
+        "event_type": "人物互动",
+        "confidence": "高"
+      },
+      "boxes": [],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/04.jpg"
+    },
+    {
+      "task_id": 6,
+      "annotation_id": 6,
+      "video_id": "B6AEPicK9Bk_210.0_360.0",
+      "source_group": "B6AEPicK9Bk",
+      "time_sec": 5.0,
+      "source_time_sec": 115.0,
+      "choices": {
+        "needs_context": "需要声音或语言",
+        "event_type": "人物互动",
+        "confidence": "高",
+        "event_phase": "铺垫",
+        "generic_highlight": "0普通"
+      },
+      "boxes": [],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/05.jpg"
+    },
+    {
+      "task_id": 7,
+      "annotation_id": 7,
+      "video_id": "B6AEPicK9Bk_210.0_360.0",
+      "source_group": "B6AEPicK9Bk",
+      "time_sec": 6.0,
+      "source_time_sec": 116.0,
+      "choices": {
+        "event_phase": "进行中",
+        "generic_highlight": "3高光核心",
+        "event_type": "结果或揭示",
+        "confidence": "高",
+        "needs_context": "当前帧足够",
+        "crop_reason": [
+          "主体完整",
+          "结果信息",
+          "字幕保留"
+        ],
+        "composition_confidence": "高"
+      },
+      "boxes": [
+        {
+          "region_id": "S1tbnZJVKO",
+          "x": 2.664576802507833,
+          "y": 0.37199582027168177,
+          "width": 97.3354231974921,
+          "height": 93.55796942966145,
+          "width_px": 519.7711598746079,
+          "height_px": 280.67390828898436,
+          "labels": [
+            "主体"
+          ]
+        }
+      ],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/06.jpg"
+    },
+    {
+      "task_id": 8,
+      "annotation_id": 8,
+      "video_id": "B6AEPicK9Bk_210.0_360.0",
+      "source_group": "B6AEPicK9Bk",
+      "time_sec": 7.0,
+      "source_time_sec": 117.0,
+      "choices": {
+        "generic_highlight": "3高光核心",
+        "event_phase": "完成或结果",
+        "needs_context": "当前帧足够",
+        "event_type": "结果或揭示",
+        "confidence": "高",
+        "crop_reason": [
+          "主体完整",
+          "字幕保留"
+        ],
+        "composition_confidence": "高"
+      },
+      "boxes": [
+        {
+          "region_id": "cg6pDy5ass",
+          "x": 0.9926854754440961,
+          "y": 0.9430512016718932,
+          "width": 99.00731452455591,
+          "height": 92.99895506792058,
+          "width_px": 528.6990595611285,
+          "height_px": 278.99686520376173,
+          "labels": [
+            "主体"
+          ]
+        }
+      ],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/07.jpg"
+    },
+    {
+      "task_id": 9,
+      "annotation_id": 9,
+      "video_id": "B6AEPicK9Bk_210.0_360.0",
+      "source_group": "B6AEPicK9Bk",
+      "time_sec": 8.0,
+      "source_time_sec": 118.0,
+      "choices": {
+        "crop_reason": [
+          "主体完整",
+          "结果信息"
+        ],
+        "composition_confidence": "高",
+        "event_type": "结果或揭示",
+        "needs_context": "当前帧足够",
+        "generic_highlight": "3高光核心",
+        "event_phase": "完成或结果",
+        "confidence": "高"
+      },
+      "boxes": [
+        {
+          "region_id": "0q2LJGihkT",
+          "x": 13.375130616509926,
+          "y": 0.8500522466039723,
+          "width": 72.04806687565308,
+          "height": 93.00075332312701,
+          "width_px": 384.7366771159874,
+          "height_px": 279.00225996938104,
+          "labels": [
+            "主体"
+          ]
+        }
+      ],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/08.jpg"
+    },
+    {
+      "task_id": 10,
+      "annotation_id": 10,
+      "video_id": "B6AEPicK9Bk_210.0_360.0",
+      "source_group": "B6AEPicK9Bk",
+      "time_sec": 9.0,
+      "source_time_sec": 119.0,
+      "choices": {
+        "generic_highlight": "3高光核心",
+        "event_phase": "完成或结果",
+        "needs_context": "当前帧足够",
+        "event_type": "结果或揭示",
+        "confidence": "高",
+        "crop_reason": "主体完整",
+        "composition_confidence": "高"
+      },
+      "boxes": [
+        {
+          "region_id": "ljZu1hg1kI",
+          "x": 15.62173458725183,
+          "y": 6.429989550679209,
+          "width": 73.14524555903867,
+          "height": 83.60606060606061,
+          "width_px": 390.5956112852665,
+          "height_px": 250.81818181818184,
+          "labels": [
+            "主体"
+          ]
+        }
+      ],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/09.jpg"
+    },
+    {
+      "task_id": 11,
+      "annotation_id": 11,
+      "video_id": "B6AEPicK9Bk_210.0_360.0",
+      "source_group": "B6AEPicK9Bk",
+      "time_sec": 10.0,
+      "source_time_sec": 120.0,
+      "choices": {
+        "generic_highlight": "3高光核心",
+        "event_phase": "完成或结果",
+        "needs_context": "当前帧足够",
+        "event_type": "结果或揭示",
+        "confidence": "高",
+        "crop_reason": "主体完整",
+        "composition_confidence": "高"
+      },
+      "boxes": [
+        {
+          "region_id": "BxWxHmOLl0",
+          "x": 15.099268547544408,
+          "y": 0.013061650992687376,
+          "width": 77.16823406478579,
+          "height": 88.34900731452456,
+          "width_px": 412.07836990595615,
+          "height_px": 265.04702194357367,
+          "labels": [
+            "主体"
+          ]
+        }
+      ],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/10.jpg"
+    },
+    {
+      "task_id": 12,
+      "annotation_id": 12,
+      "video_id": "B6AEPicK9Bk_210.0_360.0",
+      "source_group": "B6AEPicK9Bk",
+      "time_sec": 11.0,
+      "source_time_sec": 121.0,
+      "choices": {
+        "generic_highlight": "1有信息",
+        "event_phase": "铺垫",
+        "needs_context": "无法判断",
+        "confidence": "中",
+        "event_type": "视觉奇观或场景"
+      },
+      "boxes": [],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/11.jpg"
+    },
+    {
+      "task_id": 13,
+      "annotation_id": 13,
+      "video_id": "B6AEPicK9Bk_210.0_360.0",
+      "source_group": "B6AEPicK9Bk",
+      "time_sec": 12.0,
+      "source_time_sec": 122.0,
+      "choices": {
+        "generic_highlight": "1有信息",
+        "event_phase": "无事件或无法判断",
+        "event_type": "视觉奇观或场景",
+        "confidence": "中"
+      },
+      "boxes": [],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/12.jpg"
+    },
+    {
+      "task_id": 14,
+      "annotation_id": 14,
+      "video_id": "B6AEPicK9Bk_210.0_360.0",
+      "source_group": "B6AEPicK9Bk",
+      "time_sec": 13.0,
+      "source_time_sec": 123.0,
+      "choices": {
+        "generic_highlight": "2值得保留",
+        "event_phase": "进行中",
+        "event_type": "人物互动",
+        "needs_context": "需要前后过程",
+        "confidence": "中",
+        "crop_reason": "主体完整",
+        "composition_confidence": "中"
+      },
+      "boxes": [
+        {
+          "region_id": "rhJIx8dJYQ",
+          "x": 24.712124898189433,
+          "y": 1.3281086729362568,
+          "width": 52.456109166596335,
+          "height": 98.67189132706373,
+          "width_px": 280.1156229496244,
+          "height_px": 296.0156739811912,
+          "labels": [
+            "主体"
+          ]
+        }
+      ],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/13.jpg"
+    },
+    {
+      "task_id": 15,
+      "annotation_id": 15,
+      "video_id": "B6AEPicK9Bk_210.0_360.0",
+      "source_group": "B6AEPicK9Bk",
+      "time_sec": 14.0,
+      "source_time_sec": 124.0,
+      "choices": {
+        "generic_highlight": "2值得保留",
+        "event_phase": "进行中",
+        "event_type": "人物互动",
+        "needs_context": "需要前后过程",
+        "confidence": "中",
+        "crop_reason": "主体完整",
+        "composition_confidence": "中"
+      },
+      "boxes": [
+        {
+          "region_id": "n6P86rngRQ",
+          "x": 25.287356321839084,
+          "y": 0.19905956112852854,
+          "width": 52.298850574712645,
+          "height": 98.20689655172414,
+          "width_px": 279.2758620689655,
+          "height_px": 294.62068965517244,
+          "labels": [
+            "主体"
+          ]
+        }
+      ],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/14.jpg"
+    },
+    {
+      "task_id": 16,
+      "annotation_id": 16,
+      "video_id": "B6AEPicK9Bk_210.0_360.0",
+      "source_group": "B6AEPicK9Bk",
+      "time_sec": 15.0,
+      "source_time_sec": 125.0,
+      "choices": {
+        "generic_highlight": "2值得保留",
+        "event_phase": "进行中",
+        "needs_context": "需要前后过程",
+        "event_type": "人物互动",
+        "confidence": "中",
+        "crop_reason": "主体完整",
+        "composition_confidence": "中"
+      },
+      "boxes": [
+        {
+          "region_id": "lMulUaao49",
+          "x": 22.100313479623825,
+          "y": 6.429989550679208,
+          "width": 60.91954022988506,
+          "height": 92.6269592476489,
+          "width_px": 325.3103448275862,
+          "height_px": 277.88087774294667,
+          "labels": [
+            "主体"
+          ]
+        }
+      ],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/15.jpg"
+    },
+    {
+      "task_id": 17,
+      "annotation_id": 17,
+      "video_id": "B6AEPicK9Bk_210.0_360.0",
+      "source_group": "B6AEPicK9Bk",
+      "time_sec": 16.0,
+      "source_time_sec": 126.0,
+      "choices": {
+        "generic_highlight": "2值得保留",
+        "event_phase": "进行中",
+        "needs_context": "需要前后过程",
+        "event_type": "人物互动",
+        "confidence": "中",
+        "composition_confidence": "中",
+        "crop_reason": "主体完整"
+      },
+      "boxes": [
+        {
+          "region_id": "kE1-Oq1A1h",
+          "x": 21.839080459770116,
+          "y": 2.4310344827586228,
+          "width": 62.173458725182854,
+          "height": 97.56896551724138,
+          "width_px": 332.00626959247643,
+          "height_px": 292.7068965517241,
+          "labels": [
+            "主体"
+          ]
+        }
+      ],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/16.jpg"
+    },
+    {
+      "task_id": 18,
+      "annotation_id": 18,
+      "video_id": "B6AEPicK9Bk_210.0_360.0",
+      "source_group": "B6AEPicK9Bk",
+      "time_sec": 17.0,
+      "source_time_sec": 127.0,
+      "choices": {
+        "generic_highlight": "2值得保留",
+        "event_phase": "进行中",
+        "needs_context": "需要前后过程",
+        "event_type": "人物互动",
+        "confidence": "中",
+        "crop_reason": "主体完整",
+        "composition_confidence": "中"
+      },
+      "boxes": [
+        {
+          "region_id": "Q-faE4hUx6",
+          "x": 16.457680250783703,
+          "y": 2.524033437826543,
+          "width": 66.24869383490073,
+          "height": 92.6269592476489,
+          "width_px": 353.7680250783699,
+          "height_px": 277.88087774294667,
+          "labels": [
+            "主体"
+          ]
+        }
+      ],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/17.jpg"
+    },
+    {
+      "task_id": 19,
+      "annotation_id": 19,
+      "video_id": "B6AEPicK9Bk_210.0_360.0",
+      "source_group": "B6AEPicK9Bk",
+      "time_sec": 18.0,
+      "source_time_sec": 128.0,
+      "choices": {
+        "generic_highlight": "2值得保留",
+        "event_phase": "进行中",
+        "needs_context": "需要前后过程",
+        "event_type": "人物互动",
+        "confidence": "中",
+        "composition_confidence": "中",
+        "crop_reason": "主体完整"
+      },
+      "boxes": [
+        {
+          "region_id": "Ck6lHhOBSv",
+          "x": 16.19644723092999,
+          "y": 5.12800417972832,
+          "width": 66.40543364681297,
+          "height": 94.87199582027168,
+          "width_px": 354.60501567398126,
+          "height_px": 284.61598746081506,
+          "labels": [
+            "主体"
+          ]
+        }
+      ],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/18.jpg"
+    },
+    {
+      "task_id": 20,
+      "annotation_id": 20,
+      "video_id": "B6AEPicK9Bk_210.0_360.0",
+      "source_group": "B6AEPicK9Bk",
+      "time_sec": 19.0,
+      "source_time_sec": 129.0,
+      "choices": {
+        "generic_highlight": "3高光核心",
+        "event_phase": "进行中",
+        "needs_context": "当前帧足够",
+        "crop_reason": [
+          "主体完整",
+          "动作关系"
+        ],
+        "composition_confidence": "高",
+        "confidence": "高",
+        "event_type": "动作"
+      },
+      "boxes": [
+        {
+          "region_id": "e1PnUP1IjC",
+          "x": 15.203761755485889,
+          "y": 10.907001044932073,
+          "width": 65.36050156739812,
+          "height": 89.09299895506793,
+          "width_px": 349.02507836990594,
+          "height_px": 267.2789968652038,
+          "labels": [
+            "主体"
+          ]
+        }
+      ],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/19.jpg"
+    },
+    {
+      "task_id": 21,
+      "annotation_id": 21,
+      "video_id": "B6AEPicK9Bk_210.0_360.0",
+      "source_group": "B6AEPicK9Bk",
+      "time_sec": 20.0,
+      "source_time_sec": 130.0,
+      "choices": {
+        "generic_highlight": "3高光核心",
+        "event_phase": "结果后反应",
+        "needs_context": "当前帧足够",
+        "event_type": "情绪或反应",
+        "confidence": "高",
+        "crop_reason": "主体完整",
+        "composition_confidence": "高"
+      },
+      "boxes": [
+        {
+          "region_id": "SKACnfzhV1",
+          "x": 18.443051201671892,
+          "y": 0.19905956112852854,
+          "width": 64.2110762800418,
+          "height": 98.39289446186,
+          "width_px": 342.8871473354232,
+          "height_px": 295.17868338558,
+          "labels": [
+            "主体"
+          ]
+        }
+      ],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/20.jpg"
+    },
+    {
+      "task_id": 22,
+      "annotation_id": 22,
+      "video_id": "B6AEPicK9Bk_210.0_360.0",
+      "source_group": "B6AEPicK9Bk",
+      "time_sec": 21.0,
+      "source_time_sec": 131.0,
+      "choices": {
+        "crop_reason": [
+          "主体完整",
+          "结果信息"
+        ],
+        "composition_confidence": "高",
+        "event_phase": "结果后反应",
+        "generic_highlight": "3高光核心",
+        "needs_context": "当前帧足够",
+        "event_type": "结果或揭示",
+        "confidence": "高"
+      },
+      "boxes": [
+        {
+          "region_id": "g7RpTbIhtQ",
+          "x": 22.570532915360502,
+          "y": 65.39132706374086,
+          "width": 44.043887147335425,
+          "height": 33.572622779519335,
+          "width_px": 235.1943573667712,
+          "height_px": 100.717868338558,
+          "labels": [
+            "主体"
+          ]
+        }
+      ],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/21.jpg"
+    },
+    {
+      "task_id": 23,
+      "annotation_id": 23,
+      "video_id": "B6AEPicK9Bk_210.0_360.0",
+      "source_group": "B6AEPicK9Bk",
+      "time_sec": 22.0,
+      "source_time_sec": 132.0,
+      "choices": {
+        "generic_highlight": "3高光核心",
+        "event_phase": "结果后反应",
+        "needs_context": "当前帧足够",
+        "event_type": "结果或揭示",
+        "confidence": "高",
+        "crop_reason": "主体完整",
+        "composition_confidence": "高"
+      },
+      "boxes": [
+        {
+          "region_id": "E7B0N8734w",
+          "x": 29.312119601172824,
+          "y": 32.655937887293085,
+          "width": 33.84958766548757,
+          "height": 44.637359966951,
+          "width_px": 180.75679813370363,
+          "height_px": 133.912079900853,
+          "labels": [
+            "主体"
+          ]
+        }
+      ],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/22.jpg"
+    },
+    {
+      "task_id": 24,
+      "annotation_id": 24,
+      "video_id": "B6AEPicK9Bk_210.0_360.0",
+      "source_group": "B6AEPicK9Bk",
+      "time_sec": 23.0,
+      "source_time_sec": 133.0,
+      "choices": {
+        "generic_highlight": "3高光核心",
+        "event_phase": "结果后反应",
+        "needs_context": "当前帧足够",
+        "event_type": "结果或揭示",
+        "confidence": "高",
+        "crop_reason": "主体完整",
+        "composition_confidence": "高"
+      },
+      "boxes": [
+        {
+          "region_id": "s98V7JvQWJ",
+          "x": 27.431405683480325,
+          "y": 26.796979417268048,
+          "width": 41.68525400696096,
+          "height": 55.79915433403799,
+          "width_px": 222.59925639717153,
+          "height_px": 167.397463002114,
+          "labels": [
+            "主体"
+          ]
+        }
+      ],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/23.jpg"
+    },
+    {
+      "task_id": 25,
+      "annotation_id": 25,
+      "video_id": "B6AEPicK9Bk_210.0_360.0",
+      "source_group": "B6AEPicK9Bk",
+      "time_sec": 24.0,
+      "source_time_sec": 134.0,
+      "choices": {
+        "generic_highlight": "3高光核心",
+        "event_phase": "结果后反应",
+        "needs_context": "当前帧足够",
+        "event_type": "结果或揭示",
+        "confidence": "高",
+        "crop_reason": "主体完整",
+        "composition_confidence": "高"
+      },
+      "boxes": [
+        {
+          "region_id": "Ju5ZFIfSrA",
+          "x": 23.145245559038653,
+          "y": 16.194879832810873,
+          "width": 51.41065830721002,
+          "height": 64.16927899686524,
+          "width_px": 274.5329153605015,
+          "height_px": 192.50783699059576,
+          "labels": [
+            "主体"
+          ]
+        }
+      ],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/24.jpg"
+    },
+    {
+      "task_id": 26,
+      "annotation_id": 26,
+      "video_id": "B6AEPicK9Bk_210.0_360.0",
+      "source_group": "B6AEPicK9Bk",
+      "time_sec": 25.0,
+      "source_time_sec": 135.0,
+      "choices": {
+        "generic_highlight": "0普通",
+        "event_phase": "无事件或无法判断",
+        "confidence": "高",
+        "needs_context": "无法判断",
+        "event_type": "无事件"
+      },
+      "boxes": [],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/25.jpg"
+    },
+    {
+      "task_id": 27,
+      "annotation_id": 27,
+      "video_id": "B6AEPicK9Bk_210.0_360.0",
+      "source_group": "B6AEPicK9Bk",
+      "time_sec": 26.0,
+      "source_time_sec": 136.0,
+      "choices": {
+        "generic_highlight": "0普通",
+        "event_phase": "无事件或无法判断",
+        "needs_context": "无法判断",
+        "event_type": "无事件",
+        "confidence": "高"
+      },
+      "boxes": [],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/26.jpg"
+    },
+    {
+      "task_id": 28,
+      "annotation_id": 28,
+      "video_id": "B6AEPicK9Bk_210.0_360.0",
+      "source_group": "B6AEPicK9Bk",
+      "time_sec": 27.0,
+      "source_time_sec": 137.0,
+      "choices": {
+        "generic_highlight": "0普通",
+        "event_phase": "无事件或无法判断",
+        "needs_context": "无法判断",
+        "event_type": "无事件",
+        "confidence": "高"
+      },
+      "boxes": [],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/27.jpg"
+    },
+    {
+      "task_id": 29,
+      "annotation_id": 29,
+      "video_id": "B6AEPicK9Bk_210.0_360.0",
+      "source_group": "B6AEPicK9Bk",
+      "time_sec": 28.0,
+      "source_time_sec": 138.0,
+      "choices": {
+        "generic_highlight": "0普通",
+        "event_phase": "无事件或无法判断",
+        "needs_context": "无法判断",
+        "event_type": "无事件",
+        "confidence": "高"
+      },
+      "boxes": [],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/28.jpg"
+    },
+    {
+      "task_id": 30,
+      "annotation_id": 30,
+      "video_id": "B6AEPicK9Bk_210.0_360.0",
+      "source_group": "B6AEPicK9Bk",
+      "time_sec": 29.0,
+      "source_time_sec": 139.0,
+      "choices": {
+        "generic_highlight": "0普通",
+        "event_phase": "无事件或无法判断",
+        "needs_context": "无法判断",
+        "event_type": "无事件",
+        "confidence": "高"
+      },
+      "boxes": [],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/29.jpg"
+    },
+    {
+      "task_id": 31,
+      "annotation_id": 31,
+      "video_id": "rAHQY2FHcOo_210.0_360.0",
+      "source_group": "rAHQY2FHcOo",
+      "time_sec": 0.0,
+      "source_time_sec": 0.0,
+      "choices": {
+        "generic_highlight": "1有信息",
+        "event_phase": "铺垫",
+        "needs_context": "无法判断",
+        "event_type": "无事件",
+        "confidence": "高"
+      },
+      "boxes": [],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/00.jpg"
+    },
+    {
+      "task_id": 32,
+      "annotation_id": 32,
+      "video_id": "rAHQY2FHcOo_210.0_360.0",
+      "source_group": "rAHQY2FHcOo",
+      "time_sec": 1.0,
+      "source_time_sec": 1.0,
+      "choices": {
+        "event_phase": "进行中",
+        "generic_highlight": "1有信息",
+        "event_type": "动作",
+        "needs_context": "当前帧足够",
+        "confidence": "中"
+      },
+      "boxes": [],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/01.jpg"
+    },
+    {
+      "task_id": 33,
+      "annotation_id": 33,
+      "video_id": "rAHQY2FHcOo_210.0_360.0",
+      "source_group": "rAHQY2FHcOo",
+      "time_sec": 2.0,
+      "source_time_sec": 2.0,
+      "choices": {
+        "generic_highlight": "2值得保留",
+        "event_phase": "进行中",
+        "needs_context": "当前帧足够",
+        "event_type": "动作",
+        "confidence": "中",
+        "composition_confidence": "中",
+        "crop_reason": "主体完整"
+      },
+      "boxes": [
+        {
+          "region_id": "pRt1Idtb_4",
+          "x": 14.315569487983282,
+          "y": 0.5710553814002108,
+          "width": 82.07941483803552,
+          "height": 96.06792058516197,
+          "width_px": 438.3040752351096,
+          "height_px": 288.2037617554859,
+          "labels": [
+            "主体"
+          ]
+        }
+      ],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/02.jpg"
+    },
+    {
+      "task_id": 34,
+      "annotation_id": 34,
+      "video_id": "rAHQY2FHcOo_210.0_360.0",
+      "source_group": "rAHQY2FHcOo",
+      "time_sec": 3.0,
+      "source_time_sec": 3.0,
+      "choices": {
+        "generic_highlight": "2值得保留",
+        "event_phase": "进行中",
+        "needs_context": "当前帧足够",
+        "event_type": "动作",
+        "confidence": "高",
+        "crop_reason": "主体完整",
+        "composition_confidence": "高"
+      },
+      "boxes": [
+        {
+          "region_id": "xW0NShNBvI",
+          "x": 27.16823406478579,
+          "y": 11.265935214211078,
+          "width": 27.586206896551726,
+          "height": 68.44723092998954,
+          "width_px": 147.31034482758622,
+          "height_px": 205.34169278996862,
+          "labels": [
+            "主体"
+          ]
+        },
+        {
+          "region_id": "RFUwLkK4jz",
+          "x": 9.250065325320094,
+          "y": 25.302325581395348,
+          "width": 13.796707603867262,
+          "height": 59.81395348837209,
+          "width_px": 73.67441860465118,
+          "height_px": 179.44186046511626,
+          "labels": [
+            "多人或互动"
+          ]
+        },
+        {
+          "region_id": "Q7TShk9kBN",
+          "x": 26.07786778155213,
+          "y": 30.883720930232556,
+          "width": 25.34622419649856,
+          "height": 23.348837209302324,
+          "width_px": 135.3488372093023,
+          "height_px": 70.04651162790698,
+          "labels": [
+            "多人或互动"
+          ]
+        }
+      ],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/03.jpg"
+    },
+    {
+      "task_id": 35,
+      "annotation_id": 35,
+      "video_id": "rAHQY2FHcOo_210.0_360.0",
+      "source_group": "rAHQY2FHcOo",
+      "time_sec": 4.0,
+      "source_time_sec": 4.0,
+      "choices": {
+        "crop_reason": "主体完整",
+        "composition_confidence": "高",
+        "confidence": "高",
+        "event_type": "动作",
+        "needs_context": "当前帧足够",
+        "generic_highlight": "2值得保留",
+        "event_phase": "进行中"
+      },
+      "boxes": [
+        {
+          "region_id": "Dft5Z5lXpH",
+          "x": 7.732497387669802,
+          "y": 29.4937304075235,
+          "width": 16.0919540229885,
+          "height": 54.5903866248694,
+          "width_px": 85.93103448275859,
+          "height_px": 163.7711598746082,
+          "labels": [
+            "多人或互动"
+          ]
+        },
+        {
+          "region_id": "Os_VhJnZeB",
+          "x": 30.92998955067921,
+          "y": 30.14472309299896,
+          "width": 20.37617554858933,
+          "height": 25.109717868338542,
+          "width_px": 108.80877742946703,
+          "height_px": 75.32915360501562,
+          "labels": [
+            "多人或互动"
+          ]
+        },
+        {
+          "region_id": "Ltx19Qf013",
+          "x": 29.15360501567398,
+          "y": 8.38296760710554,
+          "width": 29.780564263322898,
+          "height": 69.74921630094043,
+          "width_px": 159.02821316614427,
+          "height_px": 209.2476489028213,
+          "labels": [
+            "主体"
+          ]
+        }
+      ],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/04.jpg"
+    },
+    {
+      "task_id": 36,
+      "annotation_id": 36,
+      "video_id": "rAHQY2FHcOo_210.0_360.0",
+      "source_group": "rAHQY2FHcOo",
+      "time_sec": 5.0,
+      "source_time_sec": 5.0,
+      "choices": {
+        "generic_highlight": "2值得保留",
+        "event_phase": "进行中",
+        "needs_context": "当前帧足够",
+        "event_type": "动作",
+        "crop_reason": "主体完整",
+        "composition_confidence": "高",
+        "confidence": "高"
+      },
+      "boxes": [
+        {
+          "region_id": "4zaLhr3gdu",
+          "x": 36.62486938349007,
+          "y": 11.823928944618602,
+          "width": 31.400208986415883,
+          "height": 69.5632183908046,
+          "width_px": 167.6771159874608,
+          "height_px": 208.68965517241378,
+          "labels": [
+            "主体"
+          ]
+        }
+      ],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/05.jpg"
+    },
+    {
+      "task_id": 37,
+      "annotation_id": 37,
+      "video_id": "rAHQY2FHcOo_210.0_360.0",
+      "source_group": "rAHQY2FHcOo",
+      "time_sec": 6.0,
+      "source_time_sec": 6.0,
+      "choices": {
+        "generic_highlight": "3高光核心",
+        "event_phase": "进行中",
+        "needs_context": "当前帧足够",
+        "event_type": "动作",
+        "confidence": "高",
+        "crop_reason": "主体完整",
+        "composition_confidence": "高"
+      },
+      "boxes": [
+        {
+          "region_id": "-MtnnQ0Sd-",
+          "x": 50.41797283176594,
+          "y": 14.799895506792064,
+          "width": 27.95193312434691,
+          "height": 67.70323928944617,
+          "width_px": 149.2633228840125,
+          "height_px": 203.10971786833852,
+          "labels": [
+            "主体"
+          ]
+        }
+      ],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/06.jpg"
+    },
+    {
+      "task_id": 38,
+      "annotation_id": 38,
+      "video_id": "rAHQY2FHcOo_210.0_360.0",
+      "source_group": "rAHQY2FHcOo",
+      "time_sec": 7.0,
+      "source_time_sec": 7.0,
+      "choices": {
+        "generic_highlight": "2值得保留",
+        "event_phase": "进行中",
+        "needs_context": "当前帧足够",
+        "event_type": "动作",
+        "confidence": "中",
+        "composition_confidence": "中",
+        "crop_reason": "主体完整"
+      },
+      "boxes": [
+        {
+          "region_id": "9cNDnl93VD",
+          "x": 64.83803552769069,
+          "y": 34.98066875653083,
+          "width": 17.972831765935226,
+          "height": 46.31347962382445,
+          "width_px": 95.9749216300941,
+          "height_px": 138.94043887147333,
+          "labels": [
+            "主体"
+          ]
+        },
+        {
+          "region_id": "FwMAIlwL8l",
+          "x": 46.029258098223615,
+          "y": 49.39550679205851,
+          "width": 26.175548589341695,
+          "height": 50.60449320794149,
+          "width_px": 139.77742946708466,
+          "height_px": 151.81347962382446,
+          "labels": [
+            "主体"
+          ]
+        }
+      ],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/07.jpg"
+    },
+    {
+      "task_id": 39,
+      "annotation_id": 39,
+      "video_id": "rAHQY2FHcOo_210.0_360.0",
+      "source_group": "rAHQY2FHcOo",
+      "time_sec": 8.0,
+      "source_time_sec": 8.0,
+      "choices": {
+        "generic_highlight": "3高光核心",
+        "event_phase": "进行中",
+        "needs_context": "当前帧足够",
+        "event_type": "动作",
+        "confidence": "高",
+        "crop_reason": [
+          "主体完整",
+          "动作关系"
+        ],
+        "composition_confidence": "高"
+      },
+      "boxes": [
+        {
+          "region_id": "zXakGKwRKK",
+          "x": 53.55276907001044,
+          "y": 18.705851619644726,
+          "width": 33.751306165099265,
+          "height": 81.29414838035527,
+          "width_px": 180.23197492163007,
+          "height_px": 243.8824451410658,
+          "labels": [
+            "主体"
+          ]
+        }
+      ],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/08.jpg"
+    },
+    {
+      "task_id": 40,
+      "annotation_id": 40,
+      "video_id": "rAHQY2FHcOo_210.0_360.0",
+      "source_group": "rAHQY2FHcOo",
+      "time_sec": 9.0,
+      "source_time_sec": 9.0,
+      "choices": {
+        "generic_highlight": "2值得保留",
+        "event_phase": "进行中",
+        "needs_context": "当前帧足够",
+        "event_type": "动作",
+        "confidence": "中",
+        "composition_confidence": "中",
+        "crop_reason": "主体完整"
+      },
+      "boxes": [
+        {
+          "region_id": "liW91flL3o",
+          "x": 44.40961337513061,
+          "y": 20.100835945663537,
+          "width": 24.555903866248705,
+          "height": 64.91327063740854,
+          "width_px": 131.1285266457681,
+          "height_px": 194.73981191222563,
+          "labels": [
+            "主体"
+          ]
+        }
+      ],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/09.jpg"
+    },
+    {
+      "task_id": 41,
+      "annotation_id": 41,
+      "video_id": "rAHQY2FHcOo_210.0_360.0",
+      "source_group": "rAHQY2FHcOo",
+      "time_sec": 10.0,
+      "source_time_sec": 10.0,
+      "choices": {
+        "generic_highlight": "3高光核心",
+        "event_phase": "进行中",
+        "needs_context": "当前帧足够",
+        "event_type": "动作",
+        "confidence": "高",
+        "crop_reason": [
+          "主体完整",
+          "动作关系"
+        ],
+        "composition_confidence": "高"
+      },
+      "boxes": [
+        {
+          "region_id": "2c8wHdsNJE",
+          "x": 38.557993730407524,
+          "y": 20.193834900731456,
+          "width": 28.108672936259147,
+          "height": 61.007314524555895,
+          "width_px": 150.10031347962385,
+          "height_px": 183.02194357366767,
+          "labels": [
+            "主体"
+          ]
+        }
+      ],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/10.jpg"
+    },
+    {
+      "task_id": 42,
+      "annotation_id": 42,
+      "video_id": "rAHQY2FHcOo_210.0_360.0",
+      "source_group": "rAHQY2FHcOo",
+      "time_sec": 11.0,
+      "source_time_sec": 11.0,
+      "choices": {
+        "generic_highlight": "2值得保留",
+        "event_phase": "进行中",
+        "needs_context": "当前帧足够",
+        "event_type": "动作",
+        "confidence": "中",
+        "composition_confidence": "中",
+        "crop_reason": "主体完整"
+      },
+      "boxes": [
+        {
+          "region_id": "HFq1OH0BTL",
+          "x": 28.160919540229884,
+          "y": 9.77795193312435,
+          "width": 23.928944618599793,
+          "height": 68.54022988505747,
+          "width_px": 127.7805642633229,
+          "height_px": 205.62068965517244,
+          "labels": [
+            "主体"
+          ]
+        }
+      ],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/11.jpg"
+    },
+    {
+      "task_id": 43,
+      "annotation_id": 43,
+      "video_id": "rAHQY2FHcOo_210.0_360.0",
+      "source_group": "rAHQY2FHcOo",
+      "time_sec": 12.0,
+      "source_time_sec": 12.0,
+      "choices": {
+        "generic_highlight": "2值得保留",
+        "event_phase": "进行中",
+        "needs_context": "当前帧足够",
+        "event_type": "动作",
+        "confidence": "中",
+        "crop_reason": [
+          "主体完整",
+          "动作关系"
+        ],
+        "composition_confidence": "中"
+      },
+      "boxes": [
+        {
+          "region_id": "17akCDI6mL",
+          "x": 48.95506792058516,
+          "y": 27.6337513061651,
+          "width": 16.927899686520384,
+          "height": 42.77951933124346,
+          "width_px": 90.39498432601886,
+          "height_px": 128.3385579937304,
+          "labels": [
+            "主体"
+          ]
+        }
+      ],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/12.jpg"
+    },
+    {
+      "task_id": 44,
+      "annotation_id": 44,
+      "video_id": "rAHQY2FHcOo_210.0_360.0",
+      "source_group": "rAHQY2FHcOo",
+      "time_sec": 13.0,
+      "source_time_sec": 13.0,
+      "choices": {
+        "generic_highlight": "2值得保留",
+        "event_phase": "进行中",
+        "needs_context": "当前帧足够",
+        "event_type": "动作",
+        "confidence": "中",
+        "crop_reason": [
+          "主体完整",
+          "动作关系"
+        ],
+        "composition_confidence": "中"
+      },
+      "boxes": [
+        {
+          "region_id": "mzlmwMlWKq",
+          "x": 31.191222570532883,
+          "y": 17.217868338557995,
+          "width": 26.90700104493205,
+          "height": 57.4733542319749,
+          "width_px": 143.68338557993712,
+          "height_px": 172.4200626959247,
+          "labels": [
+            "主体"
+          ]
+        }
+      ],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/13.jpg"
+    },
+    {
+      "task_id": 45,
+      "annotation_id": 45,
+      "video_id": "rAHQY2FHcOo_210.0_360.0",
+      "source_group": "rAHQY2FHcOo",
+      "time_sec": 14.0,
+      "source_time_sec": 14.0,
+      "choices": {
+        "event_phase": "完成或结果",
+        "generic_highlight": "2值得保留",
+        "needs_context": "当前帧足够",
+        "event_type": "动作",
+        "confidence": "中",
+        "crop_reason": "主体完整",
+        "composition_confidence": "中"
+      },
+      "boxes": [
+        {
+          "region_id": "0Bb6HgmTxV",
+          "x": 22.570532915360502,
+          "y": 13.683908045977015,
+          "width": 22.936259143155688,
+          "height": 43.24451410658306,
+          "width_px": 122.47962382445138,
+          "height_px": 129.73354231974918,
+          "labels": [
+            "主体"
+          ]
+        }
+      ],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/14.jpg"
+    },
+    {
+      "task_id": 46,
+      "annotation_id": 46,
+      "video_id": "rAHQY2FHcOo_210.0_360.0",
+      "source_group": "rAHQY2FHcOo",
+      "time_sec": 15.0,
+      "source_time_sec": 15.0,
+      "choices": {
+        "generic_highlight": "3高光核心",
+        "event_phase": "进行中",
+        "needs_context": "当前帧足够",
+        "event_type": "动作",
+        "confidence": "高",
+        "crop_reason": [
+          "主体完整",
+          "动作关系"
+        ],
+        "composition_confidence": "高"
+      },
+      "boxes": [
+        {
+          "region_id": "7gX4XBQaCW",
+          "x": 54.80668756530825,
+          "y": 9.498955067920587,
+          "width": 33.59456635318705,
+          "height": 56.91536050156739,
+          "width_px": 179.39498432601883,
+          "height_px": 170.74608150470215,
+          "labels": [
+            "主体"
+          ]
+        }
+      ],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/15.jpg"
+    },
+    {
+      "task_id": 47,
+      "annotation_id": 47,
+      "video_id": "rAHQY2FHcOo_210.0_360.0",
+      "source_group": "rAHQY2FHcOo",
+      "time_sec": 16.0,
+      "source_time_sec": 16.0,
+      "choices": {
+        "event_phase": "进行中",
+        "generic_highlight": "2值得保留",
+        "needs_context": "当前帧足够",
+        "event_type": "动作",
+        "confidence": "中",
+        "composition_confidence": "中",
+        "crop_reason": [
+          "主体完整",
+          "动作关系"
+        ]
+      },
+      "boxes": [
+        {
+          "region_id": "P0Gnf5Xac2",
+          "x": 35.00522466039707,
+          "y": 27.540752351097176,
+          "width": 22.25705329153604,
+          "height": 52.0794148380355,
+          "width_px": 118.85266457680245,
+          "height_px": 156.23824451410647,
+          "labels": [
+            "主体"
+          ]
+        }
+      ],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/16.jpg"
+    },
+    {
+      "task_id": 48,
+      "annotation_id": 48,
+      "video_id": "rAHQY2FHcOo_210.0_360.0",
+      "source_group": "rAHQY2FHcOo",
+      "time_sec": 17.0,
+      "source_time_sec": 17.0,
+      "choices": {
+        "generic_highlight": "2值得保留",
+        "event_phase": "进行中",
+        "needs_context": "当前帧足够",
+        "event_type": "动作",
+        "confidence": "中",
+        "crop_reason": "主体完整",
+        "composition_confidence": "中"
+      },
+      "boxes": [
+        {
+          "region_id": "lAmugOB3wr",
+          "x": 33.59456635318704,
+          "y": 24.378787878787882,
+          "width": 24.973876698014628,
+          "height": 49.940438871473354,
+          "width_px": 133.3605015673981,
+          "height_px": 149.82131661442006,
+          "labels": [
+            "主体"
+          ]
+        }
+      ],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/17.jpg"
+    },
+    {
+      "task_id": 49,
+      "annotation_id": 49,
+      "video_id": "rAHQY2FHcOo_210.0_360.0",
+      "source_group": "rAHQY2FHcOo",
+      "time_sec": 18.0,
+      "source_time_sec": 18.0,
+      "choices": {
+        "generic_highlight": "3高光核心",
+        "event_phase": "完成或结果",
+        "needs_context": "当前帧足够",
+        "event_type": "动作",
+        "confidence": "高",
+        "crop_reason": [
+          "主体完整",
+          "动作关系"
+        ],
+        "composition_confidence": "高"
+      },
+      "boxes": [
+        {
+          "region_id": "xGJSHeAKZi",
+          "x": 28.735632183908045,
+          "y": 24.65778474399164,
+          "width": 27.533960292580986,
+          "height": 46.40647857889236,
+          "width_px": 147.03134796238245,
+          "height_px": 139.21943573667707,
+          "labels": [
+            "主体"
+          ]
+        }
+      ],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/18.jpg"
+    },
+    {
+      "task_id": 50,
+      "annotation_id": 50,
+      "video_id": "rAHQY2FHcOo_210.0_360.0",
+      "source_group": "rAHQY2FHcOo",
+      "time_sec": 19.0,
+      "source_time_sec": 19.0,
+      "choices": {
+        "event_phase": "完成或结果",
+        "generic_highlight": "3高光核心",
+        "needs_context": "当前帧足够",
+        "event_type": "动作",
+        "confidence": "高",
+        "crop_reason": [
+          "主体完整",
+          "动作关系"
+        ],
+        "composition_confidence": "高"
+      },
+      "boxes": [
+        {
+          "region_id": "qhkfMLiDJf",
+          "x": 37.669801462904914,
+          "y": 14.799895506792064,
+          "width": 28.369905956112845,
+          "height": 52.54440961337513,
+          "width_px": 151.4952978056426,
+          "height_px": 157.63322884012538,
+          "labels": [
+            "主体"
+          ]
+        }
+      ],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/19.jpg"
+    },
+    {
+      "task_id": 51,
+      "annotation_id": 51,
+      "video_id": "rAHQY2FHcOo_210.0_360.0",
+      "source_group": "rAHQY2FHcOo",
+      "time_sec": 20.0,
+      "source_time_sec": 20.0,
+      "choices": {
+        "event_phase": "进行中",
+        "generic_highlight": "3高光核心",
+        "needs_context": "当前帧足够",
+        "event_type": "动作",
+        "confidence": "高",
+        "crop_reason": [
+          "主体完整",
+          "动作关系"
+        ],
+        "composition_confidence": "高"
+      },
+      "boxes": [
+        {
+          "region_id": "cU63uSipNw",
+          "x": 34.27377220480669,
+          "y": 0.19905956112852854,
+          "width": 28.47439916405434,
+          "height": 48.45245559038662,
+          "width_px": 152.05329153605018,
+          "height_px": 145.35736677115986,
+          "labels": [
+            "主体"
+          ]
+        }
+      ],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/20.jpg"
+    },
+    {
+      "task_id": 52,
+      "annotation_id": 52,
+      "video_id": "rAHQY2FHcOo_210.0_360.0",
+      "source_group": "rAHQY2FHcOo",
+      "time_sec": 21.0,
+      "source_time_sec": 21.0,
+      "choices": {
+        "event_phase": "进行中",
+        "generic_highlight": "3高光核心",
+        "needs_context": "当前帧足够",
+        "event_type": "动作",
+        "confidence": "高",
+        "crop_reason": [
+          "主体完整",
+          "动作关系"
+        ],
+        "composition_confidence": "高"
+      },
+      "boxes": [
+        {
+          "region_id": "rUP8ocUlpy",
+          "x": 29.93730407523511,
+          "y": 2.0590386624869406,
+          "width": 27.220480668756522,
+          "height": 59.70532915360501,
+          "width_px": 145.35736677115983,
+          "height_px": 179.115987460815,
+          "labels": [
+            "主体"
+          ]
+        }
+      ],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/21.jpg"
+    },
+    {
+      "task_id": 53,
+      "annotation_id": 53,
+      "video_id": "rAHQY2FHcOo_210.0_360.0",
+      "source_group": "rAHQY2FHcOo",
+      "time_sec": 22.0,
+      "source_time_sec": 22.0,
+      "choices": {
+        "generic_highlight": "2值得保留",
+        "event_phase": "结果后反应",
+        "needs_context": "当前帧足够",
+        "event_type": "动作",
+        "confidence": "中",
+        "crop_reason": "主体完整",
+        "composition_confidence": "中"
+      },
+      "boxes": [
+        {
+          "region_id": "55ONBcIi4R",
+          "x": 23.92894461859979,
+          "y": 31.074712643678165,
+          "width": 31.71368861024033,
+          "height": 68.92528735632183,
+          "width_px": 169.35109717868335,
+          "height_px": 206.7758620689655,
+          "labels": [
+            "主体"
+          ]
+        }
+      ],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/22.jpg"
+    },
+    {
+      "task_id": 54,
+      "annotation_id": 54,
+      "video_id": "rAHQY2FHcOo_210.0_360.0",
+      "source_group": "rAHQY2FHcOo",
+      "time_sec": 23.0,
+      "source_time_sec": 23.0,
+      "choices": {
+        "generic_highlight": "2值得保留",
+        "event_phase": "铺垫",
+        "needs_context": "当前帧足够",
+        "event_type": "动作",
+        "confidence": "中",
+        "composition_confidence": "中",
+        "crop_reason": "主体完整"
+      },
+      "boxes": [
+        {
+          "region_id": "SUHaBjJVKj",
+          "x": 7.836990595611286,
+          "y": 13.218913270637412,
+          "width": 52.40334378265413,
+          "height": 86.39602925809822,
+          "width_px": 279.8338557993731,
+          "height_px": 259.1880877742947,
+          "labels": [
+            "主体"
+          ]
+        }
+      ],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/23.jpg"
+    },
+    {
+      "task_id": 55,
+      "annotation_id": 55,
+      "video_id": "rAHQY2FHcOo_210.0_360.0",
+      "source_group": "rAHQY2FHcOo",
+      "time_sec": 24.0,
+      "source_time_sec": 24.0,
+      "choices": {
+        "generic_highlight": "2值得保留",
+        "event_phase": "进行中",
+        "needs_context": "当前帧足够",
+        "event_type": "动作",
+        "confidence": "高",
+        "crop_reason": [
+          "主体完整",
+          "动作关系"
+        ],
+        "composition_confidence": "高"
+      },
+      "boxes": [
+        {
+          "region_id": "_GXNmELm8C",
+          "x": 6.217345872518287,
+          "y": 17.31086729362592,
+          "width": 39.13270637408568,
+          "height": 82.02507836990597,
+          "width_px": 208.96865203761755,
+          "height_px": 246.0752351097179,
+          "labels": [
+            "主体"
+          ]
+        }
+      ],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/24.jpg"
+    },
+    {
+      "task_id": 56,
+      "annotation_id": 56,
+      "video_id": "rAHQY2FHcOo_210.0_360.0",
+      "source_group": "rAHQY2FHcOo",
+      "time_sec": 25.0,
+      "source_time_sec": 25.0,
+      "choices": {
+        "generic_highlight": "3高光核心",
+        "needs_context": "当前帧足够",
+        "event_type": "结果或揭示",
+        "confidence": "中",
+        "crop_reason": "主体完整",
+        "composition_confidence": "中",
+        "event_phase": "完成或结果"
+      },
+      "boxes": [
+        {
+          "region_id": "VPj5RNJfS8",
+          "x": 62.539184952978054,
+          "y": 11.358934169279,
+          "width": 15.464994775339598,
+          "height": 49.38244514106583,
+          "width_px": 82.58307210031346,
+          "height_px": 148.1473354231975,
+          "labels": [
+            "主体"
+          ]
+        }
+      ],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/25.jpg"
+    },
+    {
+      "task_id": 57,
+      "annotation_id": 57,
+      "video_id": "rAHQY2FHcOo_210.0_360.0",
+      "source_group": "rAHQY2FHcOo",
+      "time_sec": 26.0,
+      "source_time_sec": 26.0,
+      "choices": {
+        "generic_highlight": "2值得保留",
+        "event_phase": "完成或结果",
+        "needs_context": "当前帧足够",
+        "event_type": "结果或揭示",
+        "confidence": "中",
+        "crop_reason": "主体完整",
+        "composition_confidence": "中"
+      },
+      "boxes": [
+        {
+          "region_id": "OjSMoAY-2n",
+          "x": 70.48066875653082,
+          "y": 3.5470219435736703,
+          "width": 13.375130616509935,
+          "height": 55.24137931034482,
+          "width_px": 71.42319749216306,
+          "height_px": 165.72413793103445,
+          "labels": [
+            "主体"
+          ]
+        },
+        {
+          "region_id": "FfaD8fSFDu",
+          "x": 27.377220480668758,
+          "y": 41.39759665621735,
+          "width": 11.23301985370951,
+          "height": 38.22257053291535,
+          "width_px": 59.98432601880879,
+          "height_px": 114.66771159874605,
+          "labels": [
+            "主体"
+          ]
+        }
+      ],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/26.jpg"
+    },
+    {
+      "task_id": 58,
+      "annotation_id": 58,
+      "video_id": "rAHQY2FHcOo_210.0_360.0",
+      "source_group": "rAHQY2FHcOo",
+      "time_sec": 27.0,
+      "source_time_sec": 27.0,
+      "choices": {
+        "generic_highlight": "1有信息",
+        "event_phase": "进行中",
+        "needs_context": "当前帧足够",
+        "event_type": "动作",
+        "confidence": "中",
+        "composition_confidence": "低或无合理框"
+      },
+      "boxes": [],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/27.jpg"
+    },
+    {
+      "task_id": 59,
+      "annotation_id": 59,
+      "video_id": "rAHQY2FHcOo_210.0_360.0",
+      "source_group": "rAHQY2FHcOo",
+      "time_sec": 28.0,
+      "source_time_sec": 28.0,
+      "choices": {
+        "crop_reason": "主体完整",
+        "composition_confidence": "高",
+        "confidence": "高",
+        "event_type": "人物互动",
+        "needs_context": "当前帧足够",
+        "generic_highlight": "2值得保留",
+        "event_phase": "完成或结果"
+      },
+      "boxes": [
+        {
+          "region_id": "2Lh1iB6rpa",
+          "x": 19.64472309299895,
+          "y": 31.818704284221543,
+          "width": 30.198537095088877,
+          "height": 68.18129571577846,
+          "width_px": 161.2601880877746,
+          "height_px": 204.54388714733537,
+          "labels": [
+            "多人或互动"
+          ]
+        },
+        {
+          "region_id": "f7-RCfV328",
+          "x": 55.01567398119123,
+          "y": 13.869905956112854,
+          "width": 28.42215256008359,
+          "height": 86.13009404388714,
+          "width_px": 151.77429467084636,
+          "height_px": 258.3902821316614,
+          "labels": [
+            "多人或互动"
+          ]
+        }
+      ],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/28.jpg"
+    },
+    {
+      "task_id": 60,
+      "annotation_id": 60,
+      "video_id": "rAHQY2FHcOo_210.0_360.0",
+      "source_group": "rAHQY2FHcOo",
+      "time_sec": 29.0,
+      "source_time_sec": 29.0,
+      "choices": {
+        "generic_highlight": "2值得保留",
+        "event_phase": "进行中",
+        "event_type": "人物互动",
+        "confidence": "高",
+        "needs_context": "当前帧足够",
+        "composition_confidence": "高",
+        "crop_reason": "主体完整"
+      },
+      "boxes": [
+        {
+          "region_id": "Iw8vaR4d-r",
+          "x": 15.569487983281086,
+          "y": 35.352664576802475,
+          "width": 31.60919540229885,
+          "height": 64.6473354231975,
+          "width_px": 168.79310344827587,
+          "height_px": 193.9420062695925,
+          "labels": [
+            "多人或互动"
+          ]
+        },
+        {
+          "region_id": "IxqaVNxkcn",
+          "x": 54.12748171368861,
+          "y": 11.637931034482762,
+          "width": 29.623824451410655,
+          "height": 88.36206896551724,
+          "width_px": 158.1912225705329,
+          "height_px": 265.0862068965517,
+          "labels": [
+            "多人或互动"
+          ]
+        }
+      ],
+      "notes": [],
+      "image": "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/29.jpg"
+    }
+  ],
+  "media_sha256": {
+    "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/00.jpg": "eb4b8edf72a1e8069bda09cc64fedc0f1b1de7f73871d978c49d2644a2be25c4",
+    "artifacts/annotation_batch_v1/videos/B6AEPicK9Bk_210.0_360.0.mp4": "ee0aeaaa13d1347916810ba501ace3adb9e87cb114eb2f93b5d06157bd1fb75e",
+    "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/01.jpg": "07e74263977b9d78de5531984e72f14c2d6edf4cb05bec8a4bc6cef2ef4120e5",
+    "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/02.jpg": "93b3e8e0b01de845240b99e22e6780b14eec98847a64e353558d39e75a6575c2",
+    "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/03.jpg": "1af6020f4a982bd2b73a7228bfb961402e5efd8be6eb6265180fa42d6c76a81b",
+    "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/04.jpg": "c7b1d7eb4a208c06d8f3feec8069829cfce24ee236259b1487486ba3cc493085",
+    "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/05.jpg": "968c0ec1cbb13f635b170ded28362bb132bcd490b433b789763a8f9171566bb7",
+    "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/06.jpg": "42b0a4066828e87ccfe9248527bd771b531f2d4b3569cd2cf6f7ac4a85a9c0db",
+    "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/07.jpg": "663d4c66cf047d694acc79dc59c4326aabd7f27fb7327c0eb43bc5f7b724a9f1",
+    "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/08.jpg": "1847a3da9d3ed27ac654d1bda2eb10eeaa9e91d62f5fe533d22e5a940f77c5bf",
+    "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/09.jpg": "dc99e1c0dc4ec9646b243648c677d69cd0164ce08448fe0c0760a306d7e088fc",
+    "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/10.jpg": "4d9aedb794f42a2b5a1eca3f137e426c6a7b2a951ae9f02c3edc6c0a8a8092d0",
+    "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/11.jpg": "56091e837816abdb44b8e4ff62a969b125905ae6db3f4731a49dbeb65ef4418e",
+    "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/12.jpg": "ad71792a4f95daee09fcc6438b5d4a774a2637b5b8e51dded9e69e3262e9b76c",
+    "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/13.jpg": "2cc46f4c06c9031b475ad85d0565d932c8736bb1937db2a1c611ba474f65e8aa",
+    "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/14.jpg": "fd08644a082c8ec2c64630e4cbc7280266fb3f64b4b95407dcd7fc4b1cec73e0",
+    "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/15.jpg": "24128192189a476b1326b4b74d2f7648f4d217323e3088fa193f73efbebe55bf",
+    "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/16.jpg": "0f03e760555b17cc84016405b089e9453841851253856ab1c0458836bd84a6b3",
+    "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/17.jpg": "896fb6d47ea686ec86b48ccd9abecb43c150be1c0f37c588f1da97c98a96397e",
+    "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/18.jpg": "09d8f1d086ada674f2f317ead730dd1f75cd49847acee3fe82cea4cedcb7e39e",
+    "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/19.jpg": "d5dc157254a5abfbc6a7fff14d4c3af34c7ebb8e2849f449dcf5cf024059250a",
+    "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/20.jpg": "b02f7a99ec8ed69d37bf38c4b3cf0b724d65d09259a4003ac612df93fc49f899",
+    "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/21.jpg": "4978d6846c4fecb191f72f97356db8d26084d9fc61c07d47d2f3035b3f2bb3cd",
+    "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/22.jpg": "c26ed40b5a1f317d74c1efb7f7fffae8da31efd3b83c6a655eae274c0b730a86",
+    "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/23.jpg": "a190d161dfedb2fd2f2b858e7f6062e2d2f329aebed08ec535f1a6d7ecc68133",
+    "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/24.jpg": "e2942335f55fc56b6b0ffc6966c25bc8dd959d864b1158a15899bbc27a817686",
+    "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/25.jpg": "cd783a912ac539494ff5bedfc26bbd51dde3a874fc8e9890bfa2aa915f261494",
+    "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/26.jpg": "a0c794b87e8e54d55af6a1edd8dbd4bbf91b250ce1ad4324ad5e1ec103e43f37",
+    "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/27.jpg": "158ef81f0fc10c2af4e478a05af0cefe7b1c8958b7bbb031ae798264edb5ee9c",
+    "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/28.jpg": "1c33a093dcff7ba8d84c1928aa52a989e68e2c42c7ca3924947c692adf98707a",
+    "artifacts/annotation_batch_v1/frames/B6AEPicK9Bk_210.0_360.0/29.jpg": "e8fe1baddb5d8d5eac2c523e42a22f4ba448974a890b8c73b260b342d760d40e",
+    "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/00.jpg": "15ee615dc9c284a690c29e490127b816d1b0dda862b7de58faac27162d1baa3d",
+    "artifacts/annotation_batch_v1/videos/rAHQY2FHcOo_210.0_360.0.mp4": "8fe34aad414a011c8c7e24daa23a969bd5b294b8912cb03fc6abc10b12d3d2f3",
+    "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/01.jpg": "522fe3c2300d0e5906fc9498397a67fe455409e83a81fd424255cded1073b6ef",
+    "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/02.jpg": "6238a43427939a5de39dbfe46f62b3a58213a814081ac9a2c19edff67eee007e",
+    "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/03.jpg": "3fc5e457082161fe5b3fcd6197d86dda59620f8bd543069201de216786b7764d",
+    "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/04.jpg": "6b615a25fbca00309ace78dc8a91b391c4c9d0edaab88c670ed2917c4bcbe344",
+    "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/05.jpg": "ae249bceb5f0eaba2aa4e6d26d53f097a1c3f2523527ef409c0fbdd795d0bc8d",
+    "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/06.jpg": "e75ece409d5351b9c14d21c22bc189849b5017a010fbed26ecbd6f817dd68194",
+    "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/07.jpg": "8e798d8cd7f7603dfd1a6e5b596da79fe2ed6669161a49149d15860b58a13d0f",
+    "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/08.jpg": "ffdc542f0b63d882da9d80ff4dc486def5de8a9033bcf5480727f6f11bb59a8a",
+    "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/09.jpg": "6936918ed0dfc3ae8a66ee1893a059dff5c7208ea082292b4adfda2a8b948684",
+    "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/10.jpg": "9a619e3a6489afdd2cef640d5800d8d990e2d31f1131160590fd024aead5c5f1",
+    "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/11.jpg": "d8b82c25a709508e02447968a38739bfc869e2eba3419a0b5481ba3546e24f7d",
+    "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/12.jpg": "71bcee40d0737b4eb9c553b1617769b68eafcc71c90be34384d03d0c77bac064",
+    "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/13.jpg": "77e29f77da3db10235ef3c8cda9d7dbeca68900c3321bb303045b233fefa456e",
+    "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/14.jpg": "b83b071cce16f2615501832f1d46ffcd6843ba81bc16d4e7466232aa0e261426",
+    "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/15.jpg": "6e3e2e17180018335533c3264bad6e0a5655252789899030f547d81a0b77eec9",
+    "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/16.jpg": "9db864f6ce64e0c885ca4c35e3d82c21f87432063d9d4469dac408b42023fce0",
+    "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/17.jpg": "015ed4fbb623bd2763ddae9e747fe1d1d9cb17352cdf46fa9a7036fac24f11c6",
+    "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/18.jpg": "2ba416b534d3c1b1b14c62e5978bb1eb884ed507bfd233b13b78de9a98f2b0e4",
+    "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/19.jpg": "c98a461c1df5a4f59885766e051c8a38bff8a1d3edce5cfff8a3ae4c7e4486e1",
+    "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/20.jpg": "75e8d82b731a29bbd1aaeaf2b35a3d344ab3a7b886298e1e693370ac731db281",
+    "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/21.jpg": "a81c9b9c6b1e0f2db361f15b7fc96c1ea20e2e646755dc62a92f7cadc5f55ffd",
+    "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/22.jpg": "1d419604c1a76e2f140fb6d6ace65e915e747613d860a8e92e4f3811b5d19d4c",
+    "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/23.jpg": "f06c97758118a3fd45c5a065396e678d01c45779ce2b575470b8fa5e6796d74e",
+    "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/24.jpg": "9efebaa1dc55d8650463397565dc801189cac7ea0a3683f509b23d11ceb9f0b1",
+    "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/25.jpg": "3413e3b17d436fb11e0d5509145a7caeaeb7065cf9b6b9b48f317a8dd33e738c",
+    "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/26.jpg": "1897c14a3235c3e589073250f1acfbc42a589d3bf153ac4a576f32523b7c530f",
+    "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/27.jpg": "bd13b21abfe829073def6530282db23e2f8c03c21cf595b52420eac6d40ad622",
+    "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/28.jpg": "94e193d3989ee346268580d435f3a4673d795a4f844fa25fe230ee61a6313f70",
+    "artifacts/annotation_batch_v1/frames/rAHQY2FHcOo_210.0_360.0/29.jpg": "2916d113031ccaaaf54767468074caec397156133a918cbe84324e3b7e714bdd"
+  },
+  "scope": "Single-rater development QC; not annotation accuracy, independent confirmation, or native crop GT",
+  "labels_mutated": false,
+  "training_started": false,
+  "automatic_flagged_task_count": 6,
+  "review_queue_task_count": 6,
+  "resources": {
+    "device": "CPU",
+    "gpu_used": false,
+    "wall_seconds": 0.14462064299732447
+  }
+}

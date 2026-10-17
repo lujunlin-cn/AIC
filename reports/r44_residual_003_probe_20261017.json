@@ -1,0 +1,173 @@
+{
+  "experiment_id": "R44_RESIDUAL_003",
+  "rows": 540,
+  "sources": 12,
+  "alpha": 100.0,
+  "keep": 0.85,
+  "arms": {
+    "D0_CENTER": {
+      "macro_mae": 1.0701957380174292,
+      "folds": [
+        {
+          "video_id": "B6AEPicK9Bk_210.0_360.0",
+          "mae": 1.2125,
+          "rho": null
+        },
+        {
+          "video_id": "GtJXHRFhm0E_210.0_360.0",
+          "mae": 0.9297222222222222,
+          "rho": null
+        },
+        {
+          "video_id": "HISG6jkZBfs_210.0_360.0",
+          "mae": 0.9392156862745101,
+          "rho": null
+        },
+        {
+          "video_id": "P6KTyi4s4Bc_210.0_360.0",
+          "mae": 1.2122875816993464,
+          "rho": null
+        },
+        {
+          "video_id": "bGU97Zw6Jfg_60.0_210.0",
+          "mae": 1.105902777777778,
+          "rho": null
+        },
+        {
+          "video_id": "eLlUVxVLiLU_60.0_210.0",
+          "mae": 1.2183333333333333,
+          "rho": null
+        },
+        {
+          "video_id": "jgvQzWAhoiw_210.0_360.0",
+          "mae": 1.16078431372549,
+          "rho": null
+        },
+        {
+          "video_id": "m6U-5Hck5z0_60.0_210.0",
+          "mae": 1.0066666666666666,
+          "rho": null
+        },
+        {
+          "video_id": "rAHQY2FHcOo_210.0_360.0",
+          "mae": 0.7345833333333334,
+          "rho": null
+        },
+        {
+          "video_id": "uJ97MxBs4qU_210.0_360.0",
+          "mae": 1.2423529411764704,
+          "rho": null
+        },
+        {
+          "video_id": "vprHvWMX1YU_210.0_360.0",
+          "mae": 1.1313725490196078,
+          "rho": null
+        },
+        {
+          "video_id": "yXR17NNJgdU_210.0_360.0",
+          "mae": 0.9486274509803925,
+          "rho": null
+        }
+      ]
+    },
+    "D6_IV2_EMBED": {
+      "macro_mae": 0.9673383648958249,
+      "folds": [
+        {
+          "video_id": "B6AEPicK9Bk_210.0_360.0",
+          "mae": 1.2700913214538658,
+          "rho": -0.33558203585218405
+        },
+        {
+          "video_id": "GtJXHRFhm0E_210.0_360.0",
+          "mae": 1.0073394136793083,
+          "rho": 0.23933303639688214
+        },
+        {
+          "video_id": "HISG6jkZBfs_210.0_360.0",
+          "mae": 0.8857852192115961,
+          "rho": 0.4178792805576018
+        },
+        {
+          "video_id": "P6KTyi4s4Bc_210.0_360.0",
+          "mae": 0.7220213855384223,
+          "rho": 0.13945212446374686
+        },
+        {
+          "video_id": "bGU97Zw6Jfg_60.0_210.0",
+          "mae": 1.163675981097751,
+          "rho": 0.08878113839443157
+        },
+        {
+          "video_id": "eLlUVxVLiLU_60.0_210.0",
+          "mae": 1.130021880666415,
+          "rho": -0.1734283073602906
+        },
+        {
+          "video_id": "jgvQzWAhoiw_210.0_360.0",
+          "mae": 0.42300914906208803,
+          "rho": -0.06175565821933992
+        },
+        {
+          "video_id": "m6U-5Hck5z0_60.0_210.0",
+          "mae": 1.2400043987813925,
+          "rho": 0.24240235303429775
+        },
+        {
+          "video_id": "rAHQY2FHcOo_210.0_360.0",
+          "mae": 1.035690341194471,
+          "rho": 0.2338789764493293
+        },
+        {
+          "video_id": "uJ97MxBs4qU_210.0_360.0",
+          "mae": 0.8385715203425463,
+          "rho": -0.1863161374017451
+        },
+        {
+          "video_id": "vprHvWMX1YU_210.0_360.0",
+          "mae": 0.7258153364208402,
+          "rho": 0.2714182907862679
+        },
+        {
+          "video_id": "yXR17NNJgdU_210.0_360.0",
+          "mae": 1.1660344313012032,
+          "rho": -0.3628983331191421
+        }
+      ]
+    }
+  },
+  "eta_proxy": {
+    "0.05": {
+      "macro_delta": 1.5419764230904953e-17,
+      "positive_views": 3,
+      "n_views": 18,
+      "macro_binary_delta": 0.0
+    },
+    "0.1": {
+      "macro_delta": 0.004356322268274775,
+      "positive_views": 4,
+      "n_views": 18,
+      "macro_binary_delta": 0.005545652604476132
+    },
+    "0.15": {
+      "macro_delta": 0.004356322268274765,
+      "positive_views": 4,
+      "n_views": 18,
+      "macro_binary_delta": 0.005545652604476132
+    },
+    "0.2": {
+      "macro_delta": 0.006002412803254188,
+      "positive_views": 4,
+      "n_views": 18,
+      "macro_binary_delta": 0.008070905129728655
+    },
+    "0.25": {
+      "macro_delta": 0.004880078347586408,
+      "positive_views": 5,
+      "n_views": 18,
+      "macro_binary_delta": 0.0045986829075064335
+    }
+  },
+  "deployment_eta": 0.2,
+  "feature_contract": "512D pooled InternVideo2 visual embedding, four-frame one-second windows, center-frozen Ridge residual"
+}

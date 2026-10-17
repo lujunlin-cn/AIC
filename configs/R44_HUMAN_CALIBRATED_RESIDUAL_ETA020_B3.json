@@ -1,0 +1,30 @@
+{
+  "experiment_id": "R44_HUMAN_CALIBRATED_RESIDUAL_ETA020_B3",
+  "parent": "R26_POS_CENTER_EXACT085_B3",
+  "parent_official_score": 36.04,
+  "change": "temporal ranking only",
+  "spatial_parent": "B3",
+  "budget": "round(0.85 * full original frame count)",
+  "eta": 0.2,
+  "ridge_alpha": 10.0,
+  "features": [
+    "9 OpenCV local static descriptors",
+    "previous/next grayscale state differences",
+    "audited InternVideo2 Stage2 event score as a frozen anchor feature"
+  ],
+  "labels": {
+    "rows": 540,
+    "sources": 12,
+    "projects": 2,
+    "source_held_out": true,
+    "official_gt": false
+  },
+  "rules": {
+    "official_test_labels_used": false,
+    "parent_boxes_copied": true,
+    "parameter_limit": 9000000000,
+    "declared_parameters": 450283377
+  },
+  "remote_command": "timeout --signal=TERM --kill-after=2m 30m /root/autodl-tmp/aha_env/bin/python /root/AIC/scripts/r44_semantic_calibrated_residual.py official --labels /root/autodl-tmp/experiments/R44_RESIDUAL_001/project1_labels.csv /root/autodl-tmp/experiments/R44_RESIDUAL_001/project2_labels.csv --frames /root/autodl-tmp/annotation_batch_v1/frames --public-scores /root/autodl-tmp/experiments/R44_RESIDUAL_001/public_scores.json --r43-report /root/autodl-tmp/experiments/R43_IV2_EVENT_COMPLETION_20261017/full/report.json --video-root /root/autodl-tmp/vpb_artifacts/video_426 --parent /root/autodl-tmp/evac/data/aic/semifinal_20261001/submissions/LFM_V8_B3_SEMIFINAL/predictions.jsonl --output /root/autodl-tmp/experiments/R44_RESIDUAL_002_eta020_predictions.jsonl --eta 0.2 --alpha 10",
+  "status": "packaged_not_uploaded"
+}

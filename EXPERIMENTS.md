@@ -1098,3 +1098,64 @@ Label Studio项目1/2正式标注分别300/300与240/240，结构审计零错误
 **结果**：426/426、199037 帧；R44 的 6352 个交换中保留 5942 个，410 个回退；R45 相对 R26 改变 411 个视频。参数 `450283377`（0.450283377B）。结构审计和 ZIP 往返通过。预测 SHA `f71d233a199b81ff48adcea154e1af792fef921022272afc3d27070bca6d0940`，ZIP SHA `f50506802fa3809d41913e2f3751bddc1ca71d2e9ea60c47e067b220a6d07cb2`。
 
 **状态**：已形成可上传候选，尚无官方回分。该包只检验边界保护机制，不能预先承诺涨分；R26 仍为回退，R44 仍是当前最高已报告分。配置、构建脚本和报告见 `configs/R45_BOUNDARY_GUARDED_RESIDUAL_B3.json`、`scripts/package_r45_boundary_guarded.py`、`reports/r45_boundary_guarded_residual_20261017/summary.md`。
+
+## 2026-10-18：R45/R46 高频状态与空间部署审查
+
+| Experiment | Hypothesis | Change | Public evidence | Decision |
+|---|---|---|---|---|
+| R45_HIGHFREQ_BOUNDARY_PROBE | 4fps变化主要帮助中心窗边缘 | 固定eta=.20、keep=.85、两侧5%边界；源级留一 | center .7038887；full/boundary .7066364；3/12源正 | 仅保留边界作为候选派生规则，停止边界比例扫描 |
+| R45_HIGHFREQ_STATE_PROBE | 子秒状态补充局部高光读出 | D1静态、D2 1fps local、D3 4fps、D4+D冻结IV2 | D1/D2/D3/D4 MAE 1.07136/0.98537/0.99133/0.96739；D3集合代理+0.02283，D4+0.01306 | 生成D3与D4完整包，不把代理增量当官方收益 |
+| R46_SEMANTIC_TRANSITION_PROBE | 语义锚×状态变化交互提高边界排序 | 固定交互块，alpha=10、eta=.20 | 代理与D4相同，3/12源正；回归略差 | 停止该支线 |
+| R46_SPATIAL_ASSET_AUDIT | 可恢复B3 head后再做utility residual | 搜索远端/root与/data的67个.pt及V8 ZIP | 精确V8 B3 head/base缺失；V9 A0/A1和V7近似head不可替代 | 暂缓空间提交，避免伪造归因 |
+
+## 2026-10-18：R47 TimeLens2 事件区间诊断
+
+| Experiment | Hypothesis | Change | Evidence | Decision |
+|---|---|---|---|---|
+| R47_TIMELENS2_PUBLIC | 直接事件区间建模能补足中心位置排序 | TimeLens2-8B固定无query prompt，2fps/320px，区间转逐秒分数，精确85%代理 | 12源、18视图：center .7044166，TimeLens .7213273，+ .0169107，6/18正；真实视觉smoke合法返回区间 | 机制成立到诊断级，保留为学生蒸馏方向 |
+| R47_PARAMETER_AUDIT | TimeLens2能否与现役B3一起提交 | safetensors shape metadata计数 | TimeLens2=8,767,123,696；加B3=9,217,407,073，超过9B | 停止全量推理和直接包构建；不使用违规组合 |
+
+## 2026-10-18：R47 TimeLens2 完整推理与合规空间候选
+
+**Hypothesis**：TimeLens2的事件区间输出提供了中心先验之外的时间证据；若空间组件使用已核验的vision-only V9 B3（87,407,729参数），总系统仍低于9B，可直接检验事件区间对官方F的贡献。
+
+**Execution**：固定prompt、2 fps、最大320×320像素、`temperature=.01/top_p=.001/top_k=1`，分9片完成426个视频。所有响应可解析或有明确空区间，原始响应SHA记录在候选manifest；没有读取官方标签或回分。V9 B3父集为完整426行、234,159个原始帧预测，按同一视频FPS把区间映射到原始frame轴，再选择精确`round(.85*N)`帧。
+
+**Candidates**：
+
+| Candidate | 空间 | 参数 | 预测 | 状态 |
+|---|---|---:|---:|---|
+| `R47_TIMELENS2_V9_B3` | V9 vision-only B3完整空间预测 | 8,854,531,425 | 426/426、199,037 | 可上传候选；资格依赖把已审计V9 artifact视为实际空间组件 |
+| `R47_TIMELENS2_CENTER_EXACT085` | 确定性中心框 | 8,767,123,696 | 426/426、199,037 | 参数严格合规的空间降级对照 |
+
+V9候选ZIP SHA=`436e9156c8fd55a04cae88840da95f177d633ae6b3e08665db8918f29c88c56b`，预测SHA=`13c4719b4c72f3eefe718715514da49ae0d4124fc1b6e63f3dc8db948f2199a8`。中心候选ZIP SHA=`a6952e2f6802a1b28dba738c4bf3f992158a7618da65ba57bc3197ea4e485ac9`，预测SHA=`dc1246b7d3dac69635397188f979e68cfe30d83b351a8ae995f0bbe18d89d665`。原始9分片SHA固定于`reports/r47_raw_shards_20261018/`；不采用其他重复进程产生的不同SHA包。
+
+**Interpretation**：TimeLens2+完整LFM B3为9.217B，明确超限；V9 vision-only组件的实际参数清单已在远端`vision_only_model/MANIFEST.json`核验，故8.8545B候选满足数值上限。候选仍保留“artifact acceptance”资格条件，因为本次构包复用了此前已生成的V9全帧预测，没有重新运行空间forward。中心候选用于区分时间机制与空间降级，不能作为高分预期。
+
+**Reproducibility**：脚本为`scripts/r47_timelens2_official.py`、`scripts/r47_merge_timelens_shards.py`、`scripts/package_r47_timelens2_b3.py`和`scripts/r47_package_timelens2.py`；完整区间合并记录在`reports/r47_timelens2_all426.json`。官方分数仍为空，不把公开18视图代理增量当成官方收益。
+
+同一V9 vision-only空间父集另生成了`R47_V9_B3_CENTER85`：时间集合严格复用R26中心85%，只替换V9 vision-only B3空间预测。它覆盖426/426、199,037帧，参数87,407,729；相对R26的234,159个全帧空间预测有37,499项差异。该包用于识别空间runtime替换的独立贡献，不与TimeLens2增益混淆，官方分数仍为空。
+## R48：低频—高频共识门控残差（2026-10-18）
+
+**Hypothesis**：D3高频局部状态的集合代理增益可能来自少数正确的边界纠正，但其回归MAE略差于D2；让高频残差只有在独立的1fps局部读出同向时生效，可以减少镜头切换和噪声导致的错误交换。
+
+**Change**：源级留一 Ridge（`alpha=10`），D2为9维静态+1fps前后状态，D3为同一静态描述子+4fps子秒状态。每视频保留R26精确85%预算，固定`eta=.20`；R48得分为`rank(center)+eta*(rank(D3)-.5)*I[rank(D2),rank(D3)同侧]`。空间框逐项复制R26 B3。
+
+**Public result**：18个标注视图上，D2 `+0.01901`（9正），D3 `+0.02283`（9正），R48 `+0.02360`（9正）；起始变化门控 `+0.01376`（7正）。R48只比D3小幅改善，且使用同一12源和同一账号标注，不能视为独立确认或官方收益。
+
+**Status**：公共判别实验通过“继续构包”门；426视频包正在AutoDL生成。若结构审计通过，R48是D3的机制控制候选；不进行任何进一步阈值/系数扫描。详见`reports/r48_consensus_gated_residual_20261018/summary.md`和`reports/r48_consensus_probe_20261018.json`。
+
+## 2026-10-18：R49–R52 时间残差扩展判别
+
+这些实验都使用同一12个公开30秒源、整源留一、固定中心85%代理、`eta=.20`和Ridge `alpha=10`；没有读取官方标签，也没有根据结果生成权重/系数扫描。
+
+| 实验 | 改变 | soft代理增量 | 结论 |
+|---|---|---:|---|
+| R49 | 先预测人工`event_phase`，再按训练折阶段价值形成残差 | +0.00291，2/12源正 | 阶段因观测不足和标注分歧不可稳定恢复，停止 |
+| R50 | D3局部状态加全片起止/中位状态、累计变化和运动密度 | +0.02001；去掉原始位置+0.02211 | 低于统一聚合D3 +0.02302，不生成包；全局上下文不是已证增量 |
+| R51 | 仅在前后运动都高且两侧连续性过中位数时启用D3 | +0.00654 | “高光必须持续”被削弱；停止该门控 |
+| R52 | D3加固定Farneback光流幅度/尾部/方向一致性/散度 | +0.01093 | 简单灰度状态已优于该光流合同，停止 |
+
+报告与可复算脚本：`reports/r49_event_phase_residual_probe_20261018.json`、`reports/r50_global_context_ablation_20261018.json`、`reports/r51_persistent_transition_probe_20261018.json`、`reports/r52_optical_flow_probe_20261018.json` 及对应 `scripts/r49_*.py`–`scripts/r52_*.py`。这些是公共机制诊断，不是官方联合F。
+
+**Action**：D3/R46仍是时间侧首选；R48只作为固定共识门控控制包等待结构审计。研究资源转向TimeLens2合规候选和V9空间独立对照，不继续堆叠时间特征。

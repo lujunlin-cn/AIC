@@ -1,0 +1,406 @@
+{
+  "experiment_id": "R50_GLOBAL_CONTEXT_ABLATION",
+  "status": "PUBLIC_SOURCE_HELD_OUT_COMPLETED",
+  "rows": 540,
+  "sources": 12,
+  "eta": 0.2,
+  "alpha": 10.0,
+  "arms": {
+    "D3_LOCAL": {
+      "macro_center": 0.7167721698300719,
+      "macro_residual": 0.739794700444138,
+      "macro_delta": 0.02302253061406598,
+      "positive_sources": 8,
+      "macro_center_binary": 0.6579562478443405,
+      "macro_residual_binary": 0.6816231492928736,
+      "macro_delta_binary": 0.02366690144853298,
+      "positive_sources_binary": 5,
+      "source": [
+        {
+          "video_id": "B6AEPicK9Bk_210.0_360.0",
+          "center": 0.638655462184874,
+          "residual": 0.6638655462184875,
+          "delta": 0.025210084033613467,
+          "center_binary": 0.47058823529411764,
+          "residual_binary": 0.47058823529411764,
+          "delta_binary": 0.0,
+          "swaps": 1
+        },
+        {
+          "video_id": "GtJXHRFhm0E_210.0_360.0",
+          "center": 0.5666666666666667,
+          "residual": 0.625,
+          "delta": 0.05833333333333335,
+          "center_binary": 0.25,
+          "residual_binary": 0.375,
+          "delta_binary": 0.125,
+          "swaps": 2
+        },
+        {
+          "video_id": "HISG6jkZBfs_210.0_360.0",
+          "center": 0.6559999999999999,
+          "residual": 0.752,
+          "delta": 0.09600000000000009,
+          "center_binary": 0.7555555555555555,
+          "residual_binary": 0.8444444444444444,
+          "delta_binary": 0.0888888888888889,
+          "swaps": 2
+        },
+        {
+          "video_id": "P6KTyi4s4Bc_210.0_360.0",
+          "center": 0.9397590361445783,
+          "residual": 0.9397590361445783,
+          "delta": 0.0,
+          "center_binary": 0.9454545454545454,
+          "residual_binary": 0.9454545454545454,
+          "delta_binary": 0.0,
+          "swaps": 0
+        },
+        {
+          "video_id": "bGU97Zw6Jfg_60.0_210.0",
+          "center": 0.7114624505928853,
+          "residual": 0.7035573122529643,
+          "delta": -0.007905138339921014,
+          "center_binary": 0.6666666666666666,
+          "residual_binary": 0.6153846153846154,
+          "delta_binary": -0.05128205128205121,
+          "swaps": 1
+        },
+        {
+          "video_id": "eLlUVxVLiLU_60.0_210.0",
+          "center": 0.5714285714285714,
+          "residual": 0.5892857142857143,
+          "delta": 0.017857142857142905,
+          "center_binary": 0.375,
+          "residual_binary": 0.375,
+          "delta_binary": 0.0,
+          "swaps": 1
+        },
+        {
+          "video_id": "jgvQzWAhoiw_210.0_360.0",
+          "center": 0.9156626506024097,
+          "residual": 0.9156626506024097,
+          "delta": 0.0,
+          "center_binary": 0.9285714285714286,
+          "residual_binary": 0.9285714285714286,
+          "delta_binary": 0.0,
+          "swaps": 0
+        },
+        {
+          "video_id": "m6U-5Hck5z0_60.0_210.0",
+          "center": 0.8974358974358974,
+          "residual": 0.9102564102564104,
+          "delta": 0.012820512820512997,
+          "center_binary": 0.9019607843137255,
+          "residual_binary": 0.9411764705882353,
+          "delta_binary": 0.039215686274509776,
+          "swaps": 1
+        },
+        {
+          "video_id": "rAHQY2FHcOo_210.0_360.0",
+          "center": 0.7854545454545455,
+          "residual": 0.7927272727272727,
+          "delta": 0.0072727272727272085,
+          "center_binary": 0.7906976744186046,
+          "residual_binary": 0.7906976744186046,
+          "delta_binary": 0.0,
+          "swaps": 2
+        },
+        {
+          "video_id": "uJ97MxBs4qU_210.0_360.0",
+          "center": 0.2828282828282829,
+          "residual": 0.2828282828282828,
+          "delta": -5.551115123125783e-17,
+          "center_binary": 0.1875,
+          "residual_binary": 0.1875,
+          "delta_binary": 0.0,
+          "swaps": 0
+        },
+        {
+          "video_id": "vprHvWMX1YU_210.0_360.0",
+          "center": 0.8387096774193546,
+          "residual": 0.8774193548387095,
+          "delta": 0.03870967741935483,
+          "center_binary": 0.8679245283018868,
+          "residual_binary": 0.9056603773584906,
+          "delta_binary": 0.037735849056603765,
+          "swaps": 1
+        },
+        {
+          "video_id": "yXR17NNJgdU_210.0_360.0",
+          "center": 0.7972027972027971,
+          "residual": 0.8251748251748251,
+          "delta": 0.027972027972028024,
+          "center_binary": 0.7555555555555555,
+          "residual_binary": 0.8,
+          "delta_binary": 0.04444444444444451,
+          "swaps": 1
+        }
+      ]
+    },
+    "GLOBAL_FULL": {
+      "macro_center": 0.7167721698300719,
+      "macro_residual": 0.736784793684231,
+      "macro_delta": 0.020012623854159212,
+      "positive_sources": 7,
+      "macro_center_binary": 0.6579562478443405,
+      "macro_residual_binary": 0.6796827898157494,
+      "macro_delta_binary": 0.021726541971408792,
+      "positive_sources_binary": 5,
+      "source": [
+        {
+          "video_id": "B6AEPicK9Bk_210.0_360.0",
+          "center": 0.638655462184874,
+          "residual": 0.6638655462184874,
+          "delta": 0.025210084033613356,
+          "center_binary": 0.47058823529411764,
+          "residual_binary": 0.47058823529411764,
+          "delta_binary": 0.0,
+          "swaps": 1
+        },
+        {
+          "video_id": "GtJXHRFhm0E_210.0_360.0",
+          "center": 0.5666666666666667,
+          "residual": 0.5833333333333333,
+          "delta": 0.016666666666666607,
+          "center_binary": 0.25,
+          "residual_binary": 0.3125,
+          "delta_binary": 0.0625,
+          "swaps": 1
+        },
+        {
+          "video_id": "HISG6jkZBfs_210.0_360.0",
+          "center": 0.6559999999999999,
+          "residual": 0.752,
+          "delta": 0.09600000000000009,
+          "center_binary": 0.7555555555555555,
+          "residual_binary": 0.8444444444444444,
+          "delta_binary": 0.0888888888888889,
+          "swaps": 2
+        },
+        {
+          "video_id": "P6KTyi4s4Bc_210.0_360.0",
+          "center": 0.9397590361445783,
+          "residual": 0.9397590361445783,
+          "delta": 0.0,
+          "center_binary": 0.9454545454545454,
+          "residual_binary": 0.9454545454545454,
+          "delta_binary": 0.0,
+          "swaps": 1
+        },
+        {
+          "video_id": "bGU97Zw6Jfg_60.0_210.0",
+          "center": 0.7114624505928853,
+          "residual": 0.7035573122529643,
+          "delta": -0.007905138339921014,
+          "center_binary": 0.6666666666666666,
+          "residual_binary": 0.6153846153846154,
+          "delta_binary": -0.05128205128205121,
+          "swaps": 1
+        },
+        {
+          "video_id": "eLlUVxVLiLU_60.0_210.0",
+          "center": 0.5714285714285714,
+          "residual": 0.5892857142857143,
+          "delta": 0.017857142857142905,
+          "center_binary": 0.375,
+          "residual_binary": 0.375,
+          "delta_binary": 0.0,
+          "swaps": 1
+        },
+        {
+          "video_id": "jgvQzWAhoiw_210.0_360.0",
+          "center": 0.9156626506024097,
+          "residual": 0.9156626506024097,
+          "delta": 0.0,
+          "center_binary": 0.9285714285714286,
+          "residual_binary": 0.9285714285714286,
+          "delta_binary": 0.0,
+          "swaps": 1
+        },
+        {
+          "video_id": "m6U-5Hck5z0_60.0_210.0",
+          "center": 0.8974358974358974,
+          "residual": 0.9230769230769231,
+          "delta": 0.025641025641025772,
+          "center_binary": 0.9019607843137255,
+          "residual_binary": 0.9803921568627451,
+          "delta_binary": 0.07843137254901955,
+          "swaps": 2
+        },
+        {
+          "video_id": "rAHQY2FHcOo_210.0_360.0",
+          "center": 0.7854545454545455,
+          "residual": 0.7854545454545453,
+          "delta": -2.220446049250313e-16,
+          "center_binary": 0.7906976744186046,
+          "residual_binary": 0.7906976744186046,
+          "delta_binary": 0.0,
+          "swaps": 1
+        },
+        {
+          "video_id": "uJ97MxBs4qU_210.0_360.0",
+          "center": 0.2828282828282829,
+          "residual": 0.2828282828282829,
+          "delta": 0.0,
+          "center_binary": 0.1875,
+          "residual_binary": 0.1875,
+          "delta_binary": 0.0,
+          "swaps": 0
+        },
+        {
+          "video_id": "vprHvWMX1YU_210.0_360.0",
+          "center": 0.8387096774193546,
+          "residual": 0.8774193548387097,
+          "delta": 0.03870967741935505,
+          "center_binary": 0.8679245283018868,
+          "residual_binary": 0.9056603773584906,
+          "delta_binary": 0.037735849056603765,
+          "swaps": 1
+        },
+        {
+          "video_id": "yXR17NNJgdU_210.0_360.0",
+          "center": 0.7972027972027971,
+          "residual": 0.8251748251748251,
+          "delta": 0.027972027972028024,
+          "center_binary": 0.7555555555555555,
+          "residual_binary": 0.8,
+          "delta_binary": 0.04444444444444451,
+          "swaps": 1
+        }
+      ]
+    },
+    "GLOBAL_NO_POSITION": {
+      "macro_center": 0.7167721698300719,
+      "macro_residual": 0.7388856340203654,
+      "macro_delta": 0.02211346419029367,
+      "positive_sources": 7,
+      "macro_center_binary": 0.6579562478443405,
+      "macro_residual_binary": 0.6796827898157494,
+      "macro_delta_binary": 0.021726541971408792,
+      "positive_sources_binary": 5,
+      "source": [
+        {
+          "video_id": "B6AEPicK9Bk_210.0_360.0",
+          "center": 0.638655462184874,
+          "residual": 0.6890756302521008,
+          "delta": 0.05042016806722682,
+          "center_binary": 0.47058823529411764,
+          "residual_binary": 0.47058823529411764,
+          "delta_binary": 0.0,
+          "swaps": 2
+        },
+        {
+          "video_id": "GtJXHRFhm0E_210.0_360.0",
+          "center": 0.5666666666666667,
+          "residual": 0.5833333333333333,
+          "delta": 0.016666666666666607,
+          "center_binary": 0.25,
+          "residual_binary": 0.3125,
+          "delta_binary": 0.0625,
+          "swaps": 1
+        },
+        {
+          "video_id": "HISG6jkZBfs_210.0_360.0",
+          "center": 0.6559999999999999,
+          "residual": 0.752,
+          "delta": 0.09600000000000009,
+          "center_binary": 0.7555555555555555,
+          "residual_binary": 0.8444444444444444,
+          "delta_binary": 0.0888888888888889,
+          "swaps": 2
+        },
+        {
+          "video_id": "P6KTyi4s4Bc_210.0_360.0",
+          "center": 0.9397590361445783,
+          "residual": 0.9397590361445783,
+          "delta": 0.0,
+          "center_binary": 0.9454545454545454,
+          "residual_binary": 0.9454545454545454,
+          "delta_binary": 0.0,
+          "swaps": 1
+        },
+        {
+          "video_id": "bGU97Zw6Jfg_60.0_210.0",
+          "center": 0.7114624505928853,
+          "residual": 0.7035573122529643,
+          "delta": -0.007905138339921014,
+          "center_binary": 0.6666666666666666,
+          "residual_binary": 0.6153846153846154,
+          "delta_binary": -0.05128205128205121,
+          "swaps": 1
+        },
+        {
+          "video_id": "eLlUVxVLiLU_60.0_210.0",
+          "center": 0.5714285714285714,
+          "residual": 0.5892857142857143,
+          "delta": 0.017857142857142905,
+          "center_binary": 0.375,
+          "residual_binary": 0.375,
+          "delta_binary": 0.0,
+          "swaps": 1
+        },
+        {
+          "video_id": "jgvQzWAhoiw_210.0_360.0",
+          "center": 0.9156626506024097,
+          "residual": 0.9156626506024097,
+          "delta": 0.0,
+          "center_binary": 0.9285714285714286,
+          "residual_binary": 0.9285714285714286,
+          "delta_binary": 0.0,
+          "swaps": 1
+        },
+        {
+          "video_id": "m6U-5Hck5z0_60.0_210.0",
+          "center": 0.8974358974358974,
+          "residual": 0.9230769230769231,
+          "delta": 0.025641025641025772,
+          "center_binary": 0.9019607843137255,
+          "residual_binary": 0.9803921568627451,
+          "delta_binary": 0.07843137254901955,
+          "swaps": 2
+        },
+        {
+          "video_id": "rAHQY2FHcOo_210.0_360.0",
+          "center": 0.7854545454545455,
+          "residual": 0.7854545454545453,
+          "delta": -2.220446049250313e-16,
+          "center_binary": 0.7906976744186046,
+          "residual_binary": 0.7906976744186046,
+          "delta_binary": 0.0,
+          "swaps": 1
+        },
+        {
+          "video_id": "uJ97MxBs4qU_210.0_360.0",
+          "center": 0.2828282828282829,
+          "residual": 0.2828282828282829,
+          "delta": 0.0,
+          "center_binary": 0.1875,
+          "residual_binary": 0.1875,
+          "delta_binary": 0.0,
+          "swaps": 0
+        },
+        {
+          "video_id": "vprHvWMX1YU_210.0_360.0",
+          "center": 0.8387096774193546,
+          "residual": 0.8774193548387097,
+          "delta": 0.03870967741935505,
+          "center_binary": 0.8679245283018868,
+          "residual_binary": 0.9056603773584906,
+          "delta_binary": 0.037735849056603765,
+          "swaps": 1
+        },
+        {
+          "video_id": "yXR17NNJgdU_210.0_360.0",
+          "center": 0.7972027972027971,
+          "residual": 0.8251748251748251,
+          "delta": 0.027972027972028024,
+          "center_binary": 0.7555555555555555,
+          "residual_binary": 0.8,
+          "delta_binary": 0.04444444444444451,
+          "swaps": 1
+        }
+      ]
+    }
+  }
+}

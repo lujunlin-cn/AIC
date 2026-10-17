@@ -1,0 +1,88 @@
+{
+  "experiment_id": "R43_IV2_EVENT_COMPLETION_20261017",
+  "status": "FULL_INFERENCE_COMPLETED_READY_TO_UPLOAD",
+  "date": "2026-10-17",
+  "hypothesis": "A video-native 6B representation can distinguish an event's decisive/result state from routine continuation. The gain, if any, should come from temporal semantics and event completion, not from frame novelty or manual-label calibration.",
+  "parent": "R26_POS_CENTER_EXACT085_B3",
+  "primary_changed_factor": "temporal selection only; B3 spatial boxes and exact per-video 85 percent budget remain fixed",
+  "why_now": [
+    "R39/R40/R41 lowered the official score while using frozen 768D state changes, novelty, coverage, or weak gating.",
+    "AHA relevance/informativeness did not beat the center control on the public matched-budget diagnostic.",
+    "The repository already contains the complete OpenGVLab InternVideo2 Stage2 6B checkpoint in a separate local research workspace; the 6B route has not been evaluated on the current 426-video semifinal with the R26 B3 spatial contract.",
+    "The old InternVideo2-1B result used a different 174-video protocol and a native-QVH head, so it does not close this 6B event-semantics route."
+  ],
+  "input_contract": {
+    "source": "official semifinal videos for inference only; no test labels or pseudo-label training",
+    "sampling": "1 fps anchor centers; each anchor uses a four-frame temporal window at offsets -1.5, -0.5, +0.5, +1.5 seconds when available, with boundary replication",
+    "spatial": "copy framewise B3 boxes byte-for-byte from R26 parent",
+    "budget": "k=round(0.85*N) original decoded frames per video, exact frame IDs, no threshold-dependent count"
+  },
+  "score_definition": {
+    "prompt_sets": {
+      "event_positive": [
+        "a decisive highlight moment in a video, showing the key action or result",
+        "the crucial moment of an event, where the important action is happening",
+        "an exciting memorable moment worth keeping in a short video",
+        "a successful action, reveal, demonstration, or strong reaction"
+      ],
+      "routine_negative": [
+        "a routine transition or ordinary continuation with no important event",
+        "a static setup, waiting moment, or uninteresting routine activity",
+        "a blurry or incidental frame that is not worth keeping"
+      ],
+      "phase_preparation": [
+        "an event is being prepared and the key result has not happened yet"
+      ],
+      "phase_decisive": [
+        "the key action or decisive change is happening now"
+      ],
+      "phase_result": [
+        "the result, reveal, or immediate reaction has just occurred"
+      ]
+    },
+    "formula": "rank_fuse(0.75 * z(event_positive - routine_negative + 0.50 * (phase_decisive + phase_result - phase_preparation)), 0.25 * center_rank); top-k by fused rank",
+    "rank_fusion": "within-video percentile ranks; fixed weights are frozen before official inference",
+    "continuity": "no post-hoc smoothing or arbitrary novelty suppression; ties break by original frame ID",
+    "fallback": "if a video has fewer than two valid anchors or non-finite logits, use the parent center mask for that video and record the fallback"
+  },
+  "controls": [
+    "R26 center85+B3 exact parent",
+    "InternVideo2 event-completion score without center rank, same B3 boxes and k",
+    "InternVideo2 event-completion plus fixed center rank, same B3 boxes and k"
+  ],
+  "decision_gate": {
+    "smoke": "all 6 public smoke videos or an equivalent 6-video public set finish with finite logits, prompt order fixed, and frame-to-anchor mapping audited",
+    "promotion": "only a full candidate with zero contract issues, no fallback on more than 2 percent of videos, and a reproducible runtime under the competition window is eligible for upload",
+    "stop": "if the 6B smoke fails to load, has unstable prompt ordering, or cannot preserve exact frame IDs, stop before full inference; if the full route is worse than center on public source-level paired evidence and has no independent mechanism signal, close the route rather than sweep weights",
+    "official_claim": "no local result is an official gain; only a user-uploaded score tied to the ZIP SHA can confirm improvement"
+  },
+  "parameter_budget": {
+    "internvideo2_stage2_6b_declared_upper_bound": 6366500794,
+    "b3_spatial_parent": 450283377,
+    "small_readout_upper_bound": 10000000,
+    "total_upper_bound": 6836784171,
+    "limit": 9000000000,
+    "quantization_note": "quantization changes storage and runtime but does not reduce the declared parameter count"
+  },
+  "resource_budget": {
+    "gpu": "one 32GB AutoDL GPU after a fresh nvidia-smi check",
+    "precision": "FP16/BF16 only after an actual device capability check; FP16 fallback for V100/unsupported BF16",
+    "smoke_wall_clock": "<=45 minutes",
+    "full_inference_wall_clock": "<=10 hours with outer timeout and resumable per-video outputs",
+    "storage": "<=40GB temporary feature/log space plus existing checkpoint; do not copy the 6B checkpoint into Git"
+  },
+  "human_label_relation": "This route is frozen without the V1.3 labels. Later labels may diagnose or calibrate it, but they cannot be used to choose this first smoke formula.",
+  "execution_result": {
+    "videos": 426,
+    "predictions": 199037,
+    "fallback_videos": 0,
+    "runtime_s": 1495.343258915469,
+    "batch88_oom_video_id": "379",
+    "completion_batch_size": 4,
+    "total_declared_params": 6816814181,
+    "predictions_sha256": "925eb721aed41e320ea8c3217b402df41a8bdbb03adfce8c66888103e37c5525",
+    "zip_sha256": "f20b91eadd89c2e6a73fd249a0dcba64078203008f80edf5b9a8902947074cb1",
+    "official_score": 34.95,
+    "delta_from_r26": -1.09
+  }
+}

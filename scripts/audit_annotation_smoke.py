@@ -40,6 +40,8 @@ def main() -> None:
     ap.add_argument("--sheets", type=Path, required=True)
     ap.add_argument("--manual-review", type=Path,
                     help="Optional, separately recorded visual-review findings; never overwrites labels")
+    ap.add_argument("--project-id", type=int, default=1,
+                    help="Label Studio project ID used only to construct repair links")
     args = ap.parse_args()
     raw = json.loads(args.export.read_text())
     qc = json.loads(args.qc_config.read_text())
@@ -275,7 +277,7 @@ def main() -> None:
                                  priority=finding["priority"], issue_codes=";".join(dict.fromkeys(finding["codes"])),
                                  evidence=";".join(dict.fromkeys(finding["evidence"])),
                                  suggested_action="；".join(dict.fromkeys(finding["actions"])),
-                                 task_url=f"http://47.108.220.174:3002/projects/1/data?task={tid}"))
+                                 task_url=f"http://47.108.220.174:3002/projects/{args.project_id}/data?task={tid}"))
     report["automatic_flagged_task_count"] = len({i["task_id"] for i in issues})
     report["review_queue_task_count"] = len(queue)
     report["resources"] = dict(device="CPU", gpu_used=False, wall_seconds=time.perf_counter()-started)

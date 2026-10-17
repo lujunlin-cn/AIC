@@ -1,0 +1,15 @@
+task_id,video_id,time_sec,priority,issue_codes,evidence,suggested_action,task_url
+88,vprHvWMX1YU_210.0_360.0,27.0,repair,unrecorded_crop_feasibility;no_crop_missing_note,automated_contract_check,能画则画一个窗口；确无稳定窗口时记录低或无合理框；检查数据合同；不自动改写标签,http://47.108.220.174:3002/projects/1/data?task=88
+100,eLlUVxVLiLU_60.0_210.0,9.0,repair,unrecorded_crop_feasibility;no_crop_missing_note,automated_contract_check,能画则画一个窗口；确无稳定窗口时记录低或无合理框；检查数据合同；不自动改写标签,http://47.108.220.174:3002/projects/1/data?task=100
+103,eLlUVxVLiLU_60.0_210.0,12.0,repair,positive_missing_context,automated_contract_check,按真实价值证据填写信息依赖，不自动补为当前帧足够,http://47.108.220.174:3002/projects/1/data?task=103
+104,eLlUVxVLiLU_60.0_210.0,13.0,repair,unrecorded_crop_feasibility;no_crop_missing_note,automated_contract_check,能画则画一个窗口；确无稳定窗口时记录低或无合理框；检查数据合同；不自动改写标签,http://47.108.220.174:3002/projects/1/data?task=104
+152,uJ97MxBs4qU_210.0_360.0,1.0,repair,box_on_nonhighlight,automated_contract_check,若0/1等级成立则删除框；不要为保框抬高等级,http://47.108.220.174:3002/projects/1/data?task=152
+186,jgvQzWAhoiw_210.0_360.0,5.0,repair,unrecorded_crop_feasibility;no_crop_missing_note,automated_contract_check,能画则画一个窗口；确无稳定窗口时记录低或无合理框；检查数据合同；不自动改写标签,http://47.108.220.174:3002/projects/1/data?task=186
+211,m6U-5Hck5z0_60.0_210.0,0.0,repair,box_missing_composition_confidence,automated_contract_check,补充构图置信度,http://47.108.220.174:3002/projects/1/data?task=211
+237,m6U-5Hck5z0_60.0_210.0,26.0,repair,box_on_nonhighlight,automated_contract_check,若0/1等级成立则删除框；不要为保框抬高等级,http://47.108.220.174:3002/projects/1/data?task=237
+247,bGU97Zw6Jfg_60.0_210.0,6.0,repair,positive_missing_context,automated_contract_check,按真实价值证据填写信息依赖，不自动补为当前帧足够,http://47.108.220.174:3002/projects/1/data?task=247
+292,GtJXHRFhm0E_210.0_360.0,21.0,repair,box_on_nonhighlight,automated_contract_check,若0/1等级成立则删除框；不要为保框抬高等级,http://47.108.220.174:3002/projects/1/data?task=292
+293,GtJXHRFhm0E_210.0_360.0,22.0,repair,box_on_nonhighlight,automated_contract_check,若0/1等级成立则删除框；不要为保框抬高等级,http://47.108.220.174:3002/projects/1/data?task=293
+295,GtJXHRFhm0E_210.0_360.0,24.0,repair,box_on_nonhighlight,automated_contract_check,若0/1等级成立则删除框；不要为保框抬高等级,http://47.108.220.174:3002/projects/1/data?task=295
+296,GtJXHRFhm0E_210.0_360.0,25.0,repair,box_on_nonhighlight,automated_contract_check,若0/1等级成立则删除框；不要为保框抬高等级,http://47.108.220.174:3002/projects/1/data?task=296
+297,GtJXHRFhm0E_210.0_360.0,26.0,repair,box_on_nonhighlight,automated_contract_check,若0/1等级成立则删除框；不要为保框抬高等级,http://47.108.220.174:3002/projects/1/data?task=297

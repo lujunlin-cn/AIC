@@ -1,0 +1,134 @@
+{
+  "purpose": "same-account repeatability diagnostic; not inter-rater accuracy or official GT",
+  "primary_v13_video_ids": [
+    "GtJXHRFhm0E_210.0_360.0",
+    "bGU97Zw6Jfg_60.0_210.0",
+    "eLlUVxVLiLU_60.0_210.0",
+    "m6U-5Hck5z0_60.0_210.0"
+  ],
+  "n_frames": 120,
+  "input_sha256": {
+    "project1": "65ba0a8de6d7879ecff993a5ff813f0ea1ee64ecf0ba0db94e6172a7bfbc8479",
+    "project2": "7d64274e885c5a59a1b22604889a7f3aa5370a0ebd2cb921f1bb9c04d14d0d98"
+  },
+  "git_commit": "49c83c5227e89f928968be6e5608529172979133",
+  "fields": {
+    "generic_highlight": {
+      "n": 120,
+      "exact_rate": 0.2833333333333333,
+      "within_one_rate": 0.625,
+      "mean_absolute_grade_error": 1.2083333333333333,
+      "kappa": 0.06614785992217898,
+      "linear_weighted_kappa": 0.11719939117199375,
+      "quadratic_weighted_kappa": 0.1850261389096343,
+      "confusion": {
+        "0普通": {
+          "1有信息": 7,
+          "2值得保留": 14,
+          "3高光核心": 14,
+          "0普通": 10
+        },
+        "1有信息": {
+          "2值得保留": 2,
+          "3高光核心": 6
+        },
+        "2值得保留": {
+          "1有信息": 17,
+          "3高光核心": 12,
+          "2值得保留": 2,
+          "0普通": 6
+        },
+        "3高光核心": {
+          "3高光核心": 22,
+          "1有信息": 5,
+          "2值得保留": 3
+        }
+      }
+    },
+    "event_phase": {
+      "n": 120,
+      "exact_rate": 0.4666666666666667,
+      "kappa": 0.16394513389941218
+    },
+    "event_type": {
+      "n": 120,
+      "exact_rate": 0.425,
+      "kappa": 0.264
+    },
+    "confidence": {
+      "n": 120,
+      "exact_rate": 0.7333333333333333,
+      "kappa": -0.032258064516128906
+    },
+    "needs_context": {
+      "n": 55,
+      "exact_rate": 0.4,
+      "kappa": -0.015100671140939593
+    }
+  },
+  "per_source": {
+    "GtJXHRFhm0E_210.0_360.0": {
+      "n": 30,
+      "project1_grade_distribution": {
+        "2值得保留": 11,
+        "0普通": 14,
+        "1有信息": 5
+      },
+      "project2_grade_distribution": {
+        "1有信息": 11,
+        "2值得保留": 8,
+        "3高光核心": 10,
+        "0普通": 1
+      },
+      "exact_grade_rate": 0.03333333333333333,
+      "mean_absolute_grade_error": 1.5333333333333334
+    },
+    "bGU97Zw6Jfg_60.0_210.0": {
+      "n": 30,
+      "project1_grade_distribution": {
+        "0普通": 11,
+        "2值得保留": 9,
+        "3高光核心": 10
+      },
+      "project2_grade_distribution": {
+        "0普通": 8,
+        "1有信息": 6,
+        "2值得保留": 5,
+        "3高光核心": 11
+      },
+      "exact_grade_rate": 0.3333333333333333,
+      "mean_absolute_grade_error": 1.2333333333333334
+    },
+    "eLlUVxVLiLU_60.0_210.0": {
+      "n": 30,
+      "project1_grade_distribution": {
+        "0普通": 20,
+        "3高光核心": 3,
+        "2值得保留": 5,
+        "1有信息": 2
+      },
+      "project2_grade_distribution": {
+        "0普通": 7,
+        "1有信息": 7,
+        "3高光核心": 8,
+        "2值得保留": 8
+      },
+      "exact_grade_rate": 0.2,
+      "mean_absolute_grade_error": 1.6
+    },
+    "m6U-5Hck5z0_60.0_210.0": {
+      "n": 30,
+      "project1_grade_distribution": {
+        "2值得保留": 12,
+        "3高光核心": 17,
+        "1有信息": 1
+      },
+      "project2_grade_distribution": {
+        "1有信息": 5,
+        "3高光核心": 25
+      },
+      "exact_grade_rate": 0.5666666666666667,
+      "mean_absolute_grade_error": 0.4666666666666667
+    }
+  }
+}

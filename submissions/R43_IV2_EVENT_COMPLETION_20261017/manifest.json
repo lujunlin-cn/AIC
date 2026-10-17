@@ -1,0 +1,51 @@
+{
+  "submission_id": "R43_IV2_EVENT_COMPLETION_20261017",
+  "status": "OFFICIAL_SCORE_USER_REPORTED",
+  "uploaded": true,
+  "official_platform_score": 34.95,
+  "mechanism": "InternVideo2 Stage2 6B event-completion temporal ranking + fixed R26 B3 spatial boxes",
+  "parent": "remote LFM_V8_B3_SEMIFINAL predictions (spatial boxes copied framewise)",
+  "changed_factor": "temporal frame selection only; exact per-video round(0.85*N) budget",
+  "video_count": 426,
+  "prediction_count": 199037,
+  "per_video_budget": "round(0.85*N)",
+  "model_parameters": {
+    "internvideo2_stage2": 6366530804,
+    "spatial_b3_parent": 450283377,
+    "total_declared": 6816814181,
+    "limit": 9000000000,
+    "within_limit": true
+  },
+  "inference": {
+    "sampling": "1 second anchors; four frames per anchor at offsets -1.5,-0.5,+0.5,+1.5 seconds with boundary replication",
+    "score": "0.75 event-completion rank + 0.25 center rank",
+    "precision": "FP16 on RTX 4080 32GB",
+    "full_runtime_seconds": 1495.343258915469,
+    "batch_history": "batch=88 completed 379 videos before OOM at video_id 379; batch=4 resumed and completed remaining videos",
+    "fallback_videos": 0,
+    "test_labels_used": false,
+    "pseudo_labels_used": false,
+    "human_labels_used": false
+  },
+  "validation": {
+    "remote_independent_checker": "valid; 426 videos; 199037 predictions; model_size_mb omitted per parent package convention",
+    "remote_contract": "valid; exact budgets, unique sorted in-range frames, target ratios, zero B3 box mismatches",
+    "local_independent_checker": "valid; 426 videos; 199037 predictions",
+    "predictions_sha256": "925eb721aed41e320ea8c3217b402df41a8bdbb03adfce8c66888103e37c5525",
+    "remote_predictions_sha256": "925eb721aed41e320ea8c3217b402df41a8bdbb03adfce8c66888103e37c5525",
+    "remote_index_sha256": "02d52321e82a70cafd33d566319b2ebf5e405af43946d6da32181eccdbc46a93",
+    "remote_b3_parent_sha256": "2e1dd604629df52618ac1c7f11f1623526adbf0d13d186665d4294091fd89b05",
+    "zip_roundtrip": "passed; ZIP root contains only predictions.jsonl and extracted payload is byte-identical"
+  },
+  "reproducibility": {
+    "git_head": "49c83c5227e89f928968be6e5608529172979133",
+    "code_sha256": "15833a04f63392cd6313e03b21b4e9f4ba8c469d04170fe019e3b57f0fddaea4",
+    "config_sha256": "9251001f46265e8c5c7cf554839c6de3b761ed4a377e5ed81c0539ac0e653e8b",
+    "remote_host": "connect.westc.seetacloud.com:22527",
+    "remote_output_dir": "/root/autodl-tmp/experiments/R43_IV2_EVENT_COMPLETION_20261017/full"
+  },
+  "score_source": "user_report_2026-10-17",
+  "zip_sha256": "f20b91eadd89c2e6a73fd249a0dcba64078203008f80edf5b9a8902947074cb1",
+  "zip_bytes": 1396987,
+  "delta_from_r26_baseline": -1.09
+}

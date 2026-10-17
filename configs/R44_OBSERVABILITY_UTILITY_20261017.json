@@ -1,0 +1,83 @@
+{
+  "experiment_id": "R44_OBSERVABILITY_UTILITY_20261017",
+  "status": "DESIGNED_NOT_EXECUTED",
+  "date": "2026-10-17",
+  "parent": "R26_POS_CENTER_EXACT085_B3",
+  "primary_question": "Does a conservative content readout add source-held-out utility beyond center position when the target is separated into generic value, ongoing action, result/reaction, and information dependency?",
+  "evidence_basis": {
+    "r43_score": 34.95,
+    "r26_score": 36.04,
+    "r43_delta": -1.09,
+    "r43_time_only_change": true,
+    "r43_selection_overlap_with_r26": 0.8872,
+    "annotation_tasks": 540,
+    "annotation_structural_errors": 0,
+    "annotation_same_account": true,
+    "annotation_primary_grade_exact_repeatability": 0.2833333333,
+    "annotation_primary_grade_quadratic_kappa": 0.1850261389,
+    "high_grade_ongoing": 279,
+    "high_grade_result_or_reaction": 34,
+    "high_grade_needs_previous_or_audio": 88
+  },
+  "hypothesis": "R43 lost utility because a result-biased video-text score replaced useful ongoing-action frames and ignored audio or preceding/following state. A small readout that keeps ongoing value separate and gates context-dependent evidence should be safer than direct event-completion rank replacement.",
+  "competitive_explanations": [
+    "The labels are too unstable or source-selected to identify a transferable target; any apparent gain will disappear under source-held-out evaluation.",
+    "The relevant content is visible but current low-dimensional features cannot represent it; a larger temporal encoder would then be justified only after the readout test.",
+    "Center position already captures the official prior and content residuals add mostly false positives; the safe baseline should remain unchanged."
+  ],
+  "data_contract": {
+    "public_sources": 12,
+    "unit_of_split": "original source video and source/session, never random frames",
+    "labels": "V1.3 exports preserved per project and per frame; overlap kept as repeated observations, not averaged ground truth",
+    "unknown_policy": "unknown, missing dependency, and unavailable audio remain masked; never recoded to zero",
+    "official_test": "inference only; no labels, pseudo labels, human relabeling, or teacher distillation",
+    "spatial": "do not train from free-ratio annotation boxes; keep B3 fixed for any later candidate"
+  },
+  "diagnostic_arms": [
+    {
+      "id": "D0_CENTER",
+      "features": ["within-video center rank"],
+      "targets": ["generic ordinal grade"],
+      "purpose": "position control"
+    },
+    {
+      "id": "D1_STATIC",
+      "features": ["static RGB quality and composition proxies"],
+      "targets": ["generic ordinal grade", "ongoing-vs-result phase"],
+      "purpose": "static content increment"
+    },
+    {
+      "id": "D2_LOCAL_CONTEXT",
+      "features": ["D1", "frame differences", "short-window state change", "shot-boundary proxy"],
+      "targets": ["generic ordinal grade", "ongoing-vs-result phase", "previous/following dependency"],
+      "purpose": "observable temporal increment"
+    },
+    {
+      "id": "D3_AUDIO_GATE",
+      "features": ["D2", "RMS", "spectral change", "speech/silence reliability mask"],
+      "targets": ["generic ordinal grade", "audio/language dependency"],
+      "purpose": "audio increment and reliability gating"
+    }
+  ],
+  "evaluation": {
+    "split": "leave-one-source-out; duplicate windows from a source stay in the same fold",
+    "readout": "ordinal or soft-label linear/low-rank head with fixed regularization; report per-source macro metrics",
+    "required_reports": ["ordinal MAE", "Spearman", "source-level paired delta", "calibration by confidence", "failure examples"],
+    "screening_gate": "content arm must improve the held-out source median and have a positive paired source effect in the predeclared comparison; otherwise stop before a new encoder",
+    "promotion_gate": "only a frozen function with public source-held-out practical gain, no unresolved label-contract issue, exact round(0.85*N) budget, unchanged B3 boxes, and total inference parameters <=9B may become an upload candidate",
+    "official_claim": "only a user-uploaded ZIP SHA bound to an official score can establish competition improvement"
+  },
+  "resource_budget": {
+    "label_and_feature_audit": "CPU <=60 minutes; media/cache <=2GB",
+    "small_gpu_probe": "<=45 minutes after nvidia-smi; no formal training in this phase",
+    "formal_training": "not launched; if promoted, communicate measured profile first, use timeout 11h50m and recoverable checkpoints, expected <=10.5h",
+    "human_work": "none required to start; optional 30-60 frame second-account blind audit only if the diagnostic result is near the promotion gate"
+  },
+  "stop_rules": [
+    "invalid source/frame/audio alignment or leakage",
+    "no source-held-out increment beyond D0",
+    "gain exists only on the same-account overlap or one source",
+    "content score needs an unconstrained replacement of center frames to appear better",
+    "a proposed candidate changes spatial boxes, budget, or test supervision at the same time"
+  ]
+}

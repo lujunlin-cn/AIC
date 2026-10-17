@@ -1,0 +1,3 @@
+540/540 formal annotations; project1=300, project2=240; same Label Studio user_id=1 in both.
+Matched V1.3 overlap: 120 frames, highlight exact agreement=34/120=0.283333, within-one=75/120=0.625, phase=0.466667, type=0.425.
+Combined high grades 2/3=340; phase ongoing=279/340; explicit previous-context or audio/language dependency=88/340.

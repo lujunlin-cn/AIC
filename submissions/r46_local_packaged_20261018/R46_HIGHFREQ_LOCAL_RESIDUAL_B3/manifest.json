@@ -1,0 +1,19 @@
+{
+  "submission_id": "R46_HIGHFREQ_LOCAL_RESIDUAL_B3",
+  "status": "PACKAGED_NOT_UPLOADED",
+  "uploaded": false,
+  "official_platform_score": null,
+  "parent_submission": "R26_POS_CENTER_EXACT085_B3",
+  "mechanism": "4fps local state residual without semantic anchor, eta=.20",
+  "changed_factor": "temporal frame ranking only; B3 spatial boxes copied from R26",
+  "keep_rule": "round(0.85 * full original frame count)",
+  "video_count": 426,
+  "prediction_count": 199037,
+  "total_parameters": 450283377,
+  "model_params_b": 0.450283377,
+  "model_size_mb": 450.283377,
+  "predictions_sha256": "ebdf0f1869a83ec425a52c127535cd341e0ea5a546221e4dc4997f46c39004dc",
+  "zip_sha256": "b21797bfc812726958084bda2986c55335f13a83b919b63a11438f9536ef7717",
+  "zip_bytes": 1425185,
+  "spatial_boxes_source": "R26_POS_CENTER_EXACT085_B3"
+}

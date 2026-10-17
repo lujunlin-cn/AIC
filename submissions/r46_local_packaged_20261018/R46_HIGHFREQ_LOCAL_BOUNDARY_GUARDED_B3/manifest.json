@@ -1,0 +1,19 @@
+{
+  "submission_id": "R46_HIGHFREQ_LOCAL_BOUNDARY_GUARDED_B3",
+  "status": "PACKAGED_NOT_UPLOADED",
+  "uploaded": false,
+  "official_platform_score": null,
+  "parent_submission": "R26_POS_CENTER_EXACT085_B3",
+  "mechanism": "same local 4fps residual restricted to fixed 5 percent R26 edge bands",
+  "changed_factor": "temporal frame ranking only; B3 spatial boxes copied from R26",
+  "keep_rule": "round(0.85 * full original frame count)",
+  "video_count": 426,
+  "prediction_count": 199037,
+  "total_parameters": 450283377,
+  "model_params_b": 0.450283377,
+  "model_size_mb": 450.283377,
+  "predictions_sha256": "c4126f7d818c60aa7bd4da44fb0d406ff3db1daf9fc8b418f7ec0791d3332e3b",
+  "zip_sha256": "8e868ca389ae8db1c99ca17792c8ab977ca2f53d6e4f69d0f7c344777014e461",
+  "zip_bytes": 1424759,
+  "spatial_boxes_source": "R26_POS_CENTER_EXACT085_B3"
+}

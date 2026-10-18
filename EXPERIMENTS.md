@@ -1250,3 +1250,11 @@ R57=`34.76`、R59=`35.04`，均低于R54=`36.22`。R57的统一`+2s`窗口后移
 
 
 R69全量响应已完成：TimeLens2直接空间query在426/426视频解析成功。发行包`R69_TIMELENS_DIRECT_CENTER_MAXWIN_R54`保留R54帧集合，仅把视频级query中心投影到目标比例最大合法窗口；199,037帧、8,767,123,696参数、无回退，independent checker与semifinal contract通过。预测SHA=`5719062511dc2aca242896371eaed4ca4b30e1cff6a433ab39ee22a187065618`，ZIP SHA=`3f225c4e5cb03bad8178351aee66dbe6669c9844fb5bf028eaf17dcd55b1e8ca`。该包是高风险空间grounding试验，官方分数未知。
+
+## 2026-10-18：R70 candidate utility readout（进行中）
+
+R70与R69直接构图路线不同。R70固定V9 vision-only塔、processor、129合法最大窗口和native crop GT，只重新训练候选效用head。由于当前克隆缺原始V8 B3 `head_s.pt`，新head明确不称B3复现。
+
+公共源级合同：RetargetVid/LIVE train用于训练，RV/LIVE dev按源留出；官方test不读。实现为`scripts/r70_spatial_utility_pilot.py`，冻结协议为`configs/R70_SPATIAL_UTILITY_PILOT.json`。smoke已通过（视觉tensor零缺失/零多余、候选形状`[129,2305]`、训练链可运行）；完整抽取在AutoDL `/root/autodl-tmp/experiments/R70_SPATIAL_UTILITY/full/`。
+
+ promotion gate：新head必须在RV和LIVE两个留出池同时超过center；未过则关闭当前读出路线。通过后才固定R26 center85时间集合重提取426，形成单一空间候选包。

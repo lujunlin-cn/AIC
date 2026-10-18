@@ -1205,3 +1205,11 @@ TimeLens2第二个“窄事件/结果”提示词在12个公开片段上低于ge
 
 
 **R69发行决定（2026-10-18）**：直接TimeLens2空间query全量426/426解析成功；原始query尺度不纳入发行，改为中心投影到最大合法窗口。`R69_TIMELENS_DIRECT_CENTER_MAXWIN_R54`通过完整合同检查，作为最后一个高风险名额候选；R54/R26保持回退，R63/R64/R68不上传。
+
+## 2026-10-18：R70 候选效用读出判别实验
+
+**Decision**：在R69直接构图包之外，启动R70固定候选集合的utility readout实验。它针对“视觉信息存在、B3读出未利用”的假设，不改变时间集合，不把缺失的B3 checkpoint身份补写成可用。
+
+**Evidence**：R46公开native crop审计在同一129候选上观察到稳定oracle gap（LIVE confirmation约`.247`、LIVE dev约`.234`、RV约`.162`），说明候选内仍有可达空间效用；R67仅用空间分歧改变时间选帧后从36.22降至36.16，关闭了无标签分歧启发式。两项证据不能把oracle gap折算官方分数，但共同支持先测候选读出。
+
+**Protocol**：固定V9 vision-only tower、processor、129 legal windows和目标比例；RV/LIVE native crop表按source划分训练与留出；输入沿用V9的2305维候选特征，GPU训练小head，source-macro IoU分别比较RV、LIVE和center。两个留出池同时过门后才重提取426并制作空间单变量包；否则关闭R70。

@@ -1,0 +1,23 @@
+{
+  "experiment_id": "R70_SPATIAL_UTILITY_PILOT",
+  "date": "2026-10-18",
+  "hypothesis": "The V9 vision tokens contain useful crop utility information that the unavailable B3 readout does not fully exploit; a source-disjoint native-crop readout over the same 129 legal windows should beat a center control on held-out public sources.",
+  "change": "Keep V9 vision-only tower, processor contract, 129 legal max windows, and native public crop GT fixed; train a new 2305->512->128 two-attention-layer utility head. This is a new R70 head, not a B3 reproduction.",
+  "data": {
+    "train": ["RetargetVid rv_train", "LIVE live_train"],
+    "dev": ["RetargetVid rv_dev", "LIVE live_dev"],
+    "source_unit": "video/source, never frame-level random split",
+    "official_test": "not read"
+  },
+  "controls": ["center candidate", "frozen/new-readout candidate argmax", "candidate oracle diagnostic"],
+  "primary_metric": "source-level macro candidate IoU, separately on RV and LIVE",
+  "promotion_gate": "new readout beats center on both held-out source pools; B3 identity is unavailable so no B3 claim is permitted",
+  "stop_if": ["missing vision tensors or processor mismatch", "public source coverage cannot be reproduced", "new readout below center on either held-out pool"],
+  "remote": {
+    "host": "connect.westc.seetacloud.com:22527",
+    "vision_dir": "/root/autodl-tmp/evac/data/aic/experiments_910a/LFM_V9/vision_only_model",
+    "processor_dir": "/root/autodl-tmp/experiments/R16_ENV/lfm_processor",
+    "t5_tables": "/root/autodl-tmp/evac/data/aic/experiments/T5_CROPHEAD_V3/tables",
+    "output": "/root/autodl-tmp/experiments/R70_SPATIAL_UTILITY"
+  }
+}

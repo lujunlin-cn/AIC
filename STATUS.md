@@ -325,3 +325,9 @@ R57=`34.76`（统一后移2秒）和R59=`35.04`（4fps端点/区间集成）均�
 
 
 R69已形成可上传高风险包`submissions/R69_TIMELENS_DIRECT_CENTER_MAXWIN_R54/`：TimeLens2完整视频空间grounding中心→最大合法窗口，R54时间集合不变；426/426、199037条、8.767B参数、无回退，checker/contract通过。预测SHA=`5719062511dc2aca242896371eaed4ca4b30e1cff6a433ab39ee22a187065618`，ZIP SHA=`3f225c4e5cb03bad8178351aee66dbe6669c9844fb5bf028eaf17dcd55b1e8ca`。这是最后名额唯一结构性高风险候选；R63/R64及R68变体禁止上传。
+
+### 2026-10-18：R70 空间候选效用读出启动
+
+R69“TimeLens2直接构图框”与R70严格分开。R70针对另一条假设：在固定V9 vision-only塔和129合法窗口下，重新训练候选效用读出，检验空间信息是否已存在于视觉token而只在读出层丢失。原始V8 B3 `head_s.pt`仍缺失，因此R70 head不称B3复现。
+
+R70 smoke已通过视觉197 tensor覆盖、processor合同和`[129,2305]`特征/训练链；完整RV/LIVE source-disjoint public native crop抽取已迁移到远端`/root/autodl-tmp/experiments/R70_SPATIAL_UTILITY/full/`运行。只有RV与LIVE两个留出池都超过中心，才考虑R26 center85时间集合上的426空间单变量包。

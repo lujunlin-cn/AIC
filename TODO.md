@@ -349,3 +349,11 @@ R44_DIAG_001已完成CPU留一：局部状态描述子使通用等级MAE 1.0668�
 - [x] 在人工标签上严格复现音频5%交换为负，停止音频主线。
 - [ ] 等待官方回分后按机制判别更新候选优先级；不根据一次回分做系数扫描。
 - [ ] 如需下一结构突破，运行TimeLens同权重的直接空间grounding smoke；只有解析率和小样本native构图代理通过才做426全量。
+
+## 2026-10-18 R70 空间候选效用读出
+
+- [x] 与R69直接TimeLens构图包分离命名；确认原始V8 B3 head缺失，不冒称复现。
+- [x] 完成R70 smoke：V9 vision tensor/processor合同、129候选`2305`维特征和新head训练链通过。
+- [ ] 完成RV/LIVE source-disjoint train+dev特征抽取与readout训练：远端`/root/autodl-tmp/experiments/R70_SPATIAL_UTILITY/full/`。
+- [ ] 报告RV、LIVE分别的新head/center/oracle源级IoU；任一留出池不超过中心即关闭R70。
+- [ ] 仅在公共门通过后固定R26 center85时间集合，重提取426 V9空间候选并制作一个空间单变量包。

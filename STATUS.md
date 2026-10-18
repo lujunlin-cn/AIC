@@ -262,3 +262,52 @@ R53低维音频统计没有超过D3：audio-only公共代理`+0.00749`，RGB+aud
 R54把TimeLens2区间从硬替换改为中心锚定`eta=.20`残差。公共12源18视图中心`.704417`→R47硬区间`.721327`→R54`.729414`，R54相对中心`+.024997`、10/18视图为正。已生成并审计`submissions/R54_TIMELENS_CENTER_RESIDUAL_V9_B3/`：426/426、199037帧、参数`8.854531425B`，independent checker和semifinal contract均通过；ZIP SHA=`1e0f92f2292da0c057aa9b45a27134783af4def37a60c95ffde6d8fa9a8ae210`。V9 artifact资格条件与R47相同，官方分数为空。
 
 如果只试一至两包，当前建议优先 **R46 D3局部残差** 与 **R54 TimeLens2中心残差**；R26保持安全锚，R44保留为已知36.09对照。R54不是官方涨分承诺，上传后必须绑定平台显示参数和SHA。
+
+## 2026-10-18：R54/R46 官方回分复盘与激进主线
+
+用户回报 **R54=36.22、R46=35.88**。相对 R26=36.04，R54 为 `+0.18`，R46 为 `-0.16`；R44=36.09 仍作为弱正对照。R46 的预测 SHA 为 `ebdf0f18...39004dc`、ZIP SHA 为 `be52cfd4...4e1b3a`；R54 的预测 SHA 为 `62371bc5...d033983e`、ZIP SHA 为 `1e0f92f2...8ae210`。平台上传 SHA 尚未独立核验。
+
+R46 只替换时间集合，B3 框逐项继承 R26，换帧 5,636、424/426 视频，故其官方负分直接削弱 4fps 灰度局部状态残差的跨域迁移假设。停止 D3/R46 同类微扰、eta/边界扫描和把公共人工标签代理当官方收益。
+
+R54 与 R26 换帧 6,152、417/426 视频，且 V9 空间框在共享选中帧中改变 28,730/199,037（153 个视频），所以 `+0.18` 是 TimeLens2 时间、V9 空间及交互的联合证据。R54 的选择在 425/426 个视频近似连续 85% 窗口，中心位置均值 `.49957→.52344`，区间覆盖仅 `.75695→.76531`；删除主要在早端、增加主要在晚端。当前最强解释是 TimeLens2 估计了可迁移的视频级后段相位，而不是散乱逐帧高光。
+
+完整复盘见 [`reports/r54_r46_official_postmortem_20261018/summary.md`](reports/r54_r46_official_postmortem_20261018/summary.md)，逐帧差异见 [`reports/r54_timelens_center_residual_20261018/package_diff_20261018.md`](reports/r54_timelens_center_residual_20261018/package_diff_20261018.md)。
+
+### 激进路线正在执行
+
+AutoDL 新启动 **R55 dense TimeLens2**：同一 8.767B TimeLens2、同一 generic prompt、同一 V9 vision-only 空间组件，输入由 2fps 提高到 4fps，固定 `320×320` 上限和确定性解码。10 视频 smoke 已显示区间发生结构性变化（例如视频 0 从 `[[3,10]]` 变为 `[[0,5],[7,9]]`），全量 426 视频推理在 `/root/autodl-tmp/r55_dense_full/` 后台运行。该路线测试事件边界观测缺失，完成后生成独立高风险上传包。
+
+已完成两个不扫系数的解码控制：`R55_TIMELENS_EVENT_PHASE_V9_B3`（显式完成相位，主要用于机制对照）和 `R56_TIMELENS_EVENT_EDGE_V9_B3`（区间端点性）。R56 公共 18 视图 proxy 比 R54 高约 `.00170`，但仍无官方确认；包为 426/426、199037、8.854531425B，ZIP SHA=`43845ef4085e65985c768a7c9391e895d28ed0c89f0d04ef69bc3801da96f455`。
+
+下一批额度的结构优先级：
+
+1. R47_V9_B3_CENTER85：隔离 V9 空间贡献；
+2. dense 4fps TimeLens2 + V9：测试观测密度；
+3. R56 endpoint residual：测试事件端点先验；
+4. R54 保留为当前最高回分锚；
+5. R26 保留安全回退。
+
+不再把 R46、R48 或人工低级残差路线列为突破候选。
+
+R57 已完成固定后移控制：每视频精确中心85%窗口统一后移2.0秒，使用V9 vision-only空间，426/426、199037、参数0.087407729B，独立checker通过。预测 SHA=`c1fc69324a7dafa3c2faca2de80af24438c20df466b3dfb5cf9815eaacae84c9`，ZIP SHA=`eac6c8610a43f6bb20b536018984febc683ac97ebf0ea3b986acb50f681f7fce`。公共18视图 proxy 高于R54，但这是竞争解释控制，不是官方涨分承诺。报告见`reports/r57_fixed_late_window_20261018/summary.md`。
+
+### R58 音频瞬态正交路线（2026-10-18）
+
+R58在R54 TimeLens集合上按固定5%交换引入无参数dense audio novelty；同一12源18视图人工标签的严格公共proxy为soft `-0.00592`、binary `-0.00585`（2/18视图正），因此该路线没有进入明日高优先级提交。完整426包仍保留在`submissions/R58_TIMELENS_AUDIO_NOVELTY_V9_B3/`，独立checker通过，386/426视频有音频、共9515帧变化；新增帧复用R26 B3全帧框，存在小空间artifact混杂。复现脚本为`scripts/r58_extract_test_audio.py`、`scripts/r58_public_audio_probe.py`和`scripts/r58_audio_novelty_package.py`，报告为`reports/r58_public_audio_probe_20261018.json`。
+
+
+## 2026-10-18：超级激进候选完成
+
+R54仍是已核实最高官方分（36.22）；R26为36.04安全锚。R46=35.88，低级RGB残差停止。
+
+已完成并通过独立checker/ZIP往返的高风险候选：
+
+- `R59_TIMELENS4FPS_MASK_EDGE_ENSEMBLE_V9_B3`：TimeLens2 4fps密集观测，响应SHA `bf712c77d94cdfd41d07e1d9aa0ec2719bd33328787df43662d96d6a64dc1906`，ZIP SHA `ef46457ab64b9a6d2a160cf45ba60ec75f2139fe2f74209470cc4da162cdad76`，8.855B。
+- `R63_JOINT_V9_DISAGREEMENT_G1`：TimeLens区间 + V9/R26空间分歧，ZIP SHA `463c9c2c7d7c70137aa4da44ec14768816a89353d5fb3a44dcd65d5bb699f556`，8.855B。
+- `R64_JOINT_V9_STABILITY_GM1`：相反空间稳定性控制，ZIP SHA `84320541b0250384613124133c39c478686837b83f35f7780ebe4734f8658216`，8.855B。
+- `R65_TIMELENS4FPS_RESIDUAL_V9_B3`：4fps二值区间残差，ZIP SHA `70b41e0493a67e614ce0233e62e2c1040e2279f4fabd540f5be7b788535129a5`。
+- `R66_TIMELENS4FPS_MASK_EDGE_V9_B3`：4fps端点集成，ZIP SHA `369fe63a56bea9dc8bdce0a12c72e8a090577a2c18c19272a8e09a8bc125dc28`。
+
+R59/R60/R61/R62旧稿因FPS索引/浮点边界问题全部标记作废，不得上传。R58音频候选公共严格复现为负（soft -0.00592），只保留为最后风险备份。
+
+**当前瓶颈判断**：R54的正效应很可能来自视频级后段相位修正；R59密集观测测试动作边界是否可见，R63/R64测试空间读出变化是内容转移还是不稳定噪声。所有新候选仍无官方回分，不能把代理或结构差异写成收益。

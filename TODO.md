@@ -322,3 +322,27 @@ R44_DIAG_001已完成CPU留一：局部状态描述子使通用等级MAE 1.0668�
 - [x] 生成并审计`submissions/R54_TIMELENS_CENTER_RESIDUAL_V9_B3/`：426/426、199037、8.854531425B、contract/checker通过。
 - [ ] 明日若试水，优先上传R46与R54；记录官方分数、平台参数字段和上传SHA。
 - [ ] 若R54低于R26，停止TimeLens2硬/残差解码微调；若高于R47，保留中心锚定规则并分析V9空间分层。
+
+## 2026-10-18：R54/R46回分后的激进执行
+
+- [x] 记录R46=35.88、R54=36.22，并完成包SHA、换帧、位置、V9空间混杂复盘。
+- [x] 明确停止D3/R46低级RGB残差族；报告见`reports/r54_r46_official_postmortem_20261018/summary.md`。
+- [x] 生成R56 `TIMELENS_EVENT_EDGE_V9_B3`：端点性结构候选，426/426、199037、8.854531425B，ZIP SHA `43845ef4085e65985c768a7c9391e895d28ed0c89f0d04ef69bc3801da96f455`。
+- [ ] 完成AutoDL R55_DENSE 4fps TimeLens2全量426推理，保存原始响应SHA、环境和日志。
+- [ ] 用同一V9空间父集从4fps响应生成一个独立候选，运行checker、contract、ZIP往返并绑定SHA。
+- [ ] 下一提交额度优先：R47_V9_B3_CENTER85空间隔离、R55_DENSE观测密度、R56端点性；R54为最高回分锚，R26为安全回退。
+- [ ] 不再提交R46/R48或扫描eta、alpha、keep；除非新观测给出结构证据。
+
+- [x] 构建R57_FIXED_LATE2S_V9_B3固定+2秒后移竞争控制；426/426、199037、checker通过。
+- [ ] 将R57与R47_V9_B3_CENTER85、R56、dense 4fps候选放入下一批提交的结构对照；不再加入未区分机制的重复包。
+- [x] 完成R58 dense audio novelty 5%交换激进试验；公共proxy为负（soft -0.00592），不占正式提交名额，包仅保留为最后风险备选。
+
+
+## 2026-10-18：明日五个额度前
+
+- [x] 完成TimeLens2 4fps全量426响应并记录SHA。
+- [x] 生成4fps residual/endpoint候选R65/R66及更激进R59，完成预算、checker、ZIP往返审计。
+- [x] 生成真实FPS且中心表达式严格复现的联合空间分歧/稳定性候选R63/R64；作废R59–R62旧稿。
+- [x] 在人工标签上严格复现音频5%交换为负，停止音频主线。
+- [ ] 等待官方回分后按机制判别更新候选优先级；不根据一次回分做系数扫描。
+- [ ] 如需下一结构突破，运行TimeLens同权重的直接空间grounding smoke；只有解析率和小样本native构图代理通过才做426全量。

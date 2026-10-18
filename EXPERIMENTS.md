@@ -1161,3 +1161,14 @@ V9候选ZIP SHA=`436e9156c8fd55a04cae88840da95f177d633ae6b3e08665db8918f29c88c56
 报告与可复算脚本：`reports/r49_event_phase_residual_probe_20261018.json`、`reports/r50_global_context_ablation_20261018.json`、`reports/r51_persistent_transition_probe_20261018.json`、`reports/r52_optical_flow_probe_20261018.json` 及对应 `scripts/r49_*.py`–`scripts/r52_*.py`。这些是公共机制诊断，不是官方联合F。
 
 **Action**：D3/R46仍是时间侧首选；R48只作为固定共识门控控制包等待结构审计。研究资源转向TimeLens2合规候选和V9空间独立对照，不继续堆叠时间特征。
+
+## 2026-10-18：R53 输入/条件残差判别与 R54 TimeLens2 中心残差
+
+| 实验 | 机制 | 公共源级结果 | 决定 |
+|---|---|---:|---|
+| R53_AUDIO | RMS、频带、谱质心、ZCR等低维音频描述子；与RGB局部状态比较 | audio-only `+0.00749`，RGB+audio `+0.01162`；二值分别 `+0.00854/+0.01540` | 低维音频没有超过D3，停止直接音频残差；不生成包 |
+| R53_QUALITY | 固定画质/运动交互条件化D2 | D2 `+0.02235`；质量交互 `+0.01498` | 画质门控过拟合，停止 |
+| R53_PHASE_PRED | 从RGB预测事件阶段再交互 | `+0.02473`，阶段准确率`.6333`，相对D2仅`+0.00238`，CI跨零 | 不生成包；需新语义输入才能继续 |
+| R54_TL_RESIDUAL | TimeLens2区间掩码只作中心排序的固定`eta=.20` residual | 中心`.704417`→硬区间`.721327`（`+.01691`）→R54`.729414`（`+.024997`，10/18正） | 形成提交候选，替代硬区间作为TimeLens2首选 |
+
+R54完整包已通过独立 checker 和 semifinal contract：426/426、199037帧、`8.854531425B`参数；V9空间artifact资格条件与R47相同。包路径为`submissions/R54_TIMELENS_CENTER_RESIDUAL_V9_B3/`，ZIP SHA=`1e0f92f2292da0c057aa9b45a27134783af4def37a60c95ffde6d8fa9a8ae210`。公共区间来自缓存的TimeLens2代理报告，官方测试仅用于合法推理，未参与拟合或调参。

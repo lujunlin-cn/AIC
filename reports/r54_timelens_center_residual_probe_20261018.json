@@ -1,0 +1,351 @@
+{
+  "experiment_id": "R54_TIMELENS_CENTER_RESIDUAL_PROBE",
+  "status": "PUBLIC_SOURCE_HELD_OUT_COMPLETED",
+  "hypothesis": "TimeLens2 interval evidence is useful as a small correction around center ranking, while hard replacement is too aggressive",
+  "eta": 0.2,
+  "rows": 540,
+  "sources": 12,
+  "views": 18,
+  "macro": {
+    "base": 0.7044166125715307,
+    "direct": 0.7213272844075462,
+    "residual": 0.7294138300476862,
+    "residual_delta": 0.024997217476155572,
+    "base_binary": 0.7103855931079021,
+    "residual_binary": 0.7432549111649744,
+    "residual_binary_delta": 0.03286931805707242
+  },
+  "positive_views": {
+    "direct": 6,
+    "residual": 10
+  },
+  "responses_sha256": "340efde7e91f66eb068ec42b93177cd558fdfba8b2c240ccceddda48d79da86d",
+  "per_view": [
+    {
+      "video_id": "B6AEPicK9Bk_210.0_360.0",
+      "stream": 0,
+      "base": 0.752,
+      "direct": 0.752,
+      "residual": 0.752,
+      "residual_delta": 0.0,
+      "base_binary": 0.7906976744186046,
+      "residual_binary": 0.7906976744186046,
+      "residual_binary_delta": 0.0,
+      "intervals": [
+        [
+          13.0,
+          25.0
+        ]
+      ]
+    },
+    {
+      "video_id": "B6AEPicK9Bk_210.0_360.0",
+      "stream": 1,
+      "base": 0.5132743362831859,
+      "direct": 0.5132743362831859,
+      "residual": 0.5663716814159292,
+      "residual_delta": 0.053097345132743334,
+      "base_binary": 0.30303030303030304,
+      "residual_binary": 0.36363636363636365,
+      "residual_binary_delta": 0.06060606060606061,
+      "intervals": [
+        [
+          13.0,
+          25.0
+        ]
+      ]
+    },
+    {
+      "video_id": "GtJXHRFhm0E_210.0_360.0",
+      "stream": 0,
+      "base": 0.36190476190476195,
+      "direct": 0.4,
+      "residual": 0.4,
+      "residual_delta": 0.03809523809523807,
+      "base_binary": 0.3783783783783784,
+      "residual_binary": 0.43243243243243246,
+      "residual_binary_delta": 0.05405405405405406,
+      "intervals": [
+        [
+          8.0,
+          11.0
+        ],
+        [
+          23.0,
+          29.0
+        ]
+      ]
+    },
+    {
+      "video_id": "GtJXHRFhm0E_210.0_360.0",
+      "stream": 1,
+      "base": 0.7259259259259261,
+      "direct": 0.7999999999999998,
+      "residual": 0.8,
+      "residual_delta": 0.07407407407407396,
+      "base_binary": 0.7272727272727273,
+      "residual_binary": 0.8181818181818182,
+      "residual_binary_delta": 0.09090909090909094,
+      "intervals": [
+        [
+          8.0,
+          11.0
+        ],
+        [
+          23.0,
+          29.0
+        ]
+      ]
+    },
+    {
+      "video_id": "HISG6jkZBfs_210.0_360.0",
+      "stream": 0,
+      "base": 0.6559999999999999,
+      "direct": 0.752,
+      "residual": 0.752,
+      "residual_delta": 0.09600000000000009,
+      "base_binary": 0.7555555555555555,
+      "residual_binary": 0.8444444444444444,
+      "residual_binary_delta": 0.0888888888888889,
+      "intervals": [
+        [
+          12.0,
+          29.0
+        ]
+      ]
+    },
+    {
+      "video_id": "P6KTyi4s4Bc_210.0_360.0",
+      "stream": 1,
+      "base": 0.9397590361445783,
+      "direct": 0.9397590361445783,
+      "residual": 0.9397590361445783,
+      "residual_delta": 0.0,
+      "base_binary": 0.9454545454545454,
+      "residual_binary": 0.9454545454545454,
+      "residual_binary_delta": 0.0,
+      "intervals": [
+        [
+          0.0,
+          8.0
+        ],
+        [
+          9.0,
+          29.0
+        ]
+      ]
+    },
+    {
+      "video_id": "bGU97Zw6Jfg_60.0_210.0",
+      "stream": 0,
+      "base": 0.7619047619047619,
+      "direct": 0.6666666666666666,
+      "residual": 0.7142857142857143,
+      "residual_delta": -0.04761904761904756,
+      "base_binary": 0.8444444444444444,
+      "residual_binary": 0.8,
+      "residual_binary_delta": -0.0444444444444444,
+      "intervals": [
+        [
+          0.0,
+          9.0
+        ],
+        [
+          18.0,
+          29.0
+        ]
+      ]
+    },
+    {
+      "video_id": "bGU97Zw6Jfg_60.0_210.0",
+      "stream": 1,
+      "base": 0.6614173228346457,
+      "direct": 0.7401574803149606,
+      "residual": 0.6929133858267718,
+      "residual_delta": 0.03149606299212604,
+      "base_binary": 0.6666666666666666,
+      "residual_binary": 0.7142857142857143,
+      "residual_binary_delta": 0.04761904761904767,
+      "intervals": [
+        [
+          0.0,
+          9.0
+        ],
+        [
+          18.0,
+          29.0
+        ]
+      ]
+    },
+    {
+      "video_id": "eLlUVxVLiLU_60.0_210.0",
+      "stream": 0,
+      "base": 0.42424242424242425,
+      "direct": 0.42424242424242425,
+      "residual": 0.4242424242424242,
+      "residual_delta": -5.551115123125783e-17,
+      "base_binary": 0.47058823529411764,
+      "residual_binary": 0.47058823529411764,
+      "residual_binary_delta": 0.0,
+      "intervals": [
+        [
+          6.0,
+          11.0
+        ]
+      ]
+    },
+    {
+      "video_id": "eLlUVxVLiLU_60.0_210.0",
+      "stream": 1,
+      "base": 0.688,
+      "direct": 0.688,
+      "residual": 0.72,
+      "residual_delta": 0.03200000000000003,
+      "base_binary": 0.6666666666666666,
+      "residual_binary": 0.7142857142857143,
+      "residual_binary_delta": 0.04761904761904767,
+      "intervals": [
+        [
+          6.0,
+          11.0
+        ]
+      ]
+    },
+    {
+      "video_id": "jgvQzWAhoiw_210.0_360.0",
+      "stream": 0,
+      "base": 0.9156626506024097,
+      "direct": 0.9156626506024097,
+      "residual": 0.9156626506024097,
+      "residual_delta": 0.0,
+      "base_binary": 0.9285714285714286,
+      "residual_binary": 0.9285714285714286,
+      "residual_binary_delta": 0.0,
+      "intervals": [
+        [
+          0.0,
+          29.0
+        ]
+      ]
+    },
+    {
+      "video_id": "m6U-5Hck5z0_60.0_210.0",
+      "stream": 0,
+      "base": 0.8831168831168831,
+      "direct": 0.8831168831168831,
+      "residual": 0.8831168831168831,
+      "residual_delta": 0.0,
+      "base_binary": 0.9090909090909091,
+      "residual_binary": 0.9090909090909091,
+      "residual_binary_delta": 0.0,
+      "intervals": [
+        [
+          9.0,
+          24.0
+        ]
+      ]
+    },
+    {
+      "video_id": "m6U-5Hck5z0_60.0_210.0",
+      "stream": 1,
+      "base": 0.9113924050632912,
+      "direct": 0.9113924050632912,
+      "residual": 0.9367088607594938,
+      "residual_delta": 0.025316455696202556,
+      "base_binary": 0.9019607843137255,
+      "residual_binary": 0.9411764705882353,
+      "residual_binary_delta": 0.039215686274509776,
+      "intervals": [
+        [
+          9.0,
+          24.0
+        ]
+      ]
+    },
+    {
+      "video_id": "rAHQY2FHcOo_210.0_360.0",
+      "stream": 0,
+      "base": 0.8333333333333334,
+      "direct": 0.8194444444444443,
+      "residual": 0.8333333333333334,
+      "residual_delta": 0.0,
+      "base_binary": 0.9433962264150944,
+      "residual_binary": 0.9433962264150944,
+      "residual_binary_delta": 0.0,
+      "intervals": [
+        [
+          0.0,
+          24.0
+        ]
+      ]
+    },
+    {
+      "video_id": "rAHQY2FHcOo_210.0_360.0",
+      "stream": 1,
+      "base": 0.7328244274809161,
+      "direct": 0.7786259541984732,
+      "residual": 0.7328244274809161,
+      "residual_delta": 0.0,
+      "base_binary": 0.7441860465116279,
+      "residual_binary": 0.7441860465116279,
+      "residual_binary_delta": 0.0,
+      "intervals": [
+        [
+          0.0,
+          24.0
+        ]
+      ]
+    },
+    {
+      "video_id": "uJ97MxBs4qU_210.0_360.0",
+      "stream": 0,
+      "base": 0.2828282828282829,
+      "direct": 0.36363636363636365,
+      "residual": 0.36363636363636365,
+      "residual_delta": 0.08080808080808077,
+      "base_binary": 0.1875,
+      "residual_binary": 0.3125,
+      "residual_binary_delta": 0.125,
+      "intervals": [
+        [
+          10.0,
+          29.0
+        ]
+      ]
+    },
+    {
+      "video_id": "vprHvWMX1YU_210.0_360.0",
+      "stream": 0,
+      "base": 0.8387096774193546,
+      "direct": 0.8387096774193546,
+      "residual": 0.8774193548387097,
+      "residual_delta": 0.03870967741935505,
+      "base_binary": 0.8679245283018868,
+      "residual_binary": 0.9056603773584906,
+      "residual_binary_delta": 0.037735849056603765,
+      "intervals": [
+        [
+          9.0,
+          25.0
+        ]
+      ]
+    },
+    {
+      "video_id": "yXR17NNJgdU_210.0_360.0",
+      "stream": 1,
+      "base": 0.7972027972027971,
+      "direct": 0.7972027972027971,
+      "residual": 0.8251748251748251,
+      "residual_delta": 0.027972027972028024,
+      "base_binary": 0.7555555555555555,
+      "residual_binary": 0.8,
+      "residual_binary_delta": 0.04444444444444451,
+      "intervals": [
+        [
+          10.0,
+          20.0
+        ]
+      ]
+    }
+  ]
+}

@@ -2,7 +2,7 @@
   "status": "PACKAGED_NOT_UPLOADED",
   "submission_limit_tomorrow": 5,
   "index": "reports/r47_timelens2_index_enriched_426.jsonl",
-  "selection_principle": "keep the known score anchor, one calibrated residual, one high-frequency residual, and a TimeLens2/V9 time-space pair",
+  "selection_principle": "keep the known score anchor, the known calibrated residual, D3 local residual, and the strongest TimeLens2 centre-anchored residual plus V9 spatial control",
   "candidates": [
     {
       "rank": 1,
@@ -37,14 +37,14 @@
     },
     {
       "rank": 4,
-      "role": "TimeLens2 temporal plus V9 vision-only spatial",
-      "submission_id": "R47_TIMELENS2_V9_B3",
-      "path": "submissions/r47_final_candidates_20261018/R47_TIMELENS2_V9_B3",
+      "role": "TimeLens2 centre-anchored residual plus V9 vision-only spatial",
+      "submission_id": "R54_TIMELENS_CENTER_RESIDUAL_V9_B3",
+      "path": "submissions/R54_TIMELENS_CENTER_RESIDUAL_V9_B3",
       "official_score": null,
-      "public_proxy_delta": 0.01691,
+      "public_proxy_delta": 0.024997217476155572,
       "model_params_b": 8.854531425,
-      "predictions_sha256": "b177c6b389c4804479ba0923b63c13ab0d08a355479a420e68c6737f3974cb30",
-      "zip_sha256": "067f9a47095bb8e7e3a2231ed2829358ef07e0246f94294d1941685e536be9e3"
+      "predictions_sha256": "62371bc54d62b72eafd7168898ab5b23fad79a6c252ebde458b8fc78d033983e",
+      "zip_sha256": "1e0f92f2292da0c057aa9b45a27134783af4def37a60c95ffde6d8fa9a8ae210"
     },
     {
       "rank": 5,
@@ -60,10 +60,11 @@
   ],
   "excluded": {
     "R48_CONSENSUS_GATED_RESIDUAL_B3": "same D3 family as R46; public gate gain is small and consumes a slot better used by the TimeLens2/V9 control pair",
-    "R49_R52": "diagnostic-only mechanisms below D3; no package"
+    "R49_R52": "diagnostic-only mechanisms below D3; no package",
+    "R47_TIMELENS2_V9_B3": "hard interval replacement retained as a mechanism control; R54 public proxy is stronger and uses the same TimeLens2/V9 artifacts"
   },
   "audit": {
-    "all_candidates_checker": "independent_submission_check_v1 passed",
+    "all_candidates_checker": "independent_submission_check_v1 passed for frozen set; R54 additionally passed aic.contract semifinal",
     "all_candidates_videos": 426,
     "all_candidates_predictions": 199037,
     "all_candidates_exact_budget": true,

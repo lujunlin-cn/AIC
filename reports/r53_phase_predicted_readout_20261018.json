@@ -1,0 +1,261 @@
+{
+  "experiment_id": "R53_PHASE_PREDICTED_READOUT",
+  "status": "PUBLIC_SOURCE_HELD_OUT_COMPLETED",
+  "rows": 540,
+  "sources": 12,
+  "views": 18,
+  "fixed_eta": 0.2,
+  "fixed_ridge_alpha": 10.0,
+  "classes": [
+    "完成或结果",
+    "无事件或无法判断",
+    "结果后反应",
+    "进行中",
+    "铺垫"
+  ],
+  "hypothesis": "human event-phase interaction remains useful when phase is predicted from observable RGB/state features",
+  "macro_mae": 1.1276605923837584,
+  "macro_rho": 0.14373032660197518,
+  "macro_phase_accuracy": 0.6333333333333334,
+  "macro_proxy_delta": 0.024726231678211356,
+  "positive_views": 10,
+  "folds": [
+    {
+      "video_id": "B6AEPicK9Bk_210.0_360.0",
+      "mae": 1.1733708755065115,
+      "rho": 0.17296007316853657,
+      "phase_accuracy": 0.48333333333333334
+    },
+    {
+      "video_id": "GtJXHRFhm0E_210.0_360.0",
+      "mae": 0.9497792411580498,
+      "rho": 0.37070668866485745,
+      "phase_accuracy": 0.6
+    },
+    {
+      "video_id": "HISG6jkZBfs_210.0_360.0",
+      "mae": 0.990505957551158,
+      "rho": 0.4277448959501927,
+      "phase_accuracy": 0.7666666666666667
+    },
+    {
+      "video_id": "P6KTyi4s4Bc_210.0_360.0",
+      "mae": 1.7917852047135094,
+      "rho": -0.3110855084191276,
+      "phase_accuracy": 1.0
+    },
+    {
+      "video_id": "bGU97Zw6Jfg_60.0_210.0",
+      "mae": 1.5195477125340384,
+      "rho": -0.23228638832379142,
+      "phase_accuracy": 0.5333333333333333
+    },
+    {
+      "video_id": "eLlUVxVLiLU_60.0_210.0",
+      "mae": 1.2075208370536765,
+      "rho": -0.22530353185962973,
+      "phase_accuracy": 0.36666666666666664
+    },
+    {
+      "video_id": "jgvQzWAhoiw_210.0_360.0",
+      "mae": 0.8306501549542143,
+      "rho": -0.27790046198702956,
+      "phase_accuracy": 0.9
+    },
+    {
+      "video_id": "m6U-5Hck5z0_60.0_210.0",
+      "mae": 1.1789997506428922,
+      "rho": 0.23253526931584184,
+      "phase_accuracy": 0.5666666666666667
+    },
+    {
+      "video_id": "rAHQY2FHcOo_210.0_360.0",
+      "mae": 0.6329563751481655,
+      "rho": 0.4042141442114922,
+      "phase_accuracy": 0.75
+    },
+    {
+      "video_id": "uJ97MxBs4qU_210.0_360.0",
+      "mae": 1.4739886595568135,
+      "rho": 0.6200833947901829,
+      "phase_accuracy": 0.16666666666666666
+    },
+    {
+      "video_id": "vprHvWMX1YU_210.0_360.0",
+      "mae": 0.9234770436149724,
+      "rho": 0.33551152353291436,
+      "phase_accuracy": 0.9
+    },
+    {
+      "video_id": "yXR17NNJgdU_210.0_360.0",
+      "mae": 0.8593452961710992,
+      "rho": 0.20758382017926233,
+      "phase_accuracy": 0.5666666666666667
+    }
+  ],
+  "views_detail": [
+    {
+      "video_id": "B6AEPicK9Bk_210.0_360.0",
+      "stream": 0,
+      "base": 0.752,
+      "phase_pred": 0.752,
+      "delta": 0.0,
+      "base_binary": 0.7906976744186046,
+      "phase_pred_binary": 0.7906976744186046
+    },
+    {
+      "video_id": "B6AEPicK9Bk_210.0_360.0",
+      "stream": 1,
+      "base": 0.5132743362831859,
+      "phase_pred": 0.6194690265486725,
+      "delta": 0.10619469026548667,
+      "base_binary": 0.30303030303030304,
+      "phase_pred_binary": 0.42424242424242425
+    },
+    {
+      "video_id": "GtJXHRFhm0E_210.0_360.0",
+      "stream": 0,
+      "base": 0.36190476190476195,
+      "phase_pred": 0.4,
+      "delta": 0.03809523809523807,
+      "base_binary": 0.3783783783783784,
+      "phase_pred_binary": 0.43243243243243246
+    },
+    {
+      "video_id": "GtJXHRFhm0E_210.0_360.0",
+      "stream": 1,
+      "base": 0.7259259259259259,
+      "phase_pred": 0.8,
+      "delta": 0.07407407407407418,
+      "base_binary": 0.7272727272727273,
+      "phase_pred_binary": 0.8181818181818182
+    },
+    {
+      "video_id": "HISG6jkZBfs_210.0_360.0",
+      "stream": 0,
+      "base": 0.6559999999999999,
+      "phase_pred": 0.704,
+      "delta": 0.04800000000000004,
+      "base_binary": 0.7555555555555555,
+      "phase_pred_binary": 0.8
+    },
+    {
+      "video_id": "P6KTyi4s4Bc_210.0_360.0",
+      "stream": 1,
+      "base": 0.9397590361445783,
+      "phase_pred": 0.9397590361445783,
+      "delta": 0.0,
+      "base_binary": 0.9454545454545454,
+      "phase_pred_binary": 0.9454545454545454
+    },
+    {
+      "video_id": "bGU97Zw6Jfg_60.0_210.0",
+      "stream": 0,
+      "base": 0.7619047619047619,
+      "phase_pred": 0.7619047619047619,
+      "delta": 0.0,
+      "base_binary": 0.8444444444444444,
+      "phase_pred_binary": 0.8444444444444444
+    },
+    {
+      "video_id": "bGU97Zw6Jfg_60.0_210.0",
+      "stream": 1,
+      "base": 0.6614173228346457,
+      "phase_pred": 0.6614173228346457,
+      "delta": 0.0,
+      "base_binary": 0.6666666666666666,
+      "phase_pred_binary": 0.6666666666666666
+    },
+    {
+      "video_id": "eLlUVxVLiLU_60.0_210.0",
+      "stream": 0,
+      "base": 0.42424242424242425,
+      "phase_pred": 0.42424242424242425,
+      "delta": 0.0,
+      "base_binary": 0.47058823529411764,
+      "phase_pred_binary": 0.47058823529411764
+    },
+    {
+      "video_id": "eLlUVxVLiLU_60.0_210.0",
+      "stream": 1,
+      "base": 0.688,
+      "phase_pred": 0.72,
+      "delta": 0.03200000000000003,
+      "base_binary": 0.6666666666666666,
+      "phase_pred_binary": 0.7142857142857143
+    },
+    {
+      "video_id": "jgvQzWAhoiw_210.0_360.0",
+      "stream": 0,
+      "base": 0.9156626506024097,
+      "phase_pred": 0.9156626506024097,
+      "delta": 0.0,
+      "base_binary": 0.9285714285714286,
+      "phase_pred_binary": 0.9285714285714286
+    },
+    {
+      "video_id": "m6U-5Hck5z0_60.0_210.0",
+      "stream": 0,
+      "base": 0.8831168831168831,
+      "phase_pred": 0.8831168831168833,
+      "delta": 2.220446049250313e-16,
+      "base_binary": 0.9090909090909091,
+      "phase_pred_binary": 0.9090909090909091
+    },
+    {
+      "video_id": "m6U-5Hck5z0_60.0_210.0",
+      "stream": 1,
+      "base": 0.9113924050632912,
+      "phase_pred": 0.9620253164556963,
+      "delta": 0.05063291139240511,
+      "base_binary": 0.9019607843137255,
+      "phase_pred_binary": 0.9803921568627451
+    },
+    {
+      "video_id": "rAHQY2FHcOo_210.0_360.0",
+      "stream": 0,
+      "base": 0.8333333333333334,
+      "phase_pred": 0.8333333333333334,
+      "delta": 0.0,
+      "base_binary": 0.9433962264150944,
+      "phase_pred_binary": 0.9433962264150944
+    },
+    {
+      "video_id": "rAHQY2FHcOo_210.0_360.0",
+      "stream": 1,
+      "base": 0.7328244274809161,
+      "phase_pred": 0.7480916030534353,
+      "delta": 0.01526717557251911,
+      "base_binary": 0.7441860465116279,
+      "phase_pred_binary": 0.7441860465116279
+    },
+    {
+      "video_id": "uJ97MxBs4qU_210.0_360.0",
+      "stream": 0,
+      "base": 0.2828282828282829,
+      "phase_pred": 0.36363636363636365,
+      "delta": 0.08080808080808077,
+      "base_binary": 0.1875,
+      "phase_pred_binary": 0.3125
+    },
+    {
+      "video_id": "vprHvWMX1YU_210.0_360.0",
+      "stream": 0,
+      "base": 0.8387096774193546,
+      "phase_pred": 0.8387096774193546,
+      "delta": 0.0,
+      "base_binary": 0.8679245283018868,
+      "phase_pred_binary": 0.8679245283018868
+    },
+    {
+      "video_id": "yXR17NNJgdU_210.0_360.0",
+      "stream": 1,
+      "base": 0.7972027972027971,
+      "phase_pred": 0.7972027972027973,
+      "delta": 2.220446049250313e-16,
+      "base_binary": 0.7555555555555555,
+      "phase_pred_binary": 0.7555555555555555
+    }
+  ],
+  "feature_contract": "D2 local descriptors + source-held-out inner-cross-fit Ridge phase score and local x phase interactions"
+}

@@ -1,0 +1,134 @@
+{
+  "experiment_id": "R71_ADAPTIVE_BUDGET_PUBLIC_PROBE",
+  "status": "PUBLIC_MANUAL_LABEL_DIAGNOSTIC",
+  "source_videos": 10,
+  "label_rows": 300,
+  "median_occupancy": 0.55,
+  "rule": "clip(0.75 + 0.10 * occupancy / median_occupancy, 0.70, 0.85)",
+  "rank": "center + 0.20 * interval membership rank",
+  "mean_soft_fixed": 0.6876987046636482,
+  "mean_soft_adaptive": 0.6888946218562719,
+  "soft_delta": 0.00119591719262368,
+  "mean_binary_fixed": 0.7299645878968918,
+  "mean_binary_adaptive": 0.7270926357574258,
+  "binary_delta": -0.0028719521394660274,
+  "positive_soft_views": 3,
+  "positive_binary_views": 3,
+  "limitations": [
+    "ten public windows only; labels are project diagnostics, not official AIC GT",
+    "binary result is slightly negative while the soft grade result is slightly positive",
+    "no independent confirmation and no official score was used"
+  ],
+  "per_video": [
+    {
+      "video_id": "B6AEPicK9Bk_210.0_360.0",
+      "occupancy": 0.4,
+      "adaptive_fraction": 0.8227272727272728,
+      "adaptive_k": 25,
+      "fixed_k": 26,
+      "soft_fixed": 0.752,
+      "soft_adaptive": 0.7704918032786885,
+      "binary_fixed": 0.7906976744186046,
+      "binary_adaptive": 0.8095238095238095
+    },
+    {
+      "video_id": "GtJXHRFhm0E_210.0_360.0",
+      "occupancy": 0.3,
+      "adaptive_fraction": 0.8045454545454546,
+      "adaptive_k": 24,
+      "fixed_k": 26,
+      "soft_fixed": 0.4,
+      "soft_adaptive": 0.3434343434343434,
+      "binary_fixed": 0.43243243243243246,
+      "binary_adaptive": 0.34285714285714286
+    },
+    {
+      "video_id": "HISG6jkZBfs_210.0_360.0",
+      "occupancy": 0.5666666666666667,
+      "adaptive_fraction": 0.85,
+      "adaptive_k": 26,
+      "fixed_k": 26,
+      "soft_fixed": 0.752,
+      "soft_adaptive": 0.752,
+      "binary_fixed": 0.8444444444444444,
+      "binary_adaptive": 0.8444444444444444
+    },
+    {
+      "video_id": "bGU97Zw6Jfg_60.0_210.0",
+      "occupancy": 0.6666666666666666,
+      "adaptive_fraction": 0.85,
+      "adaptive_k": 26,
+      "fixed_k": 26,
+      "soft_fixed": 0.7142857142857143,
+      "soft_adaptive": 0.7142857142857143,
+      "binary_fixed": 0.8,
+      "binary_adaptive": 0.8
+    },
+    {
+      "video_id": "eLlUVxVLiLU_60.0_210.0",
+      "occupancy": 0.16666666666666666,
+      "adaptive_fraction": 0.7803030303030303,
+      "adaptive_k": 23,
+      "fixed_k": 26,
+      "soft_fixed": 0.42424242424242425,
+      "soft_adaptive": 0.4666666666666667,
+      "binary_fixed": 0.47058823529411764,
+      "binary_adaptive": 0.5161290322580645
+    },
+    {
+      "video_id": "jgvQzWAhoiw_210.0_360.0",
+      "occupancy": 0.9666666666666667,
+      "adaptive_fraction": 0.85,
+      "adaptive_k": 26,
+      "fixed_k": 26,
+      "soft_fixed": 0.9156626506024097,
+      "soft_adaptive": 0.9156626506024097,
+      "binary_fixed": 0.9285714285714286,
+      "binary_adaptive": 0.9285714285714286
+    },
+    {
+      "video_id": "m6U-5Hck5z0_60.0_210.0",
+      "occupancy": 0.5,
+      "adaptive_fraction": 0.8409090909090909,
+      "adaptive_k": 25,
+      "fixed_k": 26,
+      "soft_fixed": 0.8831168831168831,
+      "soft_adaptive": 0.8741721854304635,
+      "binary_fixed": 0.9090909090909091,
+      "binary_adaptive": 0.8888888888888888
+    },
+    {
+      "video_id": "rAHQY2FHcOo_210.0_360.0",
+      "occupancy": 0.8,
+      "adaptive_fraction": 0.85,
+      "adaptive_k": 26,
+      "fixed_k": 26,
+      "soft_fixed": 0.8333333333333334,
+      "soft_adaptive": 0.8333333333333334,
+      "binary_fixed": 0.9433962264150944,
+      "binary_adaptive": 0.9433962264150944
+    },
+    {
+      "video_id": "uJ97MxBs4qU_210.0_360.0",
+      "occupancy": 0.6333333333333333,
+      "adaptive_fraction": 0.85,
+      "adaptive_k": 26,
+      "fixed_k": 26,
+      "soft_fixed": 0.36363636363636365,
+      "soft_adaptive": 0.36363636363636365,
+      "binary_fixed": 0.3125,
+      "binary_adaptive": 0.3125
+    },
+    {
+      "video_id": "vprHvWMX1YU_210.0_360.0",
+      "occupancy": 0.5333333333333333,
+      "adaptive_fraction": 0.8469696969696969,
+      "adaptive_k": 25,
+      "fixed_k": 26,
+      "soft_fixed": 0.8387096774193548,
+      "soft_adaptive": 0.8552631578947368,
+      "binary_fixed": 0.8679245283018868,
+      "binary_adaptive": 0.8846153846153846
+    }
+  ]
+}

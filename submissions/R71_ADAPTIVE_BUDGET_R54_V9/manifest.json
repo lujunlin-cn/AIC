@@ -1,0 +1,7323 @@
+{
+  "submission_id": "R71_ADAPTIVE_BUDGET_R54_V9",
+  "status": "PACKAGED_NOT_UPLOADED",
+  "uploaded": false,
+  "official_platform_score": null,
+  "parent_submission": "R54_TIMELENS_CENTER_RESIDUAL_V9_B3",
+  "mechanism": "per-video adaptive frame budget from unlabeled TimeLens interval occupancy; R54 rank and V9 boxes retained",
+  "budget_rule": {
+    "formula": "clip(0.75 + 0.10 * occupancy / median_occupancy, 0.70, 0.85)",
+    "occupancy_definition": "clipped union duration of TimeLens intervals / intake duration",
+    "anchor": 0.75,
+    "slope": 0.1,
+    "floor": 0.7,
+    "cap": 0.85,
+    "median_occupancy": 0.7317064247493508,
+    "official_labels_used": false,
+    "official_score_used": false
+  },
+  "temporal_rank": "R54 center rank + eta=.20 TimeLens interval rank, restricted to R54 selected frames",
+  "spatial_mode": "R54 V9 vision-only boxes copied unchanged on retained frames",
+  "parameter_components": [
+    {
+      "name": "TimeLens2-8B",
+      "parameters": 8767123696
+    },
+    {
+      "name": "V9 vision-only SigLIP2 + B3 head + YuNet",
+      "parameters": 87407729
+    }
+  ],
+  "total_parameters": 8854531425,
+  "model_params_b": 8.854531425,
+  "video_count": 426,
+  "prediction_count": 195214,
+  "base_prediction_count": 199037,
+  "removed_predictions": 3823,
+  "prediction_sha256": "937857b27672982d676e40262c6e3f391bb6a1481688101d2b75d6083ee546dc",
+  "zip_sha256": "511fd5a946134c25a3cf537854f0c6a049b4bbc5a55e43c1e8742a44092880b0",
+  "zip_bytes": 1405658,
+  "responses_sha256": "a48f1cd1820bd5e526801f5c9cf1b580383405f235adbc3f137c458c63be09cb",
+  "parent_sha256": "62371bc54d62b72eafd7168898ab5b23fad79a6c252ebde458b8fc78d033983e",
+  "index_sha256": "02d52321e82a70cafd33d566319b2ebf5e405af43946d6da32181eccdbc46a93",
+  "per_video": [
+    {
+      "video_id": "0",
+      "frame_count": 630,
+      "base_keep": 536,
+      "adaptive_keep": 530,
+      "base_fraction": 0.8507936507936508,
+      "adaptive_fraction": 0.8412698412698413,
+      "interval_occupancy": 0.666000666000666,
+      "intervals": [
+        [
+          3.0,
+          10.0
+        ]
+      ],
+      "selected_inside_count": 420,
+      "removed_count": 6
+    },
+    {
+      "video_id": "1",
+      "frame_count": 513,
+      "base_keep": 436,
+      "adaptive_keep": 422,
+      "base_fraction": 0.8499025341130604,
+      "adaptive_fraction": 0.8226120857699805,
+      "interval_occupancy": 0.5263157894736842,
+      "intervals": [
+        [
+          7.0,
+          16.0
+        ]
+      ],
+      "selected_inside_count": 271,
+      "removed_count": 14
+    },
+    {
+      "video_id": "2",
+      "frame_count": 304,
+      "base_keep": 258,
+      "adaptive_keep": 258,
+      "base_fraction": 0.8486842105263158,
+      "adaptive_fraction": 0.8486842105263158,
+      "interval_occupancy": 0.7598701707536827,
+      "intervals": [
+        [
+          2.0,
+          9.0
+        ]
+      ],
+      "selected_inside_count": 228,
+      "removed_count": 0
+    },
+    {
+      "video_id": "3",
+      "frame_count": 246,
+      "base_keep": 209,
+      "adaptive_keep": 209,
+      "base_fraction": 0.8495934959349594,
+      "adaptive_fraction": 0.8495934959349594,
+      "interval_occupancy": 0.7317073170731708,
+      "intervals": [
+        [
+          1.0,
+          7.0
+        ]
+      ],
+      "selected_inside_count": 181,
+      "removed_count": 0
+    },
+    {
+      "video_id": "4",
+      "frame_count": 427,
+      "base_keep": 363,
+      "adaptive_keep": 363,
+      "base_fraction": 0.8501170960187353,
+      "adaptive_fraction": 0.8501170960187353,
+      "interval_occupancy": 0.9836088609106813,
+      "intervals": [
+        [
+          0.0,
+          14.0
+        ]
+      ],
+      "selected_inside_count": 363,
+      "removed_count": 0
+    },
+    {
+      "video_id": "5",
+      "frame_count": 209,
+      "base_keep": 178,
+      "adaptive_keep": 173,
+      "base_fraction": 0.8516746411483254,
+      "adaptive_fraction": 0.8277511961722488,
+      "interval_occupancy": 0.574159932249128,
+      "intervals": [
+        [
+          2.0,
+          6.0
+        ]
+      ],
+      "selected_inside_count": 121,
+      "removed_count": 5
+    },
+    {
+      "video_id": "6",
+      "frame_count": 307,
+      "base_keep": 261,
+      "adaptive_keep": 247,
+      "base_fraction": 0.8501628664495114,
+      "adaptive_fraction": 0.8045602605863192,
+      "interval_occupancy": 0.39088075205456696,
+      "intervals": [
+        [
+          5.0,
+          9.0
+        ]
+      ],
+      "selected_inside_count": 121,
+      "removed_count": 14
+    },
+    {
+      "video_id": "7",
+      "frame_count": 204,
+      "base_keep": 173,
+      "adaptive_keep": 165,
+      "base_fraction": 0.8480392156862745,
+      "adaptive_fraction": 0.8088235294117647,
+      "interval_occupancy": 0.4411764705882353,
+      "intervals": [
+        [
+          3.0,
+          6.0
+        ]
+      ],
+      "selected_inside_count": 91,
+      "removed_count": 8
+    },
+    {
+      "video_id": "8",
+      "frame_count": 176,
+      "base_keep": 150,
+      "adaptive_keep": 150,
+      "base_fraction": 0.8522727272727273,
+      "adaptive_fraction": 0.8522727272727273,
+      "interval_occupancy": 0.8522678848415635,
+      "intervals": [
+        [
+          0.0,
+          5.0
+        ]
+      ],
+      "selected_inside_count": 139,
+      "removed_count": 0
+    },
+    {
+      "video_id": "9",
+      "frame_count": 208,
+      "base_keep": 177,
+      "adaptive_keep": 177,
+      "base_fraction": 0.8509615384615384,
+      "adaptive_fraction": 0.8509615384615384,
+      "interval_occupancy": 0.7211573132563137,
+      "intervals": [
+        [
+          1.0,
+          6.0
+        ]
+      ],
+      "selected_inside_count": 151,
+      "removed_count": 0
+    },
+    {
+      "video_id": "10",
+      "frame_count": 323,
+      "base_keep": 275,
+      "adaptive_keep": 275,
+      "base_fraction": 0.8513931888544891,
+      "adaptive_fraction": 0.8513931888544891,
+      "interval_occupancy": 0.9287896941495537,
+      "intervals": [
+        [
+          0.0,
+          10.0
+        ]
+      ],
+      "selected_inside_count": 275,
+      "removed_count": 0
+    },
+    {
+      "video_id": "11",
+      "frame_count": 245,
+      "base_keep": 208,
+      "adaptive_keep": 208,
+      "base_fraction": 0.8489795918367347,
+      "adaptive_fraction": 0.8489795918367347,
+      "interval_occupancy": 0.8571393586148628,
+      "intervals": [
+        [
+          1.0,
+          8.0
+        ]
+      ],
+      "selected_inside_count": 207,
+      "removed_count": 0
+    },
+    {
+      "video_id": "12",
+      "frame_count": 148,
+      "base_keep": 126,
+      "adaptive_keep": 125,
+      "base_fraction": 0.8513513513513513,
+      "adaptive_fraction": 0.8445945945945946,
+      "interval_occupancy": 0.6756756756756757,
+      "intervals": [
+        [
+          1.0,
+          5.0
+        ]
+      ],
+      "selected_inside_count": 101,
+      "removed_count": 1
+    },
+    {
+      "video_id": "13",
+      "frame_count": 157,
+      "base_keep": 133,
+      "adaptive_keep": 133,
+      "base_fraction": 0.8471337579617835,
+      "adaptive_fraction": 0.8471337579617835,
+      "interval_occupancy": 0.9544534799373878,
+      "intervals": [
+        [
+          0.0,
+          5.0
+        ]
+      ],
+      "selected_inside_count": 133,
+      "removed_count": 0
+    },
+    {
+      "video_id": "14",
+      "frame_count": 179,
+      "base_keep": 152,
+      "adaptive_keep": 152,
+      "base_fraction": 0.8491620111731844,
+      "adaptive_fraction": 0.8491620111731844,
+      "interval_occupancy": 0.8036647110825363,
+      "intervals": [
+        [
+          1.0,
+          7.0
+        ]
+      ],
+      "selected_inside_count": 144,
+      "removed_count": 0
+    },
+    {
+      "video_id": "15",
+      "frame_count": 125,
+      "base_keep": 106,
+      "adaptive_keep": 106,
+      "base_fraction": 0.848,
+      "adaptive_fraction": 0.848,
+      "interval_occupancy": 0.9600061440393218,
+      "intervals": [
+        [
+          0.0,
+          5.0
+        ]
+      ],
+      "selected_inside_count": 106,
+      "removed_count": 0
+    },
+    {
+      "video_id": "16",
+      "frame_count": 130,
+      "base_keep": 110,
+      "adaptive_keep": 110,
+      "base_fraction": 0.8461538461538461,
+      "adaptive_fraction": 0.8461538461538461,
+      "interval_occupancy": 0.7692307692307692,
+      "intervals": [
+        [
+          0.0,
+          4.0
+        ]
+      ],
+      "selected_inside_count": 92,
+      "removed_count": 0
+    },
+    {
+      "video_id": "17",
+      "frame_count": 239,
+      "base_keep": 203,
+      "adaptive_keep": 192,
+      "base_fraction": 0.8493723849372385,
+      "adaptive_fraction": 0.803347280334728,
+      "interval_occupancy": 0.40127203234252584,
+      "intervals": [
+        [
+          1.0,
+          5.0
+        ]
+      ],
+      "selected_inside_count": 96,
+      "removed_count": 11
+    },
+    {
+      "video_id": "18",
+      "frame_count": 942,
+      "base_keep": 801,
+      "adaptive_keep": 801,
+      "base_fraction": 0.8503184713375797,
+      "adaptive_fraction": 0.8503184713375797,
+      "interval_occupancy": 0.89171974522293,
+      "intervals": [
+        [
+          2.0,
+          8.0
+        ],
+        [
+          9.0,
+          31.0
+        ]
+      ],
+      "selected_inside_count": 772,
+      "removed_count": 0
+    },
+    {
+      "video_id": "19",
+      "frame_count": 5162,
+      "base_keep": 4388,
+      "adaptive_keep": 4314,
+      "base_fraction": 0.8500581170089113,
+      "adaptive_fraction": 0.8357225881441301,
+      "interval_occupancy": 0.6276624803129014,
+      "intervals": [
+        [
+          13.0,
+          121.0
+        ]
+      ],
+      "selected_inside_count": 3240,
+      "removed_count": 74
+    },
+    {
+      "video_id": "20",
+      "frame_count": 8574,
+      "base_keep": 7288,
+      "adaptive_keep": 7288,
+      "base_fraction": 0.8500116631677164,
+      "adaptive_fraction": 0.8500116631677164,
+      "interval_occupancy": 0.7627711686494052,
+      "intervals": [
+        [
+          25.0,
+          65.0
+        ],
+        [
+          81.0,
+          137.0
+        ],
+        [
+          158.0,
+          195.0
+        ],
+        [
+          200.0,
+          285.0
+        ]
+      ],
+      "selected_inside_count": 6031,
+      "removed_count": 0
+    },
+    {
+      "video_id": "21",
+      "frame_count": 1339,
+      "base_keep": 1138,
+      "adaptive_keep": 1138,
+      "base_fraction": 0.8498879761015683,
+      "adaptive_fraction": 0.8498879761015683,
+      "interval_occupancy": 0.985811042427963,
+      "intervals": [
+        [
+          0.0,
+          44.0
+        ]
+      ],
+      "selected_inside_count": 1138,
+      "removed_count": 0
+    },
+    {
+      "video_id": "22",
+      "frame_count": 826,
+      "base_keep": 702,
+      "adaptive_keep": 702,
+      "base_fraction": 0.8498789346246973,
+      "adaptive_fraction": 0.8498789346246973,
+      "interval_occupancy": 0.9685230024213075,
+      "intervals": [
+        [
+          0.0,
+          16.0
+        ]
+      ],
+      "selected_inside_count": 702,
+      "removed_count": 0
+    },
+    {
+      "video_id": "23",
+      "frame_count": 165,
+      "base_keep": 140,
+      "adaptive_keep": 140,
+      "base_fraction": 0.8484848484848485,
+      "adaptive_fraction": 0.8484848484848485,
+      "interval_occupancy": 0.7265435417544573,
+      "intervals": [
+        [
+          1.0,
+          6.0
+        ]
+      ],
+      "selected_inside_count": 120,
+      "removed_count": 0
+    },
+    {
+      "video_id": "24",
+      "frame_count": 313,
+      "base_keep": 266,
+      "adaptive_keep": 255,
+      "base_fraction": 0.8498402555910544,
+      "adaptive_fraction": 0.8146964856230032,
+      "interval_occupancy": 0.47875294433060767,
+      "intervals": [
+        [
+          0.0,
+          5.0
+        ]
+      ],
+      "selected_inside_count": 129,
+      "removed_count": 11
+    },
+    {
+      "video_id": "25",
+      "frame_count": 636,
+      "base_keep": 541,
+      "adaptive_keep": 541,
+      "base_fraction": 0.85062893081761,
+      "adaptive_fraction": 0.85062893081761,
+      "interval_occupancy": 0.9827044025157232,
+      "intervals": [
+        [
+          0.0,
+          25.0
+        ]
+      ],
+      "selected_inside_count": 541,
+      "removed_count": 0
+    },
+    {
+      "video_id": "26",
+      "frame_count": 148,
+      "base_keep": 126,
+      "adaptive_keep": 126,
+      "base_fraction": 0.8513513513513513,
+      "adaptive_fraction": 0.8513513513513513,
+      "interval_occupancy": 0.8445945945945946,
+      "intervals": [
+        [
+          0.0,
+          5.0
+        ]
+      ],
+      "selected_inside_count": 116,
+      "removed_count": 0
+    },
+    {
+      "video_id": "27",
+      "frame_count": 625,
+      "base_keep": 531,
+      "adaptive_keep": 503,
+      "base_fraction": 0.8496,
+      "adaptive_fraction": 0.8048,
+      "interval_occupancy": 0.4,
+      "intervals": [
+        [
+          0.0,
+          10.0
+        ]
+      ],
+      "selected_inside_count": 209,
+      "removed_count": 28
+    },
+    {
+      "video_id": "28",
+      "frame_count": 105,
+      "base_keep": 89,
+      "adaptive_keep": 89,
+      "base_fraction": 0.8476190476190476,
+      "adaptive_fraction": 0.8476190476190476,
+      "interval_occupancy": 0.9133671279170662,
+      "intervals": [
+        [
+          0.0,
+          4.0
+        ]
+      ],
+      "selected_inside_count": 89,
+      "removed_count": 0
+    },
+    {
+      "video_id": "29",
+      "frame_count": 133,
+      "base_keep": 113,
+      "adaptive_keep": 113,
+      "base_fraction": 0.849624060150376,
+      "adaptive_fraction": 0.849624060150376,
+      "interval_occupancy": 0.9398496240601504,
+      "intervals": [
+        [
+          0.0,
+          5.0
+        ]
+      ],
+      "selected_inside_count": 113,
+      "removed_count": 0
+    },
+    {
+      "video_id": "30",
+      "frame_count": 300,
+      "base_keep": 255,
+      "adaptive_keep": 255,
+      "base_fraction": 0.85,
+      "adaptive_fraction": 0.85,
+      "interval_occupancy": 0.7992007992007992,
+      "intervals": [
+        [
+          0.0,
+          4.0
+        ]
+      ],
+      "selected_inside_count": 219,
+      "removed_count": 0
+    },
+    {
+      "video_id": "31",
+      "frame_count": 139,
+      "base_keep": 118,
+      "adaptive_keep": 118,
+      "base_fraction": 0.8489208633093526,
+      "adaptive_fraction": 0.8489208633093526,
+      "interval_occupancy": 0.8992805755395684,
+      "intervals": [
+        [
+          0.0,
+          5.0
+        ]
+      ],
+      "selected_inside_count": 117,
+      "removed_count": 0
+    },
+    {
+      "video_id": "32",
+      "frame_count": 168,
+      "base_keep": 143,
+      "adaptive_keep": 136,
+      "base_fraction": 0.8511904761904762,
+      "adaptive_fraction": 0.8095238095238095,
+      "interval_occupancy": 0.44642857142857145,
+      "intervals": [
+        [
+          0.0,
+          3.0
+        ]
+      ],
+      "selected_inside_count": 65,
+      "removed_count": 7
+    },
+    {
+      "video_id": "33",
+      "frame_count": 539,
+      "base_keep": 458,
+      "adaptive_keep": 458,
+      "base_fraction": 0.849721706864564,
+      "adaptive_fraction": 0.849721706864564,
+      "interval_occupancy": 0.9740259740259741,
+      "intervals": [
+        [
+          0.0,
+          21.0
+        ]
+      ],
+      "selected_inside_count": 458,
+      "removed_count": 0
+    },
+    {
+      "video_id": "34",
+      "frame_count": 398,
+      "base_keep": 338,
+      "adaptive_keep": 338,
+      "base_fraction": 0.8492462311557789,
+      "adaptive_fraction": 0.8492462311557789,
+      "interval_occupancy": 0.7832646470488998,
+      "intervals": [
+        [
+          3.0,
+          16.0
+        ]
+      ],
+      "selected_inside_count": 312,
+      "removed_count": 0
+    },
+    {
+      "video_id": "35",
+      "frame_count": 253,
+      "base_keep": 215,
+      "adaptive_keep": 215,
+      "base_fraction": 0.849802371541502,
+      "adaptive_fraction": 0.849802371541502,
+      "interval_occupancy": 0.9881422924901186,
+      "intervals": [
+        [
+          0.0,
+          5.0
+        ]
+      ],
+      "selected_inside_count": 215,
+      "removed_count": 0
+    },
+    {
+      "video_id": "36",
+      "frame_count": 512,
+      "base_keep": 435,
+      "adaptive_keep": 430,
+      "base_fraction": 0.849609375,
+      "adaptive_fraction": 0.83984375,
+      "interval_occupancy": 0.655593382253087,
+      "intervals": [
+        [
+          3.0,
+          17.0
+        ]
+      ],
+      "selected_inside_count": 336,
+      "removed_count": 5
+    },
+    {
+      "video_id": "37",
+      "frame_count": 418,
+      "base_keep": 355,
+      "adaptive_keep": 355,
+      "base_fraction": 0.8492822966507177,
+      "adaptive_fraction": 0.8492822966507177,
+      "interval_occupancy": 0.788683114294523,
+      "intervals": [
+        [
+          2.0,
+          13.0
+        ]
+      ],
+      "selected_inside_count": 330,
+      "removed_count": 0
+    },
+    {
+      "video_id": "38",
+      "frame_count": 139,
+      "base_keep": 118,
+      "adaptive_keep": 118,
+      "base_fraction": 0.8489208633093526,
+      "adaptive_fraction": 0.8489208633093526,
+      "interval_occupancy": 0.8992805755395684,
+      "intervals": [
+        [
+          0.0,
+          5.0
+        ]
+      ],
+      "selected_inside_count": 117,
+      "removed_count": 0
+    },
+    {
+      "video_id": "39",
+      "frame_count": 114,
+      "base_keep": 97,
+      "adaptive_keep": 97,
+      "base_fraction": 0.8508771929824561,
+      "adaptive_fraction": 0.8508771929824561,
+      "interval_occupancy": 0.7886849992113151,
+      "intervals": [
+        [
+          0.0,
+          3.0
+        ]
+      ],
+      "selected_inside_count": 82,
+      "removed_count": 0
+    },
+    {
+      "video_id": "40",
+      "frame_count": 136,
+      "base_keep": 116,
+      "adaptive_keep": 116,
+      "base_fraction": 0.8529411764705882,
+      "adaptive_fraction": 0.8529411764705882,
+      "interval_occupancy": 0.8823594291134494,
+      "intervals": [
+        [
+          0.0,
+          4.0
+        ]
+      ],
+      "selected_inside_count": 112,
+      "removed_count": 0
+    },
+    {
+      "video_id": "41",
+      "frame_count": 145,
+      "base_keep": 123,
+      "adaptive_keep": 123,
+      "base_fraction": 0.8482758620689655,
+      "adaptive_fraction": 0.8482758620689655,
+      "interval_occupancy": 0.8620689655172414,
+      "intervals": [
+        [
+          0.0,
+          5.0
+        ]
+      ],
+      "selected_inside_count": 116,
+      "removed_count": 0
+    },
+    {
+      "video_id": "42",
+      "frame_count": 140,
+      "base_keep": 119,
+      "adaptive_keep": 119,
+      "base_fraction": 0.85,
+      "adaptive_fraction": 0.85,
+      "interval_occupancy": 0.8928571428571429,
+      "intervals": [
+        [
+          0.0,
+          5.0
+        ]
+      ],
+      "selected_inside_count": 117,
+      "removed_count": 0
+    },
+    {
+      "video_id": "43",
+      "frame_count": 190,
+      "base_keep": 162,
+      "adaptive_keep": 162,
+      "base_fraction": 0.8526315789473684,
+      "adaptive_fraction": 0.8526315789473684,
+      "interval_occupancy": 0.8833253413421498,
+      "intervals": [
+        [
+          0.0,
+          7.0
+        ]
+      ],
+      "selected_inside_count": 155,
+      "removed_count": 0
+    },
+    {
+      "video_id": "44",
+      "frame_count": 268,
+      "base_keep": 228,
+      "adaptive_keep": 228,
+      "base_fraction": 0.8507462686567164,
+      "adaptive_fraction": 0.8507462686567164,
+      "interval_occupancy": 0.985071686353175,
+      "intervals": [
+        [
+          0.0,
+          11.0
+        ]
+      ],
+      "selected_inside_count": 228,
+      "removed_count": 0
+    },
+    {
+      "video_id": "45",
+      "frame_count": 239,
+      "base_keep": 203,
+      "adaptive_keep": 203,
+      "base_fraction": 0.8493723849372385,
+      "adaptive_fraction": 0.8493723849372385,
+      "interval_occupancy": 0.7531349241216564,
+      "intervals": [
+        [
+          0.0,
+          6.0
+        ]
+      ],
+      "selected_inside_count": 165,
+      "removed_count": 0
+    },
+    {
+      "video_id": "46",
+      "frame_count": 192,
+      "base_keep": 163,
+      "adaptive_keep": 163,
+      "base_fraction": 0.8489583333333334,
+      "adaptive_fraction": 0.8489583333333334,
+      "interval_occupancy": 0.875,
+      "intervals": [
+        [
+          0.0,
+          7.0
+        ]
+      ],
+      "selected_inside_count": 156,
+      "removed_count": 0
+    },
+    {
+      "video_id": "47",
+      "frame_count": 146,
+      "base_keep": 124,
+      "adaptive_keep": 124,
+      "base_fraction": 0.8493150684931506,
+      "adaptive_fraction": 0.8493150684931506,
+      "interval_occupancy": 0.8561643835616438,
+      "intervals": [
+        [
+          0.0,
+          5.0
+        ]
+      ],
+      "selected_inside_count": 116,
+      "removed_count": 0
+    },
+    {
+      "video_id": "48",
+      "frame_count": 142,
+      "base_keep": 121,
+      "adaptive_keep": 121,
+      "base_fraction": 0.852112676056338,
+      "adaptive_fraction": 0.852112676056338,
+      "interval_occupancy": 0.8442238206193226,
+      "intervals": [
+        [
+          0.0,
+          5.0
+        ]
+      ],
+      "selected_inside_count": 110,
+      "removed_count": 0
+    },
+    {
+      "video_id": "49",
+      "frame_count": 166,
+      "base_keep": 141,
+      "adaptive_keep": 141,
+      "base_fraction": 0.8493975903614458,
+      "adaptive_fraction": 0.8493975903614458,
+      "interval_occupancy": 0.8666011901323011,
+      "intervals": [
+        [
+          0.0,
+          6.0
+        ]
+      ],
+      "selected_inside_count": 133,
+      "removed_count": 0
+    },
+    {
+      "video_id": "50",
+      "frame_count": 177,
+      "base_keep": 150,
+      "adaptive_keep": 150,
+      "base_fraction": 0.847457627118644,
+      "adaptive_fraction": 0.847457627118644,
+      "interval_occupancy": 0.8135593220338984,
+      "intervals": [
+        [
+          0.0,
+          6.0
+        ]
+      ],
+      "selected_inside_count": 133,
+      "removed_count": 0
+    },
+    {
+      "video_id": "51",
+      "frame_count": 245,
+      "base_keep": 208,
+      "adaptive_keep": 200,
+      "base_fraction": 0.8489795918367347,
+      "adaptive_fraction": 0.8163265306122449,
+      "interval_occupancy": 0.48930860693839606,
+      "intervals": [
+        [
+          0.0,
+          4.0
+        ]
+      ],
+      "selected_inside_count": 104,
+      "removed_count": 8
+    },
+    {
+      "video_id": "52",
+      "frame_count": 339,
+      "base_keep": 288,
+      "adaptive_keep": 288,
+      "base_fraction": 0.8495575221238938,
+      "adaptive_fraction": 0.8495575221238938,
+      "interval_occupancy": 0.8840638647735912,
+      "intervals": [
+        [
+          0.0,
+          5.0
+        ]
+      ],
+      "selected_inside_count": 277,
+      "removed_count": 0
+    },
+    {
+      "video_id": "53",
+      "frame_count": 142,
+      "base_keep": 121,
+      "adaptive_keep": 121,
+      "base_fraction": 0.852112676056338,
+      "adaptive_fraction": 0.852112676056338,
+      "interval_occupancy": 0.8802816901408451,
+      "intervals": [
+        [
+          0.0,
+          5.0
+        ]
+      ],
+      "selected_inside_count": 117,
+      "removed_count": 0
+    },
+    {
+      "video_id": "54",
+      "frame_count": 240,
+      "base_keep": 204,
+      "adaptive_keep": 204,
+      "base_fraction": 0.85,
+      "adaptive_fraction": 0.85,
+      "interval_occupancy": 0.9,
+      "intervals": [
+        [
+          0.0,
+          9.0
+        ]
+      ],
+      "selected_inside_count": 201,
+      "removed_count": 0
+    },
+    {
+      "video_id": "55",
+      "frame_count": 206,
+      "base_keep": 175,
+      "adaptive_keep": 175,
+      "base_fraction": 0.8495145631067961,
+      "adaptive_fraction": 0.8495145631067961,
+      "interval_occupancy": 0.9411764705882353,
+      "intervals": [
+        [
+          0.0,
+          8.0
+        ]
+      ],
+      "selected_inside_count": 175,
+      "removed_count": 0
+    },
+    {
+      "video_id": "56",
+      "frame_count": 406,
+      "base_keep": 345,
+      "adaptive_keep": 345,
+      "base_fraction": 0.8497536945812808,
+      "adaptive_fraction": 0.8497536945812808,
+      "interval_occupancy": 0.9596291402461079,
+      "intervals": [
+        [
+          0.0,
+          13.0
+        ]
+      ],
+      "selected_inside_count": 345,
+      "removed_count": 0
+    },
+    {
+      "video_id": "57",
+      "frame_count": 261,
+      "base_keep": 222,
+      "adaptive_keep": 222,
+      "base_fraction": 0.8505747126436781,
+      "adaptive_fraction": 0.8505747126436781,
+      "interval_occupancy": 0.8045977011494253,
+      "intervals": [
+        [
+          0.0,
+          7.0
+        ]
+      ],
+      "selected_inside_count": 193,
+      "removed_count": 0
+    },
+    {
+      "video_id": "58",
+      "frame_count": 267,
+      "base_keep": 227,
+      "adaptive_keep": 217,
+      "base_fraction": 0.850187265917603,
+      "adaptive_fraction": 0.8127340823970037,
+      "interval_occupancy": 0.449438202247191,
+      "intervals": [
+        [
+          1.0,
+          5.0
+        ]
+      ],
+      "selected_inside_count": 121,
+      "removed_count": 10
+    },
+    {
+      "video_id": "59",
+      "frame_count": 179,
+      "base_keep": 152,
+      "adaptive_keep": 140,
+      "base_fraction": 0.8491620111731844,
+      "adaptive_fraction": 0.7821229050279329,
+      "interval_occupancy": 0.24861809774006147,
+      "intervals": [
+        [
+          8.0,
+          11.0
+        ]
+      ],
+      "selected_inside_count": 45,
+      "removed_count": 12
+    },
+    {
+      "video_id": "60",
+      "frame_count": 98,
+      "base_keep": 83,
+      "adaptive_keep": 80,
+      "base_fraction": 0.8469387755102041,
+      "adaptive_fraction": 0.8163265306122449,
+      "interval_occupancy": 0.45407074422194976,
+      "intervals": [
+        [
+          3.0,
+          6.0
+        ]
+      ],
+      "selected_inside_count": 44,
+      "removed_count": 3
+    },
+    {
+      "video_id": "61",
+      "frame_count": 287,
+      "base_keep": 244,
+      "adaptive_keep": 244,
+      "base_fraction": 0.8501742160278746,
+      "adaptive_fraction": 0.8501742160278746,
+      "interval_occupancy": 0.9407632726018376,
+      "intervals": [
+        [
+          0.0,
+          9.0
+        ]
+      ],
+      "selected_inside_count": 244,
+      "removed_count": 0
+    },
+    {
+      "video_id": "62",
+      "frame_count": 909,
+      "base_keep": 773,
+      "adaptive_keep": 773,
+      "base_fraction": 0.8503850385038504,
+      "adaptive_fraction": 0.8503850385038504,
+      "interval_occupancy": 0.858085808580858,
+      "intervals": [
+        [
+          2.0,
+          28.0
+        ]
+      ],
+      "selected_inside_count": 773,
+      "removed_count": 0
+    },
+    {
+      "video_id": "63",
+      "frame_count": 357,
+      "base_keep": 303,
+      "adaptive_keep": 288,
+      "base_fraction": 0.8487394957983193,
+      "adaptive_fraction": 0.8067226890756303,
+      "interval_occupancy": 0.42016806722689076,
+      "intervals": [
+        [
+          2.0,
+          7.0
+        ]
+      ],
+      "selected_inside_count": 151,
+      "removed_count": 15
+    },
+    {
+      "video_id": "64",
+      "frame_count": 588,
+      "base_keep": 500,
+      "adaptive_keep": 486,
+      "base_fraction": 0.8503401360544217,
+      "adaptive_fraction": 0.826530612244898,
+      "interval_occupancy": 0.5612244897959183,
+      "intervals": [
+        [
+          8.0,
+          19.0
+        ]
+      ],
+      "selected_inside_count": 330,
+      "removed_count": 14
+    },
+    {
+      "video_id": "65",
+      "frame_count": 261,
+      "base_keep": 222,
+      "adaptive_keep": 222,
+      "base_fraction": 0.8505747126436781,
+      "adaptive_fraction": 0.8505747126436781,
+      "interval_occupancy": 0.8045977011494253,
+      "intervals": [
+        [
+          0.0,
+          7.0
+        ]
+      ],
+      "selected_inside_count": 193,
+      "removed_count": 0
+    },
+    {
+      "video_id": "66",
+      "frame_count": 578,
+      "base_keep": 491,
+      "adaptive_keep": 479,
+      "base_fraction": 0.8494809688581315,
+      "adaptive_fraction": 0.828719723183391,
+      "interval_occupancy": 0.5709332682815428,
+      "intervals": [
+        [
+          2.0,
+          13.0
+        ]
+      ],
+      "selected_inside_count": 331,
+      "removed_count": 12
+    },
+    {
+      "video_id": "67",
+      "frame_count": 451,
+      "base_keep": 383,
+      "adaptive_keep": 383,
+      "base_fraction": 0.8492239467849224,
+      "adaptive_fraction": 0.8492239467849224,
+      "interval_occupancy": 0.9312597283382336,
+      "intervals": [
+        [
+          0.0,
+          7.0
+        ]
+      ],
+      "selected_inside_count": 383,
+      "removed_count": 0
+    },
+    {
+      "video_id": "68",
+      "frame_count": 440,
+      "base_keep": 374,
+      "adaptive_keep": 371,
+      "base_fraction": 0.85,
+      "adaptive_fraction": 0.8431818181818181,
+      "interval_occupancy": 0.6818166322349267,
+      "intervals": [
+        [
+          4.0,
+          14.0
+        ]
+      ],
+      "selected_inside_count": 301,
+      "removed_count": 3
+    },
+    {
+      "video_id": "69",
+      "frame_count": 382,
+      "base_keep": 325,
+      "adaptive_keep": 325,
+      "base_fraction": 0.8507853403141361,
+      "adaptive_fraction": 0.8507853403141361,
+      "interval_occupancy": 0.8250020625051563,
+      "intervals": [
+        [
+          2.0,
+          13.0
+        ]
+      ],
+      "selected_inside_count": 312,
+      "removed_count": 0
+    },
+    {
+      "video_id": "70",
+      "frame_count": 315,
+      "base_keep": 268,
+      "adaptive_keep": 261,
+      "base_fraction": 0.8507936507936508,
+      "adaptive_fraction": 0.8285714285714286,
+      "interval_occupancy": 0.5714285714285714,
+      "intervals": [
+        [
+          4.0,
+          10.0
+        ]
+      ],
+      "selected_inside_count": 181,
+      "removed_count": 7
+    },
+    {
+      "video_id": "71",
+      "frame_count": 320,
+      "base_keep": 272,
+      "adaptive_keep": 260,
+      "base_fraction": 0.85,
+      "adaptive_fraction": 0.8125,
+      "interval_occupancy": 0.4687485351608276,
+      "intervals": [
+        [
+          4.0,
+          9.0
+        ]
+      ],
+      "selected_inside_count": 151,
+      "removed_count": 12
+    },
+    {
+      "video_id": "72",
+      "frame_count": 212,
+      "base_keep": 180,
+      "adaptive_keep": 180,
+      "base_fraction": 0.8490566037735849,
+      "adaptive_fraction": 0.8490566037735849,
+      "interval_occupancy": 0.8490525988084962,
+      "intervals": [
+        [
+          0.0,
+          6.0
+        ]
+      ],
+      "selected_inside_count": 167,
+      "removed_count": 0
+    },
+    {
+      "video_id": "73",
+      "frame_count": 285,
+      "base_keep": 242,
+      "adaptive_keep": 242,
+      "base_fraction": 0.8491228070175438,
+      "adaptive_fraction": 0.8491228070175438,
+      "interval_occupancy": 0.9473684210526315,
+      "intervals": [
+        [
+          0.0,
+          9.0
+        ]
+      ],
+      "selected_inside_count": 242,
+      "removed_count": 0
+    },
+    {
+      "video_id": "74",
+      "frame_count": 272,
+      "base_keep": 231,
+      "adaptive_keep": 231,
+      "base_fraction": 0.8492647058823529,
+      "adaptive_fraction": 0.8492647058823529,
+      "interval_occupancy": 0.8814747071851208,
+      "intervals": [
+        [
+          0.0,
+          8.0
+        ]
+      ],
+      "selected_inside_count": 222,
+      "removed_count": 0
+    },
+    {
+      "video_id": "75",
+      "frame_count": 394,
+      "base_keep": 335,
+      "adaptive_keep": 316,
+      "base_fraction": 0.850253807106599,
+      "adaptive_fraction": 0.8020304568527918,
+      "interval_occupancy": 0.3807106598984772,
+      "intervals": [
+        [
+          9.0,
+          15.0
+        ]
+      ],
+      "selected_inside_count": 146,
+      "removed_count": 19
+    },
+    {
+      "video_id": "76",
+      "frame_count": 390,
+      "base_keep": 332,
+      "adaptive_keep": 310,
+      "base_fraction": 0.8512820512820513,
+      "adaptive_fraction": 0.7948717948717948,
+      "interval_occupancy": 0.32051282051282054,
+      "intervals": [
+        [
+          7.0,
+          12.0
+        ]
+      ],
+      "selected_inside_count": 126,
+      "removed_count": 22
+    },
+    {
+      "video_id": "77",
+      "frame_count": 252,
+      "base_keep": 214,
+      "adaptive_keep": 210,
+      "base_fraction": 0.8492063492063492,
+      "adaptive_fraction": 0.8333333333333334,
+      "interval_occupancy": 0.5952380952380952,
+      "intervals": [
+        [
+          3.0,
+          9.0
+        ]
+      ],
+      "selected_inside_count": 151,
+      "removed_count": 4
+    },
+    {
+      "video_id": "78",
+      "frame_count": 808,
+      "base_keep": 687,
+      "adaptive_keep": 658,
+      "base_fraction": 0.8502475247524752,
+      "adaptive_fraction": 0.8143564356435643,
+      "interval_occupancy": 0.46927269436269414,
+      "intervals": [
+        [
+          4.0,
+          11.0
+        ]
+      ],
+      "selected_inside_count": 379,
+      "removed_count": 29
+    },
+    {
+      "video_id": "79",
+      "frame_count": 650,
+      "base_keep": 552,
+      "adaptive_keep": 552,
+      "base_fraction": 0.8492307692307692,
+      "adaptive_fraction": 0.8492307692307692,
+      "interval_occupancy": 0.8141134711356068,
+      "intervals": [
+        [
+          0.0,
+          10.0
+        ]
+      ],
+      "selected_inside_count": 486,
+      "removed_count": 0
+    },
+    {
+      "video_id": "80",
+      "frame_count": 99,
+      "base_keep": 84,
+      "adaptive_keep": 84,
+      "base_fraction": 0.8484848484848485,
+      "adaptive_fraction": 0.8484848484848485,
+      "interval_occupancy": 0.9090909090909092,
+      "intervals": [
+        [
+          0.0,
+          3.0
+        ]
+      ],
+      "selected_inside_count": 84,
+      "removed_count": 0
+    },
+    {
+      "video_id": "81",
+      "frame_count": 133,
+      "base_keep": 113,
+      "adaptive_keep": 113,
+      "base_fraction": 0.849624060150376,
+      "adaptive_fraction": 0.849624060150376,
+      "interval_occupancy": 0.9022502120287998,
+      "intervals": [
+        [
+          0.0,
+          5.0
+        ]
+      ],
+      "selected_inside_count": 112,
+      "removed_count": 0
+    },
+    {
+      "video_id": "82",
+      "frame_count": 471,
+      "base_keep": 400,
+      "adaptive_keep": 374,
+      "base_fraction": 0.8492569002123143,
+      "adaptive_fraction": 0.7940552016985138,
+      "interval_occupancy": 0.3184713375796179,
+      "intervals": [
+        [
+          9.0,
+          14.0
+        ]
+      ],
+      "selected_inside_count": 151,
+      "removed_count": 26
+    },
+    {
+      "video_id": "83",
+      "frame_count": 1770,
+      "base_keep": 1504,
+      "adaptive_keep": 1504,
+      "base_fraction": 0.8497175141242937,
+      "adaptive_fraction": 0.8497175141242937,
+      "interval_occupancy": 0.9152542372881356,
+      "intervals": [
+        [
+          4.0,
+          58.0
+        ]
+      ],
+      "selected_inside_count": 1504,
+      "removed_count": 0
+    },
+    {
+      "video_id": "84",
+      "frame_count": 442,
+      "base_keep": 376,
+      "adaptive_keep": 345,
+      "base_fraction": 0.8506787330316742,
+      "adaptive_fraction": 0.7805429864253394,
+      "interval_occupancy": 0.217194177024114,
+      "intervals": [
+        [
+          10.0,
+          14.0
+        ]
+      ],
+      "selected_inside_count": 97,
+      "removed_count": 31
+    },
+    {
+      "video_id": "85",
+      "frame_count": 754,
+      "base_keep": 641,
+      "adaptive_keep": 594,
+      "base_fraction": 0.850132625994695,
+      "adaptive_fraction": 0.7877984084880637,
+      "interval_occupancy": 0.2785149582426502,
+      "intervals": [
+        [
+          8.0,
+          15.0
+        ]
+      ],
+      "selected_inside_count": 211,
+      "removed_count": 47
+    },
+    {
+      "video_id": "86",
+      "frame_count": 840,
+      "base_keep": 714,
+      "adaptive_keep": 714,
+      "base_fraction": 0.85,
+      "adaptive_fraction": 0.85,
+      "interval_occupancy": 0.9642857142857143,
+      "intervals": [
+        [
+          0.0,
+          27.0
+        ]
+      ],
+      "selected_inside_count": 714,
+      "removed_count": 0
+    },
+    {
+      "video_id": "87",
+      "frame_count": 120,
+      "base_keep": 102,
+      "adaptive_keep": 102,
+      "base_fraction": 0.85,
+      "adaptive_fraction": 0.85,
+      "interval_occupancy": 0.75,
+      "intervals": [
+        [
+          1.0,
+          4.0
+        ]
+      ],
+      "selected_inside_count": 86,
+      "removed_count": 0
+    },
+    {
+      "video_id": "88",
+      "frame_count": 268,
+      "base_keep": 228,
+      "adaptive_keep": 222,
+      "base_fraction": 0.8507462686567164,
+      "adaptive_fraction": 0.8283582089552238,
+      "interval_occupancy": 0.5597035809835111,
+      "intervals": [
+        [
+          3.0,
+          8.0
+        ]
+      ],
+      "selected_inside_count": 151,
+      "removed_count": 6
+    },
+    {
+      "video_id": "89",
+      "frame_count": 964,
+      "base_keep": 819,
+      "adaptive_keep": 756,
+      "base_fraction": 0.8495850622406639,
+      "adaptive_fraction": 0.7842323651452282,
+      "interval_occupancy": 0.24896291386194386,
+      "intervals": [
+        [
+          23.0,
+          31.0
+        ]
+      ],
+      "selected_inside_count": 212,
+      "removed_count": 63
+    },
+    {
+      "video_id": "90",
+      "frame_count": 247,
+      "base_keep": 210,
+      "adaptive_keep": 206,
+      "base_fraction": 0.8502024291497976,
+      "adaptive_fraction": 0.8340080971659919,
+      "interval_occupancy": 0.6066783148903125,
+      "intervals": [
+        [
+          2.0,
+          7.0
+        ]
+      ],
+      "selected_inside_count": 150,
+      "removed_count": 4
+    },
+    {
+      "video_id": "91",
+      "frame_count": 4652,
+      "base_keep": 3954,
+      "adaptive_keep": 3677,
+      "base_fraction": 0.849957007738607,
+      "adaptive_fraction": 0.7904127257093723,
+      "interval_occupancy": 0.2955717970765262,
+      "intervals": [
+        [
+          46.0,
+          68.0
+        ],
+        [
+          114.0,
+          129.0
+        ],
+        [
+          138.0,
+          156.0
+        ]
+      ],
+      "selected_inside_count": 1378,
+      "removed_count": 277
+    },
+    {
+      "video_id": "92",
+      "frame_count": 163,
+      "base_keep": 139,
+      "adaptive_keep": 139,
+      "base_fraction": 0.852760736196319,
+      "adaptive_fraction": 0.852760736196319,
+      "interval_occupancy": 0.9202510444849354,
+      "intervals": [
+        [
+          0.0,
+          5.0
+        ]
+      ],
+      "selected_inside_count": 139,
+      "removed_count": 0
+    },
+    {
+      "video_id": "93",
+      "frame_count": 343,
+      "base_keep": 292,
+      "adaptive_keep": 270,
+      "base_fraction": 0.8513119533527697,
+      "adaptive_fraction": 0.7871720116618076,
+      "interval_occupancy": 0.2623914355435439,
+      "intervals": [
+        [
+          5.0,
+          8.0
+        ]
+      ],
+      "selected_inside_count": 91,
+      "removed_count": 22
+    },
+    {
+      "video_id": "94",
+      "frame_count": 361,
+      "base_keep": 307,
+      "adaptive_keep": 302,
+      "base_fraction": 0.850415512465374,
+      "adaptive_fraction": 0.8365650969529086,
+      "interval_occupancy": 0.6264486625321055,
+      "intervals": [
+        [
+          0.0,
+          9.0
+        ]
+      ],
+      "selected_inside_count": 202,
+      "removed_count": 5
+    },
+    {
+      "video_id": "95",
+      "frame_count": 410,
+      "base_keep": 348,
+      "adaptive_keep": 320,
+      "base_fraction": 0.848780487804878,
+      "adaptive_fraction": 0.7804878048780488,
+      "interval_occupancy": 0.21951165972765918,
+      "intervals": [
+        [
+          7.0,
+          10.0
+        ]
+      ],
+      "selected_inside_count": 91,
+      "removed_count": 28
+    },
+    {
+      "video_id": "96",
+      "frame_count": 547,
+      "base_keep": 465,
+      "adaptive_keep": 422,
+      "base_fraction": 0.850091407678245,
+      "adaptive_fraction": 0.7714808043875686,
+      "interval_occupancy": 0.16316230298151913,
+      "intervals": [
+        [
+          12.0,
+          15.0
+        ]
+      ],
+      "selected_inside_count": 90,
+      "removed_count": 43
+    },
+    {
+      "video_id": "97",
+      "frame_count": 800,
+      "base_keep": 680,
+      "adaptive_keep": 620,
+      "base_fraction": 0.85,
+      "adaptive_fraction": 0.775,
+      "interval_occupancy": 0.18633563519954682,
+      "intervals": [
+        [
+          19.0,
+          24.0
+        ]
+      ],
+      "selected_inside_count": 149,
+      "removed_count": 60
+    },
+    {
+      "video_id": "98",
+      "frame_count": 241,
+      "base_keep": 205,
+      "adaptive_keep": 189,
+      "base_fraction": 0.8506224066390041,
+      "adaptive_fraction": 0.7842323651452282,
+      "interval_occupancy": 0.24896368864601096,
+      "intervals": [
+        [
+          2.0,
+          4.0
+        ]
+      ],
+      "selected_inside_count": 61,
+      "removed_count": 16
+    },
+    {
+      "video_id": "99",
+      "frame_count": 356,
+      "base_keep": 303,
+      "adaptive_keep": 300,
+      "base_fraction": 0.851123595505618,
+      "adaptive_fraction": 0.8426966292134831,
+      "interval_occupancy": 0.6741554096758156,
+      "intervals": [
+        [
+          0.0,
+          8.0
+        ]
+      ],
+      "selected_inside_count": 217,
+      "removed_count": 3
+    },
+    {
+      "video_id": "100",
+      "frame_count": 1593,
+      "base_keep": 1354,
+      "adaptive_keep": 1351,
+      "base_fraction": 0.8499686126804771,
+      "adaptive_fraction": 0.8480853735091023,
+      "interval_occupancy": 0.7156308851224106,
+      "intervals": [
+        [
+          11.0,
+          49.0
+        ]
+      ],
+      "selected_inside_count": 1141,
+      "removed_count": 3
+    },
+    {
+      "video_id": "101",
+      "frame_count": 538,
+      "base_keep": 457,
+      "adaptive_keep": 424,
+      "base_fraction": 0.8494423791821561,
+      "adaptive_fraction": 0.7881040892193308,
+      "interval_occupancy": 0.2788104089219331,
+      "intervals": [
+        [
+          12.0,
+          18.0
+        ]
+      ],
+      "selected_inside_count": 151,
+      "removed_count": 33
+    },
+    {
+      "video_id": "102",
+      "frame_count": 240,
+      "base_keep": 204,
+      "adaptive_keep": 199,
+      "base_fraction": 0.85,
+      "adaptive_fraction": 0.8291666666666667,
+      "interval_occupancy": 0.591715976331361,
+      "intervals": [
+        [
+          0.0,
+          5.0
+        ]
+      ],
+      "selected_inside_count": 127,
+      "removed_count": 5
+    },
+    {
+      "video_id": "103",
+      "frame_count": 289,
+      "base_keep": 246,
+      "adaptive_keep": 233,
+      "base_fraction": 0.8512110726643599,
+      "adaptive_fraction": 0.8062283737024222,
+      "interval_occupancy": 0.41522635026418775,
+      "intervals": [
+        [
+          1.0,
+          5.0
+        ]
+      ],
+      "selected_inside_count": 121,
+      "removed_count": 13
+    },
+    {
+      "video_id": "104",
+      "frame_count": 405,
+      "base_keep": 344,
+      "adaptive_keep": 341,
+      "base_fraction": 0.8493827160493828,
+      "adaptive_fraction": 0.8419753086419753,
+      "interval_occupancy": 0.6666666666666666,
+      "intervals": [
+        [
+          0.0,
+          9.0
+        ]
+      ],
+      "selected_inside_count": 244,
+      "removed_count": 3
+    },
+    {
+      "video_id": "105",
+      "frame_count": 573,
+      "base_keep": 487,
+      "adaptive_keep": 463,
+      "base_fraction": 0.849912739965096,
+      "adaptive_fraction": 0.8080279232111692,
+      "interval_occupancy": 0.41884816753926696,
+      "intervals": [
+        [
+          7.0,
+          15.0
+        ]
+      ],
+      "selected_inside_count": 241,
+      "removed_count": 24
+    },
+    {
+      "video_id": "106",
+      "frame_count": 471,
+      "base_keep": 400,
+      "adaptive_keep": 378,
+      "base_fraction": 0.8492569002123143,
+      "adaptive_fraction": 0.802547770700637,
+      "interval_occupancy": 0.3821656050955414,
+      "intervals": [
+        [
+          6.0,
+          12.0
+        ]
+      ],
+      "selected_inside_count": 181,
+      "removed_count": 22
+    },
+    {
+      "video_id": "107",
+      "frame_count": 2209,
+      "base_keep": 1878,
+      "adaptive_keep": 1791,
+      "base_fraction": 0.8501584427342689,
+      "adaptive_fraction": 0.8107741059302852,
+      "interval_occupancy": 0.4440578529019181,
+      "intervals": [
+        [
+          18.0,
+          35.0
+        ]
+      ],
+      "selected_inside_count": 981,
+      "removed_count": 87
+    },
+    {
+      "video_id": "108",
+      "frame_count": 241,
+      "base_keep": 205,
+      "adaptive_keep": 197,
+      "base_fraction": 0.8506224066390041,
+      "adaptive_fraction": 0.8174273858921162,
+      "interval_occupancy": 0.4979273772920219,
+      "intervals": [
+        [
+          0.0,
+          4.0
+        ]
+      ],
+      "selected_inside_count": 105,
+      "removed_count": 8
+    },
+    {
+      "video_id": "109",
+      "frame_count": 342,
+      "base_keep": 291,
+      "adaptive_keep": 277,
+      "base_fraction": 0.8508771929824561,
+      "adaptive_fraction": 0.8099415204678363,
+      "interval_occupancy": 0.43859649122807015,
+      "intervals": [
+        [
+          2.0,
+          7.0
+        ]
+      ],
+      "selected_inside_count": 151,
+      "removed_count": 14
+    },
+    {
+      "video_id": "110",
+      "frame_count": 520,
+      "base_keep": 442,
+      "adaptive_keep": 442,
+      "base_fraction": 0.85,
+      "adaptive_fraction": 0.85,
+      "interval_occupancy": 0.8076938609497325,
+      "intervals": [
+        [
+          0.0,
+          14.0
+        ]
+      ],
+      "selected_inside_count": 386,
+      "removed_count": 0
+    },
+    {
+      "video_id": "111",
+      "frame_count": 557,
+      "base_keep": 473,
+      "adaptive_keep": 451,
+      "base_fraction": 0.8491921005385996,
+      "adaptive_fraction": 0.8096947935368043,
+      "interval_occupancy": 0.43087893917605175,
+      "intervals": [
+        [
+          3.0,
+          11.0
+        ]
+      ],
+      "selected_inside_count": 241,
+      "removed_count": 22
+    },
+    {
+      "video_id": "112",
+      "frame_count": 375,
+      "base_keep": 319,
+      "adaptive_keep": 314,
+      "base_fraction": 0.8506666666666667,
+      "adaptive_fraction": 0.8373333333333334,
+      "interval_occupancy": 0.64,
+      "intervals": [
+        [
+          0.0,
+          8.0
+        ]
+      ],
+      "selected_inside_count": 216,
+      "removed_count": 5
+    },
+    {
+      "video_id": "113",
+      "frame_count": 767,
+      "base_keep": 652,
+      "adaptive_keep": 641,
+      "base_fraction": 0.8500651890482399,
+      "adaptive_fraction": 0.8357235984354628,
+      "interval_occupancy": 0.6258140471785565,
+      "intervals": [
+        [
+          1.0,
+          5.0
+        ],
+        [
+          10.0,
+          22.0
+        ]
+      ],
+      "selected_inside_count": 459,
+      "removed_count": 11
+    },
+    {
+      "video_id": "114",
+      "frame_count": 362,
+      "base_keep": 308,
+      "adaptive_keep": 304,
+      "base_fraction": 0.850828729281768,
+      "adaptive_fraction": 0.8397790055248618,
+      "interval_occupancy": 0.6629815939734973,
+      "intervals": [
+        [
+          1.0,
+          9.0
+        ]
+      ],
+      "selected_inside_count": 241,
+      "removed_count": 4
+    },
+    {
+      "video_id": "115",
+      "frame_count": 279,
+      "base_keep": 237,
+      "adaptive_keep": 234,
+      "base_fraction": 0.8494623655913979,
+      "adaptive_fraction": 0.8387096774193549,
+      "interval_occupancy": 0.6451612903225806,
+      "intervals": [
+        [
+          0.0,
+          6.0
+        ]
+      ],
+      "selected_inside_count": 162,
+      "removed_count": 3
+    },
+    {
+      "video_id": "116",
+      "frame_count": 773,
+      "base_keep": 657,
+      "adaptive_keep": 657,
+      "base_fraction": 0.8499353169469599,
+      "adaptive_fraction": 0.8499353169469599,
+      "interval_occupancy": 0.8926249771992533,
+      "intervals": [
+        [
+          0.0,
+          23.0
+        ]
+      ],
+      "selected_inside_count": 639,
+      "removed_count": 0
+    },
+    {
+      "video_id": "117",
+      "frame_count": 252,
+      "base_keep": 214,
+      "adaptive_keep": 210,
+      "base_fraction": 0.8492063492063492,
+      "adaptive_fraction": 0.8333333333333334,
+      "interval_occupancy": 0.5952380952380952,
+      "intervals": [
+        [
+          0.0,
+          5.0
+        ]
+      ],
+      "selected_inside_count": 134,
+      "removed_count": 4
+    },
+    {
+      "video_id": "118",
+      "frame_count": 290,
+      "base_keep": 246,
+      "adaptive_keep": 230,
+      "base_fraction": 0.8482758620689655,
+      "adaptive_fraction": 0.7931034482758621,
+      "interval_occupancy": 0.3100358608145676,
+      "intervals": [
+        [
+          3.0,
+          6.0
+        ]
+      ],
+      "selected_inside_count": 90,
+      "removed_count": 16
+    },
+    {
+      "video_id": "119",
+      "frame_count": 273,
+      "base_keep": 232,
+      "adaptive_keep": 225,
+      "base_fraction": 0.8498168498168498,
+      "adaptive_fraction": 0.8241758241758241,
+      "interval_occupancy": 0.5509216919907005,
+      "intervals": [
+        [
+          0.0,
+          5.0
+        ]
+      ],
+      "selected_inside_count": 133,
+      "removed_count": 7
+    },
+    {
+      "video_id": "120",
+      "frame_count": 596,
+      "base_keep": 507,
+      "adaptive_keep": 500,
+      "base_fraction": 0.8506711409395973,
+      "adaptive_fraction": 0.8389261744966443,
+      "interval_occupancy": 0.6543613181857076,
+      "intervals": [
+        [
+          0.0,
+          13.0
+        ]
+      ],
+      "selected_inside_count": 351,
+      "removed_count": 7
+    },
+    {
+      "video_id": "121",
+      "frame_count": 442,
+      "base_keep": 376,
+      "adaptive_keep": 356,
+      "base_fraction": 0.8506787330316742,
+      "adaptive_fraction": 0.8054298642533937,
+      "interval_occupancy": 0.407240740363666,
+      "intervals": [
+        [
+          5.0,
+          11.0
+        ]
+      ],
+      "selected_inside_count": 181,
+      "removed_count": 20
+    },
+    {
+      "video_id": "122",
+      "frame_count": 539,
+      "base_keep": 458,
+      "adaptive_keep": 447,
+      "base_fraction": 0.849721706864564,
+      "adaptive_fraction": 0.8293135435992579,
+      "interval_occupancy": 0.5745035331967292,
+      "intervals": [
+        [
+          0.0,
+          6.0
+        ]
+      ],
+      "selected_inside_count": 273,
+      "removed_count": 11
+    },
+    {
+      "video_id": "123",
+      "frame_count": 244,
+      "base_keep": 207,
+      "adaptive_keep": 204,
+      "base_fraction": 0.8483606557377049,
+      "adaptive_fraction": 0.8360655737704918,
+      "interval_occupancy": 0.6147566178549911,
+      "intervals": [
+        [
+          0.0,
+          5.0
+        ]
+      ],
+      "selected_inside_count": 134,
+      "removed_count": 3
+    },
+    {
+      "video_id": "124",
+      "frame_count": 422,
+      "base_keep": 359,
+      "adaptive_keep": 357,
+      "base_fraction": 0.8507109004739336,
+      "adaptive_fraction": 0.8459715639810427,
+      "interval_occupancy": 0.7108987893393617,
+      "intervals": [
+        [
+          0.0,
+          10.0
+        ]
+      ],
+      "selected_inside_count": 273,
+      "removed_count": 2
+    },
+    {
+      "video_id": "125",
+      "frame_count": 544,
+      "base_keep": 462,
+      "adaptive_keep": 453,
+      "base_fraction": 0.8492647058823529,
+      "adaptive_fraction": 0.8327205882352942,
+      "interval_occupancy": 0.6066187621668423,
+      "intervals": [
+        [
+          4.0,
+          15.0
+        ]
+      ],
+      "selected_inside_count": 331,
+      "removed_count": 9
+    },
+    {
+      "video_id": "126",
+      "frame_count": 473,
+      "base_keep": 402,
+      "adaptive_keep": 371,
+      "base_fraction": 0.8498942917547568,
+      "adaptive_fraction": 0.7843551797040169,
+      "interval_occupancy": 0.25369925222145406,
+      "intervals": [
+        [
+          6.0,
+          10.0
+        ]
+      ],
+      "selected_inside_count": 121,
+      "removed_count": 31
+    },
+    {
+      "video_id": "127",
+      "frame_count": 727,
+      "base_keep": 618,
+      "adaptive_keep": 586,
+      "base_fraction": 0.8500687757909215,
+      "adaptive_fraction": 0.8060522696011004,
+      "interval_occupancy": 0.41265531314348436,
+      "intervals": [
+        [
+          13.0,
+          23.0
+        ]
+      ],
+      "selected_inside_count": 294,
+      "removed_count": 32
+    },
+    {
+      "video_id": "128",
+      "frame_count": 328,
+      "base_keep": 279,
+      "adaptive_keep": 279,
+      "base_fraction": 0.850609756097561,
+      "adaptive_fraction": 0.850609756097561,
+      "interval_occupancy": 0.7317055324255306,
+      "intervals": [
+        [
+          0.0,
+          10.0
+        ]
+      ],
+      "selected_inside_count": 219,
+      "removed_count": 0
+    },
+    {
+      "video_id": "129",
+      "frame_count": 401,
+      "base_keep": 341,
+      "adaptive_keep": 317,
+      "base_fraction": 0.8503740648379052,
+      "adaptive_fraction": 0.7905236907730673,
+      "interval_occupancy": 0.29925112406203475,
+      "intervals": [
+        [
+          6.0,
+          10.0
+        ]
+      ],
+      "selected_inside_count": 121,
+      "removed_count": 24
+    },
+    {
+      "video_id": "130",
+      "frame_count": 265,
+      "base_keep": 225,
+      "adaptive_keep": 215,
+      "base_fraction": 0.8490566037735849,
+      "adaptive_fraction": 0.8113207547169812,
+      "interval_occupancy": 0.45283189747885844,
+      "intervals": [
+        [
+          1.0,
+          5.0
+        ]
+      ],
+      "selected_inside_count": 121,
+      "removed_count": 10
+    },
+    {
+      "video_id": "131",
+      "frame_count": 316,
+      "base_keep": 269,
+      "adaptive_keep": 266,
+      "base_fraction": 0.8512658227848101,
+      "adaptive_fraction": 0.8417721518987342,
+      "interval_occupancy": 0.6645590650603325,
+      "intervals": [
+        [
+          0.0,
+          7.0
+        ]
+      ],
+      "selected_inside_count": 190,
+      "removed_count": 3
+    },
+    {
+      "video_id": "132",
+      "frame_count": 433,
+      "base_keep": 368,
+      "adaptive_keep": 366,
+      "base_fraction": 0.8498845265588915,
+      "adaptive_fraction": 0.8452655889145496,
+      "interval_occupancy": 0.6928422467488378,
+      "intervals": [
+        [
+          0.0,
+          10.0
+        ]
+      ],
+      "selected_inside_count": 272,
+      "removed_count": 2
+    },
+    {
+      "video_id": "133",
+      "frame_count": 253,
+      "base_keep": 215,
+      "adaptive_keep": 202,
+      "base_fraction": 0.849802371541502,
+      "adaptive_fraction": 0.7984189723320159,
+      "interval_occupancy": 0.3557326313542742,
+      "intervals": [
+        [
+          5.0,
+          8.0
+        ]
+      ],
+      "selected_inside_count": 87,
+      "removed_count": 13
+    },
+    {
+      "video_id": "134",
+      "frame_count": 349,
+      "base_keep": 297,
+      "adaptive_keep": 286,
+      "base_fraction": 0.8510028653295129,
+      "adaptive_fraction": 0.8194842406876791,
+      "interval_occupancy": 0.5157607901455304,
+      "intervals": [
+        [
+          2.0,
+          8.0
+        ]
+      ],
+      "selected_inside_count": 181,
+      "removed_count": 11
+    },
+    {
+      "video_id": "135",
+      "frame_count": 234,
+      "base_keep": 199,
+      "adaptive_keep": 192,
+      "base_fraction": 0.8504273504273504,
+      "adaptive_fraction": 0.8205128205128205,
+      "interval_occupancy": 0.5128205128205129,
+      "intervals": [
+        [
+          0.0,
+          4.0
+        ]
+      ],
+      "selected_inside_count": 105,
+      "removed_count": 7
+    },
+    {
+      "video_id": "136",
+      "frame_count": 424,
+      "base_keep": 360,
+      "adaptive_keep": 351,
+      "base_fraction": 0.8490566037735849,
+      "adaptive_fraction": 0.8278301886792453,
+      "interval_occupancy": 0.5660390708468652,
+      "intervals": [
+        [
+          3.0,
+          11.0
+        ]
+      ],
+      "selected_inside_count": 241,
+      "removed_count": 9
+    },
+    {
+      "video_id": "137",
+      "frame_count": 334,
+      "base_keep": 284,
+      "adaptive_keep": 281,
+      "base_fraction": 0.8502994011976048,
+      "adaptive_fraction": 0.8413173652694611,
+      "interval_occupancy": 0.670657076270476,
+      "intervals": [
+        [
+          0.0,
+          8.0
+        ]
+      ],
+      "selected_inside_count": 203,
+      "removed_count": 3
+    },
+    {
+      "video_id": "138",
+      "frame_count": 233,
+      "base_keep": 198,
+      "adaptive_keep": 191,
+      "base_fraction": 0.8497854077253219,
+      "adaptive_fraction": 0.8197424892703863,
+      "interval_occupancy": 0.5145091582630171,
+      "intervals": [
+        [
+          0.0,
+          4.0
+        ]
+      ],
+      "selected_inside_count": 104,
+      "removed_count": 7
+    },
+    {
+      "video_id": "139",
+      "frame_count": 393,
+      "base_keep": 334,
+      "adaptive_keep": 332,
+      "base_fraction": 0.8498727735368957,
+      "adaptive_fraction": 0.8447837150127226,
+      "interval_occupancy": 0.6870229007633588,
+      "intervals": [
+        [
+          0.0,
+          9.0
+        ]
+      ],
+      "selected_inside_count": 244,
+      "removed_count": 2
+    },
+    {
+      "video_id": "140",
+      "frame_count": 666,
+      "base_keep": 566,
+      "adaptive_keep": 566,
+      "base_fraction": 0.8498498498498499,
+      "adaptive_fraction": 0.8498498498498499,
+      "interval_occupancy": 0.8558558558558559,
+      "intervals": [
+        [
+          0.0,
+          19.0
+        ]
+      ],
+      "selected_inside_count": 526,
+      "removed_count": 0
+    },
+    {
+      "video_id": "141",
+      "frame_count": 595,
+      "base_keep": 506,
+      "adaptive_keep": 487,
+      "base_fraction": 0.8504201680672269,
+      "adaptive_fraction": 0.8184873949579832,
+      "interval_occupancy": 0.5042025280714757,
+      "intervals": [
+        [
+          2.0,
+          12.0
+        ]
+      ],
+      "selected_inside_count": 301,
+      "removed_count": 19
+    },
+    {
+      "video_id": "142",
+      "frame_count": 446,
+      "base_keep": 379,
+      "adaptive_keep": 365,
+      "base_fraction": 0.8497757847533632,
+      "adaptive_fraction": 0.8183856502242153,
+      "interval_occupancy": 0.5044843049327354,
+      "intervals": [
+        [
+          3.0,
+          12.0
+        ]
+      ],
+      "selected_inside_count": 226,
+      "removed_count": 14
+    },
+    {
+      "video_id": "143",
+      "frame_count": 243,
+      "base_keep": 207,
+      "adaptive_keep": 207,
+      "base_fraction": 0.8518518518518519,
+      "adaptive_fraction": 0.8518518518518519,
+      "interval_occupancy": 0.8641975308641976,
+      "intervals": [
+        [
+          0.0,
+          7.0
+        ]
+      ],
+      "selected_inside_count": 195,
+      "removed_count": 0
+    },
+    {
+      "video_id": "144",
+      "frame_count": 275,
+      "base_keep": 234,
+      "adaptive_keep": 223,
+      "base_fraction": 0.850909090909091,
+      "adaptive_fraction": 0.8109090909090909,
+      "interval_occupancy": 0.43636204959254693,
+      "intervals": [
+        [
+          1.0,
+          5.0
+        ]
+      ],
+      "selected_inside_count": 121,
+      "removed_count": 11
+    },
+    {
+      "video_id": "145",
+      "frame_count": 360,
+      "base_keep": 306,
+      "adaptive_keep": 299,
+      "base_fraction": 0.85,
+      "adaptive_fraction": 0.8305555555555556,
+      "interval_occupancy": 0.5833333333333334,
+      "intervals": [
+        [
+          2.0,
+          9.0
+        ]
+      ],
+      "selected_inside_count": 211,
+      "removed_count": 7
+    },
+    {
+      "video_id": "146",
+      "frame_count": 234,
+      "base_keep": 199,
+      "adaptive_keep": 192,
+      "base_fraction": 0.8504273504273504,
+      "adaptive_fraction": 0.8205128205128205,
+      "interval_occupancy": 0.5128205128205129,
+      "intervals": [
+        [
+          0.0,
+          4.0
+        ]
+      ],
+      "selected_inside_count": 105,
+      "removed_count": 7
+    },
+    {
+      "video_id": "147",
+      "frame_count": 294,
+      "base_keep": 250,
+      "adaptive_keep": 237,
+      "base_fraction": 0.8503401360544217,
+      "adaptive_fraction": 0.8061224489795918,
+      "interval_occupancy": 0.4081632653061224,
+      "intervals": [
+        [
+          2.0,
+          6.0
+        ]
+      ],
+      "selected_inside_count": 121,
+      "removed_count": 13
+    },
+    {
+      "video_id": "148",
+      "frame_count": 1315,
+      "base_keep": 1118,
+      "adaptive_keep": 1040,
+      "base_fraction": 0.850190114068441,
+      "adaptive_fraction": 0.7908745247148289,
+      "interval_occupancy": 0.2965781723027926,
+      "intervals": [
+        [
+          27.0,
+          40.0
+        ]
+      ],
+      "selected_inside_count": 391,
+      "removed_count": 78
+    },
+    {
+      "video_id": "149",
+      "frame_count": 505,
+      "base_keep": 429,
+      "adaptive_keep": 399,
+      "base_fraction": 0.8495049504950495,
+      "adaptive_fraction": 0.7900990099009901,
+      "interval_occupancy": 0.29703029114909135,
+      "intervals": [
+        [
+          0.0,
+          5.0
+        ]
+      ],
+      "selected_inside_count": 117,
+      "removed_count": 30
+    },
+    {
+      "video_id": "150",
+      "frame_count": 247,
+      "base_keep": 210,
+      "adaptive_keep": 206,
+      "base_fraction": 0.8502024291497976,
+      "adaptive_fraction": 0.8340080971659919,
+      "interval_occupancy": 0.6066783148903125,
+      "intervals": [
+        [
+          2.0,
+          7.0
+        ]
+      ],
+      "selected_inside_count": 150,
+      "removed_count": 4
+    },
+    {
+      "video_id": "151",
+      "frame_count": 282,
+      "base_keep": 240,
+      "adaptive_keep": 232,
+      "base_fraction": 0.851063829787234,
+      "adaptive_fraction": 0.8226950354609929,
+      "interval_occupancy": 0.5319148936170213,
+      "intervals": [
+        [
+          0.0,
+          5.0
+        ]
+      ],
+      "selected_inside_count": 132,
+      "removed_count": 8
+    },
+    {
+      "video_id": "152",
+      "frame_count": 401,
+      "base_keep": 341,
+      "adaptive_keep": 341,
+      "base_fraction": 0.8503740648379052,
+      "adaptive_fraction": 0.8503740648379052,
+      "interval_occupancy": 0.8104738154613467,
+      "intervals": [
+        [
+          0.0,
+          13.0
+        ]
+      ],
+      "selected_inside_count": 299,
+      "removed_count": 0
+    },
+    {
+      "video_id": "153",
+      "frame_count": 300,
+      "base_keep": 255,
+      "adaptive_keep": 250,
+      "base_fraction": 0.85,
+      "adaptive_fraction": 0.8333333333333334,
+      "interval_occupancy": 0.6,
+      "intervals": [
+        [
+          0.0,
+          6.0
+        ]
+      ],
+      "selected_inside_count": 161,
+      "removed_count": 5
+    },
+    {
+      "video_id": "154",
+      "frame_count": 586,
+      "base_keep": 498,
+      "adaptive_keep": 498,
+      "base_fraction": 0.8498293515358362,
+      "adaptive_fraction": 0.8498293515358362,
+      "interval_occupancy": 0.7679193991798621,
+      "intervals": [
+        [
+          0.0,
+          15.0
+        ]
+      ],
+      "selected_inside_count": 411,
+      "removed_count": 0
+    },
+    {
+      "video_id": "155",
+      "frame_count": 238,
+      "base_keep": 202,
+      "adaptive_keep": 191,
+      "base_fraction": 0.8487394957983193,
+      "adaptive_fraction": 0.8025210084033614,
+      "interval_occupancy": 0.3781528493817201,
+      "intervals": [
+        [
+          2.0,
+          5.0
+        ]
+      ],
+      "selected_inside_count": 91,
+      "removed_count": 11
+    },
+    {
+      "video_id": "156",
+      "frame_count": 348,
+      "base_keep": 296,
+      "adaptive_keep": 286,
+      "base_fraction": 0.8505747126436781,
+      "adaptive_fraction": 0.8218390804597702,
+      "interval_occupancy": 0.5172413793103449,
+      "intervals": [
+        [
+          0.0,
+          6.0
+        ]
+      ],
+      "selected_inside_count": 158,
+      "removed_count": 10
+    },
+    {
+      "video_id": "157",
+      "frame_count": 1195,
+      "base_keep": 1016,
+      "adaptive_keep": 978,
+      "base_fraction": 0.8502092050209205,
+      "adaptive_fraction": 0.8184100418410042,
+      "interval_occupancy": 0.502092470370268,
+      "intervals": [
+        [
+          16.0,
+          36.0
+        ]
+      ],
+      "selected_inside_count": 601,
+      "removed_count": 38
+    },
+    {
+      "video_id": "158",
+      "frame_count": 577,
+      "base_keep": 490,
+      "adaptive_keep": 470,
+      "base_fraction": 0.8492201039861352,
+      "adaptive_fraction": 0.8145580589254766,
+      "interval_occupancy": 0.4679384193040196,
+      "intervals": [
+        [
+          4.0,
+          13.0
+        ]
+      ],
+      "selected_inside_count": 271,
+      "removed_count": 20
+    },
+    {
+      "video_id": "159",
+      "frame_count": 427,
+      "base_keep": 363,
+      "adaptive_keep": 346,
+      "base_fraction": 0.8501170960187353,
+      "adaptive_fraction": 0.810304449648712,
+      "interval_occupancy": 0.44565265831810685,
+      "intervals": [
+        [
+          2.0,
+          6.0
+        ]
+      ],
+      "selected_inside_count": 190,
+      "removed_count": 17
+    },
+    {
+      "video_id": "160",
+      "frame_count": 430,
+      "base_keep": 366,
+      "adaptive_keep": 366,
+      "base_fraction": 0.8511627906976744,
+      "adaptive_fraction": 0.8511627906976744,
+      "interval_occupancy": 0.9767396430714276,
+      "intervals": [
+        [
+          0.0,
+          7.0
+        ]
+      ],
+      "selected_inside_count": 366,
+      "removed_count": 0
+    },
+    {
+      "video_id": "161",
+      "frame_count": 350,
+      "base_keep": 298,
+      "adaptive_keep": 298,
+      "base_fraction": 0.8514285714285714,
+      "adaptive_fraction": 0.8514285714285714,
+      "interval_occupancy": 1.0,
+      "intervals": [
+        [
+          0.0,
+          14.0
+        ]
+      ],
+      "selected_inside_count": 298,
+      "removed_count": 0
+    },
+    {
+      "video_id": "162",
+      "frame_count": 672,
+      "base_keep": 571,
+      "adaptive_keep": 571,
+      "base_fraction": 0.8497023809523809,
+      "adaptive_fraction": 0.8497023809523809,
+      "interval_occupancy": 0.8469551960701279,
+      "intervals": [
+        [
+          0.0,
+          19.0
+        ]
+      ],
+      "selected_inside_count": 525,
+      "removed_count": 0
+    },
+    {
+      "video_id": "163",
+      "frame_count": 492,
+      "base_keep": 418,
+      "adaptive_keep": 406,
+      "base_fraction": 0.8495934959349594,
+      "adaptive_fraction": 0.8252032520325203,
+      "interval_occupancy": 0.5487811570501915,
+      "intervals": [
+        [
+          0.0,
+          5.0
+        ]
+      ],
+      "selected_inside_count": 238,
+      "removed_count": 12
+    },
+    {
+      "video_id": "164",
+      "frame_count": 520,
+      "base_keep": 442,
+      "adaptive_keep": 438,
+      "base_fraction": 0.85,
+      "adaptive_fraction": 0.8423076923076923,
+      "interval_occupancy": 0.673076923076923,
+      "intervals": [
+        [
+          0.0,
+          7.0
+        ]
+      ],
+      "selected_inside_count": 316,
+      "removed_count": 4
+    },
+    {
+      "video_id": "165",
+      "frame_count": 449,
+      "base_keep": 382,
+      "adaptive_keep": 371,
+      "base_fraction": 0.8507795100222717,
+      "adaptive_fraction": 0.8262806236080178,
+      "interval_occupancy": 0.5567928730512249,
+      "intervals": [
+        [
+          0.0,
+          5.0
+        ]
+      ],
+      "selected_inside_count": 221,
+      "removed_count": 11
+    },
+    {
+      "video_id": "166",
+      "frame_count": 448,
+      "base_keep": 381,
+      "adaptive_keep": 370,
+      "base_fraction": 0.8504464285714286,
+      "adaptive_fraction": 0.8258928571428571,
+      "interval_occupancy": 0.5580357142857142,
+      "intervals": [
+        [
+          0.0,
+          5.0
+        ]
+      ],
+      "selected_inside_count": 221,
+      "removed_count": 11
+    },
+    {
+      "video_id": "167",
+      "frame_count": 539,
+      "base_keep": 458,
+      "adaptive_keep": 453,
+      "base_fraction": 0.849721706864564,
+      "adaptive_fraction": 0.8404452690166976,
+      "interval_occupancy": 0.6679060033617935,
+      "intervals": [
+        [
+          0.0,
+          6.0
+        ]
+      ],
+      "selected_inside_count": 324,
+      "removed_count": 5
+    },
+    {
+      "video_id": "168",
+      "frame_count": 259,
+      "base_keep": 220,
+      "adaptive_keep": 215,
+      "base_fraction": 0.8494208494208494,
+      "adaptive_fraction": 0.8301158301158301,
+      "interval_occupancy": 0.5791528152618349,
+      "intervals": [
+        [
+          0.0,
+          5.0
+        ]
+      ],
+      "selected_inside_count": 133,
+      "removed_count": 5
+    },
+    {
+      "video_id": "169",
+      "frame_count": 240,
+      "base_keep": 204,
+      "adaptive_keep": 201,
+      "base_fraction": 0.85,
+      "adaptive_fraction": 0.8375,
+      "interval_occupancy": 0.625,
+      "intervals": [
+        [
+          0.0,
+          5.0
+        ]
+      ],
+      "selected_inside_count": 135,
+      "removed_count": 3
+    },
+    {
+      "video_id": "170",
+      "frame_count": 439,
+      "base_keep": 373,
+      "adaptive_keep": 346,
+      "base_fraction": 0.8496583143507973,
+      "adaptive_fraction": 0.7881548974943052,
+      "interval_occupancy": 0.27334914202538046,
+      "intervals": [
+        [
+          9.0,
+          13.0
+        ]
+      ],
+      "selected_inside_count": 121,
+      "removed_count": 27
+    },
+    {
+      "video_id": "171",
+      "frame_count": 254,
+      "base_keep": 216,
+      "adaptive_keep": 207,
+      "base_fraction": 0.8503937007874016,
+      "adaptive_fraction": 0.8149606299212598,
+      "interval_occupancy": 0.47243908488549263,
+      "intervals": [
+        [
+          1.0,
+          5.0
+        ]
+      ],
+      "selected_inside_count": 121,
+      "removed_count": 9
+    },
+    {
+      "video_id": "172",
+      "frame_count": 292,
+      "base_keep": 248,
+      "adaptive_keep": 231,
+      "base_fraction": 0.8493150684931506,
+      "adaptive_fraction": 0.791095890410959,
+      "interval_occupancy": 0.3082202336309371,
+      "intervals": [
+        [
+          3.0,
+          6.0
+        ]
+      ],
+      "selected_inside_count": 91,
+      "removed_count": 17
+    },
+    {
+      "video_id": "173",
+      "frame_count": 390,
+      "base_keep": 332,
+      "adaptive_keep": 321,
+      "base_fraction": 0.8512820512820513,
+      "adaptive_fraction": 0.823076923076923,
+      "interval_occupancy": 0.5384615384615384,
+      "intervals": [
+        [
+          2.0,
+          9.0
+        ]
+      ],
+      "selected_inside_count": 211,
+      "removed_count": 11
+    },
+    {
+      "video_id": "174",
+      "frame_count": 185,
+      "base_keep": 157,
+      "adaptive_keep": 157,
+      "base_fraction": 0.8486486486486486,
+      "adaptive_fraction": 0.8486486486486486,
+      "interval_occupancy": 0.9459459459459459,
+      "intervals": [
+        [
+          0.0,
+          7.0
+        ]
+      ],
+      "selected_inside_count": 157,
+      "removed_count": 0
+    },
+    {
+      "video_id": "175",
+      "frame_count": 304,
+      "base_keep": 258,
+      "adaptive_keep": 258,
+      "base_fraction": 0.8486842105263158,
+      "adaptive_fraction": 0.8486842105263158,
+      "interval_occupancy": 0.8223684210526315,
+      "intervals": [
+        [
+          0.0,
+          10.0
+        ]
+      ],
+      "selected_inside_count": 230,
+      "removed_count": 0
+    },
+    {
+      "video_id": "176",
+      "frame_count": 195,
+      "base_keep": 166,
+      "adaptive_keep": 166,
+      "base_fraction": 0.8512820512820513,
+      "adaptive_fraction": 0.8512820512820513,
+      "interval_occupancy": 0.7692307692307693,
+      "intervals": [
+        [
+          0.0,
+          6.0
+        ]
+      ],
+      "selected_inside_count": 138,
+      "removed_count": 0
+    },
+    {
+      "video_id": "177",
+      "frame_count": 550,
+      "base_keep": 468,
+      "adaptive_keep": 468,
+      "base_fraction": 0.850909090909091,
+      "adaptive_fraction": 0.850909090909091,
+      "interval_occupancy": 1.0,
+      "intervals": [
+        [
+          0.0,
+          22.0
+        ]
+      ],
+      "selected_inside_count": 468,
+      "removed_count": 0
+    },
+    {
+      "video_id": "178",
+      "frame_count": 224,
+      "base_keep": 190,
+      "adaptive_keep": 185,
+      "base_fraction": 0.8482142857142857,
+      "adaptive_fraction": 0.8258928571428571,
+      "interval_occupancy": 0.5580357142857142,
+      "intervals": [
+        [
+          2.0,
+          7.0
+        ]
+      ],
+      "selected_inside_count": 126,
+      "removed_count": 5
+    },
+    {
+      "video_id": "179",
+      "frame_count": 192,
+      "base_keep": 163,
+      "adaptive_keep": 163,
+      "base_fraction": 0.8489583333333334,
+      "adaptive_fraction": 0.8489583333333334,
+      "interval_occupancy": 0.9114583333333334,
+      "intervals": [
+        [
+          0.0,
+          7.0
+        ]
+      ],
+      "selected_inside_count": 163,
+      "removed_count": 0
+    },
+    {
+      "video_id": "180",
+      "frame_count": 180,
+      "base_keep": 153,
+      "adaptive_keep": 145,
+      "base_fraction": 0.85,
+      "adaptive_fraction": 0.8055555555555556,
+      "interval_occupancy": 0.41666666666666663,
+      "intervals": [
+        [
+          1.0,
+          4.0
+        ]
+      ],
+      "selected_inside_count": 76,
+      "removed_count": 8
+    },
+    {
+      "video_id": "181",
+      "frame_count": 605,
+      "base_keep": 514,
+      "adaptive_keep": 514,
+      "base_fraction": 0.8495867768595041,
+      "adaptive_fraction": 0.8495867768595041,
+      "interval_occupancy": 0.9917355371900827,
+      "intervals": [
+        [
+          0.0,
+          24.0
+        ]
+      ],
+      "selected_inside_count": 514,
+      "removed_count": 0
+    },
+    {
+      "video_id": "182",
+      "frame_count": 453,
+      "base_keep": 385,
+      "adaptive_keep": 385,
+      "base_fraction": 0.8498896247240618,
+      "adaptive_fraction": 0.8498896247240618,
+      "interval_occupancy": 0.9933774834437086,
+      "intervals": [
+        [
+          0.0,
+          18.0
+        ]
+      ],
+      "selected_inside_count": 385,
+      "removed_count": 0
+    },
+    {
+      "video_id": "183",
+      "frame_count": 374,
+      "base_keep": 318,
+      "adaptive_keep": 315,
+      "base_fraction": 0.8502673796791443,
+      "adaptive_fraction": 0.8422459893048129,
+      "interval_occupancy": 0.6684491978609626,
+      "intervals": [
+        [
+          4.0,
+          14.0
+        ]
+      ],
+      "selected_inside_count": 251,
+      "removed_count": 3
+    },
+    {
+      "video_id": "184",
+      "frame_count": 630,
+      "base_keep": 536,
+      "adaptive_keep": 536,
+      "base_fraction": 0.8507936507936508,
+      "adaptive_fraction": 0.8507936507936508,
+      "interval_occupancy": 0.9920634920634921,
+      "intervals": [
+        [
+          0.0,
+          25.0
+        ]
+      ],
+      "selected_inside_count": 536,
+      "removed_count": 0
+    },
+    {
+      "video_id": "185",
+      "frame_count": 211,
+      "base_keep": 179,
+      "adaptive_keep": 179,
+      "base_fraction": 0.8483412322274881,
+      "adaptive_fraction": 0.8483412322274881,
+      "interval_occupancy": 0.9478672985781991,
+      "intervals": [
+        [
+          0.0,
+          8.0
+        ]
+      ],
+      "selected_inside_count": 179,
+      "removed_count": 0
+    },
+    {
+      "video_id": "186",
+      "frame_count": 254,
+      "base_keep": 216,
+      "adaptive_keep": 204,
+      "base_fraction": 0.8503937007874016,
+      "adaptive_fraction": 0.8031496062992126,
+      "interval_occupancy": 0.39370078740157477,
+      "intervals": [
+        [
+          4.0,
+          8.0
+        ]
+      ],
+      "selected_inside_count": 101,
+      "removed_count": 12
+    },
+    {
+      "video_id": "187",
+      "frame_count": 282,
+      "base_keep": 240,
+      "adaptive_keep": 240,
+      "base_fraction": 0.851063829787234,
+      "adaptive_fraction": 0.851063829787234,
+      "interval_occupancy": 0.975177304964539,
+      "intervals": [
+        [
+          0.0,
+          11.0
+        ]
+      ],
+      "selected_inside_count": 240,
+      "removed_count": 0
+    },
+    {
+      "video_id": "188",
+      "frame_count": 678,
+      "base_keep": 576,
+      "adaptive_keep": 576,
+      "base_fraction": 0.8495575221238938,
+      "adaptive_fraction": 0.8495575221238938,
+      "interval_occupancy": 0.995575221238938,
+      "intervals": [
+        [
+          0.0,
+          27.0
+        ]
+      ],
+      "selected_inside_count": 576,
+      "removed_count": 0
+    },
+    {
+      "video_id": "189",
+      "frame_count": 354,
+      "base_keep": 301,
+      "adaptive_keep": 293,
+      "base_fraction": 0.8502824858757062,
+      "adaptive_fraction": 0.827683615819209,
+      "interval_occupancy": 0.5649717514124294,
+      "intervals": [
+        [
+          3.0,
+          11.0
+        ]
+      ],
+      "selected_inside_count": 201,
+      "removed_count": 8
+    },
+    {
+      "video_id": "190",
+      "frame_count": 855,
+      "base_keep": 727,
+      "adaptive_keep": 727,
+      "base_fraction": 0.8502923976608188,
+      "adaptive_fraction": 0.8502923976608188,
+      "interval_occupancy": 0.9941520467836257,
+      "intervals": [
+        [
+          0.0,
+          34.0
+        ]
+      ],
+      "selected_inside_count": 727,
+      "removed_count": 0
+    },
+    {
+      "video_id": "191",
+      "frame_count": 535,
+      "base_keep": 455,
+      "adaptive_keep": 453,
+      "base_fraction": 0.8504672897196262,
+      "adaptive_fraction": 0.8467289719626169,
+      "interval_occupancy": 0.7009345794392524,
+      "intervals": [
+        [
+          0.0,
+          15.0
+        ]
+      ],
+      "selected_inside_count": 340,
+      "removed_count": 2
+    },
+    {
+      "video_id": "192",
+      "frame_count": 380,
+      "base_keep": 323,
+      "adaptive_keep": 323,
+      "base_fraction": 0.85,
+      "adaptive_fraction": 0.85,
+      "interval_occupancy": 0.986842105263158,
+      "intervals": [
+        [
+          0.0,
+          15.0
+        ]
+      ],
+      "selected_inside_count": 323,
+      "removed_count": 0
+    },
+    {
+      "video_id": "193",
+      "frame_count": 321,
+      "base_keep": 273,
+      "adaptive_keep": 273,
+      "base_fraction": 0.8504672897196262,
+      "adaptive_fraction": 0.8504672897196262,
+      "interval_occupancy": 0.9345794392523364,
+      "intervals": [
+        [
+          0.0,
+          12.0
+        ]
+      ],
+      "selected_inside_count": 273,
+      "removed_count": 0
+    },
+    {
+      "video_id": "194",
+      "frame_count": 650,
+      "base_keep": 552,
+      "adaptive_keep": 552,
+      "base_fraction": 0.8492307692307692,
+      "adaptive_fraction": 0.8492307692307692,
+      "interval_occupancy": 0.9230769230769231,
+      "intervals": [
+        [
+          1.0,
+          25.0
+        ]
+      ],
+      "selected_inside_count": 552,
+      "removed_count": 0
+    },
+    {
+      "video_id": "195",
+      "frame_count": 638,
+      "base_keep": 542,
+      "adaptive_keep": 542,
+      "base_fraction": 0.8495297805642633,
+      "adaptive_fraction": 0.8495297805642633,
+      "interval_occupancy": 0.9404388714733543,
+      "intervals": [
+        [
+          1.0,
+          25.0
+        ]
+      ],
+      "selected_inside_count": 542,
+      "removed_count": 0
+    },
+    {
+      "video_id": "196",
+      "frame_count": 370,
+      "base_keep": 314,
+      "adaptive_keep": 291,
+      "base_fraction": 0.8486486486486486,
+      "adaptive_fraction": 0.7864864864864864,
+      "interval_occupancy": 0.27027027027027023,
+      "intervals": [
+        [
+          10.0,
+          14.0
+        ]
+      ],
+      "selected_inside_count": 94,
+      "removed_count": 23
+    },
+    {
+      "video_id": "197",
+      "frame_count": 700,
+      "base_keep": 595,
+      "adaptive_keep": 595,
+      "base_fraction": 0.85,
+      "adaptive_fraction": 0.85,
+      "interval_occupancy": 0.9285714285714286,
+      "intervals": [
+        [
+          1.0,
+          27.0
+        ]
+      ],
+      "selected_inside_count": 595,
+      "removed_count": 0
+    },
+    {
+      "video_id": "198",
+      "frame_count": 882,
+      "base_keep": 750,
+      "adaptive_keep": 750,
+      "base_fraction": 0.8503401360544217,
+      "adaptive_fraction": 0.8503401360544217,
+      "interval_occupancy": 0.9637188208616779,
+      "intervals": [
+        [
+          1.0,
+          35.0
+        ]
+      ],
+      "selected_inside_count": 750,
+      "removed_count": 0
+    },
+    {
+      "video_id": "199",
+      "frame_count": 1053,
+      "base_keep": 895,
+      "adaptive_keep": 855,
+      "base_fraction": 0.8499525166191833,
+      "adaptive_fraction": 0.811965811965812,
+      "interval_occupancy": 0.454092651929468,
+      "intervals": [
+        [
+          18.0,
+          34.0
+        ]
+      ],
+      "selected_inside_count": 469,
+      "removed_count": 40
+    },
+    {
+      "video_id": "200",
+      "frame_count": 420,
+      "base_keep": 357,
+      "adaptive_keep": 356,
+      "base_fraction": 0.85,
+      "adaptive_fraction": 0.8476190476190476,
+      "interval_occupancy": 0.7142857142857143,
+      "intervals": [
+        [
+          0.0,
+          12.0
+        ]
+      ],
+      "selected_inside_count": 272,
+      "removed_count": 1
+    },
+    {
+      "video_id": "201",
+      "frame_count": 275,
+      "base_keep": 234,
+      "adaptive_keep": 234,
+      "base_fraction": 0.850909090909091,
+      "adaptive_fraction": 0.850909090909091,
+      "interval_occupancy": 0.9090909090909091,
+      "intervals": [
+        [
+          0.0,
+          10.0
+        ]
+      ],
+      "selected_inside_count": 232,
+      "removed_count": 0
+    },
+    {
+      "video_id": "202",
+      "frame_count": 203,
+      "base_keep": 173,
+      "adaptive_keep": 173,
+      "base_fraction": 0.8522167487684729,
+      "adaptive_fraction": 0.8522167487684729,
+      "interval_occupancy": 0.8620689655172414,
+      "intervals": [
+        [
+          0.0,
+          7.0
+        ]
+      ],
+      "selected_inside_count": 163,
+      "removed_count": 0
+    },
+    {
+      "video_id": "203",
+      "frame_count": 389,
+      "base_keep": 331,
+      "adaptive_keep": 331,
+      "base_fraction": 0.8508997429305912,
+      "adaptive_fraction": 0.8508997429305912,
+      "interval_occupancy": 0.9640102827763496,
+      "intervals": [
+        [
+          0.0,
+          15.0
+        ]
+      ],
+      "selected_inside_count": 331,
+      "removed_count": 0
+    },
+    {
+      "video_id": "204",
+      "frame_count": 327,
+      "base_keep": 278,
+      "adaptive_keep": 278,
+      "base_fraction": 0.8501529051987767,
+      "adaptive_fraction": 0.8501529051987767,
+      "interval_occupancy": 0.9938837920489296,
+      "intervals": [
+        [
+          0.0,
+          13.0
+        ]
+      ],
+      "selected_inside_count": 278,
+      "removed_count": 0
+    },
+    {
+      "video_id": "205",
+      "frame_count": 644,
+      "base_keep": 547,
+      "adaptive_keep": 547,
+      "base_fraction": 0.8493788819875776,
+      "adaptive_fraction": 0.8493788819875776,
+      "interval_occupancy": 0.9704968944099378,
+      "intervals": [
+        [
+          0.0,
+          25.0
+        ]
+      ],
+      "selected_inside_count": 547,
+      "removed_count": 0
+    },
+    {
+      "video_id": "206",
+      "frame_count": 380,
+      "base_keep": 323,
+      "adaptive_keep": 323,
+      "base_fraction": 0.85,
+      "adaptive_fraction": 0.85,
+      "interval_occupancy": 0.986842105263158,
+      "intervals": [
+        [
+          0.0,
+          15.0
+        ]
+      ],
+      "selected_inside_count": 323,
+      "removed_count": 0
+    },
+    {
+      "video_id": "207",
+      "frame_count": 335,
+      "base_keep": 285,
+      "adaptive_keep": 285,
+      "base_fraction": 0.8507462686567164,
+      "adaptive_fraction": 0.8507462686567164,
+      "interval_occupancy": 0.9701492537313433,
+      "intervals": [
+        [
+          0.0,
+          13.0
+        ]
+      ],
+      "selected_inside_count": 285,
+      "removed_count": 0
+    },
+    {
+      "video_id": "208",
+      "frame_count": 427,
+      "base_keep": 363,
+      "adaptive_keep": 363,
+      "base_fraction": 0.8501170960187353,
+      "adaptive_fraction": 0.8501170960187353,
+      "interval_occupancy": 0.936768149882904,
+      "intervals": [
+        [
+          0.0,
+          16.0
+        ]
+      ],
+      "selected_inside_count": 363,
+      "removed_count": 0
+    },
+    {
+      "video_id": "209",
+      "frame_count": 284,
+      "base_keep": 241,
+      "adaptive_keep": 234,
+      "base_fraction": 0.8485915492957746,
+      "adaptive_fraction": 0.823943661971831,
+      "interval_occupancy": 0.5281690140845071,
+      "intervals": [
+        [
+          2.0,
+          8.0
+        ]
+      ],
+      "selected_inside_count": 151,
+      "removed_count": 7
+    },
+    {
+      "video_id": "210",
+      "frame_count": 567,
+      "base_keep": 482,
+      "adaptive_keep": 482,
+      "base_fraction": 0.8500881834215167,
+      "adaptive_fraction": 0.8500881834215167,
+      "interval_occupancy": 0.9700176366843034,
+      "intervals": [
+        [
+          0.0,
+          22.0
+        ]
+      ],
+      "selected_inside_count": 482,
+      "removed_count": 0
+    },
+    {
+      "video_id": "211",
+      "frame_count": 887,
+      "base_keep": 754,
+      "adaptive_keep": 696,
+      "base_fraction": 0.8500563697857948,
+      "adaptive_fraction": 0.7846674182638106,
+      "interval_occupancy": 0.25366403607666294,
+      "intervals": [
+        [
+          19.0,
+          28.0
+        ]
+      ],
+      "selected_inside_count": 226,
+      "removed_count": 58
+    },
+    {
+      "video_id": "212",
+      "frame_count": 289,
+      "base_keep": 246,
+      "adaptive_keep": 246,
+      "base_fraction": 0.8512110726643599,
+      "adaptive_fraction": 0.8512110726643599,
+      "interval_occupancy": 0.9515570934256055,
+      "intervals": [
+        [
+          0.0,
+          11.0
+        ]
+      ],
+      "selected_inside_count": 246,
+      "removed_count": 0
+    },
+    {
+      "video_id": "213",
+      "frame_count": 325,
+      "base_keep": 276,
+      "adaptive_keep": 276,
+      "base_fraction": 0.8492307692307692,
+      "adaptive_fraction": 0.8492307692307692,
+      "interval_occupancy": 0.9230769230769231,
+      "intervals": [
+        [
+          0.0,
+          12.0
+        ]
+      ],
+      "selected_inside_count": 276,
+      "removed_count": 0
+    },
+    {
+      "video_id": "214",
+      "frame_count": 348,
+      "base_keep": 296,
+      "adaptive_keep": 295,
+      "base_fraction": 0.8505747126436781,
+      "adaptive_fraction": 0.8477011494252874,
+      "interval_occupancy": 0.7183908045977011,
+      "intervals": [
+        [
+          0.0,
+          10.0
+        ]
+      ],
+      "selected_inside_count": 228,
+      "removed_count": 1
+    },
+    {
+      "video_id": "215",
+      "frame_count": 710,
+      "base_keep": 604,
+      "adaptive_keep": 604,
+      "base_fraction": 0.8507042253521127,
+      "adaptive_fraction": 0.8507042253521127,
+      "interval_occupancy": 0.9859154929577465,
+      "intervals": [
+        [
+          0.0,
+          28.0
+        ]
+      ],
+      "selected_inside_count": 604,
+      "removed_count": 0
+    },
+    {
+      "video_id": "216",
+      "frame_count": 256,
+      "base_keep": 218,
+      "adaptive_keep": 206,
+      "base_fraction": 0.8515625,
+      "adaptive_fraction": 0.8046875,
+      "interval_occupancy": 0.390625,
+      "intervals": [
+        [
+          5.0,
+          9.0
+        ]
+      ],
+      "selected_inside_count": 101,
+      "removed_count": 12
+    },
+    {
+      "video_id": "217",
+      "frame_count": 299,
+      "base_keep": 254,
+      "adaptive_keep": 254,
+      "base_fraction": 0.8494983277591973,
+      "adaptive_fraction": 0.8494983277591973,
+      "interval_occupancy": 0.9197324414715718,
+      "intervals": [
+        [
+          0.0,
+          11.0
+        ]
+      ],
+      "selected_inside_count": 254,
+      "removed_count": 0
+    },
+    {
+      "video_id": "218",
+      "frame_count": 370,
+      "base_keep": 314,
+      "adaptive_keep": 288,
+      "base_fraction": 0.8486486486486486,
+      "adaptive_fraction": 0.7783783783783784,
+      "interval_occupancy": 0.2027027027027027,
+      "intervals": [
+        [
+          6.0,
+          9.0
+        ]
+      ],
+      "selected_inside_count": 76,
+      "removed_count": 26
+    },
+    {
+      "video_id": "219",
+      "frame_count": 351,
+      "base_keep": 298,
+      "adaptive_keep": 297,
+      "base_fraction": 0.8490028490028491,
+      "adaptive_fraction": 0.8461538461538461,
+      "interval_occupancy": 0.7122507122507123,
+      "intervals": [
+        [
+          3.0,
+          13.0
+        ]
+      ],
+      "selected_inside_count": 251,
+      "removed_count": 1
+    },
+    {
+      "video_id": "220",
+      "frame_count": 395,
+      "base_keep": 336,
+      "adaptive_keep": 336,
+      "base_fraction": 0.850632911392405,
+      "adaptive_fraction": 0.850632911392405,
+      "interval_occupancy": 0.9493670886075949,
+      "intervals": [
+        [
+          0.0,
+          15.0
+        ]
+      ],
+      "selected_inside_count": 336,
+      "removed_count": 0
+    },
+    {
+      "video_id": "221",
+      "frame_count": 386,
+      "base_keep": 328,
+      "adaptive_keep": 328,
+      "base_fraction": 0.8497409326424871,
+      "adaptive_fraction": 0.8497409326424871,
+      "interval_occupancy": 0.9715025906735751,
+      "intervals": [
+        [
+          0.0,
+          15.0
+        ]
+      ],
+      "selected_inside_count": 328,
+      "removed_count": 0
+    },
+    {
+      "video_id": "222",
+      "frame_count": 760,
+      "base_keep": 646,
+      "adaptive_keep": 646,
+      "base_fraction": 0.85,
+      "adaptive_fraction": 0.85,
+      "interval_occupancy": 0.986842105263158,
+      "intervals": [
+        [
+          0.0,
+          30.0
+        ]
+      ],
+      "selected_inside_count": 646,
+      "removed_count": 0
+    },
+    {
+      "video_id": "223",
+      "frame_count": 502,
+      "base_keep": 427,
+      "adaptive_keep": 411,
+      "base_fraction": 0.850597609561753,
+      "adaptive_fraction": 0.8187250996015937,
+      "interval_occupancy": 0.4980079681274901,
+      "intervals": [
+        [
+          2.0,
+          12.0
+        ]
+      ],
+      "selected_inside_count": 251,
+      "removed_count": 16
+    },
+    {
+      "video_id": "224",
+      "frame_count": 551,
+      "base_keep": 468,
+      "adaptive_keep": 468,
+      "base_fraction": 0.8493647912885662,
+      "adaptive_fraction": 0.8493647912885662,
+      "interval_occupancy": 0.8166969147005445,
+      "intervals": [
+        [
+          0.0,
+          18.0
+        ]
+      ],
+      "selected_inside_count": 413,
+      "removed_count": 0
+    },
+    {
+      "video_id": "225",
+      "frame_count": 1103,
+      "base_keep": 938,
+      "adaptive_keep": 938,
+      "base_fraction": 0.8504079782411604,
+      "adaptive_fraction": 0.8504079782411604,
+      "interval_occupancy": 0.7706255666364461,
+      "intervals": [
+        [
+          8.0,
+          42.0
+        ]
+      ],
+      "selected_inside_count": 851,
+      "removed_count": 0
+    },
+    {
+      "video_id": "226",
+      "frame_count": 771,
+      "base_keep": 655,
+      "adaptive_keep": 650,
+      "base_fraction": 0.8495460440985733,
+      "adaptive_fraction": 0.8430609597924773,
+      "interval_occupancy": 0.6809338521400778,
+      "intervals": [
+        [
+          9.0,
+          30.0
+        ]
+      ],
+      "selected_inside_count": 522,
+      "removed_count": 5
+    },
+    {
+      "video_id": "227",
+      "frame_count": 587,
+      "base_keep": 499,
+      "adaptive_keep": 499,
+      "base_fraction": 0.8500851788756388,
+      "adaptive_fraction": 0.8500851788756388,
+      "interval_occupancy": 0.979557069846678,
+      "intervals": [
+        [
+          0.0,
+          23.0
+        ]
+      ],
+      "selected_inside_count": 499,
+      "removed_count": 0
+    },
+    {
+      "video_id": "228",
+      "frame_count": 603,
+      "base_keep": 513,
+      "adaptive_keep": 481,
+      "base_fraction": 0.8507462686567164,
+      "adaptive_fraction": 0.7976782752902156,
+      "interval_occupancy": 0.34825870646766166,
+      "intervals": [
+        [
+          12.0,
+          19.0
+        ]
+      ],
+      "selected_inside_count": 204,
+      "removed_count": 32
+    },
+    {
+      "video_id": "229",
+      "frame_count": 295,
+      "base_keep": 251,
+      "adaptive_keep": 251,
+      "base_fraction": 0.8508474576271187,
+      "adaptive_fraction": 0.8508474576271187,
+      "interval_occupancy": 0.9152573398553894,
+      "intervals": [
+        [
+          0.0,
+          9.0
+        ]
+      ],
+      "selected_inside_count": 251,
+      "removed_count": 0
+    },
+    {
+      "video_id": "230",
+      "frame_count": 320,
+      "base_keep": 272,
+      "adaptive_keep": 272,
+      "base_fraction": 0.85,
+      "adaptive_fraction": 0.85,
+      "interval_occupancy": 0.9375,
+      "intervals": [
+        [
+          0.0,
+          12.0
+        ]
+      ],
+      "selected_inside_count": 272,
+      "removed_count": 0
+    },
+    {
+      "video_id": "231",
+      "frame_count": 635,
+      "base_keep": 540,
+      "adaptive_keep": 540,
+      "base_fraction": 0.8503937007874016,
+      "adaptive_fraction": 0.8503937007874016,
+      "interval_occupancy": 0.9055118110236221,
+      "intervals": [
+        [
+          0.0,
+          23.0
+        ]
+      ],
+      "selected_inside_count": 533,
+      "removed_count": 0
+    },
+    {
+      "video_id": "232",
+      "frame_count": 479,
+      "base_keep": 407,
+      "adaptive_keep": 407,
+      "base_fraction": 0.8496868475991649,
+      "adaptive_fraction": 0.8496868475991649,
+      "interval_occupancy": 0.9916492693110647,
+      "intervals": [
+        [
+          0.0,
+          19.0
+        ]
+      ],
+      "selected_inside_count": 407,
+      "removed_count": 0
+    },
+    {
+      "video_id": "233",
+      "frame_count": 416,
+      "base_keep": 354,
+      "adaptive_keep": 354,
+      "base_fraction": 0.8509615384615384,
+      "adaptive_fraction": 0.8509615384615384,
+      "interval_occupancy": 0.9615384615384615,
+      "intervals": [
+        [
+          0.0,
+          16.0
+        ]
+      ],
+      "selected_inside_count": 354,
+      "removed_count": 0
+    },
+    {
+      "video_id": "234",
+      "frame_count": 521,
+      "base_keep": 443,
+      "adaptive_keep": 408,
+      "base_fraction": 0.8502879078694817,
+      "adaptive_fraction": 0.783109404990403,
+      "interval_occupancy": 0.2399232245681382,
+      "intervals": [
+        [
+          0.0,
+          5.0
+        ]
+      ],
+      "selected_inside_count": 91,
+      "removed_count": 35
+    },
+    {
+      "video_id": "235",
+      "frame_count": 922,
+      "base_keep": 784,
+      "adaptive_keep": 705,
+      "base_fraction": 0.8503253796095445,
+      "adaptive_fraction": 0.764642082429501,
+      "interval_occupancy": 0.10845986984815617,
+      "intervals": [
+        [
+          31.0,
+          35.0
+        ]
+      ],
+      "selected_inside_count": 73,
+      "removed_count": 79
+    },
+    {
+      "video_id": "236",
+      "frame_count": 556,
+      "base_keep": 473,
+      "adaptive_keep": 448,
+      "base_fraction": 0.8507194244604317,
+      "adaptive_fraction": 0.8057553956834532,
+      "interval_occupancy": 0.4046762589928058,
+      "intervals": [
+        [
+          12.0,
+          21.0
+        ]
+      ],
+      "selected_inside_count": 222,
+      "removed_count": 25
+    },
+    {
+      "video_id": "237",
+      "frame_count": 722,
+      "base_keep": 614,
+      "adaptive_keep": 614,
+      "base_fraction": 0.850415512465374,
+      "adaptive_fraction": 0.850415512465374,
+      "interval_occupancy": 0.9349030470914128,
+      "intervals": [
+        [
+          1.0,
+          28.0
+        ]
+      ],
+      "selected_inside_count": 614,
+      "removed_count": 0
+    },
+    {
+      "video_id": "238",
+      "frame_count": 445,
+      "base_keep": 378,
+      "adaptive_keep": 361,
+      "base_fraction": 0.849438202247191,
+      "adaptive_fraction": 0.8112359550561797,
+      "interval_occupancy": 0.449438202247191,
+      "intervals": [
+        [
+          0.0,
+          8.0
+        ]
+      ],
+      "selected_inside_count": 171,
+      "removed_count": 17
+    },
+    {
+      "video_id": "239",
+      "frame_count": 440,
+      "base_keep": 374,
+      "adaptive_keep": 374,
+      "base_fraction": 0.85,
+      "adaptive_fraction": 0.85,
+      "interval_occupancy": 0.7954545454545454,
+      "intervals": [
+        [
+          1.0,
+          15.0
+        ]
+      ],
+      "selected_inside_count": 345,
+      "removed_count": 0
+    },
+    {
+      "video_id": "240",
+      "frame_count": 487,
+      "base_keep": 414,
+      "adaptive_keep": 386,
+      "base_fraction": 0.8501026694045175,
+      "adaptive_fraction": 0.7926078028747433,
+      "interval_occupancy": 0.3080082135523614,
+      "intervals": [
+        [
+          13.0,
+          19.0
+        ]
+      ],
+      "selected_inside_count": 135,
+      "removed_count": 28
+    },
+    {
+      "video_id": "241",
+      "frame_count": 439,
+      "base_keep": 373,
+      "adaptive_keep": 363,
+      "base_fraction": 0.8496583143507973,
+      "adaptive_fraction": 0.826879271070615,
+      "interval_occupancy": 0.5694760820045558,
+      "intervals": [
+        [
+          7.0,
+          17.0
+        ]
+      ],
+      "selected_inside_count": 250,
+      "removed_count": 10
+    },
+    {
+      "video_id": "242",
+      "frame_count": 525,
+      "base_keep": 446,
+      "adaptive_keep": 411,
+      "base_fraction": 0.8495238095238096,
+      "adaptive_fraction": 0.7828571428571428,
+      "interval_occupancy": 0.23809523809523808,
+      "intervals": [
+        [
+          15.0,
+          20.0
+        ]
+      ],
+      "selected_inside_count": 113,
+      "removed_count": 35
+    },
+    {
+      "video_id": "243",
+      "frame_count": 878,
+      "base_keep": 746,
+      "adaptive_keep": 746,
+      "base_fraction": 0.8496583143507973,
+      "adaptive_fraction": 0.8496583143507973,
+      "interval_occupancy": 0.9965831435079727,
+      "intervals": [
+        [
+          0.0,
+          35.0
+        ]
+      ],
+      "selected_inside_count": 746,
+      "removed_count": 0
+    },
+    {
+      "video_id": "244",
+      "frame_count": 395,
+      "base_keep": 336,
+      "adaptive_keep": 336,
+      "base_fraction": 0.850632911392405,
+      "adaptive_fraction": 0.850632911392405,
+      "interval_occupancy": 0.9493670886075949,
+      "intervals": [
+        [
+          0.0,
+          15.0
+        ]
+      ],
+      "selected_inside_count": 336,
+      "removed_count": 0
+    },
+    {
+      "video_id": "245",
+      "frame_count": 722,
+      "base_keep": 614,
+      "adaptive_keep": 596,
+      "base_fraction": 0.850415512465374,
+      "adaptive_fraction": 0.8254847645429363,
+      "interval_occupancy": 0.554016620498615,
+      "intervals": [
+        [
+          12.0,
+          28.0
+        ]
+      ],
+      "selected_inside_count": 399,
+      "removed_count": 18
+    },
+    {
+      "video_id": "246",
+      "frame_count": 303,
+      "base_keep": 258,
+      "adaptive_keep": 238,
+      "base_fraction": 0.8514851485148515,
+      "adaptive_fraction": 0.7854785478547854,
+      "interval_occupancy": 0.24752475247524755,
+      "intervals": [
+        [
+          6.0,
+          9.0
+        ]
+      ],
+      "selected_inside_count": 76,
+      "removed_count": 20
+    },
+    {
+      "video_id": "247",
+      "frame_count": 486,
+      "base_keep": 413,
+      "adaptive_keep": 399,
+      "base_fraction": 0.8497942386831275,
+      "adaptive_fraction": 0.8209876543209876,
+      "interval_occupancy": 0.51440329218107,
+      "intervals": [
+        [
+          0.0,
+          10.0
+        ]
+      ],
+      "selected_inside_count": 218,
+      "removed_count": 14
+    },
+    {
+      "video_id": "248",
+      "frame_count": 707,
+      "base_keep": 601,
+      "adaptive_keep": 551,
+      "base_fraction": 0.8500707213578501,
+      "adaptive_fraction": 0.7793493635077794,
+      "interval_occupancy": 0.21216407355021216,
+      "intervals": [
+        [
+          6.0,
+          12.0
+        ]
+      ],
+      "selected_inside_count": 151,
+      "removed_count": 50
+    },
+    {
+      "video_id": "249",
+      "frame_count": 609,
+      "base_keep": 518,
+      "adaptive_keep": 518,
+      "base_fraction": 0.8505747126436781,
+      "adaptive_fraction": 0.8505747126436781,
+      "interval_occupancy": 0.9852216748768473,
+      "intervals": [
+        [
+          0.0,
+          24.0
+        ]
+      ],
+      "selected_inside_count": 518,
+      "removed_count": 0
+    },
+    {
+      "video_id": "250",
+      "frame_count": 310,
+      "base_keep": 264,
+      "adaptive_keep": 263,
+      "base_fraction": 0.8516129032258064,
+      "adaptive_fraction": 0.8483870967741935,
+      "interval_occupancy": 0.7258064516129032,
+      "intervals": [
+        [
+          3.0,
+          12.0
+        ]
+      ],
+      "selected_inside_count": 226,
+      "removed_count": 1
+    },
+    {
+      "video_id": "251",
+      "frame_count": 473,
+      "base_keep": 402,
+      "adaptive_keep": 386,
+      "base_fraction": 0.8498942917547568,
+      "adaptive_fraction": 0.8160676532769556,
+      "interval_occupancy": 0.4756871035940803,
+      "intervals": [
+        [
+          9.0,
+          18.0
+        ]
+      ],
+      "selected_inside_count": 225,
+      "removed_count": 16
+    },
+    {
+      "video_id": "252",
+      "frame_count": 315,
+      "base_keep": 268,
+      "adaptive_keep": 268,
+      "base_fraction": 0.8507936507936508,
+      "adaptive_fraction": 0.8507936507936508,
+      "interval_occupancy": 0.873015873015873,
+      "intervals": [
+        [
+          0.0,
+          11.0
+        ]
+      ],
+      "selected_inside_count": 255,
+      "removed_count": 0
+    },
+    {
+      "video_id": "253",
+      "frame_count": 340,
+      "base_keep": 289,
+      "adaptive_keep": 282,
+      "base_fraction": 0.85,
+      "adaptive_fraction": 0.8294117647058824,
+      "interval_occupancy": 0.5882352941176471,
+      "intervals": [
+        [
+          2.0,
+          10.0
+        ]
+      ],
+      "selected_inside_count": 201,
+      "removed_count": 7
+    },
+    {
+      "video_id": "254",
+      "frame_count": 492,
+      "base_keep": 418,
+      "adaptive_keep": 383,
+      "base_fraction": 0.8495934959349594,
+      "adaptive_fraction": 0.7784552845528455,
+      "interval_occupancy": 0.2032520325203252,
+      "intervals": [
+        [
+          12.0,
+          16.0
+        ]
+      ],
+      "selected_inside_count": 101,
+      "removed_count": 35
+    },
+    {
+      "video_id": "255",
+      "frame_count": 370,
+      "base_keep": 314,
+      "adaptive_keep": 314,
+      "base_fraction": 0.8486486486486486,
+      "adaptive_fraction": 0.8486486486486486,
+      "interval_occupancy": 0.9459459459459459,
+      "intervals": [
+        [
+          0.0,
+          14.0
+        ]
+      ],
+      "selected_inside_count": 314,
+      "removed_count": 0
+    },
+    {
+      "video_id": "256",
+      "frame_count": 353,
+      "base_keep": 300,
+      "adaptive_keep": 300,
+      "base_fraction": 0.8498583569405099,
+      "adaptive_fraction": 0.8498583569405099,
+      "interval_occupancy": 0.991501416430595,
+      "intervals": [
+        [
+          0.0,
+          14.0
+        ]
+      ],
+      "selected_inside_count": 300,
+      "removed_count": 0
+    },
+    {
+      "video_id": "257",
+      "frame_count": 737,
+      "base_keep": 626,
+      "adaptive_keep": 594,
+      "base_fraction": 0.8493894165535957,
+      "adaptive_fraction": 0.8059701492537313,
+      "interval_occupancy": 0.4070550786226884,
+      "intervals": [
+        [
+          0.0,
+          10.0
+        ]
+      ],
+      "selected_inside_count": 251,
+      "removed_count": 32
+    },
+    {
+      "video_id": "258",
+      "frame_count": 627,
+      "base_keep": 533,
+      "adaptive_keep": 483,
+      "base_fraction": 0.8500797448165869,
+      "adaptive_fraction": 0.7703349282296651,
+      "interval_occupancy": 0.14354066985645933,
+      "intervals": [
+        [
+          2.0,
+          5.0
+        ]
+      ],
+      "selected_inside_count": 91,
+      "removed_count": 50
+    },
+    {
+      "video_id": "259",
+      "frame_count": 1371,
+      "base_keep": 1165,
+      "adaptive_keep": 1165,
+      "base_fraction": 0.849744711889132,
+      "adaptive_fraction": 0.849744711889132,
+      "interval_occupancy": 0.9846827133479211,
+      "intervals": [
+        [
+          0.0,
+          45.0
+        ]
+      ],
+      "selected_inside_count": 1165,
+      "removed_count": 0
+    },
+    {
+      "video_id": "260",
+      "frame_count": 300,
+      "base_keep": 255,
+      "adaptive_keep": 255,
+      "base_fraction": 0.85,
+      "adaptive_fraction": 0.85,
+      "interval_occupancy": 0.9,
+      "intervals": [
+        [
+          0.0,
+          9.0
+        ]
+      ],
+      "selected_inside_count": 251,
+      "removed_count": 0
+    },
+    {
+      "video_id": "261",
+      "frame_count": 471,
+      "base_keep": 400,
+      "adaptive_keep": 400,
+      "base_fraction": 0.8492569002123143,
+      "adaptive_fraction": 0.8492569002123143,
+      "interval_occupancy": 0.7643312101910829,
+      "intervals": [
+        [
+          3.0,
+          15.0
+        ]
+      ],
+      "selected_inside_count": 361,
+      "removed_count": 0
+    },
+    {
+      "video_id": "262",
+      "frame_count": 295,
+      "base_keep": 251,
+      "adaptive_keep": 251,
+      "base_fraction": 0.8508474576271187,
+      "adaptive_fraction": 0.8508474576271187,
+      "interval_occupancy": 0.9152573398553894,
+      "intervals": [
+        [
+          0.0,
+          9.0
+        ]
+      ],
+      "selected_inside_count": 251,
+      "removed_count": 0
+    },
+    {
+      "video_id": "263",
+      "frame_count": 298,
+      "base_keep": 253,
+      "adaptive_keep": 253,
+      "base_fraction": 0.8489932885906041,
+      "adaptive_fraction": 0.8489932885906041,
+      "interval_occupancy": 0.906043308870164,
+      "intervals": [
+        [
+          0.0,
+          9.0
+        ]
+      ],
+      "selected_inside_count": 251,
+      "removed_count": 0
+    },
+    {
+      "video_id": "264",
+      "frame_count": 496,
+      "base_keep": 422,
+      "adaptive_keep": 388,
+      "base_fraction": 0.8508064516129032,
+      "adaptive_fraction": 0.782258064516129,
+      "interval_occupancy": 0.2419359716451041,
+      "intervals": [
+        [
+          11.0,
+          15.0
+        ]
+      ],
+      "selected_inside_count": 121,
+      "removed_count": 34
+    },
+    {
+      "video_id": "265",
+      "frame_count": 500,
+      "base_keep": 425,
+      "adaptive_keep": 425,
+      "base_fraction": 0.85,
+      "adaptive_fraction": 0.85,
+      "interval_occupancy": 0.95999808000384,
+      "intervals": [
+        [
+          0.0,
+          16.0
+        ]
+      ],
+      "selected_inside_count": 425,
+      "removed_count": 0
+    },
+    {
+      "video_id": "266",
+      "frame_count": 330,
+      "base_keep": 280,
+      "adaptive_keep": 280,
+      "base_fraction": 0.8484848484848485,
+      "adaptive_fraction": 0.8484848484848485,
+      "interval_occupancy": 0.8181818181818182,
+      "intervals": [
+        [
+          1.0,
+          10.0
+        ]
+      ],
+      "selected_inside_count": 271,
+      "removed_count": 0
+    },
+    {
+      "video_id": "267",
+      "frame_count": 261,
+      "base_keep": 222,
+      "adaptive_keep": 216,
+      "base_fraction": 0.8505747126436781,
+      "adaptive_fraction": 0.8275862068965517,
+      "interval_occupancy": 0.574712643678161,
+      "intervals": [
+        [
+          3.0,
+          8.0
+        ]
+      ],
+      "selected_inside_count": 151,
+      "removed_count": 6
+    },
+    {
+      "video_id": "268",
+      "frame_count": 384,
+      "base_keep": 326,
+      "adaptive_keep": 321,
+      "base_fraction": 0.8489583333333334,
+      "adaptive_fraction": 0.8359375,
+      "interval_occupancy": 0.625,
+      "intervals": [
+        [
+          2.0,
+          10.0
+        ]
+      ],
+      "selected_inside_count": 241,
+      "removed_count": 5
+    },
+    {
+      "video_id": "269",
+      "frame_count": 305,
+      "base_keep": 259,
+      "adaptive_keep": 259,
+      "base_fraction": 0.8491803278688524,
+      "adaptive_fraction": 0.8491803278688524,
+      "interval_occupancy": 0.8852429992032813,
+      "intervals": [
+        [
+          1.0,
+          10.0
+        ]
+      ],
+      "selected_inside_count": 259,
+      "removed_count": 0
+    },
+    {
+      "video_id": "270",
+      "frame_count": 446,
+      "base_keep": 379,
+      "adaptive_keep": 379,
+      "base_fraction": 0.8497757847533632,
+      "adaptive_fraction": 0.8497757847533632,
+      "interval_occupancy": 0.8071730780872689,
+      "intervals": [
+        [
+          2.0,
+          14.0
+        ]
+      ],
+      "selected_inside_count": 361,
+      "removed_count": 0
+    },
+    {
+      "video_id": "271",
+      "frame_count": 345,
+      "base_keep": 293,
+      "adaptive_keep": 293,
+      "base_fraction": 0.8492753623188406,
+      "adaptive_fraction": 0.8492753623188406,
+      "interval_occupancy": 0.9565217391304348,
+      "intervals": [
+        [
+          0.0,
+          11.0
+        ]
+      ],
+      "selected_inside_count": 293,
+      "removed_count": 0
+    },
+    {
+      "video_id": "272",
+      "frame_count": 354,
+      "base_keep": 301,
+      "adaptive_keep": 301,
+      "base_fraction": 0.8502824858757062,
+      "adaptive_fraction": 0.8502824858757062,
+      "interval_occupancy": 0.9322033898305084,
+      "intervals": [
+        [
+          0.0,
+          11.0
+        ]
+      ],
+      "selected_inside_count": 301,
+      "removed_count": 0
+    },
+    {
+      "video_id": "273",
+      "frame_count": 1823,
+      "base_keep": 1550,
+      "adaptive_keep": 1531,
+      "base_fraction": 0.850246845858475,
+      "adaptive_fraction": 0.8398244651673067,
+      "interval_occupancy": 0.6582552615165872,
+      "intervals": [
+        [
+          10.0,
+          50.0
+        ]
+      ],
+      "selected_inside_count": 1201,
+      "removed_count": 19
+    },
+    {
+      "video_id": "274",
+      "frame_count": 302,
+      "base_keep": 257,
+      "adaptive_keep": 239,
+      "base_fraction": 0.8509933774834437,
+      "adaptive_fraction": 0.7913907284768212,
+      "interval_occupancy": 0.2980122582375555,
+      "intervals": [
+        [
+          0.0,
+          3.0
+        ]
+      ],
+      "selected_inside_count": 71,
+      "removed_count": 18
+    },
+    {
+      "video_id": "275",
+      "frame_count": 381,
+      "base_keep": 324,
+      "adaptive_keep": 324,
+      "base_fraction": 0.8503937007874016,
+      "adaptive_fraction": 0.8503937007874016,
+      "interval_occupancy": 0.9448818897637796,
+      "intervals": [
+        [
+          0.0,
+          12.0
+        ]
+      ],
+      "selected_inside_count": 324,
+      "removed_count": 0
+    },
+    {
+      "video_id": "276",
+      "frame_count": 1174,
+      "base_keep": 998,
+      "adaptive_keep": 998,
+      "base_fraction": 0.8500851788756388,
+      "adaptive_fraction": 0.8500851788756388,
+      "interval_occupancy": 0.7410568492818137,
+      "intervals": [
+        [
+          10.0,
+          39.0
+        ]
+      ],
+      "selected_inside_count": 836,
+      "removed_count": 0
+    },
+    {
+      "video_id": "277",
+      "frame_count": 1035,
+      "base_keep": 880,
+      "adaptive_keep": 875,
+      "base_fraction": 0.8502415458937198,
+      "adaptive_fraction": 0.8454106280193237,
+      "interval_occupancy": 0.6956521739130435,
+      "intervals": [
+        [
+          5.0,
+          29.0
+        ]
+      ],
+      "selected_inside_count": 721,
+      "removed_count": 5
+    },
+    {
+      "video_id": "278",
+      "frame_count": 573,
+      "base_keep": 487,
+      "adaptive_keep": 463,
+      "base_fraction": 0.849912739965096,
+      "adaptive_fraction": 0.8080279232111692,
+      "interval_occupancy": 0.41884816753926696,
+      "intervals": [
+        [
+          2.0,
+          10.0
+        ]
+      ],
+      "selected_inside_count": 241,
+      "removed_count": 24
+    },
+    {
+      "video_id": "279",
+      "frame_count": 1633,
+      "base_keep": 1388,
+      "adaptive_keep": 1388,
+      "base_fraction": 0.8499693815064299,
+      "adaptive_fraction": 0.8499693815064299,
+      "interval_occupancy": 0.8083287252472291,
+      "intervals": [
+        [
+          10.0,
+          54.0
+        ]
+      ],
+      "selected_inside_count": 1281,
+      "removed_count": 0
+    },
+    {
+      "video_id": "280",
+      "frame_count": 971,
+      "base_keep": 825,
+      "adaptive_keep": 825,
+      "base_fraction": 0.8496395468589083,
+      "adaptive_fraction": 0.8496395468589083,
+      "interval_occupancy": 0.9577745028068971,
+      "intervals": [
+        [
+          1.0,
+          32.0
+        ]
+      ],
+      "selected_inside_count": 825,
+      "removed_count": 0
+    },
+    {
+      "video_id": "281",
+      "frame_count": 710,
+      "base_keep": 604,
+      "adaptive_keep": 604,
+      "base_fraction": 0.8507042253521127,
+      "adaptive_fraction": 0.8507042253521127,
+      "interval_occupancy": 0.9718296171413844,
+      "intervals": [
+        [
+          0.0,
+          23.0
+        ]
+      ],
+      "selected_inside_count": 604,
+      "removed_count": 0
+    },
+    {
+      "video_id": "282",
+      "frame_count": 1303,
+      "base_keep": 1108,
+      "adaptive_keep": 1108,
+      "base_fraction": 0.8503453568687643,
+      "adaptive_fraction": 0.8503453568687643,
+      "interval_occupancy": 0.7597856943865651,
+      "intervals": [
+        [
+          10.0,
+          43.0
+        ]
+      ],
+      "selected_inside_count": 962,
+      "removed_count": 0
+    },
+    {
+      "video_id": "283",
+      "frame_count": 600,
+      "base_keep": 510,
+      "adaptive_keep": 510,
+      "base_fraction": 0.85,
+      "adaptive_fraction": 0.85,
+      "interval_occupancy": 0.95,
+      "intervals": [
+        [
+          0.0,
+          19.0
+        ]
+      ],
+      "selected_inside_count": 510,
+      "removed_count": 0
+    },
+    {
+      "video_id": "284",
+      "frame_count": 1380,
+      "base_keep": 1173,
+      "adaptive_keep": 1173,
+      "base_fraction": 0.85,
+      "adaptive_fraction": 0.85,
+      "interval_occupancy": 0.7608695652173914,
+      "intervals": [
+        [
+          10.0,
+          45.0
+        ]
+      ],
+      "selected_inside_count": 1037,
+      "removed_count": 0
+    },
+    {
+      "video_id": "285",
+      "frame_count": 474,
+      "base_keep": 403,
+      "adaptive_keep": 403,
+      "base_fraction": 0.8502109704641351,
+      "adaptive_fraction": 0.8502109704641351,
+      "interval_occupancy": 0.9493670886075949,
+      "intervals": [
+        [
+          0.0,
+          15.0
+        ]
+      ],
+      "selected_inside_count": 403,
+      "removed_count": 0
+    },
+    {
+      "video_id": "286",
+      "frame_count": 460,
+      "base_keep": 391,
+      "adaptive_keep": 391,
+      "base_fraction": 0.85,
+      "adaptive_fraction": 0.85,
+      "interval_occupancy": 0.9782629962239049,
+      "intervals": [
+        [
+          0.0,
+          15.0
+        ]
+      ],
+      "selected_inside_count": 391,
+      "removed_count": 0
+    },
+    {
+      "video_id": "287",
+      "frame_count": 312,
+      "base_keep": 265,
+      "adaptive_keep": 259,
+      "base_fraction": 0.8493589743589743,
+      "adaptive_fraction": 0.8301282051282052,
+      "interval_occupancy": 0.5769230769230769,
+      "intervals": [
+        [
+          3.0,
+          9.0
+        ]
+      ],
+      "selected_inside_count": 181,
+      "removed_count": 6
+    },
+    {
+      "video_id": "288",
+      "frame_count": 801,
+      "base_keep": 681,
+      "adaptive_keep": 681,
+      "base_fraction": 0.850187265917603,
+      "adaptive_fraction": 0.850187265917603,
+      "interval_occupancy": 0.9363295880149813,
+      "intervals": [
+        [
+          1.0,
+          26.0
+        ]
+      ],
+      "selected_inside_count": 681,
+      "removed_count": 0
+    },
+    {
+      "video_id": "289",
+      "frame_count": 902,
+      "base_keep": 767,
+      "adaptive_keep": 754,
+      "base_fraction": 0.8503325942350333,
+      "adaptive_fraction": 0.835920177383592,
+      "interval_occupancy": 0.6319283459774435,
+      "intervals": [
+        [
+          10.0,
+          29.0
+        ]
+      ],
+      "selected_inside_count": 571,
+      "removed_count": 13
+    },
+    {
+      "video_id": "290",
+      "frame_count": 566,
+      "base_keep": 481,
+      "adaptive_keep": 481,
+      "base_fraction": 0.8498233215547704,
+      "adaptive_fraction": 0.8498233215547704,
+      "interval_occupancy": 0.9010584786952672,
+      "intervals": [
+        [
+          1.0,
+          18.0
+        ]
+      ],
+      "selected_inside_count": 481,
+      "removed_count": 0
+    },
+    {
+      "video_id": "291",
+      "frame_count": 712,
+      "base_keep": 605,
+      "adaptive_keep": 600,
+      "base_fraction": 0.8497191011235955,
+      "adaptive_fraction": 0.8426966292134831,
+      "interval_occupancy": 0.6741582502222615,
+      "intervals": [
+        [
+          7.0,
+          23.0
+        ]
+      ],
+      "selected_inside_count": 480,
+      "removed_count": 5
+    },
+    {
+      "video_id": "292",
+      "frame_count": 204,
+      "base_keep": 173,
+      "adaptive_keep": 167,
+      "base_fraction": 0.8480392156862745,
+      "adaptive_fraction": 0.8186274509803921,
+      "interval_occupancy": 0.49019607843137253,
+      "intervals": [
+        [
+          3.0,
+          7.0
+        ]
+      ],
+      "selected_inside_count": 101,
+      "removed_count": 6
+    },
+    {
+      "video_id": "293",
+      "frame_count": 255,
+      "base_keep": 217,
+      "adaptive_keep": 217,
+      "base_fraction": 0.8509803921568627,
+      "adaptive_fraction": 0.8509803921568627,
+      "interval_occupancy": 0.9803921568627452,
+      "intervals": [
+        [
+          0.0,
+          10.0
+        ]
+      ],
+      "selected_inside_count": 217,
+      "removed_count": 0
+    },
+    {
+      "video_id": "294",
+      "frame_count": 152,
+      "base_keep": 129,
+      "adaptive_keep": 129,
+      "base_fraction": 0.8486842105263158,
+      "adaptive_fraction": 0.8486842105263158,
+      "interval_occupancy": 0.8223684210526315,
+      "intervals": [
+        [
+          0.0,
+          5.0
+        ]
+      ],
+      "selected_inside_count": 115,
+      "removed_count": 0
+    },
+    {
+      "video_id": "295",
+      "frame_count": 277,
+      "base_keep": 235,
+      "adaptive_keep": 235,
+      "base_fraction": 0.8483754512635379,
+      "adaptive_fraction": 0.8483754512635379,
+      "interval_occupancy": 0.9927797833935018,
+      "intervals": [
+        [
+          0.0,
+          11.0
+        ]
+      ],
+      "selected_inside_count": 235,
+      "removed_count": 0
+    },
+    {
+      "video_id": "296",
+      "frame_count": 202,
+      "base_keep": 172,
+      "adaptive_keep": 168,
+      "base_fraction": 0.8514851485148515,
+      "adaptive_fraction": 0.8316831683168316,
+      "interval_occupancy": 0.5940623468433012,
+      "intervals": [
+        [
+          2.0,
+          6.0
+        ]
+      ],
+      "selected_inside_count": 121,
+      "removed_count": 4
+    },
+    {
+      "video_id": "297",
+      "frame_count": 205,
+      "base_keep": 174,
+      "adaptive_keep": 166,
+      "base_fraction": 0.848780487804878,
+      "adaptive_fraction": 0.8097560975609757,
+      "interval_occupancy": 0.4390265318367406,
+      "intervals": [
+        [
+          2.0,
+          5.0
+        ]
+      ],
+      "selected_inside_count": 91,
+      "removed_count": 8
+    },
+    {
+      "video_id": "298",
+      "frame_count": 135,
+      "base_keep": 115,
+      "adaptive_keep": 115,
+      "base_fraction": 0.8518518518518519,
+      "adaptive_fraction": 0.8518518518518519,
+      "interval_occupancy": 0.8888888888888888,
+      "intervals": [
+        [
+          0.0,
+          4.0
+        ]
+      ],
+      "selected_inside_count": 112,
+      "removed_count": 0
+    },
+    {
+      "video_id": "299",
+      "frame_count": 258,
+      "base_keep": 219,
+      "adaptive_keep": 219,
+      "base_fraction": 0.8488372093023255,
+      "adaptive_fraction": 0.8488372093023255,
+      "interval_occupancy": 0.9689922480620154,
+      "intervals": [
+        [
+          0.0,
+          10.0
+        ]
+      ],
+      "selected_inside_count": 219,
+      "removed_count": 0
+    },
+    {
+      "video_id": "300",
+      "frame_count": 335,
+      "base_keep": 285,
+      "adaptive_keep": 282,
+      "base_fraction": 0.8507462686567164,
+      "adaptive_fraction": 0.8417910447761194,
+      "interval_occupancy": 0.6716417910447761,
+      "intervals": [
+        [
+          2.0,
+          11.0
+        ]
+      ],
+      "selected_inside_count": 226,
+      "removed_count": 3
+    },
+    {
+      "video_id": "301",
+      "frame_count": 398,
+      "base_keep": 338,
+      "adaptive_keep": 338,
+      "base_fraction": 0.8492462311557789,
+      "adaptive_fraction": 0.8492462311557789,
+      "interval_occupancy": 0.9422110552763819,
+      "intervals": [
+        [
+          0.0,
+          15.0
+        ]
+      ],
+      "selected_inside_count": 338,
+      "removed_count": 0
+    },
+    {
+      "video_id": "302",
+      "frame_count": 344,
+      "base_keep": 292,
+      "adaptive_keep": 287,
+      "base_fraction": 0.8488372093023255,
+      "adaptive_fraction": 0.8343023255813954,
+      "interval_occupancy": 0.6104633416763323,
+      "intervals": [
+        [
+          4.0,
+          11.0
+        ]
+      ],
+      "selected_inside_count": 211,
+      "removed_count": 5
+    },
+    {
+      "video_id": "303",
+      "frame_count": 389,
+      "base_keep": 331,
+      "adaptive_keep": 304,
+      "base_fraction": 0.8508997429305912,
+      "adaptive_fraction": 0.781491002570694,
+      "interval_occupancy": 0.23136187310572467,
+      "intervals": [
+        [
+          6.0,
+          9.0
+        ]
+      ],
+      "selected_inside_count": 91,
+      "removed_count": 27
+    },
+    {
+      "video_id": "304",
+      "frame_count": 204,
+      "base_keep": 173,
+      "adaptive_keep": 173,
+      "base_fraction": 0.8480392156862745,
+      "adaptive_fraction": 0.8480392156862745,
+      "interval_occupancy": 0.8823529411764706,
+      "intervals": [
+        [
+          0.0,
+          6.0
+        ]
+      ],
+      "selected_inside_count": 167,
+      "removed_count": 0
+    },
+    {
+      "video_id": "305",
+      "frame_count": 457,
+      "base_keep": 388,
+      "adaptive_keep": 367,
+      "base_fraction": 0.849015317286652,
+      "adaptive_fraction": 0.8030634573304157,
+      "interval_occupancy": 0.3938739472077619,
+      "intervals": [
+        [
+          4.0,
+          10.0
+        ]
+      ],
+      "selected_inside_count": 181,
+      "removed_count": 21
+    },
+    {
+      "video_id": "306",
+      "frame_count": 334,
+      "base_keep": 284,
+      "adaptive_keep": 271,
+      "base_fraction": 0.8502994011976048,
+      "adaptive_fraction": 0.811377245508982,
+      "interval_occupancy": 0.4491031410273683,
+      "intervals": [
+        [
+          5.0,
+          10.0
+        ]
+      ],
+      "selected_inside_count": 151,
+      "removed_count": 13
+    },
+    {
+      "video_id": "307",
+      "frame_count": 475,
+      "base_keep": 404,
+      "adaptive_keep": 381,
+      "base_fraction": 0.8505263157894737,
+      "adaptive_fraction": 0.8021052631578948,
+      "interval_occupancy": 0.3789481662066657,
+      "intervals": [
+        [
+          9.0,
+          15.0
+        ]
+      ],
+      "selected_inside_count": 175,
+      "removed_count": 23
+    },
+    {
+      "video_id": "308",
+      "frame_count": 495,
+      "base_keep": 421,
+      "adaptive_keep": 388,
+      "base_fraction": 0.8505050505050505,
+      "adaptive_fraction": 0.7838383838383839,
+      "interval_occupancy": 0.25252525252525254,
+      "intervals": [
+        [
+          14.0,
+          19.0
+        ]
+      ],
+      "selected_inside_count": 112,
+      "removed_count": 33
+    },
+    {
+      "video_id": "309",
+      "frame_count": 338,
+      "base_keep": 287,
+      "adaptive_keep": 287,
+      "base_fraction": 0.849112426035503,
+      "adaptive_fraction": 0.849112426035503,
+      "interval_occupancy": 0.7988142046917021,
+      "intervals": [
+        [
+          2.0,
+          11.0
+        ]
+      ],
+      "selected_inside_count": 267,
+      "removed_count": 0
+    },
+    {
+      "video_id": "310",
+      "frame_count": 273,
+      "base_keep": 232,
+      "adaptive_keep": 232,
+      "base_fraction": 0.8498168498168498,
+      "adaptive_fraction": 0.8498168498168498,
+      "interval_occupancy": 0.9157509157509157,
+      "intervals": [
+        [
+          0.0,
+          10.0
+        ]
+      ],
+      "selected_inside_count": 232,
+      "removed_count": 0
+    },
+    {
+      "video_id": "311",
+      "frame_count": 404,
+      "base_keep": 343,
+      "adaptive_keep": 343,
+      "base_fraction": 0.849009900990099,
+      "adaptive_fraction": 0.849009900990099,
+      "interval_occupancy": 0.9653441451877595,
+      "intervals": [
+        [
+          0.0,
+          13.0
+        ]
+      ],
+      "selected_inside_count": 343,
+      "removed_count": 0
+    },
+    {
+      "video_id": "312",
+      "frame_count": 169,
+      "base_keep": 144,
+      "adaptive_keep": 144,
+      "base_fraction": 0.8520710059171598,
+      "adaptive_fraction": 0.8520710059171598,
+      "interval_occupancy": 0.8875739644970414,
+      "intervals": [
+        [
+          0.0,
+          6.0
+        ]
+      ],
+      "selected_inside_count": 140,
+      "removed_count": 0
+    },
+    {
+      "video_id": "313",
+      "frame_count": 209,
+      "base_keep": 178,
+      "adaptive_keep": 173,
+      "base_fraction": 0.8516746411483254,
+      "adaptive_fraction": 0.8277511961722488,
+      "interval_occupancy": 0.574159932249128,
+      "intervals": [
+        [
+          1.0,
+          5.0
+        ]
+      ],
+      "selected_inside_count": 121,
+      "removed_count": 5
+    },
+    {
+      "video_id": "314",
+      "frame_count": 407,
+      "base_keep": 346,
+      "adaptive_keep": 333,
+      "base_fraction": 0.8501228501228502,
+      "adaptive_fraction": 0.8181818181818182,
+      "interval_occupancy": 0.49140049140049136,
+      "intervals": [
+        [
+          2.0,
+          10.0
+        ]
+      ],
+      "selected_inside_count": 201,
+      "removed_count": 13
+    },
+    {
+      "video_id": "315",
+      "frame_count": 628,
+      "base_keep": 534,
+      "adaptive_keep": 487,
+      "base_fraction": 0.8503184713375797,
+      "adaptive_fraction": 0.7754777070063694,
+      "interval_occupancy": 0.1910831068202338,
+      "intervals": [
+        [
+          9.0,
+          13.0
+        ]
+      ],
+      "selected_inside_count": 121,
+      "removed_count": 47
+    },
+    {
+      "video_id": "316",
+      "frame_count": 777,
+      "base_keep": 660,
+      "adaptive_keep": 596,
+      "base_fraction": 0.8494208494208494,
+      "adaptive_fraction": 0.767052767052767,
+      "interval_occupancy": 0.1287001287001287,
+      "intervals": [
+        [
+          21.0,
+          25.0
+        ]
+      ],
+      "selected_inside_count": 101,
+      "removed_count": 64
+    },
+    {
+      "video_id": "317",
+      "frame_count": 176,
+      "base_keep": 150,
+      "adaptive_keep": 150,
+      "base_fraction": 0.8522727272727273,
+      "adaptive_fraction": 0.8522727272727273,
+      "interval_occupancy": 0.8522727272727273,
+      "intervals": [
+        [
+          0.0,
+          6.0
+        ]
+      ],
+      "selected_inside_count": 139,
+      "removed_count": 0
+    },
+    {
+      "video_id": "318",
+      "frame_count": 1170,
+      "base_keep": 994,
+      "adaptive_keep": 947,
+      "base_fraction": 0.8495726495726496,
+      "adaptive_fraction": 0.8094017094017094,
+      "interval_occupancy": 0.4358974358974359,
+      "intervals": [
+        [
+          21.0,
+          38.0
+        ]
+      ],
+      "selected_inside_count": 489,
+      "removed_count": 47
+    },
+    {
+      "video_id": "319",
+      "frame_count": 804,
+      "base_keep": 683,
+      "adaptive_keep": 651,
+      "base_fraction": 0.849502487562189,
+      "adaptive_fraction": 0.8097014925373134,
+      "interval_occupancy": 0.4353233830845772,
+      "intervals": [
+        [
+          15.0,
+          29.0
+        ]
+      ],
+      "selected_inside_count": 351,
+      "removed_count": 32
+    },
+    {
+      "video_id": "320",
+      "frame_count": 810,
+      "base_keep": 688,
+      "adaptive_keep": 688,
+      "base_fraction": 0.8493827160493828,
+      "adaptive_fraction": 0.8493827160493828,
+      "interval_occupancy": 0.8333333333333334,
+      "intervals": [
+        [
+          5.0,
+          32.0
+        ]
+      ],
+      "selected_inside_count": 659,
+      "removed_count": 0
+    },
+    {
+      "video_id": "321",
+      "frame_count": 386,
+      "base_keep": 328,
+      "adaptive_keep": 328,
+      "base_fraction": 0.8497409326424871,
+      "adaptive_fraction": 0.8497409326424871,
+      "interval_occupancy": 0.9715025906735751,
+      "intervals": [
+        [
+          0.0,
+          15.0
+        ]
+      ],
+      "selected_inside_count": 328,
+      "removed_count": 0
+    },
+    {
+      "video_id": "322",
+      "frame_count": 1224,
+      "base_keep": 1040,
+      "adaptive_keep": 1040,
+      "base_fraction": 0.8496732026143791,
+      "adaptive_fraction": 0.8496732026143791,
+      "interval_occupancy": 0.9558823529411765,
+      "intervals": [
+        [
+          0.0,
+          39.0
+        ]
+      ],
+      "selected_inside_count": 1040,
+      "removed_count": 0
+    },
+    {
+      "video_id": "323",
+      "frame_count": 816,
+      "base_keep": 694,
+      "adaptive_keep": 694,
+      "base_fraction": 0.8504901960784313,
+      "adaptive_fraction": 0.8504901960784313,
+      "interval_occupancy": 0.9803921568627451,
+      "intervals": [
+        [
+          0.0,
+          32.0
+        ]
+      ],
+      "selected_inside_count": 694,
+      "removed_count": 0
+    },
+    {
+      "video_id": "324",
+      "frame_count": 1459,
+      "base_keep": 1240,
+      "adaptive_keep": 1240,
+      "base_fraction": 0.8498971898560658,
+      "adaptive_fraction": 0.8498971898560658,
+      "interval_occupancy": 0.9252912954078136,
+      "intervals": [
+        [
+          4.0,
+          58.0
+        ]
+      ],
+      "selected_inside_count": 1240,
+      "removed_count": 0
+    },
+    {
+      "video_id": "325",
+      "frame_count": 480,
+      "base_keep": 408,
+      "adaptive_keep": 408,
+      "base_fraction": 0.85,
+      "adaptive_fraction": 0.85,
+      "interval_occupancy": 0.9895833333333334,
+      "intervals": [
+        [
+          0.0,
+          19.0
+        ]
+      ],
+      "selected_inside_count": 408,
+      "removed_count": 0
+    },
+    {
+      "video_id": "326",
+      "frame_count": 335,
+      "base_keep": 285,
+      "adaptive_keep": 282,
+      "base_fraction": 0.8507462686567164,
+      "adaptive_fraction": 0.8417910447761194,
+      "interval_occupancy": 0.6716417910447761,
+      "intervals": [
+        [
+          3.0,
+          12.0
+        ]
+      ],
+      "selected_inside_count": 226,
+      "removed_count": 3
+    },
+    {
+      "video_id": "327",
+      "frame_count": 396,
+      "base_keep": 337,
+      "adaptive_keep": 337,
+      "base_fraction": 0.851010101010101,
+      "adaptive_fraction": 0.851010101010101,
+      "interval_occupancy": 0.946969696969697,
+      "intervals": [
+        [
+          0.0,
+          15.0
+        ]
+      ],
+      "selected_inside_count": 337,
+      "removed_count": 0
+    },
+    {
+      "video_id": "328",
+      "frame_count": 823,
+      "base_keep": 700,
+      "adaptive_keep": 700,
+      "base_fraction": 0.850546780072904,
+      "adaptive_fraction": 0.850546780072904,
+      "interval_occupancy": 0.9842053271024631,
+      "intervals": [
+        [
+          0.0,
+          27.0
+        ]
+      ],
+      "selected_inside_count": 700,
+      "removed_count": 0
+    },
+    {
+      "video_id": "329",
+      "frame_count": 841,
+      "base_keep": 715,
+      "adaptive_keep": 715,
+      "base_fraction": 0.8501783590963139,
+      "adaptive_fraction": 0.8501783590963139,
+      "interval_occupancy": 0.9809750297265161,
+      "intervals": [
+        [
+          0.0,
+          33.0
+        ]
+      ],
+      "selected_inside_count": 715,
+      "removed_count": 0
+    },
+    {
+      "video_id": "330",
+      "frame_count": 690,
+      "base_keep": 586,
+      "adaptive_keep": 586,
+      "base_fraction": 0.8492753623188406,
+      "adaptive_fraction": 0.8492753623188406,
+      "interval_occupancy": 0.9565217391304348,
+      "intervals": [
+        [
+          0.0,
+          22.0
+        ]
+      ],
+      "selected_inside_count": 586,
+      "removed_count": 0
+    },
+    {
+      "video_id": "331",
+      "frame_count": 837,
+      "base_keep": 711,
+      "adaptive_keep": 679,
+      "base_fraction": 0.8494623655913979,
+      "adaptive_fraction": 0.8112305854241338,
+      "interval_occupancy": 0.4480286738351255,
+      "intervals": [
+        [
+          13.0,
+          28.0
+        ]
+      ],
+      "selected_inside_count": 376,
+      "removed_count": 32
+    },
+    {
+      "video_id": "332",
+      "frame_count": 824,
+      "base_keep": 700,
+      "adaptive_keep": 697,
+      "base_fraction": 0.8495145631067961,
+      "adaptive_fraction": 0.845873786407767,
+      "interval_occupancy": 0.6978155339805825,
+      "intervals": [
+        [
+          9.0,
+          32.0
+        ]
+      ],
+      "selected_inside_count": 573,
+      "removed_count": 3
+    },
+    {
+      "video_id": "333",
+      "frame_count": 309,
+      "base_keep": 263,
+      "adaptive_keep": 263,
+      "base_fraction": 0.8511326860841424,
+      "adaptive_fraction": 0.8511326860841424,
+      "interval_occupancy": 0.8090614886731392,
+      "intervals": [
+        [
+          2.0,
+          12.0
+        ]
+      ],
+      "selected_inside_count": 249,
+      "removed_count": 0
+    },
+    {
+      "video_id": "334",
+      "frame_count": 386,
+      "base_keep": 328,
+      "adaptive_keep": 307,
+      "base_fraction": 0.8497409326424871,
+      "adaptive_fraction": 0.7953367875647669,
+      "interval_occupancy": 0.3238341968911917,
+      "intervals": [
+        [
+          9.0,
+          14.0
+        ]
+      ],
+      "selected_inside_count": 126,
+      "removed_count": 21
+    },
+    {
+      "video_id": "335",
+      "frame_count": 918,
+      "base_keep": 780,
+      "adaptive_keep": 709,
+      "base_fraction": 0.8496732026143791,
+      "adaptive_fraction": 0.7723311546840959,
+      "interval_occupancy": 0.16339869281045752,
+      "intervals": [
+        [
+          10.0,
+          15.0
+        ]
+      ],
+      "selected_inside_count": 151,
+      "removed_count": 71
+    },
+    {
+      "video_id": "336",
+      "frame_count": 206,
+      "base_keep": 175,
+      "adaptive_keep": 172,
+      "base_fraction": 0.8495145631067961,
+      "adaptive_fraction": 0.8349514563106796,
+      "interval_occupancy": 0.6067961165048543,
+      "intervals": [
+        [
+          1.0,
+          6.0
+        ]
+      ],
+      "selected_inside_count": 126,
+      "removed_count": 3
+    },
+    {
+      "video_id": "337",
+      "frame_count": 360,
+      "base_keep": 306,
+      "adaptive_keep": 297,
+      "base_fraction": 0.85,
+      "adaptive_fraction": 0.825,
+      "interval_occupancy": 0.5555555555555556,
+      "intervals": [
+        [
+          2.0,
+          10.0
+        ]
+      ],
+      "selected_inside_count": 201,
+      "removed_count": 9
+    },
+    {
+      "video_id": "338",
+      "frame_count": 650,
+      "base_keep": 552,
+      "adaptive_keep": 552,
+      "base_fraction": 0.8492307692307692,
+      "adaptive_fraction": 0.8492307692307692,
+      "interval_occupancy": 0.8846153846153846,
+      "intervals": [
+        [
+          2.0,
+          25.0
+        ]
+      ],
+      "selected_inside_count": 552,
+      "removed_count": 0
+    },
+    {
+      "video_id": "339",
+      "frame_count": 482,
+      "base_keep": 410,
+      "adaptive_keep": 410,
+      "base_fraction": 0.8506224066390041,
+      "adaptive_fraction": 0.8506224066390041,
+      "interval_occupancy": 0.8817427385892116,
+      "intervals": [
+        [
+          1.0,
+          18.0
+        ]
+      ],
+      "selected_inside_count": 410,
+      "removed_count": 0
+    },
+    {
+      "video_id": "340",
+      "frame_count": 306,
+      "base_keep": 260,
+      "adaptive_keep": 260,
+      "base_fraction": 0.8496732026143791,
+      "adaptive_fraction": 0.8496732026143791,
+      "interval_occupancy": 0.9803921568627451,
+      "intervals": [
+        [
+          0.0,
+          12.0
+        ]
+      ],
+      "selected_inside_count": 260,
+      "removed_count": 0
+    },
+    {
+      "video_id": "341",
+      "frame_count": 300,
+      "base_keep": 255,
+      "adaptive_keep": 249,
+      "base_fraction": 0.85,
+      "adaptive_fraction": 0.83,
+      "interval_occupancy": 0.5833333333333334,
+      "intervals": [
+        [
+          2.0,
+          9.0
+        ]
+      ],
+      "selected_inside_count": 176,
+      "removed_count": 6
+    },
+    {
+      "video_id": "342",
+      "frame_count": 270,
+      "base_keep": 230,
+      "adaptive_keep": 213,
+      "base_fraction": 0.8518518518518519,
+      "adaptive_fraction": 0.7888888888888889,
+      "interval_occupancy": 0.27777777777777773,
+      "intervals": [
+        [
+          3.0,
+          6.0
+        ]
+      ],
+      "selected_inside_count": 76,
+      "removed_count": 17
+    },
+    {
+      "video_id": "343",
+      "frame_count": 234,
+      "base_keep": 199,
+      "adaptive_keep": 196,
+      "base_fraction": 0.8504273504273504,
+      "adaptive_fraction": 0.8376068376068376,
+      "interval_occupancy": 0.6410256410256411,
+      "intervals": [
+        [
+          3.0,
+          9.0
+        ]
+      ],
+      "selected_inside_count": 151,
+      "removed_count": 3
+    },
+    {
+      "video_id": "344",
+      "frame_count": 536,
+      "base_keep": 456,
+      "adaptive_keep": 450,
+      "base_fraction": 0.8507462686567164,
+      "adaptive_fraction": 0.8395522388059702,
+      "interval_occupancy": 0.6529850746268656,
+      "intervals": [
+        [
+          3.0,
+          17.0
+        ]
+      ],
+      "selected_inside_count": 351,
+      "removed_count": 6
+    },
+    {
+      "video_id": "345",
+      "frame_count": 485,
+      "base_keep": 412,
+      "adaptive_keep": 391,
+      "base_fraction": 0.8494845360824742,
+      "adaptive_fraction": 0.8061855670103093,
+      "interval_occupancy": 0.4123711340206186,
+      "intervals": [
+        [
+          4.0,
+          12.0
+        ]
+      ],
+      "selected_inside_count": 201,
+      "removed_count": 21
+    },
+    {
+      "video_id": "346",
+      "frame_count": 280,
+      "base_keep": 238,
+      "adaptive_keep": 238,
+      "base_fraction": 0.85,
+      "adaptive_fraction": 0.85,
+      "interval_occupancy": 0.9821428571428572,
+      "intervals": [
+        [
+          0.0,
+          11.0
+        ]
+      ],
+      "selected_inside_count": 238,
+      "removed_count": 0
+    },
+    {
+      "video_id": "347",
+      "frame_count": 184,
+      "base_keep": 156,
+      "adaptive_keep": 156,
+      "base_fraction": 0.8478260869565217,
+      "adaptive_fraction": 0.8478260869565217,
+      "interval_occupancy": 0.9510869565217391,
+      "intervals": [
+        [
+          0.0,
+          7.0
+        ]
+      ],
+      "selected_inside_count": 156,
+      "removed_count": 0
+    },
+    {
+      "video_id": "348",
+      "frame_count": 211,
+      "base_keep": 179,
+      "adaptive_keep": 179,
+      "base_fraction": 0.8483412322274881,
+      "adaptive_fraction": 0.8483412322274881,
+      "interval_occupancy": 0.7109004739336493,
+      "intervals": [
+        [
+          1.0,
+          7.0
+        ]
+      ],
+      "selected_inside_count": 151,
+      "removed_count": 0
+    },
+    {
+      "video_id": "349",
+      "frame_count": 557,
+      "base_keep": 473,
+      "adaptive_keep": 473,
+      "base_fraction": 0.8491921005385996,
+      "adaptive_fraction": 0.8491921005385996,
+      "interval_occupancy": 0.9874326750448833,
+      "intervals": [
+        [
+          0.0,
+          22.0
+        ]
+      ],
+      "selected_inside_count": 473,
+      "removed_count": 0
+    },
+    {
+      "video_id": "350",
+      "frame_count": 535,
+      "base_keep": 455,
+      "adaptive_keep": 432,
+      "base_fraction": 0.8504672897196262,
+      "adaptive_fraction": 0.8074766355140187,
+      "interval_occupancy": 0.42056074766355145,
+      "intervals": [
+        [
+          7.0,
+          16.0
+        ]
+      ],
+      "selected_inside_count": 226,
+      "removed_count": 23
+    },
+    {
+      "video_id": "351",
+      "frame_count": 426,
+      "base_keep": 362,
+      "adaptive_keep": 330,
+      "base_fraction": 0.8497652582159625,
+      "adaptive_fraction": 0.7746478873239436,
+      "interval_occupancy": 0.17605633802816903,
+      "intervals": [
+        [
+          6.0,
+          9.0
+        ]
+      ],
+      "selected_inside_count": 76,
+      "removed_count": 32
+    },
+    {
+      "video_id": "352",
+      "frame_count": 343,
+      "base_keep": 292,
+      "adaptive_keep": 285,
+      "base_fraction": 0.8513119533527697,
+      "adaptive_fraction": 0.8309037900874635,
+      "interval_occupancy": 0.5830903790087463,
+      "intervals": [
+        [
+          2.0,
+          10.0
+        ]
+      ],
+      "selected_inside_count": 201,
+      "removed_count": 7
+    },
+    {
+      "video_id": "353",
+      "frame_count": 168,
+      "base_keep": 143,
+      "adaptive_keep": 143,
+      "base_fraction": 0.8511904761904762,
+      "adaptive_fraction": 0.8511904761904762,
+      "interval_occupancy": 0.8928571428571429,
+      "intervals": [
+        [
+          0.0,
+          5.0
+        ]
+      ],
+      "selected_inside_count": 140,
+      "removed_count": 0
+    },
+    {
+      "video_id": "354",
+      "frame_count": 205,
+      "base_keep": 174,
+      "adaptive_keep": 164,
+      "base_fraction": 0.848780487804878,
+      "adaptive_fraction": 0.8,
+      "interval_occupancy": 0.3658536585365854,
+      "intervals": [
+        [
+          3.0,
+          6.0
+        ]
+      ],
+      "selected_inside_count": 76,
+      "removed_count": 10
+    },
+    {
+      "video_id": "355",
+      "frame_count": 280,
+      "base_keep": 238,
+      "adaptive_keep": 238,
+      "base_fraction": 0.85,
+      "adaptive_fraction": 0.85,
+      "interval_occupancy": 0.8035714285714286,
+      "intervals": [
+        [
+          0.0,
+          9.0
+        ]
+      ],
+      "selected_inside_count": 207,
+      "removed_count": 0
+    },
+    {
+      "video_id": "356",
+      "frame_count": 240,
+      "base_keep": 204,
+      "adaptive_keep": 204,
+      "base_fraction": 0.85,
+      "adaptive_fraction": 0.85,
+      "interval_occupancy": 0.9375,
+      "intervals": [
+        [
+          0.0,
+          9.0
+        ]
+      ],
+      "selected_inside_count": 204,
+      "removed_count": 0
+    },
+    {
+      "video_id": "357",
+      "frame_count": 985,
+      "base_keep": 837,
+      "adaptive_keep": 837,
+      "base_fraction": 0.849746192893401,
+      "adaptive_fraction": 0.849746192893401,
+      "interval_occupancy": 0.9898477157360407,
+      "intervals": [
+        [
+          0.0,
+          39.0
+        ]
+      ],
+      "selected_inside_count": 837,
+      "removed_count": 0
+    },
+    {
+      "video_id": "358",
+      "frame_count": 404,
+      "base_keep": 343,
+      "adaptive_keep": 343,
+      "base_fraction": 0.849009900990099,
+      "adaptive_fraction": 0.849009900990099,
+      "interval_occupancy": 0.9900990099009901,
+      "intervals": [
+        [
+          0.0,
+          16.0
+        ]
+      ],
+      "selected_inside_count": 343,
+      "removed_count": 0
+    },
+    {
+      "video_id": "359",
+      "frame_count": 585,
+      "base_keep": 497,
+      "adaptive_keep": 497,
+      "base_fraction": 0.8495726495726496,
+      "adaptive_fraction": 0.8495726495726496,
+      "interval_occupancy": 0.982905982905983,
+      "intervals": [
+        [
+          0.0,
+          23.0
+        ]
+      ],
+      "selected_inside_count": 497,
+      "removed_count": 0
+    },
+    {
+      "video_id": "360",
+      "frame_count": 300,
+      "base_keep": 255,
+      "adaptive_keep": 249,
+      "base_fraction": 0.85,
+      "adaptive_fraction": 0.83,
+      "interval_occupancy": 0.5833333333333334,
+      "intervals": [
+        [
+          3.0,
+          10.0
+        ]
+      ],
+      "selected_inside_count": 176,
+      "removed_count": 6
+    },
+    {
+      "video_id": "361",
+      "frame_count": 722,
+      "base_keep": 614,
+      "adaptive_keep": 572,
+      "base_fraction": 0.850415512465374,
+      "adaptive_fraction": 0.7922437673130194,
+      "interval_occupancy": 0.31163434903047094,
+      "intervals": [
+        [
+          3.0,
+          12.0
+        ]
+      ],
+      "selected_inside_count": 226,
+      "removed_count": 42
+    },
+    {
+      "video_id": "362",
+      "frame_count": 572,
+      "base_keep": 486,
+      "adaptive_keep": 467,
+      "base_fraction": 0.8496503496503497,
+      "adaptive_fraction": 0.8164335664335665,
+      "interval_occupancy": 0.4807692307692308,
+      "intervals": [
+        [
+          8.0,
+          19.0
+        ]
+      ],
+      "selected_inside_count": 276,
+      "removed_count": 19
+    },
+    {
+      "video_id": "363",
+      "frame_count": 353,
+      "base_keep": 300,
+      "adaptive_keep": 300,
+      "base_fraction": 0.8498583569405099,
+      "adaptive_fraction": 0.8498583569405099,
+      "interval_occupancy": 0.991501416430595,
+      "intervals": [
+        [
+          0.0,
+          14.0
+        ]
+      ],
+      "selected_inside_count": 300,
+      "removed_count": 0
+    },
+    {
+      "video_id": "364",
+      "frame_count": 909,
+      "base_keep": 773,
+      "adaptive_keep": 772,
+      "base_fraction": 0.8503850385038504,
+      "adaptive_fraction": 0.8492849284928493,
+      "interval_occupancy": 0.7260726072607261,
+      "intervals": [
+        [
+          2.0,
+          24.0
+        ]
+      ],
+      "selected_inside_count": 657,
+      "removed_count": 1
+    },
+    {
+      "video_id": "365",
+      "frame_count": 2100,
+      "base_keep": 1785,
+      "adaptive_keep": 1785,
+      "base_fraction": 0.85,
+      "adaptive_fraction": 0.85,
+      "interval_occupancy": 0.9857142857142858,
+      "intervals": [
+        [
+          0.0,
+          69.0
+        ]
+      ],
+      "selected_inside_count": 1785,
+      "removed_count": 0
+    },
+    {
+      "video_id": "366",
+      "frame_count": 750,
+      "base_keep": 638,
+      "adaptive_keep": 638,
+      "base_fraction": 0.8506666666666667,
+      "adaptive_fraction": 0.8506666666666667,
+      "interval_occupancy": 0.96,
+      "intervals": [
+        [
+          1.0,
+          25.0
+        ]
+      ],
+      "selected_inside_count": 638,
+      "removed_count": 0
+    },
+    {
+      "video_id": "367",
+      "frame_count": 367,
+      "base_keep": 312,
+      "adaptive_keep": 300,
+      "base_fraction": 0.8501362397820164,
+      "adaptive_fraction": 0.8174386920980926,
+      "interval_occupancy": 0.49046455167452774,
+      "intervals": [
+        [
+          6.0,
+          12.0
+        ]
+      ],
+      "selected_inside_count": 173,
+      "removed_count": 12
+    },
+    {
+      "video_id": "368",
+      "frame_count": 315,
+      "base_keep": 268,
+      "adaptive_keep": 268,
+      "base_fraction": 0.8507936507936508,
+      "adaptive_fraction": 0.8507936507936508,
+      "interval_occupancy": 0.9523809523809524,
+      "intervals": [
+        [
+          0.0,
+          12.0
+        ]
+      ],
+      "selected_inside_count": 268,
+      "removed_count": 0
+    },
+    {
+      "video_id": "369",
+      "frame_count": 436,
+      "base_keep": 371,
+      "adaptive_keep": 371,
+      "base_fraction": 0.8509174311926605,
+      "adaptive_fraction": 0.8509174311926605,
+      "interval_occupancy": 0.9747706422018347,
+      "intervals": [
+        [
+          0.0,
+          17.0
+        ]
+      ],
+      "selected_inside_count": 371,
+      "removed_count": 0
+    },
+    {
+      "video_id": "370",
+      "frame_count": 1045,
+      "base_keep": 888,
+      "adaptive_keep": 888,
+      "base_fraction": 0.8497607655502393,
+      "adaptive_fraction": 0.8497607655502393,
+      "interval_occupancy": 0.7416267942583733,
+      "intervals": [
+        [
+          10.0,
+          41.0
+        ]
+      ],
+      "selected_inside_count": 762,
+      "removed_count": 0
+    },
+    {
+      "video_id": "371",
+      "frame_count": 400,
+      "base_keep": 340,
+      "adaptive_keep": 340,
+      "base_fraction": 0.85,
+      "adaptive_fraction": 0.85,
+      "interval_occupancy": 0.9375,
+      "intervals": [
+        [
+          0.0,
+          15.0
+        ]
+      ],
+      "selected_inside_count": 340,
+      "removed_count": 0
+    },
+    {
+      "video_id": "372",
+      "frame_count": 531,
+      "base_keep": 451,
+      "adaptive_keep": 431,
+      "base_fraction": 0.8493408662900188,
+      "adaptive_fraction": 0.8116760828625236,
+      "interval_occupancy": 0.4519774011299435,
+      "intervals": [
+        [
+          2.0,
+          10.0
+        ]
+      ],
+      "selected_inside_count": 241,
+      "removed_count": 20
+    },
+    {
+      "video_id": "373",
+      "frame_count": 1476,
+      "base_keep": 1255,
+      "adaptive_keep": 1240,
+      "base_fraction": 0.8502710027100271,
+      "adaptive_fraction": 0.8401084010840109,
+      "interval_occupancy": 0.6605691056910569,
+      "intervals": [
+        [
+          0.0,
+          4.0
+        ],
+        [
+          13.0,
+          48.0
+        ]
+      ],
+      "selected_inside_count": 894,
+      "removed_count": 15
+    },
+    {
+      "video_id": "374",
+      "frame_count": 222,
+      "base_keep": 189,
+      "adaptive_keep": 184,
+      "base_fraction": 0.8513513513513513,
+      "adaptive_fraction": 0.8288288288288288,
+      "interval_occupancy": 0.563063063063063,
+      "intervals": [
+        [
+          3.0,
+          8.0
+        ]
+      ],
+      "selected_inside_count": 126,
+      "removed_count": 5
+    },
+    {
+      "video_id": "375",
+      "frame_count": 721,
+      "base_keep": 613,
+      "adaptive_keep": 613,
+      "base_fraction": 0.8502080443828016,
+      "adaptive_fraction": 0.8502080443828016,
+      "interval_occupancy": 0.79750346740638,
+      "intervals": [
+        [
+          5.0,
+          28.0
+        ]
+      ],
+      "selected_inside_count": 574,
+      "removed_count": 0
+    },
+    {
+      "video_id": "376",
+      "frame_count": 1088,
+      "base_keep": 925,
+      "adaptive_keep": 925,
+      "base_fraction": 0.8501838235294118,
+      "adaptive_fraction": 0.8501838235294118,
+      "interval_occupancy": 0.9880514705882352,
+      "intervals": [
+        [
+          0.0,
+          43.0
+        ]
+      ],
+      "selected_inside_count": 925,
+      "removed_count": 0
+    },
+    {
+      "video_id": "377",
+      "frame_count": 470,
+      "base_keep": 400,
+      "adaptive_keep": 400,
+      "base_fraction": 0.851063829787234,
+      "adaptive_fraction": 0.851063829787234,
+      "interval_occupancy": 0.9574468085106382,
+      "intervals": [
+        [
+          0.0,
+          18.0
+        ]
+      ],
+      "selected_inside_count": 400,
+      "removed_count": 0
+    },
+    {
+      "video_id": "378",
+      "frame_count": 1018,
+      "base_keep": 865,
+      "adaptive_keep": 865,
+      "base_fraction": 0.849705304518664,
+      "adaptive_fraction": 0.849705304518664,
+      "interval_occupancy": 0.9823182711198428,
+      "intervals": [
+        [
+          0.0,
+          40.0
+        ]
+      ],
+      "selected_inside_count": 865,
+      "removed_count": 0
+    },
+    {
+      "video_id": "379",
+      "frame_count": 2516,
+      "base_keep": 2139,
+      "adaptive_keep": 2139,
+      "base_fraction": 0.8501589825119237,
+      "adaptive_fraction": 0.8501589825119237,
+      "interval_occupancy": 0.983704292527822,
+      "intervals": [
+        [
+          0.0,
+          99.0
+        ]
+      ],
+      "selected_inside_count": 2139,
+      "removed_count": 0
+    },
+    {
+      "video_id": "380",
+      "frame_count": 1061,
+      "base_keep": 902,
+      "adaptive_keep": 902,
+      "base_fraction": 0.8501413760603205,
+      "adaptive_fraction": 0.8501413760603205,
+      "interval_occupancy": 0.9896324222431668,
+      "intervals": [
+        [
+          0.0,
+          42.0
+        ]
+      ],
+      "selected_inside_count": 902,
+      "removed_count": 0
+    },
+    {
+      "video_id": "381",
+      "frame_count": 354,
+      "base_keep": 301,
+      "adaptive_keep": 289,
+      "base_fraction": 0.8502824858757062,
+      "adaptive_fraction": 0.8163841807909604,
+      "interval_occupancy": 0.4943502824858757,
+      "intervals": [
+        [
+          0.0,
+          7.0
+        ]
+      ],
+      "selected_inside_count": 152,
+      "removed_count": 12
+    },
+    {
+      "video_id": "382",
+      "frame_count": 1069,
+      "base_keep": 909,
+      "adaptive_keep": 897,
+      "base_fraction": 0.8503274087932647,
+      "adaptive_fraction": 0.8391019644527596,
+      "interval_occupancy": 0.6548175865294669,
+      "intervals": [
+        [
+          0.0,
+          28.0
+        ]
+      ],
+      "selected_inside_count": 629,
+      "removed_count": 12
+    },
+    {
+      "video_id": "383",
+      "frame_count": 1160,
+      "base_keep": 986,
+      "adaptive_keep": 955,
+      "base_fraction": 0.85,
+      "adaptive_fraction": 0.8232758620689655,
+      "interval_occupancy": 0.5387931034482759,
+      "intervals": [
+        [
+          2.0,
+          27.0
+        ]
+      ],
+      "selected_inside_count": 595,
+      "removed_count": 31
+    },
+    {
+      "video_id": "384",
+      "frame_count": 2601,
+      "base_keep": 2211,
+      "adaptive_keep": 2211,
+      "base_fraction": 0.8500576701268743,
+      "adaptive_fraction": 0.8500576701268743,
+      "interval_occupancy": 0.9996155324875048,
+      "intervals": [
+        [
+          0.0,
+          104.0
+        ]
+      ],
+      "selected_inside_count": 2211,
+      "removed_count": 0
+    },
+    {
+      "video_id": "385",
+      "frame_count": 909,
+      "base_keep": 773,
+      "adaptive_keep": 773,
+      "base_fraction": 0.8503850385038504,
+      "adaptive_fraction": 0.8503850385038504,
+      "interval_occupancy": 0.9625962596259626,
+      "intervals": [
+        [
+          1.0,
+          36.0
+        ]
+      ],
+      "selected_inside_count": 773,
+      "removed_count": 0
+    },
+    {
+      "video_id": "386",
+      "frame_count": 1702,
+      "base_keep": 1447,
+      "adaptive_keep": 1447,
+      "base_fraction": 0.8501762632197415,
+      "adaptive_fraction": 0.8501762632197415,
+      "interval_occupancy": 0.7491186839012927,
+      "intervals": [
+        [
+          0.0,
+          25.0
+        ],
+        [
+          28.0,
+          54.0
+        ]
+      ],
+      "selected_inside_count": 1162,
+      "removed_count": 0
+    },
+    {
+      "video_id": "387",
+      "frame_count": 2801,
+      "base_keep": 2381,
+      "adaptive_keep": 2381,
+      "base_fraction": 0.850053552302749,
+      "adaptive_fraction": 0.850053552302749,
+      "interval_occupancy": 0.9460906818993217,
+      "intervals": [
+        [
+          3.0,
+          109.0
+        ]
+      ],
+      "selected_inside_count": 2381,
+      "removed_count": 0
+    },
+    {
+      "video_id": "388",
+      "frame_count": 1668,
+      "base_keep": 1418,
+      "adaptive_keep": 1418,
+      "base_fraction": 0.8501199040767387,
+      "adaptive_fraction": 0.8501199040767387,
+      "interval_occupancy": 0.8243405275779376,
+      "intervals": [
+        [
+          5.0,
+          60.0
+        ]
+      ],
+      "selected_inside_count": 1376,
+      "removed_count": 0
+    },
+    {
+      "video_id": "389",
+      "frame_count": 902,
+      "base_keep": 767,
+      "adaptive_keep": 767,
+      "base_fraction": 0.8503325942350333,
+      "adaptive_fraction": 0.8503325942350333,
+      "interval_occupancy": 0.8869179600886918,
+      "intervals": [
+        [
+          3.0,
+          35.0
+        ]
+      ],
+      "selected_inside_count": 767,
+      "removed_count": 0
+    },
+    {
+      "video_id": "390",
+      "frame_count": 890,
+      "base_keep": 756,
+      "adaptive_keep": 756,
+      "base_fraction": 0.849438202247191,
+      "adaptive_fraction": 0.849438202247191,
+      "interval_occupancy": 0.8146067415730337,
+      "intervals": [
+        [
+          0.0,
+          29.0
+        ]
+      ],
+      "selected_inside_count": 665,
+      "removed_count": 0
+    },
+    {
+      "video_id": "391",
+      "frame_count": 467,
+      "base_keep": 397,
+      "adaptive_keep": 395,
+      "base_fraction": 0.8501070663811563,
+      "adaptive_fraction": 0.8458244111349036,
+      "interval_occupancy": 0.69593147751606,
+      "intervals": [
+        [
+          5.0,
+          18.0
+        ]
+      ],
+      "selected_inside_count": 326,
+      "removed_count": 2
+    },
+    {
+      "video_id": "392",
+      "frame_count": 627,
+      "base_keep": 533,
+      "adaptive_keep": 522,
+      "base_fraction": 0.8500797448165869,
+      "adaptive_fraction": 0.8325358851674641,
+      "interval_occupancy": 0.5980861244019139,
+      "intervals": [
+        [
+          10.0,
+          25.0
+        ]
+      ],
+      "selected_inside_count": 357,
+      "removed_count": 11
+    },
+    {
+      "video_id": "393",
+      "frame_count": 1416,
+      "base_keep": 1204,
+      "adaptive_keep": 1202,
+      "base_fraction": 0.8502824858757062,
+      "adaptive_fraction": 0.8488700564971752,
+      "interval_occupancy": 0.7238700564971752,
+      "intervals": [
+        [
+          10.0,
+          51.0
+        ]
+      ],
+      "selected_inside_count": 1026,
+      "removed_count": 2
+    },
+    {
+      "video_id": "394",
+      "frame_count": 1361,
+      "base_keep": 1157,
+      "adaptive_keep": 1157,
+      "base_fraction": 0.8501102130786187,
+      "adaptive_fraction": 0.8501102130786187,
+      "interval_occupancy": 0.9919169787531383,
+      "intervals": [
+        [
+          0.0,
+          45.0
+        ]
+      ],
+      "selected_inside_count": 1157,
+      "removed_count": 0
+    },
+    {
+      "video_id": "395",
+      "frame_count": 339,
+      "base_keep": 288,
+      "adaptive_keep": 288,
+      "base_fraction": 0.8495575221238938,
+      "adaptive_fraction": 0.8495575221238938,
+      "interval_occupancy": 0.8112094395280236,
+      "intervals": [
+        [
+          2.0,
+          13.0
+        ]
+      ],
+      "selected_inside_count": 276,
+      "removed_count": 0
+    },
+    {
+      "video_id": "396",
+      "frame_count": 1328,
+      "base_keep": 1129,
+      "adaptive_keep": 1129,
+      "base_fraction": 0.8501506024096386,
+      "adaptive_fraction": 0.8501506024096386,
+      "interval_occupancy": 0.9977409638554218,
+      "intervals": [
+        [
+          0.0,
+          53.0
+        ]
+      ],
+      "selected_inside_count": 1129,
+      "removed_count": 0
+    },
+    {
+      "video_id": "397",
+      "frame_count": 1143,
+      "base_keep": 972,
+      "adaptive_keep": 915,
+      "base_fraction": 0.8503937007874016,
+      "adaptive_fraction": 0.800524934383202,
+      "interval_occupancy": 0.37182852143482065,
+      "intervals": [
+        [
+          16.0,
+          33.0
+        ]
+      ],
+      "selected_inside_count": 426,
+      "removed_count": 57
+    },
+    {
+      "video_id": "398",
+      "frame_count": 772,
+      "base_keep": 656,
+      "adaptive_keep": 627,
+      "base_fraction": 0.8497409326424871,
+      "adaptive_fraction": 0.8121761658031088,
+      "interval_occupancy": 0.4533678756476684,
+      "intervals": [
+        [
+          15.0,
+          29.0
+        ]
+      ],
+      "selected_inside_count": 351,
+      "removed_count": 29
+    },
+    {
+      "video_id": "399",
+      "frame_count": 265,
+      "base_keep": 225,
+      "adaptive_keep": 225,
+      "base_fraction": 0.8490566037735849,
+      "adaptive_fraction": 0.8490566037735849,
+      "interval_occupancy": 0.8490566037735849,
+      "intervals": [
+        [
+          0.0,
+          9.0
+        ]
+      ],
+      "selected_inside_count": 208,
+      "removed_count": 0
+    },
+    {
+      "video_id": "400",
+      "frame_count": 265,
+      "base_keep": 225,
+      "adaptive_keep": 225,
+      "base_fraction": 0.8490566037735849,
+      "adaptive_fraction": 0.8490566037735849,
+      "interval_occupancy": 0.8490566037735849,
+      "intervals": [
+        [
+          0.0,
+          9.0
+        ]
+      ],
+      "selected_inside_count": 208,
+      "removed_count": 0
+    },
+    {
+      "video_id": "401",
+      "frame_count": 558,
+      "base_keep": 474,
+      "adaptive_keep": 474,
+      "base_fraction": 0.8494623655913979,
+      "adaptive_fraction": 0.8494623655913979,
+      "interval_occupancy": 0.7616487455197133,
+      "intervals": [
+        [
+          5.0,
+          22.0
+        ]
+      ],
+      "selected_inside_count": 415,
+      "removed_count": 0
+    },
+    {
+      "video_id": "402",
+      "frame_count": 564,
+      "base_keep": 479,
+      "adaptive_keep": 457,
+      "base_fraction": 0.849290780141844,
+      "adaptive_fraction": 0.8102836879432624,
+      "interval_occupancy": 0.44326241134751776,
+      "intervals": [
+        [
+          10.0,
+          20.0
+        ]
+      ],
+      "selected_inside_count": 251,
+      "removed_count": 22
+    },
+    {
+      "video_id": "403",
+      "frame_count": 969,
+      "base_keep": 824,
+      "adaptive_keep": 822,
+      "base_fraction": 0.8503611971104231,
+      "adaptive_fraction": 0.848297213622291,
+      "interval_occupancy": 0.7223942208462333,
+      "intervals": [
+        [
+          0.0,
+          28.0
+        ]
+      ],
+      "selected_inside_count": 636,
+      "removed_count": 2
+    },
+    {
+      "video_id": "404",
+      "frame_count": 1159,
+      "base_keep": 985,
+      "adaptive_keep": 985,
+      "base_fraction": 0.8498705780845557,
+      "adaptive_fraction": 0.8498705780845557,
+      "interval_occupancy": 0.9922346850733391,
+      "intervals": [
+        [
+          0.0,
+          46.0
+        ]
+      ],
+      "selected_inside_count": 985,
+      "removed_count": 0
+    },
+    {
+      "video_id": "405",
+      "frame_count": 448,
+      "base_keep": 381,
+      "adaptive_keep": 381,
+      "base_fraction": 0.8504464285714286,
+      "adaptive_fraction": 0.8504464285714286,
+      "interval_occupancy": 0.7812499999999999,
+      "intervals": [
+        [
+          2.0,
+          16.0
+        ]
+      ],
+      "selected_inside_count": 351,
+      "removed_count": 0
+    },
+    {
+      "video_id": "406",
+      "frame_count": 277,
+      "base_keep": 235,
+      "adaptive_keep": 235,
+      "base_fraction": 0.8483754512635379,
+      "adaptive_fraction": 0.8483754512635379,
+      "interval_occupancy": 0.8122743682310469,
+      "intervals": [
+        [
+          1.0,
+          10.0
+        ]
+      ],
+      "selected_inside_count": 226,
+      "removed_count": 0
+    },
+    {
+      "video_id": "407",
+      "frame_count": 316,
+      "base_keep": 269,
+      "adaptive_keep": 269,
+      "base_fraction": 0.8512658227848101,
+      "adaptive_fraction": 0.8512658227848101,
+      "interval_occupancy": 0.9493670886075949,
+      "intervals": [
+        [
+          0.0,
+          12.0
+        ]
+      ],
+      "selected_inside_count": 269,
+      "removed_count": 0
+    },
+    {
+      "video_id": "408",
+      "frame_count": 178,
+      "base_keep": 151,
+      "adaptive_keep": 147,
+      "base_fraction": 0.848314606741573,
+      "adaptive_fraction": 0.8258426966292135,
+      "interval_occupancy": 0.5617977528089888,
+      "intervals": [
+        [
+          2.0,
+          6.0
+        ]
+      ],
+      "selected_inside_count": 101,
+      "removed_count": 4
+    },
+    {
+      "video_id": "409",
+      "frame_count": 280,
+      "base_keep": 238,
+      "adaptive_keep": 224,
+      "base_fraction": 0.85,
+      "adaptive_fraction": 0.8,
+      "interval_occupancy": 0.35714285714285715,
+      "intervals": [
+        [
+          2.0,
+          6.0
+        ]
+      ],
+      "selected_inside_count": 101,
+      "removed_count": 14
+    },
+    {
+      "video_id": "410",
+      "frame_count": 359,
+      "base_keep": 305,
+      "adaptive_keep": 280,
+      "base_fraction": 0.8495821727019499,
+      "adaptive_fraction": 0.7799442896935933,
+      "interval_occupancy": 0.20891364902506965,
+      "intervals": [
+        [
+          4.0,
+          7.0
+        ]
+      ],
+      "selected_inside_count": 76,
+      "removed_count": 25
+    },
+    {
+      "video_id": "411",
+      "frame_count": 314,
+      "base_keep": 267,
+      "adaptive_keep": 267,
+      "base_fraction": 0.8503184713375797,
+      "adaptive_fraction": 0.8503184713375797,
+      "interval_occupancy": 0.9554140127388535,
+      "intervals": [
+        [
+          0.0,
+          12.0
+        ]
+      ],
+      "selected_inside_count": 267,
+      "removed_count": 0
+    },
+    {
+      "video_id": "412",
+      "frame_count": 325,
+      "base_keep": 276,
+      "adaptive_keep": 276,
+      "base_fraction": 0.8492307692307692,
+      "adaptive_fraction": 0.8492307692307692,
+      "interval_occupancy": 1.0,
+      "intervals": [
+        [
+          0.0,
+          13.0
+        ]
+      ],
+      "selected_inside_count": 276,
+      "removed_count": 0
+    },
+    {
+      "video_id": "413",
+      "frame_count": 597,
+      "base_keep": 507,
+      "adaptive_keep": 482,
+      "base_fraction": 0.8492462311557789,
+      "adaptive_fraction": 0.8073701842546064,
+      "interval_occupancy": 0.4187604690117253,
+      "intervals": [
+        [
+          0.0,
+          10.0
+        ]
+      ],
+      "selected_inside_count": 210,
+      "removed_count": 25
+    },
+    {
+      "video_id": "414",
+      "frame_count": 380,
+      "base_keep": 323,
+      "adaptive_keep": 295,
+      "base_fraction": 0.85,
+      "adaptive_fraction": 0.7763157894736842,
+      "interval_occupancy": 0.19736842105263158,
+      "intervals": [
+        [
+          8.0,
+          11.0
+        ]
+      ],
+      "selected_inside_count": 76,
+      "removed_count": 28
+    },
+    {
+      "video_id": "415",
+      "frame_count": 1293,
+      "base_keep": 1099,
+      "adaptive_keep": 1083,
+      "base_fraction": 0.8499613302397525,
+      "adaptive_fraction": 0.8375870069605569,
+      "interval_occupancy": 0.6380510440835266,
+      "intervals": [
+        [
+          3.0,
+          36.0
+        ]
+      ],
+      "selected_inside_count": 810,
+      "removed_count": 16
+    },
+    {
+      "video_id": "416",
+      "frame_count": 351,
+      "base_keep": 298,
+      "adaptive_keep": 298,
+      "base_fraction": 0.8490028490028491,
+      "adaptive_fraction": 0.8490028490028491,
+      "interval_occupancy": 0.9971509971509972,
+      "intervals": [
+        [
+          0.0,
+          14.0
+        ]
+      ],
+      "selected_inside_count": 298,
+      "removed_count": 0
+    },
+    {
+      "video_id": "417",
+      "frame_count": 277,
+      "base_keep": 235,
+      "adaptive_keep": 228,
+      "base_fraction": 0.8483754512635379,
+      "adaptive_fraction": 0.8231046931407943,
+      "interval_occupancy": 0.5415162454873647,
+      "intervals": [
+        [
+          3.0,
+          9.0
+        ]
+      ],
+      "selected_inside_count": 151,
+      "removed_count": 7
+    },
+    {
+      "video_id": "418",
+      "frame_count": 197,
+      "base_keep": 167,
+      "adaptive_keep": 167,
+      "base_fraction": 0.8477157360406091,
+      "adaptive_fraction": 0.8477157360406091,
+      "interval_occupancy": 0.7614213197969544,
+      "intervals": [
+        [
+          1.0,
+          7.0
+        ]
+      ],
+      "selected_inside_count": 151,
+      "removed_count": 0
+    },
+    {
+      "video_id": "419",
+      "frame_count": 260,
+      "base_keep": 221,
+      "adaptive_keep": 221,
+      "base_fraction": 0.85,
+      "adaptive_fraction": 0.85,
+      "interval_occupancy": 0.9615384615384615,
+      "intervals": [
+        [
+          0.0,
+          10.0
+        ]
+      ],
+      "selected_inside_count": 221,
+      "removed_count": 0
+    },
+    {
+      "video_id": "420",
+      "frame_count": 183,
+      "base_keep": 156,
+      "adaptive_keep": 151,
+      "base_fraction": 0.8524590163934426,
+      "adaptive_fraction": 0.825136612021858,
+      "interval_occupancy": 0.5464480874316939,
+      "intervals": [
+        [
+          3.0,
+          7.0
+        ]
+      ],
+      "selected_inside_count": 101,
+      "removed_count": 5
+    },
+    {
+      "video_id": "421",
+      "frame_count": 248,
+      "base_keep": 211,
+      "adaptive_keep": 211,
+      "base_fraction": 0.8508064516129032,
+      "adaptive_fraction": 0.8508064516129032,
+      "interval_occupancy": 0.907258064516129,
+      "intervals": [
+        [
+          0.0,
+          9.0
+        ]
+      ],
+      "selected_inside_count": 209,
+      "removed_count": 0
+    },
+    {
+      "video_id": "422",
+      "frame_count": 374,
+      "base_keep": 318,
+      "adaptive_keep": 318,
+      "base_fraction": 0.8502673796791443,
+      "adaptive_fraction": 0.8502673796791443,
+      "interval_occupancy": 0.8021390374331551,
+      "intervals": [
+        [
+          2.0,
+          14.0
+        ]
+      ],
+      "selected_inside_count": 301,
+      "removed_count": 0
+    },
+    {
+      "video_id": "423",
+      "frame_count": 240,
+      "base_keep": 204,
+      "adaptive_keep": 204,
+      "base_fraction": 0.85,
+      "adaptive_fraction": 0.85,
+      "interval_occupancy": 0.875,
+      "intervals": [
+        [
+          0.0,
+          7.0
+        ]
+      ],
+      "selected_inside_count": 195,
+      "removed_count": 0
+    },
+    {
+      "video_id": "424",
+      "frame_count": 913,
+      "base_keep": 776,
+      "adaptive_keep": 746,
+      "base_fraction": 0.8499452354874042,
+      "adaptive_fraction": 0.8170865279299014,
+      "interval_occupancy": 0.492880613362541,
+      "intervals": [
+        [
+          13.0,
+          31.0
+        ]
+      ],
+      "selected_inside_count": 451,
+      "removed_count": 30
+    },
+    {
+      "video_id": "425",
+      "frame_count": 1281,
+      "base_keep": 1089,
+      "adaptive_keep": 1087,
+      "base_fraction": 0.8501170960187353,
+      "adaptive_fraction": 0.8485558157689306,
+      "interval_occupancy": 0.7220921155347385,
+      "intervals": [
+        [
+          10.0,
+          47.0
+        ]
+      ],
+      "selected_inside_count": 926,
+      "removed_count": 2
+    }
+  ]
+}

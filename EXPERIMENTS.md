@@ -1227,13 +1227,13 @@ R54的官方差异近似一个连续窗口后移；同一公共18视图上固定
 
 **R64** 使用负空间分歧，交换22741帧、426视频，均值位置`.44301`；ZIP SHA=`84320541b0250384613124133c39c478686837b83f35f7780ebe4734f8658216`。两包总参数均8.855B、精确85%预算。R59–R62旧稿因FPS索引或浮点边界问题标记作废，不能上传。
 
-**结论**：R63是高分歧内容转移的极端赌注，R64是反向稳定性对照；两者都可能出现大幅负分，只有在需要机制对决时占用额度。
+**结论（后续审计更正）**：R63/R64 均作废、不可上传。stable ordinal rank 对约 90% 的平值几何差异按帧号分配不同秩，混入隐藏位置先验，故它们不能作为空间分歧与稳定性的有效机制对照。
 
 ### R63/R64 实现审计更正与 R67 修正版
 
 后续代码审计发现上述两包的`rank(V9-R26 geometry disagreement)`采用stable ordinal rank。几何差异约90%为平值时，平值仍按帧号获得不同秩，导致R63均值位置后移、R64前移；这不是空间分歧/稳定性机制的有效对照，两个包均标记为不可上传。
 
-`R67_JOINT_V9_DISAGREEMENT_TIEAVG_G1`修复了两处归因问题：center和TimeLens interval完全沿用R54 stable rank，只有几何分歧使用平值平均秩；绝对几何差异`<=1e-6`归零以去除序列化噪声。gamma=0输出与R54逐视频逐帧和序列化SHA一致。gamma=1包相对R54交换2427帧（81个视频），均值位置`.519774`，426/426、199037条、总参数`8,854,531,425`；独立checker与contract通过。预测SHA=`4655d73b5e8a93398b75c1ff2c6ae8d6110e061750d0350db23283d6d4490beb`，ZIP SHA=`550bf1c87d2fa03f046b6dfd581882bce6d47850585789ed7e09a175ec2d34bd`。这是当前唯一可解释的空间分歧高风险候选，不能预报涨分。
+`R67_JOINT_V9_DISAGREEMENT_TIEAVG_G1`修复了两处归因问题：center和TimeLens interval完全沿用R54 stable rank，只有几何分歧使用平值平均秩；绝对几何差异`<=1e-6`归零以去除序列化噪声。gamma=0输出与R54逐视频逐帧和序列化SHA一致。gamma=1包相对R54交换2427帧（81个视频），均值位置`.519774`，426/426、199037条、总参数`8,854,531,425`；独立checker与contract通过。预测SHA=`4655d73b5e8a93398b75c1ff2c6ae8d6110e061750d0350db23283d6d4490beb`，ZIP SHA=`550bf1c87d2fa03f046b6dfd581882bce6d47850585789ed7e09a175ec2d34bd`。这是有效的空间分歧修正版，但官方回分为 **36.16**（低于 R54=36.22 的 0.06）；无监督空间分歧路线停止，不再作为上传候选。
 
 ## 音频正交路线停止
 
@@ -1249,7 +1249,7 @@ R57=`34.76`、R59=`35.04`，均低于R54=`36.22`。R57的统一`+2s`窗口后移
 最后一个高风险候选转向结构不同的R69：同一8.767B TimeLens2完整视频直接输出目标比例全局crop，保留R54时间集合/精确85%预算。全量响应在AutoDL运行，完成后仅在解析率、坐标合同和完整426覆盖通过时形成上传包；该实验直接检验VLM空间grounding能否替代逐帧B3 utility，预期风险高且无官方涨分承诺。
 
 
-R69全量响应已完成：TimeLens2直接空间query在426/426视频解析成功。发行包`R69_TIMELENS_DIRECT_CENTER_MAXWIN_R54`保留R54帧集合，仅把视频级query中心投影到目标比例最大合法窗口；199,037帧、8,767,123,696参数、无回退，independent checker与semifinal contract通过。预测SHA=`5719062511dc2aca242896371eaed4ca4b30e1cff6a433ab39ee22a187065618`，ZIP SHA=`3f225c4e5cb03bad8178351aee66dbe6669c9844fb5bf028eaf17dcd55b1e8ca`。该包是高风险空间grounding试验，官方分数未知。
+R69全量响应已完成：TimeLens2直接空间 query 在 426/426 视频解析成功。最终发行包为 `R69_TIMELENS_DIRECT_CROP_V1`，保留 R54 帧集合和精确预算，直接使用完整视频 query 的目标比例 crop（每视频一个全局框），不使用旧的 `CENTER_MAXWIN` 中心投影变体；199,037 条预测、8,767,123,696 参数、0 fallback、0 帧集合差异、129,443 个选中帧框替换。independent checker、semifinal contract 和 ZIP 往返均通过。预测 SHA=`aad8d3455490c2d3d43d42bf98c93117b405993452f985fb840126109452dfcf`，ZIP SHA=`f5d6dcadbd511f286c98360a72cfb568146056eb77d8cee6d62194b9e7839871`。该包是结构性高风险空间 grounding 试验，官方分数待上传后回传。
 
 ## 2026-10-18：R70 candidate utility readout（进行中）
 

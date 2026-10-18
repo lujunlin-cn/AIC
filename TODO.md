@@ -342,17 +342,17 @@ R44_DIAG_001已完成CPU留一：局部状态描述子使通用等级MAE 1.0668�
 
 - [x] 完成TimeLens2 4fps全量426响应并记录SHA。
 - [x] 生成4fps residual/endpoint候选R65/R66及更激进R59，完成预算、checker、ZIP往返审计。
-- [x] 生成真实FPS且中心表达式严格复现的联合空间分歧/稳定性候选R63/R64；作废R59–R62旧稿。
+- [x] 生成真实FPS且中心表达式严格复现的联合空间分歧/稳定性候选R63/R64；后续审计确认两包作废，R59–R62旧稿同样作废。
 - [x] 审计并作废R63/R64的stable-tie实现：平值几何差异按帧号注入隐藏位置偏置。
-- [x] 生成R67 tie-aware修正版：center/interval保持R54 stable rank，只有geometry disagreement平均秩，gamma=0精确复现R54；唯一高风险提交候选。
-- [ ] 记录R67官方回分并按同一SHA绑定；禁止上传旧R63/R64及旧R67/无epsilon R68包。
+- [x] 生成R67 tie-aware修正版：center/interval保持R54 stable rank，只有geometry disagreement平均秩，gamma=0精确复现R54；作为有效负结果归档，不再作为提交候选。
+- [x] 记录R67官方回分`36.16`（R54=`36.22`）；禁止上传旧R63/R64、旧R67及无epsilon R68包。
 - [x] 在人工标签上严格复现音频5%交换为负，停止音频主线。
-- [ ] 等待官方回分后按机制判别更新候选优先级；不根据一次回分做系数扫描。
-- [ ] 如需下一结构突破，运行TimeLens同权重的直接空间grounding smoke；只有解析率和小样本native构图代理通过才做426全量。
+- [x] 已按R67官方回分`36.16`完成机制判别：停止无监督空间分歧路线，不根据一次回分做系数扫描。
+- [x] 完成TimeLens同权重直接空间 grounding smoke 与 426 全量；`R69_TIMELENS_DIRECT_CROP_V1`通过解析率、完整覆盖、checker、contract 和 ZIP 回归，待官方上传回分。
 
 ## 2026-10-18 R70 空间候选效用读出
 
-- [x] 与R69直接TimeLens构图包分离命名；确认原始V8 B3 head缺失，不冒称复现。
+- [x] 完成R69直接TimeLens构图包；确认原始V8 B3 head缺失，不冒称复现；最终候选统一为`R69_TIMELENS_DIRECT_CROP_V1`，旧`CENTER_MAXWIN`变体不占名额。
 - [x] 完成R70 smoke：V9 vision tensor/processor合同、129候选`2305`维特征和新head训练链通过。
 - [ ] 完成RV/LIVE source-disjoint train+dev特征抽取与readout训练：远端`/root/autodl-tmp/experiments/R70_SPATIAL_UTILITY/full/`。
 - [ ] 报告RV、LIVE分别的新head/center/oracle源级IoU；任一留出池不超过中心即关闭R70。

@@ -1,0 +1,16 @@
+{
+  "experiment_id": "R64_JOINT_V9_STABILITY_GM1",
+  "status": "PACKAGED_NOT_UPLOADED",
+  "fps_source": "reports/r47_timelens2_index_enriched_426.jsonl",
+  "utility": "rank(center)+0.20*rank(TimeLens2 interval)-1.0*rank(V9_R26_geometry_disagreement)",
+  "gamma0_reproduces_r54": true,
+  "videos": 426,
+  "predictions": 199037,
+  "swaps_vs_r54": 22741,
+  "changed_videos_vs_r54": 426,
+  "mean_selected_position": 0.4430092566336316,
+  "noncontiguous_videos": 107,
+  "mean_internal_gaps": 0.4647887323943662,
+  "prediction_sha256": "60ba42b8dc24725f843c69a65c03c602b66f4fb08c186af7a3550521898eaca4",
+  "zip_sha256": "84320541b0250384613124133c39c478686837b83f35f7780ebe4734f8658216"
+}

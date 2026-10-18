@@ -132,7 +132,10 @@ def main() -> None:
             [any(a - 1e-6 <= z <= b + 1e-6 for a, b in intervals) for z in t],
             dtype=np.float64,
         )
-        center = 1.0 - np.abs(np.arange(n, dtype=np.float64) - (n - 1) / 2.0) / max((n - 1) / 2.0, 1.0)
+        # Keep the exact centre expression used by R54.  The algebraically
+        # equivalent index form can differ at floating ties and shift one
+        # boundary frame under stable sorting.
+        center = 1.0 - np.abs(t / max(float(t[-1]), 1e-9) - 0.5) * 2.0
         spatial_delta = disagreement(frames, old, meta.get("width", 1), meta.get("height", 1))
         # R54 temporal residual plus a fixed, deliberately large spatial term.
         gamma = float(args.gamma)

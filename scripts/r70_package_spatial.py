@@ -35,7 +35,9 @@ def read_jsonl(p): return [json.loads(x) for x in Path(p).read_text().splitlines
 
 ap=argparse.ArgumentParser(); ap.add_argument('--parent',type=Path,required=True); ap.add_argument('--index',type=Path,required=True); ap.add_argument('--obs-cache',type=Path,required=True); ap.add_argument('--points',type=Path,required=True); ap.add_argument('--output',type=Path,required=True); a=ap.parse_args()
 parent={str(x['video_id']):x for x in read_jsonl(a.parent)}; index={str(x['video_id']):x for x in read_jsonl(a.index)}
-point_files=list(a.points.glob('shard_*/points/*.json')); point={}
+point_files=list(a.points.glob('*.json'))
+point_files += list(a.points.glob('shard_*/points/*.json'))
+point={}
 for p in point_files: point[p.stem]=json.loads(p.read_text())
 assert len(point)==426,(len(point),len(point_files))
 rows=[]; changed=0; fallback=0

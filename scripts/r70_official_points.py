@@ -105,14 +105,19 @@ def _prepare_images(vid, kbatch):
     for kf in kbatch:
         with Image.open(src_frames / vid / f'{kf}.png') as im:
             imgs.append(im.convert('RGB'))
-    return proc(images=imgs, return_tensors='pt')
+    x = proc(images=imgs, return_tensors='pt')
+    # The tower is loaded in FP16.  Convert before the host-to-device copy so
+    # PCIe traffic and the synchronous cast in the CUDA thread are halved.
+    if torch.is_tensor(x.get('pixel_values')):
+        x['pixel_values'] = x['pixel_values'].half()
+    return x
 
 
 def _infer_batch(kbatch, xcpu, W, H, ratio):
     """Run vision, utility pooling and head for one prepared image batch."""
     x={k:v.to(args.device) for k,v in xcpu.items() if torch.is_tensor(v)}
-    with torch.no_grad():
-        o=vision(pixel_values=x['pixel_values'].half(),spatial_shapes=x['spatial_shapes'],pixel_attention_mask=x['pixel_attention_mask'],return_dict=True)
+    with torch.inference_mode():
+        o=vision(pixel_values=x['pixel_values'],spatial_shapes=x['spatial_shapes'],pixel_attention_mask=x['pixel_attention_mask'],return_dict=True)
         # A processor batch normally has one spatial shape.  Group by
         # shape/valid length for robustness to an unusual dynamic processor
         # output while keeping every group on the GPU.

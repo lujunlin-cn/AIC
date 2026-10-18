@@ -1322,3 +1322,13 @@ R70与R69直接构图路线不同。R70固定V9 vision-only塔、processor、129
 ## 2026-10-18：R72 保守 utility residual 对照
 
 在同一 R70 utility dump 上构造更接近 R54 的联合控制：`R72 = R54_score + .20*(rank(R70 max_score)-.5)`，`.20` 直接继承 R54 interval residual，不采用乘法重标定。精确重建 R54 集合后，共交换 4120 帧、393/426 视频变化，平均重叠 97.94%；V9 B3 框逐字节来自 full parent。包 `R72_SPATIAL_UTILITY_TIME_R54_V9_B3`，8.855B，ZIP SHA `666a83f8dddd691022c66193eff30b54af6845fafadba3bb20ed3a6c99f64d88`，checks 通过。它是联合时间路线的保守对照，官方分数未知。
+
+## 2026-10-18：空间效用驱动时间重排复核、tie-aware 与 output-aligned utility
+
+**R70_UTILITY_DIAGNOSTIC_001**：在公开 RetargetVid/LIVE source-disjoint 留出（168源、1546行）上，用 topsoft 候选分数比较绝对 crop utility 与边际 utility。`max_score` 与实际选中框 IoU Spearman=.293、与实际 `IoU(argmax)-IoU(center)`=.128；`max_score-center_score` 分别为 -.113 和 **.377**；`soft_expected_score` 与实际选中框 IoU=.378。它们是不同空间目标；数据没有同视频时间GT，不能换算官方F。完整结果见 `reports/r70_gain_diagnostic_20261018.json`。
+
+**R74_TIE_AWARE_INCREMENTAL_UTILITY_TIME_R54_V9_B3**：R73的增量utility存在约44.7%关键帧零增益平值，stable argsort会注入帧号顺序。只将utility秩改为exact-tie midrank，保持R54表达式、.85预算、V9 B3框，换帧由5004降至2418。426/426、199037、8.854531425B，ZIP SHA=`ee0e6d8f228941b7da47833ca5ee4f0f72c6e1c961610577bfa66385fd96098a`，checker通过。无官方分数，不占明日2/3/5。
+
+**R76_OUTPUT_ALIGNED_UTILITY_TIME_R54_V9_B3**：R70 129候选utility在每个关键帧沿窗口偏移插值到V9 B3实际输出框位置，再以tie-aware rank加入R54固定residual。官方8848关键帧上 output utility 相对 max utility 均值差=-.03886、std=.08233，仅56.5%近似相同，证明R70 max与最终输出框不等价。R76 426/426、199037、8.854531425B，4251 swaps，ZIP SHA=`18d4986d84b705cd4076c4f640c77155eca5d1ac024583318fac0e7e3e7b2265`，checker通过；未上传。
+
+**R77_OUTPUT_ALIGNED_MULTIPLICATIVE_TIME_R54_V9_B3**：使用 `rank(R54 temporal value) * (0.5 + 0.5*midrank(output-aligned utility))`，以条件独立时的 `E[Y*IoU]` 为决策动机，不扫融合系数。426/426、199037、8.854531425B、2308 swaps，ZIP SHA=`aae5cfa6ffc56e8276aa5aef741781143a23e71ca8f428a608228700aa7d4106`，checker通过；未上传。完整复核见 `reports/r70_utility_temporal_reassessment_20261018/summary.md`。

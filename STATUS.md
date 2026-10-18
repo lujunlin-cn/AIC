@@ -365,3 +365,11 @@ R26 `36.04` 和 R44 `36.09` 保留为已知回退/对照；R67 `36.16` 已知低
 **R70_TOPSOFT_UTILITY_TEMPORAL**：把 topsoft 每关键帧 top-candidate utility 插值到原始 frame 轴，用固定联合规则 `rank(R54时间价值) * (0.5 + 0.5*rank(R70 utility))` 重排精确 85% 集合。426/426、199037、平均每视频相对 R54 交换 5.122 帧、377 视频变化、8.855B，ZIP SHA `aadb42cadc97a9880b63cc7367ea5285d53a365ea4802040a934131e1440883f`。独立 checker/final contract/ZIP 回归通过，官方分数未知。报告见 `reports/r70_topsoft_objective_20261018/README.md`。
 
 **R72_SPATIAL_UTILITY_TIME_R54_V9_B3**：另有一个更保守的联合时间对照，固定复用 R54 的 `eta=.20` 结构，只加入 R70 max-score 的同权 residual；共 4120 次换帧、393/426 视频变化、8.855B，ZIP SHA `666a83f8dddd691022c66193eff30b54af6845fafadba3bb20ed3a6c99f64d88`。它与 topsoft 乘法联合包保持为两个不同机制，不自动占明日名额。
+
+### 2026-10-18：空间效用驱动时间重排深审计
+
+第一轮R72/R73不等于严格的联合效用决策：R70预测的是129合法候选的最佳分数，但R72/R73输出V9 B3框。将R70分数插值到V9实际框后，8848官方关键帧的`output-max`均值=-.03886、std=.08233，仅56.5%在0.001内。
+
+公开168源空间诊断显示，`max_score-center_score`与实际边际IoU增益相关系数Spearman=.377，而绝对`max_score`与实际选中IoU=.293；这支持区分“相对中心改善”和“绝对可构图性”，不能把代理直接相乘称为官方F。R73的增量效用有44.7%零平值，stable rank注入帧号偏置；R74 tie-aware修复后换帧5004→2418。
+
+已生成未上传、仅供后续结构验证的输出对齐候选：R76 additive（4251 swaps，ZIP SHA `18d4986d84b705cd4076c4f640c77155eca5d1ac024583318fac0e7e3e7b2265`）和R77 multiplicative（2308 swaps，ZIP SHA `aae5cfa6ffc56e8276aa5aef741781143a23e71ca8f428a608228700aa7d4106`）。后续更高价值的训练是直接监督V9部署框IoU的source-disjoint utility head；明日2/3/5不变。

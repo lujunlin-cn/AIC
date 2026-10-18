@@ -386,3 +386,12 @@ R44_DIAG_001已完成CPU留一：局部状态描述子使通用等级MAE 1.0668�
 - [ ] 等待以上新包官方回分；不得用公共 utility IoU 或稳定性指标替代官方 Score。
 - [ ] 明日原“R69 分段”槽位优先替换为 `R69_SEGMENTED_GATE_R54TIME`；R70/R71 继续作为用户指定的 3、5 候选。
 - [x] 记录 R72 additive utility residual 对照；与 topsoft 乘法联合候选分开，不混称为同一实验。
+
+## P1 — 空间效用时间重排后续
+
+- [x] 完成R70 max/center/marginal/output utility公共诊断与报告。
+- [x] 修复R73增量utility的stable-tie位置偏置，生成R74 tie-aware包。
+- [x] 生成R76 output-aligned additive与R77 output-aligned multiplicative诊断包；均未上传。
+- [ ] 等待R69/R70/R71官方回分；不把公共utility代理替代官方联合分。
+- [ ] 若R70官方正向，训练source-disjoint的V9实际部署框IoU head，再验证R77形式。
+- [ ] 若R70官方负向且R69正向，关闭公开候选utility官方迁移路线，保留output-aligned诊断为负结果。

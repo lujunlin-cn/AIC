@@ -1,0 +1,15 @@
+{
+  "zip_sha256": "18d4986d84b705cd4076c4f640c77155eca5d1ac024583318fac0e7e3e7b2265",
+  "prediction_sha256": "2b044822766852c2ae1f6c64f7f7c8165dd26f387c12b899d781cae479418728",
+  "independent": {
+    "valid": true,
+    "videos": 426,
+    "predictions": 199037,
+    "model_size_mb": 8854.531425,
+    "checker": "independent_submission_check_v1"
+  },
+  "official_test_labels_used": false,
+  "zip_members": [
+    "predictions.jsonl"
+  ]
+}

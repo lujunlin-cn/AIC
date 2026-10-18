@@ -23,6 +23,8 @@ On the held-out public native crop rows used by R70 (`1546` frame/ratio rows; no
 
 Among the top 10% rows by predicted signal, the actual marginal IoU was `0.5449` for the incremental signal versus `0.2210` for absolute `max_score`. This is a row-level calibration diagnostic, not a joint temporal score estimate.
 
+Aggregating the same rows by source (168 held-out sources) gives Spearman `0.4056` for predicted incremental gain versus actual source-mean gain, compared with `0.1634` for absolute max versus actual source-mean max. This source aggregation reduces the risk that the row result is only a long-video weighting artifact.
+
 ## Decoder
 
 The exact R54 temporal score and `round(.85*N)` budget are reconstructed and checked. Only the temporal ranking changes:

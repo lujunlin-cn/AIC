@@ -332,7 +332,7 @@ R70 smoke已通过视觉197 tensor覆盖、processor合同和`[129,2305]`特征/
 
 ### R70 official spatial utility package (2026-10-18)
 
-R70 public native-crop utility readout was run on the official 426 videos. The package report records the implementation and inference checks, but the held-out RV/LIVE promotion metrics are not included; treat this as a high-risk probe rather than a validated public-gate improvement. The initial CPU-bound implementation was repaired: candidate pooling and head inference are batched on GPU, one bounded CPU prefetch batch overlaps preprocessing, and FP16 transfer is used. The 10-video profile took 2.7s; full official inference completed in 174.3s with one process, batch 32, prefetch worker 1. GPU samples reached 97–100% during active batches.
+R70 public native-crop utility readout was run on the official 426 videos. The retained public source-level metrics are RV dev +0.06602 and LIVE dev +0.07225 over center (20 and 148 held-out sources); the official run itself has 426/426 videos, 8,848/8,848 keyframes and 0 fallback. These are public readout diagnostics, not official score evidence. The initial CPU-bound implementation was repaired: candidate pooling and head inference are batched on GPU, one bounded CPU prefetch batch overlaps preprocessing, and FP16 transfer is used. The 10-video profile took 2.7s; full official inference completed in 174.3s with one process, batch 32, prefetch worker 1. GPU samples reached 97–100% during active batches.
 
 Output had 426/426 videos, 8,848/8,848 keyframes, 0 fallbacks, and all 8,848 statuses `ok_r70`. The package `submissions/R70_SPATIAL_UTILITY_R54TIME_BATCH32/` keeps the R54 time set and replaces only spatial boxes on 102,981 retained frames. It has 199,037 predictions, 8.854531425B declared parameters, prediction SHA `5d34388eb39a2d8f49ba9cd29420cbb5c2e450f2c88ec2aee16be11cbeeff3da`, ZIP SHA `a5d3031cb6ab896d73e83e032be0e385bdb17efa3c0024af06036dcc63179b7a`, and passes local contract, independent checker, and ZIP round-trip. It is not uploaded and has no official score yet. See `reports/r70_official_package_20261018/README.md`.
 
@@ -355,3 +355,13 @@ Output had 426/426 videos, 8,848/8,848 keyframes, 0 fallbacks, and all 8,848 sta
 5. `R71_ADAPTIVE_BUDGET_R54_V9`：逐视频预算，8.855B，ZIP SHA `511fd5a9...092880b0`。
 
 R26 `36.04` 和 R44 `36.09` 保留为已知回退/对照；R67 `36.16` 已知低于 R54。`R69_SEGMENTED_CROP_R54_TIME`、`R69_TIMELENS_DIRECT_CROP_R54_TIME` 等重复命名包不占名额。R63/R64/R68 及旧 R59/R60 无效或作废，禁止上传。
+
+### 2026-10-18：空间稳定性门控与 R70 topsoft / 联合时间候选
+
+**R69_SEGMENTED_GATE_R54TIME**：在 R69 分段构图上加入固定 run 级稳定性门控：合法自由轴中心相对整视频 crop 最大偏差和段内 spread 都必须不超过 `0.12`，否则整个 run 回退整视频 crop。427 runs 中 375 个采用分段框、52 个回退；相邻中心总变差下降 46.5%，p95 跳变由 0.2000 降至 0.1367。包保持 426/426、199037 帧、8.767B，ZIP SHA `f7d17806697bd677580fcddda2fe02c441c1dacb3c7f979cd000823a57c5cf58`，本地 checks 通过，官方分数未知。若明日仍选分段路线，优先用 gated canonical 包替换无门控 R69。
+
+**R70 topsoft spatial objective**：在相同 public native crop source split 和 V9 特征上比较 MSE、pairwise、listwise、topsoft 四种新读出目标。topsoft 的 RV/LIVE source-macro 增量为 `+0.07121/+0.06892`，固定 split 平均 `+0.07006`，略高于 MSE 的 `+0.06901`。基于 topsoft head 完成 `R70_TOPSOFT_SPATIAL_R54TIME`：426/426、199037、101797 个框变化、8.855B、0 fallback，ZIP SHA `da5fcc5dccbfcd960b112852295dbbba35be89aaad61c20fcbb81d1ba8fed4d2`。这是公共源证据，不是官方涨分证据。
+
+**R70_TOPSOFT_UTILITY_TEMPORAL**：把 topsoft 每关键帧 top-candidate utility 插值到原始 frame 轴，用固定联合规则 `rank(R54时间价值) * (0.5 + 0.5*rank(R70 utility))` 重排精确 85% 集合。426/426、199037、平均每视频相对 R54 交换 5.122 帧、377 视频变化、8.855B，ZIP SHA `aadb42cadc97a9880b63cc7367ea5285d53a365ea4802040a934131e1440883f`。独立 checker/final contract/ZIP 回归通过，官方分数未知。报告见 `reports/r70_topsoft_objective_20261018/README.md`。
+
+**R72_SPATIAL_UTILITY_TIME_R54_V9_B3**：另有一个更保守的联合时间对照，固定复用 R54 的 `eta=.20` 结构，只加入 R70 max-score 的同权 residual；共 4120 次换帧、393/426 视频变化、8.855B，ZIP SHA `666a83f8dddd691022c66193eff30b54af6845fafadba3bb20ed3a6c99f64d88`。它与 topsoft 乘法联合包保持为两个不同机制，不自动占明日名额。

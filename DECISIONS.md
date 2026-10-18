@@ -1229,3 +1229,15 @@ TimeLens2第二个“窄事件/结果”提示词在12个公开片段上低于ge
 **Decision 2 — 逐视频预算不升级主线。** 公共 10 视窗 soft 略正而 binary 略负，且只改分母/帧集合；证据不足以区分密度预算收益与标注代理噪声。保留 R71 为最后风险备选，不扫 floor/cap/slope/median，不替代 R54/R26。
 
 **Decision 3 — 原始 B3 恢复路线关闭。** 当前库存没有原始 head/base 的可追溯证据；V7 不能重标为 B3。缓存 B3 预测只支持历史包复现。若未来重训，必须新建 checkpoint/实验 ID 并报告训练数据、seed、参数；不能宣称“恢复原 B3”。TimeLens2+B3 组合超过 9B，禁止形成最终提交。
+
+## 2026-10-18：R69 门控与 R70 topsoft 联合路线
+
+**Decision 1 — 明日分段构图使用稳定性门控包。** R69 分段响应的无门控版本有大段间跳变；固定 `0.12/0.12` run 级门控将总变差降低 46.5%，只回退 52/427 runs。该结构控制优于继续扫 segment 数或 context；官方回分前不再改门限。
+
+**Decision 2 — 新空间目标保留 topsoft。** 在相同公开 source-disjoint split 上，topsoft 同时保持 RV/LIVE 正增量，平均略高于 MSE；pairwise/listwise 没有更强。先保留 topsoft 单变量空间包，等官方回分，不把微小 public delta 写成比赛收益。
+
+**Decision 3 — 启动空间效用驱动时间重排。** 用 topsoft top-candidate utility 作为预期 crop IoU proxy，以固定乘法规则加入 R54 时间价值，构造单一联合候选。它与旧 R67 空间分歧不同：使用有 native crop 监督的候选 utility，且不靠空间框差异注入位置秩。官方回分将决定是否继续 utility 校准。
+
+## 2026-10-18：联合 utility 的两种决策形式
+
+保留两个可审查的联合形式：R72 的 additive `.20` residual 作为 R54 兼容控制，R70 topsoft 的乘法 `T*(.5+.5U)` 作为 expected-utility 结构候选。两者都不扫权重；若官方只能测试一个，优先保守 R72 以降低对 R54 的破坏，若目标是寻找结构性突破则优先乘法候选。两包均无官方回分，暂不替代用户指定的明日 2/3/5。

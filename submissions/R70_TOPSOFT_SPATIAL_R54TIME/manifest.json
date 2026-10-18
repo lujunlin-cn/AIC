@@ -1,0 +1,29 @@
+{
+  "submission_id": "R70_TOPSOFT_SPATIAL_R54TIME",
+  "status": "PACKAGED_NOT_UPLOADED_R70_SPATIAL_READOUT",
+  "official_platform_score": null,
+  "parent_submission": "R54_TIMELENS_CENTER_RESIDUAL_V9_B3",
+  "mechanism": "R70 topsoft public native-crop utility head; R54 time mask fixed; only spatial boxes changed",
+  "parameter_components": [
+    {
+      "name": "TimeLens2-8B",
+      "parameters": 8767123696
+    },
+    {
+      "name": "V9 vision-only tower + R70 head + YuNet",
+      "parameters": 87407729
+    }
+  ],
+  "total_parameters": 8854531425,
+  "model_params_b": 8.854531425,
+  "video_count": 426,
+  "prediction_count": 199037,
+  "bbox_changed_on_kept_frames": 101797,
+  "r70_point_fallbacks": 0,
+  "prediction_sha256": "58b401a2c35f56760354ac880b64cbd661e891ea1441d49fed007c06e882d506",
+  "zip_sha256": "da5fcc5dccbfcd960b112852295dbbba35be89aaad61c20fcbb81d1ba8fed4d2",
+  "zip_bytes": 1378730,
+  "official_test_labels_used": false,
+  "head_objective": "topsoft candidate-level soft-IoU objective",
+  "training_metrics_remote": "/root/autodl-tmp/experiments/R70_OBJECTIVE_VARIANTS/metrics.json"
+}\n

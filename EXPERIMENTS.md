@@ -1288,3 +1288,37 @@ R70与R69直接构图路线不同。R70固定V9 vision-only塔、processor、129
 **Audit**：期望路径及当前克隆路径均不存在；67 个候选 `.pt` 只匹配 V7/V9 A0/A1/KD 形状/前缀；V8 B3 提交 ZIP 无模型/特征/logits；Git 历史/分支无二进制；旧端点不可达。报告 `reports/r72_b3_asset_recovery_20261018/README.md`。
 
 **Conclusion**：精确原始 B3 不可恢复，缓存 B3 预测可作回放父集；不能把 V7 或新训练 head 称 B3。且 TimeLens2+B3 理论参数约 9.217B，当前 9B 规则下不合规。B3 恢复路线关闭；只有按公开数据重训的新 head 实验可重新立项。
+
+## 2026-10-18：R69 分段构图稳定性门控
+
+**Hypothesis**：R69 的空间变化有价值，但不一致的段间 crop 会制造 native-frame IoU 损失；run 级稳定性门控应保留一致变化并抑制大跳变。
+
+**Fixed rule**：合法自由轴中心相对整视频 crop 的最大偏差 `<=0.12` 且同一 run 内 spread `<=0.12` 才采用全部分段框，否则整个 run 回退整视频 crop。阈值对应允许一个常见的 0.1 量化步，不看官方分数选择。
+
+**Result**：427 runs 中 375 stable、52 unstable；unstable 回退 33378 选中帧。相邻中心总变差从 22.4604 降到 11.9998（-46.5%），p95 邻跳从 0.2000 降到 0.1367；相对无门控 R69 改变 28302 帧。包 `submissions/R69_SEGMENTED_GATE_R54TIME/`，426/426、199037、8.767B、0 fallback，ZIP SHA `f7d17806697bd677580fcddda2fe02c441c1dacb3c7f979cd000823a57c5cf58`，checks 通过。
+
+**Conclusion**：门控确实改变了稳定性结构，但没有 native GT，不能把跳变减少换算成 IoU 增益。该包是无门控 R69 的更安全版本；若官方仍下降，下一步停止段数/阈值扫描。
+
+## 2026-10-18：R70 topsoft spatial objective
+
+**Hypothesis**：逐候选 MSE 没有直接强调“接近最优候选”的排序；soft top-candidate target 可能改善候选 utility 的跨源排序。
+
+**Control**：同一 V9 2305 维特征、同一 source-disjoint RetargetVid/LIVE split、同一 seed/batch/1200 steps；比较 MSE、pairwise、listwise 和 topsoft。
+
+**Result**：topsoft source-macro delta 为 RV `+0.07121`、LIVE `+0.06892`，平均 `+0.07006`；MSE 为 `+0.06729/+0.07073`，平均 `+0.06901`。pairwise/listwise 没有同时超过 topsoft。topsoft 官方空间包 `R70_TOPSOFT_SPATIAL_R54TIME` 已完成，426/426、199037、101797 框变化、8.855B、0 fallback，ZIP SHA `da5fcc5dccbfcd960b112852295dbbba35be89aaad61c20fcbb81d1ba8fed4d2`。
+
+**Limit**：增量很小，仍来自同一公开 split；官方 test 没有 native GT。该目标值得保留为下一空间候选，但不能称已确认提升。
+
+## 2026-10-18：R70 spatial utility driven temporal reorder
+
+**Hypothesis**：官方 F 的时间选择应同时考虑高光价值和选中后可获得的 crop IoU；R70 top candidate score 可作为后者的 observable proxy。
+
+**Fixed decision**：对完整 frame 轴计算 `T=rank(center+.20*rank(interval))`，将 R70 topsoft top-candidate score 插值后得到 `U=rank(utility)`，用 `J=T*(.5+.5U)` 选择精确 `round(.85*N)` 帧。保留完整 V9 空间框，不扫 joint weight。
+
+**Result**：426/426、199037、平均每视频相对 R54 交换 5.122 帧、377 视频变化、8.855B；包 `R70_TOPSOFT_UTILITY_TEMPORAL`，ZIP SHA `aadb42cadc97a9880b63cc7367ea5285d53a365ea4802040a934131e1440883f`，checks 通过，官方分数未知。
+
+**Interpretation**：这是首次把空间 utility 直接放入时间决策的机制包。官方下降将优先指向 utility 跨域校准或时间价值与构图价值的相关性假设；官方上升才继续研究 utility calibration，不扫描任意融合权重。
+
+## 2026-10-18：R72 保守 utility residual 对照
+
+在同一 R70 utility dump 上构造更接近 R54 的联合控制：`R72 = R54_score + .20*(rank(R70 max_score)-.5)`，`.20` 直接继承 R54 interval residual，不采用乘法重标定。精确重建 R54 集合后，共交换 4120 帧、393/426 视频变化，平均重叠 97.94%；V9 B3 框逐字节来自 full parent。包 `R72_SPATIAL_UTILITY_TIME_R54_V9_B3`，8.855B，ZIP SHA `666a83f8dddd691022c66193eff30b54af6845fafadba3bb20ed3a6c99f64d88`，checks 通过。它是联合时间路线的保守对照，官方分数未知。

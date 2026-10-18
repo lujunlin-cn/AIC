@@ -18,6 +18,8 @@ ap.add_argument('--device',default='cuda'); ap.add_argument('--shard',type=int,d
 ap.add_argument('--batch',type=int,default=8)
 ap.add_argument('--prefetch-workers',type=int,default=1,
                 help='CPU image/processor workers; one worker overlaps the next batch with CUDA')
+ap.add_argument('--emit-utility',action='store_true',
+                help='保存每个关键帧的候选分数、中心分数、top1-top2 margin和候选索引')
 args=ap.parse_args()
 
 sys.path.insert(0,str(Path(__file__).resolve().parent))
@@ -127,6 +129,7 @@ def _infer_batch(kbatch, xcpu, W, H, ratio):
         for bi,(sh,valid) in enumerate(zip(shapes,counts)):
             groups.setdefault((sh[0],sh[1],int(valid)),[]).append(bi)
         batch_pts=[None]*len(kbatch)
+        batch_utility=[None]*len(kbatch)
         for (fh0,fw0,valid), bis in groups.items():
             idx=torch.as_tensor(bis,device=o.last_hidden_state.device,dtype=torch.long)
             grid=o.last_hidden_state.index_select(0,idx)[:,:valid].float().reshape(len(bis),fh0,fw0,-1)
@@ -134,14 +137,24 @@ def _infer_batch(kbatch, xcpu, W, H, ratio):
             grid=grid[:,: (fh0//2)*2, : (fw0//2)*2]
             feat,offs,w,h,axis=_features_from_grids(grid,W,H,ratio,mask_cache)
             z=(feat.float()-mu_t) / sd_t
-            j=head(z).argmax(1).detach().cpu().tolist()
+            scores=head(z)
+            j=scores.argmax(1).detach().cpu().tolist()
             for local,bi in enumerate(bis):
                 jj=j[local]
                 if axis==0: cx,cy=(float(offs[jj]+w/2)/W),.5
                 elif axis==1: cx,cy=.5,float(offs[jj]+h/2)/H
                 else: cx=cy=.5
                 batch_pts[bi]=[round(cx,6),round(cy,6),False]
-    return batch_pts
+                if args.emit_utility:
+                    row=scores[local]
+                    top2=torch.topk(row,k=2,dim=0).values
+                    batch_utility[bi]={
+                        'top_score':float(row[jj].detach().cpu()),
+                        'center_score':float(row[NC//2].detach().cpu()),
+                        'margin':float((top2[0]-top2[1]).detach().cpu()),
+                        'chosen_index':int(jj),
+                    }
+    return (batch_pts,batch_utility) if args.emit_utility else batch_pts
 
 
 t0=time.time(); done=0; fallback=0
@@ -152,7 +165,7 @@ try:
     if dst.exists(): continue
     meta=json.loads((src_points/f'{vid}.json').read_text())
     W,H=int(meta['W']),int(meta['H']); ratio=list(map(float,rec['targetRatioWH']))
-    pts=[]; status=[]
+    pts=[]; status=[]; utility=[]
     starts=list(range(0,len(meta['keyframes']),args.batch))
     future=None
     for si,start in enumerate(starts):
@@ -168,18 +181,38 @@ try:
                 next_future=executor.submit(_prepare_images,vid,nk)
             try:
                 xcpu=future.result()
-                batch_pts=_infer_batch(kbatch,xcpu,W,H,ratio)
+                inferred=_infer_batch(kbatch,xcpu,W,H,ratio)
+                if args.emit_utility:
+                    batch_pts,batch_utility=inferred
+                    utility.extend(batch_utility)
+                else:
+                    batch_pts=inferred
                 pts.extend(batch_pts); status.extend(['ok_r70']*len(kbatch))
             except Exception as e:
-                for _ in kbatch: pts.append([.5,.5,True]); status.append('fallback:'+type(e).__name__); fallback+=len(kbatch)
+                for _ in kbatch:
+                    pts.append([.5,.5,True]); status.append('fallback:'+type(e).__name__)
+                    if args.emit_utility: utility.append(None)
+                fallback+=len(kbatch)
             future=next_future
         else:
             try:
                 xcpu=_prepare_images(vid,kbatch)
-                pts.extend(_infer_batch(kbatch,xcpu,W,H,ratio)); status.extend(['ok_r70']*len(kbatch))
+                inferred=_infer_batch(kbatch,xcpu,W,H,ratio)
+                if args.emit_utility:
+                    batch_pts,batch_utility=inferred
+                    utility.extend(batch_utility)
+                else:
+                    batch_pts=inferred
+                pts.extend(batch_pts); status.extend(['ok_r70']*len(kbatch))
             except Exception as e:
-                for _ in kbatch: pts.append([.5,.5,True]); status.append('fallback:'+type(e).__name__); fallback+=len(kbatch)
-    dst.write_text(json.dumps({'video_id':vid,'W':W,'H':H,'fps':meta['fps'],'step':meta['step'],'keyframes':meta['keyframes'],'model':'R70 V9 vision-only tower + public native-crop utility head','prompt':'NONE_HEAD','ratios':{'t':{'ratio':rec['targetRatioWH'],'points':pts,'status':status,'raw':[],'boxes':[]}}},ensure_ascii=False)+'\n')
+                for _ in kbatch:
+                    pts.append([.5,.5,True]); status.append('fallback:'+type(e).__name__)
+                    if args.emit_utility: utility.append(None)
+                fallback+=len(kbatch)
+    t_payload={'ratio':rec['targetRatioWH'],'points':pts,'status':status,'raw':[],'boxes':[]}
+    if args.emit_utility:
+        t_payload['utility']=utility
+    dst.write_text(json.dumps({'video_id':vid,'W':W,'H':H,'fps':meta['fps'],'step':meta['step'],'keyframes':meta['keyframes'],'model':'R70 V9 vision-only tower + public native-crop utility head','prompt':'NONE_HEAD','ratios':{'t':t_payload}},ensure_ascii=False)+'\n')
     done+=1
     if done%10==0: print(json.dumps({'shard':args.shard,'done':done,'total':len(rows),'fallback':fallback,'elapsed_s':round(time.time()-t0,1)}),flush=True)
 finally:

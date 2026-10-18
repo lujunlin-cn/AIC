@@ -376,3 +376,13 @@ R44_DIAG_001已完成CPU留一：局部状态描述子使通用等级MAE 1.0668�
 - [ ] 关闭“恢复原 B3”路线；如重训新 head，另建实验 ID 并重新做 source-disjoint native crop 读出/参数合规审计，不能冒称原始 B3。
 - [ ] 当前候选排序：R69 分段构图 > R70 空间 utility（待官方） > R69 全局构图 > R71 自适应预算；R54=36.22/R26=36.04 保持回退，所有新包官方分数均为空。
 - [ ] 明日五额度队列按 `R54 -> R69_SEGMENTED -> R70_UTILITY -> R69_GLOBAL -> R71_ADAPTIVE` 复核上传；仅使用 canonical ZIP，不上传重复命名目录。
+
+## 2026-10-18 R69 gate / R70 topsoft objective / joint utility
+
+- [x] 完成 R69 run-level stability gate：固定 `max_global_delta=.12`、`max_run_spread=.12`，生成 `R69_SEGMENTED_GATE_R54TIME`，checks/ZIP 通过。
+- [x] 完成 R70 MSE/pairwise/listwise/topsoft public source objective 对照；topsoft 作为空间新目标。
+- [x] 生成并审计 `R70_TOPSOFT_SPATIAL_R54TIME`：426/426、199037、101797 框变化、8.855B、0 fallback。
+- [x] 生成并审计 `R70_TOPSOFT_UTILITY_TEMPORAL`：固定乘法联合时间—空间排序，426/426、199037、平均 5.122 swaps/video。
+- [ ] 等待以上新包官方回分；不得用公共 utility IoU 或稳定性指标替代官方 Score。
+- [ ] 明日原“R69 分段”槽位优先替换为 `R69_SEGMENTED_GATE_R54TIME`；R70/R71 继续作为用户指定的 3、5 候选。
+- [x] 记录 R72 additive utility residual 对照；与 topsoft 乘法联合候选分开，不混称为同一实验。

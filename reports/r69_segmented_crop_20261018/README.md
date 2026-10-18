@@ -108,6 +108,12 @@ replaced and zero fallback frames. The independent checker and local contract
 validator both pass; the exact R54 frame sequence is preserved for every
 video. The package is `PACKAGED_NOT_UPLOADED` and has no official score yet.
 
+As a structural audit, 188/426 videos have more than one distinct segment
+crop (mean 1.53 distinct crops per video). The segment package differs from
+the whole-video R69 boxes on 102,617 selected frames. The largest adjacent
+box change is 576 coded pixels (p95 202.5 px); this is allowed by the metric,
+which has no smoothness term, but makes the route deliberately high risk.
+
 The builder counts TimeLens2 once (`8,767,123,696` parameters), does not use
 official labels or scores, and never changes the temporal budget. The recorded
 checker and contract outputs are local validation only; an official score is

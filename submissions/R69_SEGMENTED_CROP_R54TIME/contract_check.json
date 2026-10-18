@@ -1,0 +1,21 @@
+{
+  "zip_sha256": "0b1de985c709b2b4d31d2c1a57b3d0420a3f66afb9dbad82605ff534e10a8010",
+  "independent": {
+    "valid": true,
+    "videos": 426,
+    "predictions": 199037,
+    "model_size_mb": 8767.123696,
+    "checker": "independent_submission_check_v1"
+  },
+  "contract": {
+    "valid": true,
+    "issues": [],
+    "video_count": 426,
+    "prediction_count": 199037,
+    "model_size_mb": 8767.123696,
+    "model_params_b": 8.767123696,
+    "stage": "final",
+    "validator": "local_rules_2026-09-24_not_official"
+  },
+  "roundtrip_predictions_sha256": "df2c8c42fce86357f13c8db5fba4fa5a6b88332285ebb1120c1a448fc5f45eef"
+}

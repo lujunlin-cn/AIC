@@ -159,7 +159,27 @@ def extract(args, names):
     torch, vision, proc = load_vision(args)
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
+    shard_dir = out / "shards"
+    shard_dir.mkdir(parents=True, exist_ok=True)
     cache = {}
+    shard_idx = 0
+
+    def flush_rows(rows, shard_idx):
+        if not rows:
+            return shard_idx
+        np.savez_compressed(
+            shard_dir / f"shard_{shard_idx:05d}.npz",
+            x=np.stack([r["x"] for r in rows]),
+            y=np.stack([r["y"] for r in rows]),
+            source=np.array([r["source"] for r in rows], dtype=object),
+            name=np.array([r["name"] for r in rows], dtype=object),
+            ratio=np.array(["-".join(str(int(z)) for z in r["ratio"]) for r in rows], dtype=object),
+            W=np.array([r["W"] for r in rows]), H=np.array([r["H"] for r in rows]),
+            offsets=np.stack([r["offsets"] for r in rows]),
+        )
+        rows.clear()
+        return shard_idx + 1
+
     t0 = time.time()
     rows = []
     for name in names:
@@ -167,6 +187,9 @@ def extract(args, names):
         if args.limit:
             units = units[: args.limit]
         for ui, unit in enumerate(units):
+            # A unit contains all frames for one source/ratio.  Reuse grids
+            # only inside this unit, then release them before the next source.
+            cache = {}
             ds = unit["ds"]
             for jj, j in enumerate(unit["J"]):
                 kf = int(unit["keys"][int(j)])
@@ -202,17 +225,13 @@ def extract(args, names):
                 rows.append({"x": feat, "y": y, "source": f"{ds}:{unit['vid']}",
                              "name": name, "ratio": unit["ratio"], "W": unit["W"], "H": unit["H"],
                              "offsets": offsets.astype(np.float32)})
+                if len(rows) >= 256:
+                    shard_idx = flush_rows(rows, shard_idx)
             if (ui + 1) % 10 == 0:
                 print(json.dumps({"split": name, "units": ui + 1, "rows": len(rows),
                                   "cache_frames": len(cache), "elapsed_s": round(time.time() - t0, 1)}), flush=True)
-    np.savez_compressed(out / "rows.npz",
-                        x=np.stack([r["x"] for r in rows]), y=np.stack([r["y"] for r in rows]),
-                        source=np.array([r["source"] for r in rows], dtype=object),
-                        name=np.array([r["name"] for r in rows], dtype=object),
-                        ratio=np.array(["-".join(str(int(z)) for z in r["ratio"]) for r in rows], dtype=object),
-                        W=np.array([r["W"] for r in rows]), H=np.array([r["H"] for r in rows]),
-                        offsets=np.stack([r["offsets"] for r in rows]))
-    (out / "meta.json").write_text(json.dumps({"rows": len(rows), "names": names, "limit": args.limit,
+    shard_idx = flush_rows(rows, shard_idx)
+    (out / "meta.json").write_text(json.dumps({"shards": shard_idx, "names": names, "limit": args.limit,
                                                  "vision_dir": str(args.vision_dir), "nc": NC,
                                                  "contract": "V9 vision grid + 129 legal max windows; new readout, not B3"}, indent=2) + "\n")
 
@@ -239,7 +258,18 @@ class Head:
 
 def train(args):
     import torch
-    z=np.load(Path(args.out)/"rows.npz",allow_pickle=True); x=z["x"].astype(np.float32); y=z["y"].astype(np.float32); src=z["source"].astype(str); names=z["name"].astype(str)
+    rows_path = Path(args.out) / "rows.npz"
+    if rows_path.exists():
+        z=np.load(rows_path,allow_pickle=True); x=z["x"].astype(np.float32); y=z["y"].astype(np.float32); src=z["source"].astype(str); names=z["name"].astype(str)
+    else:
+        parts=[]
+        for p in sorted((Path(args.out)/"shards").glob("shard_*.npz")):
+            q=np.load(p,allow_pickle=True); parts.append(q)
+        if not parts: raise RuntimeError("no R70 feature shards found")
+        x=np.concatenate([q["x"] for q in parts]).astype(np.float32)
+        y=np.concatenate([q["y"] for q in parts]).astype(np.float32)
+        src=np.concatenate([q["source"] for q in parts]).astype(str)
+        names=np.concatenate([q["name"] for q in parts]).astype(str)
     train_mask=np.char.endswith(names,"train")
     dev_mask=np.char.endswith(names,"dev")
     if not train_mask.any() or not dev_mask.any(): raise RuntimeError("extract both train and dev tables")

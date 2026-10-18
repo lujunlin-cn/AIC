@@ -1,0 +1,18 @@
+{
+  "experiment_id": "R72_SPATIAL_UTILITY_TIME_R54_V9_B3",
+  "videos": 426,
+  "predictions": 199037,
+  "eta": 0.2,
+  "utility_key": "max_score",
+  "swaps_total": 4120,
+  "swaps_mean": 9.671361502347418,
+  "swaps_median": 6.0,
+  "swaps_max": 197,
+  "videos_changed": 393,
+  "overlap_mean": 0.9794097307698708,
+  "utility_video_mean": 0.7134616504261445,
+  "utility_video_sd": 0.07874440252552392,
+  "package_sha256": "666a83f8dddd691022c66193eff30b54af6845fafadba3bb20ed3a6c99f64d88",
+  "predictions_sha256": "e82c40086ed2efe24a7a4732dd4ef229627d4342b9159638b521237052b8069e",
+  "test_labels_used": false
+}

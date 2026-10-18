@@ -62,7 +62,11 @@ def query_batch(model, processor, path: Path, ratio: list[int], windows: list[di
              "total_pixels": 64 * int(max_pixels)},
             {"type": "text", "text": prompt},
         ]}])
-    text = processor.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
+    # Render each one-conversation prompt separately.  Passing the nested
+    # conversations list directly can make some transformers versions produce
+    # ragged token IDs before padding is applied.
+    text = [processor.apply_chat_template(message, tokenize=False, add_generation_prompt=True)
+            for message in messages]
     images, videos, kwargs = process_vision_info(
         messages, image_patch_size=16, return_video_kwargs=True, return_video_metadata=True
     )
@@ -72,7 +76,8 @@ def query_batch(model, processor, path: Path, ratio: list[int], windows: list[di
     else:
         metas = None
     inputs = processor(text=text, images=images, videos=videos, video_metadata=metas,
-                       do_resize=False, return_tensors="pt", cap_pixels_per_frame=True, **kwargs)
+                       do_resize=False, padding=True, return_tensors="pt",
+                       cap_pixels_per_frame=True, **kwargs)
     inputs = {key: value.to(model.device) if hasattr(value, "to") else value
               for key, value in inputs.items()}
     with torch.inference_mode():

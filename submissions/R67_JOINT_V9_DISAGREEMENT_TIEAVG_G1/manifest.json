@@ -1,0 +1,22 @@
+{
+  "submission_id": "R67_JOINT_V9_DISAGREEMENT_TIEAVG_G1",
+  "status": "PACKAGED_NOT_UPLOADED",
+  "uploaded": false,
+  "official_platform_score": null,
+  "parent_submission": "R54_TIMELENS_CENTER_RESIDUAL_V9_B3",
+  "mechanism": "R54 exact stable center+interval utility plus tie-aware average-rank V9/R26 geometry disagreement; equal deltas receive equal rank",
+  "utility": "rank_stable(center)+0.20*rank_stable(TimeLens2 interval)+1*rank_tieavg(V9_R26_geometry_disagreement)-0.5",
+  "gamma": 1.0,
+  "rank_tie_policy": "average ranks for exact geometry ties; exact R54 stable rank for center and interval",
+  "video_count": 426,
+  "prediction_count": 199037,
+  "total_parameters": 8854531425,
+  "model_params_b": 8.854531425,
+  "prediction_sha256": "4655d73b5e8a93398b75c1ff2c6ae8d6110e061750d0350db23283d6d4490beb",
+  "zip_sha256": "550bf1c87d2fa03f046b6dfd581882bce6d47850585789ed7e09a175ec2d34bd",
+  "zip_bytes": 1435495,
+  "r54_swaps": 2427,
+  "mean_position": 0.5197737346293058,
+  "mean_zero_delta_fraction": 0.9007516222072435,
+  "geometry_delta_epsilon": 1e-06
+}

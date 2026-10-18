@@ -1,0 +1,10 @@
+{
+  "valid": true,
+  "issues": [],
+  "video_count": 426,
+  "prediction_count": 199037,
+  "model_size_mb": 8854.531425,
+  "model_params_b": 8.854531425,
+  "stage": "final",
+  "validator": "local_rules_2026-09-24_not_official"
+}

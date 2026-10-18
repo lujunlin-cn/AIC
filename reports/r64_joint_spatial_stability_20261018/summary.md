@@ -19,3 +19,8 @@ Package: `submissions/R64_JOINT_V9_STABILITY_GM1/`
 * Total declared parameters `8,854,531,425` (8.855B).
 
 R60/R62 drafts are superseded by this exact-centre corrected package.
+
+**Status correction (2026-10-18): INVALID.** The negative geometry rank has
+the same stable-tie/frame-index confound as R63. It is not a valid stability
+control and must not be uploaded; a tie-aware negative arm would be a separate
+diagnostic experiment, not the remaining submission.

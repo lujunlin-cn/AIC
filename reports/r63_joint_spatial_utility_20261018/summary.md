@@ -22,3 +22,8 @@ Package: `submissions/R63_JOINT_V9_DISAGREEMENT_G1/`
 
 R59/R61 drafts are superseded because they used an index without FPS; R63 is
 the uploadable artifact.
+
+**Status correction (2026-10-18): INVALID.** The geometry rank in this
+artifact is a stable ordinal rank. Most geometry deltas are tied, so it adds a
+frame-index position prior and the package is not a valid test of spatial
+disagreement. Do not upload it; use the tie-aware R67 rebuild instead.

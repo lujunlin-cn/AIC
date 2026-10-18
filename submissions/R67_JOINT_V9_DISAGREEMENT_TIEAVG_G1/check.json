@@ -1,0 +1,7 @@
+{
+  "valid": true,
+  "videos": 426,
+  "predictions": 199037,
+  "model_size_mb": 8854.531425,
+  "checker": "independent_submission_check_v1"
+}

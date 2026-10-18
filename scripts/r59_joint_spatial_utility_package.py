@@ -198,6 +198,8 @@ def main() -> None:
         "prediction_sha256": sha(pred), "zip_sha256": sha(zip_path), "zip_bytes": zip_path.stat().st_size,
         "parent_sha256": sha(args.parent), "timelens_sha256": sha(args.timelens),
         "v9_full_sha256": sha(args.v9_full), "r26_full_sha256": sha(args.r26_full),
+        "index_sha256": sha(args.index),
+        "fps_source": str(args.index) + " (verified positive per-video fps)",
         "per_video": details,
     }
     (args.output / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n")

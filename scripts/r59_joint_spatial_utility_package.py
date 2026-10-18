@@ -98,6 +98,8 @@ def main() -> None:
     ap.add_argument("--v9-full", type=Path, required=True, help="full-frame V9 B3 artifact")
     ap.add_argument("--r26-full", type=Path, required=True, help="full-frame R26 B3 artifact")
     ap.add_argument("--output", type=Path, required=True)
+    ap.add_argument("--gamma", type=float, default=GAMMA,
+                    help="fixed spatial-disagreement rank weight; package config must record it")
     args = ap.parse_args()
 
     parent = {str(x["video_id"]): x for x in read_jsonl(args.parent)}
@@ -131,7 +133,8 @@ def main() -> None:
         center = 1.0 - np.abs(np.arange(n, dtype=np.float64) - (n - 1) / 2.0) / max((n - 1) / 2.0, 1.0)
         spatial_delta = disagreement(frames, old, meta.get("width", 1), meta.get("height", 1))
         # R54 temporal residual plus a fixed, deliberately large spatial term.
-        score = rank01(center) + ETA * (rank01(inside) - 0.5) + GAMMA * (rank01(spatial_delta) - 0.5)
+        gamma = float(args.gamma)
+        score = rank01(center) + ETA * (rank01(inside) - 0.5) + gamma * (rank01(spatial_delta) - 0.5)
         k = int(round(KEEP * n))
         chosen = np.sort(np.argsort(-score, kind="mergesort")[:k])
         by_frame = {int(x["frame"]): x for x in frames}
@@ -174,9 +177,10 @@ def main() -> None:
         "uploaded": False,
         "official_platform_score": None,
         "parent_submission": "R54_TIMELENS_CENTER_RESIDUAL_V9_B3",
-        "mechanism": "joint frame utility: R54 TimeLens2 centre residual plus high V9-vs-R26 spatial disagreement",
-        "utility": "rank(center)+0.20*rank(TimeLens2 interval)+1.0*rank(V9_R26_geometry_disagreement)",
-        "gamma": GAMMA, "eta": ETA, "keep_fraction": KEEP,
+        "mechanism": ("joint frame utility: R54 TimeLens2 centre residual plus "
+                       f"{('high' if float(args.gamma) >= 0 else 'low')} V9-vs-R26 spatial disagreement"),
+        "utility": f"rank(center)+0.20*rank(TimeLens2 interval)+{float(args.gamma):g}*rank(V9_R26_geometry_disagreement)",
+        "gamma": float(args.gamma), "eta": ETA, "keep_fraction": KEEP,
         "spatial_mode": "v9_b3_artifact",
         "parameter_components": [
             {"name": "TimeLens2-8B", "parameters": TIME_LENS_PARAMS},

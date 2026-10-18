@@ -1,0 +1,18 @@
+{
+  "experiment_id": "R60_JOINT_V9_STABILITY_GM1",
+  "status": "PACKAGED_NOT_UPLOADED",
+  "parent": "R54_TIMELENS_CENTER_RESIDUAL_V9_B3",
+  "utility": "rank(center)+0.20*rank(TimeLens2 interval)-1.0*rank(V9_R26_geometry_disagreement)",
+  "gamma": -1.0,
+  "eta": 0.2,
+  "keep_fraction": 0.85,
+  "videos": 426,
+  "predictions": 199037,
+  "swaps_vs_r54": 23266,
+  "changed_videos_vs_r54": 426,
+  "mean_selected_position": 0.4448203938070331,
+  "noncontiguous_videos": 119,
+  "mean_internal_gaps": 0.4694835680751171,
+  "prediction_sha256": "9afff46a93b70db203df97f09950c8e0beccb951d401740e60c258aaf225a418",
+  "zip_sha256": "daf6547fac065cc0365e8a9b22841f2438fc0af55e3ab973517a5a060230044e"
+}

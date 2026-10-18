@@ -1,0 +1,12 @@
+{
+  "experiment": "R82_DIRECT_UTILITY_ENSEMBLE_RISK05_MULT_TIME_R54_V9_B3",
+  "command": "python scripts/r82_direct_utility_ensemble.py --steps 1500 --batch 256 --ensemble-seeds 0 1 2 3 4 --risk-beta 0.5",
+  "external_evaluation_sources": 168,
+  "paired_bootstrap_sources": 156,
+  "official_test_labels_used": false,
+  "b3_checkpoint_sha256": "0def920daada215b8779b1808e1f60a6de437f10aa1ea2cf1521df39fbd3eda1",
+  "r70_topsoft_checkpoint_sha256": "80aa02bcf12db970dfb120e35021f594cacf91d685a479f524c9d729b7330253",
+  "r70_topsoft_logits_sha256": "6e1968e35a989554cac6fe9761ca4254adce069423c088c4ad2d4ffd885bdae2",
+  "labels_sha256": "d4eb3337af56c1b65d288cd0fed81cc7ccec377f4013c7000dfa1a12f3ef54d9",
+  "v9_b3_full_predictions_sha256": "95b9219676a5eece74fbce7bc108d08ba2b84759d0f754bf5660cad9a44c8e8a"
+}

@@ -403,4 +403,13 @@ R44_DIAG_001已完成CPU留一：局部状态描述子使通用等级MAE 1.0668�
 - [x] 生成 R81 output-aligned multiplicative package，checker/ZIP通过，未上传。
 - [ ] 绑定并复核公共 B3 logits 资产来源/SHA；失败则停止R81上传。
 - [ ] 等R69/R70/R71官方回分后，最多用一个额度验证R81；不再扫描损失、宽度或融合权重。
-- [x] 修正R81参数清单：计入生成R70 topsoft logits的1,511,425参数，总计8.856093411B；改用nested source head。
+- [x] 修正R81参数清单：计入生成R70 topsoft logits的1,511,425参数，总计8.856094947B；改用nested source head。
+
+
+## 2026-10-19：direct utility 后续
+
+- [x] 完成 R78 直接监督最终部署框 IoU 的 nested source 诊断。
+- [x] 核对 V9/B3 full-frame artifact SHA、参数清单和 R54 共享框身份。
+- [x] 完成五头 direct utility ensemble + uncertainty penalty，生成并审计 R82。
+- [ ] 不自动上传 R82；若用户保留一个高风险名额，优先用 R82 做一次官方验证。
+- [ ] 若 R82 上升，做一次新的 source split 预注册 beta 固定；若下降，关闭 direct utility temporal branch。

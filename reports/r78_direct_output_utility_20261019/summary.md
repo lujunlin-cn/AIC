@@ -29,12 +29,12 @@ R81 使用公共训练出的 50,561 参数 head。官方推理只读取已有 R7
 rank(R54 temporal value) * (0.5 + 0.5 * midrank(direct_output_utility))
 ```
 
-包：[R81_DIRECT_OUTPUT_UTILITY_MULT_TIME_R54_V9_B3](../../submissions/R81_DIRECT_OUTPUT_UTILITY_MULT_TIME_R54_V9_B3)。使用nested checkpoint `topsoft_nested.pt`，SHA256=`267311eacfe176c15ed4be5e8c0771f65705e507947c787834bb64d0a2dd9484`。
+包：[R81_DIRECT_OUTPUT_UTILITY_MULT_TIME_R54_V9_B3](../../submissions/R81_DIRECT_OUTPUT_UTILITY_MULT_TIME_R54_V9_B3)。使用nested checkpoint `topsoft_stats_nested.pt`，SHA256=`bfd026d5710ef7b85bfb0e7567b14b7e1a14f5ebd2f7e0163db5e272e02c0248`。
 
 - 426/426 视频，199037 条预测；
-- 8.856093411B 参数；
+- 8.856094947B 参数；
 - 相对 R54 换帧 2393 次；
-- ZIP SHA256：`7070328ac4685362835fadc105eba47b4097e1fd67a90e073362cc86fe37a43d`；
+- ZIP SHA256：`80087b6e75fe70887db1f408e6b69baeae20812e5bb3e57ab3723de66dd1dfdb`；
 - checker、ZIP roundtrip 通过；未上传，官方分数未知。
 
 ## 识别限制

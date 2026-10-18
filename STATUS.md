@@ -376,4 +376,13 @@ R26 `36.04` 和 R44 `36.09` 保留为已知回退/对照；R67 `36.16` 已知低
 
 ### 2026-10-19：R81 direct deployed-box utility
 
-R78 nested source split produced a 50,561-parameter head from R70 topsoft 129 logits plus rounded V9 B3 output position; untouched external dev row/source Spearman was `.47334/.15850`. R81 uses that nested head and existing V9 full-frame boxes, includes the 1.511M R70 head in its parameter count, and has 8.856093411B total parameters. It contains 426/426, 199037 predictions, 2393 temporal swaps, checker/ZIP pass, and remains unuploaded. ZIP SHA=`7070328ac4685362835fadc105eba47b4097e1fd67a90e073362cc86fe37a43d`.
+R78 nested source split produced a 50,561-parameter head from R70 topsoft 129 logits plus rounded V9 B3 output position; untouched external dev row/source Spearman was `.47334/.15850`. R81 uses that nested head and existing V9 full-frame boxes, includes the 1.511M R70 head in its parameter count, and has 8.856094947B total parameters. It contains 426/426, 199037 predictions, 2332 temporal swaps, checker/ZIP pass, and remains unuploaded. ZIP SHA=`80087b6e75fe70887db1f408e6b69baeae20812e5bb3e57ab3723de66dd1dfdb`.
+
+
+### 2026-10-19：R82 直接部署框 utility 集成
+
+R81 的 B3 输出框逐帧与 R54 完全一致（共享帧 196,705/196,705）；远端 V9/B3 full-frame artifact SHA=`95b9219676a5eece74fbce7bc108d08ba2b84759d0f754bf5660cad9a44c8e8a`，参数清单 `87,407,729` 已核实。
+
+R82 在相同 R78 nested source contract 上训练五个 52,097 参数直接 IoU head，部署 utility 为 `mean - .5*ensemble_std`。公共外部 156 源的 source-macro Spearman 为 `.19120`，高于单头 `.16869`；源级 paired bootstrap delta `+.02304`，95% CI `[+.00856,+.03812]`。这是公开迁移诊断，不是官方分数。
+
+R82 包已完成：`submissions/R82_DIRECT_OUTPUT_UTILITY_ENSEMBLE_RISK05_MULT_TIME_R54_V9_B3/`，426/426、199037 条、8.856303335B、2294 次相对 R54 换帧；checker 和 ZIP 往返通过，ZIP SHA=`de99b3c5fcaee15966d893425e1b39a896645546092a4d00dc00133bc31529fd`，未上传。它是高风险候选；R54=36.22 仍为官方安全锚。

@@ -1337,6 +1337,19 @@ R70与R69直接构图路线不同。R70固定V9 vision-only塔、processor、129
 
 **R78**：冻结B3 candidate head，在R70公开source-disjoint native crop数据上把目标改为部署候选实际IoU `y[argmax(B3_head)]`。selected feature、confidence、全129 logits和topsoft logits+输出位置四种输入均完成诊断；50,561参数的`topsoft logits + B3 output position`版本row Spearman=`.47468`，source-macro Spearman=`.15947`，公开域结果仍未形成官方联合证据；严格nested external dev row Spearman=.47334、source-macro=.15850。回归头与V9原始分数的LIVE source-macro bootstrap差值为`+.00453`，95% CI `[-.00501,+.01418]`；pairwise分支停止。
 
-**R81_DIRECT_OUTPUT_UTILITY_MULT_TIME_R54_V9_B3**：使用50,561参数直接utility head在R70官方关键帧topsoft logits和审计V9 B3输出位置上推理，按`rank(R54 time)*(0.5+0.5*midrank(output utility))`重排。426/426、199037、8.856093411B（含生成R70 logits的1.511M head）、2393 swaps，使用nested head，ZIP SHA=`7070328ac4685362835fadc105eba47b4097e1fd67a90e073362cc86fe37a43d`，checker/roundtrip通过，未上传。报告见`reports/r78_direct_output_utility_20261019/summary.md`。
+**R81_DIRECT_OUTPUT_UTILITY_MULT_TIME_R54_V9_B3**：使用50,561参数直接utility head在R70官方关键帧topsoft logits和审计V9 B3输出位置上推理，按`rank(R54 time)*(0.5+0.5*midrank(output utility))`重排。426/426、199037、8.856094947B（含生成R70 logits的1.511M head）、2332 swaps，使用nested head，ZIP SHA=`80087b6e75fe70887db1f408e6b69baeae20812e5bb3e57ab3723de66dd1dfdb`，checker/roundtrip通过，未上传。报告见`reports/r78_direct_output_utility_20261019/summary.md`。
 
 **Head identity gate**：A0 surrogate smoke与历史V9/B3 point文件明显不一致，停止用A0重跑冒称当前B3。R81直接复用审计V9全帧框和官方R70 logits，避免替换空间artifact；公共B3 logits训练资产仍需SHA/来源复核后才能把R81作为正式上传候选。
+
+
+## R82_DIRECT_UTILITY_ENSEMBLE_RISK05_MULT_TIME_R54_V9_B3（2026-10-19）
+
+**Hypothesis**：不同源域上的直接部署框 IoU 预测存在校准偏差；五个独立初始化 head 的均值减去不确定性可降低错误高估，把更可靠的空间效用用于时间重排。
+
+**Change**：保留 R54 时间价值、V9/B3 全帧框、R70 topsoft 输入和精确 `round(.85*N)` 预算；仅将 R81 的单头 utility 换为五头 `mean - 0.5*std`。五个 head 全部计入参数。
+
+**Public nested result**：168 外部源（逐行 0.04805 MSE、Spearman 0.47678、source-macro Spearman 0.19120）；mean 基线 source-macro 0.16816，原 R78 单头 0.16869。156 源 paired bootstrap delta `+0.02304`，95% CI `[+0.00856,+0.03812]`。beta 在查看外部结果后比较，故该包仍是 exploratory/high-risk，不能写成确认收益。
+
+**Package**：426/426、199037 predictions、total parameters `8,856,303,335`、2294 swaps vs R54；prediction SHA `b186208540716b2465dd2c6766f12365e8c0aa2d8ccc39c61883d12f0becb6f4`，ZIP SHA `de99b3c5fcaee15966d893425e1b39a896645546092a4d00dc00133bc31529fd`。独立 checker、ZIP roundtrip 通过，未上传。
+
+**Conclusion**：保留 R82 作为 direct-utility 路线的最高风险候选；若官方回分下降，关闭该时间重排分支；若上升，先用第二个独立 source split 固定 beta，再决定是否继续。

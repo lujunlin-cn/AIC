@@ -1,6 +1,6 @@
 {
   "experiment_id": "R59_JOINT_V9_DISAGREEMENT_G1",
-  "status": "PACKAGED_NOT_UPLOADED",
+  "status": "INVALID_FPS_INDEX_DO_NOT_UPLOAD",
   "parent": "R54_TIMELENS_CENTER_RESIDUAL_V9_B3",
   "utility": "rank(center)+0.20*rank(TimeLens2 interval)+1.0*rank(V9_R26_geometry_disagreement)",
   "gamma": 1.0,

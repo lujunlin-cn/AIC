@@ -1,4 +1,7 @@
-# R60 joint spatial stability control (2026-10-18)
+# R60 joint spatial stability control (2026-10-18) — INVALID DRAFT
+
+**Do not upload this draft.** It was generated with an index lacking verified
+FPS and is superseded by `R64_JOINT_V9_STABILITY_GM1`.
 
 R60 uses the same joint utility as R59 but reverses the spatial term:
 

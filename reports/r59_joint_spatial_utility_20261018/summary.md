@@ -1,4 +1,7 @@
-# R59 joint spatial utility candidate (2026-10-18)
+# R59 joint spatial utility candidate (2026-10-18) — INVALID DRAFT
+
+**Do not upload this draft.** It was generated with an index lacking verified
+FPS and is superseded by `R63_JOINT_V9_DISAGREEMENT_G1`.
 
 R59 is a deliberately high-risk deployment candidate.  It starts from the
 R54 TimeLens2 centre residual and adds a frame utility derived from the

@@ -123,7 +123,9 @@ def main() -> None:
         old = r26[vid]["predictions"]
         if len(frames) != n or len(old) != n:
             raise ValueError(f"{vid}: full-frame length mismatch")
-        fps = float(meta.get("fps", 2.0) or 2.0)
+        fps = float(meta.get("fps", 0.0) or 0.0)
+        if fps <= 0:
+            raise ValueError(f"{vid}: index must contain verified positive fps; use enriched index")
         t = np.arange(n, dtype=np.float64) / max(fps, 1e-9)
         intervals = parse_intervals(responses.get(vid, ""))
         inside = np.asarray(

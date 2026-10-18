@@ -6,6 +6,7 @@ public native crop sources and is a new R70 readout; this script never reads
 official labels.
 """
 import argparse, json, math, sys, time
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 import numpy as np
 
@@ -15,6 +16,8 @@ ap.add_argument('--head',type=Path,required=True); ap.add_argument('--index',typ
 ap.add_argument('--keyframe-src',type=Path,required=True); ap.add_argument('--output-dir',type=Path,required=True)
 ap.add_argument('--device',default='cuda'); ap.add_argument('--shard',type=int,default=0); ap.add_argument('--nshards',type=int,default=1)
 ap.add_argument('--batch',type=int,default=8)
+ap.add_argument('--prefetch-workers',type=int,default=1,
+                help='CPU image/processor workers; one worker overlaps the next batch with CUDA')
 args=ap.parse_args()
 
 sys.path.insert(0,str(Path(__file__).resolve().parent))
@@ -89,48 +92,91 @@ def _features_from_grids(grids, W, H, ratio, mask_cache):
 
 
 mask_cache = {}
+
+
+def _prepare_images(vid, kbatch):
+    """Decode and preprocess one batch away from the CUDA thread.
+
+    A single producer is enough to hide most PIL/processor latency while the
+    main thread executes the vision tower.  Keeping this bounded to one batch
+    avoids the RAM blow-up seen with several full inference processes.
+    """
+    imgs = []
+    for kf in kbatch:
+        with Image.open(src_frames / vid / f'{kf}.png') as im:
+            imgs.append(im.convert('RGB'))
+    return proc(images=imgs, return_tensors='pt')
+
+
+def _infer_batch(kbatch, xcpu, W, H, ratio):
+    """Run vision, utility pooling and head for one prepared image batch."""
+    x={k:v.to(args.device) for k,v in xcpu.items() if torch.is_tensor(v)}
+    with torch.no_grad():
+        o=vision(pixel_values=x['pixel_values'].half(),spatial_shapes=x['spatial_shapes'],pixel_attention_mask=x['pixel_attention_mask'],return_dict=True)
+        # A processor batch normally has one spatial shape.  Group by
+        # shape/valid length for robustness to an unusual dynamic processor
+        # output while keeping every group on the GPU.
+        counts=x['pixel_attention_mask'].sum(1).tolist()
+        shapes=[tuple(int(v) for v in sh) for sh in x['spatial_shapes'].tolist()]
+        groups={}
+        for bi,(sh,valid) in enumerate(zip(shapes,counts)):
+            groups.setdefault((sh[0],sh[1],int(valid)),[]).append(bi)
+        batch_pts=[None]*len(kbatch)
+        for (fh0,fw0,valid), bis in groups.items():
+            idx=torch.as_tensor(bis,device=o.last_hidden_state.device,dtype=torch.long)
+            grid=o.last_hidden_state.index_select(0,idx)[:,:valid].float().reshape(len(bis),fh0,fw0,-1)
+            # V9 contract discards odd token rows/columns before pooling.
+            grid=grid[:,: (fh0//2)*2, : (fw0//2)*2]
+            feat,offs,w,h,axis=_features_from_grids(grid,W,H,ratio,mask_cache)
+            z=(feat.float()-mu_t) / sd_t
+            j=head(z).argmax(1).detach().cpu().tolist()
+            for local,bi in enumerate(bis):
+                jj=j[local]
+                if axis==0: cx,cy=(float(offs[jj]+w/2)/W),.5
+                elif axis==1: cx,cy=.5,float(offs[jj]+h/2)/H
+                else: cx=cy=.5
+                batch_pts[bi]=[round(cx,6),round(cy,6),False]
+    return batch_pts
+
+
 t0=time.time(); done=0; fallback=0
-for rec in rows:
+executor = ThreadPoolExecutor(max_workers=args.prefetch_workers) if args.prefetch_workers > 0 else None
+try:
+  for rec in rows:
     vid=str(rec['video_id']); dst=out/f'{vid}.json'
     if dst.exists(): continue
     meta=json.loads((src_points/f'{vid}.json').read_text())
     W,H=int(meta['W']),int(meta['H']); ratio=list(map(float,rec['targetRatioWH']))
     pts=[]; status=[]
-    for start in range(0,len(meta['keyframes']),args.batch):
+    starts=list(range(0,len(meta['keyframes']),args.batch))
+    future=None
+    for si,start in enumerate(starts):
         kbatch=meta['keyframes'][start:start+args.batch]
-        try:
-            imgs=[Image.open(src_frames/vid/f'{kf}.png').convert('RGB') for kf in kbatch]
-            x=proc(images=imgs,return_tensors='pt')
-            x={k:v.to(args.device) for k,v in x.items() if torch.is_tensor(v)}
-            with torch.no_grad():
-                o=vision(pixel_values=x['pixel_values'].half(),spatial_shapes=x['spatial_shapes'],pixel_attention_mask=x['pixel_attention_mask'],return_dict=True)
-                # A processor batch normally has one spatial shape.  Group by
-                # shape/valid length for robustness to an unusual dynamic
-                # processor output while keeping every group on the GPU.
-                counts=x['pixel_attention_mask'].sum(1).tolist()
-                shapes=[tuple(int(v) for v in sh) for sh in x['spatial_shapes'].tolist()]
-                groups={}
-                for bi,(sh,valid) in enumerate(zip(shapes,counts)):
-                    groups.setdefault((sh[0],sh[1],int(valid)),[]).append(bi)
-                batch_pts=[None]*len(kbatch)
-                for (fh0,fw0,valid), bis in groups.items():
-                    idx=torch.as_tensor(bis,device=o.last_hidden_state.device,dtype=torch.long)
-                    grid=o.last_hidden_state.index_select(0,idx)[:,:valid].float().reshape(len(bis),fh0,fw0,-1)
-                    # V9 contract discards odd token rows/columns before pooling.
-                    grid=grid[:,: (fh0//2)*2, : (fw0//2)*2]
-                    feat,offs,w,h,axis=_features_from_grids(grid,W,H,ratio,mask_cache)
-                    z=(feat.float()-mu_t) / sd_t
-                    j=head(z).argmax(1).detach().cpu().tolist()
-                    for local,bi in enumerate(bis):
-                        jj=j[local]
-                        if axis==0: cx,cy=(float(offs[jj]+w/2)/W),.5
-                        elif axis==1: cx,cy=.5,float(offs[jj]+h/2)/H
-                        else: cx=cy=.5
-                        batch_pts[bi]=[round(cx,6),round(cy,6),False]
+        # Submit one look-ahead batch.  This is deliberately bounded: several
+        # inference processes each running processor workers exhaust CPU/RAM.
+        if executor is not None:
+            if future is None:
+                future=executor.submit(_prepare_images,vid,kbatch)
+            next_future=None
+            if si+1 < len(starts):
+                nk=meta['keyframes'][starts[si+1]:starts[si+1]+args.batch]
+                next_future=executor.submit(_prepare_images,vid,nk)
+            try:
+                xcpu=future.result()
+                batch_pts=_infer_batch(kbatch,xcpu,W,H,ratio)
                 pts.extend(batch_pts); status.extend(['ok_r70']*len(kbatch))
-        except Exception as e:
-            for _ in kbatch: pts.append([.5,.5,True]); status.append('fallback:'+type(e).__name__); fallback+=len(kbatch)
+            except Exception as e:
+                for _ in kbatch: pts.append([.5,.5,True]); status.append('fallback:'+type(e).__name__); fallback+=len(kbatch)
+            future=next_future
+        else:
+            try:
+                xcpu=_prepare_images(vid,kbatch)
+                pts.extend(_infer_batch(kbatch,xcpu,W,H,ratio)); status.extend(['ok_r70']*len(kbatch))
+            except Exception as e:
+                for _ in kbatch: pts.append([.5,.5,True]); status.append('fallback:'+type(e).__name__); fallback+=len(kbatch)
     dst.write_text(json.dumps({'video_id':vid,'W':W,'H':H,'fps':meta['fps'],'step':meta['step'],'keyframes':meta['keyframes'],'model':'R70 V9 vision-only tower + public native-crop utility head','prompt':'NONE_HEAD','ratios':{'t':{'ratio':rec['targetRatioWH'],'points':pts,'status':status,'raw':[],'boxes':[]}}},ensure_ascii=False)+'\n')
     done+=1
     if done%10==0: print(json.dumps({'shard':args.shard,'done':done,'total':len(rows),'fallback':fallback,'elapsed_s':round(time.time()-t0,1)}),flush=True)
+finally:
+  if executor is not None: executor.shutdown(wait=True)
 print(json.dumps({'shard':args.shard,'done':done,'fallback':fallback,'elapsed_s':round(time.time()-t0,1)}),flush=True)

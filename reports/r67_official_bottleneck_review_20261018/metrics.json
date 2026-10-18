@@ -1,0 +1,68 @@
+{
+  "report": "R67_OFFICIAL_BOTTLENECK_REVIEW_20261018",
+  "scores": {
+    "R25_AHA_BF16_K085": 35.18,
+    "R26_AHA_EXACT085_B3": 35.07,
+    "R26_POS_CENTER_EXACT085_B3": 36.04,
+    "R26_R25MASK_CENTER": 30.23,
+    "R27_CENTER075_B3": 35.87,
+    "R27_CENTER095_B3": 35.39,
+    "R39_CONTENT_REDUNDANCY85_B3": 34.48,
+    "R40_CONTENT_NOVELTY85_B3": 34.15,
+    "R41_CONTENT_GATEDFUSION85_B3": 35.19,
+    "R43_IV2_EVENT_COMPLETION_20261017": 34.95,
+    "R44_HUMAN_CALIBRATED_RESIDUAL_ETA020_B3": 36.09,
+    "R46_HIGHFREQ_LOCAL_RESIDUAL_B3": 35.88,
+    "R54_TIMELENS_CENTER_RESIDUAL_V9_B3": 36.22,
+    "R57_FIXED_LATE2S_V9_B3": 34.76,
+    "R59_TIMELENS4FPS_MASK_EDGE_ENSEMBLE_V9_B3": 35.04,
+    "R67_JOINT_V9_DISAGREEMENT_TIEAVG_G1": 36.16
+  },
+  "baseline": "R26_POS_CENTER_EXACT085_B3",
+  "frame_deltas_vs_R26_removed": {
+    "R44": 6352,
+    "R46": 5636,
+    "R54": 6152,
+    "R57": 14015,
+    "R59": 14028,
+    "R67": 7765
+  },
+  "frame_deltas_R67_vs_R54": {"removed": 2427, "added": 2427, "changed_videos": 81},
+  "macro_position_mean": {
+    "R26": 0.49929613,
+    "R44": 0.49779528,
+    "R46": 0.49702984,
+    "R54": 0.51904007,
+    "R57": 0.57060894,
+    "R59": 0.52715425,
+    "R67": 0.51977373
+  },
+  "family_summary": {
+    "low_level_temporal_R39_R40_R41_R43_R44_R46": {"n": 6, "positive_vs_R26": 1, "mean_delta": -0.9166666667},
+    "position_R27_CENTER075_CENTER095": {"n": 2, "positive_vs_R26": 0, "mean_delta": -0.41},
+    "timelens_R54_R57_R59_R67": {"n": 4, "positive_vs_R26": 2, "mean_delta": -0.495},
+    "timelens_perturbations_vs_R54_R57_R59_R67": {"n": 3, "positive_vs_R54": 0, "mean_delta": -0.9}
+  },
+  "proxy_to_official_examples": {
+    "R44": {"public_proxy_delta": 0.02086, "official_delta_vs_R26": 0.05},
+    "R46": {"public_proxy_delta": 0.02283, "official_delta_vs_R26": -0.16},
+    "R54": {"public_proxy_delta": 0.024997, "official_delta_vs_R26": 0.18},
+    "R57": {"public_proxy_delta": 0.032506, "official_delta_vs_R54": -1.46},
+    "R59": {"public_proxy_delta": 0.036461, "official_delta_vs_R54": -1.18}
+  },
+  "interpretation": {
+    "proximate_bottleneck": "temporal_set_decision",
+    "root_cause_candidate": "domain_and_supervision_contract_mismatch",
+    "budget": "secondary; center85 locally best",
+    "spatial": "high_leverage_base_component_but_v9_direction_unidentified",
+    "capacity": "not identified as bottleneck"
+  },
+  "input_artifacts": [
+    "submissions/R26_DIAG/R26_POS_CENTER_EXACT085_B3/predictions.jsonl",
+    "submissions/R54_TIMELENS_CENTER_RESIDUAL_V9_B3/predictions.jsonl",
+    "submissions/R57_FIXED_LATE2S_V9_B3/predictions.jsonl",
+    "submissions/R59_TIMELENS4FPS_MASK_EDGE_ENSEMBLE_V9_B3/predictions.jsonl",
+    "submissions/R67_JOINT_V9_DISAGREEMENT_TIEAVG_G1/predictions.jsonl",
+    "artifacts/r26/b3_allframes.jsonl"
+  ]
+}

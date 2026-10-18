@@ -1,0 +1,56 @@
+{
+  "model": "/root/autodl-tmp/evac/data/aic/pretrained/TimeLens2-8B",
+  "prompt": "This is a generic video with no user query. Find the most valuable moments for a short highlight edit. Focus on the decisive action, visible outcome, reveal, reaction, or completed state; omit setup, waiting, and static repetition. Return several narrow time intervals around the decisive moments, with boundaries close to the actual outcome. Return only a JSON array of [start, end] pairs in seconds.",
+  "fps": 2.0,
+  "max_pixels": 50176,
+  "results": [
+    {
+      "video_id": "B6AEPicK9Bk_210.0_360.0",
+      "response": "[[13.0, 25.0]]"
+    },
+    {
+      "video_id": "GtJXHRFhm0E_210.0_360.0",
+      "response": "[[2.0, 11.0], [23.0, 29.0]]"
+    },
+    {
+      "video_id": "HISG6jkZBfs_210.0_360.0",
+      "response": "[[12.0, 29.0]]"
+    },
+    {
+      "video_id": "P6KTyi4s4Bc_210.0_360.0",
+      "response": "[[1.0, 8.0], [12.0, 29.0]]"
+    },
+    {
+      "video_id": "bGU97Zw6Jfg_60.0_210.0",
+      "response": "[[2.0, 4.0], [18.0, 24.0]]"
+    },
+    {
+      "video_id": "eLlUVxVLiLU_60.0_210.0",
+      "response": "[[6.0, 11.0]]"
+    },
+    {
+      "video_id": "jgvQzWAhoiw_210.0_360.0",
+      "response": "[[15.0, 29.0]]"
+    },
+    {
+      "video_id": "m6U-5Hck5z0_60.0_210.0",
+      "response": "[[9.0, 24.0]]"
+    },
+    {
+      "video_id": "rAHQY2FHcOo_210.0_360.0",
+      "response": "[[1.0, 4.0], [15.0, 22.0]]"
+    },
+    {
+      "video_id": "uJ97MxBs4qU_210.0_360.0",
+      "response": "[[10.0, 29.0]]"
+    },
+    {
+      "video_id": "vprHvWMX1YU_210.0_360.0",
+      "response": "[[10.0, 16.0]]"
+    },
+    {
+      "video_id": "yXR17NNJgdU_210.0_360.0",
+      "response": "[[15.0, 20.0]]"
+    }
+  ]
+}

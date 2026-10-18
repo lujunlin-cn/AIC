@@ -1,0 +1,27 @@
+{
+  "experiment_id": "R59_JOINT_V9_DISAGREEMENT_G1",
+  "status": "PACKAGED_NOT_UPLOADED",
+  "parent": "R54_TIMELENS_CENTER_RESIDUAL_V9_B3",
+  "utility": "rank(center)+0.20*rank(TimeLens2 interval)+1.0*rank(V9_R26_geometry_disagreement)",
+  "gamma": 1.0,
+  "eta": 0.2,
+  "keep_fraction": 0.85,
+  "videos": 426,
+  "predictions": 199037,
+  "swaps_vs_r54": 12880,
+  "changed_videos_vs_r54": 426,
+  "swaps_vs_r26": 17937,
+  "mean_selected_position": {
+    "r26": 0.49957167850037293,
+    "r54": 0.5234435218347233,
+    "r59": 0.5674609089126625
+  },
+  "noncontiguous_videos": 40,
+  "mean_internal_gaps": 0.1619718309859155,
+  "swaps_by_target_ratio": {
+    "16:9": {"videos": 303, "mean_swaps": 29.884488448844884, "sum_swaps": 9055},
+    "9:16": {"videos": 123, "mean_swaps": 31.097560975609756, "sum_swaps": 3825}
+  },
+  "prediction_sha256": "1d0f4c84d2dfad3e9f27e4bb70dc6c8d9b231bc010a1362b6838eaf10b635770",
+  "zip_sha256": "d8c99c1ea4e3d51a808ef341253e080ed813c44995f7543c9c9a815458907566"
+}

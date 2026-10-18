@@ -1249,3 +1249,11 @@ TimeLens2第二个“窄事件/结果”提示词在12个公开片段上低于ge
 **Evidence**：公开168源诊断中，`max_score-center_score`与实际边际空间增益Spearman=.377，`max_score`仅=.128；但绝对选中IoU相关性相反，说明边际目标和绝对目标不能混写。R73增量utility中44.7%关键帧为零平值，stable rank把帧号写进决策；R74 midrank修复后swaps 5004→2418。
 
 **Action**：未来联合时间包优先使用部署框对齐的`output utility`，再用乘法期望效用形式（R77）作为结构候选；不要在官方回分前扫eta/底座/插值。下一训练优先在公开native crop上直接监督V9部署框IoU，而不是继续预测129候选最大值。R76/R77均为未上传诊断包，明日2/3/5保持冻结。
+
+## 2026-10-19：直接部署框 utility 的判定
+
+**Decision**：部署框 native IoU 直接读出路线完成公共诊断并生成R81，但不把公共提升写成官方涨分。50,561参数的topsoft-logits+输出位置头在156源dev上row Spearman=.4747，明显优于原始候选分数的直接排序；LIVE source-macro bootstrap仍跨零，停止继续损失/宽度/系数扫描。
+
+**Artifact rule**：可用A0 surrogate与历史B3/V9输出不一致，不能用它重跑官方空间框。R81只读取已审计V9 B3全帧框和已完成的R70 topsoft关键帧logits，因此保留输出身份；训练目标的B3 logits来源和SHA必须继续绑定。若该身份审计失败，R81降级为诊断，不上传。
+
+**Action**：R81作为下一结构候选保留，明日2/3/5不变；官方回分后最多用一个额度检验R81，不再做无机制扫描。

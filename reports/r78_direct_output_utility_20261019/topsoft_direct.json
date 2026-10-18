@@ -1,0 +1,10 @@
+{
+  "variant": "topsoft_vector_plus_b3_position",
+  "dim": 130,
+  "params": 50561,
+  "dev_mse": 0.046783920377492905,
+  "dev_mae": 0.16729724407196045,
+  "row_spearman": 0.47468221736985555,
+  "source_macro_spearman": 0.15946680659198226,
+  "source_n": 156
+}

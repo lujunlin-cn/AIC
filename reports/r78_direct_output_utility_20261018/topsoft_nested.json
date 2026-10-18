@@ -1,0 +1,12 @@
+{
+  "variant": "topsoft_plus_pos_nested_source",
+  "inner_sources": 1196,
+  "tune_sources": 299,
+  "external_sources": 168,
+  "external_mse": 0.04824952408671379,
+  "external_mae": 0.1694922000169754,
+  "external_row_spearman": 0.47333889672837737,
+  "external_source_macro_spearman": 0.15850327870051903,
+  "params": 50561,
+  "selection": "inner train, tune source split; external R70 dev untouched"
+}

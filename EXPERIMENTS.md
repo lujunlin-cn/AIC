@@ -1332,3 +1332,11 @@ R70与R69直接构图路线不同。R70固定V9 vision-only塔、processor、129
 **R76_OUTPUT_ALIGNED_UTILITY_TIME_R54_V9_B3**：R70 129候选utility在每个关键帧沿窗口偏移插值到V9 B3实际输出框位置，再以tie-aware rank加入R54固定residual。官方8848关键帧上 output utility 相对 max utility 均值差=-.03886、std=.08233，仅56.5%近似相同，证明R70 max与最终输出框不等价。R76 426/426、199037、8.854531425B，4251 swaps，ZIP SHA=`18d4986d84b705cd4076c4f640c77155eca5d1ac024583318fac0e7e3e7b2265`，checker通过；未上传。
 
 **R77_OUTPUT_ALIGNED_MULTIPLICATIVE_TIME_R54_V9_B3**：使用 `rank(R54 temporal value) * (0.5 + 0.5*midrank(output-aligned utility))`，以条件独立时的 `E[Y*IoU]` 为决策动机，不扫融合系数。426/426、199037、8.854531425B、2308 swaps，ZIP SHA=`aae5cfa6ffc56e8276aa5aef741781143a23e71ca8f428a608228700aa7d4106`，checker通过；未上传。完整复核见 `reports/r70_utility_temporal_reassessment_20261018/summary.md`。
+
+## 2026-10-19：直接部署框 utility head 与 R81
+
+**R78**：冻结B3 candidate head，在R70公开source-disjoint native crop数据上把目标改为部署候选实际IoU `y[argmax(B3_head)]`。selected feature、confidence、全129 logits和topsoft logits+输出位置四种输入均完成诊断；50,561参数的`topsoft logits + B3 output position`版本row Spearman=`.47468`，source-macro Spearman=`.15947`，公开域结果仍未形成官方联合证据；严格nested external dev row Spearman=.47334、source-macro=.15850。回归头与V9原始分数的LIVE source-macro bootstrap差值为`+.00453`，95% CI `[-.00501,+.01418]`；pairwise分支停止。
+
+**R81_DIRECT_OUTPUT_UTILITY_MULT_TIME_R54_V9_B3**：使用50,561参数直接utility head在R70官方关键帧topsoft logits和审计V9 B3输出位置上推理，按`rank(R54 time)*(0.5+0.5*midrank(output utility))`重排。426/426、199037、8.856093411B（含生成R70 logits的1.511M head）、2393 swaps，使用nested head，ZIP SHA=`7070328ac4685362835fadc105eba47b4097e1fd67a90e073362cc86fe37a43d`，checker/roundtrip通过，未上传。报告见`reports/r78_direct_output_utility_20261019/summary.md`。
+
+**Head identity gate**：A0 surrogate smoke与历史V9/B3 point文件明显不一致，停止用A0重跑冒称当前B3。R81直接复用审计V9全帧框和官方R70 logits，避免替换空间artifact；公共B3 logits训练资产仍需SHA/来源复核后才能把R81作为正式上传候选。

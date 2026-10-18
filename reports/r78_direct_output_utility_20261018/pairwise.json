@@ -1,0 +1,9 @@
+{
+  "variant": "pairwise_same_source",
+  "dev_mse": 8.428987503051758,
+  "dev_mae": 2.268489360809326,
+  "row_spearman": 0.30933379528342453,
+  "source_macro_spearman": 0.1486634176615841,
+  "pair_acc_dy025": 0.6421559191530317,
+  "params": 1313537
+}

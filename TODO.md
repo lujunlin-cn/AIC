@@ -395,3 +395,12 @@ R44_DIAG_001已完成CPU留一：局部状态描述子使通用等级MAE 1.0668�
 - [ ] 等待R69/R70/R71官方回分；不把公共utility代理替代官方联合分。
 - [ ] 若R70官方正向，训练source-disjoint的V9实际部署框IoU head，再验证R77形式。
 - [ ] 若R70官方负向且R69正向，关闭公开候选utility官方迁移路线，保留output-aligned诊断为负结果。
+
+## P1 — R78/R81 直接部署框 utility
+
+- [x] 完成部署框 IoU source-disjoint 目标构造和回归/排序对照。
+- [x] 完成 topsoft logits + B3 output position 的 50,561 参数读出。
+- [x] 生成 R81 output-aligned multiplicative package，checker/ZIP通过，未上传。
+- [ ] 绑定并复核公共 B3 logits 资产来源/SHA；失败则停止R81上传。
+- [ ] 等R69/R70/R71官方回分后，最多用一个额度验证R81；不再扫描损失、宽度或融合权重。
+- [x] 修正R81参数清单：计入生成R70 topsoft logits的1,511,425参数，总计8.856093411B；改用nested source head。

@@ -1,0 +1,12 @@
+{
+  "variant": "selected_x",
+  "dim": 2305,
+  "params": 1247489,
+  "dev_mse": 0.06208889186382294,
+  "dev_mae": 0.20047791302204132,
+  "dev_spearman": 0.3001162639527115,
+  "source_macro_spearman": 0.06307830534136127,
+  "source_macro_mse": 0.07210403982137975,
+  "sources": 156,
+  "steps": 1500
+}

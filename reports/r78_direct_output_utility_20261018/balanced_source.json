@@ -1,0 +1,9 @@
+{
+  "mode": "source",
+  "dev_mse": 0.056272104382514954,
+  "dev_mae": 0.18905822932720184,
+  "row_spearman": 0.34451346840556335,
+  "source_macro_spearman": 0.12723348043666102,
+  "source_macro_mae": 0.20433743298053741,
+  "params": 1313537
+}

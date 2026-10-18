@@ -1,0 +1,24 @@
+{
+  "results": [
+    {
+      "variant": "selected_x_logits",
+      "dim": 2434,
+      "params": 1313537,
+      "dev_mse": 0.0565936341881752,
+      "dev_mae": 0.19082427024841309,
+      "dev_spearman": 0.3868277016414137,
+      "source_macro_spearman": 0.15610296827119582,
+      "source_n": 156
+    },
+    {
+      "variant": "selected_x_logits_stats",
+      "dim": 2440,
+      "params": 1316609,
+      "dev_mse": 0.05589311197400093,
+      "dev_mae": 0.1874886304140091,
+      "dev_spearman": 0.39851498482271663,
+      "source_macro_spearman": 0.12479581671567821,
+      "source_n": 156
+    }
+  ]
+}

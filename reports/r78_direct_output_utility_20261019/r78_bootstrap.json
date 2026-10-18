@@ -1,0 +1,30 @@
+{
+  "rv_dev": {
+    "sources": 20,
+    "mean_delta": 0.00615929663181305,
+    "median_delta": 0.004614323377609253,
+    "positive_sources": 11,
+    "negative_sources": 8,
+    "zero_sources": 1,
+    "ci95_percentile": [
+      -0.0033235493302345275,
+      0.016255054697394345
+    ],
+    "max_positive": 0.05348461866378784,
+    "max_negative": -0.028494656085968018
+  },
+  "live_dev": {
+    "sources": 148,
+    "mean_delta": 0.004525599497798327,
+    "median_delta": 0.0,
+    "positive_sources": 65,
+    "negative_sources": 40,
+    "zero_sources": 43,
+    "ci95_percentile": [
+      -0.005013108764447875,
+      0.014177006772543113
+    ],
+    "max_positive": 0.16525599360466003,
+    "max_negative": -0.246262788772583
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "variant": "selected_x_logits",
+  "dim": 2434,
+  "params": 1313537,
+  "dev_mse": 0.0565936341881752,
+  "dev_mae": 0.19082427024841309,
+  "dev_spearman": 0.3868277016414137,
+  "source_macro_spearman": 0.15610296827119582,
+  "source_n": 156
+}

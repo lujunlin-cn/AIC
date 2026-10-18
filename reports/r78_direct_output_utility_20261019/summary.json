@@ -1,0 +1,31 @@
+{
+  "results": [
+    {
+      "variant": "selected_x",
+      "dim": 2305,
+      "params": 1247489,
+      "dev_mse": 0.06208889186382294,
+      "dev_mae": 0.20047791302204132,
+      "dev_spearman": 0.3001162639527115,
+      "source_macro_spearman": 0.06307830534136127,
+      "source_macro_mse": 0.07210403982137975,
+      "sources": 156,
+      "steps": 1500
+    },
+    {
+      "variant": "selected_x_conf",
+      "dim": 2307,
+      "params": 1248513,
+      "dev_mse": 0.058641381561756134,
+      "dev_mae": 0.19493569433689117,
+      "dev_spearman": 0.361714840489564,
+      "source_macro_spearman": 0.11194885833479198,
+      "source_macro_mse": 0.06559145444472773,
+      "sources": 156,
+      "steps": 1500
+    }
+  ],
+  "b3_checkpoint": "/root/autodl-tmp/evac/data/aic/experiments_910a/LFM_V9/vision_only_model/student_head.pt",
+  "target_contract": "y[argmax(B3_head(x))]",
+  "source_split": "R70 names *_train vs *_dev; no official data"
+}

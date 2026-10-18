@@ -259,7 +259,7 @@ def train(args):
     rows=np.arange(len(y)); pred_iou=y[rows,pred]; center_iou=y[:,NC//2]
     report={"rows":int(len(y)),"train_rows":int(train_mask.sum()),"dev_rows":int(dev_mask.sum()),"best_dev_iou":best[0],"all_new_iou":float(pred_iou.mean()),"all_center_iou":float(center_iou.mean()),"dev_new_iou":float(pred_iou[dev_mask].mean()),"dev_center_iou":float(center_iou[dev_mask].mean()),"source_count":int(len(set(src)))}
     (Path(args.out)/"metrics.json").write_text(json.dumps(report,indent=2)+"\n")
-    torch.save({"state_dict":model.state_dict(),"mu":mu,"sd":sd,"config":{"d":2305,"nc":NC},"report":report},Path(args.out)/"r69_head.pt")
+    torch.save({"state_dict":model.state_dict(),"mu":mu,"sd":sd,"config":{"d":2305,"nc":NC},"report":report},Path(args.out)/"r70_head.pt")
     print(json.dumps(report,indent=2),flush=True)
 
 

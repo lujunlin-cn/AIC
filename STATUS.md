@@ -343,3 +343,15 @@ Output had 426/426 videos, 8,848/8,848 keyframes, 0 fallbacks, and all 8,848 sta
 **R71_ADAPTIVE_BUDGET_R54_V9**：保留 R54 排序和 V9 框，只按 TimeLens 区间占用率自适应保留率 `clip(0.75 + 0.10*occupancy/median_occupancy, 0.70, 0.85)`。相对 R54 删除 3,823 帧，195,214 条预测，426/426 覆盖；参数 8.854531425B。ZIP SHA `511fd5a946134c25a3cf537854f0c6a049b4bbc5a55e43c1e8742a44092880b0`，checker/contract 通过，未上传。10 个公共手工视窗诊断 soft `+0.00120`、binary `-0.00287`，方向冲突且无独立确认；暂列高风险备选，不能称收益或据此扫规则。
 
 **R72 B3 原始资产恢复审计**：冻结配置期望 `/data/aic/experiments_910a/LFM_V8/arms/B3_s0/head_s.pt`；当前克隆相关路径均不存在。边界库存检查 67 个 4--12MB `.pt`，只发现 V7/V9 A0/A1/KD 变体，没有 B3 身份；历史 V8 B3 ZIP 仅有 predictions.jsonl，Git 无二进制权重；旧服务器端点审计时不可达。结论：原始 B3 head/base 当前无法恢复；缓存的 B3 预测仍可复用，但 V7 不能改名 B3。重新训练只能命名新 head 并单独验证。TimeLens2（8.767B）+原始 B3 约 0.450B = 9.217B，超 9B，不能作为最终组合。报告：`reports/r72_b3_asset_recovery_20261018/README.md`。当前最高官方锚仍 R54=36.22，以上新包均无官方回分。
+
+### 明日五个提交额度的候选队列
+
+按结构差异和证据价值排序：
+
+1. `R54_TIMELENS_CENTER_RESIDUAL_V9_B3`：已知官方 `36.22`，作为最高分锚点。
+2. `R69_SEGMENTED_CROP_R54TIME`：分段 TimeLens 构图，8.767B，ZIP SHA `0b1de985...10a8010`。
+3. `R70_SPATIAL_UTILITY_R54TIME_BATCH32`：source-disjoint native crop 新 utility head，8.855B，ZIP SHA `a5d3031c...1cb7b7a`。
+4. `R69_TIMELENS_DIRECT_CROP_V1`：整视频单 crop，对照分段构图，8.767B，ZIP SHA `f5d6dcad...e7839871`。
+5. `R71_ADAPTIVE_BUDGET_R54_V9`：逐视频预算，8.855B，ZIP SHA `511fd5a9...092880b0`。
+
+R26 `36.04` 和 R44 `36.09` 保留为已知回退/对照；R67 `36.16` 已知低于 R54。`R69_SEGMENTED_CROP_R54_TIME`、`R69_TIMELENS_DIRECT_CROP_R54_TIME` 等重复命名包不占名额。R63/R64/R68 及旧 R59/R60 无效或作废，禁止上传。

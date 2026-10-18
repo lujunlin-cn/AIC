@@ -258,6 +258,20 @@ def train(args):
         pred=model(xt.to(args.device)).argmax(1).cpu().numpy()
     rows=np.arange(len(y)); pred_iou=y[rows,pred]; center_iou=y[:,NC//2]
     report={"rows":int(len(y)),"train_rows":int(train_mask.sum()),"dev_rows":int(dev_mask.sum()),"best_dev_iou":best[0],"all_new_iou":float(pred_iou.mean()),"all_center_iou":float(center_iou.mean()),"dev_new_iou":float(pred_iou[dev_mask].mean()),"dev_center_iou":float(center_iou[dev_mask].mean()),"source_count":int(len(set(src)))}
+    # The protocol's independent unit is a source video, not a frame or a
+    # keyframe.  Report both held-out pools separately so a LIVE/RV mixture
+    # cannot hide a domain failure.
+    for split in ("rv_dev", "live_dev"):
+        mask = names == split
+        per_new, per_center = [], []
+        for s in sorted(set(src[mask])):
+            q = mask & (src == s)
+            per_new.append(float(pred_iou[q].mean()))
+            per_center.append(float(center_iou[q].mean()))
+        if per_new:
+            report[split] = {"sources": len(per_new), "new_source_macro": float(np.mean(per_new)),
+                             "center_source_macro": float(np.mean(per_center)),
+                             "delta": float(np.mean(np.asarray(per_new) - np.asarray(per_center)))}
     (Path(args.out)/"metrics.json").write_text(json.dumps(report,indent=2)+"\n")
     torch.save({"state_dict":model.state_dict(),"mu":mu,"sd":sd,"config":{"d":2305,"nc":NC},"report":report},Path(args.out)/"r70_head.pt")
     print(json.dumps(report,indent=2),flush=True)

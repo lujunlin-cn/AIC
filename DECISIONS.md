@@ -1221,3 +1221,11 @@ TimeLens2第二个“窄事件/结果”提示词在12个公开片段上低于ge
 **Evidence:** the original path copied each grid to CPU, rebuilt 129 masks per frame, and called the head per frame; the repaired path is numerically identical on controlled grids, completed 426 videos with zero fallback, and reached 97–100% GPU utilization samples. Full output took 174.3s. The resulting R70 package keeps R54 time selection and changes only spatial boxes. Official score is unknown until upload.
 
 **Action:** retain `submissions/R70_SPATIAL_UTILITY_R54TIME_BATCH32/` as the next spatial candidate; do not upload automatically. If the score falls, interpret that as public native-crop readout transfer failure, not as a throughput failure.
+
+## 2026-10-18：R69/R71/R72 决策
+
+**Decision 1 — 分段构图进入高风险候选，保持单包边界。** R69 分段响应在真实高光 run 上确实产生时间变化（188 个视频多 crop），且只改变空间框、时间集合完全继承 R54；因此比继续无标签空间分歧更有机制针对性。它尚无 native 联合 GT 或官方分数，不能把响应变化写成 IoU 收益。上传前统一 canonical 目录 `R69_SEGMENTED_CROP_R54TIME`、ZIP 内文件、预测 SHA 和 contract，避免与 `R69_SEGMENTED_CROP_R54_TIME` 重复命名包混淆。
+
+**Decision 2 — 逐视频预算不升级主线。** 公共 10 视窗 soft 略正而 binary 略负，且只改分母/帧集合；证据不足以区分密度预算收益与标注代理噪声。保留 R71 为最后风险备选，不扫 floor/cap/slope/median，不替代 R54/R26。
+
+**Decision 3 — 原始 B3 恢复路线关闭。** 当前库存没有原始 head/base 的可追溯证据；V7 不能重标为 B3。缓存 B3 预测只支持历史包复现。若未来重训，必须新建 checkpoint/实验 ID 并报告训练数据、seed、参数；不能宣称“恢复原 B3”。TimeLens2+B3 组合超过 9B，禁止形成最终提交。

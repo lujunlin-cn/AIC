@@ -1262,3 +1262,29 @@ R70与R69直接构图路线不同。R70固定V9 vision-only塔、processor、129
 ## R70 official inference and CPU/GPU throughput repair (2026-10-18)
 
 **Hypothesis:** the observed CPU-heavy/GPU-idle behavior is an implementation bottleneck rather than a vision-tower limitation. **Change:** cache the exact V9 candidate mask by geometry/grid shape; pool all 129 candidates and run the utility head as one GPU batch; overlap one CPU decode/processor lookahead batch; convert processor pixels to FP16 before transfer. **Controls:** original feature helper and per-frame head on random grids; 10-video profile. **Result:** max feature difference `0.0`, 10-video batch-32 profile `2.7s`, full 426 inference `174.3s`; active GPU samples reached `97–100%`. **Official output:** 426 videos, 8,848 keyframes, zero fallback. **Package:** R54 time set fixed, 102,981 retained boxes changed, 8.854531425B, checker/contract/ZIP valid; prediction SHA `5d34388eb39a2d8f49ba9cd29420cbb5c2e450f2c88ec2aee16be11cbeeff3da`, ZIP SHA `a5d3031cb6ab896d73e83e032be0e385bdb17efa3c0024af06036dcc63179b7a`. **Conclusion:** CPU preprocessing and per-frame CPU readout caused the prior GPU starvation. The package remains an unuploaded official-score experiment; it cannot be called a gain until platform feedback.
+
+## 2026-10-18：R69 分段构图
+
+**Hypothesis**：完整视频一次 crop 把不同高光阶段的主体/构图平均掉；在同一 R54 选中时间集合内分段询问可减少空间时变误差。
+
+**Control/Change**：固定 R54 时间集合与精确 85% 预算；按原始 frame 连续 run 切 3 段、每段 5% 上下文；同一 TimeLens2-8B、16:9 query；不改时间排序。代码 `scripts/r69_segmented_crop_batch.py`、`scripts/r69_segmented_crop_package.py`，缓存 `reports/r69_segmented_crop_full_20261018.json`，报告 `reports/r69_segmented_crop_20261018/README.md`。
+
+**Result**：1,281/1,281 响应有效，426/426 覆盖、0 fallback；111,306/199,037 框替换。188/426 视频有多个 segment crop；相对全视频 R69 有 102,617 框不同、277 视频变化。smoke 中视频 0 垂直中心变化、视频 1 水平范围变化、视频 2 由窄到全幅，说明输入不是固定全片答案。包 `submissions/R69_SEGMENTED_CROP_R54TIME/`，预测 SHA `df2c8c42fce86357f13c8db5fba4fa5a6b88332285ebb1120c1a448fc5f45eef`，ZIP SHA `0b1de985c709b2b4d31d2c1a57b3d0420a3f66afb9dbad82605ff534e10a8010`，合同/checker/往返通过，官方待上传。
+
+**Decision/Limit**：这是结构性空间决策实验，不是官方收益证据；逐段变化也可能是 VLM 构图不稳定或分段上下文变化。若回分不升，停止继续增加分段数/上下文扫描；若回分升，下一步只按错误视频和切换边界做机制复核。
+
+## 2026-10-18：R71 逐视频自适应预算
+
+**Hypothesis**：TimeLens 区间占用率可反映事件密度；密度低的视频应少取帧，把预算留给密度高的视频，可能降低官方 F 的分母浪费。
+
+**Change**：R54 center+0.20 interval stable rank 和 V9 空间框完全固定，仅把每视频 keep 从精确 85% 改为占用率规则；无官方标签/回分拟合。结果 426/426、195,214 条，删除 3,823 帧，参数 8.854531425B。
+
+**Diagnostic**：10 个公共视窗 soft 增量 +0.0011959（3/10 正），binary -0.00287195（3/10 正）；soft/binary 方向冲突，且不是 AIC GT。结论是机制未识别，保留为高风险备选，不升级 R54、不做规则扫描。
+
+## 2026-10-18：R72 原始 B3 资产恢复审计
+
+**Question**：能否找回 R26/R54 系历史 V8 B3 的真实训练 head/base，以恢复原始空间路线。
+
+**Audit**：期望路径及当前克隆路径均不存在；67 个候选 `.pt` 只匹配 V7/V9 A0/A1/KD 形状/前缀；V8 B3 提交 ZIP 无模型/特征/logits；Git 历史/分支无二进制；旧端点不可达。报告 `reports/r72_b3_asset_recovery_20261018/README.md`。
+
+**Conclusion**：精确原始 B3 不可恢复，缓存 B3 预测可作回放父集；不能把 V7 或新训练 head 称 B3。且 TimeLens2+B3 理论参数约 9.217B，当前 9B 规则下不合规。B3 恢复路线关闭；只有按公开数据重训的新 head 实验可重新立项。

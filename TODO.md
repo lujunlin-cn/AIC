@@ -364,3 +364,14 @@ R44_DIAG_001已完成CPU留一：局部状态描述子使通用等级MAE 1.0668�
 - [x] Run official R70 spatial points on 426/426 videos with 8,848/8,848 keyframes and zero fallback.
 - [x] Build and validate `R70_SPATIAL_UTILITY_R54TIME_BATCH32`; 426/426, 199,037 predictions, exact R54 time set, independent checker and contract valid.
 - [ ] Obtain official R70 score and bind it to the uploaded ZIP SHA; no score is inferred locally.
+
+## 2026-10-18 R69/R71/R72
+
+- [x] 完成 R69 分段构图 426 全量、1,281 段响应、111,306 框替换、0 fallback；生成并审计 `R69_SEGMENTED_CROP_R54TIME`。
+- [x] canonical R69 ZIP 仅含正确 `predictions.jsonl`；本地副本、ZIP round-trip、independent checker、final contract 和 canonical SHA 已核对。
+- [ ] 用户上传后记录 R69 平台显示参数、上传 SHA 和官方分数；在回分前不把分段响应变化写成收益。
+- [x] 完成 R71 自适应预算包：195,214 条、删除 3,823 帧、8.854531425B、checker/contract 通过；记录公共 soft/binary 方向冲突。
+- [ ] R71 仅保留最后高风险槽；禁止无新机制依据继续扫预算公式。
+- [x] 完成 R72 原始 B3 库存审计并确认精确资产不可恢复；缓存 B3 预测保留。
+- [ ] 关闭“恢复原 B3”路线；如重训新 head，另建实验 ID 并重新做 source-disjoint native crop 读出/参数合规审计，不能冒称原始 B3。
+- [ ] 当前候选排序：R69 分段构图 > R70 空间 utility（待官方） > R69 全局构图 > R71 自适应预算；R54=36.22/R26=36.04 保持回退，所有新包官方分数均为空。

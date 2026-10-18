@@ -329,3 +329,9 @@ R57=`34.76` 和 R59=`35.04` 均低于 R54=`36.22`；R67 tie-aware 修正版=`36.
 R69“TimeLens2直接构图框”与R70严格分开。R70针对另一条假设：在固定V9 vision-only塔和129合法窗口下，重新训练候选效用读出，检验空间信息是否已存在于视觉token而只在读出层丢失。原始V8 B3 `head_s.pt`仍缺失，因此R70 head不称B3复现。
 
 R70 smoke已通过视觉197 tensor覆盖、processor合同和`[129,2305]`特征/训练链；完整RV/LIVE source-disjoint public native crop抽取已迁移到远端`/root/autodl-tmp/experiments/R70_SPATIAL_UTILITY/full/`运行。只有RV与LIVE两个留出池都超过中心，才考虑R26 center85时间集合上的426空间单变量包。
+
+### R70 official spatial utility package (2026-10-18)
+
+R70 public native-crop utility readout passed its RV/LIVE source-level gate and was run on the official 426 videos. The initial CPU-bound implementation was repaired: candidate pooling and head inference are batched on GPU, one bounded CPU prefetch batch overlaps preprocessing, and FP16 transfer is used. The 10-video profile took 2.7s; full official inference completed in 174.3s with one process, batch 32, prefetch worker 1. GPU samples reached 97–100% during active batches.
+
+Output had 426/426 videos, 8,848/8,848 keyframes, 0 fallbacks, and all 8,848 statuses `ok_r70`. The package `submissions/R70_SPATIAL_UTILITY_R54TIME_BATCH32/` keeps the R54 time set and replaces only spatial boxes on 102,981 retained frames. It has 199,037 predictions, 8.854531425B declared parameters, prediction SHA `5d34388eb39a2d8f49ba9cd29420cbb5c2e450f2c88ec2aee16be11cbeeff3da`, ZIP SHA `a5d3031cb6ab896d73e83e032be0e385bdb17efa3c0024af06036dcc63179b7a`, and passes local contract, independent checker, and ZIP round-trip. It is not uploaded and has no official score yet. See `reports/r70_official_package_20261018/README.md`.

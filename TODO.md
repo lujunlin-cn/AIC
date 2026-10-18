@@ -357,3 +357,10 @@ R44_DIAG_001已完成CPU留一：局部状态描述子使通用等级MAE 1.0668�
 - [ ] 完成RV/LIVE source-disjoint train+dev特征抽取与readout训练：远端`/root/autodl-tmp/experiments/R70_SPATIAL_UTILITY/full/`。
 - [ ] 报告RV、LIVE分别的新head/center/oracle源级IoU；任一留出池不超过中心即关闭R70。
 - [ ] 仅在公共门通过后固定R26 center85时间集合，重提取426 V9空间候选并制作一个空间单变量包。
+
+## 2026-10-18 R70 completion
+
+- [x] Repair R70 CPU/GPU starvation: GPU-batched candidate pooling/head, bounded prefetch, FP16 host transfer; controlled helper equivalence verified.
+- [x] Run official R70 spatial points on 426/426 videos with 8,848/8,848 keyframes and zero fallback.
+- [x] Build and validate `R70_SPATIAL_UTILITY_R54TIME_BATCH32`; 426/426, 199,037 predictions, exact R54 time set, independent checker and contract valid.
+- [ ] Obtain official R70 score and bind it to the uploaded ZIP SHA; no score is inferred locally.

@@ -1213,3 +1213,11 @@ TimeLens2第二个“窄事件/结果”提示词在12个公开片段上低于ge
 **Evidence**：R46公开native crop审计在同一129候选上观察到稳定oracle gap（LIVE confirmation约`.247`、LIVE dev约`.234`、RV约`.162`），说明候选内仍有可达空间效用；R67仅用空间分歧改变时间选帧后从36.22降至36.16，关闭了无标签分歧启发式。两项证据不能把oracle gap折算官方分数，但共同支持先测候选读出。
 
 **Protocol**：固定V9 vision-only tower、processor、129 legal windows和目标比例；RV/LIVE native crop表按source划分训练与留出；输入沿用V9的2305维候选特征，GPU训练小head，source-macro IoU分别比较RV、LIVE和center。两个留出池同时过门后才重提取426并制作空间单变量包；否则关闭R70。
+
+## 2026-10-18: R70 inference resource path and package
+
+**Decision:** use one process with GPU-batched candidate pooling/head and one bounded CPU prefetch worker for R70 official inference. Do not use four parallel CPU-bound processes.
+
+**Evidence:** the original path copied each grid to CPU, rebuilt 129 masks per frame, and called the head per frame; the repaired path is numerically identical on controlled grids, completed 426 videos with zero fallback, and reached 97–100% GPU utilization samples. Full output took 174.3s. The resulting R70 package keeps R54 time selection and changes only spatial boxes. Official score is unknown until upload.
+
+**Action:** retain `submissions/R70_SPATIAL_UTILITY_R54TIME_BATCH32/` as the next spatial candidate; do not upload automatically. If the score falls, interpret that as public native-crop readout transfer failure, not as a throughput failure.

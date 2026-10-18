@@ -1,0 +1,176 @@
+{
+  "experiment_id": "R58_TIMELENS_MASK_EDGE_ENSEMBLE_PROXY",
+  "status": "PUBLIC_SOURCE_HELD_OUT_COMPLETED",
+  "views": 18,
+  "eta_inside": 0.2,
+  "eta_edge": 0.5,
+  "source": [
+    {
+      "video_id": "B6AEPicK9Bk_210.0_360.0",
+      "stream": 0,
+      "n": 30,
+      "center": 0.752,
+      "ensemble": 0.752,
+      "delta": 0.0,
+      "swaps": 2
+    },
+    {
+      "video_id": "B6AEPicK9Bk_210.0_360.0",
+      "stream": 1,
+      "n": 30,
+      "center": 0.5132743362831859,
+      "ensemble": 0.6194690265486725,
+      "delta": 0.10619469026548667,
+      "swaps": 2
+    },
+    {
+      "video_id": "GtJXHRFhm0E_210.0_360.0",
+      "stream": 0,
+      "n": 30,
+      "center": 0.36190476190476195,
+      "ensemble": 0.4,
+      "delta": 0.03809523809523807,
+      "swaps": 2
+    },
+    {
+      "video_id": "GtJXHRFhm0E_210.0_360.0",
+      "stream": 1,
+      "n": 30,
+      "center": 0.7259259259259261,
+      "ensemble": 0.7999999999999998,
+      "delta": 0.07407407407407374,
+      "swaps": 2
+    },
+    {
+      "video_id": "HISG6jkZBfs_210.0_360.0",
+      "stream": 0,
+      "n": 30,
+      "center": 0.6559999999999999,
+      "ensemble": 0.752,
+      "delta": 0.09600000000000009,
+      "swaps": 2
+    },
+    {
+      "video_id": "P6KTyi4s4Bc_210.0_360.0",
+      "stream": 1,
+      "n": 30,
+      "center": 0.9397590361445783,
+      "ensemble": 0.9156626506024097,
+      "delta": -0.02409638554216864,
+      "swaps": 3
+    },
+    {
+      "video_id": "bGU97Zw6Jfg_60.0_210.0",
+      "stream": 0,
+      "n": 30,
+      "center": 0.7619047619047619,
+      "ensemble": 0.7142857142857143,
+      "delta": -0.04761904761904756,
+      "swaps": 2
+    },
+    {
+      "video_id": "bGU97Zw6Jfg_60.0_210.0",
+      "stream": 1,
+      "n": 30,
+      "center": 0.6614173228346457,
+      "ensemble": 0.7401574803149606,
+      "delta": 0.07874015748031493,
+      "swaps": 2
+    },
+    {
+      "video_id": "eLlUVxVLiLU_60.0_210.0",
+      "stream": 0,
+      "n": 30,
+      "center": 0.42424242424242425,
+      "ensemble": 0.42424242424242425,
+      "delta": 0.0,
+      "swaps": 2
+    },
+    {
+      "video_id": "eLlUVxVLiLU_60.0_210.0",
+      "stream": 1,
+      "n": 30,
+      "center": 0.688,
+      "ensemble": 0.752,
+      "delta": 0.06400000000000006,
+      "swaps": 2
+    },
+    {
+      "video_id": "jgvQzWAhoiw_210.0_360.0",
+      "stream": 0,
+      "n": 30,
+      "center": 0.9156626506024097,
+      "ensemble": 0.9156626506024097,
+      "delta": 0.0,
+      "swaps": 2
+    },
+    {
+      "video_id": "m6U-5Hck5z0_60.0_210.0",
+      "stream": 0,
+      "n": 30,
+      "center": 0.8831168831168831,
+      "ensemble": 0.8831168831168833,
+      "delta": 2.220446049250313e-16,
+      "swaps": 2
+    },
+    {
+      "video_id": "m6U-5Hck5z0_60.0_210.0",
+      "stream": 1,
+      "n": 30,
+      "center": 0.9113924050632912,
+      "ensemble": 0.9620253164556962,
+      "delta": 0.050632911392405,
+      "swaps": 2
+    },
+    {
+      "video_id": "rAHQY2FHcOo_210.0_360.0",
+      "stream": 0,
+      "n": 30,
+      "center": 0.8333333333333334,
+      "ensemble": 0.8194444444444443,
+      "delta": -0.013888888888889062,
+      "swaps": 2
+    },
+    {
+      "video_id": "rAHQY2FHcOo_210.0_360.0",
+      "stream": 1,
+      "n": 30,
+      "center": 0.7328244274809161,
+      "ensemble": 0.7786259541984732,
+      "delta": 0.045801526717557106,
+      "swaps": 2
+    },
+    {
+      "video_id": "uJ97MxBs4qU_210.0_360.0",
+      "stream": 0,
+      "n": 30,
+      "center": 0.2828282828282829,
+      "ensemble": 0.36363636363636365,
+      "delta": 0.08080808080808077,
+      "swaps": 2
+    },
+    {
+      "video_id": "vprHvWMX1YU_210.0_360.0",
+      "stream": 0,
+      "n": 30,
+      "center": 0.8387096774193546,
+      "ensemble": 0.8903225806451612,
+      "delta": 0.05161290322580658,
+      "swaps": 2
+    },
+    {
+      "video_id": "yXR17NNJgdU_210.0_360.0",
+      "stream": 1,
+      "n": 30,
+      "center": 0.7972027972027971,
+      "ensemble": 0.853146853146853,
+      "delta": 0.05594405594405594,
+      "swaps": 2
+    }
+  ],
+  "macro_center": 0.7044166125715307,
+  "macro_ensemble": 0.740877685680026,
+  "macro_delta": 0.036461073108495216,
+  "positive_views": 12,
+  "mean_swaps": 2.0555555555555554
+}

@@ -1434,3 +1434,10 @@ target-domain transfer. No official test data or labels were used.
 - **R89_LOWLEVEL_COMPOSITION_R54TIME_B3**：固定 R54 时间集合、预算、TimeLens 排序和 B3 合同；使用 RetargetVid/LIVE 原生 crop GT 训练参数为零的梯度/局部对比/相邻帧差分/清晰度/构图位置 ridge。开发源宏 +0.002497，Confirm 272 源宏 +0.004104；去掉差分 Confirm +0.004108，运动差分未贡献。官方包已生成、未上传，426/426、199037 帧、8.854531425B，ZIP SHA=`e2830a5fb539969e9dbde5e5133728f37d9207bb23449e746990a134b0973d2e`。报告：`reports/r89_lowlevel_composition_20261019/summary.md`。
 - **R90_TEMPORAL_STRUCTURE_MOTION_RANK**：TVSum 27/16 源级留出，固定 top85 连续重要性代理。静态 ResNet 512D=0.256248；32D bank=0.246228；bank+差分/3帧均值=0.246542；静态+bank 时序=0.256212；静态+语义 novelty/速度/加速度=0.256299，配对 CI 跨零。低层 bank 及简单运动结构不足以替代轻量语义；关闭直接拼接路线。报告：`reports/r89_lowlevel_composition_20261019/summary.md`。
 - **R91_LOWPARAM_RESNET18_B3_V3**：冻结 ResNet18+线性 TVSum 连续读出选时间，V9/B3 全帧空间候选复制；98,584,754 参数、199037 预测、与 R54 共同帧框0差异、替换27768帧。TVSum dev top85=0.256248，官方包未上传，SHA=`c8ba77bfbcd3ac46ea0bcb8578e107f2e1007a8ad31bfa8c23cc35a17385fe27`。报告：`reports/r91_lowparam_resnet_20261019/summary.md`。
+# 2026-10-19：R92 传统处理多视图路线复核（设计）
+
+用户提供的 `传统处理接入方案.pdf` 已阅读，文件 SHA256=`04482190c7ba9d90b527175648abfdddaccc9687b26d9309d98f45055635a7ef`。PDF 认为传统图像处理的价值在于保留低频布局、高频结构、运动补偿残差和 ROI 的空间形状，让小模型学习视图联合关系；它不应被实现成更多手工标量。
+
+**与已有实验的边界**：R89 是参数为零的低层标量/候选空间读出；R90 是 32D bank、差分、语义 novelty/速度/加速度的标量代理；二者均未测试空间图上的多视图时序编码。R89 Confirm crop IoU `+0.004104`，R90 低层 bank 低于静态 ResNet，因此不能把 PDF 路线宣布已验证，也不能把旧负结果重复成新实验。
+
+**R92 预注册设计**：冻结轻量 RGB 主干和 R54/R70 空间输出；PHD2/GIF 源级留出；R92-A RGB、R92-E RGB+低频+高频+全局运动补偿残差 gated fusion、R92-F 运动视图源内时间置换。真实 GIF 区间 union 与占位 `gif_hard` 分离。E 相对 A 的源级集合效用 `+0.005` 且 bootstrap 下界为正、F 的收益消失后，才做单一时间变量官方包。尚未运行，无官方分数。

@@ -1383,3 +1383,16 @@ R70与R69直接构图路线不同。R70固定V9 vision-only塔、processor、129
 **Public result**：合并 source-macro `0.52306` vs center `0.49759`（`+0.02547`）；LIVE row `+0.03135`，RV row `+0.00365`；低于 R70 topsoft 两域平均 `+0.07006`。这是结构诊断，不是官方涨分预测。
 
 **Official candidate**：426/426、199037、0 fallback、112141 changed boxes；8.853590257B；ZIP SHA `526d3e0b41c329806c7746e0f7c1404b0ec8d3d2470495e8470c0f25983934f4`；checks pass，未上传。若只保留一个新空间包，R70 仍优先；R84 用于检验小读出域互补。
+
+
+## R85_REAL_CROP_OBSERVATION — 2026-10-19
+
+**状态：IMPLEMENTED_PENDING_REAL_DATA_AND_GPU。未产生新比赛包或官方分数。**
+
+最新工作树基于 main `41f5e91`。已读取 R83/R84 并核对源码；R84 沿用 R70 的 2305d 全图候选特征，R83 只做一次哈希桶留出且存在平值硬目标/对照权重限制。完整审计见 `reports/next_stage_handoff_20261019/latest_state_audit.md`。
+
+主假设：同一候选的真实裁剪图像经共享冻结 V9 塔重新编码，能提供旧全图网格 2×2 ROI 读出仍缺失的构图观察。A=真实冻结 R70 topsoft；B=旧2305+全图候选ROI2×2；C=旧2305+真实crop重编码2×2。B/C均为5377d、3,084,289参数head、固定MSE、两预定seed与1200steps。时间固定R54；R71只保留最高分回退。本轮不组合预算、不扫上传参数。
+
+已执行工程验证：160 passed in 7.19s，含真实head的CPU合成前向/反向/保存加载、两seed配对完整训练流程；无信息合成数据未通过晋级门。4份历史真实JSONL共8次current checker通过；R70/R84与R54时间集合完全相同，R71删除3823帧。上述不是新模型性能或GPU结果。
+
+参数：新head CPU实例化计数3,084,289；TimeLens2 8,767,123,696 + V9 85,843,200 + head 合计推算8,856,051,185，历史两个组件未实载重验。正式输入表、媒体、权重和GPU当前不可达。代码/配置/命令、测试与停止条件见 `reports/next_stage_handoff_20261019/summary.md`，实际状态见同目录 `execution_status.json`。

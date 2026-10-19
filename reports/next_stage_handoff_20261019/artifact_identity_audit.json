@@ -1,0 +1,687 @@
+{
+  "audit_id": "AIC_NEXT_STAGE_ARTIFACT_IDENTITY_20261019",
+  "generated_at_utc": "2026-10-19T01:09:40.559243+00:00",
+  "repository_head": "41f5e9113b92e22e00367ce266c76527872eecf4",
+  "workspace": "/workspace/scratch/0ef05647638d/AIC-current",
+  "scope": "Read existing prediction artifacts, manifests and input metadata only; no official GT, model fitting, GPU inference, ZIP generation or upload.",
+  "index": {
+    "path": "reports/r47_timelens2_index_enriched_426.jsonl",
+    "sha256": "02d52321e82a70cafd33d566319b2ebf5e405af43946d6da32181eccdbc46a93",
+    "videos": 426,
+    "videos_redecoded": false
+  },
+  "checker_code_sha256": {
+    "aic/contract.py": "fc8a2938348fe42ac4eeb850cded4de32683a22ddd702710a84a2473b4149898",
+    "scripts/independent_submission_check.py": "8b5baaf5ae0110612a830e4b27b0bdddf990abb502d9e84cc09f27356ae467eb"
+  },
+  "candidates": {
+    "R54": {
+      "submission_id": "R54_TIMELENS_CENTER_RESIDUAL_V9_B3",
+      "artifact_class": "existing_prediction_artifact_not_new_experiment",
+      "prediction_path": "submissions/R54_TIMELENS_CENTER_RESIDUAL_V9_B3/predictions.jsonl",
+      "prediction_absolute_path": "/workspace/scratch/0ef05647638d/AIC-current/submissions/R54_TIMELENS_CENTER_RESIDUAL_V9_B3/predictions.jsonl",
+      "prediction_bytes": 9425036,
+      "prediction_sha256": "62371bc54d62b72eafd7168898ab5b23fad79a6c252ebde458b8fc78d033983e",
+      "manifest_prediction_sha256": "62371bc54d62b72eafd7168898ab5b23fad79a6c252ebde458b8fc78d033983e",
+      "prediction_hash_matches_manifest": true,
+      "video_count": 426,
+      "prediction_count": 199037,
+      "current_index_ids_match": true,
+      "parameter_components_as_recorded": [
+        {
+          "name": "TimeLens2-8B",
+          "parameters": 8767123696
+        },
+        {
+          "name": "V9 vision-only SigLIP2 + B3 head + YuNet",
+          "parameters": 87407729
+        }
+      ],
+      "total_parameters_as_recorded": 8854531425,
+      "component_sum_matches_total": true,
+      "parameter_count_source": "manifest_declaration_only; no inference weights were loaded or independently counted",
+      "model_params_b_field_values": [
+        8.854531425
+      ],
+      "model_size_mb_field_values": [
+        8854.531425
+      ],
+      "model_size_mb_is_measured_weight_bytes": false,
+      "remaining_parameters_if_declaration_complete": 145468575,
+      "manifest_path": "submissions/R54_TIMELENS_CENTER_RESIDUAL_V9_B3/manifest.json",
+      "manifest_sha256_original": "3bb8fecb033154801e4758c0685f9308f5291826b3eec36bf1db4e82c11a0a9e",
+      "manifest_strict_json_valid": true,
+      "manifest_strict_json_error": null,
+      "manifest_parse_recovery": null,
+      "manifest_status_as_recorded": "PACKAGED_NOT_UPLOADED",
+      "manifest_official_score_as_recorded": null,
+      "latest_official_score_user_reported": 36.22,
+      "official_score_provenance": "current user message; upload bytes/platform were not independently verified",
+      "archive_absolute_path_expected": "/workspace/scratch/0ef05647638d/AIC-current/submissions/R54_TIMELENS_CENTER_RESIDUAL_V9_B3/R54_TIMELENS_CENTER_RESIDUAL_V9_B3.zip",
+      "archive_exists": false,
+      "archive_sha256_recorded_only": "1e0f92f2292da0c057aa9b45a27134783af4def37a60c95ffde6d8fa9a8ae210",
+      "archive_sha256_sidecar": "1e0f92f2292da0c057aa9b45a27134783af4def37a60c95ffde6d8fa9a8ae210",
+      "archive_sha256_independently_verified": null,
+      "archive_recreated": false,
+      "current_checker_results": {
+        "project": {
+          "command": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "-m",
+            "aic.contract",
+            "validate",
+            "--index",
+            "/workspace/scratch/0ef05647638d/AIC-current/reports/r47_timelens2_index_enriched_426.jsonl",
+            "--submission",
+            "/workspace/scratch/0ef05647638d/AIC-current/submissions/R54_TIMELENS_CENTER_RESIDUAL_V9_B3/predictions.jsonl",
+            "--stage",
+            "current",
+            "--require-sorted",
+            "--actual-model-params-b",
+            "8.854531425"
+          ],
+          "exit_code": 0,
+          "result": {
+            "valid": true,
+            "issues": [],
+            "video_count": 426,
+            "prediction_count": 199037,
+            "model_size_mb": 8854.531425,
+            "model_params_b": 8.854531425,
+            "stage": "current",
+            "validator": "local_rules_2026-10-16_not_official",
+            "official_validator_verified": false
+          },
+          "stderr": "",
+          "supplied_count_evidence": "historical manifest only, not an actual weight audit"
+        },
+        "independent": {
+          "command": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "scripts/independent_submission_check.py",
+            "--index",
+            "/workspace/scratch/0ef05647638d/AIC-current/reports/r47_timelens2_index_enriched_426.jsonl",
+            "--submission",
+            "/workspace/scratch/0ef05647638d/AIC-current/submissions/R54_TIMELENS_CENTER_RESIDUAL_V9_B3/predictions.jsonl",
+            "--contract",
+            "current",
+            "--parameter-count",
+            "8854531425"
+          ],
+          "exit_code": 0,
+          "result": {
+            "valid": true,
+            "videos": 426,
+            "predictions": 199037,
+            "model_params_b": 8.854531425,
+            "expected_parameters": 8854531425,
+            "model_size_mb": 8854.531425,
+            "contract": "current",
+            "weights_loaded": false,
+            "parameter_count_evidence": "caller_supplied_count",
+            "checker": "independent_submission_check_v2"
+          },
+          "stderr": "",
+          "supplied_count_evidence": "historical manifest only, not an actual weight audit"
+        }
+      },
+      "comparison_vs_R54": {
+        "left_added_frames_vs_right": 0,
+        "left_removed_frames_vs_right": 0,
+        "common_frames": 199037,
+        "mask_changed_videos": 0,
+        "ordered_frame_sequence_changed_videos": 0,
+        "bbox_changed_on_common_frames": 0,
+        "bbox_changed_videos": 0,
+        "ratio_mismatch_videos": 0
+      }
+    },
+    "R70_TOPSOFT": {
+      "submission_id": "R70_TOPSOFT_SPATIAL_R54TIME",
+      "artifact_class": "existing_prediction_artifact_not_new_experiment",
+      "prediction_path": "submissions/R70_TOPSOFT_SPATIAL_R54TIME/predictions.jsonl",
+      "prediction_absolute_path": "/workspace/scratch/0ef05647638d/AIC-current/submissions/R70_TOPSOFT_SPATIAL_R54TIME/predictions.jsonl",
+      "prediction_bytes": 9410638,
+      "prediction_sha256": "58b401a2c35f56760354ac880b64cbd661e891ea1441d49fed007c06e882d506",
+      "manifest_prediction_sha256": "58b401a2c35f56760354ac880b64cbd661e891ea1441d49fed007c06e882d506",
+      "prediction_hash_matches_manifest": true,
+      "video_count": 426,
+      "prediction_count": 199037,
+      "current_index_ids_match": true,
+      "parameter_components_as_recorded": [
+        {
+          "name": "TimeLens2-8B",
+          "parameters": 8767123696
+        },
+        {
+          "name": "V9 vision-only tower + R70 head + YuNet",
+          "parameters": 87407729
+        }
+      ],
+      "total_parameters_as_recorded": 8854531425,
+      "component_sum_matches_total": true,
+      "parameter_count_source": "manifest_declaration_only; no inference weights were loaded or independently counted",
+      "model_params_b_field_values": [
+        8.854531425
+      ],
+      "model_size_mb_field_values": [
+        8854.531425
+      ],
+      "model_size_mb_is_measured_weight_bytes": false,
+      "remaining_parameters_if_declaration_complete": 145468575,
+      "manifest_path": "submissions/R70_TOPSOFT_SPATIAL_R54TIME/manifest.json",
+      "manifest_sha256_original": "70a1cef9647cfdaeb82a6071ab653c74de1c5cc3ab1800b01bf6338026219930",
+      "manifest_strict_json_valid": false,
+      "manifest_strict_json_error": "Extra data: line 29 column 2 (char 1109)",
+      "manifest_parse_recovery": {
+        "method": "in_memory_only_remove_one_trailing_literal_backslash_n",
+        "original_file_modified": false
+      },
+      "manifest_status_as_recorded": "PACKAGED_NOT_UPLOADED_R70_SPATIAL_READOUT",
+      "manifest_official_score_as_recorded": null,
+      "latest_official_score_user_reported": 36.42,
+      "official_score_provenance": "current user message; upload bytes/platform were not independently verified",
+      "archive_absolute_path_expected": "/workspace/scratch/0ef05647638d/AIC-current/submissions/R70_TOPSOFT_SPATIAL_R54TIME/R70_TOPSOFT_SPATIAL_R54TIME.zip",
+      "archive_exists": false,
+      "archive_sha256_recorded_only": "da5fcc5dccbfcd960b112852295dbbba35be89aaad61c20fcbb81d1ba8fed4d2",
+      "archive_sha256_sidecar": "da5fcc5dccbfcd960b112852295dbbba35be89aaad61c20fcbb81d1ba8fed4d2",
+      "archive_sha256_independently_verified": null,
+      "archive_recreated": false,
+      "current_checker_results": {
+        "project": {
+          "command": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "-m",
+            "aic.contract",
+            "validate",
+            "--index",
+            "/workspace/scratch/0ef05647638d/AIC-current/reports/r47_timelens2_index_enriched_426.jsonl",
+            "--submission",
+            "/workspace/scratch/0ef05647638d/AIC-current/submissions/R70_TOPSOFT_SPATIAL_R54TIME/predictions.jsonl",
+            "--stage",
+            "current",
+            "--require-sorted",
+            "--actual-model-params-b",
+            "8.854531425"
+          ],
+          "exit_code": 0,
+          "result": {
+            "valid": true,
+            "issues": [],
+            "video_count": 426,
+            "prediction_count": 199037,
+            "model_size_mb": 8854.531425,
+            "model_params_b": 8.854531425,
+            "stage": "current",
+            "validator": "local_rules_2026-10-16_not_official",
+            "official_validator_verified": false
+          },
+          "stderr": "",
+          "supplied_count_evidence": "historical manifest only, not an actual weight audit"
+        },
+        "independent": {
+          "command": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "scripts/independent_submission_check.py",
+            "--index",
+            "/workspace/scratch/0ef05647638d/AIC-current/reports/r47_timelens2_index_enriched_426.jsonl",
+            "--submission",
+            "/workspace/scratch/0ef05647638d/AIC-current/submissions/R70_TOPSOFT_SPATIAL_R54TIME/predictions.jsonl",
+            "--contract",
+            "current",
+            "--parameter-count",
+            "8854531425"
+          ],
+          "exit_code": 0,
+          "result": {
+            "valid": true,
+            "videos": 426,
+            "predictions": 199037,
+            "model_params_b": 8.854531425,
+            "expected_parameters": 8854531425,
+            "model_size_mb": 8854.531425,
+            "contract": "current",
+            "weights_loaded": false,
+            "parameter_count_evidence": "caller_supplied_count",
+            "checker": "independent_submission_check_v2"
+          },
+          "stderr": "",
+          "supplied_count_evidence": "historical manifest only, not an actual weight audit"
+        }
+      },
+      "comparison_vs_R54": {
+        "left_added_frames_vs_right": 0,
+        "left_removed_frames_vs_right": 0,
+        "common_frames": 199037,
+        "mask_changed_videos": 0,
+        "ordered_frame_sequence_changed_videos": 0,
+        "bbox_changed_on_common_frames": 101797,
+        "bbox_changed_videos": 254,
+        "ratio_mismatch_videos": 0
+      }
+    },
+    "R71": {
+      "submission_id": "R71_ADAPTIVE_BUDGET_R54_V9",
+      "artifact_class": "existing_prediction_artifact_not_new_experiment",
+      "prediction_path": "submissions/R71_ADAPTIVE_BUDGET_R54_V9/predictions.jsonl",
+      "prediction_absolute_path": "/workspace/scratch/0ef05647638d/AIC-current/submissions/R71_ADAPTIVE_BUDGET_R54_V9/predictions.jsonl",
+      "prediction_bytes": 9236693,
+      "prediction_sha256": "937857b27672982d676e40262c6e3f391bb6a1481688101d2b75d6083ee546dc",
+      "manifest_prediction_sha256": "937857b27672982d676e40262c6e3f391bb6a1481688101d2b75d6083ee546dc",
+      "prediction_hash_matches_manifest": true,
+      "video_count": 426,
+      "prediction_count": 195214,
+      "current_index_ids_match": true,
+      "parameter_components_as_recorded": [
+        {
+          "name": "TimeLens2-8B",
+          "parameters": 8767123696
+        },
+        {
+          "name": "V9 vision-only SigLIP2 + B3 head + YuNet",
+          "parameters": 87407729
+        }
+      ],
+      "total_parameters_as_recorded": 8854531425,
+      "component_sum_matches_total": true,
+      "parameter_count_source": "manifest_declaration_only; no inference weights were loaded or independently counted",
+      "model_params_b_field_values": [
+        8.854531425
+      ],
+      "model_size_mb_field_values": [
+        8854.531425
+      ],
+      "model_size_mb_is_measured_weight_bytes": false,
+      "remaining_parameters_if_declaration_complete": 145468575,
+      "manifest_path": "submissions/R71_ADAPTIVE_BUDGET_R54_V9/manifest.json",
+      "manifest_sha256_original": "02e71d8043c7e693febf6d6d82a18283601ca52434ec96b95763103ced6b7ad6",
+      "manifest_strict_json_valid": true,
+      "manifest_strict_json_error": null,
+      "manifest_parse_recovery": null,
+      "manifest_status_as_recorded": "PACKAGED_NOT_UPLOADED",
+      "manifest_official_score_as_recorded": null,
+      "latest_official_score_user_reported": 36.43,
+      "official_score_provenance": "current user message; upload bytes/platform were not independently verified",
+      "archive_absolute_path_expected": "/workspace/scratch/0ef05647638d/AIC-current/submissions/R71_ADAPTIVE_BUDGET_R54_V9/R71_ADAPTIVE_BUDGET_R54_V9.zip",
+      "archive_exists": false,
+      "archive_sha256_recorded_only": "511fd5a946134c25a3cf537854f0c6a049b4bbc5a55e43c1e8742a44092880b0",
+      "archive_sha256_sidecar": "511fd5a946134c25a3cf537854f0c6a049b4bbc5a55e43c1e8742a44092880b0",
+      "archive_sha256_independently_verified": null,
+      "archive_recreated": false,
+      "current_checker_results": {
+        "project": {
+          "command": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "-m",
+            "aic.contract",
+            "validate",
+            "--index",
+            "/workspace/scratch/0ef05647638d/AIC-current/reports/r47_timelens2_index_enriched_426.jsonl",
+            "--submission",
+            "/workspace/scratch/0ef05647638d/AIC-current/submissions/R71_ADAPTIVE_BUDGET_R54_V9/predictions.jsonl",
+            "--stage",
+            "current",
+            "--require-sorted",
+            "--actual-model-params-b",
+            "8.854531425"
+          ],
+          "exit_code": 0,
+          "result": {
+            "valid": true,
+            "issues": [],
+            "video_count": 426,
+            "prediction_count": 195214,
+            "model_size_mb": 8854.531425,
+            "model_params_b": 8.854531425,
+            "stage": "current",
+            "validator": "local_rules_2026-10-16_not_official",
+            "official_validator_verified": false
+          },
+          "stderr": "",
+          "supplied_count_evidence": "historical manifest only, not an actual weight audit"
+        },
+        "independent": {
+          "command": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "scripts/independent_submission_check.py",
+            "--index",
+            "/workspace/scratch/0ef05647638d/AIC-current/reports/r47_timelens2_index_enriched_426.jsonl",
+            "--submission",
+            "/workspace/scratch/0ef05647638d/AIC-current/submissions/R71_ADAPTIVE_BUDGET_R54_V9/predictions.jsonl",
+            "--contract",
+            "current",
+            "--parameter-count",
+            "8854531425"
+          ],
+          "exit_code": 0,
+          "result": {
+            "valid": true,
+            "videos": 426,
+            "predictions": 195214,
+            "model_params_b": 8.854531425,
+            "expected_parameters": 8854531425,
+            "model_size_mb": 8854.531425,
+            "contract": "current",
+            "weights_loaded": false,
+            "parameter_count_evidence": "caller_supplied_count",
+            "checker": "independent_submission_check_v2"
+          },
+          "stderr": "",
+          "supplied_count_evidence": "historical manifest only, not an actual weight audit"
+        }
+      },
+      "comparison_vs_R54": {
+        "left_added_frames_vs_right": 0,
+        "left_removed_frames_vs_right": 3823,
+        "common_frames": 195214,
+        "mask_changed_videos": 209,
+        "ordered_frame_sequence_changed_videos": 209,
+        "bbox_changed_on_common_frames": 0,
+        "bbox_changed_videos": 0,
+        "ratio_mismatch_videos": 0
+      }
+    },
+    "R84": {
+      "submission_id": "R84_COORD_CONSISTENCY_SPATIAL_R54TIME",
+      "artifact_class": "existing_prediction_artifact_not_new_experiment",
+      "prediction_path": "submissions/R84_COORD_CONSISTENCY_SPATIAL_R54TIME/predictions.jsonl",
+      "prediction_absolute_path": "/workspace/scratch/0ef05647638d/AIC-current/submissions/R84_COORD_CONSISTENCY_SPATIAL_R54TIME/predictions.jsonl",
+      "prediction_bytes": 9430386,
+      "prediction_sha256": "22e668f1dbd9d36694d60d5ee191a3437508cf9cb2b4cb0ebc3d9945be7c1616",
+      "manifest_prediction_sha256": "22e668f1dbd9d36694d60d5ee191a3437508cf9cb2b4cb0ebc3d9945be7c1616",
+      "prediction_hash_matches_manifest": true,
+      "video_count": 426,
+      "prediction_count": 199037,
+      "current_index_ids_match": true,
+      "parameter_components_as_recorded": [
+        {
+          "name": "TimeLens2-8B",
+          "parameters": 8767123696
+        },
+        {
+          "name": "V9 vision tower",
+          "parameters": 85843200
+        },
+        {
+          "name": "R84 coordinate-consistency head",
+          "parameters": 623361
+        }
+      ],
+      "total_parameters_as_recorded": 8853590257,
+      "component_sum_matches_total": true,
+      "parameter_count_source": "manifest_declaration_only; no inference weights were loaded or independently counted",
+      "model_params_b_field_values": [
+        8.853590257
+      ],
+      "model_size_mb_field_values": [
+        8853.590257
+      ],
+      "model_size_mb_is_measured_weight_bytes": false,
+      "remaining_parameters_if_declaration_complete": 146409743,
+      "manifest_path": "submissions/R84_COORD_CONSISTENCY_SPATIAL_R54TIME/manifest.json",
+      "manifest_sha256_original": "7bb7745f20d521f4f22a2b84386d385c846373028fbbcb6194492fcd89134859",
+      "manifest_strict_json_valid": true,
+      "manifest_strict_json_error": null,
+      "manifest_parse_recovery": null,
+      "manifest_status_as_recorded": "PACKAGED_NOT_UPLOADED_R84_COORD_CONSISTENCY",
+      "manifest_official_score_as_recorded": null,
+      "latest_official_score_user_reported": null,
+      "official_score_provenance": "current user message; upload bytes/platform were not independently verified",
+      "archive_absolute_path_expected": "/workspace/scratch/0ef05647638d/AIC-current/submissions/R84_COORD_CONSISTENCY_SPATIAL_R54TIME/R84_COORD_CONSISTENCY_SPATIAL_R54TIME.zip",
+      "archive_exists": false,
+      "archive_sha256_recorded_only": "526d3e0b41c329806c7746e0f7c1404b0ec8d3d2470495e8470c0f25983934f4",
+      "archive_sha256_sidecar": "526d3e0b41c329806c7746e0f7c1404b0ec8d3d2470495e8470c0f25983934f4",
+      "archive_sha256_independently_verified": null,
+      "archive_recreated": false,
+      "current_checker_results": {
+        "project": {
+          "command": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "-m",
+            "aic.contract",
+            "validate",
+            "--index",
+            "/workspace/scratch/0ef05647638d/AIC-current/reports/r47_timelens2_index_enriched_426.jsonl",
+            "--submission",
+            "/workspace/scratch/0ef05647638d/AIC-current/submissions/R84_COORD_CONSISTENCY_SPATIAL_R54TIME/predictions.jsonl",
+            "--stage",
+            "current",
+            "--require-sorted",
+            "--actual-model-params-b",
+            "8.853590257"
+          ],
+          "exit_code": 0,
+          "result": {
+            "valid": true,
+            "issues": [],
+            "video_count": 426,
+            "prediction_count": 199037,
+            "model_size_mb": 8853.590257,
+            "model_params_b": 8.853590257,
+            "stage": "current",
+            "validator": "local_rules_2026-10-16_not_official",
+            "official_validator_verified": false
+          },
+          "stderr": "",
+          "supplied_count_evidence": "historical manifest only, not an actual weight audit"
+        },
+        "independent": {
+          "command": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "scripts/independent_submission_check.py",
+            "--index",
+            "/workspace/scratch/0ef05647638d/AIC-current/reports/r47_timelens2_index_enriched_426.jsonl",
+            "--submission",
+            "/workspace/scratch/0ef05647638d/AIC-current/submissions/R84_COORD_CONSISTENCY_SPATIAL_R54TIME/predictions.jsonl",
+            "--contract",
+            "current",
+            "--parameter-count",
+            "8853590257"
+          ],
+          "exit_code": 0,
+          "result": {
+            "valid": true,
+            "videos": 426,
+            "predictions": 199037,
+            "model_params_b": 8.853590257,
+            "expected_parameters": 8853590257,
+            "model_size_mb": 8853.590257,
+            "contract": "current",
+            "weights_loaded": false,
+            "parameter_count_evidence": "caller_supplied_count",
+            "checker": "independent_submission_check_v2"
+          },
+          "stderr": "",
+          "supplied_count_evidence": "historical manifest only, not an actual weight audit"
+        }
+      },
+      "comparison_vs_R54": {
+        "left_added_frames_vs_right": 0,
+        "left_removed_frames_vs_right": 0,
+        "common_frames": 199037,
+        "mask_changed_videos": 0,
+        "ordered_frame_sequence_changed_videos": 0,
+        "bbox_changed_on_common_frames": 112141,
+        "bbox_changed_videos": 267,
+        "ratio_mismatch_videos": 0
+      }
+    }
+  },
+  "pairwise_differences": {
+    "R54__vs__R70_TOPSOFT": {
+      "left_added_frames_vs_right": 0,
+      "left_removed_frames_vs_right": 0,
+      "common_frames": 199037,
+      "mask_changed_videos": 0,
+      "ordered_frame_sequence_changed_videos": 0,
+      "bbox_changed_on_common_frames": 101797,
+      "bbox_changed_videos": 254,
+      "ratio_mismatch_videos": 0
+    },
+    "R54__vs__R71": {
+      "left_added_frames_vs_right": 3823,
+      "left_removed_frames_vs_right": 0,
+      "common_frames": 195214,
+      "mask_changed_videos": 209,
+      "ordered_frame_sequence_changed_videos": 209,
+      "bbox_changed_on_common_frames": 0,
+      "bbox_changed_videos": 0,
+      "ratio_mismatch_videos": 0
+    },
+    "R54__vs__R84": {
+      "left_added_frames_vs_right": 0,
+      "left_removed_frames_vs_right": 0,
+      "common_frames": 199037,
+      "mask_changed_videos": 0,
+      "ordered_frame_sequence_changed_videos": 0,
+      "bbox_changed_on_common_frames": 112141,
+      "bbox_changed_videos": 267,
+      "ratio_mismatch_videos": 0
+    },
+    "R70_TOPSOFT__vs__R71": {
+      "left_added_frames_vs_right": 3823,
+      "left_removed_frames_vs_right": 0,
+      "common_frames": 195214,
+      "mask_changed_videos": 209,
+      "ordered_frame_sequence_changed_videos": 209,
+      "bbox_changed_on_common_frames": 99323,
+      "bbox_changed_videos": 254,
+      "ratio_mismatch_videos": 0
+    },
+    "R70_TOPSOFT__vs__R84": {
+      "left_added_frames_vs_right": 0,
+      "left_removed_frames_vs_right": 0,
+      "common_frames": 199037,
+      "mask_changed_videos": 0,
+      "ordered_frame_sequence_changed_videos": 0,
+      "bbox_changed_on_common_frames": 111491,
+      "bbox_changed_videos": 267,
+      "ratio_mismatch_videos": 0
+    },
+    "R71__vs__R84": {
+      "left_added_frames_vs_right": 0,
+      "left_removed_frames_vs_right": 3823,
+      "common_frames": 195214,
+      "mask_changed_videos": 209,
+      "ordered_frame_sequence_changed_videos": 209,
+      "bbox_changed_on_common_frames": 109394,
+      "bbox_changed_videos": 267,
+      "ratio_mismatch_videos": 0
+    }
+  },
+  "r70_topsoft_identity_binding": {
+    "prediction_sha_matches_original_manifest": true,
+    "recorded_zip_sha": "da5fcc5dccbfcd960b112852295dbbba35be89aaad61c20fcbb81d1ba8fed4d2",
+    "matches_zip_sidecar": true,
+    "same_zip_sha_appears_in_topsoft_report": true,
+    "report_path": "reports/r70_topsoft_objective_20261018/README.md",
+    "report_sha256": "9be8dd928b07b30980073c4b2885eb8bb6c40bdf0833d606cdcb820f62abbac1",
+    "zip_bytes_available": false,
+    "claim_limit": "Existing JSONL is bound by original manifest to the reported da5fcc... topsoft archive; archive bytes and actual platform upload identity are not independently verified.",
+    "original_manifest_preserved": true
+  },
+  "runtime": {
+    "python": "3.12.14",
+    "torch_installed": false,
+    "nvidia_smi_path": null,
+    "gpu_device_count": 0,
+    "ssh_agent_present": false,
+    "ssh_directory_regular_file_count": 0,
+    "credential_contents_read": false,
+    "remote_gpu_or_paths_verified": false,
+    "network_probes": [
+      {
+        "endpoint": "connect.westc.seetacloud.com:22527",
+        "authorization": "read-only project endpoint probe; no credentials sent",
+        "sandbox_result": "DNS temporary failure",
+        "elevated_network_result": "gaierror [Errno -3] Temporary failure in name resolution"
+      },
+      {
+        "endpoint": "119.62.14.24:22022",
+        "authorization": "read-only historical project endpoint probe; no credentials sent",
+        "sandbox_result": "PermissionError [Errno 1] Operation not permitted",
+        "elevated_network_result": "ConnectionRefusedError [Errno 111] Connection refused"
+      }
+    ],
+    "network_interpretation": "No usable compute session was established. DNS failure does not establish that the latest AutoDL instance is powered off. The historical school endpoint actively refused the TCP connection during this probe."
+  },
+  "local_asset_inventory": {
+    ".mp4": 0,
+    ".avi": 0,
+    ".mov": 0,
+    ".pt": 0,
+    ".pth": 0,
+    ".bin": 0,
+    ".safetensors": 0,
+    ".npy": 0,
+    ".npz": 0,
+    ".pkl": 0,
+    ".zip": 0
+  },
+  "documented_remote_asset_paths": [
+    {
+      "path": "/root/autodl-tmp/evac/data/aic/experiments_910a/LFM_V9/vision_only_model",
+      "exists_in_this_workspace": false,
+      "remote_presence_verified": false
+    },
+    {
+      "path": "/root/autodl-tmp/experiments/R16_ENV/lfm_processor",
+      "exists_in_this_workspace": false,
+      "remote_presence_verified": false
+    },
+    {
+      "path": "/root/autodl-tmp/evac/data/aic/experiments/T5_CROPHEAD_V3/tables",
+      "exists_in_this_workspace": false,
+      "remote_presence_verified": false
+    },
+    {
+      "path": "/root/autodl-tmp/experiments/R70_SPATIAL_UTILITY/full/shards",
+      "exists_in_this_workspace": false,
+      "remote_presence_verified": false
+    },
+    {
+      "path": "/root/autodl-tmp/experiments/R70_OBJECTIVE_VARIANTS",
+      "exists_in_this_workspace": false,
+      "remote_presence_verified": false
+    }
+  ],
+  "training_data_lineage": {
+    "R70_R84_input_version": "T5_CROPHEAD_V3 pickle tables and R70_SPATIAL_UTILITY/full feature shards; not the later V8 manifest and not the untouched spatial_crop_v1 split",
+    "table_names": [
+      "rv_train.pkl",
+      "live_train.pkl",
+      "rv_dev.pkl",
+      "live_dev.pkl"
+    ],
+    "R70_table_reader": "scripts/r70_spatial_utility_pilot.py: table_units, extract, table_gt",
+    "intended_RV_split_in_generator": {
+      "train": "001..080, both native ratios",
+      "dev": "081..100, both native ratios",
+      "source": "scripts/t5_crophead_probe.py: split_units"
+    },
+    "intended_LIVE_split_in_generator": {
+      "input": "T5_CROPHEAD_V3/live_train_index.jsonl",
+      "dev_rule": "int(sha1(video_id).hexdigest(),16) % 10 == 0",
+      "train_rule": "remaining entries of the same index",
+      "observed_report_dev_sources": 148,
+      "source": "scripts/t5_crophead_probe.py: live_rows"
+    },
+    "RV_target_transform": "T5 load_gt stacks 6 annotators and clips negative coordinates to zero. R70 recomputes continuous half-open IoU of 129 maximum windows and averages annotator utilities.",
+    "LIVE_target_transform": "T5 converts raw_ltrb to arrays and clips x to [0,W-1], y to [0,H-1]. R70 recomputes continuous half-open candidate IoU against this transformed single-box target.",
+    "R84_split_code": "name ending _train -> train; all remaining loaded shards -> heldout; train-only feature normalization",
+    "source_disjointness_assertion_in_R70_R84_trainers": false,
+    "actual_cached_source_memberships_verified": false,
+    "source_table_index_shards_available_locally": false,
+    "input_hashes_and_full_source_ledger_available_for_this_training_run": false,
+    "V8_split_is_distinct": "scripts/v8_build_manifest.py uses RV 001..030+621..700 for train and 601..620 for dev; this must not be attributed to the T5-backed R70/R84 run.",
+    "prior_exposure": "Historical public DEV and confirmation exposure is retained; none of these reviewed datasets is certified as a new blind confirmation pool."
+  },
+  "limitations": [
+    "Both current checkers validate existing output syntax, metadata, geometry, coverage and parameter declarations. They do not validate learned quality, actual weights, training data lineage or platform acceptance.",
+    "All parameter counts supplied to the checkers came from existing manifests; no weights were loaded.",
+    "model_size_mb values equal declared parameters divided by 1e6 in these packages and are not measured weight bytes.",
+    "Existing manifests still label some user-scored candidates as unuploaded; the original records were preserved.",
+    "R84 archive path is recorded, but ZIP is absent. No new archive or new competition candidate was created by this audit.",
+    "R84 inference script does not load YuNet; exporter still consumes inherited raw/reset observation caches. Complete upstream provenance of those caches was not re-executed."
+  ]
+}

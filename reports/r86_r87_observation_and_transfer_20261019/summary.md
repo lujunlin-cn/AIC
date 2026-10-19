@@ -49,3 +49,17 @@ frame transition and cache implementation under the original pinned dependency
 set on a one-fragment trace, checking hidden-state finiteness before any larger
 run. Until that trace is finite, R86 remains the only upload candidate from
 this pair of routes.
+
+## Reproduction record
+
+Code commit: `27e3f1e`.
+
+R86 was run on `root@connect.westc.seetacloud.com:22527` with the 426-video
+semifinal index, the existing `obs_cache`, `points_V9_A1raw/points`, and the
+frozen T5 probe metrics. The remote independent checker reported `valid=true`,
+`videos=426`, and `predictions=199037`.
+
+R87 used the same host, GPU0 (RTX 4080 32GB), the local AHA base and adapter,
+PHD2 `index_v2`, and `LFM_V13/frag_labels.jsonl`; no official test files were
+read. The AHA environment was repaired to Transformers 4.49.0,
+tokenizers 0.21.4, matplotlib, thop and h5py before the pilot.

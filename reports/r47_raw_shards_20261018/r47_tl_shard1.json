@@ -1,0 +1,208 @@
+{
+  "model": "/root/autodl-tmp/evac/data/aic/pretrained/TimeLens2-8B",
+  "prompt": "This is a generic video with no user query. Identify every time interval that is most worth keeping in a short highlight edit. Prefer a concrete action, outcome, reaction, reveal, or visually informative change over waiting, setup, or static repetition. Return ALL intervals in seconds as a JSON array of [start, end] pairs and no other text.",
+  "fps": 2.0,
+  "max_pixels": 102400,
+  "results": [
+    {
+      "video_id": "50",
+      "response": "[[0.0, 6.0]]"
+    },
+    {
+      "video_id": "51",
+      "response": "[[0.0, 4.0]]"
+    },
+    {
+      "video_id": "52",
+      "response": "[[0.0, 5.0]]"
+    },
+    {
+      "video_id": "53",
+      "response": "[[0.0, 5.0]]"
+    },
+    {
+      "video_id": "54",
+      "response": "[[0.0, 9.0]]"
+    },
+    {
+      "video_id": "55",
+      "response": "[[0.0, 8.0]]"
+    },
+    {
+      "video_id": "56",
+      "response": "[[0.0, 13.0]]"
+    },
+    {
+      "video_id": "57",
+      "response": "[[0.0, 7.0]]"
+    },
+    {
+      "video_id": "58",
+      "response": "[[1.0, 5.0]]"
+    },
+    {
+      "video_id": "59",
+      "response": "[[8.0, 11.0]]"
+    },
+    {
+      "video_id": "60",
+      "response": "[[3.0, 6.0]]"
+    },
+    {
+      "video_id": "61",
+      "response": "[[0.0, 9.0]]"
+    },
+    {
+      "video_id": "62",
+      "response": "[[2.0, 28.0]]"
+    },
+    {
+      "video_id": "63",
+      "response": "[[2.0, 7.0]]"
+    },
+    {
+      "video_id": "64",
+      "response": "[[8.0, 19.0]]"
+    },
+    {
+      "video_id": "65",
+      "response": "[[0.0, 7.0]]"
+    },
+    {
+      "video_id": "66",
+      "response": "[[2.0, 13.0]]"
+    },
+    {
+      "video_id": "67",
+      "response": "[[0.0, 7.0]]"
+    },
+    {
+      "video_id": "68",
+      "response": "[[4.0, 14.0]]"
+    },
+    {
+      "video_id": "69",
+      "response": "[[2.0, 13.0]]"
+    },
+    {
+      "video_id": "70",
+      "response": "[[4.0, 10.0]]"
+    },
+    {
+      "video_id": "71",
+      "response": "[[4.0, 9.0]]"
+    },
+    {
+      "video_id": "72",
+      "response": "[[0.0, 6.0]]"
+    },
+    {
+      "video_id": "73",
+      "response": "[[0.0, 9.0]]"
+    },
+    {
+      "video_id": "74",
+      "response": "[[0.0, 8.0]]"
+    },
+    {
+      "video_id": "75",
+      "response": "[[9.0, 15.0]]"
+    },
+    {
+      "video_id": "76",
+      "response": "[[7.0, 12.0]]"
+    },
+    {
+      "video_id": "77",
+      "response": "[[3.0, 9.0]]"
+    },
+    {
+      "video_id": "78",
+      "response": "[[4.0, 11.0]]"
+    },
+    {
+      "video_id": "79",
+      "response": "[[0.0, 10.0]]"
+    },
+    {
+      "video_id": "80",
+      "response": "[[0.0, 3.0]]"
+    },
+    {
+      "video_id": "81",
+      "response": "[[0.0, 5.0]]"
+    },
+    {
+      "video_id": "82",
+      "response": "[[9.0, 14.0]]"
+    },
+    {
+      "video_id": "83",
+      "response": "[[4.0, 58.0]]"
+    },
+    {
+      "video_id": "84",
+      "response": "[[10.0, 14.0]]"
+    },
+    {
+      "video_id": "85",
+      "response": "[[8.0, 15.0]]"
+    },
+    {
+      "video_id": "86",
+      "response": "[[0.0, 27.0]]"
+    },
+    {
+      "video_id": "87",
+      "response": "[[1.0, 4.0]]"
+    },
+    {
+      "video_id": "88",
+      "response": "[[3.0, 8.0]]"
+    },
+    {
+      "video_id": "89",
+      "response": "[[23.0, 31.0]]"
+    },
+    {
+      "video_id": "90",
+      "response": "[[2.0, 7.0]]"
+    },
+    {
+      "video_id": "91",
+      "response": "[[46.0, 68.0], [114.0, 129.0], [138.0, 156.0]]"
+    },
+    {
+      "video_id": "92",
+      "response": "[[0.0, 5.0]]"
+    },
+    {
+      "video_id": "93",
+      "response": "[[5.0, 8.0]]"
+    },
+    {
+      "video_id": "94",
+      "response": "[[0.0, 9.0]]"
+    },
+    {
+      "video_id": "95",
+      "response": "[[7.0, 10.0]]"
+    },
+    {
+      "video_id": "96",
+      "response": "[[12.0, 15.0]]"
+    },
+    {
+      "video_id": "97",
+      "response": "[[19.0, 24.0]]"
+    },
+    {
+      "video_id": "98",
+      "response": "[[2.0, 4.0]]"
+    },
+    {
+      "video_id": "99",
+      "response": "[[0.0, 8.0]]"
+    }
+  ]
+}

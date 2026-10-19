@@ -1,0 +1,12 @@
+{
+  "variant": "topsoft_plus_stats_nested",
+  "dim": 136,
+  "params": 52097,
+  "external_mse": 0.04673467203974724,
+  "external_mae": 0.16939541697502136,
+  "external_row_spearman": 0.4768499945437463,
+  "external_source_macro_spearman": 0.16868667821718536,
+  "inner_sources": 1196,
+  "tune_sources": 299,
+  "external_sources": 168
+}

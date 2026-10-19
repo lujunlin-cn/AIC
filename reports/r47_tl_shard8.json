@@ -1,0 +1,112 @@
+{
+  "model": "/root/autodl-tmp/evac/data/aic/pretrained/TimeLens2-8B",
+  "prompt": "This is a generic video with no user query. Identify every time interval that is most worth keeping in a short highlight edit. Prefer a concrete action, outcome, reaction, reveal, or visually informative change over waiting, setup, or static repetition. Return ALL intervals in seconds as a JSON array of [start, end] pairs and no other text.",
+  "fps": 2.0,
+  "max_pixels": 102400,
+  "results": [
+    {
+      "video_id": "400",
+      "response": "[[0.0, 9.0]]"
+    },
+    {
+      "video_id": "401",
+      "response": "[[5.0, 22.0]]"
+    },
+    {
+      "video_id": "402",
+      "response": "[[10.0, 20.0]]"
+    },
+    {
+      "video_id": "403",
+      "response": "[[0.0, 28.0]]"
+    },
+    {
+      "video_id": "404",
+      "response": "[[0.0, 46.0]]"
+    },
+    {
+      "video_id": "405",
+      "response": "[[2.0, 16.0]]"
+    },
+    {
+      "video_id": "406",
+      "response": "[[1.0, 10.0]]"
+    },
+    {
+      "video_id": "407",
+      "response": "[[0.0, 12.0]]"
+    },
+    {
+      "video_id": "408",
+      "response": "[[2.0, 6.0]]"
+    },
+    {
+      "video_id": "409",
+      "response": "[[2.0, 6.0]]"
+    },
+    {
+      "video_id": "410",
+      "response": "[[4.0, 7.0]]"
+    },
+    {
+      "video_id": "411",
+      "response": "[[0.0, 12.0]]"
+    },
+    {
+      "video_id": "412",
+      "response": "[[0.0, 13.0]]"
+    },
+    {
+      "video_id": "413",
+      "response": "[[0.0, 10.0]]"
+    },
+    {
+      "video_id": "414",
+      "response": "[[8.0, 11.0]]"
+    },
+    {
+      "video_id": "415",
+      "response": "[[3.0, 36.0]]"
+    },
+    {
+      "video_id": "416",
+      "response": "[[0.0, 14.0]]"
+    },
+    {
+      "video_id": "417",
+      "response": "[[3.0, 9.0]]"
+    },
+    {
+      "video_id": "418",
+      "response": "[[1.0, 7.0]]"
+    },
+    {
+      "video_id": "419",
+      "response": "[[0.0, 10.0]]"
+    },
+    {
+      "video_id": "420",
+      "response": "[[3.0, 7.0]]"
+    },
+    {
+      "video_id": "421",
+      "response": "[[0.0, 9.0]]"
+    },
+    {
+      "video_id": "422",
+      "response": "[[2.0, 14.0]]"
+    },
+    {
+      "video_id": "423",
+      "response": "[[0.0, 7.0]]"
+    },
+    {
+      "video_id": "424",
+      "response": "[[13.0, 31.0]]"
+    },
+    {
+      "video_id": "425",
+      "response": "[[10.0, 47.0]]"
+    }
+  ]
+}

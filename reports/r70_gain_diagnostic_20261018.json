@@ -1,0 +1,63 @@
+{
+  "rows": 1546,
+  "sources": 168,
+  "actual_selected_iou": 0.6219403743743896,
+  "actual_center_iou": 0.5514033436775208,
+  "actual_gain": 0.0705370306968689,
+  "metrics": {
+    "max_score": {
+      "rho_selected_iou": 0.2930591054311154,
+      "rho_actual_gain": 0.12795160123975372,
+      "rho_oracle_iou": 0.07604942033525812,
+      "rv_top85_gain": 0.08545350146014244,
+      "live_top85_gain": 0.070122829325752,
+      "rv_top85_iou": 0.6997122824192047,
+      "live_top85_iou": 0.5616606364177691
+    },
+    "incremental_max_minus_center": {
+      "rho_selected_iou": -0.11254756076395604,
+      "rho_actual_gain": 0.37744733923624124,
+      "rho_oracle_iou": -0.053041967574191995,
+      "rv_top85_gain": 0.08323470431641908,
+      "live_top85_gain": 0.07846563169221406,
+      "rv_top85_iou": 0.6815332561731339,
+      "live_top85_iou": 0.546639513929148
+    },
+    "center_score": {
+      "rho_selected_iou": 0.3116384882550659,
+      "rho_actual_gain": -0.16700453329797643,
+      "rho_oracle_iou": 0.08502904422973755,
+      "rv_top85_gain": 0.05199184688390233,
+      "live_top85_gain": 0.053400045315455016,
+      "rv_top85_iou": 0.7116119354963303,
+      "live_top85_iou": 0.5511287996495092
+    },
+    "soft_expected_score": {
+      "rho_selected_iou": 0.3780818088616331,
+      "rho_actual_gain": 0.011739352428058864,
+      "rho_oracle_iou": 0.11358392826768318,
+      "rv_top85_gain": 0.06658499650657176,
+      "live_top85_gain": 0.06836807743083399,
+      "rv_top85_iou": 0.715390557050705,
+      "live_top85_iou": 0.55810158931323
+    },
+    "max_minus_std": {
+      "rho_selected_iou": 0.3223754309602131,
+      "rho_actual_gain": 0.10193406635624463,
+      "rho_oracle_iou": 0.08003378046576426,
+      "rv_top85_gain": 0.08163169284816832,
+      "live_top85_gain": 0.06743561647404882,
+      "rv_top85_iou": 0.7035880029201508,
+      "live_top85_iou": 0.5597013636819415
+    },
+    "top2_gap": {
+      "rho_selected_iou": 0.21898496664703077,
+      "rho_actual_gain": -0.07159980629467295,
+      "rho_oracle_iou": 0.10397149098730084,
+      "rv_top85_gain": 0.06730244476348161,
+      "live_top85_gain": 0.07078901129795201,
+      "rv_top85_iou": 0.7018309980630875,
+      "live_top85_iou": 0.552976607269532
+    }
+  }
+}

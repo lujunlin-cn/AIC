@@ -46,3 +46,7 @@ Remote artifacts remain under `/root/autodl-tmp/experiments/R78_DIRECT_OUTPUT_UT
 ## Nested source check
 
 To remove early-stopping leakage, the R70 training sources were split by source into 1,196 inner-train and 299 inner-tune sources; the 168-source R70 dev remained untouched. The same 50,561-parameter topsoft+position head reached external MSE `0.04825`, MAE `0.16949`, row Spearman `0.47334`, and source-macro Spearman `0.15850`. This preserves the mechanism signal with a genuinely held-out outer source set, although it remains a public spatial transfer result rather than a joint AIC score.
+
+## Explicit topsoft statistics
+
+A single nested source split adding deterministic topsoft summaries (max, top2 gap, mean, standard deviation, entropy, and topsoft argmax position) improved the outer source macro Spearman to `0.16869` and row Spearman to `0.47685` (MSE `0.04673`, MAE `0.16940`) with 52,097 parameters. This is the current practical head; it still uses only values present in the R70 dump plus the V9 B3 output position.

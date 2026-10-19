@@ -36,7 +36,10 @@ def main():
                  '{"crop":[x,y,w]} where x,y,w are normalized integers from 0 to 1000, '
                  'x,y are the top-left of a crop and w is its width; the crop height is implied by the requested ratio. '
                  'Keep the whole important subject/action and avoid empty background.')
-        messages=[{'role':'user','content':[{'type':'video','video':path.as_uri(),'fps':args.fps,'min_pixels':224*224,'max_pixels':args.max_pixels,'total_pixels':64*args.max_pixels},{'type':'text','text':prompt}]}]
+        # Pass the native filesystem path. ``Path.as_uri()`` percent-encodes
+        # the Chinese semifinal directory name and decord cannot open that
+        # encoded URI on the AutoDL mount.
+        messages=[{'role':'user','content':[{'type':'video', 'video':str(path), 'fps':args.fps,'min_pixels':224*224,'max_pixels':args.max_pixels,'total_pixels':64*args.max_pixels},{'type':'text','text':prompt}]}]
         text=proc.apply_chat_template(messages,tokenize=False,add_generation_prompt=True)
         images,videos,kwargs=process_vision_info(messages,image_patch_size=16,return_video_kwargs=True,return_video_metadata=True)
         if videos is not None:

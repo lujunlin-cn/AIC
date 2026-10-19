@@ -1,0 +1,196 @@
+{
+  "experiment_id": "R45_HIGHFREQ_BOUNDARY_PROBE",
+  "status": "PUBLIC_SOURCE_HELD_OUT_COMPLETED",
+  "rows": 540,
+  "sources": 12,
+  "keep": 0.85,
+  "eta": 0.2,
+  "band_fraction": 0.05,
+  "feature_contract": "4fps local state + frozen IV2 event score; source-held-out Ridge",
+  "macro_center": 0.7038887173916323,
+  "macro_full": 0.7066363631150846,
+  "macro_boundary": 0.7066363631150844,
+  "positive_full": 3,
+  "positive_boundary": 3,
+  "source": [
+    {
+      "video_id": "B6AEPicK9Bk_210.0_360.0",
+      "n": 30,
+      "center_proxy": 0.752,
+      "full_hf_proxy": 0.752,
+      "boundary_hf_proxy": 0.752,
+      "delta_full": 0.0,
+      "delta_boundary": 0.0,
+      "full_swaps": 1,
+      "boundary_swaps": 1,
+      "boundary_changed_positions": [
+        2,
+        28
+      ]
+    },
+    {
+      "video_id": "GtJXHRFhm0E_210.0_360.0",
+      "n": 30,
+      "center_proxy": 0.36190476190476195,
+      "full_hf_proxy": 0.3619047619047619,
+      "boundary_hf_proxy": 0.36190476190476195,
+      "delta_full": -5.551115123125783e-17,
+      "delta_boundary": 0.0,
+      "full_swaps": 1,
+      "boundary_swaps": 1,
+      "boundary_changed_positions": [
+        2,
+        28
+      ]
+    },
+    {
+      "video_id": "HISG6jkZBfs_210.0_360.0",
+      "n": 30,
+      "center_proxy": 0.6559999999999999,
+      "full_hf_proxy": 0.704,
+      "boundary_hf_proxy": 0.704,
+      "delta_full": 0.04800000000000004,
+      "delta_boundary": 0.04800000000000004,
+      "full_swaps": 1,
+      "boundary_swaps": 1,
+      "boundary_changed_positions": [
+        2,
+        28
+      ]
+    },
+    {
+      "video_id": "P6KTyi4s4Bc_210.0_360.0",
+      "n": 30,
+      "center_proxy": 0.9397590361445783,
+      "full_hf_proxy": 0.9397590361445783,
+      "boundary_hf_proxy": 0.9397590361445783,
+      "delta_full": 0.0,
+      "delta_boundary": 0.0,
+      "full_swaps": 0,
+      "boundary_swaps": 0,
+      "boundary_changed_positions": []
+    },
+    {
+      "video_id": "bGU97Zw6Jfg_60.0_210.0",
+      "n": 30,
+      "center_proxy": 0.7619047619047619,
+      "full_hf_proxy": 0.7142857142857142,
+      "boundary_hf_proxy": 0.7142857142857142,
+      "delta_full": -0.04761904761904767,
+      "delta_boundary": -0.04761904761904767,
+      "full_swaps": 1,
+      "boundary_swaps": 1,
+      "boundary_changed_positions": [
+        2,
+        29
+      ]
+    },
+    {
+      "video_id": "eLlUVxVLiLU_60.0_210.0",
+      "n": 30,
+      "center_proxy": 0.42424242424242425,
+      "full_hf_proxy": 0.42424242424242425,
+      "boundary_hf_proxy": 0.4242424242424242,
+      "delta_full": 0.0,
+      "delta_boundary": -5.551115123125783e-17,
+      "full_swaps": 1,
+      "boundary_swaps": 1,
+      "boundary_changed_positions": [
+        2,
+        28
+      ]
+    },
+    {
+      "video_id": "jgvQzWAhoiw_210.0_360.0",
+      "n": 30,
+      "center_proxy": 0.9156626506024097,
+      "full_hf_proxy": 0.9156626506024097,
+      "boundary_hf_proxy": 0.9156626506024097,
+      "delta_full": 0.0,
+      "delta_boundary": 0.0,
+      "full_swaps": 1,
+      "boundary_swaps": 1,
+      "boundary_changed_positions": [
+        2,
+        28
+      ]
+    },
+    {
+      "video_id": "m6U-5Hck5z0_60.0_210.0",
+      "n": 30,
+      "center_proxy": 0.8831168831168831,
+      "full_hf_proxy": 0.8831168831168831,
+      "boundary_hf_proxy": 0.8831168831168831,
+      "delta_full": 0.0,
+      "delta_boundary": 0.0,
+      "full_swaps": 1,
+      "boundary_swaps": 1,
+      "boundary_changed_positions": [
+        2,
+        28
+      ]
+    },
+    {
+      "video_id": "rAHQY2FHcOo_210.0_360.0",
+      "n": 30,
+      "center_proxy": 0.8333333333333334,
+      "full_hf_proxy": 0.8194444444444443,
+      "boundary_hf_proxy": 0.8194444444444445,
+      "delta_full": -0.013888888888889062,
+      "delta_boundary": -0.01388888888888884,
+      "full_swaps": 2,
+      "boundary_swaps": 2,
+      "boundary_changed_positions": [
+        0,
+        1,
+        2,
+        27
+      ]
+    },
+    {
+      "video_id": "uJ97MxBs4qU_210.0_360.0",
+      "n": 30,
+      "center_proxy": 0.2828282828282829,
+      "full_hf_proxy": 0.2626262626262626,
+      "boundary_hf_proxy": 0.2626262626262626,
+      "delta_full": -0.020202020202020277,
+      "delta_boundary": -0.020202020202020277,
+      "full_swaps": 1,
+      "boundary_swaps": 1,
+      "boundary_changed_positions": [
+        1,
+        27
+      ]
+    },
+    {
+      "video_id": "vprHvWMX1YU_210.0_360.0",
+      "n": 30,
+      "center_proxy": 0.8387096774193546,
+      "full_hf_proxy": 0.8774193548387097,
+      "boundary_hf_proxy": 0.8774193548387095,
+      "delta_full": 0.03870967741935505,
+      "delta_boundary": 0.03870967741935483,
+      "full_swaps": 1,
+      "boundary_swaps": 1,
+      "boundary_changed_positions": [
+        2,
+        28
+      ]
+    },
+    {
+      "video_id": "yXR17NNJgdU_210.0_360.0",
+      "n": 30,
+      "center_proxy": 0.7972027972027971,
+      "full_hf_proxy": 0.8251748251748251,
+      "boundary_hf_proxy": 0.8251748251748251,
+      "delta_full": 0.027972027972028024,
+      "delta_boundary": 0.027972027972028024,
+      "full_swaps": 1,
+      "boundary_swaps": 1,
+      "boundary_changed_positions": [
+        2,
+        28
+      ]
+    }
+  ]
+}

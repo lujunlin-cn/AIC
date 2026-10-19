@@ -6,8 +6,8 @@
   "boundary_fraction_of_full_video": 0.05,
   "budget": "round(0.85 * full original frame count)",
   "spatial_parent": "R26 B3 boxes copied byte-for-byte",
-  "declared_parameters": 450283377,
-  "model_params_b": 0.450283377,
+  "declared_parameters": 7267097558,
+  "model_params_b": 7.267097558,
   "rules": {
     "official_test_labels_used": false,
     "official_score_used_for_construction": false,
@@ -19,5 +19,9 @@
     "r44_zip": "b814699f1bdc71f2fec80e8e0b9465fe600327d44eab731f41f4d75ff6deac9e",
     "r26_manifest_prediction_sha256": "4af2d6ae656450936577a5cd53ed0368986b5016a53640a2b37483034e2256a4"
   },
-  "status": "packaged_not_uploaded"
+  "status": "packaged_not_uploaded",
+  "inference_components": {
+    "internvideo2_stage2": 6816814181,
+    "b3_spatial": 450283377
+  }
 }

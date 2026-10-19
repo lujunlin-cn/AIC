@@ -1,0 +1,21 @@
+{
+  "experiment_id": "R48_CONSENSUS_GATED_RESIDUAL_B3",
+  "parent": "R26_POS_CENTER_EXACT085_B3",
+  "hypothesis": "4fps local state is useful as a correction only when its direction agrees with the 1fps local readout",
+  "labels": {
+    "rows": 540,
+    "sources": 12,
+    "source_held_out": true,
+    "official_gt": false
+  },
+  "features": "D2 9 static descriptors + 1fps before/after state; D3 fixed 4fps local-state feature contract",
+  "decision": "rank(center) + 0.20 * (rank(D3)-0.5) * I[rank(D2) and rank(D3) on same side of per-video median]",
+  "ridge_alpha": 10.0,
+  "keep": 0.85,
+  "spatial": "copy R26 B3 boxes byte-for-byte",
+  "total_inference_parameters": 450283377,
+  "official_test_labels_used": false,
+  "official_score_used_for_construction": false,
+  "coefficient_or_threshold_sweep": false,
+  "status": "DIAGNOSTIC_PASSED_PACKAGE_IN_PROGRESS"
+}

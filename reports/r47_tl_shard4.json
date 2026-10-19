@@ -1,0 +1,208 @@
+{
+  "model": "/root/autodl-tmp/evac/data/aic/pretrained/TimeLens2-8B",
+  "prompt": "This is a generic video with no user query. Identify every time interval that is most worth keeping in a short highlight edit. Prefer a concrete action, outcome, reaction, reveal, or visually informative change over waiting, setup, or static repetition. Return ALL intervals in seconds as a JSON array of [start, end] pairs and no other text.",
+  "fps": 2.0,
+  "max_pixels": 102400,
+  "results": [
+    {
+      "video_id": "200",
+      "response": "[[0.0, 12.0]]"
+    },
+    {
+      "video_id": "201",
+      "response": "[[0.0, 10.0]]"
+    },
+    {
+      "video_id": "202",
+      "response": "[[0.0, 7.0]]"
+    },
+    {
+      "video_id": "203",
+      "response": "[[0.0, 15.0]]"
+    },
+    {
+      "video_id": "204",
+      "response": "[[0.0, 13.0]]"
+    },
+    {
+      "video_id": "205",
+      "response": "[[0.0, 25.0]]"
+    },
+    {
+      "video_id": "206",
+      "response": "[[0.0, 15.0]]"
+    },
+    {
+      "video_id": "207",
+      "response": "[[0.0, 13.0]]"
+    },
+    {
+      "video_id": "208",
+      "response": "[[0.0, 16.0]]"
+    },
+    {
+      "video_id": "209",
+      "response": "[[2.0, 8.0]]"
+    },
+    {
+      "video_id": "210",
+      "response": "[[0.0, 22.0]]"
+    },
+    {
+      "video_id": "211",
+      "response": "[[19.0, 28.0]]"
+    },
+    {
+      "video_id": "212",
+      "response": "[[0.0, 11.0]]"
+    },
+    {
+      "video_id": "213",
+      "response": "[[0.0, 12.0]]"
+    },
+    {
+      "video_id": "214",
+      "response": "[[0.0, 10.0]]"
+    },
+    {
+      "video_id": "215",
+      "response": "[[0.0, 28.0]]"
+    },
+    {
+      "video_id": "216",
+      "response": "[[5.0, 9.0]]"
+    },
+    {
+      "video_id": "217",
+      "response": "[[0.0, 11.0]]"
+    },
+    {
+      "video_id": "218",
+      "response": "[[6.0, 9.0]]"
+    },
+    {
+      "video_id": "219",
+      "response": "[[3.0, 13.0]]"
+    },
+    {
+      "video_id": "220",
+      "response": "[[0.0, 15.0]]"
+    },
+    {
+      "video_id": "221",
+      "response": "[[0.0, 15.0]]"
+    },
+    {
+      "video_id": "222",
+      "response": "[[0.0, 30.0]]"
+    },
+    {
+      "video_id": "223",
+      "response": "[[2.0, 12.0]]"
+    },
+    {
+      "video_id": "224",
+      "response": "[[0.0, 18.0]]"
+    },
+    {
+      "video_id": "225",
+      "response": "[[8.0, 42.0]]"
+    },
+    {
+      "video_id": "226",
+      "response": "[[9.0, 30.0]]"
+    },
+    {
+      "video_id": "227",
+      "response": "[[0.0, 23.0]]"
+    },
+    {
+      "video_id": "228",
+      "response": "[[12.0, 19.0]]"
+    },
+    {
+      "video_id": "229",
+      "response": "[[0.0, 9.0]]"
+    },
+    {
+      "video_id": "230",
+      "response": "[[0.0, 12.0]]"
+    },
+    {
+      "video_id": "231",
+      "response": "[[0.0, 23.0]]"
+    },
+    {
+      "video_id": "232",
+      "response": "[[0.0, 19.0]]"
+    },
+    {
+      "video_id": "233",
+      "response": "[[0.0, 16.0]]"
+    },
+    {
+      "video_id": "234",
+      "response": "[[0.0, 5.0]]"
+    },
+    {
+      "video_id": "235",
+      "response": "[[31.0, 35.0]]"
+    },
+    {
+      "video_id": "236",
+      "response": "[[12.0, 21.0]]"
+    },
+    {
+      "video_id": "237",
+      "response": "[[1.0, 28.0]]"
+    },
+    {
+      "video_id": "238",
+      "response": "[[0.0, 8.0]]"
+    },
+    {
+      "video_id": "239",
+      "response": "[[1.0, 15.0]]"
+    },
+    {
+      "video_id": "240",
+      "response": "[[13.0, 19.0]]"
+    },
+    {
+      "video_id": "241",
+      "response": "[[7.0, 17.0]]"
+    },
+    {
+      "video_id": "242",
+      "response": "[[15.0, 20.0]]"
+    },
+    {
+      "video_id": "243",
+      "response": "[[0.0, 35.0]]"
+    },
+    {
+      "video_id": "244",
+      "response": "[[0.0, 15.0]]"
+    },
+    {
+      "video_id": "245",
+      "response": "[[12.0, 28.0]]"
+    },
+    {
+      "video_id": "246",
+      "response": "[[6.0, 9.0]]"
+    },
+    {
+      "video_id": "247",
+      "response": "[[0.0, 10.0]]"
+    },
+    {
+      "video_id": "248",
+      "response": "[[6.0, 12.0]]"
+    },
+    {
+      "video_id": "249",
+      "response": "[[0.0, 24.0]]"
+    }
+  ]
+}

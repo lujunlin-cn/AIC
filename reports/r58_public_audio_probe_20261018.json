@@ -1,0 +1,209 @@
+{
+  "experiment_id": "R58_PUBLIC_AUDIO_NOVELTY_SWAP",
+  "rows": 540,
+  "views": 18,
+  "macro_delta_soft": -0.005919344018839355,
+  "positive_views_soft": 2,
+  "macro_delta_binary": -0.005847658314824422,
+  "positive_views_binary": 2,
+  "per_view": [
+    {
+      "video_id": "B6AEPicK9Bk_210.0_360.0",
+      "stream": 0,
+      "base_soft": 0.752,
+      "audio_soft": 0.752,
+      "delta_soft": 0.0,
+      "base_binary": 0.7906976744186046,
+      "audio_binary": 0.7906976744186046,
+      "delta_binary": 0.0,
+      "swaps": 1
+    },
+    {
+      "video_id": "B6AEPicK9Bk_210.0_360.0",
+      "stream": 1,
+      "base_soft": 0.5132743362831859,
+      "audio_soft": 0.49557522123893805,
+      "delta_soft": -0.017699115044247815,
+      "base_binary": 0.30303030303030304,
+      "audio_binary": 0.30303030303030304,
+      "delta_binary": 0.0,
+      "swaps": 1
+    },
+    {
+      "video_id": "GtJXHRFhm0E_210.0_360.0",
+      "stream": 0,
+      "base_soft": 0.36190476190476195,
+      "audio_soft": 0.4,
+      "delta_soft": 0.03809523809523807,
+      "base_binary": 0.3783783783783784,
+      "audio_binary": 0.43243243243243246,
+      "delta_binary": 0.05405405405405406,
+      "swaps": 1
+    },
+    {
+      "video_id": "GtJXHRFhm0E_210.0_360.0",
+      "stream": 1,
+      "base_soft": 0.7259259259259261,
+      "audio_soft": 0.7259259259259259,
+      "delta_soft": -2.220446049250313e-16,
+      "base_binary": 0.7272727272727273,
+      "audio_binary": 0.7272727272727273,
+      "delta_binary": 0.0,
+      "swaps": 1
+    },
+    {
+      "video_id": "HISG6jkZBfs_210.0_360.0",
+      "stream": 0,
+      "base_soft": 0.6559999999999999,
+      "audio_soft": 0.624,
+      "delta_soft": -0.03199999999999992,
+      "base_binary": 0.7555555555555555,
+      "audio_binary": 0.7111111111111111,
+      "delta_binary": -0.0444444444444444,
+      "swaps": 1
+    },
+    {
+      "video_id": "P6KTyi4s4Bc_210.0_360.0",
+      "stream": 1,
+      "base_soft": 0.9397590361445783,
+      "audio_soft": 0.9156626506024097,
+      "delta_soft": -0.02409638554216864,
+      "base_binary": 0.9454545454545454,
+      "audio_binary": 0.9090909090909091,
+      "delta_binary": -0.036363636363636376,
+      "swaps": 1
+    },
+    {
+      "video_id": "bGU97Zw6Jfg_60.0_210.0",
+      "stream": 0,
+      "base_soft": 0.7619047619047619,
+      "audio_soft": 0.7619047619047619,
+      "delta_soft": 0.0,
+      "base_binary": 0.8444444444444444,
+      "audio_binary": 0.8444444444444444,
+      "delta_binary": 0.0,
+      "swaps": 1
+    },
+    {
+      "video_id": "bGU97Zw6Jfg_60.0_210.0",
+      "stream": 1,
+      "base_soft": 0.6614173228346457,
+      "audio_soft": 0.6614173228346457,
+      "delta_soft": 0.0,
+      "base_binary": 0.6666666666666666,
+      "audio_binary": 0.6666666666666666,
+      "delta_binary": 0.0,
+      "swaps": 1
+    },
+    {
+      "video_id": "eLlUVxVLiLU_60.0_210.0",
+      "stream": 0,
+      "base_soft": 0.42424242424242425,
+      "audio_soft": 0.38383838383838376,
+      "delta_soft": -0.0404040404040405,
+      "base_binary": 0.47058823529411764,
+      "audio_binary": 0.4117647058823529,
+      "delta_binary": -0.05882352941176472,
+      "swaps": 1
+    },
+    {
+      "video_id": "eLlUVxVLiLU_60.0_210.0",
+      "stream": 1,
+      "base_soft": 0.688,
+      "audio_soft": 0.6719999999999999,
+      "delta_soft": -0.016000000000000014,
+      "base_binary": 0.6666666666666666,
+      "audio_binary": 0.6666666666666666,
+      "delta_binary": 0.0,
+      "swaps": 1
+    },
+    {
+      "video_id": "jgvQzWAhoiw_210.0_360.0",
+      "stream": 0,
+      "base_soft": 0.9156626506024097,
+      "audio_soft": 0.9156626506024097,
+      "delta_soft": 0.0,
+      "base_binary": 0.9285714285714286,
+      "audio_binary": 0.9285714285714286,
+      "delta_binary": 0.0,
+      "swaps": 1
+    },
+    {
+      "video_id": "m6U-5Hck5z0_60.0_210.0",
+      "stream": 0,
+      "base_soft": 0.8831168831168831,
+      "audio_soft": 0.8701298701298702,
+      "delta_soft": -0.01298701298701288,
+      "base_binary": 0.9090909090909091,
+      "audio_binary": 0.9090909090909091,
+      "delta_binary": 0.0,
+      "swaps": 1
+    },
+    {
+      "video_id": "m6U-5Hck5z0_60.0_210.0",
+      "stream": 1,
+      "base_soft": 0.9113924050632912,
+      "audio_soft": 0.9113924050632912,
+      "delta_soft": 0.0,
+      "base_binary": 0.9019607843137255,
+      "audio_binary": 0.9019607843137255,
+      "delta_binary": 0.0,
+      "swaps": 1
+    },
+    {
+      "video_id": "rAHQY2FHcOo_210.0_360.0",
+      "stream": 0,
+      "base_soft": 0.8333333333333334,
+      "audio_soft": 0.8194444444444443,
+      "delta_soft": -0.013888888888889062,
+      "base_binary": 0.9433962264150944,
+      "audio_binary": 0.9056603773584906,
+      "delta_binary": -0.037735849056603765,
+      "swaps": 1
+    },
+    {
+      "video_id": "rAHQY2FHcOo_210.0_360.0",
+      "stream": 1,
+      "base_soft": 0.7328244274809161,
+      "audio_soft": 0.7328244274809161,
+      "delta_soft": 0.0,
+      "base_binary": 0.7441860465116279,
+      "audio_binary": 0.7441860465116279,
+      "delta_binary": 0.0,
+      "swaps": 1
+    },
+    {
+      "video_id": "uJ97MxBs4qU_210.0_360.0",
+      "stream": 0,
+      "base_soft": 0.2828282828282829,
+      "audio_soft": 0.32323232323232326,
+      "delta_soft": 0.04040404040404039,
+      "base_binary": 0.1875,
+      "audio_binary": 0.25,
+      "delta_binary": 0.0625,
+      "swaps": 1
+    },
+    {
+      "video_id": "vprHvWMX1YU_210.0_360.0",
+      "stream": 0,
+      "base_soft": 0.8387096774193546,
+      "audio_soft": 0.8387096774193546,
+      "delta_soft": 0.0,
+      "base_binary": 0.8679245283018868,
+      "audio_binary": 0.8679245283018868,
+      "delta_binary": 0.0,
+      "swaps": 1
+    },
+    {
+      "video_id": "yXR17NNJgdU_210.0_360.0",
+      "stream": 1,
+      "base_soft": 0.7972027972027971,
+      "audio_soft": 0.7692307692307693,
+      "delta_soft": -0.027972027972027802,
+      "base_binary": 0.7555555555555555,
+      "audio_binary": 0.7111111111111111,
+      "delta_binary": -0.0444444444444444,
+      "swaps": 1
+    }
+  ]
+}

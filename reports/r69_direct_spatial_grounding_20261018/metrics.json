@@ -1,0 +1,24 @@
+{
+  "videos": 426,
+  "predictions": 199037,
+  "frame_set_mismatch_videos": 0,
+  "box_changed": 129443,
+  "by_ratio": {
+    "16:9": {
+      "videos": 303,
+      "selected": 145581,
+      "changed": 76272,
+      "mean_old_width_norm": 0.9994934939787149,
+      "mean_new_width_norm": 0.9023824158899701,
+      "mean_abs_y_norm_delta": 0.09532143803917331
+    },
+    "9:16": {
+      "videos": 123,
+      "selected": 53456,
+      "changed": 53171,
+      "mean_old_width_norm": 0.361505232656312,
+      "mean_new_width_norm": 0.3066335630822699,
+      "mean_abs_y_norm_delta": 0.01611111111111111
+    }
+  }
+}

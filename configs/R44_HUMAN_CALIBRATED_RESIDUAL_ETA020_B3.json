@@ -26,5 +26,11 @@
     "declared_parameters": 450283377
   },
   "remote_command": "timeout --signal=TERM --kill-after=2m 30m /root/autodl-tmp/aha_env/bin/python /root/AIC/scripts/r44_semantic_calibrated_residual.py official --labels /root/autodl-tmp/experiments/R44_RESIDUAL_001/project1_labels.csv /root/autodl-tmp/experiments/R44_RESIDUAL_001/project2_labels.csv --frames /root/autodl-tmp/annotation_batch_v1/frames --public-scores /root/autodl-tmp/experiments/R44_RESIDUAL_001/public_scores.json --r43-report /root/autodl-tmp/experiments/R43_IV2_EVENT_COMPLETION_20261017/full/report.json --video-root /root/autodl-tmp/vpb_artifacts/video_426 --parent /root/autodl-tmp/evac/data/aic/semifinal_20261001/submissions/LFM_V8_B3_SEMIFINAL/predictions.jsonl --output /root/autodl-tmp/experiments/R44_RESIDUAL_002_eta020_predictions.jsonl --eta 0.2 --alpha 10",
-  "status": "packaged_not_uploaded"
+  "status": "packaged_not_uploaded",
+  "declared_parameters": 7267097558,
+  "model_params_b": 7.267097558,
+  "inference_components": {
+    "internvideo2_stage2": 6816814181,
+    "b3_spatial": 450283377
+  }
 }

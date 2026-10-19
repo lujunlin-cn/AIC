@@ -1,0 +1,592 @@
+{
+ "mode": "cache",
+ "vid": "_XUcH_2xFy0_f00_r",
+ "processor": {
+  "name": "pixel_values",
+  "shape": [
+   8,
+   3,
+   384,
+   384
+  ],
+  "finite": true,
+  "nan": 0,
+  "inf": 0,
+  "min": -1.0,
+  "max": 1.0
+ },
+ "visual_embeds": {
+  "name": "visual_embed",
+  "shape": [
+   392,
+   3584
+  ],
+  "finite": true,
+  "nan": 0,
+  "inf": 0,
+  "min": -39.0,
+  "max": 41.0
+ },
+ "frames": [
+  {
+   "i": 0,
+   "input": {
+    "name": "input",
+    "shape": [
+     1,
+     83,
+     3584
+    ],
+    "finite": true,
+    "nan": 0,
+    "inf": 0,
+    "min": -36.0,
+    "max": 38.0
+   },
+   "hidden": {
+    "name": "hidden",
+    "shape": [
+     1,
+     83,
+     3584
+    ],
+    "finite": true,
+    "nan": 0,
+    "inf": 0,
+    "min": -122.5,
+    "max": 128.0
+   },
+   "relevance": {
+    "name": "relevance",
+    "shape": [
+     1,
+     83,
+     1
+    ],
+    "finite": true,
+    "nan": 0,
+    "inf": 0,
+    "min": 5.475977377500385e-05,
+    "max": 0.9999756813049316
+   },
+   "informative": {
+    "name": "informative",
+    "shape": [
+     1,
+     83,
+     2
+    ],
+    "finite": true,
+    "nan": 0,
+    "inf": 0,
+    "min": -12.9375,
+    "max": 9.625
+   },
+   "uncertainty": {
+    "name": "uncertainty",
+    "shape": [
+     1,
+     83,
+     1
+    ],
+    "finite": true,
+    "nan": 0,
+    "inf": 0,
+    "min": -5.71875,
+    "max": 14.0
+   },
+   "past_type": "SinkCache",
+   "past_len": 83
+  },
+  {
+   "i": 1,
+   "input": {
+    "name": "input",
+    "shape": [
+     1,
+     50,
+     3584
+    ],
+    "finite": true,
+    "nan": 0,
+    "inf": 0,
+    "min": -36.25,
+    "max": 38.25
+   },
+   "hidden": {
+    "name": "hidden",
+    "shape": [
+     1,
+     50,
+     3584
+    ],
+    "finite": true,
+    "nan": 0,
+    "inf": 0,
+    "min": -45.0,
+    "max": 42.75
+   },
+   "relevance": {
+    "name": "relevance",
+    "shape": [
+     1,
+     50,
+     1
+    ],
+    "finite": true,
+    "nan": 0,
+    "inf": 0,
+    "min": 0.1276526302099228,
+    "max": 0.6315943002700806
+   },
+   "informative": {
+    "name": "informative",
+    "shape": [
+     1,
+     50,
+     2
+    ],
+    "finite": true,
+    "nan": 0,
+    "inf": 0,
+    "min": -7.21875,
+    "max": 1.6015625
+   },
+   "uncertainty": {
+    "name": "uncertainty",
+    "shape": [
+     1,
+     50,
+     1
+    ],
+    "finite": true,
+    "nan": 0,
+    "inf": 0,
+    "min": -2.921875,
+    "max": 2.921875
+   },
+   "past_type": "SinkCache",
+   "past_len": 133
+  },
+  {
+   "i": 2,
+   "input": {
+    "name": "input",
+    "shape": [
+     1,
+     50,
+     3584
+    ],
+    "finite": true,
+    "nan": 0,
+    "inf": 0,
+    "min": -38.5,
+    "max": 40.5
+   },
+   "hidden": {
+    "name": "hidden",
+    "shape": [
+     1,
+     50,
+     3584
+    ],
+    "finite": true,
+    "nan": 0,
+    "inf": 0,
+    "min": -34.25,
+    "max": 47.0
+   },
+   "relevance": {
+    "name": "relevance",
+    "shape": [
+     1,
+     50,
+     1
+    ],
+    "finite": true,
+    "nan": 0,
+    "inf": 0,
+    "min": 0.22000710666179657,
+    "max": 0.6731916666030884
+   },
+   "informative": {
+    "name": "informative",
+    "shape": [
+     1,
+     50,
+     2
+    ],
+    "finite": true,
+    "nan": 0,
+    "inf": 0,
+    "min": -6.8125,
+    "max": 1.484375
+   },
+   "uncertainty": {
+    "name": "uncertainty",
+    "shape": [
+     1,
+     50,
+     1
+    ],
+    "finite": true,
+    "nan": 0,
+    "inf": 0,
+    "min": -3.015625,
+    "max": 2.875
+   },
+   "past_type": "SinkCache",
+   "past_len": 183
+  },
+  {
+   "i": 3,
+   "input": {
+    "name": "input",
+    "shape": [
+     1,
+     50,
+     3584
+    ],
+    "finite": true,
+    "nan": 0,
+    "inf": 0,
+    "min": -36.75,
+    "max": 39.0
+   },
+   "hidden": {
+    "name": "hidden",
+    "shape": [
+     1,
+     50,
+     3584
+    ],
+    "finite": true,
+    "nan": 0,
+    "inf": 0,
+    "min": -29.75,
+    "max": 37.5
+   },
+   "relevance": {
+    "name": "relevance",
+    "shape": [
+     1,
+     50,
+     1
+    ],
+    "finite": true,
+    "nan": 0,
+    "inf": 0,
+    "min": 0.28776782751083374,
+    "max": 0.6006569266319275
+   },
+   "informative": {
+    "name": "informative",
+    "shape": [
+     1,
+     50,
+     2
+    ],
+    "finite": true,
+    "nan": 0,
+    "inf": 0,
+    "min": -6.71875,
+    "max": 1.0859375
+   },
+   "uncertainty": {
+    "name": "uncertainty",
+    "shape": [
+     1,
+     50,
+     1
+    ],
+    "finite": true,
+    "nan": 0,
+    "inf": 0,
+    "min": -3.53125,
+    "max": 2.328125
+   },
+   "past_type": "SinkCache",
+   "past_len": 233
+  },
+  {
+   "i": 4,
+   "input": {
+    "name": "input",
+    "shape": [
+     1,
+     50,
+     3584
+    ],
+    "finite": true,
+    "nan": 0,
+    "inf": 0,
+    "min": -36.5,
+    "max": 38.5
+   },
+   "hidden": {
+    "name": "hidden",
+    "shape": [
+     1,
+     50,
+     3584
+    ],
+    "finite": true,
+    "nan": 0,
+    "inf": 0,
+    "min": -32.25,
+    "max": 39.5
+   },
+   "relevance": {
+    "name": "relevance",
+    "shape": [
+     1,
+     50,
+     1
+    ],
+    "finite": true,
+    "nan": 0,
+    "inf": 0,
+    "min": 0.3380771279335022,
+    "max": 0.6029970645904541
+   },
+   "informative": {
+    "name": "informative",
+    "shape": [
+     1,
+     50,
+     2
+    ],
+    "finite": true,
+    "nan": 0,
+    "inf": 0,
+    "min": -6.4375,
+    "max": 1.015625
+   },
+   "uncertainty": {
+    "name": "uncertainty",
+    "shape": [
+     1,
+     50,
+     1
+    ],
+    "finite": true,
+    "nan": 0,
+    "inf": 0,
+    "min": -3.21875,
+    "max": 2.484375
+   },
+   "past_type": "SinkCache",
+   "past_len": 283
+  },
+  {
+   "i": 5,
+   "input": {
+    "name": "input",
+    "shape": [
+     1,
+     50,
+     3584
+    ],
+    "finite": true,
+    "nan": 0,
+    "inf": 0,
+    "min": -37.25,
+    "max": 39.25
+   },
+   "hidden": {
+    "name": "hidden",
+    "shape": [
+     1,
+     50,
+     3584
+    ],
+    "finite": true,
+    "nan": 0,
+    "inf": 0,
+    "min": -32.5,
+    "max": 34.75
+   },
+   "relevance": {
+    "name": "relevance",
+    "shape": [
+     1,
+     50,
+     1
+    ],
+    "finite": true,
+    "nan": 0,
+    "inf": 0,
+    "min": 0.3015677034854889,
+    "max": 0.547947883605957
+   },
+   "informative": {
+    "name": "informative",
+    "shape": [
+     1,
+     50,
+     2
+    ],
+    "finite": true,
+    "nan": 0,
+    "inf": 0,
+    "min": -6.34375,
+    "max": 1.203125
+   },
+   "uncertainty": {
+    "name": "uncertainty",
+    "shape": [
+     1,
+     50,
+     1
+    ],
+    "finite": true,
+    "nan": 0,
+    "inf": 0,
+    "min": -3.328125,
+    "max": 2.71875
+   },
+   "past_type": "SinkCache",
+   "past_len": 333
+  },
+  {
+   "i": 6,
+   "input": {
+    "name": "input",
+    "shape": [
+     1,
+     50,
+     3584
+    ],
+    "finite": true,
+    "nan": 0,
+    "inf": 0,
+    "min": -39.0,
+    "max": 41.0
+   },
+   "hidden": {
+    "name": "hidden",
+    "shape": [
+     1,
+     50,
+     3584
+    ],
+    "finite": true,
+    "nan": 0,
+    "inf": 0,
+    "min": -29.625,
+    "max": 35.0
+   },
+   "relevance": {
+    "name": "relevance",
+    "shape": [
+     1,
+     50,
+     1
+    ],
+    "finite": true,
+    "nan": 0,
+    "inf": 0,
+    "min": 0.3354596793651581,
+    "max": 0.6800292134284973
+   },
+   "informative": {
+    "name": "informative",
+    "shape": [
+     1,
+     50,
+     2
+    ],
+    "finite": true,
+    "nan": 0,
+    "inf": 0,
+    "min": -6.0625,
+    "max": 1.59375
+   },
+   "uncertainty": {
+    "name": "uncertainty",
+    "shape": [
+     1,
+     50,
+     1
+    ],
+    "finite": true,
+    "nan": 0,
+    "inf": 0,
+    "min": -3.296875,
+    "max": 3.15625
+   },
+   "past_type": "SinkCache",
+   "past_len": 383
+  },
+  {
+   "i": 7,
+   "input": {
+    "name": "input",
+    "shape": [
+     1,
+     50,
+     3584
+    ],
+    "finite": true,
+    "nan": 0,
+    "inf": 0,
+    "min": -38.25,
+    "max": 39.75
+   },
+   "hidden": {
+    "name": "hidden",
+    "shape": [
+     1,
+     50,
+     3584
+    ],
+    "finite": true,
+    "nan": 0,
+    "inf": 0,
+    "min": -25.0,
+    "max": 39.0
+   },
+   "relevance": {
+    "name": "relevance",
+    "shape": [
+     1,
+     50,
+     1
+    ],
+    "finite": true,
+    "nan": 0,
+    "inf": 0,
+    "min": 0.20434190332889557,
+    "max": 0.5959629416465759
+   },
+   "informative": {
+    "name": "informative",
+    "shape": [
+     1,
+     50,
+     2
+    ],
+    "finite": true,
+    "nan": 0,
+    "inf": 0,
+    "min": -5.84375,
+    "max": 1.5546875
+   },
+   "uncertainty": {
+    "name": "uncertainty",
+    "shape": [
+     1,
+     50,
+     1
+    ],
+    "finite": true,
+    "nan": 0,
+    "inf": 0,
+    "min": -3.09375,
+    "max": 3.21875
+   },
+   "past_type": "SinkCache",
+   "past_len": 433
+  }
+ ]
+}

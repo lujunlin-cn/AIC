@@ -2,6 +2,37 @@
 
 > 当前规则更正（2026-10-15）：总推理参数≤9B，文件bytes仅作工程记录；下文旧字节否决及AHA只能teacher的判断已撤回，最终决策见末尾R25节。
 
+## 2026-10-19：R86 回分不是 T5 H1 的有效否证；锁定点源合同
+
+Status：Accepted。
+
+Evidence：R86 官方回分 34.88，相对 R54=36.22 为 -1.34。审计确认 R86
+使用 `points_V9_A1raw/points`，而 R54 的空间链路使用
+`points_B3_vo/points`；因此改变了点来源与 H1 映射两个变量。R86 相对 R54
+的改变框均值绝对位移为 `[17.95,31.60,0]` px，最大 748.07 px。
+修正版 R88 只把点源改回 B3，local contract valid，改变框均值绝对位移为
+`[9.69,25.80,0]` px，最大 244.87 px。
+
+Decision：R86 归档为混杂 transfer；以后空间迁移实验必须在 manifest 中记录
+point source，并与父包的 observation contract 完全一致。R88 是唯一可识别
+“T5 H1 在 B3 点上是否有效”的最小候选；未取得官方回分前不宣称收益。
+
+Reversal：R88 在官方回分仍明显低于 R54 时，才关闭 H1→B3 迁移；若 R88
+接近或高于 R54，停止使用 A1raw 作为空间替代链。
+
+## 2026-10-19：R87 BF16 修复运行时，暂不包装 AHA
+
+Status：Accepted。
+
+Evidence：FP16 AHA causal path 在第二帧起产生 NaN；BF16 + 原始空 token
+transition 后，trace 与 96/48 pilot 的 finite_fraction 均为 1.0。32 源留出
+上 Ridge 适配 row AP=0.3486，但 source-macro AP=0.0952；监督是弱 GIF
+interval label，样本量不足以支持官方迁移。
+
+Decision：关闭“运行时 NaN”阻塞，保留 AHA 作为目标域监督适配初始化；当前不做
+AHA 官方包。下一次适配必须扩大源级留出、报告空/正标签分层，并与中心和现役
+R54 时间集合在同一合法公共目标上比较。
+
 ## 2026-10-16：R29——先有效监督与源外增量，停止当前标量挽救配方
 
 Status：Accepted for next research allocation；无新部署候选。

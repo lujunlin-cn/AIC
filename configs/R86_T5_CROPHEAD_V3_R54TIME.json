@@ -1,8 +1,14 @@
 {
   "experiment_id": "R86_T5_CROPHEAD_V3_R54TIME",
-  "status": "packaged_not_uploaded",
+  "status": "UPLOADED_OFFICIAL_SCORE_REPORTED_CONFOUNDED",
   "parent": "R54_TIMELENS_CENTER_RESIDUAL_V9_B3",
   "change": "T5_CROPHEAD_V3 H1 source-disjoint native-crop point-to-window calibration applied to the current V9 observation points; R54 frame set and budget fixed",
+  "actual_point_source": "points_V9_A1raw/points",
+  "intended_control_point_source": "points_B3_vo/points",
+  "official_platform_score": 34.88,
+  "official_delta_vs_R54": -1.34,
+  "root_cause": "The package used A1raw point observations while its parent R54 spatial chain is B3. This confounds the H1 transfer with a point-source/head replacement; R86 is not evidence against H1 on B3.",
+  "corrective_candidate": "R88_T5_H1_B3POINTS_R54TIME",
   "tables": [
     "RetargetVid 001-080 train / 081-100 dev",
     "LIVE live_train_index source split, 148-source dev"

@@ -99,6 +99,12 @@
 - [ ] 等待用户按 SUB_A → SUB_B → SUB_C 上传；官方平台字段/联合 evaluator 仍待确认，禁止 Agent 自动提交。
 # P0 — Official score driven next experiments
 
+- [x] Record R86 official score 34.88 and audit the R54 parent contract; identify A1raw/B3 point-source confound.
+- [x] Generate R88 with the same T5 H1 coefficients on `points_B3_vo/points`; local semifinal contract passes. Do not upload automatically.
+- [x] Repair R87 AHA FP16 overflow with BF16 and verify finite trace/full pilot; keep AHA out of submissions until target-domain adaptation clears a source-level gate.
+- [ ] If a submission slot is available, use R88 as the single-variable corrective test; bind the uploaded SHA to the recorded package.
+- [ ] Add point-source identity and parent observation-contract checks to future spatial package manifests/builders.
+
 - [ ] Finish and archive `QVH_FINETUNE_PROBE_20260926` frozen vs DeiT-S last-block controls on the matched 37/9 weak-label subset.
 - [ ] Build a fair ViT-B + YuNet official inference candidate; audit both parameter count and loaded bytes before any submission.
 - [ ] Re-run A0/DeiT temporal heads with one identical trainer/AMP/checkpoint rule to reduce the A→B causal confound.

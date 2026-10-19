@@ -1,5 +1,16 @@
 # 实验历史
 
+## R86/R87/R88（2026-10-19，官方回分与阻塞修复）
+
+| 实验 | 关键变化 | 结果 | 结论 |
+|---|---|---:|---|
+| R86 | R54 时间集合固定；T5 H1 应用于 `points_V9_A1raw/points` | 官方 **34.88**，相对 R54=36.22 为 **-1.34** | 混杂实验：同时换了点源和映射，不能归因于 H1；归档 |
+| R88 | R54 时间集合固定；同一 H1 应用于 `points_B3_vo/points` | 426/426、199,037、8.854531425B；local contract valid；ZIP `db6408cd...` | R86 的最小纠错候选；尚未上传/无官方分 |
+| R87 BF16 | AHA causal cache + PHD2 `gif_soft` 源级留出 | trace/full pilot finite_fraction=1.0；32 源留出 Ridge row AP=0.3486，source-macro AP=0.0952 | 数值阻塞已修复；监督/目标域迁移证据不足，不出包 |
+
+R86 的详细错配审计、R88 manifest 和 R87 BF16 trace 见
+`reports/r86_r87_observation_and_transfer_20261019/summary.md`。
+
 ## V6_NEXT10H_E4_E3_E5_E1AUTO（2026-09-30，代理指标，非官方分）
 
 所有数值为 MrHiSum 弱标签 / YouTube-Highlights match_label / PM400 clip_context 公共标注上的代理指标。confirm=MrHiSum fresh reserve 4,008 一次性使用。

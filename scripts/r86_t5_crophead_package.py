@@ -55,14 +55,22 @@ def main():
     ap.add_argument('--index',type=Path,required=True)
     ap.add_argument('--obs-cache',type=Path,required=True)
     ap.add_argument('--points',type=Path,required=True)
+    ap.add_argument('--point-source-id',required=True,help='Explicit identity of the observation point contract, e.g. B3_vo; recorded in the manifest.')
     ap.add_argument('--h1-metrics',type=Path,required=True)
     ap.add_argument('--output',type=Path,required=True)
     a=ap.parse_args()
+    point_path=str(a.points)
+    sid=a.point_source_id.lower()
+    if sid == 'b3_vo' and 'points_B3_vo' not in point_path:
+        raise ValueError(f'point-source-id B3_vo does not match path: {a.points}')
+    if sid == 'a1raw' and 'points_V9_A1raw' not in point_path:
+        raise ValueError(f'point-source-id A1raw does not match path: {a.points}')
     parent={str(x['video_id']):x for x in rows(a.parent)}
     intake={str(x['video_id']):x for x in rows(a.index)}
     metrics=json.loads(a.h1_metrics.read_text())
     h1={str(k):tuple(v) for k,v in metrics['H1'].items()}
     point_files=list(a.points.glob('*.json'))+list(a.points.glob('points/*.json'))
+    if not point_files: raise ValueError(f'no point files under {a.points}')
     points={p.stem:json.loads(p.read_text()) for p in point_files}
     if set(parent)!=set(intake) or set(parent)!=set(points):raise ValueError('coverage mismatch')
     out_rows=[]; changed=0; frame_count=0; max_width_diff=0.; max_frame_delta=0.; per=[]
@@ -98,7 +106,7 @@ def main():
     with tempfile.TemporaryDirectory() as td:
         with zipfile.ZipFile(zp) as z:z.extractall(td)
         if sha(Path(td)/'predictions.jsonl')!=sha(pred):raise RuntimeError('roundtrip mismatch')
-    man={'submission_id':a.output.name,'status':'PACKAGED_NOT_UPLOADED','official_platform_score':None,'parent_submission':'R54_TIMELENS_CENTER_RESIDUAL_V9_B3','mechanism':'T5_CROPHEAD_V3 H1 source-disjoint native-crop point-to-window calibration on current V9 observation path; R54 frame mask fixed','h1_metrics_sha256':sha(a.h1_metrics),'parent_predictions_sha256':sha(a.parent),'index_sha256':sha(a.index),'video_count':len(out_rows),'prediction_count':frame_count,'bbox_changed_on_kept_frames':changed,'max_width_delta':max_width_diff,'max_bbox_delta':max_frame_delta,'total_parameters':sum(float(x.get('parameters',0)) for x in p.get('parameter_components',[])) if False else 8854531425,'model_params_b':8.854531425,'official_test_labels_used':False,'prediction_sha256':sha(pred),'zip_sha256':sha(zp),'zip_bytes':zp.stat().st_size,'per_video':per}
+    man={'submission_id':a.output.name,'status':'PACKAGED_NOT_UPLOADED','official_platform_score':None,'parent_submission':'R54_TIMELENS_CENTER_RESIDUAL_V9_B3','mechanism':'T5_CROPHEAD_V3 H1 source-disjoint native-crop point-to-window calibration on current V9 observation path; R54 frame set fixed','point_source_id':a.point_source_id,'point_source_directory':str(a.points),'h1_metrics_sha256':sha(a.h1_metrics),'parent_predictions_sha256':sha(a.parent),'index_sha256':sha(a.index),'video_count':len(out_rows),'prediction_count':frame_count,'bbox_changed_on_kept_frames':changed,'max_width_delta':max_width_diff,'max_bbox_delta':max_frame_delta,'total_parameters':sum(float(x.get('parameters',0)) for x in p.get('parameter_components',[])) if False else 8854531425,'model_params_b':8.854531425,'official_test_labels_used':False,'prediction_sha256':sha(pred),'zip_sha256':sha(zp),'zip_bytes':zp.stat().st_size,'per_video':per}
     (a.output/'manifest.json').write_text(json.dumps(man,indent=2)+'\n'); (a.output/(zp.name+'.sha256')).write_text(sha(zp)+'  '+zp.name+'\n')
     print(json.dumps({k:v for k,v in man.items() if k!='per_video'},indent=2))
 if __name__=='__main__':main()

@@ -1,10 +1,12 @@
 # 项目状态
 
-## 2026-10-19：R86/R87 两条路线接管结果
+## 2026-10-19：R86/R87 两条路线接管结果（R86 官方回分复盘）
 
-**R86 已形成新的可上传候选**：以 R54 为父包，固定时间集合、预算和参数，只把 T5_CROPHEAD_V3 在 RetargetVid/LIVE 四张公共表上确认过的 H1 点到窗口映射迁移到当前 V9 观察点。426/426 覆盖、199,037 条预测、106,781 个保留帧框改变、独立 checker 通过，总参数 8.854531425B。包见 `submissions/R86_T5_CROPHEAD_V3_R54TIME/`，ZIP SHA=`308275cd2a3ac3caef0aaf3ae237e3d2552bc048500cb23f12b79c3cdd8f714a`，官方尚未上传/回分。
+**R86 官方回分已报告为 34.88**，相对 R54=36.22 下降 1.34。复盘发现 R86 实际使用 `points_V9_A1raw/points`，而 R54 的空间父链是 `points_B3_vo/points`；因此 R86 同时改变了点源和 H1 映射，不能作为“B3 上 T5 迁移失败”的证据。R86 归档为混杂实验。原包仍见 `submissions/R86_T5_CROPHEAD_V3_R54TIME/`，ZIP SHA=`308275cd2a3ac3caef0aaf3ae237e3d2552bc048500cb23f12b79c3cdd8f714a`。
 
-**R87 AHA/PHD2 迁移 pilot 未形成有效指标**：AHA 基座和 adapter 已在修复后的专用环境加载；连续帧 causal cache 在第二帧起产生 NaN，静态 cache、SinkCache 和 EOS 过渡均未解除。该结果是运行时合同阻塞，不能解释为目标域迁移失败，也不生成官方候选。详见 `reports/r86_r87_observation_and_transfer_20261019/summary.md`。
+**R88 修正版已生成但未上传**：同一 R54 时间集合、预算、H1 系数，只把点源改为 `points_B3_vo/points`。426/426、199,037 条预测、8.854531425B，local semifinal contract 通过；ZIP SHA=`db6408cdff86649ab25913b225f61991d5e221c0af711483624131014fd71207`。这是当前唯一能识别 H1 在 B3 观察链上是否有效的最小候选。
+
+**R87 运行时阻塞已修复，但适配证据不足**：BF16 + 原始空 token causal transition 使 trace 与 96/48 pilot 的 `finite_fraction=1.0`；32 源留出上 Ridge row AP=0.3486，source-macro AP=0.0952，不能制作 AHA 提交包。详见 `reports/r86_r87_observation_and_transfer_20261019/summary.md`。
 
 ## 2026-10-19：官方榜单揭示新的任务对齐缺口
 

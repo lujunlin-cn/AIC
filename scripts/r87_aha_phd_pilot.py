@@ -47,7 +47,7 @@ def source_metrics(rows, scores, kfrac=.85):
         y=np.asarray(r['y'],float); k=max(1,int(round(kfrac*len(y)))); idx=np.argsort(-s,kind='mergesort')[:k]
         by[r['src']].append((float(y[idx].sum()/max(y.sum(),1)),float(y[idx].mean()),float(y.mean()),float(rank_ap(s,y))))
     a=np.asarray([np.mean(v,0) for v in by.values()])
-    return {'sources':len(a),'recall_at_keep':float(a[:,0].mean()),'precision_at_keep':float(a[:,1].mean()),'base_rate':float(a[:,2].mean()),'ap_source_macro':float(a[:,3].mean())}
+    return {'sources':len(a),'recall_at_keep':float(a[:,0].mean()),'precision_at_keep':float(a[:,1].mean()),'base_rate':float(a[:,2].mean()),'ap_source_macro':float(np.nanmean(a[:,3]))}
 
 def main():
     ap=argparse.ArgumentParser(); ap.add_argument('--pool',type=Path,required=True); ap.add_argument('--labels',type=Path,required=True); ap.add_argument('--val-sources',type=Path,required=True); ap.add_argument('--out',type=Path,required=True); ap.add_argument('--limit-train',type=int,default=96); ap.add_argument('--limit-val',type=int,default=48); ap.add_argument('--seed',type=int,default=20261019)
@@ -82,7 +82,7 @@ def main():
     SigLipVisionTower.load_model=_local_load
     from models.live_llava.video_head_live_llava_qwen import build_video_head_live_llava_qwen
     base='/root/autodl-tmp/pretrained/llava-onevision-qwen2-7b-ov'; adapter='/root/autodl-tmp/pretrained/aha_weights'
-    model, tokenizer=build_video_head_live_llava_qwen(is_training=False,llm_pretrained=base,lora_pretrained=adapter,vision_pretrained='google/siglip-large-patch16-384',frame_resolution=384,frame_num_tokens=49,frame_token_cls=False,frame_token_pooled=[7,7],video_pooling_stride=4,attn_implementation='eager',torch_dtype=torch.float16,set_vision_inside=False,quantization=False)
+    model, tokenizer=build_video_head_live_llava_qwen(is_training=False,llm_pretrained=base,lora_pretrained=adapter,vision_pretrained='google/siglip-large-patch16-384',frame_resolution=384,frame_num_tokens=49,frame_token_cls=False,frame_token_pooled=[7,7],video_pooling_stride=4,attn_implementation='eager',torch_dtype=torch.bfloat16,set_vision_inside=False,quantization=False)
     model=model.to('cuda').eval(); vt=model.get_vision_tower(); processor=vt.image_processor
     hidden=model.config.hidden_size; start_ids=tokenizer.apply_chat_template([{'role':'system','content':'A multimodal AI assistant is helping users with some activities. Below is their conversation, interleaved with the list of video frames received by the assistant.'}],return_tensors='pt').to('cuda')
     from test.sink_cache import SinkCache
@@ -91,14 +91,14 @@ def main():
     for i,r in enumerate(train+val):
         t0=time.time(); frames=make_frames(r['files'])
         with torch.no_grad():
-            pv=processor.preprocess([x.permute(1,2,0).numpy() for x in frames],return_tensors='pt')['pixel_values'].to('cuda',dtype=torch.float16)
+            pv=processor.preprocess([x.permute(1,2,0).numpy() for x in frames],return_tensors='pt')['pixel_values'].to('cuda',dtype=torch.bfloat16)
             embeds=model.visual_embed(pv).split(model.config.frame_num_tokens)
         past=SinkCache(window_length=2048,num_sink_tokens=32); scores=[]
         for fe in embeds:
-            # A single EOS token keeps the 4.49 eager path numerically stable
-            # on the cloned environment; the upstream demo used an empty
-            # embedding, which yields NaNs for some fragments here.
-            ids=start_ids if past.get_seq_length() == 0 else torch.tensor([[tokenizer.eos_token_id]],device='cuda',dtype=torch.long)
+            # Match the repository LiveInferForBenchmark transition exactly:
+            # after the initial system prompt, subsequent frames use an empty
+            # token prefix and the causal cache carries the context.
+            ids=start_ids if past.get_seq_length() == 0 else torch.empty((1,0),device='cuda',dtype=torch.long)
             ie=model.get_input_embeddings()(ids).view(1,-1,hidden)
             inp=torch.cat([ie,fe.view(1,-1,hidden).to('cuda')],dim=1)
             with torch.no_grad(): out=model(inputs_embeds=inp,use_cache=True,past_key_values=past,return_dict=True)
@@ -127,7 +127,7 @@ def main():
     Xtr=np.concatenate([feat(x) for x in tr]); Ytr=np.concatenate([np.asarray(x['y'],np.float32) for x in tr]); Xv=np.concatenate([feat(x) for x in va]); Yv=np.concatenate([np.asarray(x['y'],np.float32) for x in va])
     mu=Xtr.mean(0); sd=Xtr.std(0); sd[sd<1e-5]=1; Xtr=(Xtr-mu)/sd; Xv=(Xv-mu)/sd
     from sklearn.linear_model import Ridge
-    head=Ridge(alpha=10.0).fit(Xtr,Ytr); pred=[head.predict(feat(x)*0 + (feat(x)-mu)/sd) for x in va]
+    head=Ridge(alpha=10.0).fit(Xtr,Ytr); pred=[head.predict((feat(x)-mu)/sd) for x in va]
     report['val']['adapted_linear']={'ap_row':float(np.nanmean([rank_ap(s,x['y']) for s,x in zip(pred,va)])),'source_macro':source_metrics(va,pred)}
     report['head']={'type':'ridge','alpha':10.0,'features':'AHA relevance, informative, log uncertainty, normalized time, first differences','coef_shape':list(head.coef_.shape)}
     (a.out/'metrics.json').write_text(json.dumps(report,indent=1)); print(json.dumps(report,indent=1),flush=True)

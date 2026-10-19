@@ -1,0 +1,59 @@
+{
+ "config": {
+  "seed": 20261019,
+  "train_rows": 96,
+  "val_rows": 48,
+  "AHA_base_frozen": true,
+  "weak_interval_labels": true
+ },
+ "val": {
+  "relevance": {
+   "ap_row": 0.2884258504627513,
+   "source_macro": {
+    "sources": 32,
+    "recall_at_keep": 0.10936458346744378,
+    "precision_at_keep": 0.015623511923920539,
+    "base_rate": 0.013670572933430472,
+    "ap_source_macro": 0.10472857185772487
+   }
+  },
+  "informative": {
+   "ap_row": 0.2644319730956538,
+   "source_macro": {
+    "sources": 32,
+    "recall_at_keep": 0.07290625013411045,
+    "precision_at_keep": 0.010415178590587207,
+    "base_rate": 0.013670572933430472,
+    "ap_source_macro": 0.5832500010728836
+   }
+  },
+  "uncertainty": {
+   "ap_row": 0.31444625862601666,
+   "source_macro": {
+    "sources": 32,
+    "recall_at_keep": 0.09894791680077711,
+    "precision_at_keep": 0.0141354166858253,
+    "base_rate": 0.013670572933430472,
+    "ap_source_macro": 0.13330000042915346
+   }
+  },
+  "adapted_linear": {
+   "ap_row": 0.3486326531488068,
+   "source_macro": {
+    "sources": 32,
+    "recall_at_keep": 0.10936458346744378,
+    "precision_at_keep": 0.015623511923920539,
+    "base_rate": 0.013670572933430472,
+    "ap_source_macro": 0.09521428602082388
+   }
+  }
+ },
+ "head": {
+  "type": "ridge",
+  "alpha": 10.0,
+  "features": "AHA relevance, informative, log uncertainty, normalized time, first differences",
+  "coef_shape": [
+   7
+  ]
+ }
+}

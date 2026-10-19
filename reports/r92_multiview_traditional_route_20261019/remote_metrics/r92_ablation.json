@@ -1,0 +1,9 @@
+{
+  "normal_multiview_dev_macro_f": 0.41533468852174427,
+  "motion_shuffle_dev_macro_f": 0.4154740920833622,
+  "rgb_zero_dev_macro_f": 0.41468305120499627,
+  "low_zero_dev_macro_f": 0.41721943260580746,
+  "high_zero_dev_macro_f": 0.4149210656551958,
+  "motion_zero_dev_macro_f": 0.4130447114751275,
+  "interpretation": "motion zero is lower, but motion permutation is not lower; apparent motion contribution is not demonstrated to depend on temporal correspondence"
+}

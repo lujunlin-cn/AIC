@@ -1,0 +1,24 @@
+{
+  "rows": 5886,
+  "features_shape": [
+    5886,
+    8,
+    4,
+    512
+  ],
+  "weights": "/data/aic/pretrained/resnet18/resnet18-f37072fd.pth",
+  "weights_sha256": "f37072fd47e89c5e827621c5baffa7500819f7896bbacec160b1a16c560e07ec",
+  "frame_contract": "PHD2_FRAG_V1 8 decoded jpg keyframes; phase-correlation translation residual",
+  "views": [
+    "rgb",
+    "low",
+    "high",
+    "motion"
+  ],
+  "image_size": 160,
+  "elapsed_s": 331.45,
+  "source_counts": {
+    "dev": 1165,
+    "train": 4721
+  }
+}

@@ -1441,3 +1441,5 @@ target-domain transfer. No official test data or labels were used.
 **与已有实验的边界**：R89 是参数为零的低层标量/候选空间读出；R90 是 32D bank、差分、语义 novelty/速度/加速度的标量代理；二者均未测试空间图上的多视图时序编码。R89 Confirm crop IoU `+0.004104`，R90 低层 bank 低于静态 ResNet，因此不能把 PDF 路线宣布已验证，也不能把旧负结果重复成新实验。
 
 **R92 预注册设计**：冻结轻量 RGB 主干和 R54/R70 空间输出；PHD2/GIF 源级留出；R92-A RGB、R92-E RGB+低频+高频+全局运动补偿残差 gated fusion、R92-F 运动视图源内时间置换。真实 GIF 区间 union 与占位 `gif_hard` 分离。E 相对 A 的源级集合效用 `+0.005` 且 bootstrap 下界为正、F 的收益消失后，才做单一时间变量官方包。尚未运行，无官方分数。
+
+**实际结果**：远端 RTX4080 上完成 5,886 片段四视图缓存（331.45s，162MB）和 RGB/多视图各1,200 steps。RGB 开发源宏固定85% F=`0.415595`，多视图=`0.415335`；448源配对差=`-0.000260`，95% CI=`[-0.003184,+0.002589]`。运动视图源内时间置换=`0.415474`，逐视图置零 `[RGB=0.414683, low=0.417219, high=0.414921, motion=0.413045]`。结论：多视图没有实用增益，运动时间对应未被识别；R92 不生成官方包。指标和逐源结果见 `reports/r92_multiview_traditional_route_20261019/remote_metrics/`。

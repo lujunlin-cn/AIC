@@ -1383,3 +1383,13 @@ R70与R69直接构图路线不同。R70固定V9 vision-only塔、processor、129
 **Public result**：合并 source-macro `0.52306` vs center `0.49759`（`+0.02547`）；LIVE row `+0.03135`，RV row `+0.00365`；低于 R70 topsoft 两域平均 `+0.07006`。这是结构诊断，不是官方涨分预测。
 
 **Official candidate**：426/426、199037、0 fallback、112141 changed boxes；8.853590257B；ZIP SHA `526d3e0b41c329806c7746e0f7c1404b0ec8d3d2470495e8470c0f25983934f4`；checks pass，未上传。若只保留一个新空间包，R70 仍优先；R84 用于检验小读出域互补。
+
+## R85 官方榜单分布与目标域迁移复核（2026-10-19）
+
+**Hypothesis**：40分以上的稀疏高分段可能来自评测政策/目标域迁移差异，而不是模型容量；空GT视频是待检验解释，不是已知事实。
+
+**Change**：通过公开排行榜接口获取182条复赛记录；检索Highlight-CLIP、AHA、Cross-category VHD、Audiovisual Highlight Detection、Less is More、audio/visual recurrence、MH-DETR和Saliency-Guided DETR的一手论文摘要与任务条件；对照本项目已有R25/R43/QV/MrHiSum证据。
+
+**Result**：最高47.13，中位数36.44，≥40分42条，≥45分4条，34–38分52条；R71=36.43约第92名。榜单证明存在高价值策略差异，但不能识别官方空GT比例。现有公开人工片段18条均含至少一个2/3高光标签，不能代表官方测试。直接运行AHA、InternVideo2事件完成度和QV/MrHiSum错配监督均未突破；目标域适配尚未被验证。
+
+**Decision**：下一路线是PHD/GIF源级监督适配AHA，并以HL-CLIP式saliency pooling作结构对照；第一阶段固定R54/R70空间输出，使用源级留出联合集合效用作为门。没有真实负视频池前不提交empty-video gate。榜单快照与检索记录见`reports/r85_leaderboard_transfer_review_20261019/`。

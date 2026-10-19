@@ -1292,3 +1292,11 @@ R83 interval policy 在 5 折源级 PHD2 留出上没有超过 center（`0.02542
 R83 interval policy 在 PHD2 上退化为中心后，R84 改用有 native crop 监督的空间坐标一致性读出。它在公开 LIVE/RV 留出上有 `+0.02547` source-macro 增量，但低于 R70 的 `+0.07006`；因此不替代 R70，只保留一个结构不同的官方验证候选。
 
 R84 包使用 TimeLens2 + V9 vision tower + 623,361 参数 head，总计 `8.853590257B`，不使用 YuNet；426/426、199037、0 fallback，checker/contract/ZIP 往返通过。ZIP SHA=`526d3e0b41c329806c7746e0f7c1404b0ec8d3d2470495e8470c0f25983934f4`，尚未上传。若 R84 官方明显低于 R70，关闭坐标一致性空间读出；若接近或超过 R70，只允许研究固定域门控，不扫融合权重。
+
+## 2026-10-19：R85——转向PHD/GIF目标域迁移
+
+**Decision**：不再把“直接换高光模型”当路线。下一主攻是用PHD/GIF源级监督适配已有AHA，并以HL-CLIP式saliency pooling作为外部结构对照；第一阶段固定R54/R70空间输出，只判断时间策略是否获得目标域集合效用。
+
+**Evidence**：公开榜单182条记录，≥40分42条、≥45分4条、median 36.44；R71=36.43约第92名。历史R25 AHA零样本35.18、R43 InternVideo2事件完成度34.95、QV跨域和MrHiSum迁移负结果只否定零样本或监督错配。PHD/GIF目标监督仍未被AHA/HL-CLIP适配使用。
+
+**Reversal**：目标域适配在源级留出集合效用上不能超过PHD2 frame-rank和中心控制，或提升完全由位置先验产生，则关闭该迁移路线。没有真实负视频池之前，不训练或提交empty-video gate。

@@ -462,3 +462,12 @@ R82 包已完成：`submissions/R82_DIRECT_OUTPUT_UTILITY_ENSEMBLE_RISK05_MULT_T
 R84 使用 RetargetVid/LIVE native crop 标签训练 623,361 参数的逐候选 MLP，并加入 soft-argmax 坐标一致性损失；固定 R54 时间集合和预算。公开 source-macro 相对中心 `+0.02547`，LIVE 逐行 `+0.03135`，RV 逐行 `+0.00365`，低于 R70 相同协议平均 `+0.07006`，但提供了结构不同的空间信号。
 
 R84 已完成官方推理和打包：426/426、199037 条、0 fallback、112141 个保留帧框变化；实际参数 `8.853590257B`（TimeLens2 + V9 vision tower + R84 head，不加载YuNet）；prediction SHA=`22e668f1dbd9d36694d60d5ee191a3437508cf9cb2b4cb0ebc3d9945be7c1616`，ZIP SHA=`526d3e0b41c329806c7746e0f7c1404b0ec8d3d2470495e8470c0f25983934f4`。independent checker、final contract、ZIP roundtrip通过，尚未上传。详见 `reports/r84_coord_consistency_20261019/summary.md`。
+
+
+## 2026-10-20 三路线接管结果
+
+- R102 AIKU：600/6000 group pilot，目标域 F `0.415304→0.418717`，弱正向；暂不可直接部署。
+- R103 V9 token context：control `0.568421`，actual `0.567763`，置换 `0.566911`；关闭当前配方。
+- R104 AViMoS：视觉 saliency decoder 在 100/30源 smoke 显著优于 mean-map prior。
+- R105 AViMoS native crop utility：`0.574714→0.578236`，置换 `0.573411`；真实信号存在，但简单 blend 在源级 holdout 退化，未生成官方包。
+- 截止前可直接提交的三份已审计候选：R70、R71、R89；R93 为高风险替换项。所有候选均未自动上传，官方分数只记录已有用户回分。

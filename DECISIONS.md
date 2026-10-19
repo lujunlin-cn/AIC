@@ -1393,3 +1393,11 @@ R94 U²-Netp 与 R95 shot 代理均未过独立增量门；R96 在人工诊断�
 ## 2026-10-19：R97 关闭区间状态辅助
 
 R97 的公开 GIF 区间前/中/后辅助头在固定85%集合F上相对同结构控制为 -0.000780，CI跨零且点估计退步。关闭这条具体监督，不扫状态权重。R96 的短上下文方向性证据仍保留；若继续，必须更换可观测监督/联合集合目标，而不是在同一8点区间状态上继续训练。
+
+## 2026-10-20：三路线判定与提交策略
+
+**Decision**：R103 当前邻帧 V9 token 读出关闭；R102 AIKU transfer 保留为后续目标兼容 temporal student 的弱正向初始化；R104/R105 AViMoS 纯视觉 saliency 是唯一显示目标域 native crop 增量的新增路线，但当前公开 blend 存在明显源级过拟合，暂不把未经完整官方推理复核的 saliency blend 放进主提交。
+
+**Evidence**：R103 actual `0.5677629 < 0.5684209`；R102 `+0.003413`；R105 actual `+0.0035215`、permuted `0.5734110`，同时 tune/hold blend 由 `0.5885/0.5536` 暴露迁移不稳。
+
+**Submission set**：截止前优先保留三份完整合法包 `R70_TOPSOFT_SPATIAL_R54TIME`（官方已知36.42）、`R71_ADAPTIVE_BUDGET_R54_V9`（官方已知36.43）和 `R89_LOWLEVEL_COMPOSITION_R54TIME_B3`（native crop 两个留出池同向、ZIP/checker通过）。R93 作为可替换的观测密度风险包；不把本地代理提升写成官方涨分。

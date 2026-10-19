@@ -1496,3 +1496,10 @@ TimeLens2 generic prompt 从2fps提高到4fps，完整426视频推理覆盖、0�
 ## 2026-10-19：R97 PHD/GIF 区间状态辅助监督
 
 从公开 train.json 选择区间构造区间前/中/后状态，空区间保持未标注；在R92冻结RGB TCN上比较状态损失权重0与0.3。448源固定85%集合F：控制=.416244，状态辅助=.415464，配对差=-.000780，95% CI [-.003117,+.001542]。关闭该具体状态辅助配方，不出包；完整上下文/联合效用仍未排除。报告：`reports/r97_event_state_tcn_20261019/summary.md`。
+
+## 2026-10-20：AIKU、V9 token context、AViMoS 三路线
+
+- **R102 AIKU transfer pilot**：完整 AIKU zip 已审计；因远端大文件传输极慢，使用首600/6000 group 的明确 pilot。AIKU temporal trunk→R92 PHD2/GIF RGB target，input projection 重置；448源 dev fixed-85 F `0.415304→0.418717`（`+0.003413`），训练源未上升。报告：`reports/r102_aiku_transfer_20261020/summary.md`。保留为目标兼容学生路线，不直接出包。
+- **R103 genuine V9 token context**：相邻同源 V9 grid 的4×4 token cross-attention；168源 native crop dev，control `0.5684209`，actual `0.5677629`，source-permuted `0.5669107`。修正 all-masked attention 后重跑；关闭当前配方，不出包。
+- **R104 AViMoS visual saliency pretrain**：100/30源 smoke，纯视觉 MobileNetV2 decoder；CC `0.2584→0.4202`，KL `2.6212→1.9713`。这是 saliency 能力证据，不是 AIC 构图等价证明。
+- **R105 AViMoS AIC utility**：R70 native crop rows、168源 dev；control `0.5747144`，AViMoS features `0.5782359`（`+0.0035215`），source-permuted `0.5734110`。但简单 saliency rank blend 在 tune `0.5885`、hold `0.5536`，显示系数过拟合；暂不制作官方包。报告：`reports/r105_avimos_aic_utility_20261020/summary.md`。

@@ -1,0 +1,10 @@
+{
+  "status": "ready_for_user_upload_not_uploaded",
+  "index": "reports/r47_timelens2_index_enriched_426.jsonl",
+  "candidates": [
+    {"submission":"R70_TOPSOFT_SPATIAL_R54TIME","official_score":36.42,"zip_sha256":"da5fcc5dccbfcd960b112852295dbbba35be89aaad61c20fcbb81d1ba8fed4d","videos":426,"predictions":199037,"model_params_b":8.854531425},
+    {"submission":"R71_ADAPTIVE_BUDGET_R54_V9","official_score":36.43,"zip_sha256":"511fd5a946134c25a3cf537854f0c6a049b4bbc5a55e43c1e8742a44092880b0","videos":426,"predictions":195214,"model_params_b":8.854531425},
+    {"submission":"R89_LOWLEVEL_COMPOSITION_R54TIME_B3","official_score":null,"zip_sha256":"e2830a5fb539969e9dbde5e5133728f37d9207bb23449e746990a134b0973d2e","videos":426,"predictions":199037,"model_params_b":8.854531425}
+  ],
+  "checks": "independent_submission_check_v1 valid; ZIP test valid; no automatic upload"
+}

@@ -492,3 +492,13 @@ R44_DIAG_001已完成CPU留一：局部状态描述子使通用等级MAE 1.0668�
 
 - [x] R93 4fps dense TimeLens2 + event-edge residual 包已生成并通过 checker。
 - [ ] 用户上传 R93，记录官方回分并与 R54/R60/R71 绑定；回分前冻结 eta/prompt/端点规则。
+
+
+## 2026-10-20 截止前 P0
+
+- [x] 完成 R102 AIKU 600-group transfer pilot，记录完整资产与子集 SHA。
+- [x] 完成 R103 genuine V9 token context control/actual/permuted。
+- [x] 完成 R104 AViMoS visual-only saliency smoke 与 R105 native crop utility/permutation。
+- [x] 固定三份可直接提交候选：R70、R71、R89；保留 R93 作为观测密度风险备选。
+- [ ] 对三份候选执行最终 `independent_submission_check.py`、ZIP 往返、426覆盖、参数字段和 SHA 清单；不自动上传。
+- [ ] 截止前若无新的官方证据，不继续扫 AViMoS blend、V9 attention 或 AIKU pilot 超参数。

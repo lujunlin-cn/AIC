@@ -1,0 +1,26 @@
+{
+  "experiment_id": "R105_AVIMOS_AIC_UTILITY",
+  "rows": 12822,
+  "dev_sources": 168,
+  "center_dev_source_macro": 0.4975877868876393,
+  "control": {
+    "dev_source_macro": 0.5747144268382163,
+    "train_source_macro": 0.5697647620615452,
+    "best_dev": 0.5747144268382163,
+    "params": 703499
+  },
+  "avimos": {
+    "dev_source_macro": 0.5782359096975553,
+    "train_source_macro": 0.5692655226832449,
+    "best_dev": 0.5782359096975553,
+    "params": 703499
+  },
+  "avimos_permuted": {
+    "dev_source_macro": 0.5734110257277886,
+    "train_source_macro": 0.5686522804798689,
+    "best_dev": 0.5734110257277886,
+    "params": 703499
+  },
+  "official_test_labels_used": false,
+  "audio": "excluded"
+}

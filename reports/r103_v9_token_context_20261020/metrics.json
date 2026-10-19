@@ -1,0 +1,25 @@
+{
+  "center_dev_source_macro": 0.4975877868876393,
+  "control": {
+    "dev_source_macro": 0.568420860650284,
+    "train_source_macro": 0.5486116882225619,
+    "best_dev": 0.568420860650284,
+    "params": 474371
+  },
+  "token_context": {
+    "dev_source_macro": 0.5677628590769711,
+    "train_source_macro": 0.5482605931539101,
+    "best_dev": 0.5677628590769711,
+    "params": 474371
+  },
+  "token_context_permuted": {
+    "dev_source_macro": 0.5669107406089703,
+    "train_source_macro": 0.5482008006697814,
+    "best_dev": 0.5677628590769711,
+    "params": 474371
+  },
+  "rows": 12822,
+  "dev_sources": 168,
+  "official_test_labels_used": false,
+  "audio": "excluded"
+}

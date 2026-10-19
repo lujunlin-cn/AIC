@@ -1,0 +1,42 @@
+{
+  "method": "static AST constructor arithmetic; not tensor/checkpoint verification",
+  "torch_used": false,
+  "weights_downloaded": false,
+  "inference_or_training_run": false,
+  "sources": [
+    {
+      "file": "/tmp/aic_spatial_primary/u2net.py",
+      "source_git_blob": "5b85f138f3af4e2ceae1ff07dee514c859a831af",
+      "sha256": "96dd7a19c7de4f13520ccfc1075ded3350ff4946493be3561b9918a46218f415",
+      "models": [
+        {
+          "model": "U2NET",
+          "declared_parameter_elements": 44009869,
+          "batchnorm_buffer_elements": 28912
+        },
+        {
+          "model": "U2NETP",
+          "declared_parameter_elements": 1131181,
+          "batchnorm_buffer_elements": 5808
+        }
+      ]
+    },
+    {
+      "file": "/tmp/aic_spatial_primary/isnet.py",
+      "source_git_blob": "8be74bb03954496e6cb8af6e1c8e1cd2c0bbb80c",
+      "sha256": "83505426387792a3cb9357254a5e21547cd074710d120485960aa8cc9d0b39bb",
+      "models": [
+        {
+          "model": "ISNetDIS",
+          "declared_parameter_elements": 44046790,
+          "batchnorm_buffer_elements": 28912
+        },
+        {
+          "model": "ISNetGTEncoder",
+          "declared_parameter_elements": 6877734,
+          "batchnorm_buffer_elements": 9373
+        }
+      ]
+    }
+  ]
+}

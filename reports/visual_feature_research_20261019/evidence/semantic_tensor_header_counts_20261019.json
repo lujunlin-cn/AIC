@@ -1,0 +1,66 @@
+[
+  {
+    "name": "hlclip_ckpt_readme",
+    "status": 200,
+    "bytes": 503,
+    "file": "/tmp/aic_visual_sources_raw/hlclip_ckpt_readme.txt",
+    "url": "https://raw.githubusercontent.com/dhk1349/HL-CLIP/main/run_on_video/moment_detr_ckpt/README.md"
+  },
+  {
+    "name": "hlclip_ckpt_opt",
+    "status": 200,
+    "bytes": 1915,
+    "file": "/tmp/aic_visual_sources_raw/hlclip_ckpt_opt.txt",
+    "url": "https://raw.githubusercontent.com/dhk1349/HL-CLIP/main/run_on_video/moment_detr_ckpt/opt.json"
+  },
+  {
+    "name": "summe_eth",
+    "status": 200,
+    "bytes": 17169,
+    "file": "/tmp/aic_visual_sources_raw/summe_eth.txt",
+    "url": "https://people.ee.ethz.ch/~gyglim/vsum/"
+  },
+  {
+    "name": "summe_data",
+    "error": "HTTP Error 403: Forbidden",
+    "url": "https://data.vision.ee.ethz.ch/cvl/SumMe/"
+  },
+  {
+    "name": "summe_readme",
+    "status": 200,
+    "bytes": 1612,
+    "file": "/tmp/aic_visual_sources_raw/summe_readme.txt",
+    "url": "https://data.vision.ee.ethz.ch/cvl/SumMe/README.txt"
+  },
+  {
+    "name": "lfm_readme",
+    "status": 200,
+    "bytes": 9581,
+    "file": "/tmp/aic_visual_sources_raw/lfm_readme.txt",
+    "url": "https://huggingface.co/LiquidAI/LFM2-VL-450M/raw/main/README.md"
+  },
+  {
+    "name": "dinov2_header",
+    "status": 206,
+    "metadata_bytes": 23656,
+    "groups": {
+      "embeddings": 753024,
+      "encoder": 21302784,
+      "layernorm": 768
+    },
+    "total": 22056576,
+    "file": "/tmp/aic_visual_sources_raw/dinov2_header.json"
+  },
+  {
+    "name": "videomae_header",
+    "status": 206,
+    "metadata_bytes": 22416,
+    "groups": {
+      "classifier": 307600,
+      "fc_norm": 1536,
+      "videomae": 86225664
+    },
+    "total": 86534800,
+    "file": "/tmp/aic_visual_sources_raw/videomae_header.json"
+  }
+]

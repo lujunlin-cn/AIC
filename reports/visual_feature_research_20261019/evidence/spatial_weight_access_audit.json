@@ -1,0 +1,68 @@
+{
+  "timestamp_utc": "2026-10-19T05:39:10.501921+00:00",
+  "timestamp_asia_shanghai": "2026-10-19T13:39:10.501921+08:00",
+  "scope": "author weight endpoint HEAD only; W2 not W3; shareable headers omit ephemeral signed redirect URLs",
+  "results": [
+    {
+      "name": "u2netp",
+      "author_link_or_standard_download_url": "https://drive.google.com/uc?export=download&id=1rbSTGKAE-MTxBYHd-51l2hMOQPT_7EPy",
+      "method": "HEAD with redirects; -I; no body requested",
+      "exit_code": 0,
+      "status_chain": [
+        200,
+        303,
+        200,
+        200
+      ],
+      "final_status": 200,
+      "content_type": "application/octet-stream",
+      "content_length": "4683258",
+      "content_disposition": "attachment; filename=\"u2netp.pth\"",
+      "weight_content_bytes_read": 0,
+      "access_level": "W2",
+      "complete_weight_hash_verified": false,
+      "weight_loaded": false,
+      "header_transcript": "headers as returned by curl text mode"
+    },
+    {
+      "name": "unisal",
+      "author_link_or_standard_download_url": "https://raw.githubusercontent.com/rdroste/unisal/master/training_runs/pretrained_unisal/weights_best.pth",
+      "method": "HEAD with redirects; -I; no body requested",
+      "exit_code": 0,
+      "status_chain": [
+        200,
+        200
+      ],
+      "final_status": 200,
+      "content_type": "application/octet-stream",
+      "content_length": "15368928",
+      "content_disposition": null,
+      "weight_content_bytes_read": 0,
+      "access_level": "W2",
+      "complete_weight_hash_verified": false,
+      "weight_loaded": false,
+      "header_transcript": "headers as returned by curl text mode"
+    },
+    {
+      "name": "yolox_nano",
+      "author_link_or_standard_download_url": "https://github.com/Megvii-BaseDetection/YOLOX/releases/download/0.1.1rc0/yolox_nano.pth",
+      "method": "HEAD with redirects; -I; no body requested",
+      "exit_code": 0,
+      "status_chain": [
+        200,
+        302,
+        200,
+        200
+      ],
+      "final_status": 200,
+      "content_type": "application/octet-stream",
+      "content_length": "7694953",
+      "content_disposition": "attachment; filename=yolox_nano.pth",
+      "weight_content_bytes_read": 0,
+      "access_level": "W2",
+      "complete_weight_hash_verified": false,
+      "weight_loaded": false,
+      "header_transcript": "temporary signed redirect Location redacted; not byte-original"
+    }
+  ]
+}

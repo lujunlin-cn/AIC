@@ -1353,3 +1353,33 @@ R70与R69直接构图路线不同。R70固定V9 vision-only塔、processor、129
 **Package**：426/426、199037 predictions、total parameters `8,856,303,335`、2294 swaps vs R54；prediction SHA `b186208540716b2465dd2c6766f12365e8c0aa2d8ccc39c61883d12f0becb6f4`，ZIP SHA `de99b3c5fcaee15966d893425e1b39a896645546092a4d00dc00133bc31529fd`。独立 checker、ZIP roundtrip 通过，未上传。
 
 **Conclusion**：保留 R82 作为 direct-utility 路线的最高风险候选；若官方回分下降，关闭该时间重排分支；若上升，先用第二个独立 source split 固定 beta，再决定是否继续。
+
+## 2026-10-19：R83 官方回分与本地验证有效性审计
+
+**Question**：公共 native crop、人工时间视窗、稳定性和外部 utility 排序，能否作为 AIC 426 视频官方分数的代理？
+
+**Evidence**：R70 官方 `36.42`（相对 R54 +0.20），本地 RV/LIVE source-macro crop utility 平均 +0.07006；R71 官方 `36.43`（+0.21），本地十个视窗 soft +0.00120、binary -0.00287；R82 官方 `36.20`（-0.02），本地外部 source-macro bootstrap +0.02304、95% CI `[+0.00856,+0.03812]`；R69 gate 官方 `24.95`（-11.27），本地邻域稳定性改善 46.5%。
+
+**Conclusion**：本地代理不能承担官方候选排序。R82 是最直接的负识别例，R69 说明官方没有平滑奖励。R70 的同向结果支持空间读出存在迁移信号，但不能把一次官方正回分拆成确定的因果增益。R71 的正回分不能由十个公共窗口的标签方向解释，预算效应仍未识别。详细记录：`reports/r83_official_local_validity_20261019/summary.md`。
+
+**Next mechanism**：转向公开 PHD2/GIF 标签上的低容量 `interval policy`。模型输入全片粗粒度视觉/运动统计，输出归一化中心、宽度和边界置信度，解码成单一连续 85% 集合。它与 frame-rank、utility fusion 结构不同，目标是拟合视频级评测政策。源级留出同时超过中心策略和既有 PHD2 frame-rank 才允许制作一个官方单变量包；只提高 PHD2 AP 而不提高集合效用则关闭。
+
+## 2026-10-19：R83 interval policy probe
+
+**Hypothesis**：低容量模型学习视频级连续区间政策，比逐帧排名更接近官方偏好。
+
+**Protocol**：公开 PHD2/GIF 标签，5 折源级留出（5886 片段、2262 源、留出426源）；已有 LFM 8 槽特征；26,786 参数；输出只能选择两个连续 7/8 窗口；不读取官方 test。
+
+**Result**：center `0.025424`，小型逐帧 BCE `0.025281`，interval policy `0.025424`，interval oracle `0.028871`。policy 完全退化为 center。
+
+**Conclusion**：关闭这个过度受限的 interval 形式以及对窗口公式的继续扫描。不能据此关闭所有小数据路线，因为 8 槽只有两个合法窗口，且该指标是 PHD2 片段 F。下一主攻转到有直接 native crop 监督的低容量空间连续坐标/候选读出，固定 R54 时间集合。
+
+## 2026-10-19：R84 coordinate-consistency spatial readout
+
+**Hypothesis**：R70 候选 utility 的空间排序可以由更小的读出保留；加入坐标一致性损失能减少 flat utility 的跨域错误。
+
+**Change**：固定 V9 vision tower、129 legal windows、RetargetVid/LIVE native crop source split；623,361 参数逐候选 MLP，MSE + top-soft KL + soft-argmax coordinate loss；固定 R54 时间集合和空间输出解码。
+
+**Public result**：合并 source-macro `0.52306` vs center `0.49759`（`+0.02547`）；LIVE row `+0.03135`，RV row `+0.00365`；低于 R70 topsoft 两域平均 `+0.07006`。这是结构诊断，不是官方涨分预测。
+
+**Official candidate**：426/426、199037、0 fallback、112141 changed boxes；8.853590257B；ZIP SHA `526d3e0b41c329806c7746e0f7c1404b0ec8d3d2470495e8470c0f25983934f4`；checks pass，未上传。若只保留一个新空间包，R70 仍优先；R84 用于检验小读出域互补。

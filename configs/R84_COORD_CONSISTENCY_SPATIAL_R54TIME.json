@@ -1,0 +1,34 @@
+{
+  "experiment_id": "R84_COORD_CONSISTENCY_SPATIAL_R54TIME",
+  "parent": "R54_TIMELENS_CENTER_RESIDUAL_V9_B3",
+  "public_data": ["RetargetVid", "LIVE"],
+  "source_split": "R70_SPATIAL_UTILITY/full source split",
+  "feature_contract": "V9 vision-only grid -> 129 legal max windows -> [129,2305]",
+  "head": {
+    "architecture": "Linear(2305,256)-GELU-Linear(256,128)-GELU-Linear(128,1)",
+    "parameters": 623361,
+    "loss": "MSE + 0.30 top-soft KL + 0.50 soft-argmax coordinate SmoothL1",
+    "tau": 0.08,
+    "steps": 1600,
+    "seed": 20261019
+  },
+  "official_inference": {
+    "videos": 426,
+    "keyframes": 8848,
+    "batch": 32,
+    "prefetch_workers": 1,
+    "fallbacks": 0,
+    "time_parent": "R54 exact frame set and budget",
+    "official_labels_used": false
+  },
+  "parameters": {
+    "TimeLens2": 8767123696,
+    "V9_vision_tower": 85843200,
+    "R84_head": 623361,
+    "total": 8853590257
+  },
+  "package": {
+    "prediction_sha256": "22e668f1dbd9d36694d60d5ee191a3437508cf9cb2b4cb0ebc3d9945be7c1616",
+    "zip_sha256": "526d3e0b41c329806c7746e0f7c1404b0ec8d3d2470495e8470c0f25983934f4"
+  }
+}

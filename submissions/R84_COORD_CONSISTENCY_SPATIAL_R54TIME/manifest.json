@@ -1,0 +1,36 @@
+{
+  "submission_id": "R84_COORD_CONSISTENCY_SPATIAL_R54TIME",
+  "status": "PACKAGED_NOT_UPLOADED_R84_COORD_CONSISTENCY",
+  "official_platform_score": null,
+  "parent_submission": "R54_TIMELENS_CENTER_RESIDUAL_V9_B3",
+  "mechanism": "small native-crop utility head with coordinate-consistency loss; R54 time mask fixed; only spatial boxes changed",
+  "parameter_components": [
+    {
+      "name": "TimeLens2-8B",
+      "parameters": 8767123696
+    },
+    {
+      "name": "V9 vision tower",
+      "parameters": 85843200
+    },
+    {
+      "name": "R84 coordinate-consistency head",
+      "parameters": 623361
+    }
+  ],
+  "total_parameters": 8853590257,
+  "model_params_b": 8.853590257,
+  "video_count": 426,
+  "prediction_count": 199037,
+  "bbox_changed_on_kept_frames": 112141,
+  "r84_point_fallbacks": 0,
+  "prediction_sha256": "22e668f1dbd9d36694d60d5ee191a3437508cf9cb2b4cb0ebc3d9945be7c1616",
+  "zip_sha256": "526d3e0b41c329806c7746e0f7c1404b0ec8d3d2470495e8470c0f25983934f4",
+  "zip_bytes": 1460930,
+  "official_test_labels_used": false,
+  "public_probe": {
+    "source_macro_delta": 0.025472860732471847,
+    "rv_row_delta": 0.003647067829200194,
+    "live_row_delta": 0.03134763223414228
+  }
+}

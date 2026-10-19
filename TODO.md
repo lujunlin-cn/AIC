@@ -413,3 +413,19 @@ R44_DIAG_001已完成CPU留一：局部状态描述子使通用等级MAE 1.0668�
 - [x] 完成五头 direct utility ensemble + uncertainty penalty，生成并审计 R82。
 - [ ] 不自动上传 R82；若用户保留一个高风险名额，优先用 R82 做一次官方验证。
 - [ ] 若 R82 上升，做一次新的 source split 预注册 beta 固定；若下降，关闭 direct utility temporal branch。
+
+## P0 — R83 低容量视频级政策拟合
+
+- [x] 记录 R70=36.42、R71=36.43、R82=36.20、R69_GATE=24.95，并完成官方—本地代理有效性审计：`reports/r83_official_local_validity_20261019/`。
+- [x] 关闭把公共 direct utility 排序直接迁移到官方时间选择的解释；关闭把平滑性当官方收益的解释。
+- [ ] 盘点并核验公开 PHD2/GIF 训练标签、源级 split、视觉/运动特征缓存和历史 frame-rank checkpoint；禁止把官方 test 426 用作训练或调参。
+- [ ] 实现 `interval policy` 小模型：全片统计 → 中心/宽度/边界置信度 → 固定 85% 合法集合；先做源级留出，不做公式扫描。
+- [ ] 只有 interval policy 同时超过中心和现有 PHD2 frame-rank 的集合效用，才制作一个 R83 官方单变量包。
+
+- [x] 完成 R83 interval policy probe：5 折源级留出、26,786 参数、CUDA；结果未超过 center，关闭受限连续区间形式，报告见 `reports/r83_interval_policy_20261019/`。
+- [ ] 设计 R84 低容量空间连续坐标/候选集合读出：RetargetVid/LIVE native crop source split，固定 V9 vision tower 与 R54 时间集合；不读取官方 test。
+- [ ] R84 promotion gate：RV 与 LIVE 留出都超过 R70 topsoft，且连续坐标误差改善不能只来自容易的横向样本；否则关闭该空间读出。
+
+- [x] 完成 R84 公开 source-disjoint 坐标一致性空间 probe：LIVE +0.03135、RV +0.00365，总 source-macro +0.02547。
+- [x] 完成 R84 官方 426 推理和包审计：`submissions/R84_COORD_CONSISTENCY_SPATIAL_R54TIME/`，ZIP SHA `526d3e0b41c329806c7746e0f7c1404b0ec8d3d2470495e8470c0f25983934f4`。
+- [ ] 不自动上传 R84；若需要检验小模型空间路线，R70 与 R84 中只选一个高风险名额，R70 仍有更强公开依据。

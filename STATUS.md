@@ -386,3 +386,25 @@ R81 的 B3 输出框逐帧与 R54 完全一致（共享帧 196,705/196,705）；
 R82 在相同 R78 nested source contract 上训练五个 52,097 参数直接 IoU head，部署 utility 为 `mean - .5*ensemble_std`。公共外部 156 源的 source-macro Spearman 为 `.19120`，高于单头 `.16869`；源级 paired bootstrap delta `+.02304`，95% CI `[+.00856,+.03812]`。这是公开迁移诊断，不是官方分数。
 
 R82 包已完成：`submissions/R82_DIRECT_OUTPUT_UTILITY_ENSEMBLE_RISK05_MULT_TIME_R54_V9_B3/`，426/426、199037 条、8.856303335B、2294 次相对 R54 换帧；checker 和 ZIP 往返通过，ZIP SHA=`de99b3c5fcaee15966d893425e1b39a896645546092a4d00dc00133bc31529fd`，未上传。它是高风险候选；R54=36.22 仍为官方安全锚。
+
+### 2026-10-19：官方回分—本地验证审计
+
+用户回报：`R70_TOPSOFT_SPATIAL_R54TIME=36.42`、`R71_ADAPTIVE_BUDGET_R54_V9=36.43`、`R82_DIRECT_OUTPUT_UTILITY_ENSEMBLE=36.20`、`R69_SEGMENTED_GATE_R54TIME=24.95`。相对 R54=36.22，R70/R71 分别为 +0.20/+0.21，R82 为 -0.02，R69 为 -11.27。
+
+本地诊断不能作为官方涨分度量。R70 的 RV/LIVE native crop 留出平均 +0.07006 与官方方向一致；R71 十个公共视窗 soft +0.00120、binary -0.00287，与官方正回分方向冲突；R82 外部源级 Spearman bootstrap +0.02304（95% CI 不跨零）而官方下降，是直接反例；R69 平滑指标下降 46.5%而官方骤降，说明平滑不是评分目标。完整对照见 `reports/r83_official_local_validity_20261019/summary.md` 与 `metrics.json`。
+
+当前判断：本地验证可用于合同、实现和同目标机制诊断，不能用于候选官方排序。R70 保留为正向空间证据，R71 保留为一次预算机制成功证据；关闭“公共 utility 排序提升自然转成官方时间收益”的 R82 解释。
+
+下一主攻改为“低容量视频级政策拟合”：使用公开 PHD2/GIF 训练标签，训练约 50–150M 的 interval policy，预测整段的中心、宽度和边界置信度，再用固定 85% 集合解码。它针对“官方偏好是稳定的事件阶段/边界政策，而不是逐帧排名”的新假设；PHD2 AP 变好但集合效用不超过中心时立即关闭。历史 PHD2 指标与平台曾脱钩，因此该路线只在源级策略门通过后进入一个官方单变量包。
+
+### 2026-10-19：R83 interval policy probe 结果
+
+公开 PHD2/GIF 5,886 片段、2,262 源级留出（留出426源）上，26,786 参数的连续 7/8 interval policy 退化为中心策略：中心集合 F=`0.025424`，小型逐帧 BCE=`0.025281`，policy=`0.025424`，interval oracle=`0.028871`。这削弱了“只要用小模型输出连续区间就能拟合官方偏好”的简单版本；由于只有 8 槽和两个合法窗口，它不关闭更丰富的低容量路线。报告：`reports/r83_interval_policy_20261019/summary.md`，远端训练使用 CUDA，未读取官方 test。
+
+下一实验转向低容量空间策略：R70 官方 +0.20 且 RV/LIVE native crop 留出同向，优先在相同公开 native crop 上训练连续坐标/候选集合读出，固定 R54 时间集合；两个源留出都超过 R70 topsoft 才做官方单变量包。
+
+### 2026-10-19：R84 低容量空间坐标一致性候选
+
+R84 使用 RetargetVid/LIVE native crop 标签训练 623,361 参数的逐候选 MLP，并加入 soft-argmax 坐标一致性损失；固定 R54 时间集合和预算。公开 source-macro 相对中心 `+0.02547`，LIVE 逐行 `+0.03135`，RV 逐行 `+0.00365`，低于 R70 相同协议平均 `+0.07006`，但提供了结构不同的空间信号。
+
+R84 已完成官方推理和打包：426/426、199037 条、0 fallback、112141 个保留帧框变化；实际参数 `8.853590257B`（TimeLens2 + V9 vision tower + R84 head，不加载YuNet）；prediction SHA=`22e668f1dbd9d36694d60d5ee191a3437508cf9cb2b4cb0ebc3d9945be7c1616`，ZIP SHA=`526d3e0b41c329806c7746e0f7c1404b0ec8d3d2470495e8470c0f25983934f4`。independent checker、final contract、ZIP roundtrip通过，尚未上传。详见 `reports/r84_coord_consistency_20261019/summary.md`。

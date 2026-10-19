@@ -1,0 +1,14 @@
+{
+  "baseline": {"submission": "R54", "official_score": 36.22},
+  "rows": [
+    {"submission": "R44", "official_score": 36.09, "delta_vs_r54": -0.13, "local_kind": "manual_temporal_proxy", "local_delta": 0.02086},
+    {"submission": "R54", "official_score": 36.22, "delta_vs_r54": 0.0, "local_kind": "manual_temporal_proxy", "local_delta": 0.024997},
+    {"submission": "R69_GATE", "official_score": 24.95, "delta_vs_r54": -11.27, "local_kind": "stability_only", "local_delta": -0.465},
+    {"submission": "R70_TOPSOFT_SPATIAL", "official_score": 36.42, "delta_vs_r54": 0.20, "local_kind": "public_native_crop_utility", "local_delta": 0.07006},
+    {"submission": "R71_ADAPTIVE_BUDGET", "official_score": 36.43, "delta_vs_r54": 0.21, "local_kind": "manual_budget_soft", "local_delta": 0.00119591719262368},
+    {"submission": "R82_DIRECT_OUTPUT_UTILITY_ENSEMBLE", "official_score": 36.20, "delta_vs_r54": -0.02, "local_kind": "external_source_macro_spearman_delta", "local_delta": 0.02304}
+  ],
+  "official_scores_user_reported": true,
+  "official_test_labels_used": false,
+  "interpretation": "Local metrics are mechanism diagnostics and contract checks, not a calibrated official-score predictor."
+}

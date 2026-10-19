@@ -1,0 +1,28 @@
+{
+  "protocol": "R83_INTERVAL_POLICY_PUBLIC_PHD2",
+  "rows_loaded": 5886,
+  "sources_loaded": 2262,
+  "heldout_rows": 1128,
+  "heldout_sources": 426,
+  "slots": 8,
+  "keep": 0.875,
+  "starts": [
+    0,
+    1
+  ],
+  "parameter_count": 26786,
+  "device": "cuda",
+  "seed": 20261019,
+  "metrics": {
+    "center": 0.025423561876758614,
+    "frame_rank": 0.02528073289927016,
+    "policy": 0.025423561876758614,
+    "oracle_interval": 0.028871158415332755
+  },
+  "positive_rate": 0.11081560283687943,
+  "limitations": [
+    "PHD2/GIF labels are public proxy labels, not AIC official GT",
+    "the eight-slot contiguous policy is a mechanism probe, not a deployable package",
+    "frame_rank control is a small BCE head, not the historical trained head"
+  ]
+}

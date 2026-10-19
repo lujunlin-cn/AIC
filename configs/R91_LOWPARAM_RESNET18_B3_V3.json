@@ -1,0 +1,15 @@
+{
+  "experiment_id": "R91_LOWPARAM_RESNET18_B3_V3",
+  "parent": "R54_TIMELENS_CENTER_RESIDUAL_V9_B3",
+  "mechanism": "Frozen headless ResNet18 plus a linear continuous-importance readout fit on public TVSum, exact R54 per-video counts, audited V9/B3 full-frame boxes copied unchanged.",
+  "training_data": "TVSum A2 train_features.jsonl only",
+  "official_test_labels_used": false,
+  "parameters": {
+    "ResNet18_headless": 11176512,
+    "linear_readout": 513,
+    "V9_B3_vision_head_YuNet": 87407729,
+    "total": 98584754
+  },
+  "official_inference": {"videos": 426, "predictions": 199037, "common_bbox_differences_vs_R54": 0, "frame_replacements_vs_R54": 27768},
+  "status": "PACKAGED_NOT_UPLOADED"
+}

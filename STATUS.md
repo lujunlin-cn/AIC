@@ -6,6 +6,8 @@ R89 已完成一个高风险空间候选 `R89_LOWLEVEL_COMPOSITION_R54TIME_B3`�
 
 R90 在 TVSum 27/16 源级划分上验证固定 top85 连续摘要重要性：静态 ResNet 512D 的源宏平均 0.256248；32D bank 0.246228；bank 加差分/短均值 0.246542；静态+时序 bank 0.256212；静态加语义 novelty/速度/加速度 0.256299（差值 +0.000051，CI跨零）。低层 bank 不能替代轻量语义表示，简单时序拼接也没有可识别收益。下一步暂停独立 bank 替代时间模型，转向更明确的事件状态与镜头结构。
 
+R91 已生成一个真正约 98.6M 参数的独立候选 `R91_LOWPARAM_RESNET18_B3_V3`：冻结 ResNet18+TVSum 连续读出负责时间，V9/B3 全帧框负责空间；精确沿用 R54 每视频数量。426/426、199037 帧，相对 R54 替换 27768 帧，共同帧框差异0，ZIP SHA=`c8ba77bfbcd3ac46ea0bcb8578e107f2e1007a8ad31bfa8c23cc35a17385fe27`，独立 checker 通过，未上传。它是验证“100M 轻量语义是否能替代 TimeLens”的高风险包。
+
 ## 2026-10-19：R86/R87 两条路线接管结果（R86 官方回分复盘）
 
 **R86 官方回分已报告为 34.88**，相对 R54=36.22 下降 1.34。复盘发现 R86 实际使用 `points_V9_A1raw/points`，而 R54 的空间父链是 `points_B3_vo/points`；因此 R86 同时改变了点源和 H1 映射，不能作为“B3 上 T5 迁移失败”的证据。R86 归档为混杂实验。原包仍见 `submissions/R86_T5_CROPHEAD_V3_R54TIME/`，ZIP SHA=`308275cd2a3ac3caef0aaf3ae237e3d2552bc048500cb23f12b79c3cdd8f714a`。

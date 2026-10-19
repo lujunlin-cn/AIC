@@ -1443,3 +1443,7 @@ target-domain transfer. No official test data or labels were used.
 **R92 预注册设计**：冻结轻量 RGB 主干和 R54/R70 空间输出；PHD2/GIF 源级留出；R92-A RGB、R92-E RGB+低频+高频+全局运动补偿残差 gated fusion、R92-F 运动视图源内时间置换。真实 GIF 区间 union 与占位 `gif_hard` 分离。E 相对 A 的源级集合效用 `+0.005` 且 bootstrap 下界为正、F 的收益消失后，才做单一时间变量官方包。尚未运行，无官方分数。
 
 **实际结果**：远端 RTX4080 上完成 5,886 片段四视图缓存（331.45s，162MB）和 RGB/多视图各1,200 steps。RGB 开发源宏固定85% F=`0.415595`，多视图=`0.415335`；448源配对差=`-0.000260`，95% CI=`[-0.003184,+0.002589]`。运动视图源内时间置换=`0.415474`，逐视图置零 `[RGB=0.414683, low=0.417219, high=0.414921, motion=0.413045]`。结论：多视图没有实用增益，运动时间对应未被识别；R92 不生成官方包。指标和逐源结果见 `reports/r92_multiview_traditional_route_20261019/remote_metrics/`。
+
+## 2026-10-19：R93 4fps dense event edge
+
+TimeLens2 generic prompt 从2fps提高到4fps，完整426视频推理覆盖、0错误。基于dense区间构造 `q=2*abs(normalized_phase-.5)` 端点效用，固定 eta=.20 residual，V9/B3空间框与R54逐视频预算不变。产物 `submissions/R93_DENSE_EVENT_EDGE_V9_B3/`，426/426、199037预测、参数8.854531425B、独立checker/ZIP round-trip通过。ZIP SHA=`bc05c7cbd4fa60ea2c01d9a928c55b5704bc7b83748279cf39530c33fd76a28d`，prediction SHA=`00c4e2bd875e7584b16c1f947e4bcf55f733b69aec0d8ffa9a6242f1945e4d26`。相对R60 4fps direct有337视频变化、平均10.59交换帧；这是新观测+端点决策，不是重复包。官方分数待用户上传，未自动提交。

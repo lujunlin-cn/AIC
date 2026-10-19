@@ -464,3 +464,6 @@ R44_DIAG_001已完成CPU留一：局部状态描述子使通用等级MAE 1.0668�
 
 - [x] R92-A/E/F 已执行；多视图未超过 RGB，运动置换未破坏分数，关闭该具体配方，不制作提交包。
 - [ ] 保留 R89 空间低层候选；若重开传统路线，必须改变监督或观测粒度，不能重复四视图 gated fusion。
+
+- [x] R93 4fps dense TimeLens2 + event-edge residual 包已生成并通过 checker。
+- [ ] 用户上传 R93，记录官方回分并与 R54/R60/R71 绑定；回分前冻结 eta/prompt/端点规则。

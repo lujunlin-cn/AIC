@@ -8,6 +8,8 @@ PDF 复核后的下一实验为 R92-A/E/F：冻结轻量 RGB 主干，使用 PHD
 
 **R92 实际执行已完成**：5,886 个 PHD2 片段、RGB/低频/高频/phase-correlation 运动补偿四视图、448 个源级开发集；RGB 固定85%集合F=`0.415595`，多视图=`0.415335`，配对差=`-0.000260`，95% CI=`[-0.003184,+0.002589]`。运动视图时间置换=`0.415474`，没有破坏所谓增益；低频置零反而=`0.417219`。因此未通过预注册门，不制作 R92 包，关闭该具体冻结主干+gated fusion 配方；R89 空间低层路线仍独立保留。执行记录在报告 `remote_metrics/`。
 
+**R93 已生成**：4fps TimeLens2 dense generic intervals + 固定端点 residual，426/426、199037预测、8.854531425B，独立 checker 和 ZIP round-trip 通过。ZIP SHA=`bc05c7cbd4fa60ea2c01d9a928c55b5704bc7b83748279cf39530c33fd76a28d`；与旧 R60 4fps direct 仍有337视频不同，平均交换10.59帧。待用户上传，尚无官方分数。报告见 [R93 dense event edge](reports/r93_dense_event_edge_20261019/summary.md)。
+
 ## 2026-10-19：R89/R90 低层构图与时序结构
 
 R89 已完成一个高风险空间候选 `R89_LOWLEVEL_COMPOSITION_R54TIME_B3`，未上传。它固定 R54 的时间集合、精确预算和 TimeLens 排序，在 B3 空间链上加入公开 RetargetVid/LIVE 源级均衡训练的参数为零低层构图先验（梯度、局部对比、相邻帧差分、清晰度和合法窗口几何）。Confirm 272 源的原生 crop IoU 源宏平均从 0.512363 提到 0.516466（+0.004104）；去掉差分后为 +0.004108，当前差分未显示增量。官方候选 426/426、199037 帧、8.854531425B，ZIP SHA=`e2830a5fb539969e9dbde5e5133728f37d9207bb23449e746990a134b0973d2e`，待上传。

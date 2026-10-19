@@ -1,0 +1,61 @@
+{
+  "protocol": "R90_TEMPORAL_STRUCTURE_MOTION_RANK",
+  "train_videos": 27,
+  "dev_videos": 16,
+  "variants": {
+    "static": {
+      "videos": 16,
+      "source_macro_top85": 0.25624782871454954,
+      "source_macro_random": 0.24568225257098675,
+      "delta_vs_random": 0.010565576143562794,
+      "mean_spearman": 0.34311287667043744
+    },
+    "bank": {
+      "videos": 16,
+      "source_macro_top85": 0.24622808676213026,
+      "source_macro_random": 0.24568225257098675,
+      "delta_vs_random": 0.0005458341911435127,
+      "mean_spearman": 0.10124862082513947
+    },
+    "temporal_bank": {
+      "videos": 16,
+      "source_macro_top85": 0.2465416295453906,
+      "source_macro_random": 0.24568225257098675,
+      "delta_vs_random": 0.0008593769744038582,
+      "mean_spearman": 0.1220940352698146
+    },
+    "hybrid": {
+      "videos": 16,
+      "source_macro_top85": 0.2562123704701662,
+      "source_macro_random": 0.24568225257098675,
+      "delta_vs_random": 0.010530117899179459,
+      "mean_spearman": 0.32730456206743586
+    }
+  },
+  "paired_vs_static": {
+    "bank": {
+      "sources": 16,
+      "mean_delta": -0.010019741952419281,
+      "ci95": [
+        -0.014127320609986782,
+        -0.005807453556917608
+      ]
+    },
+    "temporal_bank": {
+      "sources": 16,
+      "mean_delta": -0.009706199169158936,
+      "ci95": [
+        -0.013997267326340079,
+        -0.005109835462644697
+      ]
+    },
+    "hybrid": {
+      "sources": 16,
+      "mean_delta": -3.5458244383335114e-05,
+      "ci95": [
+        -0.0012623151298612357,
+        0.0009926812257617709
+      ]
+    }
+  }
+}

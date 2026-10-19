@@ -1,0 +1,15 @@
+{
+  "experiment_id": "R90_TEMPORAL_STRUCTURE_MOTION_RANK",
+  "dataset": "TVSum",
+  "train_videos": 27,
+  "dev_videos": 16,
+  "objective": "source-macro mean continuous importance of the fixed top 85 percent of frames",
+  "variants": {
+    "static": "512D frozen ResNet18 frame representation",
+    "bank": "32D parameter-free motion/quality/composition bank",
+    "temporal_bank": "bank plus first/second difference and 3-frame mean",
+    "hybrid": "static representation plus temporal bank"
+  },
+  "official_test_labels_used": false,
+  "status": "DIAGNOSTIC_COMPLETE"
+}

@@ -448,3 +448,9 @@ R44_DIAG_001已完成CPU留一：局部状态描述子使通用等级MAE 1.0668�
 - [ ] 用户决定是否上传 `R86_T5_CROPHEAD_V3_R54TIME`；上传前只复核本地 ZIP、SHA 和平台字段，不改包内预测。
 - [ ] R87 AHA 路线先做单片段连续帧有限值 trace：复现原 `LiveInferForBenchmark` 的 SinkCache、dtype、processor 和 attention 配置，确认每层 head 输出有限后再扩展源级适配。
 - [ ] 不把 R87 NaN pilot 登记为迁移失败，不制作 AHA 官方候选。
+# 2026-10-19 更新
+
+- P0：若有提交额度，上传并记录 `R89_LOWLEVEL_COMPOSITION_R54TIME_B3` 的真实官方回分；保留 R54/R88 回退。
+- P0：有额度时先验证 R88 的 B3 点源纠错，避免把 R86 混杂实验当结论。
+- P1：用轻量语义表征的差分、局部峰值和镜头边界做下一项源级留出时序诊断。
+- P1：不要重复训练独立 32D 低层 bank 替代时间模型；R90 已显示它及其简单差分结构不足。

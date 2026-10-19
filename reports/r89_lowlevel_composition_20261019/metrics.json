@@ -1,0 +1,57 @@
+{
+  "protocol": "R89_LOWLEVEL_MOTION_SALIENCY_COMPOSITION",
+  "train_units": 5032,
+  "dev_units": 1546,
+  "confirm_units": 4994,
+  "feature_dim": 25,
+  "models": {
+    "all": {
+      "dev": {
+        "units": 1546,
+        "sources": 168,
+        "selected_mean_iou": 0.552746057510376,
+        "center_mean_iou": 0.5514033436775208,
+        "source_macro_selected_iou": 0.5000847794359461,
+        "source_macro_center_iou": 0.4975877868876393,
+        "delta_source_macro": 0.0024969925483067645,
+        "top85_frame_selection_selected": 0.5155558157379606,
+        "top85_frame_selection_center": 0.5492197442688935
+      },
+      "confirm": {
+        "units": 4994,
+        "sources": 272,
+        "selected_mean_iou": 0.567728579044342,
+        "center_mean_iou": 0.5639442205429077,
+        "source_macro_selected_iou": 0.5164664387805661,
+        "source_macro_center_iou": 0.5123628214282422,
+        "delta_source_macro": 0.004103617352323896,
+        "top85_frame_selection_selected": 0.5347733081777252,
+        "top85_frame_selection_center": 0.5646831572076361
+      }
+    },
+    "no_motion": {
+      "dev": {
+        "units": 1546,
+        "sources": 168,
+        "selected_mean_iou": 0.5526376366615295,
+        "center_mean_iou": 0.5514033436775208,
+        "source_macro_selected_iou": 0.5000486162690712,
+        "source_macro_center_iou": 0.4975877868876393,
+        "delta_source_macro": 0.0024608293814318283,
+        "top85_frame_selection_selected": 0.5157123489771038,
+        "top85_frame_selection_center": 0.5492197442688935
+      },
+      "confirm": {
+        "units": 4994,
+        "sources": 272,
+        "selected_mean_iou": 0.5676731467247009,
+        "center_mean_iou": 0.5639442205429077,
+        "source_macro_selected_iou": 0.5164708711090498,
+        "source_macro_center_iou": 0.5123628214282422,
+        "delta_source_macro": 0.0041080496808075795,
+        "top85_frame_selection_selected": 0.533960040545721,
+        "top85_frame_selection_center": 0.5646831572076361
+      }
+    }
+  }
+}

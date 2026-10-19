@@ -1,0 +1,12 @@
+{
+  "experiment_id": "R89_LOWLEVEL_COMPOSITION_R54TIME_B3",
+  "parent": "R54_TIMELENS_CENTER_RESIDUAL_V9_B3",
+  "changed_factor": "B3 keyframe points are replaced by a source-disjoint parameter-free low-level composition prior; R54 frame set, budget, temporal ranking, hold and EMA are fixed.",
+  "public_training": ["RetargetVid", "LIVE"],
+  "features": ["gradient", "local_contrast", "adjacent_keyframe_difference", "sharpness", "saliency_center", "legal_window_geometry"],
+  "readout": {"type": "source-balanced ridge", "feature_dim": 25, "parameters": 0, "coef_artifact": "reports/r89_lowlevel_composition_20261019/metrics.npz"},
+  "diagnostic": {"dev_source_macro_delta": 0.0024969925483067645, "confirm_source_macro_delta": 0.004103617352323896, "confirm_motion_ablation_delta": -0.0000044323278300005},
+  "official_inference": {"video_count": 426, "prediction_count": 199037, "frame_mask_fixed": true, "official_test_labels_used": false},
+  "parameters": {"TimeLens2": 8767123696, "V9": 87407729, "total": 8854531425},
+  "status": "PACKAGED_NOT_UPLOADED"
+}

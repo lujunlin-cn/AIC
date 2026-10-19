@@ -1428,3 +1428,8 @@ outputs became NaN for many fragments under both static-cache and SinkCache
 variants, before any adaptation head was fit. The result is blocked by a
 runtime/cache contract and has no valid metric; it is not evidence against
 target-domain transfer. No official test data or labels were used.
+
+## R89/R90（2026-10-19）
+
+- **R89_LOWLEVEL_COMPOSITION_R54TIME_B3**：固定 R54 时间集合、预算、TimeLens 排序和 B3 合同；使用 RetargetVid/LIVE 原生 crop GT 训练参数为零的梯度/局部对比/相邻帧差分/清晰度/构图位置 ridge。开发源宏 +0.002497，Confirm 272 源宏 +0.004104；去掉差分 Confirm +0.004108，运动差分未贡献。官方包已生成、未上传，426/426、199037 帧、8.854531425B，ZIP SHA=`e2830a5fb539969e9dbde5e5133728f37d9207bb23449e746990a134b0973d2e`。报告：`reports/r89_lowlevel_composition_20261019/summary.md`。
+- **R90_TEMPORAL_STRUCTURE_MOTION_RANK**：TVSum 27/16 源级留出，固定 top85 连续重要性代理。静态 ResNet 512D=0.256248；32D bank=0.246228；bank+差分/3帧均值=0.246542；静态+bank 时序=0.256212；静态+语义 novelty/速度/加速度=0.256299，配对 CI 跨零。低层 bank 及简单运动结构不足以替代轻量语义；关闭直接拼接路线。报告：`reports/r89_lowlevel_composition_20261019/summary.md`。

@@ -1,0 +1,79 @@
+{
+  "experiment_id": "R85_REAL_CROP_OBSERVATION",
+  "status": "IMPLEMENTED_NOT_RUN_ON_REAL_DATA",
+  "hypothesis": "Native crop utility is limited by information lost when the full image is encoded once. Re-encoding real candidate crops with the same frozen V9 tower adds useful candidate-specific observations beyond a spatially structured readout of the old grid.",
+  "official_anchor": "R70_TOPSOFT_SPATIAL_R54TIME",
+  "temporal_parent": "R54_TIMELENS_CENTER_RESIDUAL_V9_B3",
+  "temporal_rule": "Exact frozen R54 frame set; no R71 budget combination in this experiment",
+  "public_tables": ["rv_train", "live_train", "rv_dev", "live_dev"],
+  "candidate_count": 129,
+  "old_feature_dim": 2305,
+  "local_feature_dim": 3072,
+  "arms": {
+    "A": "Frozen, identity-verified R70 topsoft checkpoint on old 2305 features; competitive control, not a loss-matched arm",
+    "B": "Old 2305 features plus 2x2 area-weighted pooling of the same candidate ROI in the original full-image grid",
+    "C": "Old 2305 features plus 2x2 area-weighted pooling after the actual candidate image is re-encoded by the shared frozen V9 tower"
+  },
+  "baseline_reproduction": {
+    "reference": "reports/r70_remote_artifacts_20261018/R70_OBJECTIVE_VARIANTS_metrics.json:topsoft.dev",
+    "train_rows": 11276,
+    "dev_rows": 1546,
+    "dev_sources": {"rv_dev": 20, "live_dev": 148},
+    "source_macro_iou": {"rv_dev": 0.693240824341774, "live_dev": 0.5496934867791228},
+    "center_source_macro_iou": {"rv_dev": 0.6220343247056007, "live_dev": 0.4807706871825094},
+    "absolute_tolerance": 0.0001,
+    "rule": "Stop on mismatched frozen A/data identity; inspect artifacts, never substitute a same-shaped head"
+  },
+  "encoder": {
+    "name": "V9 vision-only SigLIP2",
+    "expected_parameters": 85843200,
+    "frozen": true,
+    "shared_once_in_parameter_inventory": true,
+    "processor": "Existing R70 single-tile processor, max_image_tokens=256",
+    "full_grid": "Discard odd last token row/column exactly as R70 before old/ROI features",
+    "crop_grid": "Use valid tokens only; preserve all valid rows/columns for 2x2 pooling",
+    "crop_sampling": "PIL bicubic EXTENT with continuous source box and ceil crop width/height; no square warp, no EXIF rotation"
+  },
+  "batch_parity": {
+    "images": "First selected public full image plus candidates 0,64,128; single-image versus mixed-shape batch",
+    "rtol": 0.01,
+    "atol": 0.02,
+    "scope": "FP16 implementation consistency diagnostic; not a model-performance tolerance"
+  },
+  "paired_training": {
+    "seeds": [2026101901, 2026101902],
+    "steps": 1200,
+    "batch": 16,
+    "learning_rate": 0.0003,
+    "weight_decay": 0.001,
+    "loss": "mean squared error against mean annotator continuous IoU over the same 129 candidates",
+    "head": "R70 Head.make(d=5377), identical initialization rule and optimizer in B/C",
+    "checkpoint_selection": "Final fixed step only; never select a checkpoint or seed by DEV",
+    "normalization": "Train rows only, independently for old and added observations"
+  },
+  "diagnostic": {
+    "permutation": "Permute only C local candidate features within each public frame; preserve old features, candidate positions, weights and output boxes",
+    "permutation_seed": 2026101903,
+    "content_alignment_condition": "C must lose mean IoU under candidate permutation in each DEV domain and seed; otherwise stop the candidate-content explanation. This is supporting evidence, not an independent causal proof.",
+    "bootstrap_seed": 2026101904,
+    "bootstrap_repeats": 5000,
+    "uncertainty_scope": "Source-paired uncertainty on already exposed public DEV; not independent confirmation or an official-score predictor"
+  },
+  "engineering_gate": {
+    "mean_iou_delta": 0.01,
+    "positive_source_fraction": 0.6666666666666666,
+    "ci_lower_strictly_positive": true,
+    "comparisons": ["C-B", "C-A"],
+    "required_for": "Each fixed seed, separately in rv_dev and live_dev",
+    "after_results": "Do not lower the gate or add seed/parameter sweeps"
+  },
+  "parameter_inventory": {
+    "TimeLens2_reported_parameters": 8767123696,
+    "V9_vision_expected_parameters": 85843200,
+    "R85_head": "Count actual loaded parameters; no B3 head, YuNet, A-control checkpoint, or B-control checkpoint in C deployment",
+    "limit": 9000000000,
+    "status": "No weights loaded in this session; full inference inventory still requires verification"
+  },
+  "forbidden": ["official test labels for training or target reconstruction", "official score fitting", "parameter-sweep submissions", "calling public DEV improvement an official 40-point forecast"],
+  "package_status": "No new competition package; GPU/data access and promotion are pending"
+}

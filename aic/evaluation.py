@@ -5,6 +5,8 @@ score once (the first valid occurrence); every submitted prediction contributes
 to N_pred. Strict mode rejects invalid submissions before producing scores.
 Diagnostic mode exposes the arithmetic for invalid prediction entries, without
 claiming the resulting number is a valid submission or official score.
+Current/semifinal uses Score=100*F_video with a 9B parameter eligibility cap.
+Explicit final/replay preserves the historical MB-based score for reproduction.
 """
 
 from __future__ import annotations
@@ -13,8 +15,9 @@ import argparse
 import json
 from typing import Any, Mapping, Sequence
 
-from .contract import (ContractError, VideoMetadata, crop_to_xywh, load_index,
-                       load_jsonl, size_coefficient, validate_prediction,
+from .contract import (CURRENT_RULE_VERSION, LEGACY_RULE_VERSION, STAGE_CHOICES,
+                       ContractError, VideoMetadata, _normalise_stage, crop_to_xywh,
+                       load_index, load_jsonl, size_coefficient, validate_prediction,
                        validate_submission)
 
 
@@ -100,27 +103,46 @@ def evaluate_submission(
     stage: str = "preliminary",
     strict: bool = True,
     actual_model_size_mb: float | None = None,
+    actual_model_params_b: float | None = None,
 ) -> dict[str, Any]:
     """Macro average over every indexed video; never silently omit invalid rows.
 
     Diagnostic mode tolerates invalid prediction entries, duplicate prediction
-    frames, and model-size errors. Broken video-level structure/coverage/ratio is
+    frames, and model metadata errors. Broken video-level structure/coverage/ratio is
     rejected even in diagnostic mode because scoring it would require inventing
-    a rule. Missing/invalid model size yields null final score in diagnostic mode.
+    a rule. Invalid submissions always have a null eligible score. Current
+    diagnostic_score exposes only 100*F_video, even if parameter eligibility
+    fails. Historical final/replay requires a valid size to reconstruct its
+    diagnostic score because that formula includes a size coefficient.
     """
+    stage = _normalise_stage(stage)
     # Ground-truth order has no semantic meaning; submission order is checked
     # separately because deterministic sorted output is part of our exporter.
-    gt_report = validate_submission(ground_truth, index, stage="preliminary",
+    # Current ground truth has no model eligibility/storage declaration. Ignore
+    # those fields if a synthetic fixture or public-data exporter includes them;
+    # applying the historical MB limit here would reject a valid current run.
+    gt_validation_rows = ground_truth
+    if stage == "current":
+        gt_validation_rows = [
+            {key: value for key, value in row.items()
+             if key not in {"model_size_mb", "model_params_b"}}
+            if isinstance(row, Mapping) else row for row in ground_truth
+        ]
+    gt_report = validate_submission(gt_validation_rows, index, stage="preliminary",
                                    require_sorted=False)
     gt_report.raise_for_errors()
     report = validate_submission(rows, index, stage=stage,
-                                 actual_model_size_mb=actual_model_size_mb)
+                                 actual_model_size_mb=actual_model_size_mb,
+                                 actual_model_params_b=actual_model_params_b)
     stage = report.stage
     if strict:
         report.raise_for_errors()
     else:
         tolerated = {"invalid_prediction", "duplicate_frame", "nonfinite", "model_size",
                      "model_size_missing", "inconsistent_size", "partial_size", "size_mismatch"}
+        if stage == "current":
+            tolerated.update({"model_params", "model_params_missing", "inconsistent_params",
+                              "partial_params", "params_mismatch"})
         for issue in report.issues:
             if issue.severity == "error" and issue.code not in tolerated:
                 raise ContractError(f"cannot score invalid video-level structure: {issue.code}: {issue.message}")
@@ -130,13 +152,13 @@ def evaluate_submission(
                      for key, meta in index.items()]
     f_video = sum(row["f1"] for row in video_metrics) / len(video_metrics)
     size_errors = {"model_size", "model_size_missing", "inconsistent_size", "partial_size", "size_mismatch"}
-    coefficient = 1.0 if stage == "preliminary" else None
+    coefficient = 1.0 if stage in {"preliminary", "current"} else None
     if stage == "final" and report.model_size_mb is not None and not any(
         issue.code in size_errors for issue in report.issues
     ):
         coefficient = size_coefficient(report.model_size_mb)
     return {
-        "metric_version": "local_rules_2026-09-24_not_official",
+        "metric_version": CURRENT_RULE_VERSION if stage == "current" else LEGACY_RULE_VERSION,
         "official_evaluator_verified": False,
         "submission_valid": report.valid,
         "mode": "strict" if strict else "diagnostic_only",
@@ -145,6 +167,8 @@ def evaluate_submission(
         "f_video": f_video,
         "size_coefficient": coefficient,
         "model_size_mb": report.model_size_mb,
+        "model_params_b": report.model_params_b,
+        "score_formula": "100*f_video*legacy_size_coefficient" if stage == "final" else "100*f_video",
         "score": 100 * f_video * coefficient if coefficient is not None and report.valid else None,
         "diagnostic_score": 100 * f_video * coefficient if coefficient is not None else None,
         "videos": video_metrics,
@@ -165,13 +189,17 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--index", required=True)
     parser.add_argument("--submission", required=True)
     parser.add_argument("--ground-truth", required=True)
-    parser.add_argument("--stage", choices=["preliminary", "initial", "prelim", "final", "replay", "semifinal"], default="preliminary")
+    parser.add_argument("--stage", choices=STAGE_CHOICES, default="preliminary",
+                        help="current/semifinal uses 100*F; final/replay reproduces historical MB weighting")
+    parser.add_argument("--actual-model-params-b", type=float,
+                        help="audited total of actual inference parameters divided by 1e9")
     parser.add_argument("--diagnostic", action="store_true")
     parser.add_argument("--output")
     args = parser.parse_args(argv)
     try:
         result = evaluate_submission(load_jsonl(args.submission), load_jsonl(args.ground_truth),
-                                     load_index(args.index), stage=args.stage, strict=not args.diagnostic)
+                                     load_index(args.index), stage=args.stage, strict=not args.diagnostic,
+                                     actual_model_params_b=args.actual_model_params_b)
         rendered = json.dumps(result, ensure_ascii=False, allow_nan=False, indent=2)
         if args.output:
             from pathlib import Path

@@ -1,9 +1,12 @@
-"""Local submission contract derived from rules document 01, version 2026-09-24.
+"""Local submission contracts derived from rules document 01.
 
 This is not the unavailable official validator. Coordinates use continuous pixel
 geometry (no rounding of derived height). Video frames are zero based decoded
-indices. MB's byte base, rotation conventions, and official rounding remain open.
-The metadata index must describe the exact coordinate/decode convention used.
+indices. The current/semifinal contract follows the 2026-10-16 parameter rules;
+preliminary and final/replay explicitly retain the historical 2026-09-24 byte
+rules. Current eligibility depends on total inference parameters, not bytes.
+Rotation conventions and official rounding remain open. The metadata index must
+describe the exact coordinate/decode convention used.
 """
 
 from __future__ import annotations
@@ -17,6 +20,12 @@ import os
 from pathlib import Path
 import tempfile
 from typing import Any, Iterable, Mapping, Sequence
+
+
+CURRENT_RULE_VERSION = "local_rules_2026-10-16_not_official"
+LEGACY_RULE_VERSION = "local_rules_2026-09-24_not_official"
+STAGE_CHOICES = ("preliminary", "initial", "prelim", "final", "replay",
+                 "current", "semifinal", "semi-final")
 
 
 class ContractError(ValueError):
@@ -113,7 +122,8 @@ class ValidationReport:
 
     def to_dict(self) -> dict[str, Any]:
         return {"valid": self.valid, **asdict(self),
-                "validator": "local_rules_2026-09-24_not_official"}
+                "validator": CURRENT_RULE_VERSION if self.stage == "current" else LEGACY_RULE_VERSION,
+                "official_validator_verified": False}
 
 
 def _reject_constant(value: str) -> None:
@@ -290,13 +300,13 @@ def size_coefficient(model_size_mb: float) -> float:
 
 
 def size_coefficient_params(model_params_b: float) -> float:
-    """Semifinal tiering by TOTAL parameter count in billions (notice 2026-09-29).
+    """Historical parameter tiering; never apply to the current score.
 
-    Counts every inference component (main + auxiliary); quantisation does not
-    reduce the count and LoRA base parameters count too.  >9B is not eligible.
+    Retained for explicit reproduction of historical reports and callers. The
+    current/semifinal contract validates [0, 9] B and applies no size coefficient.
     """
     if not finite_number(model_params_b) or not 0 < model_params_b <= 9:
-        raise ContractError("model_params_b must satisfy 0 < P <= 9 (semifinal cap)")
+        raise ContractError("legacy model_params_b must satisfy 0 < P <= 9")
     if model_params_b <= 0.1:
         return 1.0
     if model_params_b <= 0.5:
@@ -304,13 +314,31 @@ def size_coefficient_params(model_params_b: float) -> float:
     return 0.90
 
 
+def validate_model_params_b(model_params_b: float) -> None:
+    """Validate current total inference parameters in billions, not storage size.
+
+    The caller must audit all inference components, count shared parameters once,
+    and include frozen parameters. Quantization does not reduce this count. Zero
+    is accepted because the published cap does not exclude parameter-free methods.
+    This numerical check does not itself inspect models or establish provenance.
+    """
+    if not finite_number(model_params_b) or not 0 <= model_params_b <= 9:
+        raise ContractError("model_params_b must satisfy 0 <= P <= 9 (total inference parameters in B)")
+
+
+def _validate_storage_size_mb(model_size_mb: float) -> None:
+    if not finite_number(model_size_mb) or model_size_mb < 0:
+        raise ContractError("model_size_mb must be finite and nonnegative (storage metadata only)")
+
+
 def _normalise_stage(stage: str) -> str:
     aliases = {"preliminary": "preliminary", "initial": "preliminary", "prelim": "preliminary",
-               "final": "final", "replay": "final", "semifinal": "final", "semi-final": "final"}
+               "final": "final", "replay": "final", "current": "current",
+               "semifinal": "current", "semi-final": "current"}
     try:
         return aliases[stage.lower()]
     except (AttributeError, KeyError) as error:
-        raise ContractError("stage must be preliminary or final") from error
+        raise ContractError("stage must be current/semifinal or historical preliminary/final/replay") from error
 
 
 def validate_submission(
@@ -322,16 +350,18 @@ def validate_submission(
     actual_model_params_b: float | None = None,
     require_sorted: bool = True,
 ) -> ValidationReport:
-    """Check complete index coverage, fields, geometry, and model-size consistency.
+    """Check complete index coverage, fields, geometry, and model consistency.
 
     Unsorted frames are rejected by default because the submission contract asks
     for deterministic ordered output; set require_sorted=False only for a
     diagnostic inspection. Document 01 recommends sorting but does not itself
     establish a whole-submission rejection rule.
     Empty prediction lists are legal. Empty submissions/indexes are not.
+    Current/semifinal rows require model_params_b (total parameters in billions).
+    Optional model_size_mb is nonnegative storage metadata, without a byte cap.
     Actual file-size matching, if requested, uses the caller's explicit MB base.
-    Semifinal rows declare model_params_b (total parameter count in billions);
-    legacy rows with only model_size_mb stay readable (explicit legacy entry).
+    Final/replay retain the historical MB contract; preliminary remains the
+    default for compatibility. Select current explicitly for every new candidate.
     """
     stage = _normalise_stage(stage)
     if not index:
@@ -339,10 +369,12 @@ def validate_submission(
     if any(not isinstance(meta, VideoMetadata) or key != meta.video_id
            for key, meta in index.items()):
         raise ContractError("index keys must match VideoMetadata.video_id")
+    validate_size = _validate_storage_size_mb if stage == "current" else size_coefficient
+    validate_params = validate_model_params_b if stage == "current" else size_coefficient_params
     if actual_model_size_mb is not None:
-        size_coefficient(actual_model_size_mb)
+        validate_size(actual_model_size_mb)
     if actual_model_params_b is not None:
-        size_coefficient_params(actual_model_params_b)
+        validate_params(actual_model_params_b)
     report = ValidationReport(stage=stage)
     seen_ids: set[str] = set()
     sizes: list[float] = []
@@ -381,7 +413,7 @@ def validate_submission(
             size_present += 1
             try:
                 size = row["model_size_mb"]
-                size_coefficient(size)
+                validate_size(size)
                 sizes.append(float(size))
                 if actual_model_size_mb is not None and not math.isclose(
                     size, actual_model_size_mb, rel_tol=0, abs_tol=1e-9
@@ -395,18 +427,21 @@ def validate_submission(
             params_present += 1
             try:
                 p = row["model_params_b"]
-                size_coefficient_params(p)
+                validate_params(p)
                 params.append(float(p))
                 if actual_model_params_b is not None and not math.isclose(
-                    p, actual_model_params_b, rel_tol=0, abs_tol=1e-9
+                    p, actual_model_params_b, rel_tol=0,
+                    abs_tol=1e-12 if stage == "current" else 1e-9
                 ):
                     add("params_mismatch", "declared parameter count differs from measured total")
             except ContractError as error:
                 add("model_params", str(error))
+        elif stage == "current":
+            add("model_params_missing", "model_params_b is required for current/semifinal rows")
         elif stage == "final":
             if "model_size_mb" in row:
                 add("model_params_missing",
-                    "legacy MB-only row; declare model_params_b for semifinal",
+                    "legacy MB-only row; use current stage and model_params_b for new submissions",
                     severity="warning")
             else:
                 add("model_params_missing", "model_params_b is required for semifinal rows")
@@ -612,10 +647,13 @@ def main(argv: Sequence[str] | None = None) -> int:
     validate = commands.add_parser("validate", help="validate JSONL against enriched metadata index")
     validate.add_argument("--index", required=True)
     validate.add_argument("--submission", required=True)
-    validate.add_argument("--stage", choices=["preliminary", "initial", "prelim", "final", "replay", "semifinal"], default="preliminary")
+    validate.add_argument("--stage", choices=STAGE_CHOICES, default="preliminary",
+                          help="current/semifinal uses the 9B cap; final/replay reproduces historical MB rules")
     validate.add_argument("--require-sorted", action="store_true")
     validate.add_argument("--weights", nargs="+")
     validate.add_argument("--mb-base", choices=["decimal", "binary"])
+    validate.add_argument("--actual-model-params-b", type=float,
+                          help="audited total of actual inference parameters divided by 1e9; not inferred from bytes")
     size = commands.add_parser("size", help="audit every actual inference weight file")
     size.add_argument("weights", nargs="+")
     args = parser.parse_args(argv)
@@ -632,6 +670,7 @@ def main(argv: Sequence[str] | None = None) -> int:
                 actual_size = audit["decimal_mb" if args.mb_base == "decimal" else "binary_mib"]
             report = validate_submission(load_jsonl(args.submission), load_index(args.index),
                                          stage=args.stage, actual_model_size_mb=actual_size,
+                                         actual_model_params_b=args.actual_model_params_b,
                                          require_sorted=args.require_sorted)
             result = report.to_dict()
             status = 0 if report.valid else 2

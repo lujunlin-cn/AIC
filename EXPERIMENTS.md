@@ -18,6 +18,21 @@
 - **Decision:** not ready for package; do not scan rank/loss. Reopen only with denser/full event observation and a new source-level confirmation protocol.
 - **Report:** `reports/r99_lowrank_context_tcn_20261019/summary.md`.
 
+## R100 — R70 pooled temporal context spatial proxy（2026-10-19）
+
+- **Change:** fixed R70 current candidate tensor; neighbouring candidate-pool mean as context; rank-32 interaction vs zero-context control and source-permuted context.
+- **Data:** 12,822 public native-crop rows, 188 RV/LIVE dev units.
+- **Result:** control `0.587141`, interaction `0.587888`, delta `+0.000747`, CI `[-0.003092,+0.004446]`; permutation delta `+0.000374`.
+- **Decision:** close this proxy; it does not test a genuinely new low-resolution encoder.
+
+## R101 — R70 current candidate × ResNet18 neighbouring context（2026-10-19）
+
+- **Change:** fixed R70 `[129,2305]` current candidate features plus frozen ImageNet ResNet18 (11,176,512 parameters) embeddings from up to two neighbouring keyframes; rank-32 interaction, zero-interaction and source-permutation controls.
+- **Data:** public RetargetVid/LIVE native crop rows, 188 source units in dev; no audio, no official labels.
+- **Result:** control `0.588335`, interaction `0.588532`, delta `+0.000197`, CI `[-0.001942,+0.002463]`; permutation delta `+0.001546`.
+- **Decision:** close current observation/supervision/readout recipe; no package and no rank/fusion scan.
+- **Reports:** `reports/r100_spatial_context_utility_20261019/summary.md`, `reports/r101_spatial_resnet_context_20261019/summary.md`.
+
 ## R86/R87/R88（2026-10-19，官方回分与阻塞修复）
 
 | 实验 | 关键变化 | 结果 | 结论 |

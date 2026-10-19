@@ -18,6 +18,11 @@
 - [ ] 若 AIKU 访问成立，先做 PHD/GIF-only vs AIKU→PHD/GIF vs 等步数 control 的 source-disjoint 时间迁移审计。
 - [ ] AViMoS 只保留视觉注意力预训练候选；下载前先做存储/许可/帧对齐审计，不把 SaliencyTrain 或 UNISAL 输出当 AIC GT。
 
+- [x] AIKU 压缩包审计：6,000 train / 1,500 test、1024D预提取视觉特征、连续 gtscore、二值 gtsummary、change_points；原视频/特征提取器/来源缺失，保持 AUDIT_ONLY。
+- [x] R100 R70 pooled-context 空间代理；增量低且置换不支持，关闭。
+- [x] R101 R70 当前候选 + ResNet18 邻帧视觉 context；增量 `+0.000197`、CI跨零，关闭当前配方，不出包。
+- [ ] 等用户决断：是否投入资源取得 AIKU 特征来源/原视频协议，或转向新的观测合同/监督。
+
 # 近期任务
 
 ## P0 — R85 target-domain transfer (2026-10-19)

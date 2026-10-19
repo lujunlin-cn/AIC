@@ -1,0 +1,78 @@
+{
+  "observed_date": "2026-10-19",
+  "repository": "lujunlin-cn/AIC",
+  "base": "c84bfec39492775a2fa6b472e3682a6e1ccc3f7e",
+  "source": "GitHub branches per_page=100 and compare main...branch",
+  "comparisons": [
+    {
+      "branch": "lfm450-raw-eval-20260929",
+      "sha": "d1a4cb8f5e8b3273522dfa3f72304e9541595039",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 222
+    },
+    {
+      "branch": "r6-sreread-tcontext",
+      "sha": "db0e6af128603c120d60e4c60459abcc66bb5db6",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 146
+    },
+    {
+      "branch": "r7-nineb-plan",
+      "sha": "917328e8c0a3dd862316f0e2f4149d9a92fa0eb2",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 143
+    },
+    {
+      "branch": "r8-fullinfo",
+      "sha": "0abe6fda259c6dfee4e967417d9f14c20b47bff5",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 105
+    },
+    {
+      "branch": "teacher-v3-20260928",
+      "sha": "274d636f506e20cc1c325f09a7eccaa621e09bfb",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 255
+    },
+    {
+      "branch": "teacher-v4-20260929",
+      "sha": "aa1e5fa109368c2bdf63377e6efd80c5c8c8c402",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 251
+    },
+    {
+      "branch": "teacher-v5-20260929",
+      "sha": "a2aef499532ab4fe6b2c56110b3967f7815a74b1",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 225
+    },
+    {
+      "branch": "v6-next10h-20260930",
+      "sha": "8a0c4b400a041006f2e150881827427f7a49ed3f",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 217
+    },
+    {
+      "branch": "v7-lfm-24h-20260930",
+      "sha": "3c053a1a2ebbd8fd95e9422f1d29e58e322ffbe9",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 215
+    },
+    {
+      "branch": "v8-100-500m-20260930",
+      "sha": "9efb1e029126883d91bf9f8b234a8217668dd97a",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 157
+    }
+  ]
+}

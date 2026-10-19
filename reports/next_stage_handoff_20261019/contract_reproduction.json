@@ -1,0 +1,49 @@
+{
+  "data_scope": "synthetic_only_no_official_labels",
+  "before": {
+    "source": "base revision synthetic reproduction",
+    "current_fields_old_semifinal": {
+      "valid": false,
+      "issues": [
+        {
+          "code": "model_size_missing",
+          "message": "model_size_mb is required for final stage",
+          "video_id": "synthetic",
+          "prediction_index": null,
+          "severity": "error"
+        }
+      ],
+      "video_count": 1,
+      "prediction_count": 1,
+      "model_size_mb": null,
+      "model_params_b": 9.0,
+      "stage": "final",
+      "validator": "local_rules_2026-09-24_not_official"
+    },
+    "perfect_match_old_semifinal_score": 90.0,
+    "perfect_match_f_video": 1.0,
+    "old_independent_99B": {
+      "valid": true,
+      "videos": 1,
+      "predictions": 1,
+      "model_size_mb": null,
+      "checker": "independent_submission_check_v1"
+    }
+  },
+  "after": {
+    "current_contract": {
+      "valid": true,
+      "issues": [],
+      "video_count": 1,
+      "prediction_count": 1,
+      "model_size_mb": 36000.0,
+      "model_params_b": 9.0,
+      "stage": "current",
+      "validator": "local_rules_2026-10-16_not_official",
+      "official_validator_verified": false
+    },
+    "perfect_match_current_score": 100.0
+  },
+  "real_model_run": false,
+  "official_score": null
+}

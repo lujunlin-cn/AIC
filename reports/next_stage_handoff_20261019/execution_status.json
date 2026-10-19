@@ -1,0 +1,50 @@
+{
+  "audit_date": "2026-10-19",
+  "base_commit": "c84bfec39492775a2fa6b472e3682a6e1ccc3f7e",
+  "status": "BLOCKED_MISSING_LATEST_STATE_AND_COMPUTE",
+  "official_scores": {
+    "R54": 36.22,
+    "R70": 36.42,
+    "R71": 36.43,
+    "R82": 36.2,
+    "R69": 24.95
+  },
+  "score_source": "user_report_2026-10-19_not_independently_verified",
+  "R83": {
+    "user_status": "small_data_interval_policy_failed",
+    "report_available": false
+  },
+  "R84": {
+    "user_status": "small_coordinate_consistency_spatial_head_packaged_not_uploaded",
+    "report_available": false,
+    "package_available": false
+  },
+  "local_assets": {
+    "gpu_available": false,
+    "torch_available": false,
+    "ssh_agent_available": false,
+    "ssh_private_key_available": false,
+    "model_weight_files": 0,
+    "video_files": 0,
+    "feature_arrays": 0,
+    "submission_zip_files": 0
+  },
+  "remote_attempt": {
+    "method": "SSH read-only nvidia-smi with BatchMode and StrictHostKeyChecking",
+    "result": "DNS resolution failed; remote availability unknown",
+    "gpu_query_executed": false
+  },
+  "tests": {
+    "command": "python -m pytest -q tests/test_contract.py tests/test_evaluation.py tests/test_current_contract.py tests/test_independent_submission_check.py tests/test_current_package.py",
+    "python": "3.12.14",
+    "pytest": "8.4.2",
+    "exit_code": 0,
+    "output": "........................................................................ [ 67%]\n...................................                                      [100%]\n107 passed in 0.31s\n",
+    "data_scope": "synthetic_only"
+  },
+  "model_training_executed": false,
+  "full_inference_executed": false,
+  "new_competition_package": null,
+  "new_official_score": null,
+  "report": "reports/next_stage_handoff_20261019/summary.md"
+}

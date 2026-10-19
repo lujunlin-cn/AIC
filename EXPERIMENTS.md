@@ -1447,3 +1447,9 @@ target-domain transfer. No official test data or labels were used.
 ## 2026-10-19：R93 4fps dense event edge
 
 TimeLens2 generic prompt 从2fps提高到4fps，完整426视频推理覆盖、0错误。基于dense区间构造 `q=2*abs(normalized_phase-.5)` 端点效用，固定 eta=.20 residual，V9/B3空间框与R54逐视频预算不变。产物 `submissions/R93_DENSE_EVENT_EDGE_V9_B3/`，426/426、199037预测、参数8.854531425B、独立checker/ZIP round-trip通过。ZIP SHA=`bc05c7cbd4fa60ea2c01d9a928c55b5704bc7b83748279cf39530c33fd76a28d`，prediction SHA=`00c4e2bd875e7584b16c1f947e4bcf55f733b69aec0d8ffa9a6242f1945e4d26`。相对R60 4fps direct有337视频变化、平均10.59交换帧；这是新观测+端点决策，不是重复包。官方分数待用户上传，未自动提交。
+
+## 2026-10-19：研究1 PDF 路线 H1/H2 判别实验
+
+**R94 U²-Netp H1**：固定 T5/R54 时间与候选窗口，在 LIVE 原生 crop 表上比较冻结 U²-Netp 主体范围/候选关系和同容量零输入控制。U²-Netp 1,131,181 参数、官方权重 SHA `e7567cde013fb64813973ce6e1ecc25a80c05c3ca7adbc5a54f3c3d90991b854`；10,469 个 keyframe forward 无错误。LIVE dev 156 源，U²−control `−0.000463`，95% CI `[−0.003289,+0.002383]`；历史 `live_confirm3` U²−control `+0.000834`，CI `[-0.001906,+0.003808]`。同容量 control−H0 `+0.007883`，说明既有候选读出而非 U² 新信息解释了这部分收益。关闭具体 U² H1，不生成包。报告：`reports/r94_u2_h1_20261019/summary.md`。
+
+**R95 shot structure H2**：在 R92 5,886 个 PHD2/GIF 片段上，把相邻冻结 RGB ResNet18 embedding 的片段内 95 分位变化构造成中心、距切点、shot 长度和边界四通道；控制与结构组同一 516 维头、同一参数 202,953，控制结构通道置零。448 源 dev 结构−control `−0.000364`，95% CI `[−0.002038,+0.001271]`。关闭“embedding 代理 shot 结构”这一具体配方；不能推广为完整原视频的真实 shot 边界无效。报告：`reports/r95_shot_structure_20261019/summary.md`。

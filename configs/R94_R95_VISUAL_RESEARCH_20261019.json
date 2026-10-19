@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-19",
+  "source": "研究1/视觉研究结论.pdf",
+  "official_test_labels_used": false,
+  "r94": {
+    "hypothesis": "Frozen U2NETP foreground extent and candidate relation add crop utility beyond same-capacity control",
+    "remote_run": "/data/aic/experiments/R94_U2_H1_LIVE/run1",
+    "weight_sha256": "e7567cde013fb64813973ce6e1ecc25a80c05c3ca7adbc5a54f3c3d90991b854",
+    "u2_parameters": 1131181,
+    "dev_delta_u2_vs_control": -0.00046274809327610713,
+    "dev_ci95": [-0.0032894488187433023, 0.002382772945499803],
+    "confirm3_delta_u2_vs_control": 0.0008338544289123081,
+    "confirm3_ci95": [-0.0019063076834993685, 0.0038084732812502598],
+    "decision": "close_specific_u2_h1_no_package"
+  },
+  "r95": {
+    "hypothesis": "Explicit shot structure adds target-domain utility beyond same-capacity RGB temporal head",
+    "remote_run": "/data/aic/experiments/R95_SHOT_STRUCTURE_RGB/run1",
+    "dev_sources": 448,
+    "delta_shot_vs_control": -0.00036388470713670084,
+    "ci95": [-0.0020384505717499584, 0.001270805101930383],
+    "decision": "close_embedding_shot_h2_no_package"
+  }
+}

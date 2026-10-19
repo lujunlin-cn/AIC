@@ -1458,3 +1458,8 @@ TimeLens2 generic prompt 从2fps提高到4fps，完整426视频推理覆盖、0�
 ## 2026-10-19：R96 事件上下文可观测性
 
 在 R42 V1.3 540 条公开人工诊断（12源）上做源级留一，比较当前帧 InternVideo2 embedding 与前后上下文 logistic probe。static 源宏 AP=.6435，context=.6736，表面 +.0301；11 个有效源的 paired bootstrap 95% CI `[-.0141,+.0723]`，AUC CI 也跨零。差分-only AP=.6460，不能把简单运动差分当上下文。结论是方向性支持完整上下文/事件状态，未形成确认收益或官方包。R42 同账号重复、自由诊断标签和12源规模限制均保留。报告：`reports/r96_event_context_observability_20261019/summary.md`。
+
+
+## 2026-10-19：R97 PHD/GIF 区间状态辅助监督
+
+从公开 train.json 选择区间构造区间前/中/后状态，空区间保持未标注；在R92冻结RGB TCN上比较状态损失权重0与0.3。448源固定85%集合F：控制=.416244，状态辅助=.415464，配对差=-.000780，95% CI [-.003117,+.001542]。关闭该具体状态辅助配方，不出包；完整上下文/联合效用仍未排除。报告：`reports/r97_event_state_tcn_20261019/summary.md`。

@@ -1,5 +1,23 @@
 # 实验历史
 
+## R98 — AIM 2024 / UNISAL human-saliency native-crop probe（2026-10-19）
+
+- **Hypothesis:** temporal human visual attention can provide a spatial observation independent of foreground statistics.
+- **Change:** frozen UNISAL `weights_ft_mit1003.pth`; saliency centroid and 50%-mass centroid converted to legal crop; fixed LIVE T5 keyframes and native crop GT.
+- **Data:** 148 LIVE source dev; no audio; no official labels.
+- **Result:** Qwen point `0.52594`, UNISAL centroid `0.48871` (`-0.03723`, 95% CI `[-0.06317,-0.01117]`), mass50 `0.49230` (`-0.03364`, CI `[-0.05943,-0.00794]`).
+- **Decision:** close direct saliency-center replacement; keep only attention-as-secondary-feature or target-supervised local decoder as future distinct mechanisms.
+- **Report:** `reports/r98_unisal_human_saliency_native_crop_20261019/summary.md`.
+
+## R99 — Low-rank local-global context TCN（2026-10-19）
+
+- **Hypothesis:** same-source global visual context changes local frame value through a real interaction, not a constant linear offset.
+- **Change:** rank-32 Hadamard interaction between per-frame RGB embedding and same-fragment mean; matched zero-interaction, linear-global and cross-source permutation controls.
+- **Data:** R92 RGB view, 5,886 PHD2/GIF fragments, 448 sources, observed-selection labels; fixed 85% source-macro F.
+- **Result:** control `0.415121`, linear global `0.414338`, interaction `0.415452`; interaction delta `+0.000331`, 95% CI `[-0.000916,+0.001633]`; permutation delta `+0.000006`.
+- **Decision:** not ready for package; do not scan rank/loss. Reopen only with denser/full event observation and a new source-level confirmation protocol.
+- **Report:** `reports/r99_lowrank_context_tcn_20261019/summary.md`.
+
 ## R86/R87/R88（2026-10-19，官方回分与阻塞修复）
 
 | 实验 | 关键变化 | 结果 | 结论 |

@@ -1,5 +1,15 @@
 # 技术决定
 
+## 2026-10-19：关闭通用显著性中心，保留有条件上下文信号
+
+**Decision**：不将 UNISAL/AIM 2024 saliency centroid 直接接入 AIC 构图，也不把 R99 低秩上下文头制作官方候选。
+
+**Evidence**：R98 在148 LIVE native-crop源上，UNISAL centroid−Qwen point `-0.03723`，95% CI `[-0.06317,-0.01117]`；50% mass `-0.03364`，CI `[-0.05943,-0.00794]`。R99 在448 PHD2/GIF源上 interaction−matched control `+0.000331`，CI `[-0.000916,+0.001633]`，global permutation后 `+0.000006`。
+
+**Interpretation**：通用人类注意中心与赛事 native crop 构图目标错位。R99 的置换对照提示完整上下文可能有微弱内容条件信号，但当前8点片段和 observed-selection 标签不足以支持部署。
+
+**Next**：先做 AIKU 真实文件/许可/标签审计；若重开上下文，改用更密或完整事件观测并保持 source-level fixed budget；空间路线改为目标 crop supervision 下的高分辨率局部读出。
+
 > 当前规则更正（2026-10-15）：总推理参数≤9B，文件bytes仅作工程记录；下文旧字节否决及AHA只能teacher的判断已撤回，最终决策见末尾R25节。
 
 ## 2026-10-19：R86 回分不是 T5 H1 的有效否证；锁定点源合同

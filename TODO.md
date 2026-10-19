@@ -437,3 +437,8 @@ R44_DIAG_001已完成CPU留一：局部状态描述子使通用等级MAE 1.0668�
 - [x] 完成 R84 公开 source-disjoint 坐标一致性空间 probe：LIVE +0.03135、RV +0.00365，总 source-macro +0.02547。
 - [x] 完成 R84 官方 426 推理和包审计：`submissions/R84_COORD_CONSISTENCY_SPATIAL_R54TIME/`，ZIP SHA `526d3e0b41c329806c7746e0f7c1404b0ec8d3d2470495e8470c0f25983934f4`。
 - [ ] 不自动上传 R84；若需要检验小模型空间路线，R70 与 R84 中只选一个高风险名额，R70 仍有更强公开依据。
+# 2026-10-19 新增
+
+- [ ] 用户决定是否上传 `R86_T5_CROPHEAD_V3_R54TIME`；上传前只复核本地 ZIP、SHA 和平台字段，不改包内预测。
+- [ ] R87 AHA 路线先做单片段连续帧有限值 trace：复现原 `LiveInferForBenchmark` 的 SinkCache、dtype、processor 和 attention 配置，确认每层 head 输出有限后再扩展源级适配。
+- [ ] 不把 R87 NaN pilot 登记为迁移失败，不制作 AHA 官方候选。

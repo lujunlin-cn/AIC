@@ -1393,3 +1393,27 @@ R70与R69直接构图路线不同。R70固定V9 vision-only塔、processor、129
 **Result**：最高47.13，中位数36.44，≥40分42条，≥45分4条，34–38分52条；R71=36.43约第92名。榜单证明存在高价值策略差异，但不能识别官方空GT比例。现有公开人工片段18条均含至少一个2/3高光标签，不能代表官方测试。直接运行AHA、InternVideo2事件完成度和QV/MrHiSum错配监督均未突破；目标域适配尚未被验证。
 
 **Decision**：下一路线是PHD/GIF源级监督适配AHA，并以HL-CLIP式saliency pooling作结构对照；第一阶段固定R54/R70空间输出，使用源级留出联合集合效用作为门。没有真实负视频池前不提交empty-video gate。榜单快照与检索记录见`reports/r85_leaderboard_transfer_review_20261019/`。
+# R86/R87 — 2026-10-19 observation path and target transfer
+
+## R86_T5_CROPHEAD_V3_R54TIME
+
+Hypothesis: the source-disjoint native-crop point-to-window mapping already
+validated by T5 can improve the current V9 observation path while keeping the
+R54 temporal policy fixed. Change: apply frozen H1 coefficients from the four
+public RetargetVid/LIVE tables to current V9 keyframe points, then use the
+existing hold+EMA decoder. Result: 426/426 videos, 199037 predictions,
+106781 kept-frame boxes changed, width unchanged, independent checker passed,
+8.854531425B declared parameters. Package ZIP SHA is
+`308275cd2a3ac3caef0aaf3ae237e3d2552bc048500cb23f12b79c3cdd8f714a`.
+Official score is pending. This is the first new upload candidate after R84;
+it changes the spatial observation mapping rather than a budget or threshold.
+
+## R87_AHA_PHD_PILOT
+
+Hypothesis: frozen AHA scores can be calibrated with source-disjoint PHD2 GIF
+labels. A 96-fragment train / 48-fragment validation pilot loaded the local
+base and adapter after repairing the AHA environment. Consecutive-frame causal
+outputs became NaN for many fragments under both static-cache and SinkCache
+variants, before any adaptation head was fit. The result is blocked by a
+runtime/cache contract and has no valid metric; it is not evidence against
+target-domain transfer. No official test data or labels were used.

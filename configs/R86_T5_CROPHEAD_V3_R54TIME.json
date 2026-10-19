@@ -1,0 +1,22 @@
+{
+  "experiment_id": "R86_T5_CROPHEAD_V3_R54TIME",
+  "status": "packaged_not_uploaded",
+  "parent": "R54_TIMELENS_CENTER_RESIDUAL_V9_B3",
+  "change": "T5_CROPHEAD_V3 H1 source-disjoint native-crop point-to-window calibration applied to the current V9 observation points; R54 frame set and budget fixed",
+  "tables": [
+    "RetargetVid 001-080 train / 081-100 dev",
+    "LIVE live_train_index source split, 148-source dev"
+  ],
+  "h1_metrics_sha256": "f66ec53c37a6dcfc453ab9c5d3008534cc5c30e64aa5fcd32c19dc6901b6fe9d",
+  "public_confirmation": {
+    "LIVE_confirm3_mean": 0.0062447172,
+    "LIVE_confirm3_ci95": [0.0034429258, 0.0092863821],
+    "RetargetVid_confirm2_mean": 0.0148418364,
+    "RetargetVid_confirm2_ci95": [0.0096558305, 0.0200412323]
+  },
+  "official_test_labels_used": false,
+  "parameters": 8854531425,
+  "prediction_count": 199037,
+  "bbox_changed_on_kept_frames": 106781,
+  "zip_sha256": "308275cd2a3ac3caef0aaf3ae237e3d2552bc048500cb23f12b79c3cdd8f714a"
+}

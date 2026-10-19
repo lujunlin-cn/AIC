@@ -1,0 +1,11 @@
+{
+  "experiment_id": "R87_AHA_PHD_PILOT",
+  "status": "blocked_by_runtime_nan",
+  "purpose": "Frozen AHA base plus source-disjoint PHD2 GIF target adaptation pilot",
+  "data": "PHD2_FRAG_V1 index_v2 and LFM_V13 frag_labels.jsonl; val_sources.json source holdout",
+  "pilot_split": {"train_fragments": 96, "val_fragments": 48, "val_sources": 32},
+  "base": "local llava-onevision-qwen2-7b-ov plus local aha_weights adapter",
+  "official_test_labels_used": false,
+  "observed_failure": "AHA model loads and produces finite first-frame scores on some fragments, but consecutive-frame causal scoring becomes NaN in the cloned Transformers 4.49/PyTorch 2.8 environment; finite score fraction in the 96/48 pilot was 0.1015625, so direct ranking and adaptation metrics are invalid",
+  "action": "do not promote or package; keep as an environment/cache repair task"
+}

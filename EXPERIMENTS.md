@@ -1453,3 +1453,8 @@ TimeLens2 generic prompt 从2fps提高到4fps，完整426视频推理覆盖、0�
 **R94 U²-Netp H1**：固定 T5/R54 时间与候选窗口，在 LIVE 原生 crop 表上比较冻结 U²-Netp 主体范围/候选关系和同容量零输入控制。U²-Netp 1,131,181 参数、官方权重 SHA `e7567cde013fb64813973ce6e1ecc25a80c05c3ca7adbc5a54f3c3d90991b854`；10,469 个 keyframe forward 无错误。LIVE dev 156 源，U²−control `−0.000463`，95% CI `[−0.003289,+0.002383]`；历史 `live_confirm3` U²−control `+0.000834`，CI `[-0.001906,+0.003808]`。同容量 control−H0 `+0.007883`，说明既有候选读出而非 U² 新信息解释了这部分收益。关闭具体 U² H1，不生成包。报告：`reports/r94_u2_h1_20261019/summary.md`。
 
 **R95 shot structure H2**：在 R92 5,886 个 PHD2/GIF 片段上，把相邻冻结 RGB ResNet18 embedding 的片段内 95 分位变化构造成中心、距切点、shot 长度和边界四通道；控制与结构组同一 516 维头、同一参数 202,953，控制结构通道置零。448 源 dev 结构−control `−0.000364`，95% CI `[−0.002038,+0.001271]`。关闭“embedding 代理 shot 结构”这一具体配方；不能推广为完整原视频的真实 shot 边界无效。报告：`reports/r95_shot_structure_20261019/summary.md`。
+
+
+## 2026-10-19：R96 事件上下文可观测性
+
+在 R42 V1.3 540 条公开人工诊断（12源）上做源级留一，比较当前帧 InternVideo2 embedding 与前后上下文 logistic probe。static 源宏 AP=.6435，context=.6736，表面 +.0301；11 个有效源的 paired bootstrap 95% CI `[-.0141,+.0723]`，AUC CI 也跨零。差分-only AP=.6460，不能把简单运动差分当上下文。结论是方向性支持完整上下文/事件状态，未形成确认收益或官方包。R42 同账号重复、自由诊断标签和12源规模限制均保留。报告：`reports/r96_event_context_observability_20261019/summary.md`。

@@ -1,0 +1,26 @@
+{
+  "experiment_id": "R106_R108_BREAKTHROUGH_TEMPORAL_ROUTES",
+  "official_test_labels_used": false,
+  "parent_full_predictions": "v9_b3_full_predictions.jsonl",
+  "responses": {
+    "2fps": "reports/r47_timelens2_full_426.json",
+    "4fps": "reports/r58_timelens4fps_full_20261018.json"
+  },
+  "budget": "round(0.85*N)",
+  "space": "audited V9/B3 full-frame boxes copied without modification",
+  "routes": {
+    "R106_EVENT_SHELL_CROSSRATE_V9_B3": {
+      "formula": "rank(center) + 0.35*(rank(max(exp(-distance_to_any_2fps_or_4fps_boundary/1.5s)))-0.5)"
+    },
+    "R107_EVENT_LIFECYCLE_CROSSRATE_V9_B3": {
+      "formula": "rank(center) + 0.35*(0.35*rank(onset_4fps)+0.35*rank(completion_4fps)+0.30*rank(max(shell_2fps,shell_4fps))-0.5)"
+    },
+    "R108_EVENT_DISAGREEMENT_CROSSRATE_V9_B3": {
+      "formula": "rank(center) + 0.45*(0.60*rank(abs(mask_2fps-mask_4fps)+0.5*abs(shell_2fps-shell_4fps))+0.40*rank(min(shell_2fps,shell_4fps))-0.5)"
+    }
+  },
+  "fixed_parameters": {
+    "total_inference_parameters": 8854531425,
+    "model_params_b": 8.854531425
+  }
+}

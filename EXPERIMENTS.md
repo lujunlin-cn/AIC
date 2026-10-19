@@ -1503,3 +1503,14 @@ TimeLens2 generic prompt 从2fps提高到4fps，完整426视频推理覆盖、0�
 - **R103 genuine V9 token context**：相邻同源 V9 grid 的4×4 token cross-attention；168源 native crop dev，control `0.5684209`，actual `0.5677629`，source-permuted `0.5669107`。修正 all-masked attention 后重跑；关闭当前配方，不出包。
 - **R104 AViMoS visual saliency pretrain**：100/30源 smoke，纯视觉 MobileNetV2 decoder；CC `0.2584→0.4202`，KL `2.6212→1.9713`。这是 saliency 能力证据，不是 AIC 构图等价证明。
 - **R105 AViMoS AIC utility**：R70 native crop rows、168源 dev；control `0.5747144`，AViMoS features `0.5782359`（`+0.0035215`），source-permuted `0.5734110`。但简单 saliency rank blend 在 tune `0.5885`、hold `0.5536`，显示系数过拟合；暂不制作官方包。报告：`reports/r105_avimos_aic_utility_20261020/summary.md`。
+# R106–R108（2026-10-20）：跨采样率事件拓扑解码
+
+**假设**：TimeLens 区间内部并不等价；事件开始、完成和不同采样率无法一致定位的跃迁，可能比区间中心更接近评分高光。改变只作用于时间集合，空间框和每视频预算严格继承 R54。
+
+| 实验 | 机制 | 包级结果 | 状态 |
+|---|---|---|---|
+| R106 | `rank(center)+0.35*rank(max(exp(-distance-to-boundary/1.5s)))`，融合2fps/4fps边界壳层 | 426/426，199037，替换R54 8097帧；ZIP `3f0f948a...` | 新候选，未上传 |
+| R107 | 4fps开始/完成相位与2/4fps边界壳层的固定生命周期融合 | 426/426，199037，替换R54 5928帧；ZIP `c379a6f4...` | 新候选，未上传 |
+| R108 | 2fps/4fps interval mask disagreement + 共识壳层，固定0.45 residual | 426/426，199037，替换R54 8255帧；ZIP `669ecd85...` | 新候选，未上传 |
+
+公开12源/18视窗诊断中，壳层 soft F `0.72341`，生命周期 `0.73111`，中心 `0.70442`；这是小样本机制证据，不是官方涨分。三包均通过 `scripts/independent_submission_check.py` 与 ZIP round-trip；详情见 `reports/r106_breakthrough_temporal_routes_20261020/summary.md`。

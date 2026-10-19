@@ -1,0 +1,15 @@
+{
+  "sources": 12,
+  "views": 18,
+  "label_semantics": "existing V1.3 generic_highlight labels; diagnostic only",
+  "center_soft_f": 0.7044166125715307,
+  "shell_soft_f": 0.7234085515699669,
+  "shell_delta": 0.01899193899843621,
+  "shell_source_bootstrap_ci95": [-0.00229763, 0.03881179],
+  "lifecycle_soft_f": 0.7311101828890773,
+  "lifecycle_delta": 0.0266935703175466,
+  "lifecycle_source_bootstrap_ci95": [0.01105524, 0.04274366],
+  "cross_rate_disagreement": "not identifiable on the public pool because paired 4fps responses are unavailable",
+  "official_test_labels_used": false,
+  "selection": "fixed before package generation; no official score or leaderboard feedback used"
+}

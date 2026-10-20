@@ -1581,3 +1581,10 @@ R107的公开18视窗增益不能作为官方收益代理；R91的负回分只�
 - **Evidence:** PHD2 is user GIF interval behavior and needs soft-vote/pairwise plus unobserved mask; YTH has MTurk votes and source-level relative ranking; R102 AIKU transfer is `+0.003413` fixed-85% F with source bootstrap CI `[+0.00080,+0.00610]` but lacks deployable video features; TVSum+ResNet18 already failed official transfer at R91=`33.87`.
 - **Conclusion:** Data support a staged Valen temporal study. First construct fixed-budget `left/keep/right` candidates and run zero-shot source-macro probe; only if content and position controls separate should PHD2 soft-vote/pairwise SFT begin. Current Valen spatial utility training remains the gating result.
 - **Artifact:** `reports/valen_route/temporal_dataset_audit_20261020.md`.
+## OFFICIAL_PREFERENCE_MATCHING_20261020 — official-policy identification without test labels
+
+- **Hypothesis:** Official evaluation may differ from PHD2/YTH; matching broad decision policy is more defensible than treating public proxy labels as official frame truth.
+- **Change:** Compared the controlled R26/R54/R70/R71/R82/R91/R93/R107/R108/R69 score evidence and existing R42 annotations; formalized source-stratified supervision and bounded temporal Choice.
+- **Result:** Official feedback identifies only broad structure: continuous center-anchored sets and limited phase correction remain stable; large shifts, disagreement-as-value, generic summary transfer and jitter fail. It does not identify per-video labels, positive density or empty-video rate.
+- **Decision:** After current Valen utility T006, run only a fixed-budget `left/keep/right` zero-shot probe, then PHD2 soft-vote/pairwise LoRA with YTH/R42 source-held-out checks. No test-distribution reweighting or per-video score fitting.
+- **Artifact:** `reports/official_preference_matching_20261020.md`.

@@ -514,3 +514,6 @@ Valen-2B SFT 的完整 checkpoint 恢复和 batch 推理合同已通过。远端
 ## 2026-10-20：Valen 时序监督源审计
 
 完成现有时间数据可训练性审计，报告见 `reports/valen_route/temporal_dataset_audit_20261020.md`。结论是 PHD2/PHD-GIF 最接近比赛的用户高光选择，适合作为主时间监督，但必须保留 user interval、vote density 和 unobserved mask；不能把未选区间写成硬负例。YouTube Highlights 的 MTurk votes 适合作为第二源级监督。AIKU 的 R102 transfer pilot 为 `+0.003413` fixed-85% F，但缺少原视频和特征提取器，不能直接部署；QVHighlights、TVSum、MrHiSum、TRINITY 仅作为辅助或负对照。当前不启动 Valen 时序训练，等待空间 utility T006 结果后先做固定预算 `left/keep/right` 零样本 probe，再决定是否进行 PHD2 soft-vote/pairwise 微调。
+## 2026-10-20：官方偏好匹配研究
+
+针对“官方评测偏好可能偏离 PHD2 等公开数据”的假设完成识别分析，报告见 `reports/official_preference_matching_20261020.md`。已有回分只能约束策略形状，不能恢复测试标签：高分路线都保留连续中心锚定和有限相位修正；大幅后移、采样分歧、通用摘要迁移和逐帧抖动路线失败。下一阶段采用分层 PHD2/YTH/R42 监督、source-held-out 验证和 bounded `left/keep/right` Valen 时序 Choice；不使用官方测试分布做训练重加权，不在当前 T006 结束前启动时序训练。

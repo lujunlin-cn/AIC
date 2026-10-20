@@ -1,0 +1,34 @@
+{
+  "experiment_id": "DINOV3_S_MATCHED_V1",
+  "hypothesis": "DINOv3 patch tokens improve selection among the existing 129 legal maximum-window candidates under the same native crop supervision.\n",
+  "control": "R70 candidate geometry, source split, candidate IoU targets, head capacity, training steps and postprocessing.",
+  "change": "仅替换候选框内部/外部表征为 DINOv3 patch-token pooling；时间集合继承固定父包。",
+  "backbone": {
+    "name": "dinov3_vitb16",
+    "weights": "dinov3_vitb16_pretrain_lvd1689m-73cec8be.pth",
+    "parameter_count": 85669632,
+    "feature": "x_norm_patchtokens",
+    "storage_tokens_included": false,
+    "patch_size": 16
+  },
+  "candidate_contract": {
+    "count": 129,
+    "geometry": "R70 legal maximum-window candidates",
+    "target": "native crop GT IoU",
+    "domains": ["RetargetVid", "LIVE-YT-VideoCropping"]
+  },
+  "primary_metrics": [
+    "RetargetVid_source_macro_IoU",
+    "LIVE_source_macro_IoU",
+    "paired_source_delta_and_bootstrap_ci",
+    "candidate_oracle_gap",
+    "legal_box_rate"
+  ],
+  "promotion_gate": {
+    "source_macro_delta_min": 0.005,
+    "paired_bootstrap_ci_lower_gt": 0.0,
+    "both_domains_same_direction": true,
+    "official_score_claim": false
+  },
+  "rule_status": "public native crop supervision only; no official test labels"
+}

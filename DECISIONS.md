@@ -1410,3 +1410,11 @@ R107=36.43与R71持平，说明当前事件生命周期壳层在官方任务上�
 # 2026-10-20：四次官方回分后的路线切换
 
 R107的36.43证明生命周期解码最多持平当前最好包；R108的35.62关闭采样率分歧选帧；R93的36.32说明当前低分辨率4fps端点路线只有有限收益；R91的33.87关闭TVSum+ResNet18轻量时间迁移。时间路线回到连续中心锚，下一预算优先R88修正空间读出和R89低层构图；不再继续R106/R108同族公式或TVSum小模型。
+
+## 2026-10-20：DINOv3 v1 运行时合同
+
+**Decision**：按 `dinov3_video_highlight_training_plan.md` 先执行冻结 DINOv3 的匹配表征实验；时间 T-0/T-1 与空间 S-0 分开，不在首轮同时更换时间头、候选框、预算和后处理。官方 DINOv3 源码不直接 vendoring，运行时接收显式源码路径并把 commit 写入实验 manifest。
+
+**Evidence**：本地 ViT-B/16 权重严格加载，参数 `85,669,632`，CLS/4 storage/patch 输出合同符合官方模型；公共 QVHighlights20 smoke 的 frame ID、PTS、CPU/GPU 输出维度通过。第一次 GPU smoke 发现 FP16 输入类型错误，修复后复测通过。完整审计见 `reports/dinov3_v1/`。
+
+**Boundary**：这只证明运行时和数据合同可用，不证明 DINOv3 在 AIC 上有收益。PHD2/GIF 和 R70 native-crop 训练资产尚未在当前主机恢复；新主机可用后先做小批特征提取和匹配控制，再决定是否投入三 seed 训练。

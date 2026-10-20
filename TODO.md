@@ -519,3 +519,14 @@ R44_DIAG_001已完成CPU留一：局部状态描述子使通用等级MAE 1.0668�
 - [ ] 上传并记录 R89 官方回分，验证低层构图先验是否能迁移到官方空间目标。
 - [ ] 暂停 R106/R108 事件分歧同族、R91 TVSum小模型和无目标域监督的时间扫参。
 - [ ] 若重新做时间观测，固定R54分辨率合同，单独区分采样密度与视觉分辨率。
+
+# P0 — DINOv3 matched experiments (2026-10-20)
+
+- [x] 审计本地 DINOv3 ViT-B/16 权重、官方源码 commit、参数量和 SHA256。
+- [x] 实现官方 DINOv3 runtime 与公开视频特征提取器；保留原始 frame ID、PTS、CLS、storage、patch token 身份。
+- [x] 完成 CPU/GPU QVHighlights20 smoke，修复 FP16 模型与 FP32 输入的 dtype 错误。
+- [ ] 新 AutoDL 克隆完成后核实 GPU、PyTorch/CUDA、官方 DINOv3 源码 commit 和权重路径。
+- [ ] 恢复并审计 PHD2/GIF 源级训练/留出资产及 R70 RetargetVid/LIVE native-crop 表。
+- [ ] 固定并执行 `DINOV3_T_MATCHED_V1`：同 PHD2/GIF 监督、同 TCN、同预算，先跑单帧 T-0 再跑 T-1。
+- [ ] 固定并执行 `DINOV3_S_MATCHED_V1`：同 129 合法候选、同 native crop GT、同容量 head，分 RetargetVid/LIVE 报告源级 IoU。
+- [ ] 只有 T-0 或 S-0 通过预注册源外门槛，才制作一个单变量官方提交包；未通过则归档负结果，不扫参或把 proxy 当官方分。

@@ -1,0 +1,55 @@
+{
+  "report_id": "dinov3_v1_asset_audit_20261020",
+  "plan": {
+    "path": "dinov3_video_highlight_training_plan.md",
+    "version": "v2.0",
+    "decision": "freeze DINOv3 first; test matched temporal T-0/T-1 and spatial S-0 independently"
+  },
+  "weight": {
+    "path": "dinov3_vitb16_pretrain_lvd1689m-73cec8be.pth",
+    "bytes": 342860279,
+    "sha256": "73cec8be7427c8655ceced13ce62f6e20a1fa90d1b4d4a550df17a1144081a7c",
+    "architecture": "dinov3_vitb16",
+    "parameter_count": 85669632,
+    "embed_dim": 768,
+    "patch_size": 16,
+    "storage_tokens": 4,
+    "weight_source": "local user-provided checkpoint; public source identity to be recorded separately"
+  },
+  "official_source": {
+    "repository": "https://github.com/facebookresearch/dinov3.git",
+    "commit": "6876159a11b4df116f30f667f8c9888617df0751",
+    "checkout": "/tmp/dinov3-src-20261020",
+    "runtime_entry": "dinov3.hub.backbones.dinov3_vitb16",
+    "license_gate": "weight usage authorization must be retained with the remote run manifest"
+  },
+  "environment": {
+    "python": "3.13.12",
+    "torch": "2.11.0+cu130",
+    "torchvision": "0.26.0+cu130",
+    "av": "18.1.0",
+    "numpy": "2.4.4",
+    "timm_available": false,
+    "decord_available": false,
+    "local_gpu_observed": "NVIDIA GB10; this is not the pending AutoDL host"
+  },
+  "data_availability": {
+    "pHD2_at_/data/aic/external_datasets/PHD2": false,
+    "R70_native_crop_tables_in_current_checkout": false,
+    "QVHighlights20_smoke_video": true,
+    "TVSum_snapshot": true,
+    "interpretation": "No T-0/S-0 training was started locally; source data must be mounted or restored on the cloned AutoDL host"
+  },
+  "implementation": {
+    "runtime": "scripts/dinov3_runtime.py",
+    "extractor": "scripts/dinov3_extract_public_features.py",
+    "cache_contract": "pooled [T,768], storage [T,4,768], optional patch_tokens [T,H,W,768], exact frame_indices, PTS timestamps, metadata_json",
+    "spatial_register_policy": "storage/register tokens are excluded from patch grid",
+    "input_contract": "RGB uint8 decoded frames; square or aspect-preserving letterbox is explicit config"
+  },
+  "blockers": [
+    "pending AutoDL clone and GPU inventory",
+    "PHD2/GIF source media and R70 RetargetVid/LIVE tables are not mounted in this local checkout",
+    "DINOv3 upstream source must be cloned or supplied on the new host and its commit recorded"
+  ]
+}

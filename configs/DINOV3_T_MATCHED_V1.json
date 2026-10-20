@@ -1,0 +1,40 @@
+{
+  "experiment_id": "DINOV3_T_MATCHED_V1",
+  "hypothesis": "冻结 DINOv3 ViT-B/16 的全局视觉表示在相同 PHD2/GIF 弱监督和相同 TCN 下提供可迁移的时间排序增量。",
+  "control": "现有匹配视觉特征，保持源级划分、标签 mask、TCN 结构、步数、预算和 seed 不变。",
+  "change": "仅替换冻结视觉编码器为官方 DINOv3 ViT-B/16；不改 keep、空间框、后处理或损失。",
+  "backbone": {
+    "name": "dinov3_vitb16",
+    "weights": "dinov3_vitb16_pretrain_lvd1689m-73cec8be.pth",
+    "parameter_count": 85669632,
+    "feature": "x_norm_clstoken",
+    "storage_tokens_included": false,
+    "patch_size": 16
+  },
+  "input": {
+    "sample_protocol": "existing PHD2/GIF 1fps 8-point observations",
+    "resize_mode": "letterbox",
+    "image_size": 224,
+    "preserve_original_frame_index": true,
+    "preserve_pts": true
+  },
+  "head": {
+    "t0": "matched single-frame linear/MLP readout",
+    "t1": "existing shallow dilated TCN; no R97 state auxiliary loss",
+    "loss": "existing masked weak-label loss",
+    "seeds": [20261020, 20261021, 20261022]
+  },
+  "primary_metrics": [
+    "source_macro_fixed_budget_F",
+    "paired_source_delta_and_bootstrap_ci",
+    "position_permutation_control",
+    "output_fraction"
+  ],
+  "promotion_gate": {
+    "source_macro_delta_min": 0.005,
+    "paired_bootstrap_ci_lower_gt": 0.0,
+    "both_position_control_and_source_out_gain_required": true,
+    "official_score_claim": false
+  },
+  "rule_status": "public source supervision only; official test labels and score are excluded from training"
+}

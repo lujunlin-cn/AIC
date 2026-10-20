@@ -1,0 +1,20 @@
+{
+  "experiment_id": "DINOV3_RUNTIME_SMOKE_20261020",
+  "manifest": "temporary QVHighlights20 public video; not used for training",
+  "selected_original_frame_indices": [0, 10, 20],
+  "decoded_pts_seconds": [0.0, 0.33366666666666667, 0.6673333333333333],
+  "global_shape": [3, 768],
+  "storage_shape": [3, 4, 768],
+  "patch_shape": [3, 14, 14, 768],
+  "cache_dtype": "float16",
+  "cpu_forward": "pass",
+  "gpu_forward": "pass",
+  "cpu_gpu_frame_ids_equal": true,
+  "cpu_gpu_pts_equal": true,
+  "cpu_gpu_pooled_max_abs_difference": 0.005859375,
+  "cpu_gpu_patch_max_abs_difference": 0.009765625,
+  "notes": [
+    "The first GPU smoke exposed and then fixed FP32 input versus FP16 model mismatch.",
+    "No labels, official test videos, official scores, or pseudo labels were used."
+  ]
+}

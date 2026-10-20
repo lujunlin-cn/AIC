@@ -1514,6 +1514,16 @@ TimeLens2 generic prompt 从2fps提高到4fps，完整426视频推理覆盖、0�
 | R108 | 2fps/4fps interval mask disagreement + 共识壳层，固定0.45 residual | 426/426，199037，替换R54 8255帧；ZIP `669ecd85...` | 新候选，未上传 |
 
 公开12源/18视窗诊断中，壳层 soft F `0.72341`，生命周期 `0.73111`，中心 `0.70442`；这是小样本机制证据，不是官方涨分。三包均通过 `scripts/independent_submission_check.py` 与 ZIP round-trip；详情见 `reports/r106_breakthrough_temporal_routes_20261020/summary.md`。
+
+## DINOV3_RUNTIME_SMOKE_20261020
+
+**Hypothesis**：在开始时间 T-0/T-1 与空间 S-0 之前，必须先证明官方 DINOv3 ViT-B/16 的权重、token 分离、原始帧合同和 GPU dtype 在当前代码中可复现。
+
+**Change**：新增 `scripts/dinov3_runtime.py` 与 `scripts/dinov3_extract_public_features.py`；使用官方 DINOv3 commit `6876159a11b4df116f30f667f8c9888617df0751`，本地权重 SHA `73cec8be7427c8655ceced13ce62f6e20a1fa90d1b4d4a550df17a1144081a7c`。
+
+**Result**：3 个公开 QVHighlights20 视频帧样本的 CPU/GPU smoke 通过，输出 CLS `[3,768]`、storage `[3,4,768]`、patch `[3,14,14,768]`；原始 frame ID `[0,10,20]` 与 PTS 在 CPU/GPU 间一致。首次 GPU 运行发现 FP16 模型与 FP32 输入冲突，已修复并回归通过。没有使用官方测试标签、官方回分或伪标签。
+
+**Conclusion**：DINOv3 runtime 合同已通过；T-0/T-1/S-0 尚未运行。当前阻塞是新 AutoDL 克隆和 PHD2/GIF、RetargetVid/LIVE 公开训练资产恢复，而不是模型加载。记录见 `reports/dinov3_v1/`。
 # 2026-10-20：R107/R91 官方回分复盘
 
 | 实验 | 官方分数 | 结论 |

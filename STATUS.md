@@ -479,6 +479,8 @@ R84 已完成官方推理和打包：426/426、199037 条、0 fallback、112141 
 新增 `scripts/dinov3_runtime.py`、`scripts/dinov3_extract_public_features.py` 和 `configs/DINOV3_{T,S}_MATCHED_V1.json`。本机尚未开始 T-0/T-1/S-0 训练：PHD2/GIF 和 R70 native-crop 训练资产不在当前 checkout，等待用户完成新 AutoDL 克隆后恢复。审计和 smoke 记录在 `reports/dinov3_v1/`；这不是官方收益或提交候选。
 
 本轮进一步完成了消融重评估：R92/R97/R91/R101/R102/R105 及 R70/R82/R93/R107 的历史证据已写入 `reports/dinov3_v1/ablation_reassessment_20261020.md`。新的优先级是 **S-0-PATCH 空间主臂 > T-1 DINOv3+TCN 时间主臂**；增加 S-0-CLS 全局语义和 S-0-SHUFFLE 空间置换负控制，时间保留 position-only 与源内时间置换负控制。多视图、区间状态、邻帧交互、无标签高 FPS 和 utility→时间重排不再进入首轮。
+
+监督源重评估结论：PHD2/PHD-GIFs 仍是语义最接近的主时间源，但当前 union-binary 用法不合适。未选区间默认未观察，user/vote 字段不能丢弃；应先在已有 5,886 个干净片段上比较 union、soft-vote、pairwise 标签合同，再加入 YouTube Highlights 的 MTurk soft votes。QVHighlights、AIKU、TVSum、MrHiSum、TRINITY 只作为辅助或诊断，不能直接替代目标域行为监督。详见 `reports/dinov3_v1/supervision_source_audit_20261020.md`。
 # 2026-10-20：R106–R108 跨采样率事件拓扑新路线
 
 用户要求在现有 R88/R91/R93 之外寻找真正新算法。本轮没有重命名旧包，而是用完整 2fps/4fps TimeLens 响应构造三个不同的时间解码器，固定 V9/B3 空间框和精确 85% 预算：R106 双侧事件壳层、R107 事件生命周期、R108 跨采样率分歧+共识壳层。三包均覆盖426/426、199037预测、8.854531425B，独立 checker 与 ZIP 往返通过；官方分数均为 null，待用户上传。报告见 `reports/r106_breakthrough_temporal_routes_20261020/summary.md`。

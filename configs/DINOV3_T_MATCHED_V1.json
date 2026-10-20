@@ -18,6 +18,14 @@
     "preserve_original_frame_index": true,
     "preserve_pts": true
   },
+  "supervision_contract": {
+    "primary_source": "PHD2 training.csv only; never use testing.csv/is_last target",
+    "required_preprobe": "compare union_binary, soft_vote, pairwise on the same RGB control before DINOv3 training",
+    "unselected_time": "unobserved by default; mask unless an explicit within-video comparison is defined",
+    "secondary_source": "YouTubeHighlights MTurk votes and within-video preference pairs after PHD2 contract passes",
+    "excluded_as_main_label": ["QVHighlights query-conditioned score", "TVSum summary score", "MrHiSum summary feature", "AIKU pre-extracted score", "TRINITY pre-extracted multi-view score"],
+    "source_group": "original YouTube ID"
+  },
   "head": {
     "t0": "matched single-frame linear/MLP diagnostic readout",
     "t1": "existing shallow dilated TCN; no R97 state auxiliary loss",
@@ -37,7 +45,8 @@
     "smoke_sources_per_arm": 10,
     "smoke_steps": 300,
     "full_seed_count_after_smoke": 3,
-    "conditional_t2": "AIKU temporal trunk transfer only after T1 passes"
+    "conditional_t2": "AIKU temporal trunk transfer only after T1 passes",
+    "label_contract_gate": "PHD2 soft_vote or pairwise must beat union_binary RGB control before DINOv3 T0/T1"
   },
   "primary_metrics": [
     "source_macro_fixed_budget_F",

@@ -533,3 +533,7 @@ R44_DIAG_001已完成CPU留一：局部状态描述子使通用等级MAE 1.0668�
 - [ ] 只有 T-0 或 S-0 通过预注册源外门槛，才制作一个单变量官方提交包；未通过则归档负结果，不扫参或把 proxy 当官方分。
 - [x] 对 DINOv3 计划消融做历史证据重评估，关闭已被 R92/R97/R91/R101/R93/R107/R82 覆盖的重复变量。
 - [x] 将首轮主臂改为 `S0_PATCH` 与 `T1`，增加 `S0_CLS`、`S0_SHUFFLE`、position-only、源内时间置换负控制；记录于 `reports/dinov3_v1/ablation_reassessment_20261020.md`。
+- [x] 审计 PHD2、YouTube Highlights、QVHighlights、TVSum、MrHiSum、AIKU、TRINITY 的监督语义和现有资产状态。
+- [ ] 在已有 5,886 个 PHD2 干净片段上固定 RGB 控制，比较 union-binary、soft-vote、pairwise 三种标签合同。
+- [ ] 若 PHD2 新合同通过，再加入 YouTube Highlights MTurk soft votes；自动 match label 不作为硬负例。
+- [ ] 只有目标时间监督合同通过，才使用其训练 DINOv3 T-0/T-1；空间 S-0 继续独立使用 native crop GT。

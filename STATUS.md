@@ -477,6 +477,8 @@ R84 已完成官方推理和打包：426/426、199037 条、0 fallback、112141 
 按 `dinov3_video_highlight_training_plan.md` 启动 DINOv3 匹配实验准备。用户提供的 ViT-B/16 权重已由官方 DINOv3 源码严格加载，参数 `85,669,632`，权重 SHA256 为 `73cec8be7427c8655ceced13ce62f6e20a1fa90d1b4d4a550df17a1144081a7c`。用户补充的 `dinov3-main.zip` SHA256 为 `300754433a43da44653996789e9dcb01557a83d5dcd0fc4e3cf850b9bb227dca`；zip 解压源码与网络 clone 的 CPU 输出逐元素一致。CPU/GPU 端到端 smoke 均通过，输出合同为 CLS `[T,768]`、独立 storage `[T,4,768]`、可选 patch `[T,14,14,768]`，并保留原始解码 frame ID 与 PTS。
 
 新增 `scripts/dinov3_runtime.py`、`scripts/dinov3_extract_public_features.py` 和 `configs/DINOV3_{T,S}_MATCHED_V1.json`。本机尚未开始 T-0/T-1/S-0 训练：PHD2/GIF 和 R70 native-crop 训练资产不在当前 checkout，等待用户完成新 AutoDL 克隆后恢复。审计和 smoke 记录在 `reports/dinov3_v1/`；这不是官方收益或提交候选。
+
+本轮进一步完成了消融重评估：R92/R97/R91/R101/R102/R105 及 R70/R82/R93/R107 的历史证据已写入 `reports/dinov3_v1/ablation_reassessment_20261020.md`。新的优先级是 **S-0-PATCH 空间主臂 > T-1 DINOv3+TCN 时间主臂**；增加 S-0-CLS 全局语义和 S-0-SHUFFLE 空间置换负控制，时间保留 position-only 与源内时间置换负控制。多视图、区间状态、邻帧交互、无标签高 FPS 和 utility→时间重排不再进入首轮。
 # 2026-10-20：R106–R108 跨采样率事件拓扑新路线
 
 用户要求在现有 R88/R91/R93 之外寻找真正新算法。本轮没有重命名旧包，而是用完整 2fps/4fps TimeLens 响应构造三个不同的时间解码器，固定 V9/B3 空间框和精确 85% 预算：R106 双侧事件壳层、R107 事件生命周期、R108 跨采样率分歧+共识壳层。三包均覆盖426/426、199037预测、8.854531425B，独立 checker 与 ZIP 往返通过；官方分数均为 null，待用户上传。报告见 `reports/r106_breakthrough_temporal_routes_20261020/summary.md`。

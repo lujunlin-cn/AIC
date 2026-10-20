@@ -1524,6 +1524,12 @@ TimeLens2 generic prompt 从2fps提高到4fps，完整426视频推理覆盖、0�
 **Result**：3 个公开 QVHighlights20 视频帧样本的 CPU/GPU smoke 通过，输出 CLS `[3,768]`、storage `[3,4,768]`、patch `[3,14,14,768]`；原始 frame ID `[0,10,20]` 与 PTS 在 CPU/GPU 间一致。首次 GPU 运行发现 FP16 模型与 FP32 输入冲突，已修复并回归通过。没有使用官方测试标签、官方回分或伪标签。
 
 **Conclusion**：DINOv3 runtime 合同已通过；T-0/T-1/S-0 尚未运行。当前阻塞是新 AutoDL 克隆和 PHD2/GIF、RetargetVid/LIVE 公开训练资产恢复，而不是模型加载。记录见 `reports/dinov3_v1/`。
+
+## DINOV3_ABLATION_REASSESSMENT_20261020
+
+对计划消融与历史结果做了逐项匹配。R92 已覆盖多视图标量融合，R97 已覆盖区间状态辅助，R91 已证明 TVSum+ResNet18 直接迁移不可靠，R101 已覆盖邻帧构图上下文，R93/R107 已覆盖高 FPS/事件拓扑，R82 已证明空间 utility 直接重排时间会失配。因此这些变量从 DINOv3 首轮移除。
+
+新的主判别实验为 `S0_PATCH`（DINOv3 patch tokens + R70 129 候选），辅以 `S0_CLS` 和帧内 patch 空间置换 `S0_SHUFFLE`；时间主臂为 `T1`（DINOv3 CLS + 原有 TCN），辅以 position-only 和源内时间置换。新增分阶段执行：先 10 源/300 steps smoke，再对通过实现检查的主臂运行 3 seeds。预期不是直接承诺官方涨分；只有两个空间域同时达到源级 `+0.005` 且 CI 下界为正，或时间主臂满足同样门槛，才制作单变量官方包。详见 `reports/dinov3_v1/ablation_reassessment_20261020.md`。
 # 2026-10-20：R107/R91 官方回分复盘
 
 | 实验 | 官方分数 | 结论 |

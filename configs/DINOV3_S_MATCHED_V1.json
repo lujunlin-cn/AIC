@@ -1,6 +1,6 @@
 {
   "experiment_id": "DINOV3_S_MATCHED_V1",
-  "hypothesis": "DINOv3 patch tokens improve selection among the existing 129 legal maximum-window candidates under the same native crop supervision.\n",
+  "hypothesis": "DINOv3 patch tokens improve selection among the existing 129 legal maximum-window candidates under the same native crop supervision.",
   "control": "R70 candidate geometry, source split, candidate IoU targets, head capacity, training steps and postprocessing.",
   "change": "仅替换候选框内部/外部表征为 DINOv3 patch-token pooling；时间集合继承固定父包。",
   "backbone": {
@@ -16,6 +16,25 @@
     "geometry": "R70 legal maximum-window candidates",
     "target": "native crop GT IoU",
     "domains": ["RetargetVid", "LIVE-YT-VideoCropping"]
+  },
+  "arms": {
+    "primary": "S0_PATCH",
+    "global_semantic_negative_control": "S0_CLS",
+    "spatial_layout_negative_control": "S0_SHUFFLE",
+    "feature_shape": "window_mean + outside_mean + difference + position = 2305 dimensions",
+    "coordinate_contract": "map original crop through per-frame resize/letterbox transform; exclude padding patches from pooling"
+  },
+  "prior_controls": {
+    "reuse": "R70 129-candidate native crop protocol",
+    "historical_r70_official_score": 36.42,
+    "historical_r105_native_crop_delta": 0.0035215,
+    "do_not_repeat": ["R101 adjacent-frame interaction", "R82 utility-to-time reordering"]
+  },
+  "staged_execution": {
+    "smoke_sources_per_domain": 10,
+    "smoke_steps": 300,
+    "full_seed_count_after_smoke": 3,
+    "conditional_s1": "variable width or local correction only after S0_PATCH passes"
   },
   "primary_metrics": [
     "RetargetVid_source_macro_IoU",

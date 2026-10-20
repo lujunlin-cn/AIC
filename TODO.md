@@ -531,3 +531,5 @@ R44_DIAG_001已完成CPU留一：局部状态描述子使通用等级MAE 1.0668�
 - [ ] 固定并执行 `DINOV3_T_MATCHED_V1`：同 PHD2/GIF 监督、同 TCN、同预算，先跑单帧 T-0 再跑 T-1。
 - [ ] 固定并执行 `DINOV3_S_MATCHED_V1`：同 129 合法候选、同 native crop GT、同容量 head，分 RetargetVid/LIVE 报告源级 IoU。
 - [ ] 只有 T-0 或 S-0 通过预注册源外门槛，才制作一个单变量官方提交包；未通过则归档负结果，不扫参或把 proxy 当官方分。
+- [x] 对 DINOv3 计划消融做历史证据重评估，关闭已被 R92/R97/R91/R101/R93/R107/R82 覆盖的重复变量。
+- [x] 将首轮主臂改为 `S0_PATCH` 与 `T1`，增加 `S0_CLS`、`S0_SHUFFLE`、position-only、源内时间置换负控制；记录于 `reports/dinov3_v1/ablation_reassessment_20261020.md`。

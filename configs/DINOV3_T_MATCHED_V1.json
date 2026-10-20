@@ -19,10 +19,25 @@
     "preserve_pts": true
   },
   "head": {
-    "t0": "matched single-frame linear/MLP readout",
+    "t0": "matched single-frame linear/MLP diagnostic readout",
     "t1": "existing shallow dilated TCN; no R97 state auxiliary loss",
+    "position_only_negative_control": true,
+    "within_source_temporal_permutation_negative_control": true,
     "loss": "existing masked weak-label loss",
     "seeds": [20261020, 20261021, 20261022]
+  },
+  "prior_controls": {
+    "reuse": "R92 RGB control cache/protocol if provenance matches; otherwise re-extract matched ResNet18 control",
+    "historical_r92_rgb_fixed85_f": 0.415595,
+    "historical_r97_rgb_control_fixed85_f": 0.416244,
+    "historical_r91_official_score": 33.87,
+    "do_not_repeat": ["R92 multiview scalar bank", "R97 interval state auxiliary", "R91 TVSum supervision"]
+  },
+  "staged_execution": {
+    "smoke_sources_per_arm": 10,
+    "smoke_steps": 300,
+    "full_seed_count_after_smoke": 3,
+    "conditional_t2": "AIKU temporal trunk transfer only after T1 passes"
   },
   "primary_metrics": [
     "source_macro_fixed_budget_F",

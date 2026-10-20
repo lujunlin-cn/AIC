@@ -1548,3 +1548,13 @@ R107的公开18视窗增益不能作为官方收益代理；R91的负回分只�
 | R93 | 36.32 | 较R54仅升0.10；4fps同时降低每帧分辨率，观察密度未形成突破 |
 
 四包共同沿用V9/B3空间链，因此主要反证时间选择和监督迁移。后续从时间残差转向R88/R89空间候选。
+
+## DINOV3_MATCHED_PROBES_20261020
+
+**Hypothesis:** DINOv3 的 patch token 能在固定 R70 候选中提供可迁移的空间效用，CLS 能在相同 PHD2 合同中改善时间排序。
+
+**Changes:** 完成 5,886 片段 CLS cache；三 seed union/soft 合同 probe；position-only、DINO CLS、DINO+position、DINO+delta 时间消融；RetargetVid/LIVE 11,554 唯一关键帧的 DINO patch、CLS广播、patch置换同 head 空间 probe。
+
+**Results:** PHD2 union/soft 固定85% F 均值 `0.397981/0.396932`，差 `+0.001049`，不稳定；时间 position-only=`0.457027` 高于所有 DINO 变体（`0.433453–0.438451`）。空间中心源宏IoU=`0.497588`，patch=`0.484223`，CLS=`0.101462`，shuffle=`0.261900`；patch虽然保留真实候选信号，仍低于中心 `0.013365`。
+
+**Conclusion:** 当前 DINO temporal contract 和 spatial regression head 均关闭，不制作官方包。patch 与 CLS/shuffle 的相对关系支持空间 token 不是纯位置，但读出/损失/迁移仍是瓶颈。下一实验若继续只能改为候选内 pairwise/listwise 目标并报告 RV/LIVE 分层；不得在当前回归 head 上扫参。

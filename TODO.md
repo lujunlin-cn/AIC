@@ -537,3 +537,12 @@ R44_DIAG_001已完成CPU留一：局部状态描述子使通用等级MAE 1.0668�
 - [ ] 在已有 5,886 个 PHD2 干净片段上固定 RGB 控制，比较 union-binary、soft-vote、pairwise 三种标签合同。
 - [ ] 若 PHD2 新合同通过，再加入 YouTube Highlights MTurk soft votes；自动 match label 不作为硬负例。
 - [ ] 只有目标时间监督合同通过，才使用其训练 DINOv3 T-0/T-1；空间 S-0 继续独立使用 native crop GT。
+
+## 2026-10-20 DINOv3 v1 结果后的下一步
+
+- [x] 完成 PHD2 5,886 片段 DINOv3 CLS cache 与三 seed union/soft 合同 probe。
+- [x] 完成 DINOv3 时间 position-only/CLS/CLS+position/delta 对照；当前时间路线低于位置基线，关闭现配方。
+- [x] 完成 RetargetVid/LIVE 11,554 唯一关键帧的 patch/CLS/shuffle 空间 probe；patch低于中心，关闭当前回归 head。
+- [ ] 仅做一次结构不同的 DINO patch candidate pairwise/listwise ranking probe，必须分 RV/LIVE 源级报告；不得在回归 head 上扫参。
+- [ ] 若 ranking probe 两域均超过中心 `+0.005` 且源级 CI 下界为正，再生成一个固定 R54 时间、DINO空间单变量包；否则归档 DINOv3 deploy 路线。
+- [ ] 转向 AViMoS/低层构图或新目标域时间监督时，保留 DINO cache 作为可复用诊断资产，不上传 cache/权重。

@@ -1436,3 +1436,11 @@ R107的36.43证明生命周期解码最多持平当前最好包；R108的35.62�
 **Reason**：PHD2 的用户 GIF 选择与比赛语义最接近，但存在个性化、未观察缺失、版本时间轴和官方 426 仅 1/426 直接重叠等问题；历史 PHD2 KD 本地代理正向而官方负向，证明数据源相近不等于代理可迁移。YouTube Highlights 有人类软投票和同视频相对排序，适合作为小规模补充；QV、TVSum、MrHiSum、AIKU、TRINITY 的标签或输入合同分别不匹配。
 
 **Action**：先在已有 5,886 个 PHD2 干净片段上比较 `union-binary`、`soft-vote`、`pairwise`，固定 RGB 控制；只有新标签合同通过源级固定预算门，再接入 DINOv3 T-0/T-1。空间 S-0 继续独立使用 RetargetVid/LIVE native crop GT。
+
+## 2026-10-20：DINOv3 v1 路线关闭与剩余判别实验
+
+**Decision**：不把当前 DINOv3 temporal TCN 或 spatial regression head 制作成官方候选；只允许一次结构不同的 pairwise/listwise candidate ranking probe，之后按结果关闭或转向 AViMoS/目标域监督。
+
+**Evidence**：全量 PHD2 cache 的三 seed union−soft 固定85% F 为 `+0.000327,-0.001544,+0.004362`，均值 `+0.001049`；位置-only `0.457027` 高于 DINO CLS `0.438451`、DINO+position `0.433453`、DINO+delta `0.435161`。空间 168源中心源宏IoU=`0.497588`，DINO patch=`0.484223`，CLS广播=`0.101462`，shuffle=`0.261900`。patch相对shuffle有信息增量，但仍比中心低 `0.013365`，未达到预注册 `+0.005` 门。
+
+**Interpretation**：时间负结果可能是 PHD2 标签合同/域迁移失败，不能证明 DINOv3表征本身无信息；空间 patch−shuffle 关系支持 token 中有局部信息，但当前候选聚合和回归目标没有把它转为可迁移构图。若 ranking probe 仍低于中心，停止 DINOv3部署路线；若 RV/LIVE同时超过中心，再制作固定父链的单变量空间包。

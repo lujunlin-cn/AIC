@@ -517,3 +517,7 @@ Valen-2B SFT 的完整 checkpoint 恢复和 batch 推理合同已通过。远端
 ## 2026-10-20：官方偏好匹配研究
 
 针对“官方评测偏好可能偏离 PHD2 等公开数据”的假设完成识别分析，报告见 `reports/official_preference_matching_20261020.md`。已有回分只能约束策略形状，不能恢复测试标签：高分路线都保留连续中心锚定和有限相位修正；大幅后移、采样分歧、通用摘要迁移和逐帧抖动路线失败。下一阶段采用分层 PHD2/YTH/R42 监督、source-held-out 验证和 bounded `left/keep/right` Valen 时序 Choice；不使用官方测试分布做训练重加权，不在当前 T006 结束前启动时序训练。
+
+## 2026-10-20：Valen T006 utility 评估完成
+
+T006（native-crop IoU target temperature `0.06`）已正常训练并完成两组 batch-16 评估。与冻结 `0.12` SFT 对照的公共168源 dev source-macro 为 `0.575236→0.576026`，配对 delta `+0.000791`，95% CI `[-0.004341,+0.007054]`；RV601–700 暴露确认 `0.675226→0.676522`，delta `+0.001296`，95% CI `[-0.000436,+0.003101]`。候选 selection loss 在确认集 `0.087500→0.086204`，recall loss 不变 `0.071254`。收益未过源级实用门，关闭 T006 温度路线，不制作 Valen 官方包，也不继续扫 prompt/温度/融合。完整结果见 `reports/valen_route/utility_t006_results_20261020.md`。

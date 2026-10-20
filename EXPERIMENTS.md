@@ -1588,3 +1588,13 @@ R107的公开18视窗增益不能作为官方收益代理；R91的负回分只�
 - **Result:** Official feedback identifies only broad structure: continuous center-anchored sets and limited phase correction remain stable; large shifts, disagreement-as-value, generic summary transfer and jitter fail. It does not identify per-video labels, positive density or empty-video rate.
 - **Decision:** After current Valen utility T006, run only a fixed-budget `left/keep/right` zero-shot probe, then PHD2 soft-vote/pairwise LoRA with YTH/R42 source-held-out checks. No test-distribution reweighting or per-video score fitting.
 - **Artifact:** `reports/official_preference_matching_20261020.md`.
+
+## VALEN_UTILITY_T006_20261020 — sharper native-crop utility target
+
+- **Hypothesis:** Lowering the native-crop IoU target temperature from `0.12` to `0.06` will reduce candidate-choice smoothing and improve candidate-internal spatial utility.
+- **Change:** One intervention only: target temperature `0.12→0.06`; same public TRAIN rows, prompt, candidates, optimizer, checkpoint policy and batch-16 inference.
+- **Training:** 11,276/11,276 rows, 244 optimizer steps, 5,206 s, peak CUDA allocation about 19.16 GB; T006 checkpoint SHA `329cc0297d7f6ba125d072c7dd24f0269cabbdd90e5f0bda0f58f19665c418f7`.
+- **Public dev:** 168 source macro `0.575236→0.576026`, paired delta `+0.000791`, 95% CI `[-0.004341,+0.007054]`; LIVE `+0.001125`, RetargetVid `-0.001680`.
+- **Exposed RV601–700:** `0.675226→0.676522`, paired delta `+0.001296`, 95% CI `[-0.000436,+0.003101]`; candidate selection loss `0.087500→0.086204`, recall loss unchanged at `0.071254`.
+- **Conclusion:** The intervention changes decisions but produces no reliable practical gain. Close the utility-temperature route; do not scan temperature, prompt, calibration or fusion under this hypothesis. The prior native-crop SFT transfer signal remains a separate exposed diagnostic.
+- **Artifacts:** `reports/valen_route/utility_t006_results_20261020.md`, `utility_t006_eval_dev_source.json`, `utility_t006_eval_confirm_analysis.json`, `utility_t006_checkpoint_comparison.json`.

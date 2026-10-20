@@ -1458,3 +1458,11 @@ V1未匹配R70归一化/头，且soft有重复用户区间计票错误，因此�
 **Boundary**：601--700 曾被历史诊断或分支使用，不能写成 fresh independent confirmation；IoU 不能换算官方 AIC Score；Valen 仍不能与 8.855B TimeLens2 同时部署。
 
 **Next gate**：固定 prompt、温度、候选生成、时间策略和 batch=16，在 public TRAIN 上训练 utility-aware 目标，用源级留出与冻结 SFT 对照；若没有实用增量，关闭部署路线，不做 prompt/温度/融合扫描。
+
+## 2026-10-20：T006 sharper utility target 关闭
+
+**Decision**：关闭 Valen native-crop target-temperature 路线，不制作官方包，不继续扫描温度、prompt、校准或融合。
+
+**Evidence**：唯一改动为 IoU soft-target temperature `0.12→0.06`。公共168源 dev 的 source-paired delta 为 `+0.000791`，95% CI `[-0.004341,+0.007054]`；RV601–700 暴露确认 delta 为 `+0.001296`，95% CI `[-0.000436,+0.003101]`。确认集 candidate selection loss 仅 `0.087500→0.086204`，candidate recall loss 保持 `0.071254`。
+
+**Interpretation**：更尖锐的目标确实改变了少量候选选择，但没有稳定减少主要误差，也没有可靠跨源增益。该结果不能否定先前 native crop SFT 的暴露迁移信号；它只关闭本次 utility-temperature 干预。下一动作回到固定 R26/R54 时间合同下的时序可观测性与 PHD2/YTH 标签合同研究。

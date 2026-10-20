@@ -566,3 +566,11 @@ R44_DIAG_001已完成CPU留一：局部状态描述子使通用等级MAE 1.0668�
 - [ ] 实现并运行一个 utility-aware candidate-choice objective；训练和评估均使用 batch=16，记录有效 batch、吞吐、峰值显存。
 - [ ] 只在 source-level 留出超过冻结 SFT 后，制作 Valen 官方推理与提交包；否则关闭该部署路线。
 - [x] 研究官方偏好偏离公开数据时的合法识别方法：官方回分只作机制级约束，采用分层 PHD2/YTH/R42 监督和 bounded window policy；报告 `reports/official_preference_matching_20261020.md`。
+
+## 2026-10-20：Valen T006 完成
+
+- [x] 完成 T006 native-crop utility temperature `0.06` 训练，保存 checkpoint SHA、训练进度和资源日志。
+- [x] 用原始 dev 请求、相同候选/提示词和 batch=16 完成 168源 source-macro 评估。
+- [x] 用相同 generic confirm 协议完成 RV601–700 暴露源级评估，并分解 candidate recall/selection loss。
+- [x] 关闭 T006 温度路线；不继续扫温度、prompt、校准或融合，不制作 Valen 官方包。
+- [ ] 下一阶段先做固定时间集合下的 Valen `left/keep/right` 零样本时序 probe；只有内容/位置控制可区分后才进入 PHD2/YTH 时序监督。

@@ -20,8 +20,15 @@
     "repository": "https://github.com/facebookresearch/dinov3.git",
     "commit": "6876159a11b4df116f30f667f8c9888617df0751",
     "checkout": "/tmp/dinov3-src-20261020",
+    "user_archive": {
+      "path": "dinov3-main.zip",
+      "bytes": 10274829,
+      "sha256": "300754433a43da44653996789e9dcb01557a83d5dcd0fc4e3cf850b9bb227dca",
+      "top_level": "dinov3-main/",
+      "archive_revision": "2025-08-15 source snapshot; no embedded git metadata"
+    },
     "runtime_entry": "dinov3.hub.backbones.dinov3_vitb16",
-    "license_gate": "weight usage authorization must be retained with the remote run manifest"
+    "license_gate": "DINOv3 License applies; retain the supplied LICENSE.md and usage authorization with the remote run manifest"
   },
   "environment": {
     "python": "3.13.12",
@@ -45,7 +52,8 @@
     "extractor": "scripts/dinov3_extract_public_features.py",
     "cache_contract": "pooled [T,768], storage [T,4,768], optional patch_tokens [T,H,W,768], exact frame_indices, PTS timestamps, metadata_json",
     "spatial_register_policy": "storage/register tokens are excluded from patch grid",
-    "input_contract": "RGB uint8 decoded frames; square or aspect-preserving letterbox is explicit config"
+    "input_contract": "RGB uint8 decoded frames; square or aspect-preserving letterbox is explicit config",
+    "archive_smoke": "user archive extracted to /tmp/dinov3-package-20261020/dinov3-main and loaded the same weight successfully; CPU output was bit-identical to the network clone smoke"
   },
   "blockers": [
     "pending AutoDL clone and GPU inventory",

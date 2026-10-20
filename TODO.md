@@ -526,6 +526,7 @@ R44_DIAG_001已完成CPU留一：局部状态描述子使通用等级MAE 1.0668�
 - [x] 实现官方 DINOv3 runtime 与公开视频特征提取器；保留原始 frame ID、PTS、CLS、storage、patch token 身份。
 - [x] 完成 CPU/GPU QVHighlights20 smoke，修复 FP16 模型与 FP32 输入的 dtype 错误。
 - [ ] 新 AutoDL 克隆完成后核实 GPU、PyTorch/CUDA、官方 DINOv3 源码 commit 和权重路径。
+- [x] 审计用户提供的 `dinov3-main.zip`，确认源码可加载同一权重；远端优先从该归档解压并记录 SHA。
 - [ ] 恢复并审计 PHD2/GIF 源级训练/留出资产及 R70 RetargetVid/LIVE native-crop 表。
 - [ ] 固定并执行 `DINOV3_T_MATCHED_V1`：同 PHD2/GIF 监督、同 TCN、同预算，先跑单帧 T-0 再跑 T-1。
 - [ ] 固定并执行 `DINOV3_S_MATCHED_V1`：同 129 合法候选、同 native crop GT、同容量 head，分 RetargetVid/LIVE 报告源级 IoU。

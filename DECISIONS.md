@@ -1418,3 +1418,5 @@ R107的36.43证明生命周期解码最多持平当前最好包；R108的35.62�
 **Evidence**：本地 ViT-B/16 权重严格加载，参数 `85,669,632`，CLS/4 storage/patch 输出合同符合官方模型；公共 QVHighlights20 smoke 的 frame ID、PTS、CPU/GPU 输出维度通过。第一次 GPU smoke 发现 FP16 输入类型错误，修复后复测通过。完整审计见 `reports/dinov3_v1/`。
 
 **Boundary**：这只证明运行时和数据合同可用，不证明 DINOv3 在 AIC 上有收益。PHD2/GIF 和 R70 native-crop 训练资产尚未在当前主机恢复；新主机可用后先做小批特征提取和匹配控制，再决定是否投入三 seed 训练。
+
+用户随后提供 `dinov3-main.zip`，决定以该归档作为远端首选源码来源。归档 SHA256=`300754433a43da44653996789e9dcb01557a83d5dcd0fc4e3cf850b9bb227dca`；解压后同一 ViT-B/16 权重加载成功，CPU smoke 与临时网络 clone 输出逐元素一致。源码归档不提交 Git，仓库只记录其 SHA；DINOv3 License 文件随远端解压目录保留。

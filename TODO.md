@@ -558,6 +558,9 @@ R44_DIAG_001已完成CPU留一：局部状态描述子使通用等级MAE 1.0668�
 
 ## 2026-10-20：Valen 后续
 
+- [x] 审计 Valen 时序可用数据：PHD2/YTH 主监督、AIKU 条件迁移、QV/TVSum/MrHiSum/TRINITY 辅助边界；报告 `reports/valen_route/temporal_dataset_audit_20261020.md`。
+- [ ] 等 Valen 空间 utility T006 完成后，先做固定预算 `left/keep/right` 时序零样本 probe；通过内容/位置控制后再构造 PHD2 soft-vote/pairwise 时序 SFT。
+
 - [x] 用恢复后的完整 Valen checkpoint 完成 RV601--700 全量暴露迁移分析，推理强制 batch=16。
 - [x] 记录候选召回损失与候选内选择损失，并保留 ratio/source 级 CI。
 - [ ] 实现并运行一个 utility-aware candidate-choice objective；训练和评估均使用 batch=16，记录有效 batch、吞吐、峰值显存。

@@ -510,3 +510,7 @@ Valen-2B SFT 的完整 checkpoint 恢复和 batch 推理合同已通过。远端
 在 RetargetVid 601--700 的 100 个暴露源上，Valen source-macro IoU=`0.675226`，旧 head=`0.656760`，差值 `+0.018466`，bootstrap 95% CI `[+0.010735,+0.026371]`；71 源提升，2 源下降至少 0.05。1:3 与 3:1 均为正。四候选 oracle=`0.762726`、129候选 oracle=`0.833979`，候选召回损失=`0.071254`，候选内选择损失=`0.087500`。这支持“native crop SFT 有迁移信号，但候选内 utility 仍是主损失”，不等价于官方 Score 或独立新源确认。完整结果见 `reports/valen_route/confirm_analysis_rv601_700.json`。
 
 下一动作冻结 prompt、温度、候选生成、时间策略和 batch=16，只做一个 utility-aware candidate-choice objective；若源级留出不能超过冻结 SFT，则关闭 Valen 部署路线，不继续扫 prompt 或融合权重。
+
+## 2026-10-20：Valen 时序监督源审计
+
+完成现有时间数据可训练性审计，报告见 `reports/valen_route/temporal_dataset_audit_20261020.md`。结论是 PHD2/PHD-GIF 最接近比赛的用户高光选择，适合作为主时间监督，但必须保留 user interval、vote density 和 unobserved mask；不能把未选区间写成硬负例。YouTube Highlights 的 MTurk votes 适合作为第二源级监督。AIKU 的 R102 transfer pilot 为 `+0.003413` fixed-85% F，但缺少原视频和特征提取器，不能直接部署；QVHighlights、TVSum、MrHiSum、TRINITY 仅作为辅助或负对照。当前不启动 Valen 时序训练，等待空间 utility T006 结果后先做固定预算 `left/keep/right` 零样本 probe，再决定是否进行 PHD2 soft-vote/pairwise 微调。

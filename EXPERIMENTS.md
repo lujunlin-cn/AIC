@@ -1573,3 +1573,11 @@ R107的公开18视窗增益不能作为官方收益代理；R91的负回分只�
 - **Error decomposition:** candidate recall loss `0.071254`; candidate-internal selection loss `0.087500`. Ratio deltas: `1:3 +0.014766` CI `[+0.001868,+0.028027]`; `3:1 +0.022196` CI `[+0.013865,+0.030809]`.
 - **Conclusion:** supports a native crop supervision transfer signal and identifies candidate-internal utility as the larger remaining loss. It is exposed migration evidence, not official Score evidence. Next experiment is one utility-aware objective with batch 16 and a source-held-out gate; no prompt or temperature sweep.
 - **Artifacts:** `reports/valen_route/confirm_analysis_rv601_700.json`, `reports/valen_route/confirm_runtime_metrics.json`, `reports/valen_route/valen_sft_verdict_20261020.md`.
+
+## VALEN_TEMPORAL_DATA_AUDIT_20261020 — temporal supervision readiness
+
+- **Hypothesis:** Existing public data can support Valen temporal training only when its observation process and task semantics are preserved; PHD2/YTH should carry more target-domain signal than generic summary datasets.
+- **Change:** Audited PHD2/PHD-GIF, YouTube Highlights, R42 human labels, AIKU, QVHighlights, TVSum/SumMe, MrHiSum/TRINITY and RetargetVid/LIVE against frame-ranking and official-set decision requirements. No new training or official-test access.
+- **Evidence:** PHD2 is user GIF interval behavior and needs soft-vote/pairwise plus unobserved mask; YTH has MTurk votes and source-level relative ranking; R102 AIKU transfer is `+0.003413` fixed-85% F with source bootstrap CI `[+0.00080,+0.00610]` but lacks deployable video features; TVSum+ResNet18 already failed official transfer at R91=`33.87`.
+- **Conclusion:** Data support a staged Valen temporal study. First construct fixed-budget `left/keep/right` candidates and run zero-shot source-macro probe; only if content and position controls separate should PHD2 soft-vote/pairwise SFT begin. Current Valen spatial utility training remains the gating result.
+- **Artifact:** `reports/valen_route/temporal_dataset_audit_20261020.md`.

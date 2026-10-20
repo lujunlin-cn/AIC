@@ -1,0 +1,12 @@
+{
+  "rows": 12822,
+  "frames": 11554,
+  "train_rows": 11276,
+  "dev_rows": 1546,
+  "pool_s": 102.3187562469393,
+  "distinct_masks_mean": 15.665418811417876,
+  "distinct_masks_min": 7,
+  "distinct_masks_max": 23,
+  "rows_sha256": "7e10ada592c25dd40801640e6263adfdeb4332814234883e979fd9534d85e11b",
+  "pooling": "center-in-patch; padding excluded; GPU fp32 accumulation; fp16 persistent features"
+}

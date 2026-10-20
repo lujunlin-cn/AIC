@@ -546,3 +546,12 @@ R44_DIAG_001已完成CPU留一：局部状态描述子使通用等级MAE 1.0668�
 - [ ] 仅做一次结构不同的 DINO patch candidate pairwise/listwise ranking probe，必须分 RV/LIVE 源级报告；不得在回归 head 上扫参。
 - [ ] 若 ranking probe 两域均超过中心 `+0.005` 且源级 CI 下界为正，再生成一个固定 R54 时间、DINO空间单变量包；否则归档 DINOv3 deploy 路线。
 - [ ] 转向 AViMoS/低层构图或新目标域时间监督时，保留 DINO cache 作为可复用诊断资产，不上传 cache/权重。
+
+## 2026-10-20：V2匹配与标签错误修复后的优先级
+
+- [x] 实现GPU批量池化/持久化DINO空间cache，核查62GiB容器内存及源宏加权。
+- [x] 完成V9/DINO同R70头+fit-only norm公平对照；DINO当前落后，不替换V9。
+- [x] 修复PHD2同用户重叠GIF重复计票，保留旧cache，新cache为DINOV3_PHD2_LABEL_V2，回归单测2/2。
+- [ ] 固定split和训练seed、统一loss重跑union/soft合同；不把旧soft结果用作选择依据。
+- [ ] 同缓存连续区域池化对照，再做224/448观察对照；记录129候选的有效视觉区域数和源级两域CI。
+- [ ] 若观察干预仍无增量，转AViMoS native-crop适配而非再扫DINO头损失。

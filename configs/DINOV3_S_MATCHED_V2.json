@@ -1,0 +1,21 @@
+{
+  "experiment_id": "DINOV3_S_MATCHED_V2",
+  "reason": "First spatial prototype omitted R70 feature normalization and substituted a smaller head, so it cannot isolate the backbone.",
+  "hypotheses": [
+    "If normalization/readout mismatch explains the failure, matched normalized DINO improves materially over the old unnormalized prototype.",
+    "If coarse observation limits frame layout, the 129 windows collapse to few distinct patch masks even before learning.",
+    "If pretrained representation is the limitation, V9 wins the genuinely matched comparison after both heads converge."
+  ],
+  "data": {"tables": ["rv_train", "live_train", "rv_dev", "live_dev"], "rows": 12822, "train_rows": 11276, "dev_rows": 1546, "dev_sources": {"rv": 20, "live": 148}},
+  "arms": ["dino", "v9"],
+  "head": "r70_spatial_utility_pilot.Head.make, same dimension 2305",
+  "normalization": "fit-source-only per-channel mean and standard deviation",
+  "training": {"steps": 1200, "batch": 32, "learning_rate": 0.0003, "weight_decay": 0.001, "loss": "candidate MSE", "seed": 20261020},
+  "selection": "hash-selected 10 percent of historical TRAIN sources per domain for checkpoint choice; historical dev evaluated at the end",
+  "pooling": "same letterbox-aware patch-center masks as v1; fp32 GPU batched matrix multiplication",
+  "resource_budget": {"GPU": "one existing RTX4080 32GB", "host_memory_limit_GiB": 62, "workers": 4, "torch_threads": 4, "disk_new_GB_approx": 20, "training_timeout_minutes_per_arm": 30},
+  "outputs": ["persistent feature memmaps", "native labels and row identities", "best and recoverable final head", "source-level domain metrics", "development logits", "environment and code hashes"],
+  "gate": "Prior +0.005 source-macro development gate retained for diagnostic promotion; compare directly to matched V9, report paired source CIs, then require separate deployment confirmation. A prototype loss alone does not close a backbone.",
+  "official_test_labels_used": false,
+  "automatic_upload": false
+}

@@ -23,13 +23,24 @@ def load_annotations(path: Path):
     raw = json.loads(path.read_text())
     out = {}
     for src, users in raw.items():
-        intervals = []
+        intervals_by_user = {}
         for user, segs in users.items():
+            clean = []
             for seg in segs:
                 t0, t1 = float(seg["t0"]), float(seg["t1"])
                 if t1 > t0:
-                    intervals.append((user, t0, t1))
-        out[src] = intervals
+                    clean.append((t0, t1))
+            # One user's overlapping GIF records are one vote, not multiple
+            # votes.  Merge before counting so soft labels stay in [0, 1].
+            clean.sort()
+            merged = []
+            for t0, t1 in clean:
+                if merged and t0 <= merged[-1][1]:
+                    merged[-1] = (merged[-1][0], max(merged[-1][1], t1))
+                else:
+                    merged.append((t0, t1))
+            intervals_by_user[user] = merged
+        out[src] = [(user, t0, t1) for user, spans in intervals_by_user.items() for t0, t1 in spans]
     return out
 
 

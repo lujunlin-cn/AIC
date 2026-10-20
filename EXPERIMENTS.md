@@ -1558,3 +1558,7 @@ R107的公开18视窗增益不能作为官方收益代理；R91的负回分只�
 **Results:** PHD2 union/soft 固定85% F 均值 `0.397981/0.396932`，差 `+0.001049`，不稳定；时间 position-only=`0.457027` 高于所有 DINO 变体（`0.433453–0.438451`）。空间中心源宏IoU=`0.497588`，patch=`0.484223`，CLS=`0.101462`，shuffle=`0.261900`；patch虽然保留真实候选信号，仍低于中心 `0.013365`。
 
 **Conclusion:** 当前 DINO temporal contract 和 spatial regression head 均关闭，不制作官方包。patch 与 CLS/shuffle 的相对关系支持空间 token 不是纯位置，但读出/损失/迁移仍是瓶颈。下一实验若继续只能改为候选内 pairwise/listwise 目标并报告 RV/LIVE 分层；不得在当前回归 head 上扫参。
+
+## DINOV3_S_MATCHED_V2 / LABEL_REPAIR_V2（2026-10-20）
+
+修正V1漏归一化/换head的混杂，以R70 1,511,425参数head、相同MSE和训练内源级选模比较DINO/V9；12822行GT/source/name逐一通过。源宏IoU DINO=.508787，V9=.564663，center=.497588；DINO−V9=-.055876，配对95%CI[-.080370,-.033693]。当前DINO不能替换V9；129窗口平均15.665种patch掩码提示观察量化待检验。新pipeline抽特征37.97s、池化102.32s、头训练7.4s，退出0。PHD2用户重叠区间合并修复863条soft标签，2143旧帧>1，最大9→1；union不变。旧union/soft比较作废，后续统一loss再跑。见reports/dinov3_v2/。

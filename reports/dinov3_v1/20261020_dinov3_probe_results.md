@@ -1,5 +1,11 @@
 # DINOv3 v1 matched probes — 2026-10-20
 
+> Superseded interpretation: see `reports/dinov3_v2/README.md`. The spatial
+> prototype was not matched to R70 normalization/head capacity; soft-vote
+> labels exceeded 1 because of overlapping intervals from the same user.
+> Historical numbers below are preserved, but do not use the union/soft
+> comparison or premature backbone closure as valid route conclusions.
+
 ## Scope
 
 This run uses only public PHD2/GIF fragment selections and the existing

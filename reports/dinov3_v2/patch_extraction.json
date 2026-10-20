@@ -1,0 +1,23 @@
+{
+  "frames": 11554,
+  "keys_sha256": "bbce599b8b2bff9a87e81bf55a155bfaa87b1b04c8dc8953d3df553b30005589",
+  "model": {
+    "architecture": "dinov3_vitb16",
+    "embed_dim": 768,
+    "patch_size": 16,
+    "storage_tokens": 4,
+    "parameter_count": 85669632,
+    "weights": "/root/autodl-tmp/evac/data/aic/pretrained/dinov3/dinov3_vitb16_pretrain_lvd1689m-73cec8be.pth",
+    "weights_bytes": 342860279,
+    "weights_sha256": "73cec8be7427c8655ceced13ce62f6e20a1fa90d1b4d4a550df17a1144081a7c",
+    "official_repo": "/root/autodl-tmp/evac/data/aic/pretrained/dinov3/dinov3-main",
+    "requested_dtype": "float16",
+    "runtime_dtype": "float16",
+    "device": "cuda"
+  },
+  "elapsed_s": 37.97163342265412,
+  "wait_for_preprocessing_s": 17.447026630397886,
+  "forward_and_transfer_s": 10.754016022197902,
+  "batch": 64,
+  "workers": 4
+}

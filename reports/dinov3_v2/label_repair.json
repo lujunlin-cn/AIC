@@ -1,0 +1,11 @@
+{
+  "rows": 5886,
+  "max_soft": 1.0,
+  "old_max_soft": 9.0,
+  "old_out_of_range_frames": 2143,
+  "changed_soft_rows": 863,
+  "changed_union_rows": 0,
+  "label_fix": "merge overlapping intervals within each user before vote density",
+  "source_cache_unchanged": "/data/aic/features/DINOV3_PHD2_V1",
+  "warning": "unselected times are observed nonselections, not confirmed semantic negatives; existing all-true mask is not validity supervision"
+}

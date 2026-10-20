@@ -1562,3 +1562,14 @@ R107的公开18视窗增益不能作为官方收益代理；R91的负回分只�
 ## DINOV3_S_MATCHED_V2 / LABEL_REPAIR_V2（2026-10-20）
 
 修正V1漏归一化/换head的混杂，以R70 1,511,425参数head、相同MSE和训练内源级选模比较DINO/V9；12822行GT/source/name逐一通过。源宏IoU DINO=.508787，V9=.564663，center=.497588；DINO−V9=-.055876，配对95%CI[-.080370,-.033693]。当前DINO不能替换V9；129窗口平均15.665种patch掩码提示观察量化待检验。新pipeline抽特征37.97s、池化102.32s、头训练7.4s，退出0。PHD2用户重叠区间合并修复863条soft标签，2143旧帧>1，最大9→1；union不变。旧union/soft比较作废，后续统一loss再跑。见reports/dinov3_v2/。
+
+## VALEN_CONFIRM_RV601_700 — Valen-2B exposed transfer confirmation (2026-10-20)
+
+- **Hypothesis:** native crop-choice SFT improves candidate-internal spatial selection beyond the existing V9 candidate head while the four-candidate contract is held fixed.
+- **Data/identity:** `rv_confirm2`, 4,081 rows, 100 RetargetVid sources, 2,039 `1:3` and 2,042 `3:1`; sources were previously exposed to project diagnostics or branches and are not called fresh independent confirmation. Official test was not read.
+- **Change:** frozen restored Valen-2B SFT checkpoint versus the existing head; no prompt, candidate, temporal or fusion change.
+- **Batch/runtime:** `batch=16`, 255 full batches plus one tail, 614.5 s, 6.64 rows/s. Full-batch logs report `states=16`.
+- **Result:** source-macro Valen `0.675226`, head `0.656760`, center `0.580568`, oracle4 `0.762726`, oracle129 `0.833979`; Valen-head `+0.018466`, bootstrap CI `[+0.010735,+0.026371]`, 71/100 positive sources, 2 at or below `-0.05`.
+- **Error decomposition:** candidate recall loss `0.071254`; candidate-internal selection loss `0.087500`. Ratio deltas: `1:3 +0.014766` CI `[+0.001868,+0.028027]`; `3:1 +0.022196` CI `[+0.013865,+0.030809]`.
+- **Conclusion:** supports a native crop supervision transfer signal and identifies candidate-internal utility as the larger remaining loss. It is exposed migration evidence, not official Score evidence. Next experiment is one utility-aware objective with batch 16 and a source-held-out gate; no prompt or temperature sweep.
+- **Artifacts:** `reports/valen_route/confirm_analysis_rv601_700.json`, `reports/valen_route/confirm_runtime_metrics.json`, `reports/valen_route/valen_sft_verdict_20261020.md`.

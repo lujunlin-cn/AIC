@@ -1448,3 +1448,13 @@ R107的36.43证明生命周期解码最多持平当前最好包；R108的35.62�
 ## 2026-10-20：更正DINOv3提前关闭与soft标签合同
 
 V1未匹配R70归一化/头，且soft有重复用户区间计票错误，因此撤回“凭V1关闭DINOv3”的结论。V2公平比较仍显示DINO比V9低.055876源宏IoU（配对CI为负），保留现役V9。后续空间只针对已测到的区域量化/细节丢失做观察干预；时间先用已修复标签统一损失、固定split再判断。旧文档中的“只允许一次”等限制不是用户规则，不应阻止有新机制的实验。AViMoS作为有弱增量证据的备选，音频不重启。
+
+## 2026-10-20：Valen candidate-internal utility 路线
+
+**Decision**：Valen-2B native crop SFT 通过了 RetargetVid 601--700 的暴露源级迁移门，但暂不制作官方包；下一步只推进一个 utility-aware candidate-choice objective，并强制 batch=16。
+
+**Evidence**：4,081 行、100 源，Valen=`0.675226`，旧 head=`0.656760`，source-paired delta=`+0.018466`，bootstrap 95% CI `[+0.010735,+0.026371]`；71/100 源提升。候选 oracle 分解为 recall loss=`0.071254`、selection loss=`0.087500`，后者更大。推理为 255 个 batch-16 加一个尾批，614.5 秒。
+
+**Boundary**：601--700 曾被历史诊断或分支使用，不能写成 fresh independent confirmation；IoU 不能换算官方 AIC Score；Valen 仍不能与 8.855B TimeLens2 同时部署。
+
+**Next gate**：固定 prompt、温度、候选生成、时间策略和 batch=16，在 public TRAIN 上训练 utility-aware 目标，用源级留出与冻结 SFT 对照；若没有实用增量，关闭部署路线，不做 prompt/温度/融合扫描。

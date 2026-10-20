@@ -1,0 +1,105 @@
+{
+  "checkpoint": "/data/aic/experiments/VALEN_2B_SFT_CROP_V1/latest",
+  "training_step": 244,
+  "base_model_path": "/root/autodl-tmp/models/Valen-2B",
+  "seed": 20261020,
+  "architecture": "qwen",
+  "training_epoch": 1,
+  "data": "/data/aic/experiments/VALEN_CROP_SFT_V1/dev.jsonl",
+  "data_sha256": "97525b1a12938a8a717f17be92890c51ad356c7202ac23b954ca0ce8ec19bc53",
+  "checkpoint_sha256": "0063f07cafbb5379a1c80bfab27ef50a28e10d25932e82d7e9ad5284b20dd561",
+  "records": 1546,
+  "questions": 1546,
+  "world_size": 1,
+  "temperature": 1.0,
+  "elapsed_seconds": 1467.5201386250556,
+  "rank_timing": [
+    {
+      "rank": 0,
+      "records": 1546,
+      "evaluation_seconds": 1466.5011565531604,
+      "load_and_evaluation_seconds": 1479.263845808804,
+      "device": "NVIDIA GeForce RTX 4080"
+    }
+  ],
+  "evaluation_wall_seconds": 1466.5011565531604,
+  "load_and_evaluation_wall_seconds": 1479.263845808804,
+  "metrics": {
+    "domain/unknown": {
+      "questions": 1546,
+      "metric_counts": {
+        "brier": 1546,
+        "nll": 1546
+      },
+      "brier": 0.19657832063796052,
+      "nll": 1.1981622116329367
+    },
+    "language/unknown": {
+      "questions": 1546,
+      "metric_counts": {
+        "brier": 1546,
+        "nll": 1546
+      },
+      "brier": 0.19657832063796052,
+      "nll": 1.1981622116329367
+    },
+    "modality/media": {
+      "questions": 1546,
+      "metric_counts": {
+        "brier": 1546,
+        "nll": 1546
+      },
+      "brier": 0.19657832063796052,
+      "nll": 1.1981622116329367
+    },
+    "overall": {
+      "questions": 1546,
+      "metric_counts": {
+        "brier": 1546,
+        "nll": 1546
+      },
+      "brier": 0.19657832063796052,
+      "nll": 1.1981622116329367
+    },
+    "task/choice": {
+      "questions": 1546,
+      "metric_counts": {
+        "brier": 1546,
+        "nll": 1546
+      },
+      "brier": 0.19657832063796052,
+      "nll": 1.1981622116329367
+    },
+    "task_modality/choice/media": {
+      "questions": 1546,
+      "metric_counts": {
+        "brier": 1546,
+        "nll": 1546
+      },
+      "brier": 0.19657832063796052,
+      "nll": 1.1981622116329367
+    }
+  },
+  "attention_backends": {
+    "text": "sdpa",
+    "vision": "sdpa"
+  },
+  "questions_per_second": 1.0542098743608852,
+  "latency_seconds": {
+    "compile_seconds": {
+      "mean": 0.09329548718788472,
+      "p50": 0.04601596179418266,
+      "p95": 0.30455317767336965
+    },
+    "forward_seconds": {
+      "mean": 0.8532756898994347,
+      "p50": 0.8486359764356166,
+      "p95": 1.0535450202878565
+    },
+    "compile_plus_forward_seconds": {
+      "mean": 0.9465711770873194,
+      "p50": 0.925192617578432,
+      "p95": 1.2317656320519745
+    }
+  }
+}

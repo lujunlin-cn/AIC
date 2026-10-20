@@ -1,0 +1,46 @@
+{
+  "architecture": "qwen",
+  "model_path": "/root/autodl-tmp/models/Valen-2B",
+  "qwen_execution": "shared_state",
+  "dtype": "bf16",
+  "attn_implementation": "sdpa",
+  "output": "/data/aic/experiments/VALEN_2B_SFT_UTIL_T006",
+  "stage": "joint",
+  "device": "cuda:0",
+  "seed": 20261020,
+  "epochs": 1,
+  "max_steps": 1000,
+  "tokens_per_step": 32768,
+  "microbatch_size": 16,
+  "microbatch_max_tokens": 32768,
+  "data_prefetch": true,
+  "loss_reduction": "question_mean",
+  "gradient_checkpointing": true,
+  "head_lr": 0.0001,
+  "lora_rank": 32,
+  "lora_alpha": 64,
+  "lora_lr": 1e-05,
+  "merger_lr": 5e-06,
+  "save_every": 50,
+  "rps_weight": 0.2,
+  "brier_weight": 0.1,
+  "data": "/data/aic/experiments/VALEN_CROP_SFT_UTIL_T006/train.jsonl",
+  "max_length": 8192,
+  "media_kwargs": {
+    "images_kwargs": {
+      "size": {
+        "shortest_edge": 65536,
+        "longest_edge": 131072
+      }
+    }
+  },
+  "head_type": "mixer",
+  "head_width": 256,
+  "head_layers": 2,
+  "head_token_hidden_dim": 16,
+  "head_channel_hidden_dim": 1024,
+  "finetuning_type": "lora",
+  "method": "sft",
+  "data_sha256": "06ca9f637d22660757c4721776db752a252a3a85312442d6f31bcc3e07a14305",
+  "utility_target_temperature": 0.06
+}

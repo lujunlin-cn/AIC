@@ -1,0 +1,46 @@
+{
+  "config_version": 2,
+  "model": {
+    "architecture": "qwen",
+    "model_path": "/root/autodl-tmp/models/Valen-2B",
+    "qwen_execution": "shared_state",
+    "dtype": "bf16",
+    "attn_implementation": "sdpa"
+  },
+  "data": {
+    "path": "/data/aic/experiments/VALEN_CROP_SFT_V1/train.jsonl",
+    "max_length": 8192,
+    "media_kwargs": {
+      "images_kwargs": {
+        "size": {
+          "shortest_edge": 65536,
+          "longest_edge": 131072
+        }
+      }
+    }
+  },
+  "training": {
+    "output": "/data/aic/experiments/VALEN_2B_SFT_CROP_V1",
+    "stage": "joint",
+    "device": "cuda",
+    "seed": 20261020,
+    "epochs": 1,
+    "max_steps": 1000,
+    "tokens_per_step": 32768,
+    "microbatch_size": 16,
+    "microbatch_max_tokens": 32768,
+    "data_prefetch": true,
+    "loss_reduction": "question_mean",
+    "gradient_checkpointing": true,
+    "head_lr": 0.0001,
+    "lora_rank": 32,
+    "lora_alpha": 64,
+    "lora_lr": 1e-05,
+    "merger_lr": 5e-06,
+    "save_every": 50
+  },
+  "objective": {
+    "rps_weight": 0.2,
+    "brier_weight": 0.1
+  }
+}

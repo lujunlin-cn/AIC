@@ -114,9 +114,16 @@ def load_vision(args):
     # Transformers 5.20 exposes SigLIP keys without vision_model.; 5.1 used
     # the extra prefix.  Accept both while asserting exact tensor coverage.
     fixed = {}
+    expected = set(vision.state_dict().keys())
+    # The same LFM checkpoint is exposed with two key contracts across the
+    # transformers versions used by this project.  Older runtimes expect the
+    # ``vision_model.`` namespace; newer ones flatten it.  Normalize against
+    # the instantiated tower instead of assuming one library version.
     for k, v in sd.items():
         k = k[len("model.vision_tower.") :]
         k = k.removeprefix("vision_model.")
+        if k not in expected and ("vision_model." + k) in expected:
+            k = "vision_model." + k
         fixed[k] = v.half()
     missing, unexpected = vision.load_state_dict(fixed, strict=False)
     if missing or unexpected:
@@ -182,41 +189,68 @@ def extract(args, names):
 
     t0 = time.time()
     rows = []
+
+    def encode_batch(paths):
+        """Encode equal-contract images in batches, returning token grids."""
+        encoded = {}
+        batch_size = int(getattr(args, "vision_batch", 16))
+        for st in range(0, len(paths), batch_size):
+            chunk = paths[st:st + batch_size]
+            images = [Image.open(p).convert("RGB") for p in chunk]
+            try:
+                x = proc(images=images, return_tensors="pt")
+                x = {k: v.to(args.device) for k, v in x.items() if torch.is_tensor(v)}
+                with torch.no_grad():
+                    o = vision(pixel_values=x["pixel_values"].half(),
+                               spatial_shapes=x["spatial_shapes"],
+                               pixel_attention_mask=x["pixel_attention_mask"],
+                               return_dict=True)
+                for bi, p in enumerate(chunk):
+                    valid = int(x["pixel_attention_mask"][bi].sum())
+                    fh, fw = [int(v) for v in x["spatial_shapes"][bi]]
+                    grid = o.last_hidden_state[bi, :valid].float().detach().cpu().numpy()
+                    grid = grid.reshape(fh, fw, -1)
+                    # V9 contract discards odd token rows/columns before pooling.
+                    grid = grid[: (fh // 2) * 2, : (fw // 2) * 2]
+                    encoded[p] = grid
+            finally:
+                for image in images:
+                    image.close()
+        return encoded
+
     for name in names:
         units = table_units(args, name)
         if args.limit:
             units = units[: args.limit]
         for ui, unit in enumerate(units):
-            # A unit contains all frames for one source/ratio.  Reuse grids
-            # only inside this unit, then release them before the next source.
+            # A unit contains all frames for one source/ratio.  The same
+            # source frame is reused for both ratios in adjacent units, but
+            # each unit is kept bounded so feature extraction does not retain
+            # the whole dataset in RAM.
             cache = {}
             ds = unit["ds"]
+            needed = []
+            paths = {}
+            for j in unit["J"]:
+                kf = int(unit["keys"][int(j)])
+                key = (ds, unit["vid"], kf)
+                if key in cache:
+                    continue
+                if ds == "live":
+                    root = Path(args.t5_dir) / ("keyframes_val" if name == "live_confirm3" else "keyframes_train")
+                    p = root / str(unit["vid"]) / f"{kf}.png"
+                else:
+                    p = image_path(args, ds, unit["vid"], kf)
+                if not p.exists():
+                    raise FileNotFoundError(p)
+                paths[key] = p
+                needed.append(key)
+            encoded = encode_batch([paths[k] for k in needed])
+            for key in needed:
+                cache[key] = encoded[paths[key]]
             for jj, j in enumerate(unit["J"]):
                 kf = int(unit["keys"][int(j)])
                 key = (ds, unit["vid"], kf)
-                if key not in cache:
-                    if ds == "live":
-                        root = Path(args.t5_dir) / ("keyframes_val" if name == "live_confirm3" else "keyframes_train")
-                        p = root / str(unit["vid"]) / f"{kf}.png"
-                    else:
-                        p = image_path(args, ds, unit["vid"], kf)
-                    if not p.exists():
-                        raise FileNotFoundError(p)
-                    img = Image.open(p).convert("RGB")
-                    x = proc(images=img, return_tensors="pt")
-                    x = {k: v.to(args.device) for k, v in x.items() if torch.is_tensor(v)}
-                    with torch.no_grad():
-                        o = vision(pixel_values=x["pixel_values"].half(),
-                                   spatial_shapes=x["spatial_shapes"],
-                                   pixel_attention_mask=x["pixel_attention_mask"],
-                                   return_dict=True)
-                    valid = int(x["pixel_attention_mask"][0].sum())
-                    fh, fw = [int(v) for v in x["spatial_shapes"][0]]
-                    grid = o.last_hidden_state[0, :valid].float().detach().cpu().numpy()
-                    grid = grid.reshape(fh, fw, -1)
-                    # V9 contract discards odd token rows/columns before pooling.
-                    grid = grid[: (fh // 2) * 2, : (fw // 2) * 2]
-                    cache[key] = grid
                 grid = cache[key]
                 feat, offsets = feature_from_grid(grid, unit["W"], unit["H"], unit["ratio"])
                 y = table_gt(unit, jj, offsets)
@@ -308,7 +342,7 @@ def train(args):
 
 
 def main():
-    ap=argparse.ArgumentParser(); ap.add_argument("--mode",choices=["extract","train"],required=True); ap.add_argument("--t5-dir",required=True); ap.add_argument("--rv-frames",required=True); ap.add_argument("--vision-dir",required=True); ap.add_argument("--processor-dir",required=True); ap.add_argument("--out",required=True); ap.add_argument("--device",default="cuda"); ap.add_argument("--limit",type=int,default=0); ap.add_argument("--steps",type=int,default=1000); ap.add_argument("--batch",type=int,default=16); ap.add_argument("--seed",type=int,default=20261018); ap.add_argument("--names",nargs="*",default=["rv_train","live_train","rv_dev","live_dev"]); a=ap.parse_args()
+    ap=argparse.ArgumentParser(); ap.add_argument("--mode",choices=["extract","train"],required=True); ap.add_argument("--t5-dir",required=True); ap.add_argument("--rv-frames",required=True); ap.add_argument("--vision-dir",required=True); ap.add_argument("--processor-dir",required=True); ap.add_argument("--out",required=True); ap.add_argument("--device",default="cuda"); ap.add_argument("--limit",type=int,default=0); ap.add_argument("--steps",type=int,default=1000); ap.add_argument("--batch",type=int,default=16); ap.add_argument("--vision-batch",type=int,default=16); ap.add_argument("--seed",type=int,default=20261018); ap.add_argument("--names",nargs="*",default=["rv_train","live_train","rv_dev","live_dev"]); a=ap.parse_args()
     random.seed(a.seed); np.random.seed(a.seed)
     extract(a,a.names) if a.mode=="extract" else train(a)
 if __name__=="__main__": main()

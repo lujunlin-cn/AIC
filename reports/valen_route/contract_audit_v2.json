@@ -1,0 +1,84 @@
+{
+  "records": 12822,
+  "record_sources": 1663,
+  "prepared_rows": 12822,
+  "prepared_sources": {
+    "train": 1495,
+    "dev": 168
+  },
+  "candidate_rows_checked": 12822,
+  "candidate_images_checked": 51288,
+  "errors": {},
+  "contract_pass": true,
+  "metrics": {
+    "train:RetargetVid": {
+      "sources": 80,
+      "rows": 3464,
+      "source_macro": {
+        "head": 0.7659031364871831,
+        "center": 0.6145853775150261,
+        "oracle129": 0.8397516770908396,
+        "oracle4": 0.8009348636979533
+      },
+      "row_mean": {
+        "head": 0.7686748370563441,
+        "center": 0.6199507677479494,
+        "oracle129": 0.8395964544326686,
+        "oracle4": 0.8013107460900909,
+        "candidate_recall_gap": 0.03828570834257775
+      }
+    },
+    "train:LIVE": {
+      "sources": 1415,
+      "rows": 7812,
+      "source_macro": {
+        "head": 0.5820715865697131,
+        "center": 0.46602975948932196,
+        "oracle129": 0.7569926782515264,
+        "oracle4": 0.6891135537523488
+      },
+      "row_mean": {
+        "head": 0.5874885954213158,
+        "center": 0.469140572983577,
+        "oracle129": 0.760546347750823,
+        "oracle4": 0.692346026439638,
+        "candidate_recall_gap": 0.06820032131118489
+      }
+    },
+    "dev:RetargetVid": {
+      "sources": 20,
+      "rows": 746,
+      "source_macro": {
+        "head": 0.6932408204801421,
+        "center": 0.6220343295455861,
+        "oracle129": 0.8263395599685325,
+        "oracle4": 0.7693919741808041
+      },
+      "row_mean": {
+        "head": 0.6918493207162071,
+        "center": 0.6264476218614596,
+        "oracle129": 0.8277519865425917,
+        "oracle4": 0.7741855794798593,
+        "candidate_recall_gap": 0.0535664070627325
+      }
+    },
+    "dev:LIVE": {
+      "sources": 148,
+      "rows": 800,
+      "source_macro": {
+        "head": 0.5496934840882357,
+        "center": 0.48077069057282473,
+        "oracle129": 0.7777642480452501,
+        "oracle4": 0.6900375455195393
+      },
+      "row_mean": {
+        "head": 0.5567502520408015,
+        "center": 0.4814245114690857,
+        "oracle129": 0.7807265565544367,
+        "oracle4": 0.6915778955584392,
+        "candidate_recall_gap": 0.08914866099599748
+      }
+    }
+  },
+  "source_sha256": "e2dca06c1771edf53d27a8f8a202ddfe8f4cce5f9455a39e24fedb8b52ccfed7"
+}

@@ -555,3 +555,10 @@ R44_DIAG_001已完成CPU留一：局部状态描述子使通用等级MAE 1.0668�
 - [ ] 固定split和训练seed、统一loss重跑union/soft合同；不把旧soft结果用作选择依据。
 - [ ] 同缓存连续区域池化对照，再做224/448观察对照；记录129候选的有效视觉区域数和源级两域CI。
 - [ ] 若观察干预仍无增量，转AViMoS native-crop适配而非再扫DINO头损失。
+
+## 2026-10-20：Valen 后续
+
+- [x] 用恢复后的完整 Valen checkpoint 完成 RV601--700 全量暴露迁移分析，推理强制 batch=16。
+- [x] 记录候选召回损失与候选内选择损失，并保留 ratio/source 级 CI。
+- [ ] 实现并运行一个 utility-aware candidate-choice objective；训练和评估均使用 batch=16，记录有效 batch、吞吐、峰值显存。
+- [ ] 只在 source-level 留出超过冻结 SFT 后，制作 Valen 官方推理与提交包；否则关闭该部署路线。

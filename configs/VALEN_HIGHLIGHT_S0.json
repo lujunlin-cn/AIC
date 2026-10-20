@@ -1,0 +1,21 @@
+{
+  "experiment_id": "VALEN_HIGHLIGHT_S0",
+  "date": "2026-10-20",
+  "hypothesis": "Explicit crop-image comparison recovers composition information missed by pooled candidate features.",
+  "controls": ["center", "R70 topsoft argmax", "Top-K oracle", "129 oracle", "cyclic candidate order"],
+  "data": "RetargetVid/LIVE T5_CROPHEAD_V3 native crop, source-disjoint historical train/dev",
+  "independent_unit": "original source video",
+  "pilot": "one deterministically hashed row per dev source, both domains, no GT-conditioned sample selection",
+  "candidate_counts": [4, 8],
+  "recall": "R70 score peaks with minimum free-axis separation 1/8; center is included; candidate order is spatial rather than head rank",
+  "model_revisions": {
+    "Valen-2B": "fb9205c2541abc97ce276670e66f79b78d9068fc",
+    "Valen-0.8B": "c2c481fcb319bd9ae834abc7c6373271710cf24e"
+  },
+  "inference": {"precision": "published FP32 weights with checkpoint BF16 autocast", "image_max_pixels": 131072, "batch_states": 4, "max_batch_tokens": 8192, "video_smoke_frames": 16},
+  "selection": "pilot diagnostics only; any adaptation uses TRAIN fit/tune sources, historical DEV final diagnostic",
+  "promotion": {"source_macro_iou_delta_over_strong_control": 0.005, "paired_bootstrap95_lower": ">0", "domain_condition": "RV/LIVE no significant opposite decline", "candidate_order": "validate semantic-ID remapping and effect"},
+  "deployment": "exact deterministic center85 temporal window, V9 candidate recall plus Valen spatial; no TimeLens2 outputs in deployable system",
+  "stop": ["nonfinite probabilities", "media/GT mismatch", "OOM without safe batch/token adjustment", "candidate oracle inadequate: repair recall before SFT"],
+  "official_labels_or_pseudolabel_training": false
+}

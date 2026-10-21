@@ -1,0 +1,103 @@
+{
+  "experiment": "R52_FARNEBACK_SYNTHETIC_INPUT_SCALE_AUDIT",
+  "scope": "Numerical input validity only; no AIC gain or real-data reproduction claim",
+  "opencv_version": "4.10.0",
+  "numpy_version": "2.3.5",
+  "python": "3.12.14",
+  "platform": "Linux-6.18.55-x86_64-with-glibc2.39",
+  "seed": 20261019,
+  "image_hw": [
+    90,
+    160
+  ],
+  "expected_flow_xy": [
+    3.0,
+    2.0
+  ],
+  "expected_magnitude": 3.605551275463989,
+  "interior_margin_pixels": 16,
+  "interior_pixels": 7424,
+  "farneback_kwargs": {
+    "pyr_scale": 0.5,
+    "levels": 2,
+    "winsize": 15,
+    "iterations": 2,
+    "poly_n": 5,
+    "poly_sigma": 1.2,
+    "flags": 0
+  },
+  "texture_sha256": "9cc2ea25d916b86f1db8258e759a34ea6e98ceeef07ea0c479c627f16df895f0",
+  "shifted_sha256": "40364faf18544380d7f8a0ab6a1bb68a388c73ca72d1264eb2aaf71c02e6b56f",
+  "script_sha256": "90cdfe9cfac4574a76940731511520c133f1bc24aca3e400617adf0bd037ddaa",
+  "results": [
+    {
+      "input": "uint8_0_255",
+      "dtype": "uint8",
+      "input_min_max": [
+        47.0,
+        201.0
+      ],
+      "median_flow_xy": [
+        2.999223232269287,
+        2.0003223419189453
+      ],
+      "mean_flow_xy": [
+        2.9993491172790527,
+        2.0002992153167725
+      ],
+      "median_magnitude": 3.605085611343384,
+      "mean_epe": 0.0008528868202120066,
+      "median_epe": 0.0008505271980538964,
+      "p95_epe": 0.0012913031969219446,
+      "fraction_epe_le_0_1": 1.0,
+      "fraction_magnitude_gt_1": 1.0,
+      "finite": true
+    },
+    {
+      "input": "float32_0_255",
+      "dtype": "float32",
+      "input_min_max": [
+        47.0,
+        201.0
+      ],
+      "median_flow_xy": [
+        2.999223232269287,
+        2.0003223419189453
+      ],
+      "mean_flow_xy": [
+        2.9993491172790527,
+        2.0002992153167725
+      ],
+      "median_magnitude": 3.605085611343384,
+      "mean_epe": 0.0008528868202120066,
+      "median_epe": 0.0008505271980538964,
+      "p95_epe": 0.0012913031969219446,
+      "fraction_epe_le_0_1": 1.0,
+      "fraction_magnitude_gt_1": 1.0,
+      "finite": true
+    },
+    {
+      "input": "float32_0_1_R52",
+      "dtype": "float32",
+      "input_min_max": [
+        0.18431372940540314,
+        0.7882353663444519
+      ],
+      "median_flow_xy": [
+        1.1880981674039504e-06,
+        8.496280088365893e-07
+      ],
+      "mean_flow_xy": [
+        1.4496230278382427e-06,
+        9.856232736638049e-07
+      ],
+      "median_magnitude": 1.4714753433509031e-06,
+      "mean_epe": 3.6055493354797363,
+      "median_epe": 3.6055500507354736,
+      "p95_epe": 3.60555100440979,
+      "fraction_epe_le_0_1": 0.0,
+      "fraction_magnitude_gt_1": 0.0,
+      "finite": true
+    }
+  ]
+}

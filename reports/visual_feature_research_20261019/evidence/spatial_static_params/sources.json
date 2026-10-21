@@ -1,0 +1,20 @@
+{
+  "access_date": "2026-10-19 Asia/Shanghai",
+  "method": "GitHub contents API text audit; full author source not vendored; obtain exact Git blob via source_blob_api_url and decode base64; script verifies Git blob before counting",
+  "sources": [
+    {
+      "file": "u2net.py",
+      "url": "https://github.com/xuebinqin/U-2-Net/blob/master/model/u2net.py",
+      "git_blob_sha": "5b85f138f3af4e2ceae1ff07dee514c859a831af",
+      "source_blob_api_url": "https://api.github.com/repos/xuebinqin/U-2-Net/git/blobs/5b85f138f3af4e2ceae1ff07dee514c859a831af",
+      "code_license": "Apache-2.0"
+    },
+    {
+      "file": "isnet.py",
+      "url": "https://github.com/xuebinqin/DIS/blob/main/IS-Net/models/isnet.py",
+      "git_blob_sha": "8be74bb03954496e6cb8af6e1c8e1cd2c0bbb80c",
+      "source_blob_api_url": "https://api.github.com/repos/xuebinqin/DIS/git/blobs/8be74bb03954496e6cb8af6e1c8e1cd2c0bbb80c",
+      "code_license": "Apache-2.0"
+    }
+  ]
+}

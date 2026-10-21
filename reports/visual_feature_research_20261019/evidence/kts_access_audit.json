@@ -1,0 +1,12 @@
+[
+  {
+    "url": "https://pascal.inrialpes.fr/data2/potapov/med_summaries/kts_ver1.1.tar.gz",
+    "error_type": "HTTPError",
+    "error": "HTTP Error 503: Service Unavailable"
+  },
+  {
+    "url": "http://pascal.inrialpes.fr/data2/potapov/med_summaries/kts_ver1.1.tar.gz",
+    "error_type": "TimeoutError",
+    "error": "timed out"
+  }
+]

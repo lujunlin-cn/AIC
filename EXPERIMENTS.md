@@ -1,5 +1,13 @@
 # 实验历史
 
+# TEMPORAL_RL_REWARD_GUARDED_V2 / VIDEOORA_REPRO_20261021
+
+- **Full 426 rerun:** fixed-copy inference completed `426/426`, `133921` predictions, 2 empty videos; 12-worker parallel geometry+media audit passed, ZIP SHA `7da198e794f0e6029f92413f56b9e22bf01c97c83c840caaec30db4b909191ea`. User reports official score **42.49**; platform/upload hash remains unverified. `TEMPORAL_RL_PUBLIC_CONTEXT_V1` then started on PRO6000 and reached step 3. Score is recorded only, never used as RL reward.
+- **Video-ORA reproduction gate:** 复现包 `verify_package.py` 与 `self_test.py` 通过；原始 8 分片和 compact 冻结哈希通过；未改基座 fresh native inference 在授权公开视频上 1/1 完成，1350 帧，geometry validator 通过，参数元素 8,999,771,458。
+- **Portrait route finding:** 强制 `[9,16]` 在原始 `apply_events` y-axis invariant 断言失败；先定位该包自身运行时合同/输入假设，未把它当作成功复现。
+- **RL status:** temporal RL smoke、reward/gradient/output-homogeneity monitor 和 batched throughput benchmark 均为资格实验；未选 LoRA、未 merge、未声称官方提分。正式 RL 暂停至 reproduction gate 闭环。
+- **Evidence:** `reports/videoora_reproduction_20261021/summary.md`；目标机 `/root/autodl-tmp/videoora42_clone/repro/`。
+
 ## R98 — AIM 2024 / UNISAL human-saliency native-crop probe（2026-10-19）
 
 - **Hypothesis:** temporal human visual attention can provide a spatial observation independent of foreground statistics.
@@ -1598,3 +1606,38 @@ R107的公开18视窗增益不能作为官方收益代理；R91的负回分只�
 - **Exposed RV601–700:** `0.675226→0.676522`, paired delta `+0.001296`, 95% CI `[-0.000436,+0.003101]`; candidate selection loss `0.087500→0.086204`, recall loss unchanged at `0.071254`.
 - **Conclusion:** The intervention changes decisions but produces no reliable practical gain. Close the utility-temperature route; do not scan temperature, prompt, calibration or fusion under this hypothesis. The prior native-crop SFT transfer signal remains a separate exposed diagnostic.
 - **Artifacts:** `reports/valen_route/utility_t006_results_20261020.md`, `utility_t006_eval_dev_source.json`, `utility_t006_eval_confirm_analysis.json`, `utility_t006_checkpoint_comparison.json`.
+
+## VIDEOORA_42_48_PACKAGE_AUDIT_20261020 — frozen 9B + geometry adapters
+
+- **Hypothesis:** A reported ~42.48 score may come from a strong frozen Video-ORA temporal prior combined with aspect-specific geometry adapters and strict PTS/crop postprocessing, rather than temporal fine-tuning.
+- **Change reviewed:** `VideoORA_42.48_复现包.zip`; no competition data or new model run. Audited manifest, source provenance, LoRA tensors, schedules, inference chain, compact output head, validation claims and pinned PEFT behavior.
+- **Evidence:** Python extraction `verify_package.py` passed (43 manifest files); `self_test.py` passed. Main model is `8,996,674,800` parameters; both adapters plus buffers total `8,999,771,458`. A is 1,966,080 parameters from 222 LIVE-YT 9:16 samples; B is 983,040 parameters from 420 GNMC 16:9 samples. Historical run summary is 426 videos/134,776 predicted frames/3 empty videos.
+- **Result:** The package describes a reproducible inference contract, but the 42.48 value is user-reported and unverified; no fresh full 426 rerun or retraining was executed. Public B DEV IoU gain has paired 95% CI crossing zero. `model_io.py` does activate `other_geometry` after adding it, so no active-adapter retraining defect was found; retain the step-1 real-gradient/weight-change assertions.
+- **Decision:** Treat the package as an implementation/reference audit, not as independent official-score evidence. Transfer only the separable geometry-adapter, PTS, maximum-window, smoothing and actor-overlap mechanisms into future AIC experiments; do not claim 42.48 reproduction until a permitted full run and official score are recorded.
+- **Report:** `reports/videoora_42_48_audit_20261020/summary.md`.
+
+## VIDEOORA_RL_CLONE_PREP_20261020 — source-side cross-instance bundle
+
+- **Goal:** Prepare a cloneable source-side bundle for PRO6000 before enabling any GPU.
+- **Root:** `/root/autodl-tmp/videoora42_clone/` on `connect.westc.seetacloud.com:56200`.
+- **Included:** 42.48 ZIP and extracted LoRA package; pinned RL plan and audit; public S1 context/manifest/source subset; authorized S1 manual `data_v2`; base download script and logs.
+- **Excluded:** `ora4b32_OFFICIAL_CK51_20261020_v1`, official caches/predictions, competition test media/labels and score-fitting artifacts.
+- **Base:** `OraRL/Video-ORA-9B@fc14c214ed1161ad05a7911740b0f6be89d1b6b9`; download is running into `models/original/`, then compact output and `CLONE_MANIFEST.json` will be generated.
+- **Target status:** PRO6000 has no GPU provisioned yet; duplicate target download was stopped. No training or inference started.
+- **README:** source-side instructions and verification gates are in `videoora42_clone/README.md`.
+## VIDEOORA_RL_PROTOCOL_20261021 — 训练计划与质量门
+
+- **Goal:** 在 42.48 复现包行为锚点上设计可审计 RL 增益流程，严格隔离 426 复赛媒体和标签。
+- **Plan:** S0 基线/数据合同 → portrait 与 vertical 分开的空间 RL → source-held-out 通过后再做 temporal RL → 只融合一个 winner → 重新验证空间、时间、格式和参数合同。
+- **Acceleration:** 视觉输入与 processor 缓存、同组 K 候选批量 rollout/log-prob、BF16+SDPA+非重入 checkpoint、可恢复 rollout cache；vLLM 只在 HF batch benchmark 显示 rollout 占比过高时启用，并同步 policy/cache SHA。
+- **Quality:** 记录 reward 分布/相对 greedy、梯度大小及 EMA 比例、参数更新比、KL、合法率、输出模板/区间 mode fraction 与 unique rate；梯度非零不作为成功标准。`videoora_rl/quality_gate.py` 可从 smoke `metrics.json` 或 JSONL 输出 pause/continue 报告。
+- **Status:** 计划完成；正式 RL 等完整 426 推理包通过覆盖率、几何和 ZIP 验收后启动。没有官方分数或测试标签进入训练。
+
+## JEV_TEMPORAL_VIDEOORA_TRANSFER_V1 — PTS-safe bounded phase policy (2026-10-21)
+
+- **Evidence imported:** 用户报告 Video-ORA 复赛包 `42.49`；包审计显示时间路径关闭 LoRA，使用 30s/5s overlap/64-frame/640 PTS 窗口，空间按目标比例分支，最后做最大合法窗口与约束后处理。
+- **Implementation:** `aic/jev_temporal_policy.py`；validated PTS, half-open events, original-frame expansion, equal-budget `left/keep/right` candidates, probability/order-stability fallback to `keep`.
+- **Tests:** `tests/test_jev_temporal_policy.py`, 4 passed. No official media, labels or score used.
+- **Decision:** Apply the contract to Jev before any temporal LoRA. Keep current continuous centre parent policy and test only bounded phase correction. The Video-ORA 9B weights are not combined with Jev; geometry and temporal adapters remain separate and all components still count toward the 9B limit.
+- **Next gate:** Run T0 on source-held-out PHD2 and YouTube Highlights with position-only and candidate-order controls. Only a two-domain content increment can promote PHD2 soft-vote/pairwise temporal adaptation.
+- **Report:** `reports/jev_videoora_transfer_20261021.md`.

@@ -574,3 +574,11 @@ R44_DIAG_001已完成CPU留一：局部状态描述子使通用等级MAE 1.0668�
 - [x] 用相同 generic confirm 协议完成 RV601–700 暴露源级评估，并分解 candidate recall/selection loss。
 - [x] 关闭 T006 温度路线；不继续扫温度、prompt、校准或融合，不制作 Valen 官方包。
 - [ ] 下一阶段先做固定时间集合下的 Valen `left/keep/right` 零样本时序 probe；只有内容/位置控制可区分后才进入 PHD2/YTH 时序监督。
+
+## 2026-10-21：Jev Video-ORA 结构迁移
+
+- [x] 审计用户报告 42.49 包并区分可迁移机制与不可证实分数。
+- [x] 实现 PTS-safe、半开区间、等预算 `left/keep/right` Jev 时间合同及低置信度/顺序不稳定中心回退。
+- [x] 通过 Jev temporal policy 4项单测；不读取官方测试标签，不把官方回分回流训练。
+- [ ] 在 PHD2/YTH source-held-out 上运行 JEV T0 batch=16 probe；先比较内容增量与位置 only，不启动 temporal LoRA。
+- [ ] 只有 T0 两域均通过后，才按 soft-vote/pairwise 合同训练 Jev 时序适配；否则保留中心父链。

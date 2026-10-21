@@ -1,3 +1,15 @@
+# 2026-10-21：Video-ORA 42.48 426 基线完成，RL qualification 运行中
+
+- RL 执行协议已落地到 [videoora_rl_training_protocol_20261021.md](videoora_rl_training_protocol_20261021.md)，覆盖 source-held-out 分组、空间→时间顺序、HF batch/vLLM 可选 rollout 加速、reward/gradient/output-homogeneity 监控和晋级门；`videoora_rl/quality_gate.py` 已通过本地 smoke。
+- 已启动本机 30 分钟轮询器 [watch_setup.md](reports/videoora_reproduction_20261021/watch_setup.md)：426 shard 完成后自动合并、全量几何/媒体哈希验收、复制 ZIP 到本地并启动 `TEMPORAL_RL_PUBLIC_CONTEXT_V1`；验收失败不会启动 RL。
+- **426 复赛基线已完成**：三 shard `426/426`，`133,921` 预测帧，2 个空视频；12 进程并行几何+源 SHA 审计通过，ZIP SHA=`7da198e794f0e6029f92413f56b9e22bf01c97c83c840caaec30db4b909191ea`，本地包在 `repro_packages/videoora_42_48_semifinal_426_fixed/`。平台分数尚未由本机独立核验。
+- **用户报告该完整包官方得分 42.49**；平台上传字节和页面未独立核验。记录与文件大小/预测密度分析见 `reports/videoora_reproduction_20261021/score_42_49_analysis.md`。不能从 446KB ZIP 或预测条数直接判断查准率。
+- `TEMPORAL_RL_PUBLIC_CONTEXT_V1` 已在 PRO6000 启动（96 updates，K=8，BF16，KL/CE anchor）；当前日志已出现 step 3，尚未融合 LoRA。
+- 已在 PRO6000 目标机用复现包原始代码完成包审计：`verify_package.py` 通过（43 files），`self_test.py` 通过（parser、geometry/QP、vertical invariants、TRAIN schedules）。原始 8 分片与 `MODEL_FREEZE.json` SHA256 全匹配；compact 分片冻结哈希匹配。
+- fresh `infer.py` 基线在授权公开 QVH 视频上完成：1 视频、1350 预测帧，`validate_output.py` 通过，参数元素 `8,999,771,458`，无官方分数声明。证据见 `reports/videoora_reproduction_20261021/summary.md` 和目标机 `repro/`。
+- 原始包强制 `[9,16]` 曾触发 y 轴不变断言；隔离副本已证明这是候选 y 的单像素舍入差异，修复副本的公开竖屏回归和完整 426 几何审计均通过。
+- 前序 RL smoke 与 batch benchmark 均标记为资格/加速实验，不作为提分证据或 LoRA winner。正式 RL 暂停。
+
 # 2026-10-19 研究1 PDF 执行更新
 
 - R94 H1 已执行：U²-Netp 真实 forward + 同容量零输入消融。LIVE dev U²−control = -0.000463，95% CI [-0.003289,+0.002383]；confirm3 +0.000834，CI 跨零。关闭具体 U² 主体增量配方，不出包。
@@ -521,3 +533,15 @@ Valen-2B SFT 的完整 checkpoint 恢复和 batch 推理合同已通过。远端
 ## 2026-10-20：Valen T006 utility 评估完成
 
 T006（native-crop IoU target temperature `0.06`）已正常训练并完成两组 batch-16 评估。与冻结 `0.12` SFT 对照的公共168源 dev source-macro 为 `0.575236→0.576026`，配对 delta `+0.000791`，95% CI `[-0.004341,+0.007054]`；RV601–700 暴露确认 `0.675226→0.676522`，delta `+0.001296`，95% CI `[-0.000436,+0.003101]`。候选 selection loss 在确认集 `0.087500→0.086204`，recall loss 不变 `0.071254`。收益未过源级实用门，关闭 T006 温度路线，不制作 Valen 官方包，也不继续扫 prompt/温度/融合。完整结果见 `reports/valen_route/utility_t006_results_20261020.md`。
+
+## 2026-10-20：Video-ORA 42.48 复现包审计
+
+已审计 `VideoORA_42.48_复现包.zip`，报告见 `reports/videoora_42_48_audit_20261020/summary.md`。路线是冻结 `Video-ORA-9B` 加两个几何 LoRA：时间定位和主体框关闭 LoRA，30 秒窗/5 秒重叠/64 帧/640 输入/真实 PTS；A 用 222 张 LIVE-YT 9:16 构图帧学横向中心，B 用 420 张 GNMC 16:9 图学纵向中心，再做最大合法窗口、平滑和主体覆盖 QP。包记录的 42.48 仍是用户反馈分数，未独立核验；没有测试数据、预测或官方 evaluator。Python 解包后 manifest/self-test 通过。复核 `model_io.py` 后确认 B 臂在 `add_adapter('other_geometry')` 后无条件 `set_adapter('other_geometry')`，没有先前误报的 active-adapter 缺失问题；复训仍应执行真实梯度和权重变化验收。
+
+## 2026-10-21：Video-ORA 42.49 对 Jev 的迁移合同
+
+用户报告复现包官方分数 `42.49`。现有证据支持迁移的是结构而非权重：冻结时间基座、真实 PTS、半开事件区间、最大合法窗口、几何分支隔离和保守后处理。已新增 `aic/jev_temporal_policy.py`，实现 Jev 的等预算 `left/keep/right` 相位候选、候选顺序/置信度回退和原始解码帧映射；新增配置 `configs/JEV_TEMPORAL_VIDEOORA_TRANSFER_V1.json` 与4项单测。该路线尚未运行 T0，也没有把42.49回分用于训练；下一动作是 PHD2/YTH source-held-out 的 batch-16 T0 probe。
+
+## 2026-10-20：Video-ORA RL 资产克隆目录准备
+
+按用户要求在源机数据盘建立 `/root/autodl-tmp/videoora42_clone/`，用于跨实例克隆到 PRO6000。目录已放入 42.48 ZIP/解包 LoRA、RL 计划、审计报告、公开 context/manifest/source 子集和已授权 manual `data_v2`；明确排除 `OFFICIAL_CK51`、比赛测试资产和官方回分缓存。固定 revision 的 Video-ORA-9B 正在该目录 `models/original/` 通过 `hf-mirror.com` 下载，完成后再生成 compact 模型和全量 `CLONE_MANIFEST.json`。目标机 GPU 未启用，未启动训练。

@@ -1,0 +1,41 @@
+{
+  "experiment_id": "JEV_TEMPORAL_VIDEOORA_TRANSFER_V1",
+  "hypothesis": "A frozen strong video prior plus a PTS-safe bounded phase policy is more transferable than free-form frame generation or temporal LoRA trained on mismatched summary labels.",
+  "status": "CONTRACT_IMPLEMENTED_PROBE_NOT_RUN",
+  "model": {
+    "backend": "Jev_or_Valen_choice_backend",
+    "temporal_adapter": "disabled",
+    "spatial_adapter": "separate_geometry_route",
+    "max_total_inference_parameters": 9000000000
+  },
+  "temporal_observation": {
+    "window_seconds": 30.0,
+    "overlap_seconds": 5.0,
+    "frames_per_window": 64,
+    "short_side_or_long_side_cap": 640,
+    "timebase": "decoded_PTS_seconds",
+    "interval_semantics": "half_open_start_inclusive_end_exclusive",
+    "frame_output": "original_decoded_frame_id"
+  },
+  "bounded_policy": {
+    "candidates": ["left", "keep", "right"],
+    "same_frame_budget": true,
+    "default_phase_shift_seconds": 1.0,
+    "fallback": "keep",
+    "minimum_probability_margin": 0.15,
+    "candidate_order_permutation_control": true,
+    "arbitrary_frame_generation": false
+  },
+  "promotion_gate": {
+    "datasets": ["PHD2_source_held_out", "YouTube_Highlights_source_held_out"],
+    "primary_metric": "source_macro_fixed_budget_observed_coverage",
+    "required_controls": ["position_only", "candidate_order_permutation", "center_fallback"],
+    "official_test_training_or_pseudolabeling": false,
+    "official_package": "only_after_both_source_domains_pass"
+  },
+  "videoora_reference": {
+    "historical_user_reported_score": 42.49,
+    "score_independently_verified": false,
+    "package_temporal_contract_source": "VideoORA_42.48_semifinal_426_fixed.zip"
+  }
+}

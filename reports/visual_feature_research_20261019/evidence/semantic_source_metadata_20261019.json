@@ -1,0 +1,221 @@
+[
+  {
+    "name": "mobilenet_source",
+    "url": "https://raw.githubusercontent.com/pytorch/vision/main/torchvision/models/mobilenetv3.py",
+    "status": 200,
+    "content_type": "text/plain; charset=utf-8",
+    "bytes": 16300,
+    "sha256": "5444909362734ab54f07ba64cd2d54e90854965d4d1ce6b2b337e055d0fcbb3e",
+    "file": "/tmp/aic_visual_sources_raw/mobilenet_source.txt"
+  },
+  {
+    "name": "torchvision_license",
+    "url": "https://raw.githubusercontent.com/pytorch/vision/main/LICENSE",
+    "status": 200,
+    "content_type": "text/plain; charset=utf-8",
+    "bytes": 1517,
+    "sha256": "6502f676851cfe25f8af75531dfb32375b7325b73c37e7b43741fa422893e71d",
+    "file": "/tmp/aic_visual_sources_raw/torchvision_license.txt"
+  },
+  {
+    "name": "deit_readme",
+    "url": "https://raw.githubusercontent.com/facebookresearch/deit/main/README_deit.md",
+    "status": 200,
+    "content_type": "text/plain; charset=utf-8",
+    "bytes": 9710,
+    "sha256": "89dd18d58ffbaf71e14560dc7d689490b370022f3d22facd7164332e54be5a4a",
+    "file": "/tmp/aic_visual_sources_raw/deit_readme.txt"
+  },
+  {
+    "name": "deit_models",
+    "url": "https://raw.githubusercontent.com/facebookresearch/deit/main/models.py",
+    "status": 200,
+    "content_type": "text/plain; charset=utf-8",
+    "bytes": 6932,
+    "sha256": "28d2d573aece3dfe67780b58548a766c978c23b276df45f08589a77da45ff5fb",
+    "file": "/tmp/aic_visual_sources_raw/deit_models.txt"
+  },
+  {
+    "name": "dinov2_hf",
+    "url": "https://huggingface.co/api/models/facebook/dinov2-small",
+    "status": 200,
+    "content_type": "application/json; charset=utf-8",
+    "bytes": 3983,
+    "sha256": "4ca60f5e178875d485abb25057207589a9fc2718e94ab3dab371e9e39f516480",
+    "file": "/tmp/aic_visual_sources_raw/dinov2_hf.txt",
+    "revision": "ed25f3a31f01632728cabb09d1542f84ab7b0056",
+    "safetensors": {
+      "parameters": {
+        "F32": 22056576
+      },
+      "total": 22056576
+    },
+    "license": "apache-2.0",
+    "weight_files": [
+      "model.safetensors",
+      "pytorch_model.bin"
+    ]
+  },
+  {
+    "name": "clip_hf",
+    "url": "https://huggingface.co/api/models/openai/clip-vit-base-patch32",
+    "status": 200,
+    "content_type": "application/json; charset=utf-8",
+    "bytes": 4928,
+    "sha256": "0302555036efb5c9f34786d55f376ec31c0af5e583cc5ad5ed5b478c60344452",
+    "file": "/tmp/aic_visual_sources_raw/clip_hf.txt",
+    "revision": "3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268",
+    "safetensors": null,
+    "license": null,
+    "weight_files": [
+      "pytorch_model.bin"
+    ]
+  },
+  {
+    "name": "clip_source",
+    "url": "https://raw.githubusercontent.com/openai/CLIP/main/clip/clip.py",
+    "status": 200,
+    "content_type": "text/plain; charset=utf-8",
+    "bytes": 9644,
+    "sha256": "9540f200fbf8145479fa655382a56dab048d238cc698b9cbd8df3b6d86d3f1b6",
+    "file": "/tmp/aic_visual_sources_raw/clip_source.txt"
+  },
+  {
+    "name": "clip_readme",
+    "url": "https://raw.githubusercontent.com/openai/CLIP/main/README.md",
+    "status": 200,
+    "content_type": "text/plain; charset=utf-8",
+    "bytes": 7306,
+    "sha256": "f82c5c75e140532eb37a7d943921e1bdd57d740c6b40d0030985bc5b5d11d6f1",
+    "file": "/tmp/aic_visual_sources_raw/clip_readme.txt"
+  },
+  {
+    "name": "videomae_hf",
+    "url": "https://huggingface.co/api/models/MCG-NJU/videomae-base",
+    "status": 200,
+    "content_type": "application/json; charset=utf-8",
+    "bytes": 2270,
+    "sha256": "1263f9c8dc395657b5dd9dfe765baef72b51abf4a9caf0c03c353f9fe1dc5428",
+    "file": "/tmp/aic_visual_sources_raw/videomae_hf.txt",
+    "revision": "dc740ceda42fce44faed2ea03c6d447db72f6af9",
+    "safetensors": {
+      "parameters": {
+        "F32": 94210944
+      },
+      "total": 94210944
+    },
+    "license": "cc-by-nc-4.0",
+    "weight_files": [
+      "model.safetensors",
+      "pytorch_model.bin"
+    ]
+  },
+  {
+    "name": "videomae_finetuned_hf",
+    "url": "https://huggingface.co/api/models/MCG-NJU/videomae-base-finetuned-kinetics",
+    "status": 200,
+    "content_type": "application/json; charset=utf-8",
+    "bytes": 3009,
+    "sha256": "b9ffd88ef8fc58923f921841f03a5a9ff0168d9461f36f02b3ab45fae3c5c277",
+    "file": "/tmp/aic_visual_sources_raw/videomae_finetuned_hf.txt",
+    "revision": "488eb9a0565f257b32866000305c8178965eb9f6",
+    "safetensors": {
+      "parameters": {
+        "F32": 86534800
+      },
+      "total": 86534800
+    },
+    "license": "cc-by-nc-4.0",
+    "weight_files": [
+      "model.safetensors",
+      "pytorch_model.bin"
+    ]
+  },
+  {
+    "name": "hlclip_author_repos",
+    "url": "https://api.github.com/users/dhk1349/repos?per_page=100",
+    "status": 200,
+    "content_type": "application/json; charset=utf-8",
+    "bytes": 345942,
+    "sha256": "9f0e144a7b92beb6b3c24242b89f268224f6ef739bdd2adbec22599e5d8dc5a7",
+    "file": "/tmp/aic_visual_sources_raw/hlclip_author_repos.txt",
+    "repos": [
+      "Algorithm",
+      "awesome-production-machine-learning",
+      "A_star_algorithm",
+      "Bigcontest2020",
+      "Big_Data_Programming",
+      "chat-service",
+      "circuit-tracer",
+      "CLIP",
+      "Cpluspuls_instruction",
+      "C_plusplus-Programing-study",
+      "Data-Visualization-for-2019-KPX-report",
+      "Data_Structure",
+      "Deep-Learning",
+      "Deep-Learning-Paper-Study",
+      "DeepLearning-Practice-with-Kaggle",
+      "Deep_learning_with_Keras",
+      "depth-dinov2",
+      "detr",
+      "dhk1349",
+      "dhk1349.github.io",
+      "Django-practice-ground",
+      "Dockerfile-practice",
+      "Flask",
+      "Flex_And_Bison",
+      "FSA-Net",
+      "Generative-adversarial-networks",
+      "geometric-bottleneck-EMNLP",
+      "Go",
+      "gooddat",
+      "Hadoop_programming",
+      "head-pose-estimation",
+      "HL-CLIP",
+      "hwpx",
+      "JAVA_programming",
+      "julia",
+      "KHU_crawler",
+      "kubernetes-the-hard-way-aws",
+      "League_of_Legend_4U",
+      "limit",
+      "LLaVA",
+      "LLM-Agent",
+      "MERLIN",
+      "MERLIN_text_to_video_search",
+      "MixNeRF",
+      "ml-engineering",
+      "ModelServe",
+      "mteb",
+      "nest",
+      "News_Bigdata_Hackathon",
+      "pcap_packet",
+      "Python_programming",
+      "Raspberry_khu",
+      "results",
+      "Reverse-Engineering-Basic",
+      "seg-dinov2",
+      "Socket-Programming",
+      "Sports_Analysis",
+      "SQL-practice",
+      "stargan-v2",
+      "sum_test2",
+      "tf-pose-estimation",
+      "toybox-dashboard",
+      "tutorials",
+      "Vending_machine",
+      "Volavola",
+      "Whitebox"
+    ]
+  },
+  {
+    "name": "summe_author",
+    "url": "https://gyglim.github.io/me/vsum/index.html",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "name": "summe_author_alt",
+    "url": "https://gyglim.github.io/me/vsum/",
+    "error": "HTTP Error 404: Not Found"
+  }
+]

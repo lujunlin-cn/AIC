@@ -1,0 +1,87 @@
+{
+  "date_shanghai": "2026-10-19T13:42:32.086765+08:00",
+  "scope": "Pure integer count from local AST module declarations; no torch, model construction, weights or GT",
+  "records": [
+    {
+      "source": "scripts/v9_vision_only_points.py",
+      "source_sha256": "b19dde3b6a7246732305f690e56977496078d91c32d3d689465d830ccda73278",
+      "architecture_arguments": {
+        "d": 2305,
+        "ch": 128,
+        "heads": 4,
+        "ff": 256,
+        "nc": 129
+      },
+      "input_d_basis": "3 * 768 pooled features + 1 position scalar; local feature concatenation",
+      "declared_parameters": 1511425,
+      "parameter_groups": {
+        "proj": 1246336,
+        "qkv": 99072,
+        "proj_o": 33024,
+        "ln1": 512,
+        "ln2": 512,
+        "ff1": 66048,
+        "ff2": 65792,
+        "drop": 0,
+        "out": 129
+      },
+      "source_module_expressions": {
+        "proj": "nn.Sequential(nn.Linear(d, 512), nn.GELU(), nn.Linear(512, ch))",
+        "qkv": "nn.ModuleList([nn.Linear(ch, 3 * ch) for _ in range(2)])",
+        "proj_o": "nn.ModuleList([nn.Linear(ch, ch) for _ in range(2)])",
+        "ln1": "nn.ModuleList([nn.LayerNorm(ch) for _ in range(2)])",
+        "ln2": "nn.ModuleList([nn.LayerNorm(ch) for _ in range(2)])",
+        "ff1": "nn.ModuleList([nn.Linear(ch, ff) for _ in range(2)])",
+        "ff2": "nn.ModuleList([nn.Linear(ff, ch) for _ in range(2)])",
+        "drop": "nn.Dropout(0.1)",
+        "out": "nn.Linear(ch, 1)"
+      },
+      "model_instantiated": false,
+      "forward_executed": false,
+      "checkpoint_loaded": false,
+      "historical_B3_checkpoint_identity_verified": false
+    },
+    {
+      "source": "scripts/r70_spatial_utility_pilot.py",
+      "source_sha256": "9b831c2ca19e9a42f17b53bb1b59722c7ece4796ad4d9d7e3363745b93c47a28",
+      "architecture_arguments": {
+        "d": 2305,
+        "ch": 128,
+        "heads": 4,
+        "ff": 256,
+        "nc": 129
+      },
+      "input_d_basis": "3 * 768 pooled features + 1 position scalar; local feature concatenation",
+      "declared_parameters": 1511425,
+      "parameter_groups": {
+        "proj": 1246336,
+        "qkv": 99072,
+        "proj_o": 33024,
+        "ln1": 512,
+        "ln2": 512,
+        "ff1": 66048,
+        "ff2": 65792,
+        "out": 129
+      },
+      "source_module_expressions": {
+        "proj": "nn.Sequential(nn.Linear(d, 512), nn.GELU(), nn.Linear(512, ch))",
+        "qkv": "nn.ModuleList([nn.Linear(ch, 3 * ch) for _ in range(2)])",
+        "proj_o": "nn.ModuleList([nn.Linear(ch, ch) for _ in range(2)])",
+        "ln1": "nn.ModuleList([nn.LayerNorm(ch) for _ in range(2)])",
+        "ln2": "nn.ModuleList([nn.LayerNorm(ch) for _ in range(2)])",
+        "ff1": "nn.ModuleList([nn.Linear(ch, ff) for _ in range(2)])",
+        "ff2": "nn.ModuleList([nn.Linear(ff, ch) for _ in range(2)])",
+        "out": "nn.Linear(ch, 1)"
+      },
+      "model_instantiated": false,
+      "forward_executed": false,
+      "checkpoint_loaded": false,
+      "historical_B3_checkpoint_identity_verified": false
+    }
+  ],
+  "historical_encoder_declared_parameters": 85843200,
+  "historical_yunet_declared_parameters": 53104,
+  "historical_encoder_yunet_not_independently_loaded": true,
+  "conditional_vision_head_yunet_total": 87407729,
+  "total_condition": "Applicable only if historical assets match the audited 2305-input Head and declared encoder/YuNet counts"
+}

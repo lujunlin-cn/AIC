@@ -1,0 +1,232 @@
+{
+  "timestamp_shanghai": "2026-10-19T13:54:55.038788+08:00",
+  "scope": "Artifact integrity only; no new model execution, task evaluation or official checker.",
+  "base_commit": "5251193a9e07fd682008bb7b2a49aef60ee0cf3f",
+  "core_markdown_count": 5,
+  "registry_entries": 26,
+  "registry_fields_per_entry": {
+    "M01": 17,
+    "M02": 17,
+    "M03": 17,
+    "M04": 17,
+    "M05": 17,
+    "M06": 17,
+    "M07": 17,
+    "M08": 17,
+    "M09": 17,
+    "M10": 17,
+    "M11": 17,
+    "M12": 17,
+    "M13": 17,
+    "M14": 17,
+    "M15": 17,
+    "M16": 17,
+    "M17": 17,
+    "M18": 17,
+    "M19": 17,
+    "M20": 17,
+    "M21": 17,
+    "M22": 17,
+    "M23": 17,
+    "M24": 17,
+    "M25": 17,
+    "M26": 17
+  },
+  "json_parse_count": 16,
+  "python_ast_count": 8,
+  "local_links_checked": 166,
+  "external_link_occurrences": 196,
+  "external_links_retrieved_by_this_script": false,
+  "parameter_arithmetic": {
+    "v9_historical_tower_plus_source_head_plus_historical_yunet": 87407729,
+    "planned_independent_graph_cap": 88407729,
+    "planned_independent_graph_plus_u2netp_cap": 89538910,
+    "historical_large_graph": 8854531425,
+    "historical_large_graph_plus_full_hlclip_class": 9006095703
+  },
+  "file_count_excluding_this_record": 35,
+  "inventory_exclusions": [
+    "evidence/artifact_validation.json",
+    "__pycache__",
+    "*.pyc"
+  ],
+  "inventory": [
+    {
+      "path": "aic_transfer_learning_plan.md",
+      "bytes": 52850,
+      "sha256": "c91f8247c838332a7e2c644e75910b13e1e31c343566625939a9923823cb79ad"
+    },
+    {
+      "path": "evidence/aic_head_parameter_audit.json",
+      "bytes": 3386,
+      "sha256": "d55e11688d1ffb335f40a2c5db8c3ea9b2796fb65ad677dcc4315566f5ec335a"
+    },
+    {
+      "path": "evidence/aic_head_parameter_audit.py",
+      "bytes": 6084,
+      "sha256": "4524a44e3bed7a82c6ee29a565522a7a2e1bfbbfd6334841513274beee7b3f1b"
+    },
+    {
+      "path": "evidence/aic_r52_farneback_synthetic_audit.json",
+      "bytes": 2688,
+      "sha256": "79346e1f6cafad33f5f7406cb37abceff47af733c840e438f6ac508031844a17"
+    },
+    {
+      "path": "evidence/aic_r52_farneback_synthetic_audit.py",
+      "bytes": 3411,
+      "sha256": "90cdfe9cfac4574a76940731511520c133f1bc24aca3e400617adf0bd037ddaa"
+    },
+    {
+      "path": "evidence/aic_visual_weight_access_probe.py",
+      "bytes": 3471,
+      "sha256": "66aafc023fecf2092bf9f83a6ee0e72b388cc8c70a53c750feae5dc11df734b6"
+    },
+    {
+      "path": "evidence/current_environment_check.json",
+      "bytes": 432,
+      "sha256": "7e660a757d3703935c7328449425f594e74d6d11b6509e976cb474b40e89a534"
+    },
+    {
+      "path": "evidence/current_environment_check.py",
+      "bytes": 635,
+      "sha256": "f666a8178cfb4035996b62b09820a5546b19711e089fbab288a2001eabba8aca"
+    },
+    {
+      "path": "evidence/dinov2_small_tensor_header.json",
+      "bytes": 23648,
+      "sha256": "ebba863e53d0dc21eead30eaa0dfe419b51d9fc0419acaa3bc8a1de094ceed69"
+    },
+    {
+      "path": "evidence/kts_access_audit.json",
+      "bytes": 337,
+      "sha256": "9a4235782441809ac37828d8330792e6fb8cde789e0b6b9d9cc5f52332aa1275"
+    },
+    {
+      "path": "evidence/primary_source_fetch_manifest.json",
+      "bytes": 6656,
+      "sha256": "d107cc1e6ec6a000c3f3f184ea3fccc7730ec1fb60609b5e915f337436ff7e97"
+    },
+    {
+      "path": "evidence/research_provenance.json",
+      "bytes": 3863,
+      "sha256": "793712233987601888d415e55350914e11a22290f270ff6e44c5accf15f20519"
+    },
+    {
+      "path": "evidence/semantic_model_access_20261019.json",
+      "bytes": 14467,
+      "sha256": "225adb75eac1482fef54f78c3b796a3616d5af8b84e84858c5dd2a567655de3a"
+    },
+    {
+      "path": "evidence/semantic_source_metadata_20261019.json",
+      "bytes": 6760,
+      "sha256": "a51a3296f02794f1bd616c54fee2197af2dc1230138d10f59f9bc9aaf9d5880b"
+    },
+    {
+      "path": "evidence/semantic_tensor_header_counts_20261019.json",
+      "bytes": 1773,
+      "sha256": "2abc838f8c7d64a12319802205b9503842c5531a88b2862d5ff24d8d688ba012"
+    },
+    {
+      "path": "evidence/semantic_weight_access_probe.py",
+      "bytes": 3175,
+      "sha256": "d9e863ebdc5d0b416bb030764ff380a051af543e01d1c8a47e7f1c6daced0ecf"
+    },
+    {
+      "path": "evidence/semantic_weight_access_probe_result.json",
+      "bytes": 4162,
+      "sha256": "dd0194dbcba726c3a468ce038e9cb8c6dba5e4ede88f914ced0e329b3309392a"
+    },
+    {
+      "path": "evidence/spatial_static_params/count_declared_params.py",
+      "bytes": 4620,
+      "sha256": "5bf23f5b5a72f7e91552c7fd1c66475c7b029e21ba522227a240c681297a3553"
+    },
+    {
+      "path": "evidence/spatial_static_params/parameter_counts.json",
+      "bytes": 1272,
+      "sha256": "cc79cc169c031587c2b4de29231c22a3351775a42b325b2b5c91ad7288436e23"
+    },
+    {
+      "path": "evidence/spatial_static_params/sources.json",
+      "bytes": 951,
+      "sha256": "90a5eb87b093f1d1c8779c8bf0cfc19799387768e5c110a4edd4b045de8ca0c0"
+    },
+    {
+      "path": "evidence/spatial_weight_access_audit.json",
+      "bytes": 2429,
+      "sha256": "754f70dd5681c5a3c9c24f1cf28df33d49074c07fcf2562c9bdef4ecfe829934"
+    },
+    {
+      "path": "evidence/spatial_weight_access_probe.py",
+      "bytes": 3455,
+      "sha256": "d851b762280bbb8802769702859df76b0f3afd191480490598e9bacc23f5d4cc"
+    },
+    {
+      "path": "evidence/spatial_weight_heads/u2netp_headers.txt",
+      "bytes": 7085,
+      "sha256": "d3a8f491ae46a2f93d6b3e4d8b638b9ed359f7829994f41454a8e81a7f01c7a4"
+    },
+    {
+      "path": "evidence/spatial_weight_heads/u2netp_stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/spatial_weight_heads/unisal_headers.txt",
+      "bytes": 992,
+      "sha256": "600f4bd8daa83e9f4c7208c8cee961decc75007de7f99787f15afa4e1cd579c1"
+    },
+    {
+      "path": "evidence/spatial_weight_heads/unisal_stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/spatial_weight_heads/yolox_nano_headers.txt",
+      "bytes": 5346,
+      "sha256": "68c0ab962f0caf17066ccc222a31957248029c23661264553cd123e22530b929"
+    },
+    {
+      "path": "evidence/spatial_weight_heads/yolox_nano_stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/validate_research_artifacts.py",
+      "bytes": 8346,
+      "sha256": "8c74418b1c2eeb8de7483d93b838e41fc489917ec90d9ab80f0ff1156484cfbf"
+    },
+    {
+      "path": "evidence/videomae_k400_tensor_header.json",
+      "bytes": 22408,
+      "sha256": "d0d987c9e3ae86199eeca1a47c7181e0a0b4e2fba3edcaf6343f169d19b0444e"
+    },
+    {
+      "path": "evidence/weight_access_audit.json",
+      "bytes": 10133,
+      "sha256": "b70e284d01e8348709295cd7a62fd2bcf6ce9e14a66715a3e7883d04af6b3759"
+    },
+    {
+      "path": "minimal_falsification_experiments.md",
+      "bytes": 39696,
+      "sha256": "54ca41f8721d8a686764f3791a24ced8a0ee902bbb8dbb88a8d1a2392d1c467c"
+    },
+    {
+      "path": "open_models_registry.md",
+      "bytes": 80339,
+      "sha256": "84b51c6bf55737c978650d06b38a35f22969b9817d5f0f833dbcfa40d97c450b"
+    },
+    {
+      "path": "research_verdict.md",
+      "bytes": 19204,
+      "sha256": "0a1568be1290f517959528fecf26e38537a71051c378cd146ff1e3a729788b8c"
+    },
+    {
+      "path": "visual_feature_research.md",
+      "bytes": 32366,
+      "sha256": "fdf8a7390c29a231d298be7cc578723dd6d66d05acbe33688ddecadf09758c2a"
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

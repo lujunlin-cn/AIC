@@ -1,0 +1,256 @@
+{
+  "utc": "2026-10-19T05:34:26.970965+00:00",
+  "max_bytes_read_per_get": 512,
+  "full_weight_downloaded_or_loaded": false,
+  "records": [
+    {
+      "name": "raft_author_bundle",
+      "url": "https://dl.dropboxusercontent.com/s/4j4z58wuv8o0mfz/models.zip",
+      "HEAD": {
+        "status": 200,
+        "final_url": "https://dl.dropboxusercontent.com/s/4j4z58wuv8o0mfz/models.zip",
+        "headers": {
+          "Content-Type": "application/json",
+          "Content-Length": "81977417",
+          "Content-Range": null,
+          "Accept-Ranges": "bytes"
+        },
+        "bytes_read": 0
+      },
+      "GET": {
+        "status": 206,
+        "final_url": "https://dl.dropboxusercontent.com/s/4j4z58wuv8o0mfz/models.zip",
+        "headers": {
+          "Content-Type": "application/zip",
+          "Content-Length": "512",
+          "Content-Range": "bytes 0-511/81977417",
+          "Accept-Ranges": "bytes"
+        },
+        "bytes_read": 512,
+        "prefix_sha256": "56ac8516ba94e41014a43a2974b9d3e84198598f1325fcecf3edf811bd4f9c24",
+        "prefix_hex_16": "504b03040a0000000000e1b017510000",
+        "looks_html": false,
+        "looks_git_lfs_pointer": false,
+        "looks_zip": true
+      }
+    },
+    {
+      "name": "raft_small_torchvision_C_T_V1",
+      "url": "https://download.pytorch.org/models/raft_small_C_T_V1-ad48884c.pth",
+      "HEAD": {
+        "status": 200,
+        "final_url": "https://download.pytorch.org/models/raft_small_C_T_V1-ad48884c.pth",
+        "headers": {
+          "Content-Type": "binary/octet-stream",
+          "Content-Length": "4006189",
+          "Content-Range": null,
+          "Accept-Ranges": "bytes"
+        },
+        "bytes_read": 0
+      },
+      "GET": {
+        "status": 206,
+        "final_url": "https://download.pytorch.org/models/raft_small_C_T_V1-ad48884c.pth",
+        "headers": {
+          "Content-Type": "binary/octet-stream",
+          "Content-Length": "512",
+          "Content-Range": "bytes 0-511/4006189",
+          "Accept-Ranges": null
+        },
+        "bytes_read": 512,
+        "prefix_sha256": "10651e52c693d25566600982b94333d538b039e70c549b66bef4c6bda26454b3",
+        "prefix_hex_16": "504b0304000008080000000000000000",
+        "looks_html": false,
+        "looks_git_lfs_pointer": false,
+        "looks_zip": true
+      }
+    },
+    {
+      "name": "transnet_author_raw_lfs_pointer",
+      "url": "https://raw.githubusercontent.com/soCzech/TransNetV2/master/inference/transnetv2-weights/variables/variables.data-00000-of-00001",
+      "HEAD": {
+        "status": 200,
+        "final_url": "https://raw.githubusercontent.com/soCzech/TransNetV2/master/inference/transnetv2-weights/variables/variables.data-00000-of-00001",
+        "headers": {
+          "Content-Type": "text/plain; charset=utf-8",
+          "Content-Length": "133",
+          "Content-Range": null,
+          "Accept-Ranges": "bytes"
+        },
+        "bytes_read": 0
+      },
+      "GET": {
+        "status": 206,
+        "final_url": "https://raw.githubusercontent.com/soCzech/TransNetV2/master/inference/transnetv2-weights/variables/variables.data-00000-of-00001",
+        "headers": {
+          "Content-Type": "text/plain; charset=utf-8",
+          "Content-Length": "133",
+          "Content-Range": "bytes 0-132/133",
+          "Accept-Ranges": "bytes"
+        },
+        "bytes_read": 133,
+        "prefix_sha256": "734312e4921739c4602de6c95113798d0c8e245bed634339181f31f5c143308c",
+        "prefix_hex_16": "76657273696f6e2068747470733a2f2f",
+        "looks_html": false,
+        "looks_git_lfs_pointer": true,
+        "looks_zip": false,
+        "public_lfs_pointer": "version https://git-lfs.github.com/spec/v1\noid sha256:b8c9dc3eb807583e6215cabee9ca61737b3eb1bceff68418b43bf71459669367\nsize 30516656\n"
+      }
+    },
+    {
+      "name": "transnet_author_data",
+      "url": "https://media.githubusercontent.com/media/soCzech/TransNetV2/master/inference/transnetv2-weights/variables/variables.data-00000-of-00001",
+      "HEAD": {
+        "status": 200,
+        "final_url": "https://media.githubusercontent.com/media/soCzech/TransNetV2/master/inference/transnetv2-weights/variables/variables.data-00000-of-00001",
+        "headers": {
+          "Content-Type": "application/octet-stream",
+          "Content-Length": "30516656",
+          "Content-Range": null,
+          "Accept-Ranges": "bytes"
+        },
+        "bytes_read": 0
+      },
+      "GET": {
+        "status": 206,
+        "final_url": "https://media.githubusercontent.com/media/soCzech/TransNetV2/master/inference/transnetv2-weights/variables/variables.data-00000-of-00001",
+        "headers": {
+          "Content-Type": "application/octet-stream",
+          "Content-Length": "512",
+          "Content-Range": "bytes 0-511/30516656",
+          "Accept-Ranges": "bytes"
+        },
+        "bytes_read": 512,
+        "prefix_sha256": "65e504f1645e0e0f09241147217a5881126b4d01c0f84637ebefb986bec882ac",
+        "prefix_hex_16": "9c43683cbb89823c07d22bbc29d2fabc",
+        "looks_html": false,
+        "looks_git_lfs_pointer": false,
+        "looks_zip": false
+      }
+    },
+    {
+      "name": "transnet_author_index",
+      "url": "https://media.githubusercontent.com/media/soCzech/TransNetV2/master/inference/transnetv2-weights/variables/variables.index",
+      "HEAD": {
+        "status": 200,
+        "final_url": "https://media.githubusercontent.com/media/soCzech/TransNetV2/master/inference/transnetv2-weights/variables/variables.index",
+        "headers": {
+          "Content-Type": "application/octet-stream",
+          "Content-Length": "5526",
+          "Content-Range": null,
+          "Accept-Ranges": "bytes"
+        },
+        "bytes_read": 0
+      },
+      "GET": {
+        "status": 206,
+        "final_url": "https://media.githubusercontent.com/media/soCzech/TransNetV2/master/inference/transnetv2-weights/variables/variables.index",
+        "headers": {
+          "Content-Type": "application/octet-stream",
+          "Content-Length": "512",
+          "Content-Range": "bytes 0-511/5526",
+          "Accept-Ranges": "bytes"
+        },
+        "bytes_read": 512,
+        "prefix_sha256": "31e07808a65a1529b748946fe7ca854111872f4502f6ad3a99b8522172756062",
+        "prefix_hex_16": "00000608011a020801001c125f434845",
+        "looks_html": false,
+        "looks_git_lfs_pointer": false,
+        "looks_zip": false
+      }
+    },
+    {
+      "name": "transnet_author_saved_model",
+      "url": "https://media.githubusercontent.com/media/soCzech/TransNetV2/master/inference/transnetv2-weights/saved_model.pb",
+      "HEAD": {
+        "status": 200,
+        "final_url": "https://media.githubusercontent.com/media/soCzech/TransNetV2/master/inference/transnetv2-weights/saved_model.pb",
+        "headers": {
+          "Content-Type": "application/octet-stream",
+          "Content-Length": "5933260",
+          "Content-Range": null,
+          "Accept-Ranges": "bytes"
+        },
+        "bytes_read": 0
+      },
+      "GET": {
+        "status": 206,
+        "final_url": "https://media.githubusercontent.com/media/soCzech/TransNetV2/master/inference/transnetv2-weights/saved_model.pb",
+        "headers": {
+          "Content-Type": "application/octet-stream",
+          "Content-Length": "512",
+          "Content-Range": "bytes 0-511/5933260",
+          "Accept-Ranges": "bytes"
+        },
+        "bytes_read": 512,
+        "prefix_sha256": "648773ee3f9aa72e2a05dcf0e10b77a8c65ceb98c2a36d7369cad1c4bb648e21",
+        "prefix_hex_16": "080112c591ea020aa80412fd030a380a",
+        "looks_html": false,
+        "looks_git_lfs_pointer": false,
+        "looks_zip": false
+      }
+    },
+    {
+      "name": "gmflow_author_scale1_things",
+      "url": "https://s3.eu-central-1.amazonaws.com/avg-projects/unimatch/pretrained/gmflow-scale1-things-e9887eda.pth",
+      "HEAD": {
+        "status": 200,
+        "final_url": "https://s3.eu-central-1.amazonaws.com/avg-projects/unimatch/pretrained/gmflow-scale1-things-e9887eda.pth",
+        "headers": {
+          "Content-Type": "binary/octet-stream",
+          "Content-Length": "18768907",
+          "Content-Range": null,
+          "Accept-Ranges": "bytes"
+        },
+        "bytes_read": 0
+      },
+      "GET": {
+        "status": 206,
+        "final_url": "https://s3.eu-central-1.amazonaws.com/avg-projects/unimatch/pretrained/gmflow-scale1-things-e9887eda.pth",
+        "headers": {
+          "Content-Type": "binary/octet-stream",
+          "Content-Length": "512",
+          "Content-Range": "bytes 0-511/18768907",
+          "Accept-Ranges": "bytes"
+        },
+        "bytes_read": 512,
+        "prefix_sha256": "c573f81aa1a4d41907abbb233c42bf342634146abbe5941970a8bb8420e64d6d",
+        "prefix_hex_16": "504b0304000008080000000000000000",
+        "looks_html": false,
+        "looks_git_lfs_pointer": false,
+        "looks_zip": true
+      }
+    },
+    {
+      "name": "tsm_author_mobilenetv2",
+      "url": "https://hanlab18.mit.edu/projects/tsm/models/TSM_kinetics_RGB_mobilenetv2_shift8_blockres_avg_segment8_e100_dense.pth",
+      "HEAD": {
+        "status": 200,
+        "final_url": "https://hanlab18.mit.edu/projects/tsm/models/TSM_kinetics_RGB_mobilenetv2_shift8_blockres_avg_segment8_e100_dense.pth",
+        "headers": {
+          "Content-Type": "application/octet-stream",
+          "Content-Length": "11144548",
+          "Content-Range": null,
+          "Accept-Ranges": "bytes"
+        },
+        "bytes_read": 0
+      },
+      "GET": {
+        "status": 206,
+        "final_url": "https://hanlab18.mit.edu/projects/tsm/models/TSM_kinetics_RGB_mobilenetv2_shift8_blockres_avg_segment8_e100_dense.pth",
+        "headers": {
+          "Content-Type": "application/octet-stream",
+          "Content-Length": "512",
+          "Content-Range": "bytes 0-511/11144548",
+          "Accept-Ranges": null
+        },
+        "bytes_read": 512,
+        "prefix_sha256": "42f4b40aa42947c07c4038a5366b131e3c4d7fe678944c733084003b40b984f1",
+        "prefix_hex_16": "80028a0a6cfc9c46f9206aa850192e80",
+        "looks_html": false,
+        "looks_git_lfs_pointer": false,
+        "looks_zip": false
+      }
+    }
+  ]
+}

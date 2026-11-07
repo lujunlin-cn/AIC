@@ -1,0 +1,362 @@
+[
+  {
+    "name": "hlclip_readme",
+    "url": "https://raw.githubusercontent.com/dhk1349/HL-CLIP/main/README.md",
+    "status": 200,
+    "content_type": "text/plain; charset=utf-8",
+    "content_length": "1928",
+    "content_range": null,
+    "bytes_read": 1928,
+    "sha256_of_read_bytes": "3e84efdb3e2ce42d4de99387f9598aef1dc9d6c81ca5daeb0c066b16e595741c",
+    "file": "/tmp/aic_visual_sources_raw/hlclip_readme.txt"
+  },
+  {
+    "name": "hlclip_model",
+    "url": "https://raw.githubusercontent.com/dhk1349/HL-CLIP/main/moment_detr/model.py",
+    "status": 200,
+    "content_type": "text/plain; charset=utf-8",
+    "content_length": "29035",
+    "content_range": null,
+    "bytes_read": 29035,
+    "sha256_of_read_bytes": "882e8a784c87844bfc6b269394f6dc2afbabc31a4ab85fc0826a091e044512dc",
+    "file": "/tmp/aic_visual_sources_raw/hlclip_model.txt"
+  },
+  {
+    "name": "hlclip_train",
+    "url": "https://raw.githubusercontent.com/dhk1349/HL-CLIP/main/moment_detr/clip_ft.py",
+    "status": 200,
+    "content_type": "text/plain; charset=utf-8",
+    "content_length": "13001",
+    "content_range": null,
+    "bytes_read": 13001,
+    "sha256_of_read_bytes": "1627323d47c99b85aac58a7cffa71c9e5815c15907f5cf50b00f7e0ad1e0b23d",
+    "file": "/tmp/aic_visual_sources_raw/hlclip_train.txt"
+  },
+  {
+    "name": "hlclip_script",
+    "url": "https://raw.githubusercontent.com/dhk1349/HL-CLIP/main/moment_detr/scripts/clip_ft.sh",
+    "status": 200,
+    "content_type": "text/plain; charset=utf-8",
+    "content_length": "1411",
+    "content_range": null,
+    "bytes_read": 1411,
+    "sha256_of_read_bytes": "3e427361bd9444acb1a08bf38ad69815beac3b26e33b6b017bd974dcf2f19097",
+    "file": "/tmp/aic_visual_sources_raw/hlclip_script.txt"
+  },
+  {
+    "name": "hlclip_inference",
+    "url": "https://raw.githubusercontent.com/dhk1349/HL-CLIP/main/real_inference.py",
+    "status": 200,
+    "content_type": "text/plain; charset=utf-8",
+    "content_length": "4979",
+    "content_range": null,
+    "bytes_read": 4979,
+    "sha256_of_read_bytes": "891a430675ada0de3f5e04583813a95e214e837c68eb3dd30f77551b060c58fa",
+    "file": "/tmp/aic_visual_sources_raw/hlclip_inference.txt"
+  },
+  {
+    "name": "hlclip_tree",
+    "url": "https://api.github.com/repos/dhk1349/HL-CLIP/git/trees/main?recursive=1",
+    "status": 200,
+    "content_type": "application/json; charset=utf-8",
+    "content_length": "31286",
+    "content_range": null,
+    "bytes_read": 31286,
+    "sha256_of_read_bytes": "38e8ddd81b278d5c867798bc6805f6b25434567f5943a5a8a11a279de7897cbc",
+    "file": "/tmp/aic_visual_sources_raw/hlclip_tree.txt",
+    "potential_weight_files": [
+      {
+        "path": "moment_detr/scripts",
+        "mode": "040000",
+        "type": "tree",
+        "sha": "e50427b3dca53c9a3ee11362935b772e9cb2e30a",
+        "url": "https://api.github.com/repos/dhk1349/HL-CLIP/git/trees/e50427b3dca53c9a3ee11362935b772e9cb2e30a"
+      },
+      {
+        "path": "moment_detr/scripts/clip_ft.sh",
+        "mode": "100755",
+        "type": "blob",
+        "sha": "9981507ff08f62aac6de038e2b2e39f712662640",
+        "size": 1411,
+        "url": "https://api.github.com/repos/dhk1349/HL-CLIP/git/blobs/9981507ff08f62aac6de038e2b2e39f712662640"
+      },
+      {
+        "path": "moment_detr/scripts/clip_ft_eval.sh",
+        "mode": "100755",
+        "type": "blob",
+        "sha": "581ce06f3ebafb4fd3a706d3b501cd2505bb01ca",
+        "size": 2001,
+        "url": "https://api.github.com/repos/dhk1349/HL-CLIP/git/blobs/581ce06f3ebafb4fd3a706d3b501cd2505bb01ca"
+      },
+      {
+        "path": "moment_detr/scripts/inference.sh",
+        "mode": "100755",
+        "type": "blob",
+        "sha": "aa6cdf3113f03453681e6d613460a84b2b3f2bb8",
+        "size": 246,
+        "url": "https://api.github.com/repos/dhk1349/HL-CLIP/git/blobs/aa6cdf3113f03453681e6d613460a84b2b3f2bb8"
+      },
+      {
+        "path": "moment_detr/scripts/only_clip_moment_detr.sh",
+        "mode": "100755",
+        "type": "blob",
+        "sha": "66bba1e6bff28df1c68c9f043a6e3667af751102",
+        "size": 1235,
+        "url": "https://api.github.com/repos/dhk1349/HL-CLIP/git/blobs/66bba1e6bff28df1c68c9f043a6e3667af751102"
+      },
+      {
+        "path": "moment_detr/scripts/pretrain.sh",
+        "mode": "100755",
+        "type": "blob",
+        "sha": "9f28675bbff60a80047a1c4b4b518e5112554c90",
+        "size": 1364,
+        "url": "https://api.github.com/repos/dhk1349/HL-CLIP/git/blobs/9f28675bbff60a80047a1c4b4b518e5112554c90"
+      },
+      {
+        "path": "moment_detr/scripts/train.sh",
+        "mode": "100755",
+        "type": "blob",
+        "sha": "6dbec79751a860a4b1b7b54e7a9bd388a02ba404",
+        "size": 1244,
+        "url": "https://api.github.com/repos/dhk1349/HL-CLIP/git/blobs/6dbec79751a860a4b1b7b54e7a9bd388a02ba404"
+      },
+      {
+        "path": "moment_detr/scripts/vdetr_pretrain.sh",
+        "mode": "100755",
+        "type": "blob",
+        "sha": "a17e3388782c665086a2dc1d264448fab53d4567",
+        "size": 1391,
+        "url": "https://api.github.com/repos/dhk1349/HL-CLIP/git/blobs/a17e3388782c665086a2dc1d264448fab53d4567"
+      },
+      {
+        "path": "moment_detr/scripts/vdetr_train.sh",
+        "mode": "100755",
+        "type": "blob",
+        "sha": "6e05afe4ab11dbfb3ed6f8e6625660f03728b269",
+        "size": 1242,
+        "url": "https://api.github.com/repos/dhk1349/HL-CLIP/git/blobs/6e05afe4ab11dbfb3ed6f8e6625660f03728b269"
+      },
+      {
+        "path": "moment_detr/scripts/zs_clip.sh",
+        "mode": "100755",
+        "type": "blob",
+        "sha": "515f827bcda00d967d06e95aff6d1f5636449dae",
+        "size": 1727,
+        "url": "https://api.github.com/repos/dhk1349/HL-CLIP/git/blobs/515f827bcda00d967d06e95aff6d1f5636449dae"
+      },
+      {
+        "path": "run_on_video/moment_detr_ckpt",
+        "mode": "040000",
+        "type": "tree",
+        "sha": "aa91594bf29f3f7153c10d88e4f10376343fb4be",
+        "url": "https://api.github.com/repos/dhk1349/HL-CLIP/git/trees/aa91594bf29f3f7153c10d88e4f10376343fb4be"
+      },
+      {
+        "path": "run_on_video/moment_detr_ckpt/README.md",
+        "mode": "100755",
+        "type": "blob",
+        "sha": "e1814623c02fe04e4d4db487cb80aa551b1b2430",
+        "size": 503,
+        "url": "https://api.github.com/repos/dhk1349/HL-CLIP/git/blobs/e1814623c02fe04e4d4db487cb80aa551b1b2430"
+      },
+      {
+        "path": "run_on_video/moment_detr_ckpt/eval.log.txt",
+        "mode": "100755",
+        "type": "blob",
+        "sha": "b7bf817a9e884c93d0ee6ff669de00ceec7b4f0e",
+        "size": 83817,
+        "url": "https://api.github.com/repos/dhk1349/HL-CLIP/git/blobs/b7bf817a9e884c93d0ee6ff669de00ceec7b4f0e"
+      },
+      {
+        "path": "run_on_video/moment_detr_ckpt/inference_hl_val_test_code_preds.jsonl",
+        "mode": "100755",
+        "type": "blob",
+        "sha": "892f299956a2570a5891bf9cc84572e72bbb99ab",
+        "size": 2443100,
+        "url": "https://api.github.com/repos/dhk1349/HL-CLIP/git/blobs/892f299956a2570a5891bf9cc84572e72bbb99ab"
+      },
+      {
+        "path": "run_on_video/moment_detr_ckpt/inference_hl_val_test_code_preds_metrics.json",
+        "mode": "100755",
+        "type": "blob",
+        "sha": "fcd542429d8af9ad150bd57c9ce011f74c3d8b4c",
+        "size": 3245,
+        "url": "https://api.github.com/repos/dhk1349/HL-CLIP/git/blobs/fcd542429d8af9ad150bd57c9ce011f74c3d8b4c"
+      },
+      {
+        "path": "run_on_video/moment_detr_ckpt/model_best.ckpt",
+        "mode": "100755",
+        "type": "blob",
+        "sha": "a32f31e37f885e24578a97eb0771a306725edef1",
+        "size": 16952721,
+        "url": "https://api.github.com/repos/dhk1349/HL-CLIP/git/blobs/a32f31e37f885e24578a97eb0771a306725edef1"
+      },
+      {
+        "path": "run_on_video/moment_detr_ckpt/opt.json",
+        "mode": "100755",
+        "type": "blob",
+        "sha": "a909362c99b89c2ae98e62e3a129e8da2ce715d1",
+        "size": 1915,
+        "url": "https://api.github.com/repos/dhk1349/HL-CLIP/git/blobs/a909362c99b89c2ae98e62e3a129e8da2ce715d1"
+      },
+      {
+        "path": "run_on_video/moment_detr_ckpt/train.log.txt",
+        "mode": "100755",
+        "type": "blob",
+        "sha": "6a8107d98c93b5cf7c93771da1cd8682ffa9863e",
+        "size": 46001,
+        "url": "https://api.github.com/repos/dhk1349/HL-CLIP/git/blobs/6a8107d98c93b5cf7c93771da1cd8682ffa9863e"
+      },
+      {
+        "path": "utils/__pycache__/exceptions.cpython-37.pyc",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "72c267df5e2ad668513445def1c233464ab99e44",
+        "size": 1984,
+        "url": "https://api.github.com/repos/dhk1349/HL-CLIP/git/blobs/72c267df5e2ad668513445def1c233464ab99e44"
+      },
+      {
+        "path": "utils/exceptions.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "a2257e5c825551b29395a51a3da12515c197944a",
+        "size": 603,
+        "url": "https://api.github.com/repos/dhk1349/HL-CLIP/git/blobs/a2257e5c825551b29395a51a3da12515c197944a"
+      }
+    ]
+  },
+  {
+    "name": "clip_config",
+    "url": "https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/config.json",
+    "status": 200,
+    "content_type": "text/plain; charset=utf-8",
+    "content_length": "4186",
+    "content_range": null,
+    "bytes_read": 4186,
+    "sha256_of_read_bytes": "b575ef3c36f2a057fa19e221650105052d61cc9c1a972ec15019c6261ec98770",
+    "file": "/tmp/aic_visual_sources_raw/clip_config.txt"
+  },
+  {
+    "name": "lfm_config",
+    "url": "https://huggingface.co/LiquidAI/LFM2-VL-450M/resolve/main/config.json",
+    "status": 200,
+    "content_type": "text/plain; charset=utf-8",
+    "content_length": "2326",
+    "content_range": null,
+    "bytes_read": 2326,
+    "sha256_of_read_bytes": "c36da4a990be51f4ea659a66a6d352fe21be55e0def2aadb9f56c6d90f217085",
+    "file": "/tmp/aic_visual_sources_raw/lfm_config.txt"
+  },
+  {
+    "name": "lfm_license",
+    "url": "https://huggingface.co/LiquidAI/LFM2-VL-450M/resolve/main/LICENSE",
+    "status": 200,
+    "content_type": "text/plain; charset=utf-8",
+    "content_length": "10644",
+    "content_range": null,
+    "bytes_read": 10644,
+    "sha256_of_read_bytes": "61d7e939a05911c765b7e98ffaa1ab5ca6c0174a65350766c25cb10197d19fc8",
+    "file": "/tmp/aic_visual_sources_raw/lfm_license.txt"
+  },
+  {
+    "name": "qvh_author_readme",
+    "url": "https://raw.githubusercontent.com/jayleicn/moment_detr/main/README.md",
+    "status": 200,
+    "content_type": "text/plain; charset=utf-8",
+    "content_length": "8193",
+    "content_range": null,
+    "bytes_read": 8193,
+    "sha256_of_read_bytes": "86b719477ee4f068722e27190957c2a73178efd9149c405b1d0f3d912241f1b8",
+    "file": "/tmp/aic_visual_sources_raw/qvh_author_readme.txt"
+  },
+  {
+    "name": "summe_author_current",
+    "url": "https://gyglim.github.io/",
+    "error": "HTTP Error 404: Not Found",
+    "weight_tier": null
+  },
+  {
+    "name": "mobilenet_v3_small",
+    "url": "https://download.pytorch.org/models/mobilenet_v3_small-047dcff4.pth",
+    "status": 206,
+    "content_type": "binary/octet-stream",
+    "content_length": "32",
+    "content_range": "bytes 0-31/10306551",
+    "bytes_read": 32,
+    "sha256_of_read_bytes": "6cb4ead480d6f1d55abe9170ad233d02a136d3f227f39ef48f5ecbb3fe89f9ff",
+    "prefix_hex": "504b030400000808000000000000000000000000000000000000100012006172",
+    "weight_tier": "W2"
+  },
+  {
+    "name": "mobilenet_v3_large_v2",
+    "url": "https://download.pytorch.org/models/mobilenet_v3_large-5c1a4163.pth",
+    "status": 206,
+    "content_type": "application/x-www-form-urlencoded; charset=utf-8",
+    "content_length": "32",
+    "content_range": "bytes 0-31/22132113",
+    "bytes_read": 32,
+    "sha256_of_read_bytes": "6cb4ead480d6f1d55abe9170ad233d02a136d3f227f39ef48f5ecbb3fe89f9ff",
+    "prefix_hex": "504b030400000808000000000000000000000000000000000000100012006172",
+    "weight_tier": "W2"
+  },
+  {
+    "name": "dinov2_vits14_author",
+    "url": "https://dl.fbaipublicfiles.com/dinov2/dinov2_vits14/dinov2_vits14_pretrain.pth",
+    "status": 206,
+    "content_type": "binary/octet-stream",
+    "content_length": "32",
+    "content_range": "bytes 0-31/88283115",
+    "bytes_read": 32,
+    "sha256_of_read_bytes": "f13dc355c77e99db389cbc04653b31e9bab0474a0fb38c79f8d0fa85af2229a9",
+    "prefix_hex": "504b03040000080800000000000000000000000000000000000018000a007669",
+    "weight_tier": "W2"
+  },
+  {
+    "name": "dinov2_small_hf",
+    "url": "https://huggingface.co/facebook/dinov2-small/resolve/ed25f3a31f01632728cabb09d1542f84ab7b0056/model.safetensors",
+    "status": 206,
+    "content_type": "application/octet-stream",
+    "content_length": "32",
+    "content_range": "bytes 0-31/88249960",
+    "bytes_read": 32,
+    "sha256_of_read_bytes": "45881dd71063f9537573e54fcd2d3294fe208d676130299cba2375101586ae31",
+    "prefix_hex": "605c0000000000007b225f5f6d657461646174615f5f223a7b22666f726d6174",
+    "weight_tier": "W2"
+  },
+  {
+    "name": "deit_small",
+    "url": "https://dl.fbaipublicfiles.com/deit/deit_small_patch16_224-cd65a155.pth",
+    "status": 206,
+    "content_type": "application/zip",
+    "content_length": "32",
+    "content_range": "bytes 0-31/88251143",
+    "bytes_read": 32,
+    "sha256_of_read_bytes": "6cb4ead480d6f1d55abe9170ad233d02a136d3f227f39ef48f5ecbb3fe89f9ff",
+    "prefix_hex": "504b030400000808000000000000000000000000000000000000100012006172",
+    "weight_tier": "W2"
+  },
+  {
+    "name": "clip_base_vitb32",
+    "url": "https://openaipublic.azureedge.net/clip/models/40d365715913c9da98579312b702a82c18be219cc2a73407c4526f58eba950af/ViT-B-32.pt",
+    "status": 206,
+    "content_type": "application/octet-stream",
+    "content_length": "32",
+    "content_range": "bytes 0-31/353976522",
+    "bytes_read": 32,
+    "sha256_of_read_bytes": "bd75c6ef71bd7a9f44ae0c80ceacb183ab57fd1e224bbad7bcfd0c4a50d1143d",
+    "prefix_hex": "504b0304000008080000000000000000000000000000000000000f0013005669",
+    "weight_tier": "W2"
+  },
+  {
+    "name": "videomae_finetuned_hf",
+    "url": "https://huggingface.co/MCG-NJU/videomae-base-finetuned-kinetics/resolve/488eb9a0565f257b32866000305c8178965eb9f6/model.safetensors",
+    "status": 206,
+    "content_type": "application/octet-stream",
+    "content_length": "32",
+    "content_range": "bytes 0-31/346161616",
+    "bytes_read": 32,
+    "sha256_of_read_bytes": "8fb6d7e9e5d1460b952c8c740e2132073b7bcddbef1b240a96be31c09de3921f",
+    "prefix_hex": "88570000000000007b225f5f6d657461646174615f5f223a7b22666f726d6174",
+    "weight_tier": "W2"
+  }
+]

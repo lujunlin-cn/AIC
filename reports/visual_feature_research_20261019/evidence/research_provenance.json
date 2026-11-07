@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "scope": "Research and low-cost audit only; no large training, no competition package, no official upload.",
+  "date_timezone": "Asia/Shanghai",
+  "repository": "https://github.com/lujunlin-cn/AIC",
+  "base_commit": "5251193a9e07fd682008bb7b2a49aef60ee0cf3f",
+  "base_tree": "649b3a6bda87e6f4bf8bfd1586e8f24e6b1574b0",
+  "base_commit_time_shanghai": "2026-10-19T13:26:23+08:00",
+  "read_only_main_recheck": {
+    "time_shanghai": "2026-10-19T13:45:41+08:00",
+    "sha": "5251193a9e07fd682008bb7b2a49aef60ee0cf3f",
+    "method": "GitHub connector public commits/main endpoint"
+  },
+  "official_formula": {
+    "page": "https://www.aicomp.cn/tracks/tracks-6/4267.html",
+    "image": "https://www.aicomp.cn/wp-content/uploads/2026/09/1-1.png",
+    "sha256": "dd99ffc62adaed80e2532224b7d1400cec18045c4b9ffec662374933430beaf9",
+    "status": "Current HTML/image and prior user confirmation use Score=100F; September 24 PDF still shows parameter bands. Official executable evaluator not obtained."
+  },
+  "actual_evidence": [
+    {
+      "kind": "CPU synthetic optical flow",
+      "script": "aic_r52_farneback_synthetic_audit.py",
+      "result": "aic_r52_farneback_synthetic_audit.json",
+      "script_sha256": "90cdfe9cfac4574a76940731511520c133f1bc24aca3e400617adf0bd037ddaa",
+      "interpretation": "Numerical validity only; no real-video task gain was measured."
+    },
+    {
+      "kind": "Local source AST parameter count",
+      "script": "aic_head_parameter_audit.py",
+      "result": "aic_head_parameter_audit.json",
+      "interpretation": "No torch model instantiation, checkpoint loading or forward."
+    },
+    {
+      "kind": "Author source static parameter count",
+      "script": "spatial_static_params/count_declared_params.py",
+      "result": "spatial_static_params/parameter_counts.json",
+      "interpretation": "Declared architecture elements, not loaded model inventory."
+    },
+    {
+      "kind": "HF safetensors headers",
+      "result": "semantic_tensor_header_counts_20261019.json",
+      "interpretation": "Headers and metadata only; not tensor payload loading."
+    },
+    {
+      "kind": "Weight endpoint checks",
+      "results": [
+        "weight_access_audit.json",
+        "spatial_weight_access_audit.json",
+        "semantic_model_access_20261019.json",
+        "semantic_weight_access_probe_result.json"
+      ],
+      "interpretation": "HEAD or small Range. W2 does not mean full download/load/forward; no new W3 model."
+    },
+    {
+      "kind": "Current container environment",
+      "script": "current_environment_check.py",
+      "result": "current_environment_check.json",
+      "command": "python reports/visual_feature_research_20261019/evidence/current_environment_check.py > reports/visual_feature_research_20261019/evidence/current_environment_check.json"
+    }
+  ],
+  "rumor_search": {
+    "status": "Unverified; no identifiable primary solution binding complete 100M inference graph to current-stage ~40 score was found.",
+    "queries": [
+      "\"AIC\" \"高光\" \"100M\"",
+      "\"视频高光剪辑\" \"40\" \"模型\" 参数",
+      "\"AIC\" \"高光\" \"100\" \"参数\"",
+      "\"2026 AIC\" \"高光\" \"方案\""
+    ],
+    "limit": "Search absence does not establish nonexistence. No GT prevalence or labels inferred from scores."
+  },
+  "not_executed": [
+    "real-data H1/H2/H3 validation",
+    "new neural model full checkpoint download and load",
+    "GPU or Ascend benchmarks",
+    "large training",
+    "official hidden-label access or reconstruction",
+    "new competition ZIP",
+    "official upload"
+  ],
+  "prior_unmerged_work": {
+    "url": "https://github.com/lujunlin-cn/AIC/pull/1",
+    "commit": "1ab05f37e2e559c935210e03e0c6bd16530df175",
+    "note": "Separate prior contract/crop research branch. Not merged in this base; its R85 name is not main R85."
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "date_shanghai": "2026-10-19T13:43:37.989674+08:00",
+  "scope": "weight endpoints only; base CLIP does not establish HL-CLIP finetuned weight availability",
+  "records": [
+    {
+      "name": "mobilenet_v3_small",
+      "url": "https://download.pytorch.org/models/mobilenet_v3_small-047dcff4.pth",
+      "weight_tier": "W2",
+      "full_hash_verified": false,
+      "model_loaded": false,
+      "status": 206,
+      "content_type": "binary/octet-stream",
+      "content_range": "bytes 0-31/10306551",
+      "bytes_read": 32,
+      "prefix_hex": "504b030400000808000000000000000000000000000000000000100012006172",
+      "prefix_sha256": "6cb4ead480d6f1d55abe9170ad233d02a136d3f227f39ef48f5ecbb3fe89f9ff"
+    },
+    {
+      "name": "mobilenet_v3_large_v2",
+      "url": "https://download.pytorch.org/models/mobilenet_v3_large-5c1a4163.pth",
+      "weight_tier": "W2",
+      "full_hash_verified": false,
+      "model_loaded": false,
+      "status": 206,
+      "content_type": "application/x-www-form-urlencoded; charset=utf-8",
+      "content_range": "bytes 0-31/22132113",
+      "bytes_read": 32,
+      "prefix_hex": "504b030400000808000000000000000000000000000000000000100012006172",
+      "prefix_sha256": "6cb4ead480d6f1d55abe9170ad233d02a136d3f227f39ef48f5ecbb3fe89f9ff"
+    },
+    {
+      "name": "deit_small",
+      "url": "https://dl.fbaipublicfiles.com/deit/deit_small_patch16_224-cd65a155.pth",
+      "weight_tier": "W2",
+      "full_hash_verified": false,
+      "model_loaded": false,
+      "status": 206,
+      "content_type": "application/zip",
+      "content_range": "bytes 0-31/88251143",
+      "bytes_read": 32,
+      "prefix_hex": "504b030400000808000000000000000000000000000000000000100012006172",
+      "prefix_sha256": "6cb4ead480d6f1d55abe9170ad233d02a136d3f227f39ef48f5ecbb3fe89f9ff"
+    },
+    {
+      "name": "dinov2_vits14_author",
+      "url": "https://dl.fbaipublicfiles.com/dinov2/dinov2_vits14/dinov2_vits14_pretrain.pth",
+      "weight_tier": "W2",
+      "full_hash_verified": false,
+      "model_loaded": false,
+      "status": 206,
+      "content_type": "binary/octet-stream",
+      "content_range": "bytes 0-31/88283115",
+      "bytes_read": 32,
+      "prefix_hex": "504b03040000080800000000000000000000000000000000000018000a007669",
+      "prefix_sha256": "f13dc355c77e99db389cbc04653b31e9bab0474a0fb38c79f8d0fa85af2229a9"
+    },
+    {
+      "name": "dinov2_small_hf",
+      "url": "https://huggingface.co/facebook/dinov2-small/resolve/ed25f3a31f01632728cabb09d1542f84ab7b0056/model.safetensors",
+      "weight_tier": "W2",
+      "full_hash_verified": false,
+      "model_loaded": false,
+      "status": 206,
+      "content_type": "application/octet-stream",
+      "content_range": "bytes 0-31/88249960",
+      "bytes_read": 32,
+      "prefix_hex": "605c0000000000007b225f5f6d657461646174615f5f223a7b22666f726d6174",
+      "prefix_sha256": "45881dd71063f9537573e54fcd2d3294fe208d676130299cba2375101586ae31"
+    },
+    {
+      "name": "videomae_finetuned_hf",
+      "url": "https://huggingface.co/MCG-NJU/videomae-base-finetuned-kinetics/resolve/488eb9a0565f257b32866000305c8178965eb9f6/model.safetensors",
+      "weight_tier": "W2",
+      "full_hash_verified": false,
+      "model_loaded": false,
+      "status": 206,
+      "content_type": "application/octet-stream",
+      "content_range": "bytes 0-31/346161616",
+      "bytes_read": 32,
+      "prefix_hex": "88570000000000007b225f5f6d657461646174615f5f223a7b22666f726d6174",
+      "prefix_sha256": "8fb6d7e9e5d1460b952c8c740e2132073b7bcddbef1b240a96be31c09de3921f"
+    },
+    {
+      "name": "clip_base_vitb32",
+      "url": "https://openaipublic.azureedge.net/clip/models/40d365715913c9da98579312b702a82c18be219cc2a73407c4526f58eba950af/ViT-B-32.pt",
+      "weight_tier": "W2",
+      "full_hash_verified": false,
+      "model_loaded": false,
+      "status": 206,
+      "content_type": "application/octet-stream",
+      "content_range": "bytes 0-31/353976522",
+      "bytes_read": 32,
+      "prefix_hex": "504b0304000008080000000000000000000000000000000000000f0013005669",
+      "prefix_sha256": "bd75c6ef71bd7a9f44ae0c80ceacb183ab57fd1e224bbad7bcfd0c4a50d1143d"
+    }
+  ]
+}

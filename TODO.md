@@ -1,4 +1,13 @@
 
+## P0 — Scale SFT/DPO v2 remote preflight
+
+- [ ] On the compute machine, verify P1/P2/B_MIX package-to-weight identity; record P1 base, adapter, tokenizer and target-module inventory hashes, complete active inference parameter count, and A/B center-output equivalence.
+- [ ] Recover and verify the complete LIVE-YT-VC source-level train/validation manifest; confirm every labeled source is mapped exactly once and train/val are disjoint.
+- [ ] Verify GAICD, SACD, LIVE and GNMC source/license terms before using or redistributing each dataset; preserve GNMC's PolyForm Noncommercial restriction.
+- [ ] Produce train-only fixed-center labels and calibration thresholds; do not use validation/test labels for fitting scale bins, preference thresholds, or training pairs.
+- [ ] Run the Stage-0 and Scale-SFT gates before CUDA initialization. If they pass, capture live GPU/memory state and enforce the v2 cumulative 12-hour ledger.
+- [ ] Keep candidate, preference and DPO stages blocked until their preceding promotion gates pass; retain SFT as fallback if DPO does not beat it on source-macro deployment IoU.
+
 ## P0 — 研究1 PDF 执行后的下一路线（2026-10-19）
 
 - [x] R94 U²-Netp H1：真实 forward、同容量零输入消融、LIVE 源级 dev/confirm，具体配方关闭。

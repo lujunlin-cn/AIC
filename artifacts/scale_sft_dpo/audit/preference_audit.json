@@ -1,0 +1,13 @@
+{
+  "status": "not_constructed",
+  "total_pairs": null,
+  "sources_with_pairs": null,
+  "by_dataset_source": {},
+  "official_aic_test_data_used": false,
+  "blockers": [
+    "P1 inference adapter and center manifest are not present in the local checkout.",
+    "LIVE complete source-level split manifest is not present locally.",
+    "SACD source images overlap the supplied splits and no explicit ranked-pair field was found in current annotations.",
+    "Train-only MOS and IoU noise thresholds have not been calibrated or locked."
+  ]
+}

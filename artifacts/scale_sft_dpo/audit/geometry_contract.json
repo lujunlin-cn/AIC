@@ -1,0 +1,18 @@
+{
+  "schema_version": "aic.scale_geometry_contract.v1",
+  "status": "passed",
+  "executed_at_utc": "2026-11-07T18:00:43.842878+00:00",
+  "device": "cpu",
+  "cases": 1200,
+  "cases_by_geometry": {
+    "A_9_16": 600,
+    "B_16_9": 600
+  },
+  "seed": 20261108,
+  "scale_one_matches_maximum_window": true,
+  "center_drift_tolerance_px": 1.0,
+  "observed_max_center_drift_px": 0.5,
+  "aic_deployed_projection_bounds_checked": true,
+  "transpose_roundtrip_checked": true,
+  "official_aic_test_data_accessed": false
+}

@@ -1,0 +1,103 @@
+{
+  "schema_version": "aic.scale_sft_dpo.v2",
+  "run_id": "SCALE_SFT_DPO_20261108",
+  "scope": "scale_only_fixed_position",
+  "parent": {
+    "candidate": "P1",
+    "role": "frozen_position_parent_per_execution_plan",
+    "reported_semifinal_score": 44.63,
+    "score_source": "user_reported",
+    "score_package_zip_sha256": "b2280d10e712c44810cffea6a40a25aabf32d87ad7b6c761c533c003c133f7ee",
+    "weights_sha256": null,
+    "adapter_sha256": null,
+    "tokenizer_sha256": null,
+    "parameter_count": null,
+    "status": "requires_remote_identity_preflight"
+  },
+  "score_comparators": {
+    "P2": {
+      "reported_semifinal_score": 44.65,
+      "score_source": "user_reported",
+      "score_package_zip_sha256": "1489ace9d0ab5108af257800fb7a0cf83d07cfccc2b8c9a0c2f53e16fd557644"
+    },
+    "B_MIX": {
+      "reported_semifinal_score": 42.88,
+      "score_source": "user_reported",
+      "score_package_zip_sha256": "5ecd5d3af634ba8981d60ab94aed4529c4a482905f4774dca7bc5b037cb55b6a"
+    }
+  },
+  "data": {
+    "gaicd_release": "journal_only",
+    "training_sources": [
+      "LIVE_YT_VC",
+      "GNMC"
+    ],
+    "preference_sources": [
+      "GAICD",
+      "LIVE_YT_VC",
+      "GNMC"
+    ],
+    "live_source_split_required": true,
+    "gnmc_train_and_validation_only": true,
+    "sacd_requires_explicit_same_image_subject_ranked_pairs": true,
+    "scale_bins": {
+      "count": 8,
+      "fit_method": "quantiles_of_train_only_human_crop_scale_ratios",
+      "values": [
+        0.29885,
+        0.7303391903914591,
+        0.8751093035078801,
+        0.9487190200813422,
+        0.9649496513908056,
+        0.9858763345195729,
+        0.9982873665480427,
+        1.0
+      ],
+      "status": "fitted_from_train_only",
+      "fit_source_manifest_sha256": "1acc0689e2d5d8e78e0f0504b8b579eea6d62e613df95a8297b209f5f924518c",
+      "requested_count": 8
+    },
+    "source_balanced_weights": null,
+    "minimum_position_conditioned_iou": null,
+    "geometry_preference_delta_iou": null,
+    "gaicd_minimum_mos_delta": null,
+    "max_pairs_per_image": null,
+    "threshold_note": "All thresholds and source weights must be fixed from training-only audits before validation-based model selection."
+  },
+  "action_protocol": {
+    "output_template": "{\"scale_id\":<integer>}",
+    "new_token_count": 0,
+    "tokenizer_roundtrip_required": true,
+    "candidate_k": 8,
+    "candidate_sources": [
+      "sft_greedy",
+      "sft_stochastic",
+      "fixed_scale_grid"
+    ],
+    "deduplicate_after_aic_projection": true
+  },
+  "training": {
+    "position_frozen": true,
+    "temporal_path_frozen": true,
+    "trainable_parameter_allowlist": null,
+    "target_module_inventory_sha256": null,
+    "post_sft_inference_parameter_count": null,
+    "optimizer_learning_rate": null,
+    "batch_size": null,
+    "max_steps": null,
+    "precision": null,
+    "dpo_beta": 0.1,
+    "dpo_reference": "frozen_scale_sft_checkpoint",
+    "hyperparameter_sweep": false
+  },
+  "gpu_budget_hours": {
+    "scale_sft": 4.0,
+    "candidate_generation": 3.0,
+    "preference_build": 1.0,
+    "spatial_dpo": 4.0,
+    "total": 12.0
+  },
+  "official_test_data_accessed": false,
+  "official_score_used_for_training_or_preference_construction": false,
+  "execution_status": "cpu_implementation_and_semantic_validation_only"
+}

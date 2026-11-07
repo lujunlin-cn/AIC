@@ -1,0 +1,30 @@
+{
+  "schema_version": "aic.scale_bins.v1",
+  "status": "fitted_from_train_only",
+  "values": [
+    0.29885,
+    0.7303391903914591,
+    0.8751093035078801,
+    0.9487190200813422,
+    0.9649496513908056,
+    0.9858763345195729,
+    0.9982873665480427,
+    1.0
+  ],
+  "requested_count": 8,
+  "actual_count": 8,
+  "fit_method": "quantiles_of_GNMC_train_native_16_9_crop_width_over_maximum_legal_width",
+  "fit_split": "train",
+  "fit_sources": {
+    "dataset": "GNMC",
+    "source_count": 7000,
+    "native_geometry": "16:9",
+    "transpose_geometry": "9:16",
+    "annotation_sha256": "eb0563194da96cc45d721bc5d3e5e80949b6a36f11b00c9d6c705dc634548495",
+    "source_id_set_sha256": "1acc0689e2d5d8e78e0f0504b8b579eea6d62e613df95a8297b209f5f924518c",
+    "archive_sha256": "2292aa403b447a0bb1130ab64633741956668ecc7c85c568869d42d12dd9b6a3"
+  },
+  "created_at_utc": "2026-11-07T17:45:50.024927+00:00",
+  "validation_or_test_labels_read": false,
+  "p1_centers_used": false
+}

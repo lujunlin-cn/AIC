@@ -1,3 +1,12 @@
+# 2026-11-08：Scale SFT/DPO v2 本地实现与 CPU 阶段完成
+
+- 按 `plan/AIC_Scale_SFT_DPO_execution_plan_v2.md` 实现固定中心 Scale 几何、公开数据适配、SFT/DPO loss 与训练步骤、候选 Oracle、源级 bootstrap、偏好审计、tokenizer 合同和 GPU 预算账本。
+- 仅在 GNMC 官方 train split 的 7,000 个源上拟合 8 个 scale bins；使用原生 16:9 crop 宽度比例，9:16 仅作同步转置几何。未读取 GNMC validation/test 标签来拟合 bins。
+- CPU 几何合同 1,200/1,200 通过（A/B 各 600，最大中心漂移 0.5 px）；Scale 新增测试 37 passed，全仓库测试 160 passed；Python compileall 通过。GPU 使用为 0 h，未初始化 CUDA、未训练或构造偏好对。
+- Stage 0 / Scale-SFT 门仍关闭：缺少 P1 权重、adapter、tokenizer SHA 与完整推理参数账本、可训练参数白名单、adapter 目标模块清单、训练校准阈值和 LIVE 完整 source-level train/val manifest。门控输出见 `artifacts/scale_sft_dpo/audit/scale_sft_gate.json`。
+- 数据审计：GAICD journal train=2,636 源、231,489 候选（3,734 未评分）；GNMC train/val=7,000/1,000 源且互斥；SACD split 源图有交集且未发现显式 ranked-pair 字段；LIVE 有 1,800 个标签源但本地只有 37 个视频。
+- 明日算力机接入后先做 P1/P2 权重、tokenizer、参数及中心输出预检，并补齐 LIVE manifest；只有全部门控通过才允许 GPU 任务。预算按 v2 计划累计不超过 12 h。半决赛分数仍是用户报告值：P2 44.65、P1 44.63、B_MIX 42.88。
+
 # 2026-10-21：Video-ORA 42.48 426 基线完成，RL qualification 运行中
 
 - RL 执行协议已落地到 [videoora_rl_training_protocol_20261021.md](videoora_rl_training_protocol_20261021.md)，覆盖 source-held-out 分组、空间→时间顺序、HF batch/vLLM 可选 rollout 加速、reward/gradient/output-homogeneity 监控和晋级门；`videoora_rl/quality_gate.py` 已通过本地 smoke。

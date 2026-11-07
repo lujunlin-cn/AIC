@@ -1,0 +1,28 @@
+{
+  "GAICD": {
+    "dataset_card.json": "76deec38f4cad478e2fcd55762751bc13dd23a53e898537670f503f1ef54542c",
+    "media.jsonl": "b8df764a4c7221a5385fa0df0acd3d23b3354982aabadf3da24e626bbd2fdf98",
+    "annotations.jsonl": "90b378f15c8bfb6695ffe23c41f1bc0fa2f169dd22200fef346c91a7f13b422f"
+  },
+  "SACD": {
+    "DOWNLOAD_STATUS.json": "341858f803657278d945062bfb77edf5b83707ae4d273a3278fe4988b3d36557",
+    "train.json": "8fb1d482379a3ee13e56c2fe08f11527eb00c27d02c7ff2064ff4d404116614a",
+    "val.json": "a6bff68c3bf4dacbba69a53955ce07b0267ccb4a7883b90ad063dcd5902b1081",
+    "test.json": "b881bcac7865c834a154af3d5de2c469661237e6066c94a3cb7aa8eaa3dbfea4",
+    "source_payload_tree_sha256": "70e9b3b32469900066da003ebb721baabdc2415d2d16e6c850f5d0262b91f0fd"
+  },
+  "LIVE_YT_VC": {
+    "video_bbox_labels.csv": "43d5a16071aa57c4b7a0ae33f59d905e5b744e3c5d5c310b1bb3182a1000eee0",
+    "source_split_manifest": null
+  },
+  "GNMC": {
+    "archive_sha256": "2292aa403b447a0bb1130ab64633741956668ecc7c85c568869d42d12dd9b6a3",
+    "license_sha256": "ffcca38841adb694b6f380647e15f17c446a4d1656fed51a1e2041d064c94cc8"
+  },
+  "P1": {
+    "path": null,
+    "weights_sha256": null,
+    "adapter_sha256": null,
+    "tokenizer_sha256": null
+  }
+}

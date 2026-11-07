@@ -1,0 +1,11 @@
+{
+  "budget_hours": 12.0,
+  "total_used_hours": 0.0,
+  "stages": {
+    "scale_sft": {"limit_hours": 4.0, "used_hours": 0.0, "runs": []},
+    "candidate_generation": {"limit_hours": 3.0, "used_hours": 0.0, "runs": []},
+    "preference_build": {"limit_hours": 1.0, "used_hours": 0.0, "runs": []},
+    "spatial_dpo": {"limit_hours": 4.0, "used_hours": 0.0, "runs": []}
+  },
+  "gpu_tasks_started": false
+}

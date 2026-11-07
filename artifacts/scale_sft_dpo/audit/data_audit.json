@@ -1,0 +1,155 @@
+{
+  "schema_version": "aic.scale_stage0.v1",
+  "created_at_utc": "2026-11-07T17:59:19.290980+00:00",
+  "official_aic_test_data_accessed": false,
+  "official_score_used_for_training_or_preference_construction": false,
+  "datasets": {
+    "GAICD": {
+      "present": true,
+      "source_url": "https://github.com/HuiZeng/Grid-Anchor-based-Image-Cropping-Pytorch",
+      "license_status": "not recorded in local dataset card; verify original data terms before external use",
+      "competition_use_authorized": null,
+      "media_count": 3336,
+      "unique_source_count": 3336,
+      "official_split_source_counts": {
+        "train": 2636,
+        "val": 200,
+        "test": 500
+      },
+      "official_split_source_overlap_counts": {
+        "train_val": 0,
+        "train_test": 0,
+        "val_test": 0
+      },
+      "official_split_source_disjoint": true,
+      "journal_train_candidate_count": 231489,
+      "journal_train_unrated_candidate_count": 3734,
+      "journal_train_annotation_files": 2636,
+      "journal_train_annotation_missing": 0,
+      "conference_rows_excluded_from_training": 1236,
+      "card_summary": {
+        "candidates": 292429,
+        "unrated": 4387,
+        "conf_identical": 1236,
+        "conf_differs": 0,
+        "image_differs": 0
+      },
+      "manifest_hashes": {
+        "dataset_card.json": "76deec38f4cad478e2fcd55762751bc13dd23a53e898537670f503f1ef54542c",
+        "media.jsonl": "b8df764a4c7221a5385fa0df0acd3d23b3354982aabadf3da24e626bbd2fdf98",
+        "annotations.jsonl": "90b378f15c8bfb6695ffe23c41f1bc0fa2f169dd22200fef346c91a7f13b422f"
+      },
+      "raw_tree": {
+        "files": 9149,
+        "bytes": 900897198,
+        "tree_sha256": "f4b1bc7820f82e113bb41ecc43cf56cc9e758c3c2cd70720f0ceec2b71fcfe79"
+      },
+      "train_data_integrity_ready": true,
+      "blockers": []
+    },
+    "SACD": {
+      "present": true,
+      "provenance": "user supplied to /root/autodl-tmp/videoora42_clone/datasets/SACD/; original download URL and archive hash not supplied",
+      "license_status": "not recorded in local provenance metadata; verify before external use",
+      "competition_use_authorized": null,
+      "images": 2777,
+      "subject_annotations": 2906,
+      "masks": 2906,
+      "source_tree_sha256_from_prior_validation": "0f61926d885062cd36717f8ee53dcacac6e262ff9c9e3d1e57fcd966af2438c4",
+      "recomputed_source_payload": {
+        "files": 8592,
+        "bytes": 467073766,
+        "tree_sha256": "70e9b3b32469900066da003ebb721baabdc2415d2d16e6c850f5d0262b91f0fd"
+      },
+      "split_annotation_counts": {
+        "train": 2326,
+        "val": 290,
+        "test": 290
+      },
+      "split_unique_image_counts": {
+        "train": 2245,
+        "val": 290,
+        "test": 288
+      },
+      "split_image_overlap_counts": {
+        "train_val": 22,
+        "train_test": 20,
+        "val_test": 4
+      },
+      "source_image_splits_disjoint": false,
+      "explicit_ranked_pair_count": 0,
+      "scale_preference_gate": "blocked_no_confirmed_explicit_ranked_pairs",
+      "blockers": [
+        "split files share source images",
+        "no explicit subject-linked ranked-pair records"
+      ]
+    },
+    "LIVE_YT_VC": {
+      "present": true,
+      "source_url": "https://github.com/steven413d/LIVE-YT-VideoCropping",
+      "license_status": "not confirmed in local asset metadata",
+      "competition_use_authorized": null,
+      "labeled_sources": 1800,
+      "label_rows": 1800,
+      "sparse_frames_per_source": 30,
+      "video_files_locally_present": 37,
+      "label_csv_sha256": "43d5a16071aa57c4b7a0ae33f59d905e5b744e3c5d5c310b1bb3182a1000eee0",
+      "source_split_manifest": {
+        "provided": false,
+        "source_counts": null,
+        "source_disjoint": null,
+        "invalid_split_sources": 0,
+        "missing_required_splits": [
+          "train",
+          "val"
+        ]
+      },
+      "source_level_gate": false,
+      "blockers": [
+        "LIVE source split manifest is missing",
+        "LIVE manifest must contain both train and val sources"
+      ]
+    },
+    "GNMC": {
+      "present": true,
+      "source_url": "https://doi.org/10.5281/zenodo.6228834",
+      "license": "PolyForm-Noncommercial-1.0.0",
+      "competition_use_authorized": null,
+      "archive": "/home/hajimi2025/AIC/.cache_videoora_data/GNMC/GNMC.zip",
+      "archive_bytes": 363946070,
+      "archive_sha256": "2292aa403b447a0bb1130ab64633741956668ecc7c85c568869d42d12dd9b6a3",
+      "license_sha256": "ffcca38841adb694b6f380647e15f17c446a4d1656fed51a1e2041d064c94cc8",
+      "split_image_counts": {
+        "train": 7000,
+        "validation": 1000,
+        "test": 2000
+      },
+      "train_annotation_sources": 7000,
+      "validation_annotation_sources": 1000,
+      "train_source_ratio_coverage": {
+        "16:9": 7000,
+        "3:4": 7000,
+        "4:3": 7000,
+        "2:1": 7000,
+        "1:1": 7000
+      },
+      "split_source_overlap_counts": {
+        "train_val": 0,
+        "train_test": 0,
+        "val_test": 0
+      },
+      "source_split_disjoint": true,
+      "test_labels_used_for_training_or_selection": false,
+      "train_validation_only_adapter": true,
+      "blockers": []
+    }
+  },
+  "p1_parent": {
+    "path_supplied": null,
+    "present": false,
+    "manifest_or_weight_files": [],
+    "sha256": null,
+    "parameter_count": null,
+    "blocker": "P1 parent model, tokenizer, and adapter are not present in the local dataset/code checkout"
+  }
+}

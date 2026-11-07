@@ -1,3 +1,17 @@
+# SCALE_SFT_DPO_20261108 — CPU implementation and asset audit
+
+**Hypothesis:** A discrete scale action can learn crop extent while using the P1 position output as a frozen center. The immediate work validates geometry, source isolation, data semantics and training objectives without claiming model-quality gains.
+
+**Change:** Added fixed-center AIC geometry; LIVE/GNMC/GAICD/SACD adapters; train-only scale-bin fitting; SFT/DPO loss and optimizer steps; candidate K/Oracle metrics; source bootstrap; preference schema checks; tokenizer round-trip; stage gates and a cumulative GPU-hour ledger.
+
+**Evidence:** GNMC train-only fitting used 7,000 sources and produced 8 bins (`0.29885, 0.730339, 0.875109, 0.948719, 0.964950, 0.985876, 0.998287, 1.0`). A/B geometry contract passed 1,200/1,200 cases, max center drift 0.5 px. Scale tests: 37 passed; full repository tests: 160 passed. `compileall` passed. No CUDA task ran, no preference pairs were built, and no AIC hidden-test data or official score was used for training or preference construction.
+
+**Stage-0 outcome:** Not passed. P1 weights/adapter/tokenizer and pre/post-SFT parameter counts, the exact trainable parameter allowlist, P1 target-module inventory, training-only calibration thresholds, the complete LIVE source split, and competition-use license reviews for planned datasets are missing. `check_scale_gate.py` reports `cuda_initialization_allowed=false`.
+
+**Data notes:** GAICD journal train has 2,636 sources/231,489 candidates, including 3,734 unrated candidates excluded by the adapter. GNMC train/validation have 7,000/1,000 disjoint sources. SACD supplied splits overlap by source image and have no confirmed explicit ranked-pair field. LIVE labels cover 1,800 sources; only 37 videos are local. Dataset licenses remain unverified for GAICD/SACD/LIVE; GNMC is PolyForm Noncommercial.
+
+**Conclusion:** CPU contracts are ready for remote identity/data preflight. No SFT, candidate, preference-volume, or DPO quality claim is made. Continue only when the upstream gates pass.
+
 # 实验历史
 
 # TEMPORAL_RL_REWARD_GUARDED_V2 / VIDEOORA_REPRO_20261021

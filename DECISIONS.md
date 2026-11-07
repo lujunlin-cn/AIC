@@ -1,3 +1,13 @@
+# 2026-11-08：Scale v2 保持固定位置，并阻断训练至远端预检
+
+**Decision:** Implement Scale as an ordered discrete action over the frozen P1 center. Keep P1 as the planned parent, P2 as the higher-scoring deployment comparison, and B_MIX as candidate/error-analysis input only. No GPU work starts until the model identity, parameter, target-module, LIVE source-split and train-only calibration checks pass.
+
+**Evidence:** The v2 geometry contract passed 1,200 CPU cases with 0.5 px maximum center drift. GNMC's 7,000 train sources produced 8 crop-width/max-legal-width quantile bins; validation/test annotations were not read. New tests cover train-only split membership, rejection of test-label Oracle scoring, MOS semantics, explicit SACD pairs, DPO/SFT gradients and GPU budget enforcement.
+
+**Constraint:** The user-reported semifinals are P2 44.65, P1 44.63 and B_MIX 42.88; scores identify complete submission packages, not the causal contribution of an individual adapter. The current local outputs do not prove remote weight identity. Preserve the v2 GPU budget of 12 h total and official total inference parameter cap of 9B.
+
+**Reversal:** Start Scale-SFT only after P1 artifacts and center outputs are verified, LIVE source-level train/validation coverage is complete, training thresholds are locked without held-out labels, and the SFT stage gate returns `cuda_initialization_allowed=true`.
+
 # 技术决定
 
 ## 2026-10-19：关闭通用显著性中心，保留有条件上下文信号

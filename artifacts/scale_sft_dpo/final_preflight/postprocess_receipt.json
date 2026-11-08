@@ -1,0 +1,87 @@
+{
+  "started_at": "2026-11-08T04:07:39.436312+00:00",
+  "status": "passed",
+  "waited_seconds": 1925.200408000499,
+  "GPU_task_started": false,
+  "formal_training_started": false,
+  "commands": [
+    {
+      "command": [
+        "/root/autodl-tmp/videoora42_clone/.venv/bin/python",
+        "-m",
+        "scripts.finalize_scale_p1_cache",
+        "--root",
+        "artifacts/scale_sft_dpo/final_preflight",
+        "--recover-only"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "elapsed_seconds": 0.29796356707811356
+    },
+    {
+      "command": [
+        "/root/autodl-tmp/videoora42_clone/.venv/bin/python",
+        "-m",
+        "scripts.extract_final_scale_features",
+        "--labels",
+        "artifacts/scale_sft_dpo/final_preflight/inputs/cohort.jsonl",
+        "--records",
+        "artifacts/scale_sft_dpo/final_preflight/records",
+        "--image-root",
+        "/root/autodl-tmp/videoora42_clone",
+        "--output",
+        "artifacts/scale_sft_dpo/final_preflight/visual_features.json"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "elapsed_seconds": 3.697724599391222
+    },
+    {
+      "command": [
+        "/root/autodl-tmp/videoora42_clone/.venv/bin/python",
+        "-m",
+        "scripts.replay_final_p1_geometry",
+        "--config",
+        "artifacts/scale_sft_dpo/config/run_config.json",
+        "--root",
+        "artifacts/scale_sft_dpo/final_preflight",
+        "--output",
+        "artifacts/scale_sft_dpo/final_preflight/geometry_replay.json"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "elapsed_seconds": 3.798063386231661
+    },
+    {
+      "command": [
+        "/root/autodl-tmp/videoora42_clone/.venv/bin/python",
+        "-m",
+        "scripts.finalize_scale_p1_cache",
+        "--root",
+        "artifacts/scale_sft_dpo/final_preflight"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"GPU_seconds\": 3563.1969671733677, \"sources\": 61, \"physical_frames\": 366, \"view_frames\": 732}\n",
+      "stderr": "",
+      "elapsed_seconds": 0.3408014662563801
+    },
+    {
+      "command": [
+        "/root/autodl-tmp/videoora42_clone/.venv/bin/python",
+        "-m",
+        "scripts.analyze_scale_final_preflight",
+        "--root",
+        "artifacts/scale_sft_dpo/final_preflight"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"view_frames\": 732, \"new_physical_frames\": 366, \"recommend_SFT\": false}\n",
+      "stderr": "",
+      "elapsed_seconds": 1.4872718565165997
+    }
+  ],
+  "GPU_ledger_sha256": "8252cc7c6a9d1c40c7047a6849184aaa3bbd538e044969c47a3f3812e62dfa03",
+  "ended_at": "2026-11-08T04:07:49.062895+00:00"
+}

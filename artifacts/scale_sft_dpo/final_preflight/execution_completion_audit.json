@@ -1,0 +1,21 @@
+{
+  "created_at_utc": "2026-11-08T04:09:35.778749+00:00",
+  "completed_sources": 61,
+  "claimed_sources": 63,
+  "incomplete_claimed_sources": [
+    "video1152",
+    "video1473"
+  ],
+  "incomplete_sources_excluded_from_metrics": true,
+  "source_failures": 0,
+  "GPU_compute_process_query": [
+    "nvidia-smi",
+    "--query-compute-apps=pid,used_memory",
+    "--format=csv,noheader"
+  ],
+  "GPU_compute_process_query_exit_code": 0,
+  "GPU_compute_processes_after_stop": "",
+  "CPU_chain_status": "passed",
+  "canonical_positions_sha256": "2d94bdb824a268004335ecc6055b1b6bd46fc0bcd764843fd6630764c401227e",
+  "formal_training_started": false
+}

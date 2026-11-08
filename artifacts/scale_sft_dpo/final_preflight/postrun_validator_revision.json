@@ -1,0 +1,6 @@
+{
+  "validator_git_commit": "8da07d07954ef4a50ea5e5bc2cc0969f9280a5a6",
+  "validator_script": "scripts/validate_scale_final_preflight.py",
+  "formal_model_updates": 0,
+  "note": "Additional read-only post-run validator; execution code stays pinned to code_revision.json. It does not alter the ongoing sampler or cached P1 path."
+}

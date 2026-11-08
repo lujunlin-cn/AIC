@@ -1,0 +1,6 @@
+{
+  "recovered_sources": [],
+  "new_model_calls": 0,
+  "new_GPU_seconds": 0,
+  "scope": "only complete atomic real-P1 video receipts; no interpolation or GT substitution"
+}

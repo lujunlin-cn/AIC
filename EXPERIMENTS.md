@@ -1,3 +1,11 @@
+## 2026-11-08 — SCALE_FINAL_PREFLIGHT_1H
+
+Hypothesis: frozen final P1 centers plus train-selected constants may explain Scale improvements; residual GT-visible Oracle space must not be mistaken for predictable visual policy gain. Controls: original full-public-clip temporal set, P1 anchors/smoothing/QP, integer [x,y,w], unchanged Position, route/dataset separation, source-level bootstrap, no official hidden data.
+
+Execution: one device, two original singleton P1 processes, 3563.196967 seconds cumulative including loads; zero optimizer steps. Deterministic label-blind Train/Val source order; six temporal/scale-stratified frames per completed source. 61 LIVE sources / 366 physical frames / 732 views; source ID and pixel-byte exposure audited. Independent metrics use 31 Train / 29 Val sources after excluding video2793. B is transposed LIVE, GNMC null. Completed-100-source benchmark null; full-data runtime is an explicitly labelled partial-cohort extrapolation only.
+
+Outcome: best Train constants .90/.95; Val deployed-IoU gains +.014276/+.016211; GT Oracle@8 residual +.036293/+.037052. RGB ridge-minus-best-constant -.002741/-.002072, both source-bootstrap CIs include zero; no reliable RGB increment beyond geometry. Jitter changes many action labels but nearby actions have small quality differences. P1 accepted-action center drift <=.5 px. Reused real smoke, exact CPU replay, independent numeric reconstruction and validation receipts retained in `artifacts/scale_sft_dpo/final_preflight/`. Do not start formal SFT/DPO on this evidence; owner decides next experiment.
+
 ## 2026-11-08 — SCALE_DIAGNOSTICS_E0_E1_E2_CPU
 
 Hypothesis: constants may explain the useful portion of Scale changes; human-scale heterogeneity alone does not establish predictable single-frame content signal. Controls: immutable P1 Position, fixed temporal set/components, route-separated Scale=1 and best-constant comparisons. Protocol: `artifacts/scale_sft_dpo/diagnostics/protocol.json`.

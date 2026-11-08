@@ -1,0 +1,408 @@
+{
+  "Scale_SFT_started": false,
+  "DPO_started": false,
+  "formal_training_authorized": false,
+  "actual_videoora_smoke_reused": {
+    "model_load": {
+      "path": "artifacts/scale_sft_dpo/smoke_test/model_load.json",
+      "sha256": "b5ba594cc6040e10918cf9972d2847ffe6f4641d097f6a7e75e14f92ed4e781f",
+      "reused": true
+    },
+    "sft_forward_backward": {
+      "path": "artifacts/scale_sft_dpo/smoke_test/sft_forward_backward.json",
+      "sha256": "542f8dab7ddf7bdc199a1bb083054a27b58b51f062d649b8dbfac57cf749cede",
+      "reused": true
+    },
+    "dpo_forward_backward": {
+      "path": "artifacts/scale_sft_dpo/smoke_test/dpo_forward_backward.json",
+      "sha256": "c08dbb9dedf0abf07371003955c6a2e8cbb31991fb1012085f9d5d10efd02122",
+      "reused": true
+    },
+    "geometry_validation": {
+      "path": "artifacts/scale_sft_dpo/smoke_test/geometry_validation.json",
+      "sha256": "d0b56327e9e81379c2735dbcef3b8fcf2b5c3302d722e09411d95d9d352a8cfe",
+      "reused": true
+    }
+  },
+  "smoke_reexecuted": false,
+  "content_probe": {
+    "LIVE_YT_VC/A": {
+      "model": "fixed ridge alpha=10, completion-free CPU quality-vector diagnostic; no SFT/DPO",
+      "selection": "all fitting and standardization on Train; no validation tuning",
+      "target": "eight actual deployed IoUs at frozen P1 center; not human scale regression",
+      "train_sources": 31,
+      "val_sources": 29,
+      "best_constant_scale": 0.9,
+      "train_selected_grid_constant": 0.9487190200813422,
+      "results": {
+        "geometry_only": {
+          "source_macro_deploy_iou": {
+            "source_count": 29,
+            "mean": 0.540327397563942,
+            "median": 0.5415650499604742,
+            "p05": 0.3018075455362641,
+            "p95": 0.7377142667240112,
+            "bootstrap_ci95": [
+              0.4926356317887786,
+              0.5862146595237576
+            ],
+            "bootstrap_unit": "independent source",
+            "bootstrap_replicates": 2000,
+            "seed": 20261108
+          },
+          "learned_minus_best_constant": {
+            "source_count": 29,
+            "mean": -0.0010437797731818704,
+            "median": -0.00026810867858545473,
+            "p05": -0.017195408498956576,
+            "p95": 0.014714950674679799,
+            "bootstrap_ci95": [
+              -0.005089827976187506,
+              0.0035930646658266234
+            ],
+            "bootstrap_unit": "independent source",
+            "bootstrap_replicates": 2000,
+            "seed": 20261108,
+            "positive_source_fraction": 0.4827586206896552,
+            "negative_source_fraction": 0.5172413793103449,
+            "zero_source_fraction": 0.0
+          },
+          "learned_minus_train_selected_grid_constant": {
+            "source_count": 29,
+            "mean": -0.001920612277112909,
+            "median": 0.0,
+            "p05": -0.018450593720667575,
+            "p95": 0.01720759854605232,
+            "bootstrap_ci95": [
+              -0.006374024619747916,
+              0.0028689487933438542
+            ],
+            "bootstrap_unit": "independent source",
+            "bootstrap_replicates": 2000,
+            "seed": 20261108,
+            "positive_source_fraction": 0.1724137931034483,
+            "negative_source_fraction": 0.4482758620689655,
+            "zero_source_fraction": 0.3793103448275862
+          },
+          "actions": {
+            "0.29885": 0,
+            "0.7303391903914591": 0,
+            "0.8751093035078801": 54,
+            "0.9487190200813422": 120,
+            "0.9649496513908056": 0,
+            "0.9858763345195729": 0,
+            "0.9982873665480427": 0,
+            "1.0": 0
+          },
+          "scale_bin_coverage": 0.25,
+          "source_macro_largest_action_fraction": 0.6896551724137933
+        },
+        "geometry_plus_RGB": {
+          "source_macro_deploy_iou": {
+            "source_count": 29,
+            "mean": 0.5386302670447496,
+            "median": 0.5385836063646577,
+            "p05": 0.31428103311612593,
+            "p95": 0.7292505777023218,
+            "bootstrap_ci95": [
+              0.4920267123210707,
+              0.5818396878913942
+            ],
+            "bootstrap_unit": "independent source",
+            "bootstrap_replicates": 2000,
+            "seed": 20261108
+          },
+          "learned_minus_best_constant": {
+            "source_count": 29,
+            "mean": -0.0027409102923742997,
+            "median": -0.002599360959368857,
+            "p05": -0.02798618503884882,
+            "p95": 0.02225302475049149,
+            "bootstrap_ci95": [
+              -0.009060572402855757,
+              0.003381659992524432
+            ],
+            "bootstrap_unit": "independent source",
+            "bootstrap_replicates": 2000,
+            "seed": 20261108,
+            "positive_source_fraction": 0.41379310344827586,
+            "negative_source_fraction": 0.5862068965517241,
+            "zero_source_fraction": 0.0
+          },
+          "learned_minus_train_selected_grid_constant": {
+            "source_count": 29,
+            "mean": -0.0036177427963053383,
+            "median": 0.0,
+            "p05": -0.03240217459957837,
+            "p95": 0.022302563991037267,
+            "bootstrap_ci95": [
+              -0.010326165927060224,
+              0.003215132461590031
+            ],
+            "bootstrap_unit": "independent source",
+            "bootstrap_replicates": 2000,
+            "seed": 20261108,
+            "positive_source_fraction": 0.13793103448275862,
+            "negative_source_fraction": 0.4827586206896552,
+            "zero_source_fraction": 0.3793103448275862
+          },
+          "actions": {
+            "0.29885": 0,
+            "0.7303391903914591": 10,
+            "0.8751093035078801": 58,
+            "0.9487190200813422": 84,
+            "0.9649496513908056": 22,
+            "0.9858763345195729": 0,
+            "0.9982873665480427": 0,
+            "1.0": 0
+          },
+          "scale_bin_coverage": 0.5,
+          "source_macro_largest_action_fraction": 0.48275862068965525
+        }
+      },
+      "incremental_RGB_over_geometry": {
+        "source_count": 29,
+        "mean": -0.0016971305191924293,
+        "median": 0.0,
+        "p05": -0.01936526684525792,
+        "p95": 0.017967765875752446,
+        "bootstrap_ci95": [
+          -0.006290692686873884,
+          0.003276728523852249
+        ],
+        "bootstrap_unit": "independent source",
+        "bootstrap_replicates": 2000,
+        "seed": 20261108,
+        "positive_source_fraction": 0.2413793103448276,
+        "negative_source_fraction": 0.4827586206896552,
+        "zero_source_fraction": 0.27586206896551724
+      },
+      "limitation": "bounded low-level probe is not Video-ORA Scale policy; failure does not prove all visual signal absent"
+    },
+    "LIVE_YT_VC/B": {
+      "model": "fixed ridge alpha=10, completion-free CPU quality-vector diagnostic; no SFT/DPO",
+      "selection": "all fitting and standardization on Train; no validation tuning",
+      "target": "eight actual deployed IoUs at frozen P1 center; not human scale regression",
+      "train_sources": 31,
+      "val_sources": 29,
+      "best_constant_scale": 0.95,
+      "train_selected_grid_constant": 0.9487190200813422,
+      "results": {
+        "geometry_only": {
+          "source_macro_deploy_iou": {
+            "source_count": 29,
+            "mean": 0.5322194821685285,
+            "median": 0.5352676889303881,
+            "p05": 0.3712279279400248,
+            "p95": 0.6716079334008347,
+            "bootstrap_ci95": [
+              0.4910663026109169,
+              0.5764891284358397
+            ],
+            "bootstrap_unit": "independent source",
+            "bootstrap_replicates": 2000,
+            "seed": 20261108
+          },
+          "learned_minus_best_constant": {
+            "source_count": 29,
+            "mean": 0.00026862341439444444,
+            "median": 0.0002111004461747834,
+            "p05": -0.00056984312500179,
+            "p95": 0.0012147623792615467,
+            "bootstrap_ci95": [
+              6.869448077549029e-05,
+              0.0004852463636871279
+            ],
+            "bootstrap_unit": "independent source",
+            "bootstrap_replicates": 2000,
+            "seed": 20261108,
+            "positive_source_fraction": 0.6551724137931034,
+            "negative_source_fraction": 0.3448275862068966,
+            "zero_source_fraction": 0.0
+          },
+          "learned_minus_train_selected_grid_constant": {
+            "source_count": 29,
+            "mean": 0.0,
+            "median": 0.0,
+            "p05": 0.0,
+            "p95": 0.0,
+            "bootstrap_ci95": [
+              0.0,
+              0.0
+            ],
+            "bootstrap_unit": "independent source",
+            "bootstrap_replicates": 2000,
+            "seed": 20261108,
+            "positive_source_fraction": 0.0,
+            "negative_source_fraction": 0.0,
+            "zero_source_fraction": 1.0
+          },
+          "actions": {
+            "0.29885": 0,
+            "0.7303391903914591": 0,
+            "0.8751093035078801": 0,
+            "0.9487190200813422": 174,
+            "0.9649496513908056": 0,
+            "0.9858763345195729": 0,
+            "0.9982873665480427": 0,
+            "1.0": 0
+          },
+          "scale_bin_coverage": 0.125,
+          "source_macro_largest_action_fraction": 1.0
+        },
+        "geometry_plus_RGB": {
+          "source_macro_deploy_iou": {
+            "source_count": 29,
+            "mean": 0.5298793511755685,
+            "median": 0.5531171048819993,
+            "p05": 0.3654382703527509,
+            "p95": 0.681528751020135,
+            "bootstrap_ci95": [
+              0.4889240761778189,
+              0.5706671749977722
+            ],
+            "bootstrap_unit": "independent source",
+            "bootstrap_replicates": 2000,
+            "seed": 20261108
+          },
+          "learned_minus_best_constant": {
+            "source_count": 29,
+            "mean": -0.002071507578565557,
+            "median": 6.5683555662166e-05,
+            "p05": -0.02894471682584325,
+            "p95": 0.014205299817230954,
+            "bootstrap_ci95": [
+              -0.007678239036699492,
+              0.0025697969491143514
+            ],
+            "bootstrap_unit": "independent source",
+            "bootstrap_replicates": 2000,
+            "seed": 20261108,
+            "positive_source_fraction": 0.5517241379310345,
+            "negative_source_fraction": 0.4482758620689655,
+            "zero_source_fraction": 0.0
+          },
+          "learned_minus_train_selected_grid_constant": {
+            "source_count": 29,
+            "mean": -0.0023401309929600013,
+            "median": 0.0,
+            "p05": -0.02890001478027304,
+            "p95": 0.013534438049697452,
+            "bootstrap_ci95": [
+              -0.007859541970596733,
+              0.002162879220957393
+            ],
+            "bootstrap_unit": "independent source",
+            "bootstrap_replicates": 2000,
+            "seed": 20261108,
+            "positive_source_fraction": 0.3448275862068966,
+            "negative_source_fraction": 0.3103448275862069,
+            "zero_source_fraction": 0.3448275862068966
+          },
+          "actions": {
+            "0.29885": 0,
+            "0.7303391903914591": 0,
+            "0.8751093035078801": 37,
+            "0.9487190200813422": 94,
+            "0.9649496513908056": 29,
+            "0.9858763345195729": 6,
+            "0.9982873665480427": 2,
+            "1.0": 6
+          },
+          "scale_bin_coverage": 0.75,
+          "source_macro_largest_action_fraction": 0.5402298850574713
+        }
+      },
+      "incremental_RGB_over_geometry": {
+        "source_count": 29,
+        "mean": -0.0023401309929600013,
+        "median": 0.0,
+        "p05": -0.02890001478027304,
+        "p95": 0.013534438049697452,
+        "bootstrap_ci95": [
+          -0.007859541970596733,
+          0.002162879220957393
+        ],
+        "bootstrap_unit": "independent source",
+        "bootstrap_replicates": 2000,
+        "seed": 20261108,
+        "positive_source_fraction": 0.3448275862068966,
+        "negative_source_fraction": 0.3103448275862069,
+        "zero_source_fraction": 0.3448275862068966
+      },
+      "limitation": "bounded low-level probe is not Video-ORA Scale policy; failure does not prove all visual signal absent"
+    },
+    "GNMC/A": {
+      "learned_minus_best_constant": null,
+      "reason": "actual final-P1 inputs unavailable"
+    },
+    "GNMC/B": {
+      "learned_minus_best_constant": null,
+      "reason": "actual final-P1 inputs unavailable"
+    }
+  },
+  "independence_exclusions": {
+    "LIVE_YT_VC/A": {
+      "excluded_validation_sources": [
+        "video2793"
+      ],
+      "known_P1_finetuning_exposure_verified": true,
+      "parent_training_provenance": "artifacts/scale_sft_dpo/final_preflight/parent_exposure_audit.json",
+      "reason": null
+    },
+    "LIVE_YT_VC/B": {
+      "excluded_validation_sources": [
+        "video2793"
+      ],
+      "known_P1_finetuning_exposure_verified": true,
+      "parent_training_provenance": "artifacts/scale_sft_dpo/final_preflight/parent_exposure_audit.json",
+      "reason": null
+    },
+    "GNMC/A": {
+      "excluded_validation_sources": [],
+      "known_P1_finetuning_exposure_verified": false,
+      "parent_training_provenance": "artifacts/scale_sft_dpo/final_preflight/parent_exposure_audit.json",
+      "reason": "known P1 training/validation separation unverified"
+    },
+    "GNMC/B": {
+      "excluded_validation_sources": [],
+      "known_P1_finetuning_exposure_verified": false,
+      "parent_training_provenance": "artifacts/scale_sft_dpo/final_preflight/parent_exposure_audit.json",
+      "reason": "known P1 training/validation separation unverified"
+    }
+  },
+  "reliable_positive_RGB_probe_groups": [],
+  "recommend_start_Scale_SFT": false,
+  "reason": "partial diagnostic cohort; no automatic training authorization; native B/GNMC deployment and full label calibration remain incomplete",
+  "learning_merit_on_measured_cohorts": "no_reliable_positive_content_increment_established",
+  "GNMC_historical_human_scale_probe": {
+    "evidence": "../diagnostics/scale_predictability.json",
+    "scope": "human-scale regression, not final-P1 deployed policy gain; cannot substitute for this round's null GNMC results"
+  },
+  "DPO_necessity": null,
+  "soft_target_SFT_sufficiency": null,
+  "next_if_learning_merit_established": "compare Soft-Target SFT with best constant first; DPO needs separately verified independent MOS/ranking evidence",
+  "SACD_used_for_preferences": false,
+  "LIVE_GNMC_IoU_relabelled_as_independent_human_preference": false,
+  "license_review": "project owner confirmed completed; not repeated",
+  "official_hidden_data_used": false,
+  "provenance": {
+    "created_at_utc": "2026-11-08T04:07:49.007879+00:00",
+    "seed": 20261108,
+    "metric_scope": "source-macro final deployed spatial IoU; fixed P1/temporal set, QP and frame count; not official competition Score",
+    "cohort_sha256": "06dad23a020ec39bd49ad76ae7a82f6aa04913b3349e10228ec409af5e8625fc",
+    "manifest_sha256": "6276bce75f9b2759180fcfecb09b01fe8ca0f74c99a26bcf5daa6497b0f0ab52",
+    "scale_bins_sha256": "c205ff8a10e603d1f1fefdd208a78ca5e7ac75a83882c8498354ba8b3b7644fa",
+    "Scale_bins_refitted": false,
+    "code_sha256": {
+      "analysis_script": "6fc91c89b9f36c64b1c182c8ace3c3a26d11a72dfd9336e6973b20666be2c7a4",
+      "analysis_module": "78c86a09a4919fc38fd134a0ff9e656cd3d00662e95ba4ef26a1b8b965a29bc8"
+    },
+    "position_record_count": 732,
+    "git_commit": "8cf0131f7d6f20e64a15df1f9464beb21480a95e",
+    "A_scope": "LIVE native portrait crop",
+    "B_scope": "transposed LIVE landscape crop; not native upright B validation",
+    "source_selection": "predeclared label-blind source hash; alternating splits; budget-censored completed cohort",
+    "interval_scope": "conditional on observed cohort and Train-selected configuration; no multiple-comparison or full-population guarantee"
+  }
+}

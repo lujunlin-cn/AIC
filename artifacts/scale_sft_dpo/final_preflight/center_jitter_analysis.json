@@ -1,0 +1,3509 @@
+{
+  "by_dataset_and_route": {
+    "LIVE_YT_VC/A": {
+      "original_geometry": {
+        "maximum_accepted_position_drift_px": 0.5,
+        "maximum_projection_drift_before_rejection_px": 0.5,
+        "invalid_actions": {},
+        "action_checks": 2880,
+        "valid_action_rate": 1.0
+      },
+      "conditions": {
+        "active_axis_-0.05": {
+          "by_split": {
+            "train": {
+              "optimal_scale_changed_rate": {
+                "source_count": 31,
+                "mean": 0.4086021505376344,
+                "median": 0.3333333333333333,
+                "p05": 0.16666666666666666,
+                "p95": 0.75,
+                "bootstrap_ci95": [
+                  0.3440860215053763,
+                  0.47849462365591394
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "optimal_scale_changed_rate_common_legal": {
+                "source_count": 31,
+                "mean": 0.4086021505376344,
+                "median": 0.3333333333333333,
+                "p05": 0.16666666666666666,
+                "p95": 0.75,
+                "bootstrap_ci95": [
+                  0.3440860215053763,
+                  0.47849462365591394
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "scale_label_stability_common_legal": {
+                "source_count": 31,
+                "mean": 0.5913978494623656,
+                "median": 0.6666666666666666,
+                "p05": 0.25,
+                "p95": 0.8333333333333334,
+                "bootstrap_ci95": [
+                  0.5215053763440861,
+                  0.6559139784946237
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "oracle_iou_change_common_legal": {
+                "source_count": 31,
+                "mean": -0.06432169963465423,
+                "median": -0.07152539943374765,
+                "p05": -0.17591956728058578,
+                "p95": 0.05747532946113945,
+                "bootstrap_ci95": [
+                  -0.09212493210599705,
+                  -0.036912501376471736
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "holding_original_common_best_scale_regret": {
+                "source_count": 31,
+                "mean": 0.0063190073833723995,
+                "median": 0.003514373592711284,
+                "p05": 0.00013575628500146533,
+                "p95": 0.016207263861327557,
+                "bootstrap_ci95": [
+                  0.004246366916039688,
+                  0.008618994601215232
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "original_best_action_becomes_illegal_rate": {
+                "source_count": 31,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "no_legal_window_rate": {
+                "source_count": 31,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "rejected_action_fraction": {
+                "source_count": 31,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "evaluated_rows": 186,
+              "mutually_legal_rows": 186
+            },
+            "val": {
+              "optimal_scale_changed_rate": {
+                "source_count": 29,
+                "mean": 0.4137931034482758,
+                "median": 0.3333333333333333,
+                "p05": 0.16666666666666666,
+                "p95": 0.6666666666666666,
+                "bootstrap_ci95": [
+                  0.3390804597701149,
+                  0.4999999999999999
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "optimal_scale_changed_rate_common_legal": {
+                "source_count": 29,
+                "mean": 0.396551724137931,
+                "median": 0.3333333333333333,
+                "p05": 0.16666666666666666,
+                "p95": 0.6666666666666666,
+                "bootstrap_ci95": [
+                  0.32183908045977005,
+                  0.47701149425287354
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "scale_label_stability_common_legal": {
+                "source_count": 29,
+                "mean": 0.603448275862069,
+                "median": 0.6666666666666666,
+                "p05": 0.3333333333333333,
+                "p95": 0.8333333333333334,
+                "bootstrap_ci95": [
+                  0.5229885057471264,
+                  0.6781609195402298
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "oracle_iou_change_common_legal": {
+                "source_count": 29,
+                "mean": -0.06812664676749546,
+                "median": -0.08481711416091033,
+                "p05": -0.16531353465820856,
+                "p95": 0.04065760728949917,
+                "bootstrap_ci95": [
+                  -0.09477616730717874,
+                  -0.03962385316210786
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "holding_original_common_best_scale_regret": {
+                "source_count": 29,
+                "mean": 0.005467880570167237,
+                "median": 0.003612869359947359,
+                "p05": 0.00019920433717692624,
+                "p95": 0.018352724481461892,
+                "bootstrap_ci95": [
+                  0.0034637085333554477,
+                  0.007837761846676044
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "original_best_action_becomes_illegal_rate": {
+                "source_count": 29,
+                "mean": 0.017241379310344827,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.05172413793103448
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "no_legal_window_rate": {
+                "source_count": 29,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "rejected_action_fraction": {
+                "source_count": 29,
+                "mean": 0.015086206896551725,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.04525862068965517
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "evaluated_rows": 174,
+              "mutually_legal_rows": 174
+            }
+          },
+          "position_drift": {
+            "maximum_accepted_position_drift_px": 0.5,
+            "maximum_projection_drift_before_rejection_px": 96.0,
+            "invalid_actions": {
+              "position_shift_invalid": 21
+            },
+            "action_checks": 2880,
+            "valid_action_rate": 0.9927083333333333
+          },
+          "intentional_displacement_from_original_P1_max_px": 96.0,
+          "note": "drift is projection error relative to deliberately perturbed center; deliberate shift reported separately"
+        },
+        "active_axis_-0.03": {
+          "by_split": {
+            "train": {
+              "optimal_scale_changed_rate": {
+                "source_count": 31,
+                "mean": 0.34946236559139776,
+                "median": 0.3333333333333333,
+                "p05": 0.0,
+                "p95": 0.6666666666666666,
+                "bootstrap_ci95": [
+                  0.27419354838709675,
+                  0.4247311827956988
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "optimal_scale_changed_rate_common_legal": {
+                "source_count": 31,
+                "mean": 0.34946236559139776,
+                "median": 0.3333333333333333,
+                "p05": 0.0,
+                "p95": 0.6666666666666666,
+                "bootstrap_ci95": [
+                  0.27419354838709675,
+                  0.4247311827956988
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "scale_label_stability_common_legal": {
+                "source_count": 31,
+                "mean": 0.6505376344086021,
+                "median": 0.6666666666666666,
+                "p05": 0.3333333333333333,
+                "p95": 1.0,
+                "bootstrap_ci95": [
+                  0.575268817204301,
+                  0.7258064516129032
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "oracle_iou_change_common_legal": {
+                "source_count": 31,
+                "mean": -0.031036001522928118,
+                "median": -0.02963507144760109,
+                "p05": -0.10806196857282177,
+                "p95": 0.034804308889547886,
+                "bootstrap_ci95": [
+                  -0.04745817884314738,
+                  -0.014822125671859837
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "holding_original_common_best_scale_regret": {
+                "source_count": 31,
+                "mean": 0.003545679750545834,
+                "median": 0.0015337016979341533,
+                "p05": 0.0,
+                "p95": 0.012925810117415946,
+                "bootstrap_ci95": [
+                  0.0018795454725621598,
+                  0.00560700069443186
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "original_best_action_becomes_illegal_rate": {
+                "source_count": 31,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "no_legal_window_rate": {
+                "source_count": 31,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "rejected_action_fraction": {
+                "source_count": 31,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "evaluated_rows": 186,
+              "mutually_legal_rows": 186
+            },
+            "val": {
+              "optimal_scale_changed_rate": {
+                "source_count": 29,
+                "mean": 0.3620689655172414,
+                "median": 0.3333333333333333,
+                "p05": 0.06666666666666668,
+                "p95": 0.6666666666666666,
+                "bootstrap_ci95": [
+                  0.29295977011494245,
+                  0.44252873563218387
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "optimal_scale_changed_rate_common_legal": {
+                "source_count": 29,
+                "mean": 0.3448275862068966,
+                "median": 0.3333333333333333,
+                "p05": 0.06666666666666668,
+                "p95": 0.6666666666666666,
+                "bootstrap_ci95": [
+                  0.28160919540229884,
+                  0.4080459770114942
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "scale_label_stability_common_legal": {
+                "source_count": 29,
+                "mean": 0.6551724137931034,
+                "median": 0.6666666666666666,
+                "p05": 0.3333333333333333,
+                "p95": 0.933333333333333,
+                "bootstrap_ci95": [
+                  0.5919540229885057,
+                  0.7183908045977011
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "oracle_iou_change_common_legal": {
+                "source_count": 29,
+                "mean": -0.028656336545420612,
+                "median": -0.034956940387041606,
+                "p05": -0.09203910176508537,
+                "p95": 0.03661581179144704,
+                "bootstrap_ci95": [
+                  -0.04551501448478409,
+                  -0.011855578016310835
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "holding_original_common_best_scale_regret": {
+                "source_count": 29,
+                "mean": 0.004304673709530847,
+                "median": 0.002029081673160238,
+                "p05": 7.559756763548811e-05,
+                "p95": 0.013233156646260565,
+                "bootstrap_ci95": [
+                  0.002756071262919758,
+                  0.006011219166745458
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "original_best_action_becomes_illegal_rate": {
+                "source_count": 29,
+                "mean": 0.017241379310344827,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.05172413793103448
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "no_legal_window_rate": {
+                "source_count": 29,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "rejected_action_fraction": {
+                "source_count": 29,
+                "mean": 0.01293103448275862,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.03879310344827586
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "evaluated_rows": 174,
+              "mutually_legal_rows": 174
+            }
+          },
+          "position_drift": {
+            "maximum_accepted_position_drift_px": 0.4444444444444571,
+            "maximum_projection_drift_before_rejection_px": 57.599999999999994,
+            "invalid_actions": {
+              "position_shift_invalid": 18
+            },
+            "action_checks": 2880,
+            "valid_action_rate": 0.99375
+          },
+          "intentional_displacement_from_original_P1_max_px": 57.599999999999994,
+          "note": "drift is projection error relative to deliberately perturbed center; deliberate shift reported separately"
+        },
+        "active_axis_-0.01": {
+          "by_split": {
+            "train": {
+              "optimal_scale_changed_rate": {
+                "source_count": 31,
+                "mean": 0.26881720430107525,
+                "median": 0.3333333333333333,
+                "p05": 0.0,
+                "p95": 0.5,
+                "bootstrap_ci95": [
+                  0.20967741935483875,
+                  0.3279569892473118
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "optimal_scale_changed_rate_common_legal": {
+                "source_count": 31,
+                "mean": 0.26881720430107525,
+                "median": 0.3333333333333333,
+                "p05": 0.0,
+                "p95": 0.5,
+                "bootstrap_ci95": [
+                  0.20967741935483875,
+                  0.3279569892473118
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "scale_label_stability_common_legal": {
+                "source_count": 31,
+                "mean": 0.7311827956989247,
+                "median": 0.6666666666666666,
+                "p05": 0.5,
+                "p95": 1.0,
+                "bootstrap_ci95": [
+                  0.6720430107526882,
+                  0.790322580645161
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "oracle_iou_change_common_legal": {
+                "source_count": 31,
+                "mean": -0.006581034793421338,
+                "median": -0.002939612772572604,
+                "p05": -0.03600212671597096,
+                "p95": 0.01370657956100619,
+                "bootstrap_ci95": [
+                  -0.012314503434042416,
+                  -0.0012261238957739576
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "holding_original_common_best_scale_regret": {
+                "source_count": 31,
+                "mean": 0.0007760126408829928,
+                "median": 0.000281579369542706,
+                "p05": 0.0,
+                "p95": 0.004628589528629887,
+                "bootstrap_ci95": [
+                  0.00032065518787014195,
+                  0.0013388253669873072
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "original_best_action_becomes_illegal_rate": {
+                "source_count": 31,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "no_legal_window_rate": {
+                "source_count": 31,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "rejected_action_fraction": {
+                "source_count": 31,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "evaluated_rows": 186,
+              "mutually_legal_rows": 186
+            },
+            "val": {
+              "optimal_scale_changed_rate": {
+                "source_count": 29,
+                "mean": 0.25287356321839083,
+                "median": 0.16666666666666666,
+                "p05": 0.0,
+                "p95": 0.5,
+                "bootstrap_ci95": [
+                  0.19540229885057472,
+                  0.31034482758620696
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "optimal_scale_changed_rate_common_legal": {
+                "source_count": 29,
+                "mean": 0.235632183908046,
+                "median": 0.16666666666666666,
+                "p05": 0.0,
+                "p95": 0.5,
+                "bootstrap_ci95": [
+                  0.1781609195402299,
+                  0.29310344827586204
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "scale_label_stability_common_legal": {
+                "source_count": 29,
+                "mean": 0.7643678160919539,
+                "median": 0.8333333333333334,
+                "p05": 0.5,
+                "p95": 1.0,
+                "bootstrap_ci95": [
+                  0.7068965517241379,
+                  0.82183908045977
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "oracle_iou_change_common_legal": {
+                "source_count": 29,
+                "mean": -0.004605180457433145,
+                "median": -0.0010125187919427885,
+                "p05": -0.033159902949640475,
+                "p95": 0.022807985811795932,
+                "bootstrap_ci95": [
+                  -0.01070407190582497,
+                  0.0013047732632343097
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "holding_original_common_best_scale_regret": {
+                "source_count": 29,
+                "mean": 0.001029499401569249,
+                "median": 0.0003337971492571266,
+                "p05": 0.0,
+                "p95": 0.004502998665074154,
+                "bootstrap_ci95": [
+                  0.00048459581067310584,
+                  0.0017505174742964793
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "original_best_action_becomes_illegal_rate": {
+                "source_count": 29,
+                "mean": 0.017241379310344827,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.05172413793103448
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "no_legal_window_rate": {
+                "source_count": 29,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "rejected_action_fraction": {
+                "source_count": 29,
+                "mean": 0.010775862068965518,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.032327586206896554
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "evaluated_rows": 174,
+              "mutually_legal_rows": 174
+            }
+          },
+          "position_drift": {
+            "maximum_accepted_position_drift_px": 0.4444444444444571,
+            "maximum_projection_drift_before_rejection_px": 19.19999999999999,
+            "invalid_actions": {
+              "position_shift_invalid": 15
+            },
+            "action_checks": 2880,
+            "valid_action_rate": 0.9947916666666666
+          },
+          "intentional_displacement_from_original_P1_max_px": 19.2,
+          "note": "drift is projection error relative to deliberately perturbed center; deliberate shift reported separately"
+        },
+        "active_axis_0.01": {
+          "by_split": {
+            "train": {
+              "optimal_scale_changed_rate": {
+                "source_count": 31,
+                "mean": 0.27956989247311825,
+                "median": 0.16666666666666666,
+                "p05": 0.0,
+                "p95": 0.5833333333333333,
+                "bootstrap_ci95": [
+                  0.21505376344086022,
+                  0.34408602150537626
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "optimal_scale_changed_rate_common_legal": {
+                "source_count": 31,
+                "mean": 0.27956989247311825,
+                "median": 0.16666666666666666,
+                "p05": 0.0,
+                "p95": 0.5833333333333333,
+                "bootstrap_ci95": [
+                  0.21505376344086022,
+                  0.34408602150537626
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "scale_label_stability_common_legal": {
+                "source_count": 31,
+                "mean": 0.7204301075268817,
+                "median": 0.8333333333333334,
+                "p05": 0.41666666666666663,
+                "p95": 1.0,
+                "bootstrap_ci95": [
+                  0.6559139784946236,
+                  0.7849462365591398
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "oracle_iou_change_common_legal": {
+                "source_count": 31,
+                "mean": 0.0015053101409985682,
+                "median": -0.002777762392560381,
+                "p05": -0.02376784109189243,
+                "p95": 0.029777020412366913,
+                "bootstrap_ci95": [
+                  -0.004423697435489161,
+                  0.00781605822486614
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "holding_original_common_best_scale_regret": {
+                "source_count": 31,
+                "mean": 0.0017044891202475298,
+                "median": 0.0003233381114341923,
+                "p05": 0.0,
+                "p95": 0.0066254082694319205,
+                "bootstrap_ci95": [
+                  0.0009049361230030022,
+                  0.0026174002757026185
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "original_best_action_becomes_illegal_rate": {
+                "source_count": 31,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "no_legal_window_rate": {
+                "source_count": 31,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "rejected_action_fraction": {
+                "source_count": 31,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "evaluated_rows": 186,
+              "mutually_legal_rows": 186
+            },
+            "val": {
+              "optimal_scale_changed_rate": {
+                "source_count": 29,
+                "mean": 0.2528735632183908,
+                "median": 0.3333333333333333,
+                "p05": 0.0,
+                "p95": 0.5,
+                "bootstrap_ci95": [
+                  0.1896551724137931,
+                  0.3160919540229885
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "optimal_scale_changed_rate_common_legal": {
+                "source_count": 29,
+                "mean": 0.2528735632183908,
+                "median": 0.3333333333333333,
+                "p05": 0.0,
+                "p95": 0.5,
+                "bootstrap_ci95": [
+                  0.1896551724137931,
+                  0.3160919540229885
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "scale_label_stability_common_legal": {
+                "source_count": 29,
+                "mean": 0.7471264367816091,
+                "median": 0.6666666666666666,
+                "p05": 0.5,
+                "p95": 1.0,
+                "bootstrap_ci95": [
+                  0.6839080459770116,
+                  0.8103448275862067
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "oracle_iou_change_common_legal": {
+                "source_count": 29,
+                "mean": -0.0007228634780398637,
+                "median": -0.0020853905322388475,
+                "p05": -0.023135646093690017,
+                "p95": 0.029909355017776425,
+                "bootstrap_ci95": [
+                  -0.00638914610276139,
+                  0.00575598042776435
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "holding_original_common_best_scale_regret": {
+                "source_count": 29,
+                "mean": 0.0013924771713832167,
+                "median": 0.00031612666244762905,
+                "p05": 0.0,
+                "p95": 0.0067291173720894605,
+                "bootstrap_ci95": [
+                  0.0006432370550440649,
+                  0.0023226247585609754
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "original_best_action_becomes_illegal_rate": {
+                "source_count": 29,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "no_legal_window_rate": {
+                "source_count": 29,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "rejected_action_fraction": {
+                "source_count": 29,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "evaluated_rows": 174,
+              "mutually_legal_rows": 174
+            }
+          },
+          "position_drift": {
+            "maximum_accepted_position_drift_px": 0.4444444444444571,
+            "maximum_projection_drift_before_rejection_px": 0.4444444444444571,
+            "invalid_actions": {},
+            "action_checks": 2880,
+            "valid_action_rate": 1.0
+          },
+          "intentional_displacement_from_original_P1_max_px": 19.2,
+          "note": "drift is projection error relative to deliberately perturbed center; deliberate shift reported separately"
+        },
+        "active_axis_0.03": {
+          "by_split": {
+            "train": {
+              "optimal_scale_changed_rate": {
+                "source_count": 31,
+                "mean": 0.3655913978494624,
+                "median": 0.3333333333333333,
+                "p05": 0.16666666666666666,
+                "p95": 0.5,
+                "bootstrap_ci95": [
+                  0.31720430107526876,
+                  0.40860215053763443
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "optimal_scale_changed_rate_common_legal": {
+                "source_count": 31,
+                "mean": 0.3655913978494624,
+                "median": 0.3333333333333333,
+                "p05": 0.16666666666666666,
+                "p95": 0.5,
+                "bootstrap_ci95": [
+                  0.31720430107526876,
+                  0.40860215053763443
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "scale_label_stability_common_legal": {
+                "source_count": 31,
+                "mean": 0.6344086021505376,
+                "median": 0.6666666666666666,
+                "p05": 0.5,
+                "p95": 0.8333333333333334,
+                "bootstrap_ci95": [
+                  0.5913978494623655,
+                  0.6827956989247312
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "oracle_iou_change_common_legal": {
+                "source_count": 31,
+                "mean": -0.005418708789892943,
+                "median": -0.01090229965148877,
+                "p05": -0.07716961765345977,
+                "p95": 0.07528976836783859,
+                "bootstrap_ci95": [
+                  -0.0226619099946191,
+                  0.013207667664620337
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "holding_original_common_best_scale_regret": {
+                "source_count": 31,
+                "mean": 0.004309636335969643,
+                "median": 0.0015237956818031269,
+                "p05": 6.400764700587383e-05,
+                "p95": 0.013273580265277658,
+                "bootstrap_ci95": [
+                  0.0026059519912367047,
+                  0.005946994910574045
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "original_best_action_becomes_illegal_rate": {
+                "source_count": 31,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "no_legal_window_rate": {
+                "source_count": 31,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "rejected_action_fraction": {
+                "source_count": 31,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "evaluated_rows": 186,
+              "mutually_legal_rows": 186
+            },
+            "val": {
+              "optimal_scale_changed_rate": {
+                "source_count": 29,
+                "mean": 0.3850574712643678,
+                "median": 0.3333333333333333,
+                "p05": 0.16666666666666666,
+                "p95": 0.6666666666666666,
+                "bootstrap_ci95": [
+                  0.3103448275862069,
+                  0.4540229885057471
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "optimal_scale_changed_rate_common_legal": {
+                "source_count": 29,
+                "mean": 0.3850574712643678,
+                "median": 0.3333333333333333,
+                "p05": 0.16666666666666666,
+                "p95": 0.6666666666666666,
+                "bootstrap_ci95": [
+                  0.3103448275862069,
+                  0.4540229885057471
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "scale_label_stability_common_legal": {
+                "source_count": 29,
+                "mean": 0.6149425287356322,
+                "median": 0.6666666666666666,
+                "p05": 0.3333333333333333,
+                "p95": 0.8333333333333334,
+                "bootstrap_ci95": [
+                  0.5459770114942528,
+                  0.6896551724137929
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "oracle_iou_change_common_legal": {
+                "source_count": 29,
+                "mean": -0.01822505438954299,
+                "median": -0.03540050984918644,
+                "p05": -0.08590504835059637,
+                "p95": 0.07131381730277062,
+                "bootstrap_ci95": [
+                  -0.035939623271484,
+                  0.0005442150648584759
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "holding_original_common_best_scale_regret": {
+                "source_count": 29,
+                "mean": 0.005072717358021923,
+                "median": 0.002355657749597543,
+                "p05": 3.0423924258664303e-05,
+                "p95": 0.01819533962535946,
+                "bootstrap_ci95": [
+                  0.0030375599992582872,
+                  0.007401711104334834
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "original_best_action_becomes_illegal_rate": {
+                "source_count": 29,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "no_legal_window_rate": {
+                "source_count": 29,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "rejected_action_fraction": {
+                "source_count": 29,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "evaluated_rows": 174,
+              "mutually_legal_rows": 174
+            }
+          },
+          "position_drift": {
+            "maximum_accepted_position_drift_px": 0.4444444444444571,
+            "maximum_projection_drift_before_rejection_px": 0.4444444444444571,
+            "invalid_actions": {},
+            "action_checks": 2880,
+            "valid_action_rate": 1.0
+          },
+          "intentional_displacement_from_original_P1_max_px": 57.599999999999994,
+          "note": "drift is projection error relative to deliberately perturbed center; deliberate shift reported separately"
+        },
+        "active_axis_0.05": {
+          "by_split": {
+            "train": {
+              "optimal_scale_changed_rate": {
+                "source_count": 31,
+                "mean": 0.3924731182795699,
+                "median": 0.3333333333333333,
+                "p05": 0.16666666666666666,
+                "p95": 0.6666666666666666,
+                "bootstrap_ci95": [
+                  0.3279569892473118,
+                  0.45161290322580644
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "optimal_scale_changed_rate_common_legal": {
+                "source_count": 31,
+                "mean": 0.3870967741935483,
+                "median": 0.3333333333333333,
+                "p05": 0.08333333333333333,
+                "p95": 0.6666666666666666,
+                "bootstrap_ci95": [
+                  0.32258064516129026,
+                  0.45161290322580633
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "scale_label_stability_common_legal": {
+                "source_count": 31,
+                "mean": 0.6129032258064515,
+                "median": 0.6666666666666666,
+                "p05": 0.3333333333333333,
+                "p95": 0.9166666666666667,
+                "bootstrap_ci95": [
+                  0.5483870967741936,
+                  0.6774193548387097
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "oracle_iou_change_common_legal": {
+                "source_count": 31,
+                "mean": -0.031480131299887276,
+                "median": -0.03838252216976502,
+                "p05": -0.15399595400199093,
+                "p95": 0.0938857024344347,
+                "bootstrap_ci95": [
+                  -0.05873750898765881,
+                  -0.0032744219489773694
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "holding_original_common_best_scale_regret": {
+                "source_count": 31,
+                "mean": 0.004440161631744265,
+                "median": 0.002229385032320568,
+                "p05": 3.282235041679229e-05,
+                "p95": 0.013007174655767055,
+                "bootstrap_ci95": [
+                  0.0029155625824828484,
+                  0.00615834743676289
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "original_best_action_becomes_illegal_rate": {
+                "source_count": 31,
+                "mean": 0.005376344086021505,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.016129032258064516
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "no_legal_window_rate": {
+                "source_count": 31,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "rejected_action_fraction": {
+                "source_count": 31,
+                "mean": 0.003360215053763441,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.010080645161290322
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "evaluated_rows": 186,
+              "mutually_legal_rows": 186
+            },
+            "val": {
+              "optimal_scale_changed_rate": {
+                "source_count": 29,
+                "mean": 0.4597701149425287,
+                "median": 0.5,
+                "p05": 0.16666666666666666,
+                "p95": 0.7666666666666663,
+                "bootstrap_ci95": [
+                  0.3908045977011494,
+                  0.5344827586206896
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "optimal_scale_changed_rate_common_legal": {
+                "source_count": 29,
+                "mean": 0.4597701149425287,
+                "median": 0.5,
+                "p05": 0.16666666666666666,
+                "p95": 0.7666666666666663,
+                "bootstrap_ci95": [
+                  0.3908045977011494,
+                  0.5344827586206896
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "scale_label_stability_common_legal": {
+                "source_count": 29,
+                "mean": 0.5402298850574713,
+                "median": 0.5,
+                "p05": 0.23333333333333334,
+                "p95": 0.8333333333333334,
+                "bootstrap_ci95": [
+                  0.4655172413793104,
+                  0.6091954022988506
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "oracle_iou_change_common_legal": {
+                "source_count": 29,
+                "mean": -0.04741484928505206,
+                "median": -0.06838246355309302,
+                "p05": -0.1632054467536581,
+                "p95": 0.10175938678631015,
+                "bootstrap_ci95": [
+                  -0.07810734963510318,
+                  -0.014594417839733788
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "holding_original_common_best_scale_regret": {
+                "source_count": 29,
+                "mean": 0.005378097179653506,
+                "median": 0.003095735046989299,
+                "p05": 0.0002341124198365426,
+                "p95": 0.01470431846922714,
+                "bootstrap_ci95": [
+                  0.003562027245448778,
+                  0.007375704758911896
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "original_best_action_becomes_illegal_rate": {
+                "source_count": 29,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "no_legal_window_rate": {
+                "source_count": 29,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "rejected_action_fraction": {
+                "source_count": 29,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "evaluated_rows": 174,
+              "mutually_legal_rows": 174
+            }
+          },
+          "position_drift": {
+            "maximum_accepted_position_drift_px": 0.5,
+            "maximum_projection_drift_before_rejection_px": 27.0,
+            "invalid_actions": {
+              "position_shift_invalid": 5
+            },
+            "action_checks": 2880,
+            "valid_action_rate": 0.9982638888888888
+          },
+          "intentional_displacement_from_original_P1_max_px": 96.0,
+          "note": "drift is projection error relative to deliberately perturbed center; deliberate shift reported separately"
+        },
+        "validation_error_matched": {
+          "by_split": {
+            "train": {
+              "optimal_scale_changed_rate": {
+                "source_count": 31,
+                "mean": 0.7849462365591398,
+                "median": 0.8333333333333334,
+                "p05": 0.5,
+                "p95": 1.0,
+                "bootstrap_ci95": [
+                  0.7204301075268817,
+                  0.8494623655913979
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "optimal_scale_changed_rate_common_legal": {
+                "source_count": 31,
+                "mean": 0.2010752688172043,
+                "median": 0.16666666666666666,
+                "p05": 0.0,
+                "p95": 0.3333333333333333,
+                "bootstrap_ci95": [
+                  0.15376344086021504,
+                  0.24626344086021493
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "scale_label_stability_common_legal": {
+                "source_count": 31,
+                "mean": 0.7989247311827957,
+                "median": 0.8333333333333334,
+                "p05": 0.6666666666666666,
+                "p95": 1.0,
+                "bootstrap_ci95": [
+                  0.7537365591397849,
+                  0.846236559139785
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "oracle_iou_change_common_legal": {
+                "source_count": 31,
+                "mean": -0.07180398266770263,
+                "median": -0.08535088147595017,
+                "p05": -0.24875113982212677,
+                "p95": 0.07613690954167235,
+                "bootstrap_ci95": [
+                  -0.10876625234168592,
+                  -0.03645140140090005
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "holding_original_common_best_scale_regret": {
+                "source_count": 31,
+                "mean": 0.005629515723987205,
+                "median": 0.0023612242269946265,
+                "p05": 0.0,
+                "p95": 0.02064669447571435,
+                "bootstrap_ci95": [
+                  0.0031476643134660718,
+                  0.00833269708401253
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "original_best_action_becomes_illegal_rate": {
+                "source_count": 31,
+                "mean": 0.6236559139784946,
+                "median": 0.6666666666666666,
+                "p05": 0.3333333333333333,
+                "p95": 1.0,
+                "bootstrap_ci95": [
+                  0.5483870967741935,
+                  0.6989247311827957
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "no_legal_window_rate": {
+                "source_count": 31,
+                "mean": 0.02150537634408602,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.16666666666666666,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.04838709677419355
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "rejected_action_fraction": {
+                "source_count": 31,
+                "mean": 0.5826612903225805,
+                "median": 0.5833333333333334,
+                "p05": 0.3958333333333333,
+                "p95": 0.75,
+                "bootstrap_ci95": [
+                  0.5483870967741935,
+                  0.6182795698924731
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "evaluated_rows": 186,
+              "mutually_legal_rows": 182
+            },
+            "val": {
+              "optimal_scale_changed_rate": {
+                "source_count": 29,
+                "mean": 0.7643678160919538,
+                "median": 0.8333333333333334,
+                "p05": 0.5,
+                "p95": 1.0,
+                "bootstrap_ci95": [
+                  0.7126436781609194,
+                  0.8160919540229885
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "optimal_scale_changed_rate_common_legal": {
+                "source_count": 29,
+                "mean": 0.20689655172413796,
+                "median": 0.16666666666666666,
+                "p05": 0.0,
+                "p95": 0.5,
+                "bootstrap_ci95": [
+                  0.14942528735632182,
+                  0.27011494252873564
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "scale_label_stability_common_legal": {
+                "source_count": 29,
+                "mean": 0.793103448275862,
+                "median": 0.8333333333333334,
+                "p05": 0.5,
+                "p95": 1.0,
+                "bootstrap_ci95": [
+                  0.7298850574712643,
+                  0.8505747126436782
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "oracle_iou_change_common_legal": {
+                "source_count": 29,
+                "mean": -0.10350655062415234,
+                "median": -0.07924290022805232,
+                "p05": -0.26425009635728414,
+                "p95": 0.08180609979709541,
+                "bootstrap_ci95": [
+                  -0.14368740112175749,
+                  -0.06463010980524336
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "holding_original_common_best_scale_regret": {
+                "source_count": 29,
+                "mean": 0.004439428504224432,
+                "median": 0.0017486657134743733,
+                "p05": 0.0,
+                "p95": 0.015933178483007616,
+                "bootstrap_ci95": [
+                  0.0022256578380061218,
+                  0.007165522233274012
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "original_best_action_becomes_illegal_rate": {
+                "source_count": 29,
+                "mean": 0.5689655172413793,
+                "median": 0.5,
+                "p05": 0.3333333333333333,
+                "p95": 0.8333333333333334,
+                "bootstrap_ci95": [
+                  0.5,
+                  0.6379310344827587
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "no_legal_window_rate": {
+                "source_count": 29,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "rejected_action_fraction": {
+                "source_count": 29,
+                "mean": 0.548132183908046,
+                "median": 0.5416666666666666,
+                "p05": 0.425,
+                "p95": 0.7083333333333334,
+                "bootstrap_ci95": [
+                  0.5158045977011494,
+                  0.581896551724138
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "evaluated_rows": 174,
+              "mutually_legal_rows": 174
+            }
+          },
+          "position_drift": {
+            "maximum_accepted_position_drift_px": 0.9444444444444571,
+            "maximum_projection_drift_before_rejection_px": 264.5,
+            "invalid_actions": {
+              "position_shift_invalid": 1614,
+              "center_out_of_image": 16
+            },
+            "action_checks": 2880,
+            "valid_action_rate": 0.4340277777777778
+          },
+          "intentional_displacement_from_original_P1_max_px": 801.5,
+          "note": "drift is projection error relative to deliberately perturbed center; deliberate shift reported separately"
+        }
+      },
+      "empirical_fit": "empirical signed normalized Val residuals: uniform source, uniform frame; exclude evaluated Val source; preserve bias and magnitudes",
+      "use": "sensitivity diagnostic only; no label/action-bin/policy refit using validation residuals"
+    },
+    "LIVE_YT_VC/B": {
+      "original_geometry": {
+        "maximum_accepted_position_drift_px": 0.5,
+        "maximum_projection_drift_before_rejection_px": 0.5,
+        "invalid_actions": {},
+        "action_checks": 2880,
+        "valid_action_rate": 1.0
+      },
+      "conditions": {
+        "active_axis_-0.05": {
+          "by_split": {
+            "train": {
+              "optimal_scale_changed_rate": {
+                "source_count": 31,
+                "mean": 0.4032258064516128,
+                "median": 0.3333333333333333,
+                "p05": 0.0,
+                "p95": 0.8333333333333334,
+                "bootstrap_ci95": [
+                  0.3118279569892473,
+                  0.49462365591397844
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "optimal_scale_changed_rate_common_legal": {
+                "source_count": 31,
+                "mean": 0.3924731182795698,
+                "median": 0.3333333333333333,
+                "p05": 0.0,
+                "p95": 0.75,
+                "bootstrap_ci95": [
+                  0.30645161290322576,
+                  0.47849462365591394
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "scale_label_stability_common_legal": {
+                "source_count": 31,
+                "mean": 0.6075268817204301,
+                "median": 0.6666666666666666,
+                "p05": 0.25,
+                "p95": 1.0,
+                "bootstrap_ci95": [
+                  0.5215053763440861,
+                  0.6935483870967742
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "oracle_iou_change_common_legal": {
+                "source_count": 31,
+                "mean": -0.015504080246691851,
+                "median": -0.00804100435500843,
+                "p05": -0.1427192692134897,
+                "p95": 0.12979699410839213,
+                "bootstrap_ci95": [
+                  -0.04612621631450392,
+                  0.015328827753557546
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "holding_original_common_best_scale_regret": {
+                "source_count": 31,
+                "mean": 0.006435125136135445,
+                "median": 0.0033334463728218605,
+                "p05": 0.0,
+                "p95": 0.02362238098608815,
+                "bootstrap_ci95": [
+                  0.003851532238788072,
+                  0.009298795281246263
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "original_best_action_becomes_illegal_rate": {
+                "source_count": 31,
+                "mean": 0.01075268817204301,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.03225806451612903
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "no_legal_window_rate": {
+                "source_count": 31,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "rejected_action_fraction": {
+                "source_count": 31,
+                "mean": 0.007392473118279569,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.02217741935483871
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "evaluated_rows": 186,
+              "mutually_legal_rows": 186
+            },
+            "val": {
+              "optimal_scale_changed_rate": {
+                "source_count": 29,
+                "mean": 0.3850574712643678,
+                "median": 0.3333333333333333,
+                "p05": 0.16666666666666666,
+                "p95": 0.6666666666666666,
+                "bootstrap_ci95": [
+                  0.3333333333333333,
+                  0.4367816091954023
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "optimal_scale_changed_rate_common_legal": {
+                "source_count": 29,
+                "mean": 0.3850574712643678,
+                "median": 0.3333333333333333,
+                "p05": 0.16666666666666666,
+                "p95": 0.6666666666666666,
+                "bootstrap_ci95": [
+                  0.3333333333333333,
+                  0.4367816091954023
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "scale_label_stability_common_legal": {
+                "source_count": 29,
+                "mean": 0.6149425287356322,
+                "median": 0.6666666666666666,
+                "p05": 0.3333333333333333,
+                "p95": 0.8333333333333334,
+                "bootstrap_ci95": [
+                  0.5632183908045976,
+                  0.6666666666666667
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "oracle_iou_change_common_legal": {
+                "source_count": 29,
+                "mean": -0.055547567656968395,
+                "median": -0.07005413839798462,
+                "p05": -0.1910607680505815,
+                "p95": 0.08191346770173537,
+                "bootstrap_ci95": [
+                  -0.09060540334349987,
+                  -0.021147188854606598
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "holding_original_common_best_scale_regret": {
+                "source_count": 29,
+                "mean": 0.005120738180419913,
+                "median": 0.002225023389815265,
+                "p05": 0.00042752511417848416,
+                "p95": 0.016905715769394654,
+                "bootstrap_ci95": [
+                  0.0031653950489124527,
+                  0.007337479363573205
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "original_best_action_becomes_illegal_rate": {
+                "source_count": 29,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "no_legal_window_rate": {
+                "source_count": 29,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "rejected_action_fraction": {
+                "source_count": 29,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "evaluated_rows": 174,
+              "mutually_legal_rows": 174
+            }
+          },
+          "position_drift": {
+            "maximum_accepted_position_drift_px": 0.5,
+            "maximum_projection_drift_before_rejection_px": 18.0,
+            "invalid_actions": {
+              "position_shift_invalid": 11
+            },
+            "action_checks": 2880,
+            "valid_action_rate": 0.9961805555555555
+          },
+          "intentional_displacement_from_original_P1_max_px": 96.0,
+          "note": "drift is projection error relative to deliberately perturbed center; deliberate shift reported separately"
+        },
+        "active_axis_-0.03": {
+          "by_split": {
+            "train": {
+              "optimal_scale_changed_rate": {
+                "source_count": 31,
+                "mean": 0.2688172043010753,
+                "median": 0.16666666666666666,
+                "p05": 0.0,
+                "p95": 0.6666666666666666,
+                "bootstrap_ci95": [
+                  0.19354838709677422,
+                  0.3494623655913978
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "optimal_scale_changed_rate_common_legal": {
+                "source_count": 31,
+                "mean": 0.2688172043010753,
+                "median": 0.16666666666666666,
+                "p05": 0.0,
+                "p95": 0.6666666666666666,
+                "bootstrap_ci95": [
+                  0.19354838709677422,
+                  0.3494623655913978
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "scale_label_stability_common_legal": {
+                "source_count": 31,
+                "mean": 0.7311827956989246,
+                "median": 0.8333333333333334,
+                "p05": 0.3333333333333333,
+                "p95": 1.0,
+                "bootstrap_ci95": [
+                  0.6505376344086021,
+                  0.8064516129032256
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "oracle_iou_change_common_legal": {
+                "source_count": 31,
+                "mean": -0.0012060130103881796,
+                "median": 0.0027913928197982815,
+                "p05": -0.09017208990721368,
+                "p95": 0.0999600355417882,
+                "bootstrap_ci95": [
+                  -0.022265013347499935,
+                  0.019726090941405993
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "holding_original_common_best_scale_regret": {
+                "source_count": 31,
+                "mean": 0.0031299485137659864,
+                "median": 0.0006613435767503506,
+                "p05": 0.0,
+                "p95": 0.012109830945511952,
+                "bootstrap_ci95": [
+                  0.0015479036452994222,
+                  0.0051652993257327645
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "original_best_action_becomes_illegal_rate": {
+                "source_count": 31,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "no_legal_window_rate": {
+                "source_count": 31,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "rejected_action_fraction": {
+                "source_count": 31,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "evaluated_rows": 186,
+              "mutually_legal_rows": 186
+            },
+            "val": {
+              "optimal_scale_changed_rate": {
+                "source_count": 29,
+                "mean": 0.29885057471264365,
+                "median": 0.3333333333333333,
+                "p05": 0.16666666666666666,
+                "p95": 0.5,
+                "bootstrap_ci95": [
+                  0.2528735632183908,
+                  0.3505747126436782
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "optimal_scale_changed_rate_common_legal": {
+                "source_count": 29,
+                "mean": 0.29885057471264365,
+                "median": 0.3333333333333333,
+                "p05": 0.16666666666666666,
+                "p95": 0.5,
+                "bootstrap_ci95": [
+                  0.2528735632183908,
+                  0.3505747126436782
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "scale_label_stability_common_legal": {
+                "source_count": 29,
+                "mean": 0.7011494252873562,
+                "median": 0.6666666666666666,
+                "p05": 0.5,
+                "p95": 0.8333333333333334,
+                "bootstrap_ci95": [
+                  0.6494252873563218,
+                  0.7471264367816094
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "oracle_iou_change_common_legal": {
+                "source_count": 29,
+                "mean": -0.02129381702396464,
+                "median": -0.02574903608560185,
+                "p05": -0.11982426223272566,
+                "p95": 0.06748762787023341,
+                "bootstrap_ci95": [
+                  -0.04361717928387643,
+                  0.0008633543492325429
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "holding_original_common_best_scale_regret": {
+                "source_count": 29,
+                "mean": 0.005326550495499429,
+                "median": 0.0017241430883475767,
+                "p05": 7.944005416535792e-05,
+                "p95": 0.020331923013199332,
+                "bootstrap_ci95": [
+                  0.002915756623759424,
+                  0.00809502856694985
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "original_best_action_becomes_illegal_rate": {
+                "source_count": 29,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "no_legal_window_rate": {
+                "source_count": 29,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "rejected_action_fraction": {
+                "source_count": 29,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "evaluated_rows": 174,
+              "mutually_legal_rows": 174
+            }
+          },
+          "position_drift": {
+            "maximum_accepted_position_drift_px": 0.5,
+            "maximum_projection_drift_before_rejection_px": 0.5,
+            "invalid_actions": {},
+            "action_checks": 2880,
+            "valid_action_rate": 1.0
+          },
+          "intentional_displacement_from_original_P1_max_px": 57.599999999999994,
+          "note": "drift is projection error relative to deliberately perturbed center; deliberate shift reported separately"
+        },
+        "active_axis_-0.01": {
+          "by_split": {
+            "train": {
+              "optimal_scale_changed_rate": {
+                "source_count": 31,
+                "mean": 0.3870967741935484,
+                "median": 0.3333333333333333,
+                "p05": 0.16666666666666666,
+                "p95": 0.6666666666666666,
+                "bootstrap_ci95": [
+                  0.32258064516129037,
+                  0.45698924731182794
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "optimal_scale_changed_rate_common_legal": {
+                "source_count": 31,
+                "mean": 0.3870967741935484,
+                "median": 0.3333333333333333,
+                "p05": 0.16666666666666666,
+                "p95": 0.6666666666666666,
+                "bootstrap_ci95": [
+                  0.32258064516129037,
+                  0.45698924731182794
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "scale_label_stability_common_legal": {
+                "source_count": 31,
+                "mean": 0.6129032258064515,
+                "median": 0.6666666666666666,
+                "p05": 0.3333333333333333,
+                "p95": 0.8333333333333334,
+                "bootstrap_ci95": [
+                  0.543010752688172,
+                  0.6774193548387095
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "oracle_iou_change_common_legal": {
+                "source_count": 31,
+                "mean": 0.0011117999615522986,
+                "median": 0.0033161959943934873,
+                "p05": -0.03146078533421101,
+                "p95": 0.03173624296873755,
+                "bootstrap_ci95": [
+                  -0.006086786009851076,
+                  0.008134281467688792
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "holding_original_common_best_scale_regret": {
+                "source_count": 31,
+                "mean": 0.0006362810580415173,
+                "median": 0.00027805099005068223,
+                "p05": 4.3020076635607824e-05,
+                "p95": 0.00267434714357852,
+                "bootstrap_ci95": [
+                  0.00030995763315110476,
+                  0.0010478184334030815
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "original_best_action_becomes_illegal_rate": {
+                "source_count": 31,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "no_legal_window_rate": {
+                "source_count": 31,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "rejected_action_fraction": {
+                "source_count": 31,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "evaluated_rows": 186,
+              "mutually_legal_rows": 186
+            },
+            "val": {
+              "optimal_scale_changed_rate": {
+                "source_count": 29,
+                "mean": 0.3620689655172414,
+                "median": 0.3333333333333333,
+                "p05": 0.16666666666666666,
+                "p95": 0.6666666666666666,
+                "bootstrap_ci95": [
+                  0.2873563218390805,
+                  0.43678160919540227
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "optimal_scale_changed_rate_common_legal": {
+                "source_count": 29,
+                "mean": 0.3620689655172414,
+                "median": 0.3333333333333333,
+                "p05": 0.16666666666666666,
+                "p95": 0.6666666666666666,
+                "bootstrap_ci95": [
+                  0.2873563218390805,
+                  0.43678160919540227
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "scale_label_stability_common_legal": {
+                "source_count": 29,
+                "mean": 0.6379310344827587,
+                "median": 0.6666666666666666,
+                "p05": 0.3333333333333333,
+                "p95": 0.8333333333333334,
+                "bootstrap_ci95": [
+                  0.5632183908045977,
+                  0.7126436781609194
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "oracle_iou_change_common_legal": {
+                "source_count": 29,
+                "mean": -0.0008231075644551378,
+                "median": 0.0004222064842329491,
+                "p05": -0.035464217867117426,
+                "p95": 0.027596290980829226,
+                "bootstrap_ci95": [
+                  -0.008607345891132667,
+                  0.0068139927348308885
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "holding_original_common_best_scale_regret": {
+                "source_count": 29,
+                "mean": 0.0017189112811324442,
+                "median": 0.0004342084754100084,
+                "p05": 3.791073493923103e-05,
+                "p95": 0.008165500431027673,
+                "bootstrap_ci95": [
+                  0.0008627267192681112,
+                  0.002749379410743282
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "original_best_action_becomes_illegal_rate": {
+                "source_count": 29,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "no_legal_window_rate": {
+                "source_count": 29,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "rejected_action_fraction": {
+                "source_count": 29,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "evaluated_rows": 174,
+              "mutually_legal_rows": 174
+            }
+          },
+          "position_drift": {
+            "maximum_accepted_position_drift_px": 0.5,
+            "maximum_projection_drift_before_rejection_px": 0.5,
+            "invalid_actions": {},
+            "action_checks": 2880,
+            "valid_action_rate": 1.0
+          },
+          "intentional_displacement_from_original_P1_max_px": 19.2,
+          "note": "drift is projection error relative to deliberately perturbed center; deliberate shift reported separately"
+        },
+        "active_axis_0.01": {
+          "by_split": {
+            "train": {
+              "optimal_scale_changed_rate": {
+                "source_count": 31,
+                "mean": 0.14516129032258068,
+                "median": 0.16666666666666666,
+                "p05": 0.0,
+                "p95": 0.3333333333333333,
+                "bootstrap_ci95": [
+                  0.09139784946236558,
+                  0.20430107526881716
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "optimal_scale_changed_rate_common_legal": {
+                "source_count": 31,
+                "mean": 0.12365591397849461,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.3333333333333333,
+                "bootstrap_ci95": [
+                  0.06989247311827956,
+                  0.18279569892473116
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "scale_label_stability_common_legal": {
+                "source_count": 31,
+                "mean": 0.8763440860215053,
+                "median": 1.0,
+                "p05": 0.6666666666666666,
+                "p95": 1.0,
+                "bootstrap_ci95": [
+                  0.8172043010752688,
+                  0.9301075268817204
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "oracle_iou_change_common_legal": {
+                "source_count": 31,
+                "mean": -0.001910818253529893,
+                "median": -0.005437098819365396,
+                "p05": -0.028857970254074355,
+                "p95": 0.03331560122487394,
+                "bootstrap_ci95": [
+                  -0.008608342742841902,
+                  0.005035190444401455
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "holding_original_common_best_scale_regret": {
+                "source_count": 31,
+                "mean": 0.0005115597689114654,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.002940786371099448,
+                "bootstrap_ci95": [
+                  0.0002047778058698985,
+                  0.0008580609155277513
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "original_best_action_becomes_illegal_rate": {
+                "source_count": 31,
+                "mean": 0.02150537634408602,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.16666666666666666,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.05376344086021505
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "no_legal_window_rate": {
+                "source_count": 31,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "rejected_action_fraction": {
+                "source_count": 31,
+                "mean": 0.010080645161290322,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.052083333333333336,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.026881720430107527
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "evaluated_rows": 186,
+              "mutually_legal_rows": 186
+            },
+            "val": {
+              "optimal_scale_changed_rate": {
+                "source_count": 29,
+                "mean": 0.1724137931034483,
+                "median": 0.16666666666666666,
+                "p05": 0.0,
+                "p95": 0.43333333333333296,
+                "bootstrap_ci95": [
+                  0.12068965517241378,
+                  0.22988505747126434
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "optimal_scale_changed_rate_common_legal": {
+                "source_count": 29,
+                "mean": 0.1724137931034483,
+                "median": 0.16666666666666666,
+                "p05": 0.0,
+                "p95": 0.43333333333333296,
+                "bootstrap_ci95": [
+                  0.12068965517241378,
+                  0.22988505747126434
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "scale_label_stability_common_legal": {
+                "source_count": 29,
+                "mean": 0.8275862068965517,
+                "median": 0.8333333333333334,
+                "p05": 0.5666666666666667,
+                "p95": 1.0,
+                "bootstrap_ci95": [
+                  0.7701149425287357,
+                  0.8793103448275861
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "oracle_iou_change_common_legal": {
+                "source_count": 29,
+                "mean": -0.0025937517931949555,
+                "median": -0.0057043480327894636,
+                "p05": -0.026004069837896143,
+                "p95": 0.034902278116029826,
+                "bootstrap_ci95": [
+                  -0.009513251068376067,
+                  0.004604975508121364
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "holding_original_common_best_scale_regret": {
+                "source_count": 29,
+                "mean": 0.0010274957861945463,
+                "median": 0.00018998002246765436,
+                "p05": 0.0,
+                "p95": 0.005401101815342579,
+                "bootstrap_ci95": [
+                  0.00041399229504861766,
+                  0.0017501421024778226
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "original_best_action_becomes_illegal_rate": {
+                "source_count": 29,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "no_legal_window_rate": {
+                "source_count": 29,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "rejected_action_fraction": {
+                "source_count": 29,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "evaluated_rows": 174,
+              "mutually_legal_rows": 174
+            }
+          },
+          "position_drift": {
+            "maximum_accepted_position_drift_px": 0.9500000000000455,
+            "maximum_projection_drift_before_rejection_px": 18.200000000000045,
+            "invalid_actions": {
+              "position_shift_invalid": 15
+            },
+            "action_checks": 2880,
+            "valid_action_rate": 0.9947916666666666
+          },
+          "intentional_displacement_from_original_P1_max_px": 19.2,
+          "note": "drift is projection error relative to deliberately perturbed center; deliberate shift reported separately"
+        },
+        "active_axis_0.03": {
+          "by_split": {
+            "train": {
+              "optimal_scale_changed_rate": {
+                "source_count": 31,
+                "mean": 0.46236559139784944,
+                "median": 0.5,
+                "p05": 0.16666666666666666,
+                "p95": 0.8333333333333334,
+                "bootstrap_ci95": [
+                  0.38172043010752693,
+                  0.5483870967741934
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "optimal_scale_changed_rate_common_legal": {
+                "source_count": 31,
+                "mean": 0.4354838709677419,
+                "median": 0.3333333333333333,
+                "p05": 0.08333333333333333,
+                "p95": 0.8333333333333334,
+                "bootstrap_ci95": [
+                  0.3494623655913978,
+                  0.5215053763440861
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "scale_label_stability_common_legal": {
+                "source_count": 31,
+                "mean": 0.5645161290322581,
+                "median": 0.6666666666666666,
+                "p05": 0.16666666666666666,
+                "p95": 0.9166666666666667,
+                "bootstrap_ci95": [
+                  0.4784946236559139,
+                  0.6505376344086022
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "oracle_iou_change_common_legal": {
+                "source_count": 31,
+                "mean": -0.008115022015661635,
+                "median": -0.011632780508787702,
+                "p05": -0.08879743262276399,
+                "p95": 0.08911009803789535,
+                "bootstrap_ci95": [
+                  -0.027511921389912864,
+                  0.011816428686988737
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "holding_original_common_best_scale_regret": {
+                "source_count": 31,
+                "mean": 0.002113596779158792,
+                "median": 0.0007183950519266657,
+                "p05": 1.3384940217735376e-06,
+                "p95": 0.008083999232726565,
+                "bootstrap_ci95": [
+                  0.0012428678402781827,
+                  0.0030987714866755256
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "original_best_action_becomes_illegal_rate": {
+                "source_count": 31,
+                "mean": 0.026881720430107524,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.25,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.059139784946236555
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "no_legal_window_rate": {
+                "source_count": 31,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "rejected_action_fraction": {
+                "source_count": 31,
+                "mean": 0.01948924731182796,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.17708333333333334,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.043682795698924734
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "evaluated_rows": 186,
+              "mutually_legal_rows": 186
+            },
+            "val": {
+              "optimal_scale_changed_rate": {
+                "source_count": 29,
+                "mean": 0.41379310344827586,
+                "median": 0.3333333333333333,
+                "p05": 0.16666666666666666,
+                "p95": 0.7666666666666663,
+                "bootstrap_ci95": [
+                  0.339080459770115,
+                  0.49425287356321834
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "optimal_scale_changed_rate_common_legal": {
+                "source_count": 29,
+                "mean": 0.41379310344827586,
+                "median": 0.3333333333333333,
+                "p05": 0.16666666666666666,
+                "p95": 0.7666666666666663,
+                "bootstrap_ci95": [
+                  0.339080459770115,
+                  0.49425287356321834
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "scale_label_stability_common_legal": {
+                "source_count": 29,
+                "mean": 0.586206896551724,
+                "median": 0.6666666666666666,
+                "p05": 0.23333333333333334,
+                "p95": 0.8333333333333334,
+                "bootstrap_ci95": [
+                  0.5057471264367815,
+                  0.660919540229885
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "oracle_iou_change_common_legal": {
+                "source_count": 29,
+                "mean": -0.024417385576640218,
+                "median": -0.03280297816185834,
+                "p05": -0.09323363792388677,
+                "p95": 0.10776010478334203,
+                "bootstrap_ci95": [
+                  -0.04455953468991634,
+                  -0.0020385020083814255
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "holding_original_common_best_scale_regret": {
+                "source_count": 29,
+                "mean": 0.005249309934573081,
+                "median": 0.0025886854024631165,
+                "p05": 4.9261482488313925e-05,
+                "p95": 0.0183773994379325,
+                "bootstrap_ci95": [
+                  0.003009568919413366,
+                  0.007927355729879156
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "original_best_action_becomes_illegal_rate": {
+                "source_count": 29,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "no_legal_window_rate": {
+                "source_count": 29,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "rejected_action_fraction": {
+                "source_count": 29,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "evaluated_rows": 174,
+              "mutually_legal_rows": 174
+            }
+          },
+          "position_drift": {
+            "maximum_accepted_position_drift_px": 0.5,
+            "maximum_projection_drift_before_rejection_px": 56.59999999999991,
+            "invalid_actions": {
+              "position_shift_invalid": 29
+            },
+            "action_checks": 2880,
+            "valid_action_rate": 0.9899305555555555
+          },
+          "intentional_displacement_from_original_P1_max_px": 57.599999999999994,
+          "note": "drift is projection error relative to deliberately perturbed center; deliberate shift reported separately"
+        },
+        "active_axis_0.05": {
+          "by_split": {
+            "train": {
+              "optimal_scale_changed_rate": {
+                "source_count": 31,
+                "mean": 0.4086021505376344,
+                "median": 0.3333333333333333,
+                "p05": 0.0,
+                "p95": 0.75,
+                "bootstrap_ci95": [
+                  0.32258064516129026,
+                  0.5
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "optimal_scale_changed_rate_common_legal": {
+                "source_count": 31,
+                "mean": 0.3602150537634409,
+                "median": 0.3333333333333333,
+                "p05": 0.0,
+                "p95": 0.75,
+                "bootstrap_ci95": [
+                  0.2688172043010753,
+                  0.45161290322580644
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "scale_label_stability_common_legal": {
+                "source_count": 31,
+                "mean": 0.6397849462365593,
+                "median": 0.6666666666666666,
+                "p05": 0.25,
+                "p95": 1.0,
+                "bootstrap_ci95": [
+                  0.5483870967741935,
+                  0.7311827956989246
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "oracle_iou_change_common_legal": {
+                "source_count": 31,
+                "mean": -0.022909302808722547,
+                "median": -0.04717341954202453,
+                "p05": -0.14202229915857273,
+                "p95": 0.14467505667105546,
+                "bootstrap_ci95": [
+                  -0.05479203386228802,
+                  0.010457034566504193
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "holding_original_common_best_scale_regret": {
+                "source_count": 31,
+                "mean": 0.0045670330817676056,
+                "median": 0.0017047524947111346,
+                "p05": 0.0,
+                "p95": 0.01737013321568544,
+                "bootstrap_ci95": [
+                  0.0025486417960943605,
+                  0.006902966938199344
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "original_best_action_becomes_illegal_rate": {
+                "source_count": 31,
+                "mean": 0.04838709677419355,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.41666666666666663,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.1075268817204301
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "no_legal_window_rate": {
+                "source_count": 31,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "rejected_action_fraction": {
+                "source_count": 31,
+                "mean": 0.03561827956989247,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.3020833333333333,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.07997311827956989
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "evaluated_rows": 186,
+              "mutually_legal_rows": 186
+            },
+            "val": {
+              "optimal_scale_changed_rate": {
+                "source_count": 29,
+                "mean": 0.3908045977011494,
+                "median": 0.3333333333333333,
+                "p05": 0.06666666666666668,
+                "p95": 0.7666666666666663,
+                "bootstrap_ci95": [
+                  0.31034482758620685,
+                  0.47701149425287354
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "optimal_scale_changed_rate_common_legal": {
+                "source_count": 29,
+                "mean": 0.3908045977011494,
+                "median": 0.3333333333333333,
+                "p05": 0.06666666666666668,
+                "p95": 0.7666666666666663,
+                "bootstrap_ci95": [
+                  0.31034482758620685,
+                  0.47701149425287354
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "scale_label_stability_common_legal": {
+                "source_count": 29,
+                "mean": 0.6091954022988505,
+                "median": 0.6666666666666666,
+                "p05": 0.23333333333333334,
+                "p95": 0.933333333333333,
+                "bootstrap_ci95": [
+                  0.5229885057471265,
+                  0.6896551724137931
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "oracle_iou_change_common_legal": {
+                "source_count": 29,
+                "mean": -0.06478485983480192,
+                "median": -0.08245212284254677,
+                "p05": -0.16940038340540292,
+                "p95": 0.15727235229122138,
+                "bootstrap_ci95": [
+                  -0.0964654840014444,
+                  -0.028542777339291704
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "holding_original_common_best_scale_regret": {
+                "source_count": 29,
+                "mean": 0.005085364352780012,
+                "median": 0.002389185446160555,
+                "p05": 8.016745958766561e-06,
+                "p95": 0.015658723119585067,
+                "bootstrap_ci95": [
+                  0.0031925047192325738,
+                  0.0072488902513475565
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "original_best_action_becomes_illegal_rate": {
+                "source_count": 29,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "no_legal_window_rate": {
+                "source_count": 29,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "rejected_action_fraction": {
+                "source_count": 29,
+                "mean": 0.0,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.0
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "evaluated_rows": 174,
+              "mutually_legal_rows": 174
+            }
+          },
+          "position_drift": {
+            "maximum_accepted_position_drift_px": 0.5,
+            "maximum_projection_drift_before_rejection_px": 95.0,
+            "invalid_actions": {
+              "position_shift_invalid": 53
+            },
+            "action_checks": 2880,
+            "valid_action_rate": 0.9815972222222222
+          },
+          "intentional_displacement_from_original_P1_max_px": 96.0,
+          "note": "drift is projection error relative to deliberately perturbed center; deliberate shift reported separately"
+        },
+        "validation_error_matched": {
+          "by_split": {
+            "train": {
+              "optimal_scale_changed_rate": {
+                "source_count": 31,
+                "mean": 0.7580645161290321,
+                "median": 0.8333333333333334,
+                "p05": 0.5,
+                "p95": 1.0,
+                "bootstrap_ci95": [
+                  0.6935483870967742,
+                  0.8172043010752689
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "optimal_scale_changed_rate_common_legal": {
+                "source_count": 31,
+                "mean": 0.1935483870967742,
+                "median": 0.16666666666666666,
+                "p05": 0.0,
+                "p95": 0.5,
+                "bootstrap_ci95": [
+                  0.12903225806451613,
+                  0.26344086021505375
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "scale_label_stability_common_legal": {
+                "source_count": 31,
+                "mean": 0.8064516129032258,
+                "median": 0.8333333333333334,
+                "p05": 0.5,
+                "p95": 1.0,
+                "bootstrap_ci95": [
+                  0.7365591397849462,
+                  0.8709677419354838
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "oracle_iou_change_common_legal": {
+                "source_count": 31,
+                "mean": -0.04473234687704716,
+                "median": -0.05856648000467072,
+                "p05": -0.16099729004984495,
+                "p95": 0.0907694241090714,
+                "bootstrap_ci95": [
+                  -0.07119252775536,
+                  -0.015527119366537294
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "holding_original_common_best_scale_regret": {
+                "source_count": 31,
+                "mean": 0.003273412497129474,
+                "median": 0.001960362601389626,
+                "p05": 0.0,
+                "p95": 0.00950624257993571,
+                "bootstrap_ci95": [
+                  0.002008765122607486,
+                  0.0047686872778802455
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "original_best_action_becomes_illegal_rate": {
+                "source_count": 31,
+                "mean": 0.5913978494623655,
+                "median": 0.6666666666666666,
+                "p05": 0.25,
+                "p95": 1.0,
+                "bootstrap_ci95": [
+                  0.5053763440860215,
+                  0.6774193548387096
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "no_legal_window_rate": {
+                "source_count": 31,
+                "mean": 0.016129032258064516,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.04838709677419355
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "rejected_action_fraction": {
+                "source_count": 31,
+                "mean": 0.5255376344086022,
+                "median": 0.5208333333333334,
+                "p05": 0.35416666666666663,
+                "p95": 0.71875,
+                "bootstrap_ci95": [
+                  0.4858870967741936,
+                  0.5678763440860214
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "evaluated_rows": 186,
+              "mutually_legal_rows": 183
+            },
+            "val": {
+              "optimal_scale_changed_rate": {
+                "source_count": 29,
+                "mean": 0.7356321839080461,
+                "median": 0.6666666666666666,
+                "p05": 0.5,
+                "p95": 1.0,
+                "bootstrap_ci95": [
+                  0.6724137931034483,
+                  0.8045977011494252
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "optimal_scale_changed_rate_common_legal": {
+                "source_count": 29,
+                "mean": 0.20344827586206898,
+                "median": 0.16666666666666666,
+                "p05": 0.0,
+                "p95": 0.5,
+                "bootstrap_ci95": [
+                  0.14597701149425288,
+                  0.264367816091954
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "scale_label_stability_common_legal": {
+                "source_count": 29,
+                "mean": 0.7965517241379311,
+                "median": 0.8333333333333334,
+                "p05": 0.5,
+                "p95": 1.0,
+                "bootstrap_ci95": [
+                  0.7356321839080461,
+                  0.8540229885057471
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "oracle_iou_change_common_legal": {
+                "source_count": 29,
+                "mean": -0.13264231602032403,
+                "median": -0.13086325984471014,
+                "p05": -0.2572477496446684,
+                "p95": 0.0162821987701595,
+                "bootstrap_ci95": [
+                  -0.16692962432052544,
+                  -0.10129123685386758
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "holding_original_common_best_scale_regret": {
+                "source_count": 29,
+                "mean": 0.0023264561622141724,
+                "median": 0.0007333297579676379,
+                "p05": 0.0,
+                "p95": 0.00872023919111346,
+                "bootstrap_ci95": [
+                  0.0013466536740402728,
+                  0.0035596286476770396
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "original_best_action_becomes_illegal_rate": {
+                "source_count": 29,
+                "mean": 0.5402298850574713,
+                "median": 0.5,
+                "p05": 0.16666666666666666,
+                "p95": 0.8333333333333334,
+                "bootstrap_ci95": [
+                  0.4655172413793103,
+                  0.615086206896551
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "no_legal_window_rate": {
+                "source_count": 29,
+                "mean": 0.005747126436781609,
+                "median": 0.0,
+                "p05": 0.0,
+                "p95": 0.0,
+                "bootstrap_ci95": [
+                  0.0,
+                  0.017241379310344827
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "rejected_action_fraction": {
+                "source_count": 29,
+                "mean": 0.5201149425287356,
+                "median": 0.5416666666666666,
+                "p05": 0.30833333333333335,
+                "p95": 0.6375,
+                "bootstrap_ci95": [
+                  0.48060344827586216,
+                  0.5596264367816093
+                ],
+                "bootstrap_unit": "independent source",
+                "bootstrap_replicates": 2000,
+                "seed": 20261108
+              },
+              "evaluated_rows": 174,
+              "mutually_legal_rows": 173
+            }
+          },
+          "position_drift": {
+            "maximum_accepted_position_drift_px": 1.0,
+            "maximum_projection_drift_before_rejection_px": 299.25,
+            "invalid_actions": {
+              "position_shift_invalid": 1482,
+              "center_out_of_image": 24
+            },
+            "action_checks": 2880,
+            "valid_action_rate": 0.47708333333333336
+          },
+          "intentional_displacement_from_original_P1_max_px": 803.25,
+          "note": "drift is projection error relative to deliberately perturbed center; deliberate shift reported separately"
+        }
+      },
+      "empirical_fit": "empirical signed normalized Val residuals: uniform source, uniform frame; exclude evaluated Val source; preserve bias and magnitudes",
+      "use": "sensitivity diagnostic only; no label/action-bin/policy refit using validation residuals"
+    },
+    "GNMC/A": {
+      "result": null,
+      "reason": "no complete actual final-P1 Train/Val cache for this dataset in the 1h LIVE run"
+    },
+    "GNMC/B": {
+      "result": null,
+      "reason": "no complete actual final-P1 Train/Val cache for this dataset in the 1h LIVE run"
+    }
+  },
+  "provenance": {
+    "created_at_utc": "2026-11-08T04:07:49.007879+00:00",
+    "seed": 20261108,
+    "metric_scope": "source-macro final deployed spatial IoU; fixed P1/temporal set, QP and frame count; not official competition Score",
+    "cohort_sha256": "06dad23a020ec39bd49ad76ae7a82f6aa04913b3349e10228ec409af5e8625fc",
+    "manifest_sha256": "6276bce75f9b2759180fcfecb09b01fe8ca0f74c99a26bcf5daa6497b0f0ab52",
+    "scale_bins_sha256": "c205ff8a10e603d1f1fefdd208a78ca5e7ac75a83882c8498354ba8b3b7644fa",
+    "Scale_bins_refitted": false,
+    "code_sha256": {
+      "analysis_script": "6fc91c89b9f36c64b1c182c8ace3c3a26d11a72dfd9336e6973b20666be2c7a4",
+      "analysis_module": "78c86a09a4919fc38fd134a0ff9e656cd3d00662e95ba4ef26a1b8b965a29bc8"
+    },
+    "position_record_count": 732,
+    "git_commit": "8cf0131f7d6f20e64a15df1f9464beb21480a95e",
+    "A_scope": "LIVE native portrait crop",
+    "B_scope": "transposed LIVE landscape crop; not native upright B validation",
+    "source_selection": "predeclared label-blind source hash; alternating splits; budget-censored completed cohort",
+    "interval_scope": "conditional on observed cohort and Train-selected configuration; no multiple-comparison or full-population guarantee"
+  }
+}

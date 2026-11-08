@@ -1,3 +1,11 @@
+## 2026-11-08 — Defer Scale-SFT after bounded final-P1 diagnosis
+
+Status: Accepted for this diagnostic round; no formal training launched.
+
+Evidence: `artifacts/scale_sft_dpo/final_preflight/final_report.md`. Best-constant gains are positive on 29 independent LIVE Val sources, while low-level RGB policy-minus-best-constant CIs cross zero. Oracle@8 leaves about .036/.037 IoU but sees GT and cannot establish learnability. Native B and GNMC deployed-policy evidence are missing; the cohort is budget-censored. True P1 Train outputs do not show optimistic Train center error in this sampled comparison; no causal inference follows.
+
+Decision: retain A=.90 and transposed-B=.95 as Train-selected diagnostic controls only, without modifying deployment/P1/P2 or submission artifacts. Defer formal Scale-SFT/DPO. If the owner reopens learning, first require reliable independent-source Learned−BestConstant evidence using a stronger frozen semantic probe or independent confirmation; only then compare Soft-Target SFT. DPO necessity remains unmeasured and needs legitimate fixed-center independent MOS/ranking supervision. Do not convert SACD best_box or repeated IoU orderings into artificial human preferences.
+
 ## 2026-11-08 — Diagnose Scale against constants before any SFT/DPO
 
 Decision: defer Scale-SFT/DPO. Finish E0/E1/E2 using CPU geometry and existing public raw caches, retaining explicit nulls for final-deployment measurements. Freeze P1 and frames; Scale is inserted after its final QP because the original QP only changes an active-axis position at fixed width. Do not feed shrunken windows through the original maximum-window integer exporter.

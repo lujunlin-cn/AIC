@@ -1,0 +1,165 @@
+{
+  "completed_physical_frames": 366,
+  "completed_view_frames": 732,
+  "new_in_this_GPU_run_physical_frames": 366,
+  "new_in_this_GPU_run_view_frames": 732,
+  "reused_prior_physical_frames": 0,
+  "reused_prior_view_frames": 0,
+  "original_expected_physical_frames": 10800,
+  "clean_planned_physical_frames": 10770,
+  "physical_frame_coverage_of_original_request": 0.03388888888888889,
+  "by_split": {
+    "train": {
+      "completed_sources": 31,
+      "original_sources": 1600,
+      "clean_sources": 1595,
+      "original_source_coverage": 0.019375,
+      "clean_source_coverage": 0.019435736677115987,
+      "frames_per_completed_source": {
+        "6": 31
+      },
+      "source_ids": [
+        "video1041",
+        "video1043",
+        "video1079",
+        "video1125",
+        "video119",
+        "video1192",
+        "video1207",
+        "video1210",
+        "video1270",
+        "video1277",
+        "video1318",
+        "video1333",
+        "video1358",
+        "video1376",
+        "video1394",
+        "video1499",
+        "video1501",
+        "video1520",
+        "video2721",
+        "video273",
+        "video2785",
+        "video295",
+        "video325",
+        "video342",
+        "video414",
+        "video425",
+        "video467",
+        "video660",
+        "video700",
+        "video851",
+        "video935"
+      ]
+    },
+    "val": {
+      "completed_sources": 30,
+      "original_sources": 200,
+      "clean_sources": 200,
+      "original_source_coverage": 0.15,
+      "clean_source_coverage": 0.15,
+      "frames_per_completed_source": {
+        "6": 30
+      },
+      "source_ids": [
+        "video10",
+        "video101",
+        "video1047",
+        "video1067",
+        "video1131",
+        "video1330",
+        "video135",
+        "video1377",
+        "video1403",
+        "video1427",
+        "video1444",
+        "video1528",
+        "video153",
+        "video1548",
+        "video231",
+        "video2596",
+        "video2617",
+        "video2644",
+        "video2758",
+        "video2793",
+        "video280",
+        "video327",
+        "video461",
+        "video527",
+        "video574",
+        "video647",
+        "video658",
+        "video73",
+        "video861",
+        "video871"
+      ]
+    }
+  },
+  "by_route": {
+    "A": {
+      "view_frames": 366,
+      "sources": 61
+    },
+    "B": {
+      "view_frames": 366,
+      "sources": 61
+    }
+  },
+  "GPU_budget_ledger": {
+    "cap_seconds": 3600.0,
+    "runs": [
+      {
+        "started_at": "2026-11-08T03:08:11.700087+00:00",
+        "ended_at": "2026-11-08T04:07:34.897029+00:00",
+        "elapsed_seconds": 3563.1969671733677,
+        "budget_remaining_at_start_seconds": 3600.0,
+        "includes_model_load_warmup_and_inference": true,
+        "formal_training": false,
+        "physical_GPU_count": 1,
+        "workers": 2,
+        "optimizer_steps": 0,
+        "config_sha256": "b09ebb2aaf1f781c6832cd54294c38f5f89233a49322731a30861cd34699f8d8",
+        "cohort_sha256": "06dad23a020ec39bd49ad76ae7a82f6aa04913b3349e10228ec409af5e8625fc",
+        "stop_reason": "shared_hard_budget",
+        "worker_exit_codes": [
+          1,
+          1
+        ]
+      }
+    ],
+    "cumulative_GPU_seconds": 3563.1969671733677,
+    "within_budget": true
+  },
+  "sampling": "six disjoint temporal strata; alternating public-GT-scale targets within strata",
+  "quarantined_train_sources": 5,
+  "scope": "completed sources only; interrupted partial source outputs excluded; not full-data coverage",
+  "throughput": {
+    "requested_benchmark_sources": 100,
+    "completed_new_sources": 61,
+    "100_source_benchmark_completed": false,
+    "measured_100_source_runtime_seconds": null,
+    "new_sources_per_GPU_wall_second": 0.01711945776839567,
+    "partial_cohort_extrapolated_all_clean_sources_seconds": 104851.45173895403,
+    "estimate_warning": "partial-cohort extrapolation including loading; not a completed 100-source benchmark or full-job timing",
+    "frame_reduction": "not used: all completed sources retain 6; original 24-anchor runtime cost does not scale with evaluation frame count"
+  },
+  "provenance": {
+    "created_at_utc": "2026-11-08T04:07:49.007879+00:00",
+    "seed": 20261108,
+    "metric_scope": "source-macro final deployed spatial IoU; fixed P1/temporal set, QP and frame count; not official competition Score",
+    "cohort_sha256": "06dad23a020ec39bd49ad76ae7a82f6aa04913b3349e10228ec409af5e8625fc",
+    "manifest_sha256": "6276bce75f9b2759180fcfecb09b01fe8ca0f74c99a26bcf5daa6497b0f0ab52",
+    "scale_bins_sha256": "c205ff8a10e603d1f1fefdd208a78ca5e7ac75a83882c8498354ba8b3b7644fa",
+    "Scale_bins_refitted": false,
+    "code_sha256": {
+      "analysis_script": "6fc91c89b9f36c64b1c182c8ace3c3a26d11a72dfd9336e6973b20666be2c7a4",
+      "analysis_module": "78c86a09a4919fc38fd134a0ff9e656cd3d00662e95ba4ef26a1b8b965a29bc8"
+    },
+    "position_record_count": 732,
+    "git_commit": "8cf0131f7d6f20e64a15df1f9464beb21480a95e",
+    "A_scope": "LIVE native portrait crop",
+    "B_scope": "transposed LIVE landscape crop; not native upright B validation",
+    "source_selection": "predeclared label-blind source hash; alternating splits; budget-censored completed cohort",
+    "interval_scope": "conditional on observed cohort and Train-selected configuration; no multiple-comparison or full-population guarantee"
+  }
+}

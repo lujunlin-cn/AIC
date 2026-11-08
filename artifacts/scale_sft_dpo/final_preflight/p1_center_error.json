@@ -1,0 +1,1239 @@
+{
+  "by_dataset_and_route": {
+    "LIVE_YT_VC/A": {
+      "train": {
+        "absolute_x_px": {
+          "source_count": 31,
+          "mean": 187.48655913978496,
+          "median": 160.5,
+          "p05": 62.29166666666667,
+          "p95": 408.29166666666663,
+          "bootstrap_ci95": [
+            150.07506720430104,
+            233.6379032258064
+          ],
+          "bootstrap_unit": "independent source",
+          "bootstrap_replicates": 2000,
+          "seed": 20261108
+        },
+        "absolute_y_px": {
+          "source_count": 31,
+          "mean": 58.03912783751495,
+          "median": 58.39814814814815,
+          "p05": 25.791666666666668,
+          "p95": 90.78703703703704,
+          "bootstrap_ci95": [
+            50.97299880525687,
+            65.4493503584229
+          ],
+          "bootstrap_unit": "independent source",
+          "bootstrap_replicates": 2000,
+          "seed": 20261108
+        },
+        "absolute_active_axis_px": {
+          "source_count": 31,
+          "mean": 187.48655913978496,
+          "median": 160.5,
+          "p05": 62.29166666666667,
+          "p95": 408.29166666666663,
+          "bootstrap_ci95": [
+            150.07506720430104,
+            233.6379032258064
+          ],
+          "bootstrap_unit": "independent source",
+          "bootstrap_replicates": 2000,
+          "seed": 20261108
+        },
+        "absolute_x_fraction_width": {
+          "source_count": 31,
+          "mean": 0.09764924955197134,
+          "median": 0.08359374999999998,
+          "p05": 0.03244357638888889,
+          "p95": 0.2126519097222222,
+          "bootstrap_ci95": [
+            0.07816409750224014,
+            0.12168640793010752
+          ],
+          "bootstrap_unit": "independent source",
+          "bootstrap_replicates": 2000,
+          "seed": 20261108
+        },
+        "absolute_y_fraction_height": {
+          "source_count": 31,
+          "mean": 0.0537399331828842,
+          "median": 0.05407235939643346,
+          "p05": 0.023881172839506172,
+          "p95": 0.08406207133058988,
+          "bootstrap_ci95": [
+            0.047197221115978585,
+            0.060601250331873094
+          ],
+          "bootstrap_unit": "independent source",
+          "bootstrap_replicates": 2000,
+          "seed": 20261108
+        },
+        "absolute_active_axis_fraction": {
+          "source_count": 31,
+          "mean": 0.09764924955197134,
+          "median": 0.08359374999999998,
+          "p05": 0.03244357638888889,
+          "p95": 0.2126519097222222,
+          "bootstrap_ci95": [
+            0.07816409750224014,
+            0.12168640793010752
+          ],
+          "bootstrap_unit": "independent source",
+          "bootstrap_replicates": 2000,
+          "seed": 20261108
+        },
+        "signed_x_fraction_width": {
+          "source_count": 31,
+          "mean": -0.0018775201612903248,
+          "median": -0.001996527777777777,
+          "p05": -0.15284288194444443,
+          "p95": 0.14594184027777776,
+          "bootstrap_ci95": [
+            -0.03584841929883513,
+            0.035353837645609294
+          ],
+          "bootstrap_unit": "independent source",
+          "bootstrap_replicates": 2000,
+          "seed": 20261108
+        },
+        "signed_y_fraction_height": {
+          "source_count": 31,
+          "mean": -0.01462647683525821,
+          "median": -0.0035751028806584478,
+          "p05": -0.07305812757201648,
+          "p95": 0.04333847736625513,
+          "bootstrap_ci95": [
+            -0.027587946369308388,
+            -0.0010275620602681736
+          ],
+          "bootstrap_unit": "independent source",
+          "bootstrap_replicates": 2000,
+          "seed": 20261108
+        },
+        "euclidean_px": {
+          "source_count": 31,
+          "mean": 212.3844007204758,
+          "median": 200.71201244393436,
+          "p05": 84.521790555938,
+          "p95": 438.2980311732435,
+          "bootstrap_ci95": [
+            175.80436963638053,
+            256.39636053062685
+          ],
+          "bootstrap_unit": "independent source",
+          "bootstrap_replicates": 2000,
+          "seed": 20261108
+        },
+        "linf_px": {
+          "source_count": 31,
+          "mean": 203.8028673835125,
+          "median": 184.8425925925926,
+          "p05": 78.89814814814815,
+          "p95": 431.4027777777777,
+          "bootstrap_ci95": [
+            166.55148596176824,
+            248.27987604540021
+          ],
+          "bootstrap_unit": "independent source",
+          "bootstrap_replicates": 2000,
+          "seed": 20261108
+        }
+      },
+      "val": {
+        "absolute_x_px": {
+          "source_count": 29,
+          "mean": 137.8706896551724,
+          "median": 121.66666666666667,
+          "p05": 41.916666666666664,
+          "p95": 289.3999999999999,
+          "bootstrap_ci95": [
+            110.77284482758618,
+            166.73821839080458
+          ],
+          "bootstrap_unit": "independent source",
+          "bootstrap_replicates": 2000,
+          "seed": 20261108
+        },
+        "absolute_y_px": {
+          "source_count": 29,
+          "mean": 52.030012771392094,
+          "median": 49.26851851851851,
+          "p05": 18.533333333333342,
+          "p95": 87.84814814814814,
+          "bootstrap_ci95": [
+            43.89284802043423,
+            60.997469667943804
+          ],
+          "bootstrap_unit": "independent source",
+          "bootstrap_replicates": 2000,
+          "seed": 20261108
+        },
+        "absolute_active_axis_px": {
+          "source_count": 29,
+          "mean": 137.8706896551724,
+          "median": 121.66666666666667,
+          "p05": 41.916666666666664,
+          "p95": 289.3999999999999,
+          "bootstrap_ci95": [
+            110.77284482758618,
+            166.73821839080458
+          ],
+          "bootstrap_unit": "independent source",
+          "bootstrap_replicates": 2000,
+          "seed": 20261108
+        },
+        "absolute_x_fraction_width": {
+          "source_count": 29,
+          "mean": 0.07180765086206899,
+          "median": 0.06336805555555557,
+          "p05": 0.02183159722222222,
+          "p95": 0.15072916666666664,
+          "bootstrap_ci95": [
+            0.05769419001436783,
+            0.08684282207854406
+          ],
+          "bootstrap_unit": "independent source",
+          "bootstrap_replicates": 2000,
+          "seed": 20261108
+        },
+        "absolute_y_fraction_height": {
+          "source_count": 29,
+          "mean": 0.04817593775128898,
+          "median": 0.045618998628257884,
+          "p05": 0.017160493827160502,
+          "p95": 0.08134087791495197,
+          "bootstrap_ci95": [
+            0.04064152594484651,
+            0.05647913858142945
+          ],
+          "bootstrap_unit": "independent source",
+          "bootstrap_replicates": 2000,
+          "seed": 20261108
+        },
+        "absolute_active_axis_fraction": {
+          "source_count": 29,
+          "mean": 0.07180765086206899,
+          "median": 0.06336805555555557,
+          "p05": 0.02183159722222222,
+          "p95": 0.15072916666666664,
+          "bootstrap_ci95": [
+            0.05769419001436783,
+            0.08684282207854406
+          ],
+          "bootstrap_unit": "independent source",
+          "bootstrap_replicates": 2000,
+          "seed": 20261108
+        },
+        "signed_x_fraction_width": {
+          "source_count": 29,
+          "mean": -0.010570821360153256,
+          "median": -0.007552083333333337,
+          "p05": -0.0649392361111111,
+          "p95": 0.05631076388888886,
+          "bootstrap_ci95": [
+            -0.025391522988505746,
+            0.004058533884099612
+          ],
+          "bootstrap_unit": "independent source",
+          "bootstrap_replicates": 2000,
+          "seed": 20261108
+        },
+        "signed_y_fraction_height": {
+          "source_count": 29,
+          "mean": 0.0012434369235135396,
+          "median": -0.008590534979423881,
+          "p05": -0.052402263374485614,
+          "p95": 0.0637088477366255,
+          "bootstrap_ci95": [
+            -0.012555653114800632,
+            0.015037538136795784
+          ],
+          "bootstrap_unit": "independent source",
+          "bootstrap_replicates": 2000,
+          "seed": 20261108
+        },
+        "euclidean_px": {
+          "source_count": 29,
+          "mean": 160.1148763291665,
+          "median": 150.0363574113202,
+          "p05": 73.92714051036182,
+          "p95": 304.1661439680854,
+          "bootstrap_ci95": [
+            134.75449365512358,
+            187.79325814287571
+          ],
+          "bootstrap_unit": "independent source",
+          "bootstrap_replicates": 2000,
+          "seed": 20261108
+        },
+        "linf_px": {
+          "source_count": 29,
+          "mean": 151.55842911877397,
+          "median": 141.67592592592592,
+          "p05": 67.67592592592592,
+          "p95": 289.3999999999999,
+          "bootstrap_ci95": [
+            126.91518199233717,
+            178.9624680715197
+          ],
+          "bootstrap_unit": "independent source",
+          "bootstrap_replicates": 2000,
+          "seed": 20261108
+        }
+      },
+      "train_validation_gap": {
+        "val_minus_train_normalized_active_axis_MAE": -0.02584159868990235,
+        "independent_source_bootstrap_ci95": [
+          -0.05196055030280559,
+          0.00010191445355951591
+        ],
+        "positive_gap_means_train_looks_better": true,
+        "statistically_resolved_positive_gap": false,
+        "causal_in_sample_optimism_proven": false,
+        "limitation": "sampled cohorts differ in content; Val was historically used for selection; source/byte exposure audited separately"
+      },
+      "scope": "source summaries of per-frame absolute errors against public human crop centers",
+      "descriptive_all_sampled_sources": {
+        "train": {
+          "absolute_x_px": {
+            "source_count": 31,
+            "mean": 187.48655913978496,
+            "median": 160.5,
+            "p05": 62.29166666666667,
+            "p95": 408.29166666666663,
+            "bootstrap_ci95": [
+              150.07506720430104,
+              233.6379032258064
+            ],
+            "bootstrap_unit": "independent source",
+            "bootstrap_replicates": 2000,
+            "seed": 20261108
+          },
+          "absolute_y_px": {
+            "source_count": 31,
+            "mean": 58.03912783751495,
+            "median": 58.39814814814815,
+            "p05": 25.791666666666668,
+            "p95": 90.78703703703704,
+            "bootstrap_ci95": [
+              50.97299880525687,
+              65.4493503584229
+            ],
+            "bootstrap_unit": "independent source",
+            "bootstrap_replicates": 2000,
+            "seed": 20261108
+          },
+          "absolute_active_axis_px": {
+            "source_count": 31,
+            "mean": 187.48655913978496,
+            "median": 160.5,
+            "p05": 62.29166666666667,
+            "p95": 408.29166666666663,
+            "bootstrap_ci95": [
+              150.07506720430104,
+              233.6379032258064
+            ],
+            "bootstrap_unit": "independent source",
+            "bootstrap_replicates": 2000,
+            "seed": 20261108
+          },
+          "absolute_x_fraction_width": {
+            "source_count": 31,
+            "mean": 0.09764924955197134,
+            "median": 0.08359374999999998,
+            "p05": 0.03244357638888889,
+            "p95": 0.2126519097222222,
+            "bootstrap_ci95": [
+              0.07816409750224014,
+              0.12168640793010752
+            ],
+            "bootstrap_unit": "independent source",
+            "bootstrap_replicates": 2000,
+            "seed": 20261108
+          },
+          "absolute_y_fraction_height": {
+            "source_count": 31,
+            "mean": 0.0537399331828842,
+            "median": 0.05407235939643346,
+            "p05": 0.023881172839506172,
+            "p95": 0.08406207133058988,
+            "bootstrap_ci95": [
+              0.047197221115978585,
+              0.060601250331873094
+            ],
+            "bootstrap_unit": "independent source",
+            "bootstrap_replicates": 2000,
+            "seed": 20261108
+          },
+          "absolute_active_axis_fraction": {
+            "source_count": 31,
+            "mean": 0.09764924955197134,
+            "median": 0.08359374999999998,
+            "p05": 0.03244357638888889,
+            "p95": 0.2126519097222222,
+            "bootstrap_ci95": [
+              0.07816409750224014,
+              0.12168640793010752
+            ],
+            "bootstrap_unit": "independent source",
+            "bootstrap_replicates": 2000,
+            "seed": 20261108
+          },
+          "signed_x_fraction_width": {
+            "source_count": 31,
+            "mean": -0.0018775201612903248,
+            "median": -0.001996527777777777,
+            "p05": -0.15284288194444443,
+            "p95": 0.14594184027777776,
+            "bootstrap_ci95": [
+              -0.03584841929883513,
+              0.035353837645609294
+            ],
+            "bootstrap_unit": "independent source",
+            "bootstrap_replicates": 2000,
+            "seed": 20261108
+          },
+          "signed_y_fraction_height": {
+            "source_count": 31,
+            "mean": -0.01462647683525821,
+            "median": -0.0035751028806584478,
+            "p05": -0.07305812757201648,
+            "p95": 0.04333847736625513,
+            "bootstrap_ci95": [
+              -0.027587946369308388,
+              -0.0010275620602681736
+            ],
+            "bootstrap_unit": "independent source",
+            "bootstrap_replicates": 2000,
+            "seed": 20261108
+          },
+          "euclidean_px": {
+            "source_count": 31,
+            "mean": 212.3844007204758,
+            "median": 200.71201244393436,
+            "p05": 84.521790555938,
+            "p95": 438.2980311732435,
+            "bootstrap_ci95": [
+              175.80436963638053,
+              256.39636053062685
+            ],
+            "bootstrap_unit": "independent source",
+            "bootstrap_replicates": 2000,
+            "seed": 20261108
+          },
+          "linf_px": {
+            "source_count": 31,
+            "mean": 203.8028673835125,
+            "median": 184.8425925925926,
+            "p05": 78.89814814814815,
+            "p95": 431.4027777777777,
+            "bootstrap_ci95": [
+              166.55148596176824,
+              248.27987604540021
+            ],
+            "bootstrap_unit": "independent source",
+            "bootstrap_replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        "val": {
+          "absolute_x_px": {
+            "source_count": 30,
+            "mean": 135.77499999999998,
+            "median": 119.54166666666667,
+            "p05": 41.9375,
+            "p95": 287.65833333333325,
+            "bootstrap_ci95": [
+              108.32680555555555,
+              165.36930555555548
+            ],
+            "bootstrap_unit": "independent source",
+            "bootstrap_replicates": 2000,
+            "seed": 20261108
+          },
+          "absolute_y_px": {
+            "source_count": 30,
+            "mean": 52.093518518518515,
+            "median": 49.319444444444436,
+            "p05": 18.66481481481482,
+            "p95": 87.48194444444442,
+            "bootstrap_ci95": [
+              44.18177469135804,
+              60.818996913580236
+            ],
+            "bootstrap_unit": "independent source",
+            "bootstrap_replicates": 2000,
+            "seed": 20261108
+          },
+          "absolute_active_axis_px": {
+            "source_count": 30,
+            "mean": 135.77499999999998,
+            "median": 119.54166666666667,
+            "p05": 41.9375,
+            "p95": 287.65833333333325,
+            "bootstrap_ci95": [
+              108.32680555555555,
+              165.36930555555548
+            ],
+            "bootstrap_unit": "independent source",
+            "bootstrap_replicates": 2000,
+            "seed": 20261108
+          },
+          "absolute_x_fraction_width": {
+            "source_count": 30,
+            "mean": 0.07071614583333335,
+            "median": 0.06226128472222223,
+            "p05": 0.021842447916666667,
+            "p95": 0.14982204861111106,
+            "bootstrap_ci95": [
+              0.056420211226851855,
+              0.0861298466435185
+            ],
+            "bootstrap_unit": "independent source",
+            "bootstrap_replicates": 2000,
+            "seed": 20261108
+          },
+          "absolute_y_fraction_height": {
+            "source_count": 30,
+            "mean": 0.04823473936899864,
+            "median": 0.045666152263374477,
+            "p05": 0.017282235939643356,
+            "p95": 0.0810018004115226,
+            "bootstrap_ci95": [
+              0.04090905064014633,
+              0.05631388603109283
+            ],
+            "bootstrap_unit": "independent source",
+            "bootstrap_replicates": 2000,
+            "seed": 20261108
+          },
+          "absolute_active_axis_fraction": {
+            "source_count": 30,
+            "mean": 0.07071614583333335,
+            "median": 0.06226128472222223,
+            "p05": 0.021842447916666667,
+            "p95": 0.14982204861111106,
+            "bootstrap_ci95": [
+              0.056420211226851855,
+              0.0861298466435185
+            ],
+            "bootstrap_unit": "independent source",
+            "bootstrap_replicates": 2000,
+            "seed": 20261108
+          },
+          "signed_x_fraction_width": {
+            "source_count": 30,
+            "mean": -0.011208043981481479,
+            "median": -0.008116319444444445,
+            "p05": -0.06437065972222222,
+            "p95": 0.05574869791666663,
+            "bootstrap_ci95": [
+              -0.026100983796296287,
+              0.002708586516203703
+            ],
+            "bootstrap_unit": "independent source",
+            "bootstrap_replicates": 2000,
+            "seed": 20261108
+          },
+          "signed_y_fraction_height": {
+            "source_count": 30,
+            "mean": 0.0018492798353909347,
+            "median": -0.005465534979423881,
+            "p05": -0.05212062757201647,
+            "p95": 0.06359310699588475,
+            "bootstrap_ci95": [
+              -0.011449266975308651,
+              0.01593293467078187
+            ],
+            "bootstrap_unit": "independent source",
+            "bootstrap_replicates": 2000,
+            "seed": 20261108
+          },
+          "euclidean_px": {
+            "source_count": 30,
+            "mean": 158.03151945777938,
+            "median": 147.88304129605842,
+            "p05": 74.11179682659163,
+            "p95": 302.00932941994137,
+            "bootstrap_ci95": [
+              132.05625921900221,
+              185.41314835551756
+            ],
+            "bootstrap_unit": "independent source",
+            "bootstrap_replicates": 2000,
+            "seed": 20261108
+          },
+          "linf_px": {
+            "source_count": 30,
+            "mean": 149.33425925925926,
+            "median": 137.95833333333331,
+            "p05": 67.9050925925926,
+            "p95": 287.65833333333325,
+            "bootstrap_ci95": [
+              123.70498456790123,
+              176.52653549382708
+            ],
+            "bootstrap_unit": "independent source",
+            "bootstrap_replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        "train_validation_gap": {
+          "val_minus_train_normalized_active_axis_MAE": -0.026933103718637982,
+          "independent_source_bootstrap_ci95": [
+            -0.05333383503210871,
+            -0.00250909358198924
+          ],
+          "positive_gap_means_train_looks_better": true,
+          "statistically_resolved_positive_gap": false,
+          "causal_in_sample_optimism_proven": false,
+          "limitation": "sampled cohorts differ in content; Val was historically used for selection; source/byte exposure audited separately"
+        },
+        "scope": "source summaries of per-frame absolute errors against public human crop centers"
+      },
+      "independence": {
+        "excluded_validation_sources": [
+          "video2793"
+        ],
+        "known_P1_finetuning_exposure_verified": true,
+        "parent_training_provenance": "artifacts/scale_sft_dpo/final_preflight/parent_exposure_audit.json",
+        "reason": null
+      }
+    },
+    "LIVE_YT_VC/B": {
+      "train": {
+        "absolute_x_px": {
+          "source_count": 31,
+          "mean": 57.943548387096776,
+          "median": 58.25,
+          "p05": 25.791666666666668,
+          "p95": 90.41666666666666,
+          "bootstrap_ci95": [
+            50.910685483870985,
+            65.4092069892473
+          ],
+          "bootstrap_unit": "independent source",
+          "bootstrap_replicates": 2000,
+          "seed": 20261108
+        },
+        "absolute_y_px": {
+          "source_count": 31,
+          "mean": 224.76075268817203,
+          "median": 193.08333333333334,
+          "p05": 82.91666666666666,
+          "p95": 501.0,
+          "bootstrap_ci95": [
+            180.0891801075269,
+            276.64139784946235
+          ],
+          "bootstrap_unit": "independent source",
+          "bootstrap_replicates": 2000,
+          "seed": 20261108
+        },
+        "absolute_active_axis_px": {
+          "source_count": 31,
+          "mean": 224.76075268817203,
+          "median": 193.08333333333334,
+          "p05": 82.91666666666666,
+          "p95": 501.0,
+          "bootstrap_ci95": [
+            180.0891801075269,
+            276.64139784946235
+          ],
+          "bootstrap_unit": "independent source",
+          "bootstrap_replicates": 2000,
+          "seed": 20261108
+        },
+        "absolute_x_fraction_width": {
+          "source_count": 31,
+          "mean": 0.05365143369175627,
+          "median": 0.0539351851851852,
+          "p05": 0.023881172839506172,
+          "p95": 0.08371913580246915,
+          "bootstrap_ci95": [
+            0.047139523596176826,
+            0.06056408054559935
+          ],
+          "bootstrap_unit": "independent source",
+          "bootstrap_replicates": 2000,
+          "seed": 20261108
+        },
+        "absolute_y_fraction_height": {
+          "source_count": 31,
+          "mean": 0.1170628920250896,
+          "median": 0.1005642361111111,
+          "p05": 0.043185763888888895,
+          "p95": 0.2609375,
+          "bootstrap_ci95": [
+            0.09379644797267024,
+            0.14408406137992832
+          ],
+          "bootstrap_unit": "independent source",
+          "bootstrap_replicates": 2000,
+          "seed": 20261108
+        },
+        "absolute_active_axis_fraction": {
+          "source_count": 31,
+          "mean": 0.1170628920250896,
+          "median": 0.1005642361111111,
+          "p05": 0.043185763888888895,
+          "p95": 0.2609375,
+          "bootstrap_ci95": [
+            0.09379644797267024,
+            0.14408406137992832
+          ],
+          "bootstrap_unit": "independent source",
+          "bootstrap_replicates": 2000,
+          "seed": 20261108
+        },
+        "signed_x_fraction_width": {
+          "source_count": 31,
+          "mean": -0.014214954201513344,
+          "median": -0.003163580246913577,
+          "p05": -0.0726466049382716,
+          "p95": 0.04375,
+          "bootstrap_ci95": [
+            -0.027176423735563525,
+            -0.000616039426523304
+          ],
+          "bootstrap_unit": "independent source",
+          "bootstrap_replicates": 2000,
+          "seed": 20261108
+        },
+        "signed_y_fraction_height": {
+          "source_count": 31,
+          "mean": 0.02489359318996416,
+          "median": 0.013454861111111105,
+          "p05": -0.13018663194444444,
+          "p95": 0.23289930555555555,
+          "bootstrap_ci95": [
+            -0.013862007168458784,
+            0.06405983982974911
+          ],
+          "bootstrap_unit": "independent source",
+          "bootstrap_replicates": 2000,
+          "seed": 20261108
+        },
+        "euclidean_px": {
+          "source_count": 31,
+          "mean": 247.23332915943374,
+          "median": 210.45940727304273,
+          "p05": 101.65156673083538,
+          "p95": 508.89684481524307,
+          "bootstrap_ci95": [
+            204.43454550324353,
+            295.78597521299076
+          ],
+          "bootstrap_unit": "independent source",
+          "bootstrap_replicates": 2000,
+          "seed": 20261108
+        },
+        "linf_px": {
+          "source_count": 31,
+          "mean": 238.7889784946237,
+          "median": 200.375,
+          "p05": 94.22916666666667,
+          "p95": 503.47916666666663,
+          "bootstrap_ci95": [
+            196.0257056451613,
+            288.05974462365583
+          ],
+          "bootstrap_unit": "independent source",
+          "bootstrap_replicates": 2000,
+          "seed": 20261108
+        }
+      },
+      "val": {
+        "absolute_x_px": {
+          "source_count": 29,
+          "mean": 51.99425287356323,
+          "median": 49.416666666666664,
+          "p05": 18.266666666666666,
+          "p95": 87.69999999999999,
+          "bootstrap_ci95": [
+            43.841379310344834,
+            60.963218390804585
+          ],
+          "bootstrap_unit": "independent source",
+          "bootstrap_replicates": 2000,
+          "seed": 20261108
+        },
+        "absolute_y_px": {
+          "source_count": 29,
+          "mean": 141.9367816091954,
+          "median": 135.58333333333334,
+          "p05": 42.233333333333334,
+          "p95": 261.0166666666666,
+          "bootstrap_ci95": [
+            116.83699712643677,
+            168.91681034482758
+          ],
+          "bootstrap_unit": "independent source",
+          "bootstrap_replicates": 2000,
+          "seed": 20261108
+        },
+        "absolute_active_axis_px": {
+          "source_count": 29,
+          "mean": 141.9367816091954,
+          "median": 135.58333333333334,
+          "p05": 42.233333333333334,
+          "p95": 261.0166666666666,
+          "bootstrap_ci95": [
+            116.83699712643677,
+            168.91681034482758
+          ],
+          "bootstrap_unit": "independent source",
+          "bootstrap_replicates": 2000,
+          "seed": 20261108
+        },
+        "absolute_x_fraction_width": {
+          "source_count": 29,
+          "mean": 0.04814282673478076,
+          "median": 0.04575617283950617,
+          "p05": 0.01691358024691358,
+          "p95": 0.0812037037037037,
+          "bootstrap_ci95": [
+            0.04059386973180078,
+            0.05644742443593018
+          ],
+          "bootstrap_unit": "independent source",
+          "bootstrap_replicates": 2000,
+          "seed": 20261108
+        },
+        "absolute_y_fraction_height": {
+          "source_count": 29,
+          "mean": 0.07392540708812262,
+          "median": 0.07061631944444445,
+          "p05": 0.021996527777777778,
+          "p95": 0.13594618055555555,
+          "bootstrap_ci95": [
+            0.060852602670019164,
+            0.08797750538793103
+          ],
+          "bootstrap_unit": "independent source",
+          "bootstrap_replicates": 2000,
+          "seed": 20261108
+        },
+        "absolute_active_axis_fraction": {
+          "source_count": 29,
+          "mean": 0.07392540708812262,
+          "median": 0.07061631944444445,
+          "p05": 0.021996527777777778,
+          "p95": 0.13594618055555555,
+          "bootstrap_ci95": [
+            0.060852602670019164,
+            0.08797750538793103
+          ],
+          "bootstrap_unit": "independent source",
+          "bootstrap_replicates": 2000,
+          "seed": 20261108
+        },
+        "signed_x_fraction_width": {
+          "source_count": 29,
+          "mean": 0.001654959557258408,
+          "median": -0.008179012345679013,
+          "p05": -0.05199074074074074,
+          "p95": 0.06412037037037037,
+          "bootstrap_ci95": [
+            -0.012144130481055768,
+            0.015449060770540651
+          ],
+          "bootstrap_unit": "independent source",
+          "bootstrap_replicates": 2000,
+          "seed": 20261108
+        },
+        "signed_y_fraction_height": {
+          "source_count": 29,
+          "mean": 0.009336087164750961,
+          "median": 0.0009114583333333301,
+          "p05": -0.06913194444444444,
+          "p95": 0.07061631944444444,
+          "bootstrap_ci95": [
+            -0.007259900323275863,
+            0.02555241259578544
+          ],
+          "bootstrap_unit": "independent source",
+          "bootstrap_replicates": 2000,
+          "seed": 20261108
+        },
+        "euclidean_px": {
+          "source_count": 29,
+          "mean": 164.31525216237634,
+          "median": 153.46730687888441,
+          "p05": 78.637154638449,
+          "p95": 270.269082161564,
+          "bootstrap_ci95": [
+            140.1017791176496,
+            189.1084957070637
+          ],
+          "bootstrap_unit": "independent source",
+          "bootstrap_replicates": 2000,
+          "seed": 20261108
+        },
+        "linf_px": {
+          "source_count": 29,
+          "mean": 155.86206896551724,
+          "median": 144.875,
+          "p05": 69.10000000000001,
+          "p95": 266.0416666666666,
+          "bootstrap_ci95": [
+            132.32575431034482,
+            180.570474137931
+          ],
+          "bootstrap_unit": "independent source",
+          "bootstrap_replicates": 2000,
+          "seed": 20261108
+        }
+      },
+      "train_validation_gap": {
+        "val_minus_train_normalized_active_axis_MAE": -0.04313748493696698,
+        "independent_source_bootstrap_ci95": [
+          -0.07216760424391298,
+          -0.01499659150599436
+        ],
+        "positive_gap_means_train_looks_better": true,
+        "statistically_resolved_positive_gap": false,
+        "causal_in_sample_optimism_proven": false,
+        "limitation": "sampled cohorts differ in content; Val was historically used for selection; source/byte exposure audited separately"
+      },
+      "scope": "source summaries of per-frame absolute errors against public human crop centers",
+      "descriptive_all_sampled_sources": {
+        "train": {
+          "absolute_x_px": {
+            "source_count": 31,
+            "mean": 57.943548387096776,
+            "median": 58.25,
+            "p05": 25.791666666666668,
+            "p95": 90.41666666666666,
+            "bootstrap_ci95": [
+              50.910685483870985,
+              65.4092069892473
+            ],
+            "bootstrap_unit": "independent source",
+            "bootstrap_replicates": 2000,
+            "seed": 20261108
+          },
+          "absolute_y_px": {
+            "source_count": 31,
+            "mean": 224.76075268817203,
+            "median": 193.08333333333334,
+            "p05": 82.91666666666666,
+            "p95": 501.0,
+            "bootstrap_ci95": [
+              180.0891801075269,
+              276.64139784946235
+            ],
+            "bootstrap_unit": "independent source",
+            "bootstrap_replicates": 2000,
+            "seed": 20261108
+          },
+          "absolute_active_axis_px": {
+            "source_count": 31,
+            "mean": 224.76075268817203,
+            "median": 193.08333333333334,
+            "p05": 82.91666666666666,
+            "p95": 501.0,
+            "bootstrap_ci95": [
+              180.0891801075269,
+              276.64139784946235
+            ],
+            "bootstrap_unit": "independent source",
+            "bootstrap_replicates": 2000,
+            "seed": 20261108
+          },
+          "absolute_x_fraction_width": {
+            "source_count": 31,
+            "mean": 0.05365143369175627,
+            "median": 0.0539351851851852,
+            "p05": 0.023881172839506172,
+            "p95": 0.08371913580246915,
+            "bootstrap_ci95": [
+              0.047139523596176826,
+              0.06056408054559935
+            ],
+            "bootstrap_unit": "independent source",
+            "bootstrap_replicates": 2000,
+            "seed": 20261108
+          },
+          "absolute_y_fraction_height": {
+            "source_count": 31,
+            "mean": 0.1170628920250896,
+            "median": 0.1005642361111111,
+            "p05": 0.043185763888888895,
+            "p95": 0.2609375,
+            "bootstrap_ci95": [
+              0.09379644797267024,
+              0.14408406137992832
+            ],
+            "bootstrap_unit": "independent source",
+            "bootstrap_replicates": 2000,
+            "seed": 20261108
+          },
+          "absolute_active_axis_fraction": {
+            "source_count": 31,
+            "mean": 0.1170628920250896,
+            "median": 0.1005642361111111,
+            "p05": 0.043185763888888895,
+            "p95": 0.2609375,
+            "bootstrap_ci95": [
+              0.09379644797267024,
+              0.14408406137992832
+            ],
+            "bootstrap_unit": "independent source",
+            "bootstrap_replicates": 2000,
+            "seed": 20261108
+          },
+          "signed_x_fraction_width": {
+            "source_count": 31,
+            "mean": -0.014214954201513344,
+            "median": -0.003163580246913577,
+            "p05": -0.0726466049382716,
+            "p95": 0.04375,
+            "bootstrap_ci95": [
+              -0.027176423735563525,
+              -0.000616039426523304
+            ],
+            "bootstrap_unit": "independent source",
+            "bootstrap_replicates": 2000,
+            "seed": 20261108
+          },
+          "signed_y_fraction_height": {
+            "source_count": 31,
+            "mean": 0.02489359318996416,
+            "median": 0.013454861111111105,
+            "p05": -0.13018663194444444,
+            "p95": 0.23289930555555555,
+            "bootstrap_ci95": [
+              -0.013862007168458784,
+              0.06405983982974911
+            ],
+            "bootstrap_unit": "independent source",
+            "bootstrap_replicates": 2000,
+            "seed": 20261108
+          },
+          "euclidean_px": {
+            "source_count": 31,
+            "mean": 247.23332915943374,
+            "median": 210.45940727304273,
+            "p05": 101.65156673083538,
+            "p95": 508.89684481524307,
+            "bootstrap_ci95": [
+              204.43454550324353,
+              295.78597521299076
+            ],
+            "bootstrap_unit": "independent source",
+            "bootstrap_replicates": 2000,
+            "seed": 20261108
+          },
+          "linf_px": {
+            "source_count": 31,
+            "mean": 238.7889784946237,
+            "median": 200.375,
+            "p05": 94.22916666666667,
+            "p95": 503.47916666666663,
+            "bootstrap_ci95": [
+              196.0257056451613,
+              288.05974462365583
+            ],
+            "bootstrap_unit": "independent source",
+            "bootstrap_replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        "val": {
+          "absolute_x_px": {
+            "source_count": 30,
+            "mean": 52.06388888888889,
+            "median": 49.541666666666664,
+            "p05": 18.383333333333333,
+            "p95": 87.37083333333331,
+            "bootstrap_ci95": [
+              44.11895833333334,
+              60.83430555555555
+            ],
+            "bootstrap_unit": "independent source",
+            "bootstrap_replicates": 2000,
+            "seed": 20261108
+          },
+          "absolute_y_px": {
+            "source_count": 30,
+            "mean": 140.0638888888889,
+            "median": 135.41666666666669,
+            "p05": 42.30416666666667,
+            "p95": 259.79999999999995,
+            "bootstrap_ci95": [
+              116.16090277777778,
+              167.06486111111113
+            ],
+            "bootstrap_unit": "independent source",
+            "bootstrap_replicates": 2000,
+            "seed": 20261108
+          },
+          "absolute_active_axis_px": {
+            "source_count": 30,
+            "mean": 140.0638888888889,
+            "median": 135.41666666666669,
+            "p05": 42.30416666666667,
+            "p95": 259.79999999999995,
+            "bootstrap_ci95": [
+              116.16090277777778,
+              167.06486111111113
+            ],
+            "bootstrap_unit": "independent source",
+            "bootstrap_replicates": 2000,
+            "seed": 20261108
+          },
+          "absolute_x_fraction_width": {
+            "source_count": 30,
+            "mean": 0.04820730452674896,
+            "median": 0.045871913580246906,
+            "p05": 0.017021604938271605,
+            "p95": 0.0808989197530864,
+            "bootstrap_ci95": [
+              0.04085088734567902,
+              0.05632806069958847
+            ],
+            "bootstrap_unit": "independent source",
+            "bootstrap_replicates": 2000,
+            "seed": 20261108
+          },
+          "absolute_y_fraction_height": {
+            "source_count": 30,
+            "mean": 0.07294994212962963,
+            "median": 0.0705295138888889,
+            "p05": 0.02203342013888889,
+            "p95": 0.13531249999999997,
+            "bootstrap_ci95": [
+              0.06050047019675926,
+              0.08701294849537038
+            ],
+            "bootstrap_unit": "independent source",
+            "bootstrap_replicates": 2000,
+            "seed": 20261108
+          },
+          "absolute_active_axis_fraction": {
+            "source_count": 30,
+            "mean": 0.07294994212962963,
+            "median": 0.0705295138888889,
+            "p05": 0.02203342013888889,
+            "p95": 0.13531249999999997,
+            "bootstrap_ci95": [
+              0.06050047019675926,
+              0.08701294849537038
+            ],
+            "bootstrap_unit": "independent source",
+            "bootstrap_replicates": 2000,
+            "seed": 20261108
+          },
+          "signed_x_fraction_width": {
+            "source_count": 30,
+            "mean": 0.002260802469135802,
+            "median": -0.005054012345679012,
+            "p05": -0.051709104938271605,
+            "p95": 0.06400462962962962,
+            "bootstrap_ci95": [
+              -0.011037744341563786,
+              0.01634445730452674
+            ],
+            "bootstrap_unit": "independent source",
+            "bootstrap_replicates": 2000,
+            "seed": 20261108
+          },
+          "signed_y_fraction_height": {
+            "source_count": 30,
+            "mean": 0.008083043981481483,
+            "median": -0.00017361111111111255,
+            "p05": -0.06890842013888888,
+            "p95": 0.07021484374999998,
+            "bootstrap_ci95": [
+              -0.008732928240740739,
+              0.024871853298611104
+            ],
+            "bootstrap_unit": "independent source",
+            "bootstrap_replicates": 2000,
+            "seed": 20261108
+          },
+          "euclidean_px": {
+            "source_count": 30,
+            "mean": 162.37941933786018,
+            "median": 151.42020956114473,
+            "p05": 79.23990410845003,
+            "p95": 269.137860223472,
+            "bootstrap_ci95": [
+              139.06601024640733,
+              187.11003723668136
+            ],
+            "bootstrap_unit": "independent source",
+            "bootstrap_replicates": 2000,
+            "seed": 20261108
+          },
+          "linf_px": {
+            "source_count": 30,
+            "mean": 153.81666666666666,
+            "median": 144.47916666666669,
+            "p05": 69.56041666666667,
+            "p95": 264.77083333333326,
+            "bootstrap_ci95": [
+              130.71413194444443,
+              178.3300694444444
+            ],
+            "bootstrap_unit": "independent source",
+            "bootstrap_replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        "train_validation_gap": {
+          "val_minus_train_normalized_active_axis_MAE": -0.04411294989545997,
+          "independent_source_bootstrap_ci95": [
+            -0.07177296146953406,
+            -0.016455107293533444
+          ],
+          "positive_gap_means_train_looks_better": true,
+          "statistically_resolved_positive_gap": false,
+          "causal_in_sample_optimism_proven": false,
+          "limitation": "sampled cohorts differ in content; Val was historically used for selection; source/byte exposure audited separately"
+        },
+        "scope": "source summaries of per-frame absolute errors against public human crop centers"
+      },
+      "independence": {
+        "excluded_validation_sources": [
+          "video2793"
+        ],
+        "known_P1_finetuning_exposure_verified": true,
+        "parent_training_provenance": "artifacts/scale_sft_dpo/final_preflight/parent_exposure_audit.json",
+        "reason": null
+      }
+    },
+    "GNMC/A": {
+      "result": null,
+      "reason": "no complete actual final-P1 Train/Val cache for this dataset in the 1h LIVE run"
+    },
+    "GNMC/B": {
+      "result": null,
+      "reason": "no complete actual final-P1 Train/Val cache for this dataset in the 1h LIVE run"
+    }
+  },
+  "provenance": {
+    "created_at_utc": "2026-11-08T04:07:49.007879+00:00",
+    "seed": 20261108,
+    "metric_scope": "source-macro final deployed spatial IoU; fixed P1/temporal set, QP and frame count; not official competition Score",
+    "cohort_sha256": "06dad23a020ec39bd49ad76ae7a82f6aa04913b3349e10228ec409af5e8625fc",
+    "manifest_sha256": "6276bce75f9b2759180fcfecb09b01fe8ca0f74c99a26bcf5daa6497b0f0ab52",
+    "scale_bins_sha256": "c205ff8a10e603d1f1fefdd208a78ca5e7ac75a83882c8498354ba8b3b7644fa",
+    "Scale_bins_refitted": false,
+    "code_sha256": {
+      "analysis_script": "6fc91c89b9f36c64b1c182c8ace3c3a26d11a72dfd9336e6973b20666be2c7a4",
+      "analysis_module": "78c86a09a4919fc38fd134a0ff9e656cd3d00662e95ba4ef26a1b8b965a29bc8"
+    },
+    "position_record_count": 732,
+    "git_commit": "8cf0131f7d6f20e64a15df1f9464beb21480a95e",
+    "A_scope": "LIVE native portrait crop",
+    "B_scope": "transposed LIVE landscape crop; not native upright B validation",
+    "source_selection": "predeclared label-blind source hash; alternating splits; budget-censored completed cohort",
+    "interval_scope": "conditional on observed cohort and Train-selected configuration; no multiple-comparison or full-population guarantee"
+  }
+}

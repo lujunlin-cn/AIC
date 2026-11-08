@@ -1,0 +1,12 @@
+{
+  "created_at_utc": "2026-11-08T04:10:45.801421+00:00",
+  "automated_report_before_editorial_sha256": "aef79e07d07ef4adc871234984cf2e830d24bdc9f18b4bb40a9e4a5bb134f5e0",
+  "final_report_sha256": "0126790ff6c8d4a2e2fc7557f2baec5359b25b697b1ec5e111bed2e4933b0be7",
+  "changes": [
+    "Normalize Markdown unknown values to null",
+    "Distinguish clean-plan coverage from independent P1 validation coverage",
+    "Add explicit eleven-answer summary with measured evidence",
+    "Record local and remote validation scopes and actual GPU stop"
+  ],
+  "diagnostic_JSON_metrics_changed": false
+}

@@ -1,0 +1,9 @@
+{
+  "elapsed_seconds": 3561.995101440698,
+  "cumulative_GPU_seconds": 3561.995101440698,
+  "source_records_completed": 61,
+  "source_records_requested": 1795,
+  "benchmark_requested_sources": 100,
+  "benchmark_100_complete": false,
+  "formal_training": false
+}

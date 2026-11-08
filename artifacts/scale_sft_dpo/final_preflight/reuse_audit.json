@@ -1,0 +1,12 @@
+{
+  "status": "not_reused",
+  "reason": "old projector protocol identity differs from the current exact protocol",
+  "old_protocol_sha256": "b2daeacb188964ca1f59c035ad110786755c0b17d8ae7ec28a47225b1a1616dc",
+  "current_protocol_sha256": [
+    "53bc2b0dc72d71bd14301fd8246564c1a0f4ba6c1ed40bfbb6488c923d787058"
+  ],
+  "old_cache_sha256": "ac2f7ec9f1a805a3201e73db961c261608209ef780d01e47dd433752e1333143",
+  "new_GPU_seconds": 0,
+  "new_model_calls": 0,
+  "outputs_imported": 0
+}

@@ -1,0 +1,60 @@
+{
+  "created_at_utc": "2026-11-08T03:34:27.055402+00:00",
+  "GPU_seconds_cap": 3600,
+  "includes_model_load_and_warmup": true,
+  "supervisor_stop_margin_seconds": 40,
+  "physical_GPU_devices": 1,
+  "singleton_worker_processes": 2,
+  "torch_threads_per_worker": 4,
+  "frames_per_completed_source": 6,
+  "Train_sources_original_clean": [
+    1600,
+    1595
+  ],
+  "Val_sources": 200,
+  "benchmark_requested_sources": 100,
+  "partial_results_allowed_by_user": true,
+  "source_schedule": "deterministic source SHA256 order, alternating Train/Val; no selection based on observed IoU",
+  "frame_sampling": "six disjoint temporal strata, alternating within-source GT scale targets",
+  "constant_scales": [
+    0.87,
+    0.9,
+    0.93,
+    0.95,
+    0.97,
+    1.0
+  ],
+  "frozen_scale_actions": [
+    0.29885,
+    0.7303391903914591,
+    0.8751093035078801,
+    0.9487190200813422,
+    0.9649496513908056,
+    0.9858763345195729,
+    0.9982873665480427,
+    1.0
+  ],
+  "Scale_bins_refitted": false,
+  "constant_and_action_prefix_selection_split": "train",
+  "evaluation_split": "independent val excluding known P1 training byte aliases",
+  "bootstrap_unit": "independent source within each dataset and route",
+  "bootstrap_replicates": 2000,
+  "seed": 20261108,
+  "visual_probe": {
+    "kind": "fixed CPU quality-vector ridge diagnostic",
+    "alpha": 10,
+    "features": "geometry only vs geometry plus eight label-blind low-level RGB descriptors",
+    "standardization_and_fit_split": "train",
+    "candidate_actions": 8,
+    "hyperparameter_search": false,
+    "does_not_train_Video_ORA": true
+  },
+  "smoke_test": "reuse already passed actual Video-ORA A/B evidence, no repeat",
+  "GPU_inference_authorized": true,
+  "formal_SFT_authorized": false,
+  "DPO_authorized": false,
+  "followup": "CPU analyses only, then stop; no next GPU job",
+  "license_review": "project owner confirmed complete; no agent re-review",
+  "interval_scope": "conditional on partial observed cohort; historical Val is not a fresh never-exposed test",
+  "previews": "operational CPU correctness checks only; no Val tuning of constants, bins or ridge alpha"
+}

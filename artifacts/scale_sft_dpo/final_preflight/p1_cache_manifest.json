@@ -1,0 +1,122 @@
+{
+  "schema_version": "aic.final_preflight.v1",
+  "created_at": "2026-11-08T03:06:25.621358+00:00",
+  "cache_runner_sha256": "fdeebe2e5e5a8ef8ddaa5fef41662766dc34dedba2efe022f986e2dcc7a1345e",
+  "seed": 20261108,
+  "source_labels_sha256": "6f168a644a6801834b50d83eaa1291c84522186982f308c0bc82d2a716e43d6b",
+  "cohort_sha256": "06dad23a020ec39bd49ad76ae7a82f6aa04913b3349e10228ec409af5e8625fc",
+  "config_sha256": "b09ebb2aaf1f781c6832cd54294c38f5f89233a49322731a30861cd34699f8d8",
+  "source_schedule_sha256": "8ae046b5430c0fb681e8245dac4e423bb744931ed335da137ee49e2247b6d420",
+  "p1_base_sha256": "3fd997fdbfda6f17d13a400e68d0fd5c44d0d9565e83f7411c185137491545ff",
+  "p1_adapter_manifest_sha256": "ab809e77f0efec4d863df369960fb0c58486e2e8cbc2eb1aaa54fe32f9893370",
+  "p1_adapter_sha256_by_route": {
+    "portrait": "d18f187d630cc7854859858a827f105e278df4205960857da411d4fb22181013",
+    "vertical": "c89b05dd209295543e1b07de388dd24dba6e8fabca590f859bba6475948f9b1d"
+  },
+  "tokenizer_sha256": "87a7830d63fcf43bf241c3c5242e96e62dd3fdc29224ca26fed8ea333db72de4",
+  "parent_identity_sha256": "0cdc528b7753c2715a27affc5844f56b16bb7aa3bb4936e0f59bf2d73aa15d52",
+  "postprocessing_config_sha256": "2054b3cef446d1ebe948a8d387ca43362c1b2f5e19518576e9a9b22e1ae32ec0",
+  "runtime_source_hashes": {
+    "temporal_protocol.py": "bc9ee116b81a5076a0b8b679d84bba35d2ebe7d4e4831db12e030ac771183058",
+    "contracts.py": "430e0533f4bc1f18e87ba7e42aac8c42f9d14b97d292b9ed3f459d8f3a20fb36",
+    "generation.py": "c9f37edf6d80e388ffcff9748fd2d2175e098de78c5cf9221c7ec9f961e0b845",
+    "runtime.py": "0e9643b6bb890339f6a597ef0d74013fcbc761e8c8c81276b71e9624316db2e0",
+    "clock_rule.py": "cf22057b9fcdfd686f5e55556743861323110023af4d9ad74ae89a1f1dde4843",
+    "native_parser.py": "891c4366d3d78a2b9a2a60681692c2da93cda7d8d35e4ce83cdaa85c0e00519a",
+    "video.py": "340515422a9427b62b1fbaa459d752cf245e880b94d124fabae112fd29582239",
+    "vocabulary.py": "5d7a53448e91d7bad6e6dd6bab47dad944cebc8eb9ee46235828d9218babe66f",
+    "frame_bank.py": "18124e1e0e30fe551f7531c7e87cdbbf2e49d058c207338de979fc991058eca6",
+    "adaptive_crop.py": "da0b4691938ba10f75d0541b505c0372f45cc4d17520f417aacb4e50a74cd1a8",
+    "recovery_path_projection.py": "b4ad52a71f019412572c41e43655fb586ef8ee9723f58fd9faff4e814dc1bab1",
+    "compact_model.py": "85091392cf071879d0c39e5edd5db091744733b7eefe3fdd2736d9221aa732c3",
+    "model_io.py": "7af768545128ebfd66b994e6c940162ee6504eb21a11bab2a329f07a6c3066e3",
+    "structured_decode.py": "9f2552a40085c5b4fec2c1404005b83ee1f73b73c8a26f9fc0455636fe69deec"
+  },
+  "spatial_entrypoint_sha256": "8f9b9ab785d395d6c0b57789d1591228f25f34f323098618e9ed82538037ad04",
+  "position_kind": "P1_final_deployed",
+  "qp_floor": 0.15,
+  "original_LIVE_sources": {
+    "train": 1600,
+    "val": 200
+  },
+  "clean_LIVE_sources": {
+    "train": 1595,
+    "val": 200
+  },
+  "quarantined_train_sources": 5,
+  "requested_frames_per_source": 6,
+  "planned_physical_frames": 10770,
+  "planned_view_frames": 21540,
+  "sampling": "six disjoint temporal strata; alternating public-GT-scale targets within strata",
+  "source_order": "label-blind SHA256 order; alternate Train/Val for error comparison",
+  "benchmark_requested_sources": 100,
+  "benchmark_counts_toward_same_budget": true,
+  "GPU_seconds_cap": 3600.0,
+  "formal_training_authorized": false,
+  "B_scope": "transposed LIVE augmentation; not native B validation",
+  "original_temporal_set": "entire public clip, identical for all policies; no Temporal inference",
+  "evaluation_frames": "sampled annotated original frame IDs; full P1 QP still uses original full clip",
+  "scale_insertion": "after frozen original P1 QP and integer output; fixed final center",
+  "smoke_evidence": {
+    "model_load": {
+      "path": "artifacts/scale_sft_dpo/smoke_test/model_load.json",
+      "sha256": "b5ba594cc6040e10918cf9972d2847ffe6f4641d097f6a7e75e14f92ed4e781f",
+      "reused": true
+    },
+    "sft_forward_backward": {
+      "path": "artifacts/scale_sft_dpo/smoke_test/sft_forward_backward.json",
+      "sha256": "542f8dab7ddf7bdc199a1bb083054a27b58b51f062d649b8dbfac57cf749cede",
+      "reused": true
+    },
+    "dpo_forward_backward": {
+      "path": "artifacts/scale_sft_dpo/smoke_test/dpo_forward_backward.json",
+      "sha256": "c08dbb9dedf0abf07371003955c6a2e8cbb31991fb1012085f9d5d10efd02122",
+      "reused": true
+    },
+    "geometry_validation": {
+      "path": "artifacts/scale_sft_dpo/smoke_test/geometry_validation.json",
+      "sha256": "d0b56327e9e81379c2735dbcef3b8fcf2b5c3302d722e09411d95d9d352a8cfe",
+      "reused": true
+    }
+  },
+  "license_review": "completed by project owner per user instruction; no repeated review",
+  "cache_records": "positions.jsonl; generated from retained per-source complete caches",
+  "p1_validation_training_exposure": null,
+  "finalized_at": "2026-11-08T04:07:47.541663+00:00",
+  "cache_status": "partial_budget_bounded_diagnostic",
+  "positions_sha256": "2d94bdb824a268004335ecc6055b1b6bd46fc0bcd764843fd6630764c401227e",
+  "completed_sources": 61,
+  "completed_view_frames": 732,
+  "completed_physical_frames": 366,
+  "all_requested_sources_completed": false,
+  "GPU_seconds": 3563.1969671733677,
+  "GPU_budget_ledger_sha256": "8252cc7c6a9d1c40c7047a6849184aaa3bbd538e044969c47a3f3812e62dfa03",
+  "parent_exposure_audit_sha256": "95d9d9d227497f75ae42552dc58f4353746e949097c0efbedb9e6ed3bc00fb62",
+  "geometry_replay_sha256": "8c7567a7a060ddc3e08a96842b24546c1a033522d8c31d1f92031534a48b85ee",
+  "frozen_parent_worker_receipts": {
+    "worker_0_final.json": {
+      "sha256": "807f8f545eb3368fd33b93ea0cc4943c3918bf8c8f999852ed27f295e4487435",
+      "result": {
+        "parent_immutable": true,
+        "elapsed_seconds": 3560.683204282075,
+        "optimizer_steps": 0
+      }
+    },
+    "worker_1_final.json": {
+      "sha256": "3b04ccc9735a570d7001253550d0285179238e84fed05d51efd8a76cf9993660",
+      "result": {
+        "parent_immutable": true,
+        "elapsed_seconds": 3560.6788296215236,
+        "optimizer_steps": 0
+      }
+    }
+  },
+  "visual_features_sha256": "781a8085da40007e08fffced4ca58fe484daa814a6719e27ad92bdc243fa0218",
+  "raw_per_source_records_unchanged": true,
+  "formal_training_started": false,
+  "p1_weight_file_identity_evidence": {
+    "path": "artifacts/scale_sft_dpo/audit/remote_assets.json",
+    "sha256": "a210e636ad4ab93f7bf04ad783a8fcfd90b90fd4f072bedb4330bb208b7b82d2"
+  },
+  "p1_base_sha256_semantics": "SHA256 of canonical filename-to-shard-SHA256 manifest; individual actual weight hashes in remote_assets.json"
+}

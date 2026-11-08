@@ -1,0 +1,25 @@
+{
+  "cap_seconds": 3600.0,
+  "runs": [
+    {
+      "started_at": "2026-11-08T03:08:11.700087+00:00",
+      "ended_at": "2026-11-08T04:07:34.897029+00:00",
+      "elapsed_seconds": 3563.1969671733677,
+      "budget_remaining_at_start_seconds": 3600.0,
+      "includes_model_load_warmup_and_inference": true,
+      "formal_training": false,
+      "physical_GPU_count": 1,
+      "workers": 2,
+      "optimizer_steps": 0,
+      "config_sha256": "b09ebb2aaf1f781c6832cd54294c38f5f89233a49322731a30861cd34699f8d8",
+      "cohort_sha256": "06dad23a020ec39bd49ad76ae7a82f6aa04913b3349e10228ec409af5e8625fc",
+      "stop_reason": "shared_hard_budget",
+      "worker_exit_codes": [
+        1,
+        1
+      ]
+    }
+  ],
+  "cumulative_GPU_seconds": 3563.1969671733677,
+  "within_budget": true
+}

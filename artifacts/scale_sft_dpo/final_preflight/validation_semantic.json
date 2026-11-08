@@ -1,0 +1,43 @@
+{
+  "status": "passed",
+  "created_at_utc": "2026-11-08T04:08:29.471017+00:00",
+  "validation_script_sha256": "fadb0b99a0d493cb2ca642b8858285e3e523524aef8e1178aced7771a390f620",
+  "CUDA_model_or_optimizer_called": false,
+  "GPU_seconds": 3563.1969671733677,
+  "completed_view_frames": 732,
+  "groups": [
+    {
+      "group": "LIVE_YT_VC/A",
+      "measured": true,
+      "train_only_best_constant": 0.9,
+      "oracle_1_2_4_8_independently_recomputed": true,
+      "maximum_accepted_position_drift_px": 0.5,
+      "independent_sources": {
+        "train": 31,
+        "val": 29
+      }
+    },
+    {
+      "group": "LIVE_YT_VC/B",
+      "measured": true,
+      "train_only_best_constant": 0.95,
+      "oracle_1_2_4_8_independently_recomputed": true,
+      "maximum_accepted_position_drift_px": 0.5,
+      "independent_sources": {
+        "train": 31,
+        "val": 29
+      }
+    },
+    {
+      "group": "GNMC/A",
+      "measured": false,
+      "reason": "no complete actual final-P1 Train/Val cache for this dataset in the 1h LIVE run"
+    },
+    {
+      "group": "GNMC/B",
+      "measured": false,
+      "reason": "no complete actual final-P1 Train/Val cache for this dataset in the 1h LIVE run"
+    }
+  ],
+  "scope": "independent source-mean/Oracle reconstruction plus sealed evidence contracts; no new model inference"
+}

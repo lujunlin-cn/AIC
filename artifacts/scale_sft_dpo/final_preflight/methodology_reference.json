@@ -1,0 +1,22 @@
+{
+  "workflow_skills": [
+    "get-available-resources 1.5",
+    "exploratory-data-analysis 1.4"
+  ],
+  "reference": {
+    "authors": [
+      "Timothy Kassis",
+      "Vinayak Agarwal",
+      "Yuhuan He",
+      "Darshil Patel",
+      "Aubrey M. Brueckner"
+    ],
+    "year": 2026,
+    "title": "Scientific Agent Skills: A Library of Procedural Knowledge for Research Agents",
+    "doi": "10.48550/arXiv.2609.00065",
+    "source": "https://arxiv.org/abs/2609.00065",
+    "source_verified_at": "2026-11-08",
+    "latest_revision_on_verified_page": "2026-09-02"
+  },
+  "scope": "resource-capacity detection and source-aware data-audit workflow; not empirical evidence for Scale gains"
+}

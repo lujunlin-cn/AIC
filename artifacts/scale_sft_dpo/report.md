@@ -1,3 +1,9 @@
+# Latest: bounded final Scale preflight completed
+
+See [final_preflight/final_report.md](final_preflight/final_report.md) for the current evidence. The 3600-second cap was honored (3563.196967 seconds); 61 real P1 source caches and exact CPU deployment replay are complete. Train-selected constants improve public held-out deployed IoU, but the fixed RGB probe has no reliable advantage over them. No formal SFT/DPO was started; defer pending the owner decision. Native B/GNMC deployment results and DPO/Soft-Target sufficiency remain null. Older readiness/license/smoke statements below are explicitly historical snapshots, superseded by the final report and owner authorization instruction.
+
+---
+
 # Current GPU preflight update
 
 The latest verified state is in [gpu_preflight_35092.md](gpu_preflight_35092.md). Real A/B Video-ORA smoke now passes, LIVE originals are complete, and full-data P1 coverage/calibration remain blocked. No formal SFT/DPO has started. The CPU-delivery snapshot below predates this GPU run; its no-GPU/missing-original-media statements are historical.

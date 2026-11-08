@@ -1,3 +1,14 @@
+## P0 — Final bounded Scale preflight completed; awaiting research decision
+
+- [x] Reuse actual Video-ORA/P1/Scale smoke by SHA; do not repeat GPU tests.
+- [x] Run one cumulative <=3600-second frozen-P1 cache; preserve 61 complete sources, 366 physical frames, 732 A/B views and two incomplete-source exclusions.
+- [x] Audit original P1 training-source/image-byte exposure; exclude video2793 from independent Val metrics.
+- [x] Complete CPU center error, signed-residual jitter, Train-selected constants, GT-visible Oracle@2/4/8, fixed RGB quality-vector probe and independent source-macro reconstruction.
+- [x] Preserve full evidence locally and on execution host; local compileall / 170 Scale / 293 full tests pass, remote Scale 170 pass; remote unrelated full-suite failures documented.
+- [ ] Owner decides whether a stronger frozen semantic probe/independent confirmation is justified. Current low-level probe has no reliable positive Learned−BestConstant signal; do not start formal Scale-SFT/DPO.
+- [ ] Native B/GNMC final-P1 policy evidence, broader effective-label/calibration coverage, and actual GAICD fixed-center MOS retention remain unmeasured; no additional GPU work is authorized by this completed run.
+- [ ] DPO necessity versus Soft-Target SFT sufficiency remains null; do not infer it from Oracle/loss. The historical TODO entries below retain their original context; owner license confirmation and real-model smoke are now completed.
+
 ## P0 — Scale diagnostics supersede training readiness for this round
 
 - [x] Prepare E0/E1/E2 CPU code, tests, protocol, isolated source manifest and four required diagnostic deliverables under `artifacts/scale_sft_dpo/diagnostics/`.

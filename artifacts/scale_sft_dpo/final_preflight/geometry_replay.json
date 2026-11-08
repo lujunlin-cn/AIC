@@ -1,0 +1,1475 @@
+{
+  "status": "passed",
+  "CUDA_initialized": false,
+  "no_model_load_or_inference": true,
+  "original_QP_and_smoothing_source_hashes_verified": true,
+  "checks": [
+    {
+      "source_id": "video10",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "6198c776bc59bc37a3cd9ca551a74646eb0e70c6fb17f9ca1d9e7f1bb212d20a"
+    },
+    {
+      "source_id": "video10",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "6198c776bc59bc37a3cd9ca551a74646eb0e70c6fb17f9ca1d9e7f1bb212d20a"
+    },
+    {
+      "source_id": "video101",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "fa8d00c14bef7fa37e944cc81b986db6e2138a05d894f57a57d2249b9bb779b1"
+    },
+    {
+      "source_id": "video101",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "fa8d00c14bef7fa37e944cc81b986db6e2138a05d894f57a57d2249b9bb779b1"
+    },
+    {
+      "source_id": "video1067",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "fff19eea3406b8c291aebf82395fae0a3ab92f4295f85ac8069d167c5608fc3a"
+    },
+    {
+      "source_id": "video1067",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "fff19eea3406b8c291aebf82395fae0a3ab92f4295f85ac8069d167c5608fc3a"
+    },
+    {
+      "source_id": "video1131",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "f1750597cf43f6ca688e185e7f3c260bdca8262cf2960bae860a09280c0b0fbc"
+    },
+    {
+      "source_id": "video1131",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "f1750597cf43f6ca688e185e7f3c260bdca8262cf2960bae860a09280c0b0fbc"
+    },
+    {
+      "source_id": "video119",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "34ce16f2138567d21e918637d728f10d1d80bb2b8fe6ec2c39e1a5b60eef960e"
+    },
+    {
+      "source_id": "video119",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "34ce16f2138567d21e918637d728f10d1d80bb2b8fe6ec2c39e1a5b60eef960e"
+    },
+    {
+      "source_id": "video1277",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "edbc661c070f07bf9085017a9aff18b470944b6647b10a8dc874e1b544f5aa27"
+    },
+    {
+      "source_id": "video1277",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "edbc661c070f07bf9085017a9aff18b470944b6647b10a8dc874e1b544f5aa27"
+    },
+    {
+      "source_id": "video1318",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "ec24561fba8a578e94ff1bd8ecd0cb22464e9aa027ff34a555be35234b6e5fdd"
+    },
+    {
+      "source_id": "video1318",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "ec24561fba8a578e94ff1bd8ecd0cb22464e9aa027ff34a555be35234b6e5fdd"
+    },
+    {
+      "source_id": "video1333",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "99cb355fc38e312f67ee6bc0bcff6f14d1cfc88514a0ec3dd033fbd20e637bc3"
+    },
+    {
+      "source_id": "video1333",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "99cb355fc38e312f67ee6bc0bcff6f14d1cfc88514a0ec3dd033fbd20e637bc3"
+    },
+    {
+      "source_id": "video1358",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "3aec02310ba347f5b3522bb88367fb0b6bc125b77210b22a56faf1c14a7cd636"
+    },
+    {
+      "source_id": "video1358",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "3aec02310ba347f5b3522bb88367fb0b6bc125b77210b22a56faf1c14a7cd636"
+    },
+    {
+      "source_id": "video1376",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "c89bfb009b4d15d75fd0f82af026edcb492ccc3b572641d3909d84daea01afc4"
+    },
+    {
+      "source_id": "video1376",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "c89bfb009b4d15d75fd0f82af026edcb492ccc3b572641d3909d84daea01afc4"
+    },
+    {
+      "source_id": "video1377",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "fe22eb98c92132812405348dc9464092f56630e382100ea1c713fe60f1e31c17"
+    },
+    {
+      "source_id": "video1377",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "fe22eb98c92132812405348dc9464092f56630e382100ea1c713fe60f1e31c17"
+    },
+    {
+      "source_id": "video1394",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "d86755be9ae4cd633a11267028082db5d179cc568daac775d774922fff6e460c"
+    },
+    {
+      "source_id": "video1394",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "d86755be9ae4cd633a11267028082db5d179cc568daac775d774922fff6e460c"
+    },
+    {
+      "source_id": "video1403",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "a5a9521cd8668d30212d04b6c754305d98f31e06f8a4367c91560a5c5d995882"
+    },
+    {
+      "source_id": "video1403",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "a5a9521cd8668d30212d04b6c754305d98f31e06f8a4367c91560a5c5d995882"
+    },
+    {
+      "source_id": "video1499",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "3228b7a4d7f15976f91ba83a2c6c791e1c24dfb724f75021155e8e0f28e9110b"
+    },
+    {
+      "source_id": "video1499",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "3228b7a4d7f15976f91ba83a2c6c791e1c24dfb724f75021155e8e0f28e9110b"
+    },
+    {
+      "source_id": "video1501",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "1d4848521601399c908ccd49629a5bc2ecd60bc07a788228a9cb0468833f178c"
+    },
+    {
+      "source_id": "video1501",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "1d4848521601399c908ccd49629a5bc2ecd60bc07a788228a9cb0468833f178c"
+    },
+    {
+      "source_id": "video1528",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "5b06af8120710a9c9700d387594eb57a8e5bfaa86180e1a39fcbca3105725f0a"
+    },
+    {
+      "source_id": "video1528",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "5b06af8120710a9c9700d387594eb57a8e5bfaa86180e1a39fcbca3105725f0a"
+    },
+    {
+      "source_id": "video153",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "e45cf05818a1d8557e3eb8a1c791e16a9d03f17c327186776db1a055cd051f04"
+    },
+    {
+      "source_id": "video153",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "e45cf05818a1d8557e3eb8a1c791e16a9d03f17c327186776db1a055cd051f04"
+    },
+    {
+      "source_id": "video1548",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "25c0fd438e8c666cd9def5e32d574b822d214291ef6b03b53c4b45729398e563"
+    },
+    {
+      "source_id": "video1548",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "25c0fd438e8c666cd9def5e32d574b822d214291ef6b03b53c4b45729398e563"
+    },
+    {
+      "source_id": "video2617",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "4f8facd0ebe294a2cce4359116a746529fd57008b1287d33e750132771770d09"
+    },
+    {
+      "source_id": "video2617",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "4f8facd0ebe294a2cce4359116a746529fd57008b1287d33e750132771770d09"
+    },
+    {
+      "source_id": "video2721",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "c15a12e19ca93113406d8bd521eba4476082fe53422b33f4f40ed6cfa6eb6f60"
+    },
+    {
+      "source_id": "video2721",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "c15a12e19ca93113406d8bd521eba4476082fe53422b33f4f40ed6cfa6eb6f60"
+    },
+    {
+      "source_id": "video2785",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "f8a0aaa755715e3e9d43c4a71a49518c3c0ba8e265348bc0ce5f2b4038efede8"
+    },
+    {
+      "source_id": "video2785",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "f8a0aaa755715e3e9d43c4a71a49518c3c0ba8e265348bc0ce5f2b4038efede8"
+    },
+    {
+      "source_id": "video2793",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "cc06ec38c5b843e861e983aae045ffaa9fa39e88d4b35dd1a9ca66176292394f"
+    },
+    {
+      "source_id": "video2793",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "cc06ec38c5b843e861e983aae045ffaa9fa39e88d4b35dd1a9ca66176292394f"
+    },
+    {
+      "source_id": "video280",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "f865bbaa1655e7c3799ad3e1e7d161bcf98f90dc6142b646aa58985bbecf1286"
+    },
+    {
+      "source_id": "video280",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "f865bbaa1655e7c3799ad3e1e7d161bcf98f90dc6142b646aa58985bbecf1286"
+    },
+    {
+      "source_id": "video327",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "be0a46a1718fd9474c88b24915224db67f11cf30d692d71101bfc0969fb358ab"
+    },
+    {
+      "source_id": "video327",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "be0a46a1718fd9474c88b24915224db67f11cf30d692d71101bfc0969fb358ab"
+    },
+    {
+      "source_id": "video425",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "1022c9deb9be6d88a26de41add4f16615997db22339f88cae8cca95f601361ee"
+    },
+    {
+      "source_id": "video425",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "1022c9deb9be6d88a26de41add4f16615997db22339f88cae8cca95f601361ee"
+    },
+    {
+      "source_id": "video461",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "0ac9cd7b1e4f0ca32233881fec12f049bb14603f954ae066b2850fff08fe8866"
+    },
+    {
+      "source_id": "video461",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "0ac9cd7b1e4f0ca32233881fec12f049bb14603f954ae066b2850fff08fe8866"
+    },
+    {
+      "source_id": "video467",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "50aab2fb2368b7480cdececcee775faf32348842b73a69cd27675d2ff5233b6f"
+    },
+    {
+      "source_id": "video467",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "50aab2fb2368b7480cdececcee775faf32348842b73a69cd27675d2ff5233b6f"
+    },
+    {
+      "source_id": "video527",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "d47ce24f1f57db9609179039f15ad0f5ea46719b76af5b7eaef01c47bbb287ba"
+    },
+    {
+      "source_id": "video527",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "d47ce24f1f57db9609179039f15ad0f5ea46719b76af5b7eaef01c47bbb287ba"
+    },
+    {
+      "source_id": "video700",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "fa176bb3e72277982c552eaea6ac6cfbd911bd6aa559543ed0c367c98d2caf25"
+    },
+    {
+      "source_id": "video700",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "fa176bb3e72277982c552eaea6ac6cfbd911bd6aa559543ed0c367c98d2caf25"
+    },
+    {
+      "source_id": "video851",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "fc2ad327076f24991c90d24832173f8165cb425984ee69c94e4af05e10c01b8c"
+    },
+    {
+      "source_id": "video851",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "fc2ad327076f24991c90d24832173f8165cb425984ee69c94e4af05e10c01b8c"
+    },
+    {
+      "source_id": "video861",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "ca6729e77581459c1b482452ea3ca29f25c0eff6559e403636a898087ce1b8af"
+    },
+    {
+      "source_id": "video861",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "ca6729e77581459c1b482452ea3ca29f25c0eff6559e403636a898087ce1b8af"
+    },
+    {
+      "source_id": "video1041",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "6f5fdc283167cfa8e1354994117ab767ac6fe25cd86f24e0d0ede3510abc1717"
+    },
+    {
+      "source_id": "video1041",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "6f5fdc283167cfa8e1354994117ab767ac6fe25cd86f24e0d0ede3510abc1717"
+    },
+    {
+      "source_id": "video1043",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "5e0a0576470abd071ae136474de4281ab0ae2d1bd45f30f39eca6fb0da452067"
+    },
+    {
+      "source_id": "video1043",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "5e0a0576470abd071ae136474de4281ab0ae2d1bd45f30f39eca6fb0da452067"
+    },
+    {
+      "source_id": "video1047",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "44b79f1fe8b94f0087c12a155b5dffae4209ed85ba5921372f85d26759ef6c5d"
+    },
+    {
+      "source_id": "video1047",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "44b79f1fe8b94f0087c12a155b5dffae4209ed85ba5921372f85d26759ef6c5d"
+    },
+    {
+      "source_id": "video1079",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "1461c48b688a0d55a4ab7707e3aef041139ab01ca34df17531859b3d2696123d"
+    },
+    {
+      "source_id": "video1079",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "1461c48b688a0d55a4ab7707e3aef041139ab01ca34df17531859b3d2696123d"
+    },
+    {
+      "source_id": "video1125",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "3a3eb0cf6acf2f8272f19ed3077b3a213a72f82af53102b6eeea2e7741be6dcf"
+    },
+    {
+      "source_id": "video1125",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "3a3eb0cf6acf2f8272f19ed3077b3a213a72f82af53102b6eeea2e7741be6dcf"
+    },
+    {
+      "source_id": "video1192",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "73fa6d5c59e4100c55356d4854e8b8e3a828bf6c30f10de0404cd057c37769df"
+    },
+    {
+      "source_id": "video1192",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "73fa6d5c59e4100c55356d4854e8b8e3a828bf6c30f10de0404cd057c37769df"
+    },
+    {
+      "source_id": "video1207",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 181,
+      "raw_cache_sha256": "a6838c4f785e160c8dbfbbe07af01c59dfb70d7eae8885ae4d8370acce35bff7"
+    },
+    {
+      "source_id": "video1207",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 181,
+      "raw_cache_sha256": "a6838c4f785e160c8dbfbbe07af01c59dfb70d7eae8885ae4d8370acce35bff7"
+    },
+    {
+      "source_id": "video1210",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "26d445b15331b63ed08fed2625232006cea9d1f36f30fd9a7f94e84c9d0a4f51"
+    },
+    {
+      "source_id": "video1210",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "26d445b15331b63ed08fed2625232006cea9d1f36f30fd9a7f94e84c9d0a4f51"
+    },
+    {
+      "source_id": "video1270",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "ba96d2f41a7141dd1e8da5641949ab27321195b20bf98badaabff20f8c599485"
+    },
+    {
+      "source_id": "video1270",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "ba96d2f41a7141dd1e8da5641949ab27321195b20bf98badaabff20f8c599485"
+    },
+    {
+      "source_id": "video1330",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "06b31d065014118030e08f99ae703b7f3d6eaba892572d5cc50a5dea357fccf2"
+    },
+    {
+      "source_id": "video1330",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "06b31d065014118030e08f99ae703b7f3d6eaba892572d5cc50a5dea357fccf2"
+    },
+    {
+      "source_id": "video135",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "696cd39749c1ff94e8e37a2add4078b61c3176bebd231078be5dabea7f350bf6"
+    },
+    {
+      "source_id": "video135",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "696cd39749c1ff94e8e37a2add4078b61c3176bebd231078be5dabea7f350bf6"
+    },
+    {
+      "source_id": "video1427",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "2c0d90e69c58feaed49af7e9daafcfbea1e96cfbee9d513a3dbca4522b60ad43"
+    },
+    {
+      "source_id": "video1427",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "2c0d90e69c58feaed49af7e9daafcfbea1e96cfbee9d513a3dbca4522b60ad43"
+    },
+    {
+      "source_id": "video1444",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "7b766301a6a9dd3521115bcc9a26d644ae55f26e100dd84da4dd2dfe87c53a0c"
+    },
+    {
+      "source_id": "video1444",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "7b766301a6a9dd3521115bcc9a26d644ae55f26e100dd84da4dd2dfe87c53a0c"
+    },
+    {
+      "source_id": "video1520",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "767e80af99350ed5be843327fb5160fe1cd34123bf06310c23e803d97df4265a"
+    },
+    {
+      "source_id": "video1520",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "767e80af99350ed5be843327fb5160fe1cd34123bf06310c23e803d97df4265a"
+    },
+    {
+      "source_id": "video231",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "6a572f7807cdc1ff46e777c612feccd1bf333921c41b186a015bfbeec8f28a32"
+    },
+    {
+      "source_id": "video231",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "6a572f7807cdc1ff46e777c612feccd1bf333921c41b186a015bfbeec8f28a32"
+    },
+    {
+      "source_id": "video2596",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "bf462f78d4155755b6978334cbae74ba38998494b9468f2499536a1b43482bdd"
+    },
+    {
+      "source_id": "video2596",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "bf462f78d4155755b6978334cbae74ba38998494b9468f2499536a1b43482bdd"
+    },
+    {
+      "source_id": "video2644",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "992127a804299a7df7873a851437d2521f340b849b13678bf336d09b4de46ae4"
+    },
+    {
+      "source_id": "video2644",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "992127a804299a7df7873a851437d2521f340b849b13678bf336d09b4de46ae4"
+    },
+    {
+      "source_id": "video273",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "3ae19dc134a15c54686e2dcc180bc3c20c5fd16480d3267dc958137375a63044"
+    },
+    {
+      "source_id": "video273",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "3ae19dc134a15c54686e2dcc180bc3c20c5fd16480d3267dc958137375a63044"
+    },
+    {
+      "source_id": "video2758",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "66fe90610107107ae2dfe7099bee151af46e0f4fe0e0a3df729d07e69a1269e1"
+    },
+    {
+      "source_id": "video2758",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "66fe90610107107ae2dfe7099bee151af46e0f4fe0e0a3df729d07e69a1269e1"
+    },
+    {
+      "source_id": "video295",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "9a917e351d61063c9758e739f5c7c918b2233b4b41c236849b395c7c7f4eb4d7"
+    },
+    {
+      "source_id": "video295",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "9a917e351d61063c9758e739f5c7c918b2233b4b41c236849b395c7c7f4eb4d7"
+    },
+    {
+      "source_id": "video325",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "c36dd408f908710d7d49c369561127b131f94f86352b9659c8beb704feff0f78"
+    },
+    {
+      "source_id": "video325",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "c36dd408f908710d7d49c369561127b131f94f86352b9659c8beb704feff0f78"
+    },
+    {
+      "source_id": "video342",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 181,
+      "raw_cache_sha256": "b7ac04b79a0ebdcd1d53af6af76c26e5c197c088e2a9fab0b08026f021157d91"
+    },
+    {
+      "source_id": "video342",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 181,
+      "raw_cache_sha256": "b7ac04b79a0ebdcd1d53af6af76c26e5c197c088e2a9fab0b08026f021157d91"
+    },
+    {
+      "source_id": "video414",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "6d97d0bd6ffaaabc51b542ea5f423850654d618cab286867f683b1cb4430d830"
+    },
+    {
+      "source_id": "video414",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "6d97d0bd6ffaaabc51b542ea5f423850654d618cab286867f683b1cb4430d830"
+    },
+    {
+      "source_id": "video574",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "417a7b5729f7b885742a14b43ca3d36cf8640d148c76365ada68f12bb7230745"
+    },
+    {
+      "source_id": "video574",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "417a7b5729f7b885742a14b43ca3d36cf8640d148c76365ada68f12bb7230745"
+    },
+    {
+      "source_id": "video647",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "d6352ad017dff39c1bbb22eff1d4aff45ff0d8232583e0fc2b100a499068d466"
+    },
+    {
+      "source_id": "video647",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "d6352ad017dff39c1bbb22eff1d4aff45ff0d8232583e0fc2b100a499068d466"
+    },
+    {
+      "source_id": "video658",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "4a5b56c81ce0c1b0ca1e239e2a07e119820540e26ea632c3413547601d616b5a"
+    },
+    {
+      "source_id": "video658",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "4a5b56c81ce0c1b0ca1e239e2a07e119820540e26ea632c3413547601d616b5a"
+    },
+    {
+      "source_id": "video660",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "15d5375164fe2014238e0883dcefff18f044562d3cdef7c23fa15a39a1ddd45d"
+    },
+    {
+      "source_id": "video660",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "15d5375164fe2014238e0883dcefff18f044562d3cdef7c23fa15a39a1ddd45d"
+    },
+    {
+      "source_id": "video73",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "5f0c671a84b8cf9ea119cef4d284438d02348a958670c8a30a943c01145e9551"
+    },
+    {
+      "source_id": "video73",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "5f0c671a84b8cf9ea119cef4d284438d02348a958670c8a30a943c01145e9551"
+    },
+    {
+      "source_id": "video871",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "b3f68c19b7d22d4b8e043f8372a7748c234a98d9f49cf6c5313594e533b9f61c"
+    },
+    {
+      "source_id": "video871",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "b3f68c19b7d22d4b8e043f8372a7748c234a98d9f49cf6c5313594e533b9f61c"
+    },
+    {
+      "source_id": "video935",
+      "target_ratio": [
+        9,
+        16
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "b8634129979598d23260b793030dcea8d2a47326293809389ed737d46d721b0f"
+    },
+    {
+      "source_id": "video935",
+      "target_ratio": [
+        16,
+        9
+      ],
+      "sample_frames": 6,
+      "mismatched_frame_ids": [],
+      "passed": true,
+      "full_original_output_frames": 180,
+      "raw_cache_sha256": "b8634129979598d23260b793030dcea8d2a47326293809389ed737d46d721b0f"
+    }
+  ],
+  "checked_view_frames": 732,
+  "scope": "exact CPU replay of final P1 path from real retained subject/candidate anchors",
+  "raw_IoU_used_as_deploy_IoU": false
+}

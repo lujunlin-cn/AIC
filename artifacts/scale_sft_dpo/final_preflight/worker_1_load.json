@@ -1,0 +1,8 @@
+{
+  "load_seconds": 23.974625702947378,
+  "parent_identity_sha256": "0cdc528b7753c2715a27affc5844f56b16bb7aa3bb4936e0f59bf2d73aa15d52",
+  "position_protocol_sha256": "53bc2b0dc72d71bd14301fd8246564c1a0f4ba6c1ed40bfbb6488c923d787058",
+  "GPU": "NVIDIA GeForce RTX 4090",
+  "optimizer_steps": 0,
+  "formal_training": false
+}

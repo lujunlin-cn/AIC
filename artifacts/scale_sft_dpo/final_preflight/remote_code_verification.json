@@ -1,0 +1,19 @@
+{
+  "created_at": "2026-11-08T04:00:38.449842+00:00",
+  "git_commit": "8da07d07954ef4a50ea5e5bc2cc0969f9280a5a6",
+  "files_checked": 53,
+  "hash_differences": [],
+  "code_hash_status": "passed",
+  "CPU_Scale_test_command": [
+    "/root/autodl-tmp/videoora42_clone/.venv/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "tests/test_scale_*.py"
+  ],
+  "CPU_Scale_test_exit_code": 0,
+  "CPU_Scale_test_stdout": "........................................................................ [ 42%]\n........................................................................ [ 84%]\n..........................                                               [100%]\n170 passed in 2.95s\n",
+  "CPU_Scale_test_stderr": "",
+  "CUDA_hidden_for_tests": true,
+  "formal_training_started": false
+}

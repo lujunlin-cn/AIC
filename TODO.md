@@ -1,3 +1,16 @@
+## P0 — P2 route-Scale candidates ready; wait for official evaluation access
+
+- [x] Follow owner's P2-only correction and lock C0/C1/C2/C3 protocol/input/source SHA256.
+- [x] Reproduce all 890 P2 CPU postprocessing results; preserve original P2 weights and package.
+- [x] Build four complete 890-video / 263,970-frame ZIPs; independently verify actual ZIP bytes, exact temporal sets, geometry, Native identity and QP behavior.
+- [x] Verify C1 frame/segment controls coincide without crossing original shots; do not add an unsupported median candidate.
+- [x] Verify all 890 original video hashes and 444,581 decoded frame PTS on remote CPU; reproduce four ZIP hashes from clean inputs.
+- [x] Pass local compileall / 267 Scale tests / 390 full tests; keep GPU use at 0/10 h.
+- [ ] Receive an authenticated official submission entry/script or exact ZIP-bound platform receipts; confirm semifinal submission quota before using slots.
+- [ ] Evaluate C0/C1/C2/C3 on the same semifinal set; promote only a contract-valid candidate with official F1 strictly above newly measured C0.
+- [ ] Reconcile owner's current P2=44.63 with historical P2=44.65 using platform evidence, without overwriting older records or guessing scores.
+- [ ] Stop after delivery; no SFT/DPO/model retraining, no further probes or datasets under this task.
+
 ## P0 — Final bounded Scale preflight completed; awaiting research decision
 
 - [x] Reuse actual Video-ORA/P1/Scale smoke by SHA; do not repeat GPU tests.

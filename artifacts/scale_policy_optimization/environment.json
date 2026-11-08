@@ -1,0 +1,7 @@
+{
+  "python": "3.13.12 | packaged by conda-forge | (main, Feb  5 2026, 05:43:35) [GCC 14.3.0]",
+  "platform": "Linux-6.17.0-1026-nvidia-aarch64-with-glibc2.39",
+  "git_commit_before_changes": "3f582fcf816b5f7ffe86b6aa74c471fdf748b2b1",
+  "command": "PYTHONPATH=. OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python scripts/build_scale_policy_candidates.py --root artifacts/scale_policy_optimization --workers 8",
+  "GPU_used": false
+}

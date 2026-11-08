@@ -1,0 +1,27 @@
+{
+  "parent": "P2",
+  "directory": "/home/hajimi2025/AIC/submissions/20261108_P2_SCALE_POLICY",
+  "packages": {
+    "C0": {
+      "path": "/home/hajimi2025/AIC/submissions/20261108_P2_SCALE_POLICY/C0_P2_Scale.zip",
+      "zip_sha256": "1489ace9d0ab5108af257800fb7a0cf83d07cfccc2b8c9a0c2f53e16fd557644",
+      "bytes": 734241
+    },
+    "C1": {
+      "path": "/home/hajimi2025/AIC/submissions/20261108_P2_SCALE_POLICY/C1_P2_Scale.zip",
+      "zip_sha256": "1d2d9dd63ff6e22eba5124046c68656208e448a531f16d42e4d48ce3558478fa",
+      "bytes": 700157
+    },
+    "C2": {
+      "path": "/home/hajimi2025/AIC/submissions/20261108_P2_SCALE_POLICY/C2_P2_Scale.zip",
+      "zip_sha256": "ff0df4a23f3f4724d4ddde1934c373e622a35ffc3451305c03fcb8868bad653f",
+      "bytes": 703749
+    },
+    "C3": {
+      "path": "/home/hajimi2025/AIC/submissions/20261108_P2_SCALE_POLICY/C3_P2_Scale.zip",
+      "zip_sha256": "436abbef0316bfaa5a97347932fc6195d64d0a16001e53dbb30083667a18e518",
+      "bytes": 703614
+    }
+  },
+  "all_local_hashes_verified": true
+}

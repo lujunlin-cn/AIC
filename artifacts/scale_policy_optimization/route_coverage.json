@@ -1,0 +1,73 @@
+{
+  "parent": "P2",
+  "videos": {
+    "b": 228,
+    "a": 266,
+    "native": 396
+  },
+  "output_frames": {
+    "b": 56537,
+    "a": 71407,
+    "native": 136026
+  },
+  "changes_by_candidate": {
+    "C0": {
+      "a": {
+        "changed_output_frames": 0,
+        "output_frames": 71407
+      },
+      "b": {
+        "changed_output_frames": 0,
+        "output_frames": 56537
+      },
+      "native": {
+        "changed_output_frames": 0,
+        "output_frames": 136026
+      }
+    },
+    "C1": {
+      "a": {
+        "changed_output_frames": 71407,
+        "output_frames": 71407
+      },
+      "b": {
+        "changed_output_frames": 56537,
+        "output_frames": 56537
+      },
+      "native": {
+        "changed_output_frames": 0,
+        "output_frames": 136026
+      }
+    },
+    "C2": {
+      "a": {
+        "changed_output_frames": 71407,
+        "output_frames": 71407
+      },
+      "b": {
+        "changed_output_frames": 56537,
+        "output_frames": 56537
+      },
+      "native": {
+        "changed_output_frames": 0,
+        "output_frames": 136026
+      }
+    },
+    "C3": {
+      "a": {
+        "changed_output_frames": 71407,
+        "output_frames": 71407
+      },
+      "b": {
+        "changed_output_frames": 0,
+        "output_frames": 56537
+      },
+      "native": {
+        "changed_output_frames": 0,
+        "output_frames": 136026
+      }
+    }
+  },
+  "B_risk": "only transposed LIVE evidence; native B has not been validated on public labels",
+  "constant_evidence_parent": "P1 diagnostic only; P2 benefit requires official evaluation"
+}

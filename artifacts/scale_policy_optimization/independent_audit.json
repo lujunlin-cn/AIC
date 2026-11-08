@@ -1,0 +1,139 @@
+{
+  "C0": {
+    "passed": true,
+    "counts": {
+      "videos": 890,
+      "QP_width_changes": 0,
+      "frames": 263970
+    },
+    "by_route": {
+      "a": {
+        "videos": 266,
+        "frames": 71407,
+        "changed_frames": 0
+      },
+      "b": {
+        "videos": 228,
+        "frames": 56537,
+        "changed_frames": 0
+      },
+      "native": {
+        "videos": 396,
+        "frames": 136026,
+        "changed_frames": 0
+      }
+    },
+    "max_position_drift_px": 0.0,
+    "max_QP_center_change_px": 0.0,
+    "actual_width_scale": {
+      "min": 1.0,
+      "max": 1.0,
+      "frame_mean": 1.0
+    }
+  },
+  "C1": {
+    "passed": true,
+    "counts": {
+      "videos": 890,
+      "QP_width_changes": 0,
+      "frames": 263970
+    },
+    "by_route": {
+      "a": {
+        "videos": 266,
+        "frames": 71407,
+        "changed_frames": 71407
+      },
+      "b": {
+        "videos": 228,
+        "frames": 56537,
+        "changed_frames": 56537
+      },
+      "native": {
+        "videos": 396,
+        "frames": 136026,
+        "changed_frames": 0
+      }
+    },
+    "max_position_drift_px": 0.5,
+    "max_QP_center_change_px": 0.0,
+    "actual_width_scale": {
+      "min": 0.8960396039603961,
+      "max": 1.0,
+      "frame_mean": 0.9619360539581417
+    }
+  },
+  "C2": {
+    "passed": true,
+    "counts": {
+      "videos": 890,
+      "QP_width_changes": 0,
+      "frames": 263970
+    },
+    "by_route": {
+      "a": {
+        "videos": 266,
+        "frames": 71407,
+        "changed_frames": 71407
+      },
+      "b": {
+        "videos": 228,
+        "frames": 56537,
+        "changed_frames": 56537
+      },
+      "native": {
+        "videos": 396,
+        "frames": 136026,
+        "changed_frames": 0
+      }
+    },
+    "max_position_drift_px": 0.5,
+    "max_QP_center_change_px": 0.0,
+    "actual_width_scale": {
+      "min": 0.9257425742574258,
+      "max": 1.0,
+      "frame_mean": 0.9741219868937828
+    }
+  },
+  "C3": {
+    "passed": true,
+    "counts": {
+      "videos": 890,
+      "QP_width_changes": 0,
+      "frames": 263970
+    },
+    "by_route": {
+      "a": {
+        "videos": 266,
+        "frames": 71407,
+        "changed_frames": 71407
+      },
+      "b": {
+        "videos": 228,
+        "frames": 56537,
+        "changed_frames": 0
+      },
+      "native": {
+        "videos": 396,
+        "frames": 136026,
+        "changed_frames": 0
+      }
+    },
+    "max_position_drift_px": 0.5,
+    "max_QP_center_change_px": 0.0,
+    "actual_width_scale": {
+      "min": 0.8960396039603961,
+      "max": 1.0,
+      "frame_mean": 0.9726823898998753
+    }
+  },
+  "geometry_is_not_official_quality_evaluation": true,
+  "parent": "P2",
+  "protocol_sha256": "94ec90651ceb24b582cff58b4d37306b97f6f38eeab2d031ae1fad49599067c0",
+  "zip_hashes": {
+    "C0": "1489ace9d0ab5108af257800fb7a0cf83d07cfccc2b8c9a0c2f53e16fd557644",
+    "C1": "1d2d9dd63ff6e22eba5124046c68656208e448a531f16d42e4d48ce3558478fa",
+    "C2": "ff0df4a23f3f4724d4ddde1934c373e622a35ffc3451305c03fcb8868bad653f",
+    "C3": "436abbef0316bfaa5a97347932fc6195d64d0a16001e53dbb30083667a18e518"
+  }
+}

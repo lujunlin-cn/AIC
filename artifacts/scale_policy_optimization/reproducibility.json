@@ -1,0 +1,23 @@
+{
+  "all_four_ZIPs_reproduced_from_frozen_inputs": true,
+  "no_completed_receipts_reused": true,
+  "GPU_used": false,
+  "by_candidate": {
+    "C0": {
+      "ZIP_sha256": "1489ace9d0ab5108af257800fb7a0cf83d07cfccc2b8c9a0c2f53e16fd557644",
+      "fresh_rebuild_identical": true
+    },
+    "C1": {
+      "ZIP_sha256": "1d2d9dd63ff6e22eba5124046c68656208e448a531f16d42e4d48ce3558478fa",
+      "fresh_rebuild_identical": true
+    },
+    "C2": {
+      "ZIP_sha256": "ff0df4a23f3f4724d4ddde1934c373e622a35ffc3451305c03fcb8868bad653f",
+      "fresh_rebuild_identical": true
+    },
+    "C3": {
+      "ZIP_sha256": "436abbef0316bfaa5a97347932fc6195d64d0a16001e53dbb30083667a18e518",
+      "fresh_rebuild_identical": true
+    }
+  }
+}

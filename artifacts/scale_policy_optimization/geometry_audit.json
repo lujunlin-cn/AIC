@@ -1,0 +1,33 @@
+{
+  "by_candidate": {
+    "C0": {
+      "maximum_position_drift_px": 0.0,
+      "invalid_window_triggers": 0,
+      "fallback_output_frames": 0,
+      "three_integer_xyw_and_exact_ratio_height_valid": true,
+      "all_original_P2_CPU_replays_exact": true
+    },
+    "C1": {
+      "maximum_position_drift_px": 0.5,
+      "invalid_window_triggers": 0,
+      "fallback_output_frames": 0,
+      "three_integer_xyw_and_exact_ratio_height_valid": true,
+      "all_original_P2_CPU_replays_exact": true
+    },
+    "C2": {
+      "maximum_position_drift_px": 0.5,
+      "invalid_window_triggers": 0,
+      "fallback_output_frames": 0,
+      "three_integer_xyw_and_exact_ratio_height_valid": true,
+      "all_original_P2_CPU_replays_exact": true
+    },
+    "C3": {
+      "maximum_position_drift_px": 0.5,
+      "invalid_window_triggers": 0,
+      "fallback_output_frames": 0,
+      "three_integer_xyw_and_exact_ratio_height_valid": true,
+      "all_original_P2_CPU_replays_exact": true
+    }
+  },
+  "geometry_is_not_quality_evaluation": true
+}

@@ -1,0 +1,101 @@
+{
+  "schema": "aic.P2.route_scale_policy.v1",
+  "created_at_utc": "2026-11-08T04:46:18.121458+00:00",
+  "parent": "P2",
+  "research_scope": "parameter-free route-specific Scale and registered spatial postprocessing only",
+  "hypothesis": "fixed P2 centers with public-data-prespecified route constants may improve official F1; no score prediction",
+  "policies": {
+    "C0": {
+      "a": 1.0,
+      "b": 1.0,
+      "native": 1.0
+    },
+    "C1": {
+      "a": 0.9,
+      "b": 0.95,
+      "native": 1.0
+    },
+    "C2": {
+      "a": 0.93,
+      "b": 0.97,
+      "native": 1.0
+    },
+    "C3": {
+      "a": 0.9,
+      "b": 1.0,
+      "native": 1.0
+    }
+  },
+  "index": "inputs/index.jsonl",
+  "parent_predictions": "inputs/P2_predictions.jsonl",
+  "parent_package": "inputs/P2_original.zip",
+  "runtime_dir": "inputs/runtime",
+  "runtime_hashes": {
+    "contracts.py": "430e0533f4bc1f18e87ba7e42aac8c42f9d14b97d292b9ed3f459d8f3a20fb36",
+    "generation.py": "c9f37edf6d80e388ffcff9748fd2d2175e098de78c5cf9221c7ec9f961e0b845",
+    "clock_rule.py": "cf22057b9fcdfd686f5e55556743861323110023af4d9ad74ae89a1f1dde4843",
+    "video.py": "340515422a9427b62b1fbaa459d752cf245e880b94d124fabae112fd29582239",
+    "adaptive_crop.py": "da0b4691938ba10f75d0541b505c0372f45cc4d17520f417aacb4e50a74cd1a8",
+    "recovery_path_projection.py": "b4ad52a71f019412572c41e43655fb586ef8ee9723f58fd9faff4e814dc1bab1"
+  },
+  "input_hashes": {
+    "inputs/cache_manifest.json": "e0ede6b4de6e6cf2beea9ae242d007748640396d7d6e086dd41c8da68aec3f69",
+    "inputs/index.jsonl": "789590a8271e56c4107819c4edfffd2cd6955ed026bede788f84731f062527ed",
+    "inputs/source_metadata.json": "55f46e352b4d0953d84d0d384cb39884e8c58edb02b23daf6d40e45dc07e4f2a",
+    "inputs/P2_predictions.jsonl": "fc7c33838d91254c1c0fe8324ceaa409c308b47c6234b0eb0fb3810b15a83f6b",
+    "inputs/P2_manifest.json": "899e5450c97c58311ffb2f714ee8f1dbb3024bc7f3e45379f5af27bf34f6679c",
+    "inputs/P2_original.zip": "1489ace9d0ab5108af257800fb7a0cf83d07cfccc2b8c9a0c2f53e16fd557644",
+    "inputs/P2_original_validation.json": "e31ad9db44156736eb502ce08464511ef978099d88eccb2efca530d1371b2d27",
+    "inputs/runtime/contracts.py": "430e0533f4bc1f18e87ba7e42aac8c42f9d14b97d292b9ed3f459d8f3a20fb36",
+    "inputs/runtime/generation.py": "c9f37edf6d80e388ffcff9748fd2d2175e098de78c5cf9221c7ec9f961e0b845",
+    "inputs/runtime/clock_rule.py": "cf22057b9fcdfd686f5e55556743861323110023af4d9ad74ae89a1f1dde4843",
+    "inputs/runtime/video.py": "340515422a9427b62b1fbaa459d752cf245e880b94d124fabae112fd29582239",
+    "inputs/runtime/adaptive_crop.py": "da0b4691938ba10f75d0541b505c0372f45cc4d17520f417aacb4e50a74cd1a8",
+    "inputs/runtime/recovery_path_projection.py": "b4ad52a71f019412572c41e43655fb586ef8ee9723f58fd9faff4e814dc1bab1"
+  },
+  "code_hashes": {
+    "aic/scale_policy.py": "62ab293f8701ec36bd69f970b2d6ddb50ecbafdd2698088f3dae73aca948dfc9",
+    "scripts/build_scale_policy_candidates.py": "3cfe03e3db26e31f78a6c67e5a13f4000ce5341bc6c87fd6ef28fda0fe4fc47d",
+    "scripts/audit_scale_policy_candidates.py": "da8fb62481566c5ccdfc59163e0b06394c9612ec70ceb2d2596636b4ac778968"
+  },
+  "model_identity_evidence": "artifacts/scale_sft_dpo/smoke_test/gpu_35092_verified.json; original P2 manifest and inference record provenance",
+  "parameter_elements": 8999771458,
+  "additional_parameters": 0,
+  "owner_reported_baseline_score": 44.63,
+  "score_is_agent_verified": false,
+  "historical_score_conflict": {
+    "P2_previous_owner_report": 44.65,
+    "P1_previous_owner_report": 44.63,
+    "resolution": "current task owner-reported P2=44.63 retained separately; no new official evaluation claimed"
+  },
+  "temporal_contract": "exact original P2 frame order, membership and count, including original reconciliation",
+  "registered_postprocessing": {
+    "original_max_speed": 0.15,
+    "original_P2_QP_floor": 0.6,
+    "integer_width": "floor(actual_final_P2_width * requested_scale + 1e-9)",
+    "height": "derived from targetRatioWH, never serialized",
+    "position": "P2 final deployed center; both axes preserved to <=1 source pixel after integer rounding",
+    "QP": "reuse original solver, objective, speed, cut and actor-overlap logic with ADDED lo=hi=scaled_baseline_position equality; no unconstrained translation",
+    "integer_exporter_after_scaling": false,
+    "no_clamp": true,
+    "fallback": "infeasible scaled window -> original P2 for same original shot; QP failure -> original P2 for source, reasons retained",
+    "context": "replay full original events before final frozen target-frame reconciliation",
+    "stability_controls": "one constant action per route at every anchor; compute median independently within original shots/events; equality means no median benefit"
+  },
+  "evidence_limitations": [
+    "public constants were selected on P1, not independently verified on P2",
+    "B .95/.97 have transposed LIVE evidence only, not native-domain public validation",
+    "no IoU-to-official-F1 conversion"
+  ],
+  "official_evaluation": {
+    "only_after_geometry_audit": true,
+    "authenticated_adapter_available": false,
+    "multiple_semifinal_submissions_confirmed": false,
+    "scores": null
+  },
+  "GPU_cap_seconds": 36000,
+  "GPU_tasks_planned": false,
+  "training_allowed": false,
+  "baseline_protection": "original P1/P2 weights and packages immutable; all new outputs under this root; no official predictions/caches/ZIP uploaded to public GitHub",
+  "protocol_sha256": "94ec90651ceb24b582cff58b4d37306b97f6f38eeab2d031ae1fad49599067c0"
+}

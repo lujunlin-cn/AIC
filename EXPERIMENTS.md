@@ -1,3 +1,13 @@
+## 2026-11-08 — P2_ROUTE_SCALE_POLICY_V1
+
+Hypothesis: the public LIVE train-selected route constants might improve P2's official spatial contribution with unchanged time/Position. Public P1 IoU gains are not a P2 or official F1 result; B evidence is transpose augmentation only.
+
+Change: C0 original P2; C1 A=.90/B=.95; C2 A=.93/B=.97; C3 A=.90/B=1.00; all Native=1.00. Original P2 final-center rescaling, integer width from actual parent width, exact ratio-derived height, registered fixed-position QP equality and explicit failure fallback. No temporal or model changes.
+
+Validation: 890/890 exact original P2 CPU replays; every ZIP has 890 videos / 263,970 frames, temporal identity=100%; routes A/B/Native=266/228/396, Native unchanged. Maximum center rounding=.5 px; invalid windows/fallbacks/QP width changes=0, QP center change=0. CPU full-media validation matches 444,581 decoded original frames/PTS and all source hashes; clean reconstruction reproduces all four ZIPs. compileall passes; 267 Scale and 390 full CPU tests pass. GPU=0/10 h; no training or weight changes.
+
+Result: **official F1=null**, no candidate promoted. Authenticated platform submission and semifinal quota remain unavailable. Four complete packages are retained, preserving baseline ZIP `1489ace9d0ab5108af257800fb7a0cf83d07cfccc2b8c9a0c2f53e16fd557644`. Full report and remaining blockers: `artifacts/scale_policy_optimization/final_report.md`.
+
 ## 2026-11-08 — SCALE_FINAL_PREFLIGHT_1H
 
 Hypothesis: frozen final P1 centers plus train-selected constants may explain Scale improvements; residual GT-visible Oracle space must not be mistaken for predictable visual policy gain. Controls: original full-public-clip temporal set, P1 anchors/smoothing/QP, integer [x,y,w], unchanged Position, route/dataset separation, source-level bootstrap, no official hidden data.

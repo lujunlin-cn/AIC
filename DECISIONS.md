@@ -1,3 +1,11 @@
+## 2026-11-08 — Freeze P2 and retain four route-Scale candidates pending official F1
+
+Decision: adopt the owner's latest correction to use **P2 only**. Keep its temporal set, frame IDs, routes and final centers. Register C0/C1/C2/C3 constants exactly as requested. Preserve the original QP solver/objective/cut/speed/overlap code while adding `lo=hi=scaled_baseline_position`; this explicit postprocessing change prevents a second QP pass from translating Position. Use `floor(actual_P2_width*Scale+1e-9)` and derive height solely from the target ratio; never call the width-restoring integer exporter after Scale. Infeasible windows revert to P2 and record a reason.
+
+Evidence: all 890 P2 CPU replays and 4 ZIP audits pass; maximum integer center drift=.5 px, no QP width/center changes or fallbacks; temporal identity=100%, Native unchanged. Clean rebuild is byte-identical. Remote video SHA256/dimensions/count/PTS match for 890 sources / 444,581 frames. C1-frame and C1-segment coincide for a route constant, so no extra segment candidate is promoted. See `artifacts/scale_policy_optimization/`.
+
+Status: engineering deliverables accepted; **official promotion pending**. No score conversion from public IoU, no new model or training, GPU=0 seconds. B's transpose-domain risk remains explicit. No official submission adapter/quota is configured, so all new scores are null. Only exact ZIP-bound official feedback above a newly measured C0 can qualify a candidate; original P2 remains intact. Score history conflicts are recorded rather than overwritten.
+
 ## 2026-11-08 — Defer Scale-SFT after bounded final-P1 diagnosis
 
 Status: Accepted for this diagnostic round; no formal training launched.

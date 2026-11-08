@@ -1,0 +1,20 @@
+{
+  "parent": "P2",
+  "local_directory": "/home/hajimi2025/AIC/submissions/20261108_P2_SCALE_POLICY",
+  "local_package_hashes_file": "local_delivery_manifest.json",
+  "remote_host": "connect.westd.seetacloud.com",
+  "remote_port": 35092,
+  "remote_directory": "/root/autodl-tmp/videoora42_clone/scale_policy_P2_20261108",
+  "remote_verification_sha256": "d5b94c0bd022270529a76fba03a51f8a334ffb81fa7b6e9bf680e3a60fc9a4e8",
+  "code_manifest_sha256": "60491c105b7033f48d685e4df93925975e6d7d2026068dd8b1f0c58ebd63a125",
+  "local_tests": {
+    "scale": 267,
+    "full": 390,
+    "compileall": true
+  },
+  "remote_policy_tests": 97,
+  "actual_GPU_seconds": 0,
+  "official_evaluation_complete": false,
+  "official_blocker": "missing authenticated submission entry and confirmed semifinal submission quota",
+  "original_best_submission_overwritten": false
+}

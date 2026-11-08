@@ -1,0 +1,47 @@
+{
+  "GPU_used": false,
+  "commands": [
+    {
+      "command": [
+        "python",
+        "-m",
+        "compileall",
+        "-q",
+        "aic",
+        "scripts",
+        "tests"
+      ],
+      "returncode": 0,
+      "passed_tests": null,
+      "elapsed_seconds": 0.06357234064489603,
+      "log": "compileall.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "PYTHONPATH=. pytest -q tests/test_scale_*.py"
+      ],
+      "returncode": 0,
+      "passed_tests": 267,
+      "elapsed_seconds": 4.2438592542894185,
+      "log": "scale_pytest.log",
+      "log_sha256": "a6c29f2df07f950109b1e298ad2dcbcc0837b203f0d775ad42300507bd5b5132"
+    },
+    {
+      "command": [
+        "python",
+        "-m",
+        "pytest",
+        "-q"
+      ],
+      "returncode": 0,
+      "passed_tests": 390,
+      "elapsed_seconds": 8.707273045089096,
+      "log": "full_pytest.log",
+      "log_sha256": "905f1bdc7929bacaa487c039c5660dd8ed26b9a24e4c338cf629e15ebbbb076e"
+    }
+  ],
+  "passed": true
+}

@@ -1,0 +1,88 @@
+{
+  "parent": "P2",
+  "protocol_sha256": "94ec90651ceb24b582cff58b4d37306b97f6f38eeab2d031ae1fad49599067c0",
+  "candidates": {
+    "C0": {
+      "candidate": "C0",
+      "parent": "P2",
+      "scales": {
+        "a": 1.0,
+        "b": 1.0,
+        "native": 1.0
+      },
+      "predictions": "/home/hajimi2025/AIC/.worktrees/newday/artifacts/scale_policy_optimization/candidates/C0/predictions.jsonl",
+      "predictions_sha256": "fc7c33838d91254c1c0fe8324ceaa409c308b47c6234b0eb0fb3810b15a83f6b",
+      "zip": "/home/hajimi2025/AIC/.worktrees/newday/artifacts/scale_policy_optimization/candidates/C0/C0_P2_Scale.zip",
+      "zip_sha256": "1489ace9d0ab5108af257800fb7a0cf83d07cfccc2b8c9a0c2f53e16fd557644",
+      "zip_bytes": 734241,
+      "videos": 890,
+      "output_frames": 263970,
+      "model_params_b": 8.999771458,
+      "official_f1": null,
+      "promoted": false,
+      "status": "PACKAGED_AWAITING_INDEPENDENT_AUDIT_AND_OFFICIAL_EVALUATION"
+    },
+    "C1": {
+      "candidate": "C1",
+      "parent": "P2",
+      "scales": {
+        "a": 0.9,
+        "b": 0.95,
+        "native": 1.0
+      },
+      "predictions": "/home/hajimi2025/AIC/.worktrees/newday/artifacts/scale_policy_optimization/candidates/C1/predictions.jsonl",
+      "predictions_sha256": "df8113d8ecf62353aad59b39be9b8455e9a06cf423c0e9d1357622418efdf724",
+      "zip": "/home/hajimi2025/AIC/.worktrees/newday/artifacts/scale_policy_optimization/candidates/C1/C1_P2_Scale.zip",
+      "zip_sha256": "1d2d9dd63ff6e22eba5124046c68656208e448a531f16d42e4d48ce3558478fa",
+      "zip_bytes": 700157,
+      "videos": 890,
+      "output_frames": 263970,
+      "model_params_b": 8.999771458,
+      "official_f1": null,
+      "promoted": false,
+      "status": "PACKAGED_AWAITING_INDEPENDENT_AUDIT_AND_OFFICIAL_EVALUATION"
+    },
+    "C2": {
+      "candidate": "C2",
+      "parent": "P2",
+      "scales": {
+        "a": 0.93,
+        "b": 0.97,
+        "native": 1.0
+      },
+      "predictions": "/home/hajimi2025/AIC/.worktrees/newday/artifacts/scale_policy_optimization/candidates/C2/predictions.jsonl",
+      "predictions_sha256": "32796f0adb8dc677f05b908bb63c737694228463319da34f494219bc8c14fb33",
+      "zip": "/home/hajimi2025/AIC/.worktrees/newday/artifacts/scale_policy_optimization/candidates/C2/C2_P2_Scale.zip",
+      "zip_sha256": "ff0df4a23f3f4724d4ddde1934c373e622a35ffc3451305c03fcb8868bad653f",
+      "zip_bytes": 703749,
+      "videos": 890,
+      "output_frames": 263970,
+      "model_params_b": 8.999771458,
+      "official_f1": null,
+      "promoted": false,
+      "status": "PACKAGED_AWAITING_INDEPENDENT_AUDIT_AND_OFFICIAL_EVALUATION"
+    },
+    "C3": {
+      "candidate": "C3",
+      "parent": "P2",
+      "scales": {
+        "a": 0.9,
+        "b": 1.0,
+        "native": 1.0
+      },
+      "predictions": "/home/hajimi2025/AIC/.worktrees/newday/artifacts/scale_policy_optimization/candidates/C3/predictions.jsonl",
+      "predictions_sha256": "8579998b8008919ba88bb07fd158317821bc8b9b6e3eb70cadbf2842c24ee512",
+      "zip": "/home/hajimi2025/AIC/.worktrees/newday/artifacts/scale_policy_optimization/candidates/C3/C3_P2_Scale.zip",
+      "zip_sha256": "436abbef0316bfaa5a97347932fc6195d64d0a16001e53dbb30083667a18e518",
+      "zip_bytes": 703614,
+      "videos": 890,
+      "output_frames": 263970,
+      "model_params_b": 8.999771458,
+      "official_f1": null,
+      "promoted": false,
+      "status": "PACKAGED_AWAITING_INDEPENDENT_AUDIT_AND_OFFICIAL_EVALUATION"
+    }
+  },
+  "official_test_labels_accessed": false,
+  "training_started": false
+}

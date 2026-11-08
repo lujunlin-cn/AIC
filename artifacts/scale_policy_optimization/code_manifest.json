@@ -1,0 +1,23 @@
+{
+  "files": {
+    "aic/scale_policy.py": "62ab293f8701ec36bd69f970b2d6ddb50ecbafdd2698088f3dae73aca948dfc9",
+    "scripts/build_scale_policy_candidates.py": "3cfe03e3db26e31f78a6c67e5a13f4000ce5341bc6c87fd6ef28fda0fe4fc47d",
+    "scripts/audit_scale_policy_candidates.py": "da8fb62481566c5ccdfc59163e0b06394c9612ec70ceb2d2596636b4ac778968",
+    "scripts/finalize_scale_policy_optimization.py": "00b23aa5ea9283a9050740d81cc46d5833adf47777aa0ec1dbeadf4e83b2d194",
+    "tests/test_scale_policy.py": "fa72f00e28f9e2b989e0bbbcc41572646de799b5864dec4a4c3ffd890911604a",
+    "STATUS.md": "ef48e73f9e9dd4627f4e53ebca3a57126cc448d10d1520a8f31688df9ccb1daa",
+    "DECISIONS.md": "3ba6d05412a84a8e5c695782de2a27e7895eb613560c66d009c73d359c338b5b",
+    "EXPERIMENTS.md": "339950c64da5369c622baab2c995de7a70074107ed838e03532cf64cccad82bd",
+    "TODO.md": "b73fb5405e7fe5c6e7aed8960e73ececb4f176c6f278da2b81e6f2a1abc68c33",
+    "artifacts/scale_policy_optimization/inputs/runtime/contracts.py": "430e0533f4bc1f18e87ba7e42aac8c42f9d14b97d292b9ed3f459d8f3a20fb36",
+    "artifacts/scale_policy_optimization/inputs/runtime/generation.py": "c9f37edf6d80e388ffcff9748fd2d2175e098de78c5cf9221c7ec9f961e0b845",
+    "artifacts/scale_policy_optimization/inputs/runtime/clock_rule.py": "cf22057b9fcdfd686f5e55556743861323110023af4d9ad74ae89a1f1dde4843",
+    "artifacts/scale_policy_optimization/inputs/runtime/video.py": "340515422a9427b62b1fbaa459d752cf245e880b94d124fabae112fd29582239",
+    "artifacts/scale_policy_optimization/inputs/runtime/adaptive_crop.py": "da0b4691938ba10f75d0541b505c0372f45cc4d17520f417aacb4e50a74cd1a8",
+    "artifacts/scale_policy_optimization/inputs/runtime/recovery_path_projection.py": "b4ad52a71f019412572c41e43655fb586ef8ee9723f58fd9faff4e814dc1bab1",
+    "artifacts/scale_policy_optimization/protocol.json": "10eb23b2fc5efc6dc187dd708d5e68b06dd4fa13cdeb1876a4d378aae7b09355"
+  },
+  "new_code_runs_on_CPU_only": true,
+  "remote_destination": "/root/autodl-tmp/videoora42_clone/scale_policy_P2_20261108",
+  "remote_Python": "/root/autodl-tmp/videoora42_clone/.venv/bin/python"
+}

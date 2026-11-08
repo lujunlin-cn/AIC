@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "videos": 890,
+  "decoded_frames": 444581,
+  "PTS_exact": true,
+  "video_SHA256_exact": true,
+  "GPU_used": false,
+  "labels_accessed": false,
+  "all_four_packages_validated": true,
+  "protocol_sha256": "94ec90651ceb24b582cff58b4d37306b97f6f38eeab2d031ae1fad49599067c0",
+  "elapsed_CPU_wall_seconds": 205.983558986336
+}

@@ -1,0 +1,61 @@
+{
+  "by_candidate": {
+    "C0": {
+      "QP_floor": 0.6,
+      "QP_width_changed_frames": 0,
+      "QP_shot_audits": 0,
+      "QP_failed_audits": 0,
+      "mode": "original_P2_replay_and_byte_exact_reuse",
+      "maximum_window_integer_exporter_called_after_scale": false,
+      "per_frame_width_center_audits": "work/*/attempt_*/C0_frames.jsonl.gz"
+    },
+    "C1": {
+      "QP_floor": 0.6,
+      "QP_width_changed_frames": 0,
+      "QP_shot_audits": 544,
+      "QP_failed_audits": 0,
+      "mode": "original_active_axis_QP_with_registered_exact_position_equality",
+      "maximum_window_integer_exporter_called_after_scale": false,
+      "per_frame_width_center_audits": "work/*/attempt_*/C1_frames.jsonl.gz"
+    },
+    "C2": {
+      "QP_floor": 0.6,
+      "QP_width_changed_frames": 0,
+      "QP_shot_audits": 544,
+      "QP_failed_audits": 0,
+      "mode": "original_active_axis_QP_with_registered_exact_position_equality",
+      "maximum_window_integer_exporter_called_after_scale": false,
+      "per_frame_width_center_audits": "work/*/attempt_*/C2_frames.jsonl.gz"
+    },
+    "C3": {
+      "QP_floor": 0.6,
+      "QP_width_changed_frames": 0,
+      "QP_shot_audits": 297,
+      "QP_failed_audits": 0,
+      "mode": "original_active_axis_QP_with_registered_exact_position_equality",
+      "maximum_window_integer_exporter_called_after_scale": false,
+      "per_frame_width_center_audits": "work/*/attempt_*/C3_frames.jsonl.gz"
+    }
+  },
+  "registered_postprocessing": {
+    "original_max_speed": 0.15,
+    "original_P2_QP_floor": 0.6,
+    "integer_width": "floor(actual_final_P2_width * requested_scale + 1e-9)",
+    "height": "derived from targetRatioWH, never serialized",
+    "position": "P2 final deployed center; both axes preserved to <=1 source pixel after integer rounding",
+    "QP": "reuse original solver, objective, speed, cut and actor-overlap logic with ADDED lo=hi=scaled_baseline_position equality; no unconstrained translation",
+    "integer_exporter_after_scaling": false,
+    "no_clamp": true,
+    "fallback": "infeasible scaled window -> original P2 for same original shot; QP failure -> original P2 for source, reasons retained",
+    "context": "replay full original events before final frozen target-frame reconciliation",
+    "stability_controls": "one constant action per route at every anchor; compute median independently within original shots/events; equality means no median benefit"
+  },
+  "stability_controls": {
+    "all_video_anchor_and_shot_schedules_equal": true,
+    "frame_sha256": "df8113d8ecf62353aad59b39be9b8455e9a06cf423c0e9d1357622418efdf724",
+    "segment_sha256": "df8113d8ecf62353aad59b39be9b8455e9a06cf423c0e9d1357622418efdf724",
+    "identical_to_C1": true,
+    "cross_shot_median_used": false,
+    "conclusion": "constant actions have the same within-shot median; no additional candidate or benefit claimed"
+  }
+}

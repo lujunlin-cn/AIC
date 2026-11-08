@@ -1,0 +1,41 @@
+{
+  "parent": "P2",
+  "by_candidate": {
+    "C0": {
+      "videos": 890,
+      "frame_order_and_membership_identical_videos": 890,
+      "identity_rate": 1.0,
+      "output_frames": 263970,
+      "frame_additions": 0,
+      "frame_deletions": 0,
+      "parent": "P2"
+    },
+    "C1": {
+      "videos": 890,
+      "frame_order_and_membership_identical_videos": 890,
+      "identity_rate": 1.0,
+      "output_frames": 263970,
+      "frame_additions": 0,
+      "frame_deletions": 0,
+      "parent": "P2"
+    },
+    "C2": {
+      "videos": 890,
+      "frame_order_and_membership_identical_videos": 890,
+      "identity_rate": 1.0,
+      "output_frames": 263970,
+      "frame_additions": 0,
+      "frame_deletions": 0,
+      "parent": "P2"
+    },
+    "C3": {
+      "videos": 890,
+      "frame_order_and_membership_identical_videos": 890,
+      "identity_rate": 1.0,
+      "output_frames": 263970,
+      "frame_additions": 0,
+      "frame_deletions": 0,
+      "parent": "P2"
+    }
+  }
+}

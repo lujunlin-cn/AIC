@@ -1,0 +1,24 @@
+{
+  "checked_at_utc": "2026-11-08T04:50:02Z",
+  "repository_submission_adapter_found": false,
+  "public_leaderboard_is_submission_interface": false,
+  "live_authenticated_session_available": false,
+  "semifinal_multiple_submission_policy_confirmed": false,
+  "checks": [
+    {
+      "url": "https://reg.aicomp.cn/",
+      "http_status": 200,
+      "title": "",
+      "authenticated": false
+    },
+    {
+      "url": "https://www.aicomp.cn/tracks/tracks-6/4267.html",
+      "http_status": 200,
+      "title": "全球校园人工智能算法精英大赛 智青春·算未来",
+      "authenticated": false
+    }
+  ],
+  "status": "BLOCKED_OFFICIAL_EVALUATION_NO_AUTHENTICATED_ADAPTER_OR_CONFIRMED_QUOTA",
+  "source_search": "scripts/fetch_public_leaderboard.py is read-only ranking for historical stage, not an evaluator; original semifinal code only generates/validates/packages predictions",
+  "labels_accessed": false
+}

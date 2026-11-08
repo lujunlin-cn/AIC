@@ -1,0 +1,28 @@
+{
+  "all_synced_files_match": true,
+  "files": {
+    "aic/scale_policy.py": true,
+    "scripts/build_scale_policy_candidates.py": true,
+    "scripts/audit_scale_policy_candidates.py": true,
+    "scripts/finalize_scale_policy_optimization.py": true,
+    "tests/test_scale_policy.py": true,
+    "STATUS.md": true,
+    "DECISIONS.md": true,
+    "EXPERIMENTS.md": true,
+    "TODO.md": true,
+    "artifacts/scale_policy_optimization/inputs/runtime/contracts.py": true,
+    "artifacts/scale_policy_optimization/inputs/runtime/generation.py": true,
+    "artifacts/scale_policy_optimization/inputs/runtime/clock_rule.py": true,
+    "artifacts/scale_policy_optimization/inputs/runtime/video.py": true,
+    "artifacts/scale_policy_optimization/inputs/runtime/adaptive_crop.py": true,
+    "artifacts/scale_policy_optimization/inputs/runtime/recovery_path_projection.py": true,
+    "artifacts/scale_policy_optimization/protocol.json": true
+  },
+  "policy_tests_passed": 97,
+  "test_log_sha256": "e54e32f281350d3ab70885ac73b04892ac2f9548679f98a567abc1900b8adad1",
+  "test_command": "PYTHONPATH=.:test_deps OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 /root/autodl-tmp/videoora42_clone/.venv/bin/python -m pytest -q tests/test_scale_policy.py",
+  "test_dependency_note": "project venv lacked pytest; default package mirror returned 403; installed pytest==9.0.3 via official PyPI into isolated test_deps only; model venv unchanged",
+  "GPU_observation": "NVIDIA GeForce RTX 4090, 0 MiB, 0 %",
+  "GPU_tasks_started": false,
+  "original_P2_package_preserved": true
+}

@@ -577,7 +577,7 @@
   "metric_scope": "public source-macro spatial IoU with fixed frames; not official competition Score",
   "historical_raw_pilot_warning": "single-frame raw centers; no smoothing, subjects, full PTS, or QP. B is transposed LIVE, not upright B confirmation; model identity of historical raw output is not hash-bound.",
   "provenance": {
-    "created_at_utc": "2026-11-08T02:40:50.607043+00:00",
+    "created_at_utc": "2026-11-08T02:44:15.798303+00:00",
     "seed": 20261108,
     "protocol_sha256": "7b62b04066d6b4a3d079746382adb8d21ac3975998e0161f3e7dd5dc2c77e11e",
     "public_labels_sha256": "b5beb7ebb075e436ff31d0e8293957277a68b59bb58beb7bdf9f6cc04b0b011d",

@@ -34,10 +34,10 @@
   "figure_visual_inspection": "passed; exported PNG inspected after wrapping B title",
   "new_GPU_work": false,
   "files_sha256": {
-    "constant_scale_baseline.json": "2a16764ead4e37e1f80b5ed0a2625c6ea59eb88deac6a6302b24d7cc5e5472ae",
-    "scale_predictability.json": "13c207265df47eca4e7cfdc233dd68331618ab86bc80a01e98e0c62780aea9e2",
-    "scale_oracle_analysis.json": "72fcbd4c759ee02f8aaf846fcf6b9de40ddc5fbda1fbe7dd5c53fae0a6a68fe1",
-    "diagnostic_report.md": "bf19159b1087431e3c851d6e5ab51a377333e551686a0ea3b6d6901a690a776d",
+    "constant_scale_baseline.json": "7640d222276684e4e9e02992a9a0c82cf571d6146a0761f7570616cbf2755193",
+    "scale_predictability.json": "f9360810a53334a47d0077af6da17b223b3d5246c57d987cc930927be6a6a9f0",
+    "scale_oracle_analysis.json": "832a0b5b7ce2672ac6abac78c7868363f28cdbe3ad99dc29dfa4f9f5c8bcd6d9",
+    "diagnostic_report.md": "5d14853909e14b1af5605fc5dcdd6f3069f1c3179a36a44b3a819360c10b6455",
     "diagnostic_overview.png": "5bbf9385fb062d2efa04e4c67e5c0730f33b8d6a09d38f9b640cbda5ffc59be2"
   }
 }

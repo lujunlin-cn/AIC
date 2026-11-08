@@ -1,3 +1,15 @@
+## 2026-11-08 — P2 候选构图效用研究 CPU 就绪
+
+已按 `plan/AIC_spatial_research_review.md` 执行 E1/E5/E6/E8 CPU 研究，并补齐 E2/E3/E4/E7 的真实特征→小读出训练→checkpoint恢复→Dev锁定→Confirm→原P2 QP评价运行链；尚未启动GPU。P2为唯一父链，当前参考分44.65来自负责人研究报告，C0新轮回分仍未测；不覆盖旧成绩来源。
+
+关键修复：SACD原始json虽无显式pair字段，但核验原论文§3.3及2590条Train/Val annotation后，恢复了同主体前两阶段人工筛选偏序；Train为2203图/2281 subjects/3,981,607逻辑pair，不使用best_box、第三阶段修框选择或Test标签。GAICD Journal Train为2099图ID/181360有效候选/6,058,417逻辑MOS pair，语义与IoU分开。
+
+P1原缓存732采样框CPU复现后，以P2 QP=.6重放122路径。排除曝光源后保留60 LIVE源/720 A-B观测；B仍是转置域。输入18557条通过1,693,899项整数候选几何核验。LIVE utility训练另以CPU扩展至400个纯Train源/4800个A-B观测，不生成额外P2中心。新特征明确复用P2 Qwen3.5视觉塔而非缺失B3/LFM，MLP32连buffers的完整系统8,999,889,435元素，低于9B。
+
+验证：compileall通过，新研究45 tests、Scale267、全仓库435 tests通过。GPU新共享特征路径和12个readout的真实训练结果均为null；当前GPU用量0。远端独立目录为 `/root/autodl-tmp/videoora42_clone/spatial_research_review_20261108/`，GPU开启后运行 `bash scripts/run_spatial_research_gpu.sh`，共享6小时硬账本、可恢复、不自动出官方包。RetargetVid原视频/原生B视频域仍缺，不能由GPU开启替代数据证据；未过双视频域/几何/官方分门，不改变P2最佳包。
+
+证据：`artifacts/spatial_research_review/final_report.md`；运行说明：`docs/13_spatial_candidate_research.md`。以下旧任务停止/许可/无pair条款保留为历史，不覆盖当前研究核验结果。
+
 ## 2026-11-08 — P2 Scale official-score update reported by owner
 
 Owner chat feedback: **C1=42.23; C3=42.87**. Exact ZIP identities are bound in `artifacts/scale_policy_optimization/official_results.json` and `owner_feedback_C1_C3.json`; no independent platform authentication or result receipt has been supplied. C3 is 0.64 points above C1. C0/C2 for this round remain null, so the newly measured C0 deltas and final promotion remain null. Original packages, weights and temporal outputs are unchanged; no inference/training was started. The earlier all-null entries below describe the initial delivery state.

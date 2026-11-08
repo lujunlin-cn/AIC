@@ -1,0 +1,11 @@
+{
+  "passed_images": 18455,
+  "missing_or_invalid": [],
+  "passed": true,
+  "silent_skips": 0,
+  "GPU_used": false,
+  "manifest_sha256": "ac307b3dc5b6f7102902ff1d4c7d4b2183806e972d6b827bf39364e36ab0f719",
+  "disk_free_bytes": 25123303424,
+  "conservative_remaining_feature_and_reserve_bytes": 19933268281,
+  "disk_capacity_passed": true
+}

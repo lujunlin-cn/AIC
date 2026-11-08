@@ -1,0 +1,17 @@
+{
+  "P2_baseline_owner_reported": 44.65,
+  "P2_baseline_source": "current_review_owner_instruction",
+  "C1": 42.23,
+  "C3": 42.87,
+  "VideoORA_training_started": false,
+  "SFT_DPO_started": false,
+  "feature_extraction_complete": false,
+  "readout_results": null,
+  "promotion_gates": {},
+  "full_official_candidate_allowed": false,
+  "SACD": null,
+  "native_B_video_result": null,
+  "RetargetVid_video_result": null,
+  "GPU_smoke_new_feature_path": null,
+  "missing_B3_replaced_by": "explicit new P2-shared-Qwen feature contract, never B3 reproduction"
+}

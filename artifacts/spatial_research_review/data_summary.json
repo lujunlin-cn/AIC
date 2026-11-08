@@ -1,0 +1,122 @@
+{
+  "LIVE": {
+    "complete_cached_sources": 61,
+    "replayed_paths": 122,
+    "P1_control_matches": 732,
+    "excluded_exposed_val_views": 12,
+    "retained_rows": 720,
+    "by_split": {
+      "dev": 204,
+      "confirm": 144,
+      "train": 372
+    },
+    "metric_scope": "actual P2 public video path, not relabelled P1",
+    "utility_training": {
+      "sources": 400,
+      "additional_views": 4428,
+      "actual_P2_Train_center_sources": 31,
+      "P2_Position_inference_added": false,
+      "sampling": "clean Train source hash, six fixed temporal frames, both A/B views; no GT-scale quality selection"
+    }
+  },
+  "GNMC": {
+    "raw_views": 8000,
+    "retained_views": 7983,
+    "byte_alias_groups_quarantined_from_train": [
+      "42df20f1cec7db4637ecb99e39bca32616e3cca07f4b402ffb50f85b0e4291ec",
+      "4ee130f8ae98cd38d01db4e70fec65968a42d93f310dbc7a5be4115c9bf2eb6a",
+      "62680207959e18e8fd6402892de12ac46bdf3d6081850dd9ac28682546360884",
+      "d262ac8c0f154b390bd9ceaa4449472b0d27c9df882dc05c88ebfd3af03cda5e"
+    ],
+    "test_labels_read": false,
+    "P2_baseline_measured": false
+  },
+  "GAICD": {
+    "excluded_Test_image_ids_without_reading_labels": 500,
+    "total_candidates": 248834,
+    "rated_candidates": 244914,
+    "valid_geometry_candidates": 244914,
+    "target_ratio_matched_9_16": 191,
+    "target_ratio_matched_16_9": 2449,
+    "valid_MOS_pairs_before_sampling": 8172899,
+    "train_MOS_pairs_before_sampling": 6058417,
+    "train_valid_candidates": 181360,
+    "confirm_MOS_pairs_before_sampling": 1054957,
+    "confirm_valid_candidates": 31602,
+    "dev_MOS_pairs_before_sampling": 1059525,
+    "dev_valid_candidates": 31952,
+    "images": 2836,
+    "MOS_distribution": {
+      "mean": 2.9551358403059864,
+      "p5": 1.4299999475479126,
+      "p95": 4.0
+    },
+    "position_center_matched": null,
+    "reason": "generic ranker deliberately allows Position; no actual P2 GAICD centers",
+    "MOS_never_renamed_IoU": true,
+    "Test_labels_read": false
+  },
+  "SACD": {
+    "train_subject_annotations": 2281,
+    "explicit_ranked_pairs": 0,
+    "val_subject_annotations": 309,
+    "image_splits": {
+      "train": 2203,
+      "val": 286,
+      "test": 288
+    },
+    "schema_keys": {
+      "index": 2590,
+      "phase1_box": 2590,
+      "phase2_box": 2590,
+      "select_from_phase2_box": 2590,
+      "crop_box": 2590,
+      "best_box": 2590,
+      "mask_x": 2590,
+      "mask_y": 2590,
+      "mask_box": 2590,
+      "class": 2549,
+      "time": 2590
+    },
+    "image_disjoint": true,
+    "split_manifest_sha256": "3db9de0e922e3c18f0da9f0537958b3d112660fc2378a5d9da0b312d6fc3d3bc",
+    "annotation_manifest_sha256": "6d3b792419d8d7e60e9adb1bad7b9cbfb314bb494f945efa883774109207564f",
+    "DPO_eligible": false,
+    "best_box_pairs_created": 0,
+    "Test_annotation_content_read": false,
+    "historical_explicit_field_blocker": "installed SACD export lacks explicit directed subject ranking; stage membership is not preference direction",
+    "selection_pair_recovery": {
+      "train_explicit_stage_selection_pairs": 3981607,
+      "train_subject_rows": 2281,
+      "dev_explicit_stage_selection_pairs": 275032,
+      "dev_subject_rows": 156,
+      "confirm_explicit_stage_selection_pairs": 270469,
+      "confirm_subject_rows": 153,
+      "subject_rows": 2590,
+      "image_splits_mutually_exclusive": true,
+      "pair_contract_verified": true,
+      "independent_human_supervision": true,
+      "best_box_pairs_created": 0,
+      "raw_explicit_pair_fields": 0,
+      "recovered_from": "documented original two-stage human selections on exact native grid",
+      "annotation_manifest_sha256": "6d3b792419d8d7e60e9adb1bad7b9cbfb314bb494f945efa883774109207564f",
+      "Test_annotation_content_read": false,
+      "not_general_unconditional_MOS": true
+    },
+    "blocker": null,
+    "ranker_eligible": true
+  },
+  "RetargetVid": {
+    "annotations_exist": true,
+    "recoverable_video_media_verified": false,
+    "result": null,
+    "blocker": "no original RetargetVid video/old R70 tables in current clone"
+  },
+  "integrity": {
+    "rows": 18557,
+    "sources": 13736,
+    "unique_images": 15881,
+    "no_leakage": true
+  },
+  "manifest_sha256": "ac307b3dc5b6f7102902ff1d4c7d4b2183806e972d6b827bf39364e36ab0f719"
+}

@@ -1,0 +1,61 @@
+{
+  "passed": true,
+  "integrity": {
+    "rows": 18557,
+    "sources": 13736,
+    "unique_images": 15881,
+    "no_leakage": true
+  },
+  "row_counts": {
+    "LIVE_YT_VC/dev": 204,
+    "LIVE_YT_VC/confirm": 144,
+    "LIVE_YT_VC/train": 4800,
+    "GNMC/train": 6983,
+    "GNMC/confirm": 477,
+    "GNMC/dev": 523,
+    "GAICD/train": 2099,
+    "GAICD/confirm": 365,
+    "GAICD/dev": 372,
+    "SACD/train": 2281,
+    "SACD/dev": 156,
+    "SACD/confirm": 153
+  },
+  "source_counts": {
+    "LIVE_YT_VC/dev": 17,
+    "LIVE_YT_VC/confirm": 12,
+    "LIVE_YT_VC/train": 400,
+    "GNMC/train": 6983,
+    "GNMC/confirm": 477,
+    "GNMC/dev": 523,
+    "GAICD/train": 2099,
+    "GAICD/confirm": 364,
+    "GAICD/dev": 372,
+    "SACD/train": 2203,
+    "SACD/dev": 143,
+    "SACD/confirm": 143
+  },
+  "integer_candidate_geometry_checks": 1693899,
+  "SACD_verified_stage_pairs_by_split": {
+    "train": 3981607,
+    "dev": 275032,
+    "confirm": 270469
+  },
+  "parameters": {
+    "linear": {
+      "head_parameters": 3469,
+      "normalization_buffers": 6936,
+      "complete_P2_plus_one_head_elements": 8999781863
+    },
+    "mlp32": {
+      "head_parameters": 111041,
+      "normalization_buffers": 6936,
+      "complete_P2_plus_one_head_elements": 8999889435
+    }
+  },
+  "manifest_sha256": "ac307b3dc5b6f7102902ff1d4c7d4b2183806e972d6b827bf39364e36ab0f719",
+  "no_hidden_or_Test_labels": true,
+  "real_feature_GPU_smoke_claimed": false,
+  "unit_fixtures_used_for_research": false,
+  "official_results_generated": false,
+  "Position_weight_updates": 0
+}

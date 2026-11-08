@@ -1,0 +1,19 @@
+{
+  "source_url": "https://cg.cs.tsinghua.edu.cn/cvmj/papers/CVM0263.pdf",
+  "sha256": "a78f7697c06c8a84115ba97b81ae9e6ea8f25e4b8afd15aa47db44b2219d670e",
+  "retrieved_utc": "2026-11-08T08:22:10.698630+00:00",
+  "section": "3.3 Cropping annotation process",
+  "used_stages": [
+    "phase1_box reasonable selection from native 100 grid crops",
+    "phase2_box best subset among phase1_box"
+  ],
+  "not_used": [
+    "best_box",
+    "phase3 selected bases for manual refinement",
+    "list order",
+    "Test labels"
+  ],
+  "coordinate_grid_verified": "floor(W/5),floor(H/5) cells, all 2590 Train/Val subjects verified",
+  "pair_generation": "only within-stage chosen x rejected comparisons; no transitive expansion",
+  "official_training_code_claimed": false
+}

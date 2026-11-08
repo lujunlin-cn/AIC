@@ -1,3 +1,15 @@
+## 当前 P0 — P2 候选效用研究（2026-11-08）
+
+- [x] 阅读空间评审和最新状态；在newday工作树隔离实现，保留P2原权重/包/历史记录。
+- [x] 恢复P2公共真实QP路径及source split；完成E1/E5/E6/E8 CPU诊断。
+- [x] 从原始SACD前两阶段人工选择恢复合法subject偏序，图像划分互斥；不使用best_box或Test标签。
+- [x] 准备P2共享视觉特征、12个小读出训练、恢复与实际QP评价代码；通过CPU/真实数据语义检查。
+- [x] 同步独立研究目录到35092计算机器，并运行远端CPU核验；详见交付审计。
+- [ ] 负责人开启GPU后，运行 `bash scripts/run_spatial_research_gpu.sh`；先检查真实新视觉路径，再完成小读出研究，累计GPU不超过6小时。
+- [ ] 获得实际readout源外指标；完整新包还需原生B视频/第二独立视频域证据，不能以转置LIVE或静态GNMC填补。
+- [ ] 恢复RetargetVid原视频/精确来源（当前只有标注），不冒充已可训练，不引入额外LFM编码器。
+- [ ] 正式提交晋级只依据真实官方反馈；当前P2包保持不动，无SFT/DPO或9B训练。
+
 ## P0 — Partial P2 Scale scores recorded (2026-11-08)
 
 - [x] Record owner-reported C1=42.23 and C3=42.87 with exact ZIP SHA256 and chat provenance.

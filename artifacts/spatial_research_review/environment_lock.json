@@ -1,0 +1,11 @@
+{
+  "python": "3.12.3",
+  "torch": "2.8.0+cu128",
+  "transformers": "5.5.4",
+  "safetensors": "0.6.2",
+  "numpy": "2.2.6",
+  "scipy": "1.16.2",
+  "Pillow": "11.3.0",
+  "GPU_available_currently": false,
+  "environment_modified": false
+}

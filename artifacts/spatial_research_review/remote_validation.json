@@ -1,0 +1,29 @@
+{
+  "remote": "connect.westd.seetacloud.com:35092",
+  "directory": "/root/autodl-tmp/videoora42_clone/spatial_research_review_20261108",
+  "source_manifest_verified_files": 165,
+  "compileall_exit_code": 0,
+  "research_tests_passed": 45,
+  "semantic_validation_passed": true,
+  "media_audit_passed": true,
+  "actual_image_views_verified": 18455,
+  "disk_capacity_passed": true,
+  "GPU_started": false,
+  "new_GPU_smoke": null,
+  "mode": "no_GPU_allocation_cpu_max_0.5_memory_2GiB",
+  "source_code_sha256": {
+    "aic/spatial_research.py": "97f17e3fbe876c3fd76db5753c292410f9e6ca6dfd282db3604f7a759a18d127",
+    "aic/spatial_research_data.py": "e03c39c564fb8c4cd95af607da83dc138085c392751eea8a53c8f536cf0c50f8",
+    "aic/spatial_shared_vision.py": "6b289fd82e51497cf0dfdfaec610c0c40bcb7d2f3873927f8dfa6a7085a5b0c0",
+    "aic/spatial_readout.py": "d799f6e93d5a36973d250053fd0ed296cd60f39883b54577457027c669607368",
+    "scripts/run_spatial_research.py": "f58853e2b46cb700074a06cec3f2512245f4f11be811d959aa4aae1968632420",
+    "scripts/analyze_spatial_review_cpu.py": "41aa00dc8c1ef8329c9621162f09cd9933480557664f171a560b68c509c38e8f",
+    "scripts/validate_spatial_research.py": "21b706fcfa606fe7d96200201add980f8cf06dba0dd80b09cc0cfecd894f95a6",
+    "scripts/run_spatial_research_gpu.sh": "54aa221e07b48fbc4999809b85f882c53f2a78a95ac3eccb4345fa63aa1f3941",
+    "scripts/prepare_spatial_live_train.py": "11935678738075c21a678a8e1c5d766a4584f75c9c38e38f0da0f41fc1a6226e"
+  },
+  "media_audit_sha256": "5a6f139ea8d5933f8b306cb3d69ddeda5bdc8ddc482cf44ca634d475e05c65ee",
+  "remote_semantic_sha256": "f47635e1b5c61c192b79b979b8d5ac0fbd215de0a9fc793aa2ca2e4b2a1008d1",
+  "model_environment_modified": false,
+  "pytest_source": "existing isolated scale_policy test_deps; no change to model venv"
+}

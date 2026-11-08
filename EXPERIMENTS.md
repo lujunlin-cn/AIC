@@ -1,3 +1,13 @@
+## 2026-11-08 — SPATIAL_P2_UTILITY_PREFLIGHT_20261108
+
+Hypothesis: P2共享的冻结视觉网格可能支持在129个合法窗口上预测crop utility；独立GAICD MOS/SACD主体人工偏序可检验不同监督，而不把同一GT IoU换个loss称为新人工偏好。
+
+Change: P2原始缓存与几何/QP合同保留；新pre-merger视觉ROI特征显式区别于旧R70/B3。准备12个小读出实验（E4四个IoU、E2四个MOS、E3/E7四个subject/zero-subject），Train-only标准化、固定seed与阈值、source采样、恢复RNG/optimizer、锁定best-Dev再一次Confirm。
+
+Executed CPU: P1 732框一致性守卫后重放P2 122公共路径；60源720观测。GNMC字节alias隔离；GAICD Journal Train181360候选/6058417逻辑MOS pairs；SACD Train2203图2281subjects/3981607阶段筛选逻辑pairs，best_box用量0。utility训练额外增补369纯Train源，合计400源/4800观测，标签盲选源且不需P2中心；E5离散MOS峰、E6中心扰动、E8镜头内中位数对照完成；Confirm E8 IoU变化A/B均为0，不纳入部署。
+
+Result: compileall通过；45新研究/267Scale/435全测试通过；真实数据1693899个整数候选检查通过。P2公共Confirm A/B IoU=.542441/.519207；GT可见整数Oracle129=.673454/.672435，仅为理论上界，B为转置域。学习型结果与官方F1=null，GPU=0/21600s，未训练Video-ORA/SFT/DPO/Position，未生成新官方包。完整证据与数据/域阻塞见 `artifacts/spatial_research_review/final_report.md`。
+
 ## 2026-11-08 — P2_ROUTE_SCALE_POLICY_V1 owner-reported official feedback
 
 Recorded **C1 (A=.90/B=.95)=42.23** and **C3 (A=.90/B=1.00)=42.87** from the owner's chat message. C3−C1=+0.64 points. Each score is bound to the frozen submission ZIP SHA256 in `artifacts/scale_policy_optimization/official_results.json`; provenance is `owner_reported_chat`, not an independently authenticated platform receipt. C0/C2 are still unreported; no new C0 delta or promotion is claimed. No packages/weights/predictions were changed and no new experiment ran. Initial delivery records below remain historical evidence.

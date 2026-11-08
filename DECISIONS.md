@@ -1,3 +1,11 @@
+## 2026-11-08 — 采用可核验 P2 共享视觉候选读出，恢复 SACD 人工阶段偏序
+
+Decision: 执行负责人空间研究评审，停止当前常数收缩和逐帧Scale/9B-SFT-DPO主线；先比较固定129合法窗口的线性/MLP32质量读出。保留P2完整输出与权重。复用P2已有视觉塔，不能将旧R70独立LFM/V9或缺失B3冒充为共享编码器，否则既不满足身份合同，也可能超9B。
+
+Evidence: P2冻结公共缓存真实QP=.6重放完成，60独立源有理论候选空间；这不是学习型或官方收益。SACD原论文§3.3与精确100格点/嵌套集合共同确认阶段人工选择方向，允许恢复同图同subject阶段入选对落选的partial order；不从best_box制造pair，不对阶段内或手工修框基础选择强加排序。Train恢复3,981,607逻辑pair，Bootstrap仍以图像为单位。GAICD保留MOS，LIVE/GNMC保留IoU，三者分任务训练。
+
+Status: CPU工程与数据语义通过，允许在负责人开启GPU后运行受6h累计预算约束的小读出研究；真实新特征GPU smoke/训练/源外收益仍待测。缺原生B/第二独立视频域时，最终部署门保持关闭。研究只可据真实源外与官方证据晋级，不允许用Oracle、loss或静态MOS证明官方F1提升。
+
 ## 2026-11-08 — Retain baseline while partial P2 Scale scores arrive
 
 Evidence: owner reports C1=42.23 and C3=42.87, bound to their frozen ZIP hashes in `artifacts/scale_policy_optimization/official_results.json`. C3 exceeds C1 by 0.64 points; C0/C2 remain unreported for this round. Record the feedback as owner-reported, preserve historical score conflicts, keep promotion pending and leave all original submission packages unchanged. No further model or Scale experiment is authorized by this score-recording update.

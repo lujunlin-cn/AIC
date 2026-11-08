@@ -1,0 +1,24 @@
+{
+  "workflow_skills": [
+    "experimental-design",
+    "get-available-resources"
+  ],
+  "arxiv_metadata": {
+    "title": [
+      "Scientific Agent Skills: A Library of Procedural Knowledge for Research Agents"
+    ],
+    "author": [
+      "Kassis, Timothy",
+      "Agarwal, Vinayak",
+      "He, Yuhuan",
+      "Patel, Darshil",
+      "Brueckner, Aubrey M."
+    ],
+    "date": [
+      "2026/08/30"
+    ],
+    "doi": []
+  },
+  "source": "https://arxiv.org/abs/2609.00065",
+  "scope": "source-level design and effective resources, not empirical model gains"
+}

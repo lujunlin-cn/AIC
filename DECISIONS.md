@@ -1,3 +1,11 @@
+## 2026-11-08 — Diagnose Scale against constants before any SFT/DPO
+
+Decision: defer Scale-SFT/DPO. Finish E0/E1/E2 using CPU geometry and existing public raw caches, retaining explicit nulls for final-deployment measurements. Freeze P1 and frames; Scale is inserted after its final QP because the original QP only changes an active-axis position at fixed width. Do not feed shrunken windows through the original maximum-window integer exporter.
+
+Evidence: raw LIVE pilots favor small constant shrinkage, while a simple GNMC content probe has limited held-out signal. Neither answers whether a learned policy beats the route-specific best constant in the actual deployment path. GT-centered Oracle and center-jitter counterfactuals are diagnostic only. Exact eight-action enumeration uses zero GPU.
+
+Data decision: preserve original GNMC files; quarantine complete training sources with validation-identical bytes for E1, group duplicate image IDs for source statistics, and exclude contaminated validation aliases from future E0/E2 to preserve the existing eight-bin action space without validation leakage. Final P1 validation caches require explicit evidence of disjoint parent-training sources. No new GPU job, automatic queue trigger, training step, or SFT/DPO transition is authorized by this preparation.
+
 ## 2026-11-08 — Preserve Position in an isolated, budgeted Scale adapter
 
 Decision: do not call historical `load_bundle(train_arm=...)` for Scale, because it creates fresh A/B training adapters. Verify and load actual P1 banks frozen; add a rank-1 Scale delta on q/v/o of the eight full-attention layers. Position uses only original P1; Scale uses parent+Scale on the same base. Real architecture count is 8,999,976,258 including buffers. Exact allowlist and parent immutability must pass real smoke before training. This follows the current explicit repair requirement to inject Scale while freezing Position; no independent inference model/reward model is introduced.

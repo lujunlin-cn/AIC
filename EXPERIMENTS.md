@@ -1,3 +1,11 @@
+## 2026-11-08 — SCALE_DIAGNOSTICS_E0_E1_E2_CPU
+
+Hypothesis: constants may explain the useful portion of Scale changes; human-scale heterogeneity alone does not establish predictable single-frame content signal. Controls: immutable P1 Position, fixed temporal set/components, route-separated Scale=1 and best-constant comparisons. Protocol: `artifacts/scale_sft_dpo/diagnostics/protocol.json`.
+
+Executed locally: eight-action CPU geometry, 26-point constant sweep (including existing bins), source-disjoint validation tune/confirmation, source bootstrap, center/GT-center/jitter sensitivity, GNMC label-blind RGB/spectral ridge and train-label permutation controls, GAICD Journal-Train ratio/fixed-center support counts. No remote operation, CUDA initialization, model inference, SFT, DPO or official hidden-test use. Environment, commands, wall time, source/code hashes are in diagnostics/execution.json.
+
+Partial results: A/B historical raw constant deltas +.006689/+.007653, raw Oracle residual spaces +.024803/+.032103. B is transposed LIVE, not native B confirmation. GNMC held-out low-level visual R²≈.15, incremental beyond geometry≈.108, not an achievable-IoU prediction or a decomposition of annotator noise. Four GNMC train/validation byte-duplicate groups were found and explicitly isolated; no original annotation was modified. Final-deployment IoU and P1 train-center bias are still unmeasured. Conclusion: keep SFT/DPO deferred; recover and audit frozen public P1 caches after separately approved GPU availability.
+
 # SCALE_SFT_DPO_20261108_REPAIR — CPU-only evidence
 
 Hypothesis: an isolated 204,800-parameter Scale LoRA on the shared frozen P1 base/banks preserves Position while remaining ≤9B. Remote real-architecture/PEFT structural count passed (8,999,976,258 including buffers). This is not trained or real-weight smoke evidence. Geometry, input contracts, reference-cache immutability, measured promotion gates and budget supervision were repaired; CPU Scale/full tests 130/253 passed. Actual training-center coverage, preferences and learned Oracle gains remain unmeasured. Evidence: `artifacts/scale_sft_dpo/report.md`, audit and smoke records. No GPU budget or official hidden-test labels were used. Stop before training.

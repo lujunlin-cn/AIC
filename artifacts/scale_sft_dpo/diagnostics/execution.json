@@ -1,0 +1,42 @@
+{
+  "created_at_utc": "2026-11-08T02:40:50.607043+00:00",
+  "seed": 20261108,
+  "protocol_sha256": "7b62b04066d6b4a3d079746382adb8d21ac3975998e0161f3e7dd5dc2c77e11e",
+  "public_labels_sha256": "b5beb7ebb075e436ff31d0e8293957277a68b59bb58beb7bdf9f6cc04b0b011d",
+  "clean_public_labels_sha256": "6f168a644a6801834b50d83eaa1291c84522186982f308c0bc82d2a716e43d6b",
+  "run_config_sha256": "fe5fb9adccb0fb032e8a78e905673b4cf8cde8dbc1f8afdee3bcdf39a2b2c41e",
+  "scale_bins_sha256": "c205ff8a10e603d1f1fefdd208a78ca5e7ac75a83882c8498354ba8b3b7644fa",
+  "parent_identity_sha256": "0cdc528b7753c2715a27affc5844f56b16bb7aa3bb4936e0f59bf2d73aa15d52",
+  "historical_raw_cache_sha256": {
+    "arm_a_gate.raw.json": "a3f055f311c75b11f101ce604b639ad0fb9ec3a4184c70b5fb3bc1361a4a2937",
+    "arm_b_gate.raw.json": "21bf6d4e31f055e9c2d72a5f2e642991620481f5d1ae42dcc488347436802db2"
+  },
+  "qp_code_sha256": "b4ad52a71f019412572c41e43655fb586ef8ee9723f58fd9faff4e814dc1bab1",
+  "new_GPU_work_executed": false,
+  "SFT_executed": false,
+  "DPO_executed": false,
+  "official_hidden_test_data_used": false,
+  "positions_input_sha256": null,
+  "wall_seconds": 5.546822960022837,
+  "python": "3.13.12 | packaged by conda-forge | (main, Feb  5 2026, 05:43:35) [GCC 14.3.0]",
+  "platform": "Linux-6.17.0-1026-nvidia-aarch64-with-glibc2.39",
+  "packages": {
+    "numpy": "2.4.4",
+    "scipy": "1.17.1",
+    "PIL": "12.2.0",
+    "matplotlib": "3.10.8"
+  },
+  "command": [
+    "/home/hajimi2025/miniforge3/bin/python",
+    "-m",
+    "scripts.run_scale_diagnostics"
+  ],
+  "git_commit": "31eaf2e7d3440bae4d2f41736e7d5f4f23b6d99d",
+  "tracked_diff_sha256": "213941083b9eb0544268d48fdb7aec5406a97ba7e2d0bd03050daa7de482965a",
+  "diagnostic_code_sha256": {
+    "/home/hajimi2025/AIC/.worktrees/newday/scripts/run_scale_diagnostics.py": "4570b86cda3076281fa62af6cc35f477124a902aac1b5b8b1fca122c92047797",
+    "aic/scale_diagnostics.py": "bcfc9464da3b1fd76cf7e9a9af852e7342b2460942721b103d4903b8709ecd64"
+  },
+  "GPU_seconds": 0,
+  "remote_operations": 0
+}

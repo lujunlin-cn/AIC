@@ -1,3 +1,13 @@
+## 2026-11-08 — Scale E0/E1/E2 local preparation; GPU approval pending
+
+User scope: re-evaluate whether Scale is worth learning. No SFT/DPO and no new GPU work. `artifacts/scale_sft_dpo/diagnostics/diagnostic_report.md` and the three required JSON deliverables distinguish historical raw-center pilots from final P1 deployment evidence. The latter remains unmeasured without public final-P1 trajectory caches.
+
+CPU historical LIVE pilot: A tune-selected constant=.975, confirmation raw IoU=.646775 vs Scale=1 .640086; delta +.006689, source-paired 95% CI [.005453,.008078]. Transposed-LIVE B constant=.948719, raw .600179 vs .592526; delta +.007653, CI [.005542,.009916]. Raw eight-action Oracle gaps over best constant are +.024803 / +.032103; these are not deployment gains or learned-model results. Native B remains pending.
+
+GNMC fixed CPU visual ridge explains approximately .15 held-out scale R²; incremental visual R² after geometry metadata is .108 (A transpose / B native reported separately). This is limited content association, not the total predictable fraction or evidence of deployment gains. Real subject size/count/environment, LIVE visual predictability, annotator-style variance and P1 in-sample center optimism remain unknown.
+
+New integrity finding: four GNMC cross-split byte-identical image groups. The diagnostic input quarantines four complete Train IDs and their transpose views, preserving originals. GNMC E1 Train=6,996 IDs/6,983 independent images, Val=1,000. E0/E2 additionally exclude four Val aliases already exposed in historical eight-bin fitting, leaving 996 possible independent GNMC validation images. A deterministic pending cohort, request-count/runtime estimates and strict final-P1 cache consumer are prepared. Stop here; GPU execution requires subsequent user approval and shared-budget reconciliation.
+
 ## 2026-11-08 — Scale SFT-DPO repair delivery
 
 **Status: blocked before formal GPU training.** Complete executable stage entrypoints and the original Video-ORA/PEFT structural bridge are implemented; real-weight smoke is not passed. `artifacts/scale_sft_dpo/report.md` answers all readiness questions with evidence. CPU validation: compileall passed; Scale 139 tests; whole repository 262 tests.

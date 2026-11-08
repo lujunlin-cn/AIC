@@ -1,0 +1,34 @@
+{
+  "cross_split_identical_image_groups": 4,
+  "quarantined_train_sources": [
+    [
+      "GNMC",
+      "001183"
+    ],
+    [
+      "GNMC",
+      "001972"
+    ],
+    [
+      "GNMC",
+      "003413"
+    ],
+    [
+      "GNMC",
+      "009560"
+    ]
+  ],
+  "removed_label_views": 8,
+  "remaining_label_views": 123692,
+  "policy": "retain Val, quarantine entire matching Train sources and all geometric views; originals unchanged",
+  "clean_labels_path": "artifacts/scale_sft_dpo/diagnostics/inputs/public_labels_clean.jsonl",
+  "clean_labels_sha256": "6f168a644a6801834b50d83eaa1291c84522186982f308c0bc82d2a716e43d6b",
+  "GNMC_statistics_unit": "image bytes; duplicate IDs grouped before Macro/bootstrap",
+  "historical_bin_fit_contaminated_validation_sources": [
+    "000667",
+    "001961",
+    "007010",
+    "008745"
+  ],
+  "historical_bin_policy": "Keep the exact existing eight actions; exclude these validation sources from E0/E2 because their image aliases entered the historical bin fit. E1 uses cleaned Train and all independent Val images."
+}

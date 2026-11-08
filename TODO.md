@@ -1,3 +1,12 @@
+## P0 — Scale diagnostics supersede training readiness for this round
+
+- [x] Prepare E0/E1/E2 CPU code, tests, protocol, isolated source manifest and four required diagnostic deliverables under `artifacts/scale_sft_dpo/diagnostics/`.
+- [x] Separate historical Raw pilots from true deployment results; compare all constants with Scale=1; compare Oracle with each route's tune-selected best constant.
+- [x] Record GNMC duplicate quarantine and historical-bin validation exclusion; prepare deterministic minimal inference cohort and unmeasured runtime scenarios.
+- [ ] After the other agent finishes and the user explicitly approves GPU inference: reuse verified caches first, reconcile cumulative GPU usage, benchmark frozen-P1 throughput and obtain complete public final-P1 caches within the remaining <=12 h budget. No optimizer/smoke/SFT/DPO or auto-start.
+- [ ] Verify P1 training-source exposure, complete LIVE Train/Val center comparison, native GNMC B projection, actual subject-feature availability and full path-cache provenance; rerun CPU diagnostics using final P1 positions.
+- [ ] Decide whether a content policy exceeds the per-route best constant on independent-source real deployment IoU. Until then do not start Scale-SFT/DPO.
+
 ## P0 — Required after CPU repair, before formal Scale GPU run
 
 - [ ] Obtain documented dataset competition training/weight-submission permissions; unknowns stay null.

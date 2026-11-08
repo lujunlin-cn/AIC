@@ -1,0 +1,43 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "command": "CUDA_VISIBLE_DEVICES='' OPENBLAS_NUM_THREADS=1 PYTHONPATH=. pytest -q tests/test_scale_*.py",
+      "passed": 149
+    },
+    {
+      "command": "CUDA_VISIBLE_DEVICES='' OPENBLAS_NUM_THREADS=1 PYTHONPATH=. pytest -q",
+      "passed": 272
+    },
+    {
+      "command": "python -m compileall -q aic/scale_diagnostics.py scripts/run_scale_diagnostics.py tests/test_scale_diagnostics.py",
+      "exit_code": 0
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0
+    },
+    {
+      "command": "CUDA_VISIBLE_DEVICES='' OPENBLAS_NUM_THREADS=1 python -m scripts.run_scale_diagnostics",
+      "exit_code": 0
+    }
+  ],
+  "meaningful_regressions": [
+    "source-macro invariance to within-source duplicate frames",
+    "constant selected without confirmation labels",
+    "reject Train/Test leakage",
+    "reject wrong parent and incomplete source coverage",
+    "require P1 validation source-exposure audit",
+    "reject pooled A/B metrics",
+    "source bootstrap"
+  ],
+  "figure_visual_inspection": "passed; exported PNG inspected after wrapping B title",
+  "new_GPU_work": false,
+  "files_sha256": {
+    "constant_scale_baseline.json": "2a16764ead4e37e1f80b5ed0a2625c6ea59eb88deac6a6302b24d7cc5e5472ae",
+    "scale_predictability.json": "13c207265df47eca4e7cfdc233dd68331618ab86bc80a01e98e0c62780aea9e2",
+    "scale_oracle_analysis.json": "72fcbd4c759ee02f8aaf846fcf6b9de40ddc5fbda1fbe7dd5c53fae0a6a68fe1",
+    "diagnostic_report.md": "bf19159b1087431e3c851d6e5ab51a377333e551686a0ea3b6d6901a690a776d",
+    "diagnostic_overview.png": "5bbf9385fb062d2efa04e4c67e5c0730f33b8d6a09d38f9b640cbda5ffc59be2"
+  }
+}

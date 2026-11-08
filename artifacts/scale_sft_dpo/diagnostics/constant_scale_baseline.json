@@ -1,0 +1,1549 @@
+{
+  "status": "local_preparation_complete_deployment_pending",
+  "routes": {
+    "A": {
+      "best_constant_scale": null,
+      "best_constant_scale_deployed_iou": null,
+      "deployed_iou_gain_over_scale_1": null,
+      "raw_iou": null,
+      "qp_pre_post_scale_measurements": null,
+      "blocker": "Need identity-bound final P1 public source centers and full path cache."
+    },
+    "B": {
+      "best_constant_scale": null,
+      "best_constant_scale_deployed_iou": null,
+      "deployed_iou_gain_over_scale_1": null,
+      "raw_iou": null,
+      "qp_pre_post_scale_measurements": null,
+      "blocker": "Need identity-bound final P1 public source centers and full path cache."
+    }
+  },
+  "historical_raw_pilot": {
+    "A": {
+      "validation_sources": 200,
+      "frames": 1200,
+      "tune_sources": [
+        "video1047",
+        "video2674",
+        "video1528",
+        "video2769",
+        "video629",
+        "video44",
+        "video904",
+        "video280",
+        "video461",
+        "video40",
+        "video886",
+        "video261",
+        "video751",
+        "video772",
+        "video1160",
+        "video1377",
+        "video1268",
+        "video174",
+        "video135",
+        "video466",
+        "video101",
+        "video2719",
+        "video1142",
+        "video2728",
+        "video398",
+        "video290",
+        "video2666",
+        "video1126",
+        "video1344",
+        "video194",
+        "video2777",
+        "video2738",
+        "video1145",
+        "video1131",
+        "video861",
+        "video2767",
+        "video121",
+        "video2761",
+        "video139",
+        "video1458",
+        "video240",
+        "video1253",
+        "video1421",
+        "video1032",
+        "video1070",
+        "video714",
+        "video1051",
+        "video1384",
+        "video45",
+        "video2722",
+        "video2698",
+        "video1",
+        "video10",
+        "video965",
+        "video1191",
+        "video598",
+        "video1195",
+        "video1330",
+        "video706",
+        "video505",
+        "video2782",
+        "video893",
+        "video2601",
+        "video804",
+        "video704",
+        "video1479",
+        "video1034",
+        "video1265",
+        "video1419",
+        "video190",
+        "video2656",
+        "video1403",
+        "video1611",
+        "video296",
+        "video2644",
+        "video572",
+        "video632",
+        "video1321",
+        "video1230",
+        "video1570",
+        "video756",
+        "video1413",
+        "video183",
+        "video357",
+        "video2759",
+        "video920",
+        "video1152",
+        "video1576",
+        "video737",
+        "video991",
+        "video2662",
+        "video2715",
+        "video746",
+        "video2792",
+        "video1369",
+        "video389",
+        "video29",
+        "video1215",
+        "video220",
+        "video899"
+      ],
+      "confirmation_sources": [
+        "video594",
+        "video753",
+        "video1427",
+        "video33",
+        "video2758",
+        "video1014",
+        "video2617",
+        "video223",
+        "video1119",
+        "video527",
+        "video838",
+        "video1442",
+        "video14",
+        "video871",
+        "video658",
+        "video1219",
+        "video1415",
+        "video836",
+        "video462",
+        "video267",
+        "video1067",
+        "video974",
+        "video167",
+        "video8",
+        "video73",
+        "video1392",
+        "video1554",
+        "video1454",
+        "video906",
+        "video644",
+        "video975",
+        "video2760",
+        "video2691",
+        "video1374",
+        "video786",
+        "video2750",
+        "video995",
+        "video242",
+        "video587",
+        "video1463",
+        "video647",
+        "video231",
+        "video132",
+        "video1136",
+        "video2627",
+        "video283",
+        "video793",
+        "video141",
+        "video1182",
+        "video1169",
+        "video1247",
+        "video70",
+        "video602",
+        "video2596",
+        "video1470",
+        "video1200",
+        "video458",
+        "video2603",
+        "video1223",
+        "video365",
+        "video666",
+        "video2616",
+        "video1559",
+        "video1337",
+        "video1073",
+        "video181",
+        "video592",
+        "video1548",
+        "video1367",
+        "video1514",
+        "video1592",
+        "video85",
+        "video1225",
+        "video156",
+        "video1364",
+        "video2793",
+        "video574",
+        "video882",
+        "video1214",
+        "video1064",
+        "video511",
+        "video161",
+        "video153",
+        "video23",
+        "video788",
+        "video833",
+        "video327",
+        "video1551",
+        "video1231",
+        "video1046",
+        "video1444",
+        "video1260",
+        "video840",
+        "video2599",
+        "video34",
+        "video352",
+        "video575",
+        "video17",
+        "video1447",
+        "video558"
+      ],
+      "confirmation_is_fresh_unexposed_data": false,
+      "note": "Historical validation was already used in earlier work; internal confirmation only.",
+      "selection_criterion": "tune source-macro IoU; ties prefer larger Scale",
+      "ci_scope": "conditional on tune-selected constant, independent confirmation sources",
+      "best_constant": {
+        "scale": 0.975,
+        "confirmation_source_macro_iou": 0.6467754896426615,
+        "vs_scale_1": {
+          "delta_source_macro_iou": 0.006689465557561474,
+          "paired_source_bootstrap_ci95": [
+            0.005452862883147253,
+            0.008078169554033055
+          ],
+          "sources": 100,
+          "replicates": 2000,
+          "seed": 20261108
+        }
+      },
+      "scale_1_confirmation_iou": 0.6400860240851,
+      "all_constants": [
+        {
+          "scale": 0.29885,
+          "tune_source_macro_iou": 0.09575884582943245,
+          "confirmation_source_macro_iou": 0.09565026183301105,
+          "quantized_final_scale_source_macro": 0.29794238683127583,
+          "quantized_final_scale_range": [
+            0.2979423868312757,
+            0.2979423868312757
+          ],
+          "vs_scale_1": {
+            "delta_source_macro_iou": -0.5444357622520889,
+            "paired_source_bootstrap_ci95": [
+              -0.5709689538510504,
+              -0.5177411046054307
+            ],
+            "sources": 100,
+            "replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        {
+          "scale": 0.3,
+          "tune_source_macro_iou": 0.09679925527099204,
+          "confirmation_source_macro_iou": 0.0966783122643635,
+          "quantized_final_scale_source_macro": 0.29958847736625516,
+          "quantized_final_scale_range": [
+            0.29958847736625516,
+            0.29958847736625516
+          ],
+          "vs_scale_1": {
+            "delta_source_macro_iou": -0.5434077118207365,
+            "paired_source_bootstrap_ci95": [
+              -0.5698978697148835,
+              -0.5167522128482989
+            ],
+            "sources": 100,
+            "replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        {
+          "scale": 0.35,
+          "tune_source_macro_iou": 0.13035037526397955,
+          "confirmation_source_macro_iou": 0.129750764709079,
+          "quantized_final_scale_source_macro": 0.3489711934156378,
+          "quantized_final_scale_range": [
+            0.34897119341563787,
+            0.34897119341563787
+          ],
+          "vs_scale_1": {
+            "delta_source_macro_iou": -0.5103352593760211,
+            "paired_source_bootstrap_ci95": [
+              -0.5356526361684782,
+              -0.48463256659380816
+            ],
+            "sources": 100,
+            "replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        {
+          "scale": 0.4,
+          "tune_source_macro_iou": 0.16961360817772053,
+          "confirmation_source_macro_iou": 0.16827347102223475,
+          "quantized_final_scale_source_macro": 0.3999999999999999,
+          "quantized_final_scale_range": [
+            0.4,
+            0.4
+          ],
+          "vs_scale_1": {
+            "delta_source_macro_iou": -0.47181255306286524,
+            "paired_source_bootstrap_ci95": [
+              -0.49623176423450777,
+              -0.44738125360546643
+            ],
+            "sources": 100,
+            "replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        {
+          "scale": 0.45,
+          "tune_source_macro_iou": 0.21117870718095488,
+          "confirmation_source_macro_iou": 0.20946220900129653,
+          "quantized_final_scale_source_macro": 0.4493827160493828,
+          "quantized_final_scale_range": [
+            0.44938271604938274,
+            0.44938271604938274
+          ],
+          "vs_scale_1": {
+            "delta_source_macro_iou": -0.43062381508380354,
+            "paired_source_bootstrap_ci95": [
+              -0.45447697411391214,
+              -0.4069576023097951
+            ],
+            "sources": 100,
+            "replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        {
+          "scale": 0.5,
+          "tune_source_macro_iou": 0.2560732765917789,
+          "confirmation_source_macro_iou": 0.25420045184979634,
+          "quantized_final_scale_source_macro": 0.4987654320987654,
+          "quantized_final_scale_range": [
+            0.49876543209876545,
+            0.49876543209876545
+          ],
+          "vs_scale_1": {
+            "delta_source_macro_iou": -0.3858855722353037,
+            "paired_source_bootstrap_ci95": [
+              -0.409160294134877,
+              -0.36328216147454995
+            ],
+            "sources": 100,
+            "replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        {
+          "scale": 0.55,
+          "tune_source_macro_iou": 0.30506185070910996,
+          "confirmation_source_macro_iou": 0.3032047420206572,
+          "quantized_final_scale_source_macro": 0.5497942386831277,
+          "quantized_final_scale_range": [
+            0.5497942386831276,
+            0.5497942386831276
+          ],
+          "vs_scale_1": {
+            "delta_source_macro_iou": -0.33688128206444273,
+            "paired_source_bootstrap_ci95": [
+              -0.3587702328054597,
+              -0.3155574616329242
+            ],
+            "sources": 100,
+            "replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        {
+          "scale": 0.6,
+          "tune_source_macro_iou": 0.3537506509119914,
+          "confirmation_source_macro_iou": 0.35278197677765705,
+          "quantized_final_scale_source_macro": 0.5991769547325103,
+          "quantized_final_scale_range": [
+            0.5991769547325103,
+            0.5991769547325103
+          ],
+          "vs_scale_1": {
+            "delta_source_macro_iou": -0.287304047307443,
+            "paired_source_bootstrap_ci95": [
+              -0.30786165856561604,
+              -0.26738693749139325
+            ],
+            "sources": 100,
+            "replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        {
+          "scale": 0.65,
+          "tune_source_macro_iou": 0.4024277329929557,
+          "confirmation_source_macro_iou": 0.40341553907256866,
+          "quantized_final_scale_source_macro": 0.6485596707818929,
+          "quantized_final_scale_range": [
+            0.648559670781893,
+            0.648559670781893
+          ],
+          "vs_scale_1": {
+            "delta_source_macro_iou": -0.23667048501253135,
+            "paired_source_bootstrap_ci95": [
+              -0.25558379683746324,
+              -0.21820049929333185
+            ],
+            "sources": 100,
+            "replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        {
+          "scale": 0.7,
+          "tune_source_macro_iou": 0.4517966679526234,
+          "confirmation_source_macro_iou": 0.45589710829647556,
+          "quantized_final_scale_source_macro": 0.6995884773662548,
+          "quantized_final_scale_range": [
+            0.6995884773662552,
+            0.6995884773662552
+          ],
+          "vs_scale_1": {
+            "delta_source_macro_iou": -0.18418891578862442,
+            "paired_source_bootstrap_ci95": [
+              -0.20110719873930405,
+              -0.16743173226648972
+            ],
+            "sources": 100,
+            "replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        {
+          "scale": 0.7303391903914591,
+          "tune_source_macro_iou": 0.4791196569070385,
+          "confirmation_source_macro_iou": 0.48582653061148867,
+          "quantized_final_scale_source_macro": 0.7292181069958847,
+          "quantized_final_scale_range": [
+            0.7292181069958847,
+            0.7292181069958847
+          ],
+          "vs_scale_1": {
+            "delta_source_macro_iou": -0.15425949347361143,
+            "paired_source_bootstrap_ci95": [
+              -0.17010664634120826,
+              -0.13833626681009972
+            ],
+            "sources": 100,
+            "replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        {
+          "scale": 0.75,
+          "tune_source_macro_iou": 0.4970284444104862,
+          "confirmation_source_macro_iou": 0.5052121714474592,
+          "quantized_final_scale_source_macro": 0.7489711934156382,
+          "quantized_final_scale_range": [
+            0.7489711934156379,
+            0.7489711934156379
+          ],
+          "vs_scale_1": {
+            "delta_source_macro_iou": -0.13487385263764087,
+            "paired_source_bootstrap_ci95": [
+              -0.1498806235656889,
+              -0.11995846178616114
+            ],
+            "sources": 100,
+            "replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        {
+          "scale": 0.8,
+          "tune_source_macro_iou": 0.5404323206577673,
+          "confirmation_source_macro_iou": 0.552108890348014,
+          "quantized_final_scale_source_macro": 0.7999999999999998,
+          "quantized_final_scale_range": [
+            0.8,
+            0.8
+          ],
+          "vs_scale_1": {
+            "delta_source_macro_iou": -0.08797713373708596,
+            "paired_source_bootstrap_ci95": [
+              -0.10010052581295958,
+              -0.07579145429880038
+            ],
+            "sources": 100,
+            "replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        {
+          "scale": 0.825,
+          "tune_source_macro_iou": 0.5593912131309655,
+          "confirmation_source_macro_iou": 0.5727052790549141,
+          "quantized_final_scale_source_macro": 0.8246913580246917,
+          "quantized_final_scale_range": [
+            0.8246913580246914,
+            0.8246913580246914
+          ],
+          "vs_scale_1": {
+            "delta_source_macro_iou": -0.06738074503018603,
+            "paired_source_bootstrap_ci95": [
+              -0.07824500067804052,
+              -0.056672611560637805
+            ],
+            "sources": 100,
+            "replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        {
+          "scale": 0.85,
+          "tune_source_macro_iou": 0.5760897913105588,
+          "confirmation_source_macro_iou": 0.5915689180430187,
+          "quantized_final_scale_source_macro": 0.8493827160493825,
+          "quantized_final_scale_range": [
+            0.8493827160493828,
+            0.8493827160493828
+          ],
+          "vs_scale_1": {
+            "delta_source_macro_iou": -0.04851710604208134,
+            "paired_source_bootstrap_ci95": [
+              -0.05780645591573129,
+              -0.03926228537327714
+            ],
+            "sources": 100,
+            "replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        {
+          "scale": 0.875,
+          "tune_source_macro_iou": 0.5910164386159409,
+          "confirmation_source_macro_iou": 0.608326058273356,
+          "quantized_final_scale_source_macro": 0.8740740740740739,
+          "quantized_final_scale_range": [
+            0.8740740740740741,
+            0.8740740740740741
+          ],
+          "vs_scale_1": {
+            "delta_source_macro_iou": -0.031759965811744076,
+            "paired_source_bootstrap_ci95": [
+              -0.03930944719116739,
+              -0.02382336870598171
+            ],
+            "sources": 100,
+            "replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        {
+          "scale": 0.8751093035078801,
+          "tune_source_macro_iou": 0.5910164386159409,
+          "confirmation_source_macro_iou": 0.608326058273356,
+          "quantized_final_scale_source_macro": 0.8740740740740739,
+          "quantized_final_scale_range": [
+            0.8740740740740741,
+            0.8740740740740741
+          ],
+          "vs_scale_1": {
+            "delta_source_macro_iou": -0.031759965811744076,
+            "paired_source_bootstrap_ci95": [
+              -0.03930944719116739,
+              -0.02382336870598171
+            ],
+            "sources": 100,
+            "replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        {
+          "scale": 0.9,
+          "tune_source_macro_iou": 0.6036013204763276,
+          "confirmation_source_macro_iou": 0.6227655146708346,
+          "quantized_final_scale_source_macro": 0.8987654320987656,
+          "quantized_final_scale_range": [
+            0.8987654320987655,
+            0.8987654320987655
+          ],
+          "vs_scale_1": {
+            "delta_source_macro_iou": -0.017320509414265228,
+            "paired_source_bootstrap_ci95": [
+              -0.023389312902471142,
+              -0.010774106817439105
+            ],
+            "sources": 100,
+            "replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        {
+          "scale": 0.925,
+          "tune_source_macro_iou": 0.6135049725511537,
+          "confirmation_source_macro_iou": 0.6346822244287185,
+          "quantized_final_scale_source_macro": 0.9234567901234566,
+          "quantized_final_scale_range": [
+            0.9234567901234568,
+            0.9234567901234568
+          ],
+          "vs_scale_1": {
+            "delta_source_macro_iou": -0.005403799656381628,
+            "paired_source_bootstrap_ci95": [
+              -0.009789307322924582,
+              -0.0007106726896857946
+            ],
+            "sources": 100,
+            "replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        {
+          "scale": 0.9487190200813422,
+          "tune_source_macro_iou": 0.6199979228176035,
+          "confirmation_source_macro_iou": 0.6431133791325917,
+          "quantized_final_scale_source_macro": 0.948148148148148,
+          "quantized_final_scale_range": [
+            0.9481481481481482,
+            0.9481481481481482
+          ],
+          "vs_scale_1": {
+            "delta_source_macro_iou": 0.003027355047491625,
+            "paired_source_bootstrap_ci95": [
+              0.00021413681150108256,
+              0.006074819366004236
+            ],
+            "sources": 100,
+            "replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        {
+          "scale": 0.95,
+          "tune_source_macro_iou": 0.6203652743256836,
+          "confirmation_source_macro_iou": 0.6435934408487378,
+          "quantized_final_scale_source_macro": 0.9497942386831274,
+          "quantized_final_scale_range": [
+            0.9497942386831276,
+            0.9497942386831276
+          ],
+          "vs_scale_1": {
+            "delta_source_macro_iou": 0.0035074167636378333,
+            "paired_source_bootstrap_ci95": [
+              0.00081293997846364,
+              0.0064339326402402695
+            ],
+            "sources": 100,
+            "replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        {
+          "scale": 0.9649496513908056,
+          "tune_source_macro_iou": 0.6220567179453298,
+          "confirmation_source_macro_iou": 0.6463437159327013,
+          "quantized_final_scale_source_macro": 0.9646090534979419,
+          "quantized_final_scale_range": [
+            0.9646090534979423,
+            0.9646090534979423
+          ],
+          "vs_scale_1": {
+            "delta_source_macro_iou": 0.006257691847601324,
+            "paired_source_bootstrap_ci95": [
+              0.0044436319341487444,
+              0.008208152728005059
+            ],
+            "sources": 100,
+            "replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        {
+          "scale": 0.975,
+          "tune_source_macro_iou": 0.622097307547078,
+          "confirmation_source_macro_iou": 0.6467754896426615,
+          "quantized_final_scale_source_macro": 0.9744855967078191,
+          "quantized_final_scale_range": [
+            0.974485596707819,
+            0.974485596707819
+          ],
+          "vs_scale_1": {
+            "delta_source_macro_iou": 0.006689465557561474,
+            "paired_source_bootstrap_ci95": [
+              0.005452862883147253,
+              0.008078169554033055
+            ],
+            "sources": 100,
+            "replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        {
+          "scale": 0.9858763345195729,
+          "tune_source_macro_iou": 0.6208268660604166,
+          "confirmation_source_macro_iou": 0.6457552202815472,
+          "quantized_final_scale_source_macro": 0.9843621399176955,
+          "quantized_final_scale_range": [
+            0.9843621399176955,
+            0.9843621399176955
+          ],
+          "vs_scale_1": {
+            "delta_source_macro_iou": 0.005669196196447267,
+            "paired_source_bootstrap_ci95": [
+              0.0049731162096642335,
+              0.00644635753925542
+            ],
+            "sources": 100,
+            "replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        {
+          "scale": 0.9982873665480427,
+          "tune_source_macro_iou": 0.616049816992995,
+          "confirmation_source_macro_iou": 0.6409848746539312,
+          "quantized_final_scale_source_macro": 0.9975308641975308,
+          "quantized_final_scale_range": [
+            0.9975308641975309,
+            0.9975308641975309
+          ],
+          "vs_scale_1": {
+            "delta_source_macro_iou": 0.0008988505688312149,
+            "paired_source_bootstrap_ci95": [
+              0.0007861523366891966,
+              0.0010214187932777413
+            ],
+            "sources": 100,
+            "replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        {
+          "scale": 1.0,
+          "tune_source_macro_iou": 0.6151737660548776,
+          "confirmation_source_macro_iou": 0.6400860240851,
+          "quantized_final_scale_source_macro": 0.9991769547325101,
+          "quantized_final_scale_range": [
+            0.9991769547325103,
+            0.9991769547325103
+          ],
+          "vs_scale_1": {
+            "delta_source_macro_iou": 0.0,
+            "paired_source_bootstrap_ci95": [
+              0.0,
+              0.0
+            ],
+            "sources": 100,
+            "replicates": 2000,
+            "seed": 20261108
+          }
+        }
+      ]
+    },
+    "B": {
+      "validation_sources": 200,
+      "frames": 2000,
+      "tune_sources": [
+        "video1047",
+        "video2674",
+        "video1528",
+        "video2769",
+        "video629",
+        "video44",
+        "video904",
+        "video280",
+        "video461",
+        "video40",
+        "video886",
+        "video261",
+        "video751",
+        "video772",
+        "video1160",
+        "video1377",
+        "video1268",
+        "video174",
+        "video135",
+        "video466",
+        "video101",
+        "video2719",
+        "video1142",
+        "video2728",
+        "video398",
+        "video290",
+        "video2666",
+        "video1126",
+        "video1344",
+        "video194",
+        "video2777",
+        "video2738",
+        "video1145",
+        "video1131",
+        "video861",
+        "video2767",
+        "video121",
+        "video2761",
+        "video139",
+        "video1458",
+        "video240",
+        "video1253",
+        "video1421",
+        "video1032",
+        "video1070",
+        "video714",
+        "video1051",
+        "video1384",
+        "video45",
+        "video2722",
+        "video2698",
+        "video1",
+        "video10",
+        "video965",
+        "video1191",
+        "video598",
+        "video1195",
+        "video1330",
+        "video706",
+        "video505",
+        "video2782",
+        "video893",
+        "video2601",
+        "video804",
+        "video704",
+        "video1479",
+        "video1034",
+        "video1265",
+        "video1419",
+        "video190",
+        "video2656",
+        "video1403",
+        "video1611",
+        "video296",
+        "video2644",
+        "video572",
+        "video632",
+        "video1321",
+        "video1230",
+        "video1570",
+        "video756",
+        "video1413",
+        "video183",
+        "video357",
+        "video2759",
+        "video920",
+        "video1152",
+        "video1576",
+        "video737",
+        "video991",
+        "video2662",
+        "video2715",
+        "video746",
+        "video2792",
+        "video1369",
+        "video389",
+        "video29",
+        "video1215",
+        "video220",
+        "video899"
+      ],
+      "confirmation_sources": [
+        "video594",
+        "video753",
+        "video1427",
+        "video33",
+        "video2758",
+        "video1014",
+        "video2617",
+        "video223",
+        "video1119",
+        "video527",
+        "video838",
+        "video1442",
+        "video14",
+        "video871",
+        "video658",
+        "video1219",
+        "video1415",
+        "video836",
+        "video462",
+        "video267",
+        "video1067",
+        "video974",
+        "video167",
+        "video8",
+        "video73",
+        "video1392",
+        "video1554",
+        "video1454",
+        "video906",
+        "video644",
+        "video975",
+        "video2760",
+        "video2691",
+        "video1374",
+        "video786",
+        "video2750",
+        "video995",
+        "video242",
+        "video587",
+        "video1463",
+        "video647",
+        "video231",
+        "video132",
+        "video1136",
+        "video2627",
+        "video283",
+        "video793",
+        "video141",
+        "video1182",
+        "video1169",
+        "video1247",
+        "video70",
+        "video602",
+        "video2596",
+        "video1470",
+        "video1200",
+        "video458",
+        "video2603",
+        "video1223",
+        "video365",
+        "video666",
+        "video2616",
+        "video1559",
+        "video1337",
+        "video1073",
+        "video181",
+        "video592",
+        "video1548",
+        "video1367",
+        "video1514",
+        "video1592",
+        "video85",
+        "video1225",
+        "video156",
+        "video1364",
+        "video2793",
+        "video574",
+        "video882",
+        "video1214",
+        "video1064",
+        "video511",
+        "video161",
+        "video153",
+        "video23",
+        "video788",
+        "video833",
+        "video327",
+        "video1551",
+        "video1231",
+        "video1046",
+        "video1444",
+        "video1260",
+        "video840",
+        "video2599",
+        "video34",
+        "video352",
+        "video575",
+        "video17",
+        "video1447",
+        "video558"
+      ],
+      "confirmation_is_fresh_unexposed_data": false,
+      "note": "Historical validation was already used in earlier work; internal confirmation only.",
+      "selection_criterion": "tune source-macro IoU; ties prefer larger Scale",
+      "ci_scope": "conditional on tune-selected constant, independent confirmation sources",
+      "best_constant": {
+        "scale": 0.9487190200813422,
+        "confirmation_source_macro_iou": 0.6001786105275042,
+        "vs_scale_1": {
+          "delta_source_macro_iou": 0.00765272795145224,
+          "paired_source_bootstrap_ci95": [
+            0.005542297351058486,
+            0.009916307999856162
+          ],
+          "sources": 100,
+          "replicates": 2000,
+          "seed": 20261108
+        }
+      },
+      "scale_1_confirmation_iou": 0.5925258825760521,
+      "all_constants": [
+        {
+          "scale": 0.29885,
+          "tune_source_macro_iou": 0.1004152360660295,
+          "confirmation_source_macro_iou": 0.09871381108686647,
+          "quantized_final_scale_source_macro": 0.2981481481481482,
+          "quantized_final_scale_range": [
+            0.29814814814814816,
+            0.29814814814814816
+          ],
+          "vs_scale_1": {
+            "delta_source_macro_iou": -0.4938120714891856,
+            "paired_source_bootstrap_ci95": [
+              -0.5158639488416613,
+              -0.47177249988399467
+            ],
+            "sources": 100,
+            "replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        {
+          "scale": 0.3,
+          "tune_source_macro_iou": 0.10161552668776425,
+          "confirmation_source_macro_iou": 0.09990691617316858,
+          "quantized_final_scale_source_macro": 0.2999999999999999,
+          "quantized_final_scale_range": [
+            0.3,
+            0.3
+          ],
+          "vs_scale_1": {
+            "delta_source_macro_iou": -0.4926189664028835,
+            "paired_source_bootstrap_ci95": [
+              -0.5146269331172413,
+              -0.47058632701611125
+            ],
+            "sources": 100,
+            "replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        {
+          "scale": 0.35,
+          "tune_source_macro_iou": 0.13640449729135956,
+          "confirmation_source_macro_iou": 0.13461530384176906,
+          "quantized_final_scale_source_macro": 0.3500000000000001,
+          "quantized_final_scale_range": [
+            0.35,
+            0.35
+          ],
+          "vs_scale_1": {
+            "delta_source_macro_iou": -0.457910578734283,
+            "paired_source_bootstrap_ci95": [
+              -0.47909821944895414,
+              -0.4364416255590795
+            ],
+            "sources": 100,
+            "replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        {
+          "scale": 0.4,
+          "tune_source_macro_iou": 0.17515253391993355,
+          "confirmation_source_macro_iou": 0.1736367425294051,
+          "quantized_final_scale_source_macro": 0.3999999999999999,
+          "quantized_final_scale_range": [
+            0.4,
+            0.4
+          ],
+          "vs_scale_1": {
+            "delta_source_macro_iou": -0.4188891400466469,
+            "paired_source_bootstrap_ci95": [
+              -0.4391464135657083,
+              -0.3984108129605543
+            ],
+            "sources": 100,
+            "replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        {
+          "scale": 0.45,
+          "tune_source_macro_iou": 0.21704719391958938,
+          "confirmation_source_macro_iou": 0.2160179671049371,
+          "quantized_final_scale_source_macro": 0.45000000000000023,
+          "quantized_final_scale_range": [
+            0.45,
+            0.45
+          ],
+          "vs_scale_1": {
+            "delta_source_macro_iou": -0.37650791547111495,
+            "paired_source_bootstrap_ci95": [
+              -0.3959875883325825,
+              -0.3563433914522886
+            ],
+            "sources": 100,
+            "replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        {
+          "scale": 0.5,
+          "tune_source_macro_iou": 0.26165221393600235,
+          "confirmation_source_macro_iou": 0.26087865969647184,
+          "quantized_final_scale_source_macro": 0.5,
+          "quantized_final_scale_range": [
+            0.5,
+            0.5
+          ],
+          "vs_scale_1": {
+            "delta_source_macro_iou": -0.3316472228795802,
+            "paired_source_bootstrap_ci95": [
+              -0.3504014980757242,
+              -0.31205539800350024
+            ],
+            "sources": 100,
+            "replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        {
+          "scale": 0.55,
+          "tune_source_macro_iou": 0.30851278696289286,
+          "confirmation_source_macro_iou": 0.30785735201732417,
+          "quantized_final_scale_source_macro": 0.5499999999999998,
+          "quantized_final_scale_range": [
+            0.55,
+            0.55
+          ],
+          "vs_scale_1": {
+            "delta_source_macro_iou": -0.28466853055872793,
+            "paired_source_bootstrap_ci95": [
+              -0.3022554690951651,
+              -0.2663930412421526
+            ],
+            "sources": 100,
+            "replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        {
+          "scale": 0.6,
+          "tune_source_macro_iou": 0.35639387545478046,
+          "confirmation_source_macro_iou": 0.3559476466214225,
+          "quantized_final_scale_source_macro": 0.5999999999999998,
+          "quantized_final_scale_range": [
+            0.6,
+            0.6
+          ],
+          "vs_scale_1": {
+            "delta_source_macro_iou": -0.23657823595462957,
+            "paired_source_bootstrap_ci95": [
+              -0.25294955461119983,
+              -0.2198636757113866
+            ],
+            "sources": 100,
+            "replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        {
+          "scale": 0.65,
+          "tune_source_macro_iou": 0.4039955673562086,
+          "confirmation_source_macro_iou": 0.40385971086715666,
+          "quantized_final_scale_source_macro": 0.6500000000000002,
+          "quantized_final_scale_range": [
+            0.65,
+            0.65
+          ],
+          "vs_scale_1": {
+            "delta_source_macro_iou": -0.18866617170889546,
+            "paired_source_bootstrap_ci95": [
+              -0.20338045996470624,
+              -0.1732711268223761
+            ],
+            "sources": 100,
+            "replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        {
+          "scale": 0.7,
+          "tune_source_macro_iou": 0.44983710910151153,
+          "confirmation_source_macro_iou": 0.4504862343986102,
+          "quantized_final_scale_source_macro": 0.7000000000000002,
+          "quantized_final_scale_range": [
+            0.7,
+            0.7
+          ],
+          "vs_scale_1": {
+            "delta_source_macro_iou": -0.14203964817744183,
+            "paired_source_bootstrap_ci95": [
+              -0.15485445802536862,
+              -0.1281381345085527
+            ],
+            "sources": 100,
+            "replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        {
+          "scale": 0.7303391903914591,
+          "tune_source_macro_iou": 0.4751873105488016,
+          "confirmation_source_macro_iou": 0.4768982193088933,
+          "quantized_final_scale_source_macro": 0.7296296296296295,
+          "quantized_final_scale_range": [
+            0.7296296296296296,
+            0.7296296296296296
+          ],
+          "vs_scale_1": {
+            "delta_source_macro_iou": -0.11562766326715879,
+            "paired_source_bootstrap_ci95": [
+              -0.12772949600033856,
+              -0.10248915855967845
+            ],
+            "sources": 100,
+            "replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        {
+          "scale": 0.75,
+          "tune_source_macro_iou": 0.4917300760509755,
+          "confirmation_source_macro_iou": 0.49426366371251385,
+          "quantized_final_scale_source_macro": 0.75,
+          "quantized_final_scale_range": [
+            0.75,
+            0.75
+          ],
+          "vs_scale_1": {
+            "delta_source_macro_iou": -0.09826221886353831,
+            "paired_source_bootstrap_ci95": [
+              -0.10957174728574472,
+              -0.08589383198454768
+            ],
+            "sources": 100,
+            "replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        {
+          "scale": 0.8,
+          "tune_source_macro_iou": 0.5288215186264604,
+          "confirmation_source_macro_iou": 0.5327105130990373,
+          "quantized_final_scale_source_macro": 0.7999999999999998,
+          "quantized_final_scale_range": [
+            0.8,
+            0.8
+          ],
+          "vs_scale_1": {
+            "delta_source_macro_iou": -0.05981536947701497,
+            "paired_source_bootstrap_ci95": [
+              -0.06900565569884246,
+              -0.04973666579457981
+            ],
+            "sources": 100,
+            "replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        {
+          "scale": 0.825,
+          "tune_source_macro_iou": 0.5447503962437394,
+          "confirmation_source_macro_iou": 0.5493896288385163,
+          "quantized_final_scale_source_macro": 0.825,
+          "quantized_final_scale_range": [
+            0.825,
+            0.825
+          ],
+          "vs_scale_1": {
+            "delta_source_macro_iou": -0.04313625373753584,
+            "paired_source_bootstrap_ci95": [
+              -0.051222608560772424,
+              -0.034292542967469114
+            ],
+            "sources": 100,
+            "replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        {
+          "scale": 0.85,
+          "tune_source_macro_iou": 0.5586583545912295,
+          "confirmation_source_macro_iou": 0.5642547345026052,
+          "quantized_final_scale_source_macro": 0.8499999999999995,
+          "quantized_final_scale_range": [
+            0.85,
+            0.85
+          ],
+          "vs_scale_1": {
+            "delta_source_macro_iou": -0.028271148073446703,
+            "paired_source_bootstrap_ci95": [
+              -0.035110098591140164,
+              -0.02077318222826082
+            ],
+            "sources": 100,
+            "replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        {
+          "scale": 0.875,
+          "tune_source_macro_iou": 0.5706371089980796,
+          "confirmation_source_macro_iou": 0.5770884031819434,
+          "quantized_final_scale_source_macro": 0.875,
+          "quantized_final_scale_range": [
+            0.875,
+            0.875
+          ],
+          "vs_scale_1": {
+            "delta_source_macro_iou": -0.015437479394108637,
+            "paired_source_bootstrap_ci95": [
+              -0.02108961790564642,
+              -0.009235496495180203
+            ],
+            "sources": 100,
+            "replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        {
+          "scale": 0.8751093035078801,
+          "tune_source_macro_iou": 0.5706371089980796,
+          "confirmation_source_macro_iou": 0.5770884031819434,
+          "quantized_final_scale_source_macro": 0.875,
+          "quantized_final_scale_range": [
+            0.875,
+            0.875
+          ],
+          "vs_scale_1": {
+            "delta_source_macro_iou": -0.015437479394108637,
+            "paired_source_bootstrap_ci95": [
+              -0.02108961790564642,
+              -0.009235496495180203
+            ],
+            "sources": 100,
+            "replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        {
+          "scale": 0.9,
+          "tune_source_macro_iou": 0.5802405856397133,
+          "confirmation_source_macro_iou": 0.5876027354116803,
+          "quantized_final_scale_source_macro": 0.9000000000000005,
+          "quantized_final_scale_range": [
+            0.9,
+            0.9
+          ],
+          "vs_scale_1": {
+            "delta_source_macro_iou": -0.004923147164371805,
+            "paired_source_bootstrap_ci95": [
+              -0.009290537835423829,
+              -0.0001203560466152805
+            ],
+            "sources": 100,
+            "replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        {
+          "scale": 0.925,
+          "tune_source_macro_iou": 0.5870051810295452,
+          "confirmation_source_macro_iou": 0.5956166104036825,
+          "quantized_final_scale_source_macro": 0.925,
+          "quantized_final_scale_range": [
+            0.925,
+            0.925
+          ],
+          "vs_scale_1": {
+            "delta_source_macro_iou": 0.0030907278276304947,
+            "paired_source_bootstrap_ci95": [
+              -6.561443879586462e-05,
+              0.0065613992526363405
+            ],
+            "sources": 100,
+            "replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        {
+          "scale": 0.9487190200813422,
+          "tune_source_macro_iou": 0.5900153091451832,
+          "confirmation_source_macro_iou": 0.6001786105275042,
+          "quantized_final_scale_source_macro": 0.948148148148148,
+          "quantized_final_scale_range": [
+            0.9481481481481482,
+            0.9481481481481482
+          ],
+          "vs_scale_1": {
+            "delta_source_macro_iou": 0.00765272795145224,
+            "paired_source_bootstrap_ci95": [
+              0.005542297351058486,
+              0.009916307999856162
+            ],
+            "sources": 100,
+            "replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        {
+          "scale": 0.95,
+          "tune_source_macro_iou": 0.590002128916472,
+          "confirmation_source_macro_iou": 0.6004142108412291,
+          "quantized_final_scale_source_macro": 0.95,
+          "quantized_final_scale_range": [
+            0.95,
+            0.95
+          ],
+          "vs_scale_1": {
+            "delta_source_macro_iou": 0.00788832826517693,
+            "paired_source_bootstrap_ci95": [
+              0.005886568517715856,
+              0.010064308246445223
+            ],
+            "sources": 100,
+            "replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        {
+          "scale": 0.9649496513908056,
+          "tune_source_macro_iou": 0.5898035695936454,
+          "confirmation_source_macro_iou": 0.6012016831674033,
+          "quantized_final_scale_source_macro": 0.9648148148148151,
+          "quantized_final_scale_range": [
+            0.9648148148148148,
+            0.9648148148148148
+          ],
+          "vs_scale_1": {
+            "delta_source_macro_iou": 0.0086758005913512,
+            "paired_source_bootstrap_ci95": [
+              0.0073815669121356,
+              0.010132080034206695
+            ],
+            "sources": 100,
+            "replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        {
+          "scale": 0.975,
+          "tune_source_macro_iou": 0.5886587533383758,
+          "confirmation_source_macro_iou": 0.6004861120224116,
+          "quantized_final_scale_source_macro": 0.9749999999999995,
+          "quantized_final_scale_range": [
+            0.975,
+            0.975
+          ],
+          "vs_scale_1": {
+            "delta_source_macro_iou": 0.007960229446359572,
+            "paired_source_bootstrap_ci95": [
+              0.007077448938802917,
+              0.008940867562626692
+            ],
+            "sources": 100,
+            "replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        {
+          "scale": 0.9858763345195729,
+          "tune_source_macro_iou": 0.5864279460772908,
+          "confirmation_source_macro_iou": 0.5986407853743237,
+          "quantized_final_scale_source_macro": 0.9851851851851854,
+          "quantized_final_scale_range": [
+            0.9851851851851852,
+            0.9851851851851852
+          ],
+          "vs_scale_1": {
+            "delta_source_macro_iou": 0.006114902798271691,
+            "paired_source_bootstrap_ci95": [
+              0.005565448384695621,
+              0.006679869156322726
+            ],
+            "sources": 100,
+            "replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        {
+          "scale": 0.9982873665480427,
+          "tune_source_macro_iou": 0.5808596511097128,
+          "confirmation_source_macro_iou": 0.5935071742787433,
+          "quantized_final_scale_source_macro": 0.9981481481481482,
+          "quantized_final_scale_range": [
+            0.9981481481481481,
+            0.9981481481481481
+          ],
+          "vs_scale_1": {
+            "delta_source_macro_iou": 0.000981291702691181,
+            "paired_source_bootstrap_ci95": [
+              0.0008912967768285994,
+              0.0010734334893930315
+            ],
+            "sources": 100,
+            "replicates": 2000,
+            "seed": 20261108
+          }
+        },
+        {
+          "scale": 1.0,
+          "tune_source_macro_iou": 0.579743947621894,
+          "confirmation_source_macro_iou": 0.5925258825760521,
+          "quantized_final_scale_source_macro": 1.0,
+          "quantized_final_scale_range": [
+            1.0,
+            1.0
+          ],
+          "vs_scale_1": {
+            "delta_source_macro_iou": 0.0,
+            "paired_source_bootstrap_ci95": [
+              0.0,
+              0.0
+            ],
+            "sources": 100,
+            "replicates": 2000,
+            "seed": 20261108
+          }
+        }
+      ]
+    }
+  },
+  "historical_bin_fit_validation_exclusion": [
+    "000667",
+    "001961",
+    "007010",
+    "008745"
+  ],
+  "metric_scope": "public source-macro spatial IoU with fixed frames; not official competition Score",
+  "historical_raw_pilot_warning": "single-frame raw centers; no smoothing, subjects, full PTS, or QP. B is transposed LIVE, not upright B confirmation; model identity of historical raw output is not hash-bound.",
+  "provenance": {
+    "created_at_utc": "2026-11-08T02:40:50.607043+00:00",
+    "seed": 20261108,
+    "protocol_sha256": "7b62b04066d6b4a3d079746382adb8d21ac3975998e0161f3e7dd5dc2c77e11e",
+    "public_labels_sha256": "b5beb7ebb075e436ff31d0e8293957277a68b59bb58beb7bdf9f6cc04b0b011d",
+    "clean_public_labels_sha256": "6f168a644a6801834b50d83eaa1291c84522186982f308c0bc82d2a716e43d6b",
+    "run_config_sha256": "fe5fb9adccb0fb032e8a78e905673b4cf8cde8dbc1f8afdee3bcdf39a2b2c41e",
+    "scale_bins_sha256": "c205ff8a10e603d1f1fefdd208a78ca5e7ac75a83882c8498354ba8b3b7644fa",
+    "parent_identity_sha256": "0cdc528b7753c2715a27affc5844f56b16bb7aa3bb4936e0f59bf2d73aa15d52",
+    "historical_raw_cache_sha256": {
+      "arm_a_gate.raw.json": "a3f055f311c75b11f101ce604b639ad0fb9ec3a4184c70b5fb3bc1361a4a2937",
+      "arm_b_gate.raw.json": "21bf6d4e31f055e9c2d72a5f2e642991620481f5d1ae42dcc488347436802db2"
+    },
+    "qp_code_sha256": "b4ad52a71f019412572c41e43655fb586ef8ee9723f58fd9faff4e814dc1bab1",
+    "new_GPU_work_executed": false,
+    "SFT_executed": false,
+    "DPO_executed": false,
+    "official_hidden_test_data_used": false,
+    "positions_input_sha256": null
+  }
+}

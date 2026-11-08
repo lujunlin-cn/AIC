@@ -1,3 +1,11 @@
+## 2026-11-08 — RetargetVid 恢复媒体不撤销历史曝光
+
+Decision: DHF1K与RetargetVid共享原地AVI和`dhf1k:NNN` source group；六人/两画幅不拆组。全部200源沿用spatial_crop_v1的exposed_eval；不修改原ledger，不建立fresh validation，不自动并入当前P2研究Train/Confirm。若未来用于训练，必须新建标记已暴露的实验版本，不再作独立泛化评价。
+
+Evidence: 200源122684实解帧/2400文件1472208人工框全部对齐，真实DenseCropAdapter读回通过。六人同帧裁剪Scale分歧为0、位置有实质分歧；保留六个独立GT而非平均框。原始SHA及源码/环境/命令/完整读回证据见`artifacts/retargetvid_full_media_audit/`。
+
+Status: 媒体与已暴露构图诊断ready；独立视频域缺口仍存在。GPU使用0，不启动训练，不动P1/P2。
+
 ## 2026-11-08 — 采用可核验 P2 共享视觉候选读出，恢复 SACD 人工阶段偏序
 
 Decision: 执行负责人空间研究评审，停止当前常数收缩和逐帧Scale/9B-SFT-DPO主线；先比较固定129合法窗口的线性/MLP32质量读出。保留P2完整输出与权重。复用P2已有视觉塔，不能将旧R70独立LFM/V9或缺失B3冒充为共享编码器，否则既不满足身份合同，也可能超9B。

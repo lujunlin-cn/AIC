@@ -1,3 +1,13 @@
+## 2026-11-08 — RETARGETVID_FULL_MEDIA_AUDIT_V1
+
+Hypothesis: 补回原DHF1K视频可恢复RetargetVid真实媒体/帧合同和多人构图诊断，但不能把历史exposed_eval转回独立验证。
+
+Change: 复用既有ingest/audit/DenseCropAdapter，新增现有媒体原地注册入口及同一解码循环的全PTS观察；原RAR只解所需200源，不复制视频给RetargetVid，不改原ZIP/TXT、ledger或冻结release。保存工作manifest、全部原始SHA及真实显示时间轴。
+
+Result: 实解200/200 AVI、122684帧；2400/2400标注、1472208框全部对齐，0-based frame ID与显示序号一致；LTRB半开转换逐值核对、越界/非正框/画幅不符均0。真实Adapter RGB读200源、全标注读400单元；再次运行复用全部200个已验解码缓存。1:3/3:1的Source-Macro rater IoU=.676249/.825317，源级95% CI分别[.653846,.699352]/[.815060,.835169]，同帧Scale标准差为0，不能视为可变Scale偏好。探索性多簇代理=.135774/.012206，六人不能证明总体多峰。CPU compileall与合并468 tests通过，无GPU/训练/权重变化。
+
+Conclusion: 原始媒体缺口已修复，全部200源仍只能做已暴露诊断；非fresh validation/独立第二视频域。本轮没有创建训练版本。证据：`artifacts/retargetvid_full_media_audit/`，用法：`docs/14_retargetvid_full_media.md`。
+
 ## 2026-11-08 — SPATIAL_P2_UTILITY_PREFLIGHT_20261108
 
 Hypothesis: P2共享的冻结视觉网格可能支持在129个合法窗口上预测crop utility；独立GAICD MOS/SACD主体人工偏序可检验不同监督，而不把同一GT IoU换个loss称为新人工偏好。

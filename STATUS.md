@@ -1,3 +1,11 @@
+## 2026-11-08 — RetargetVid 原始媒体接入完成，仅限已暴露诊断
+
+`artifacts/retargetvid_full_media_audit/final_report.md`：远端现有DHF1K压缩包按需原地解出001–100、601–700共200个AVI，无RetargetVid视频副本。实解122,684帧，2400份原始标注/1,472,208框全部逐文件对齐；200源均640×360、30 FPS，容器/真实显示解码帧数全一致。原始LTRB→xywh_halfopen_v1不加1、不裁边，往返差0、越界/非正窗口/画幅不一致均0。真实DenseCropAdapter RGB与完整PTS共享一次解码；400个源×画幅单元随后全帧全标注者逐值通过读取，恢复复验复用200源缓存、不重复解码。
+
+六人两两IoU的Source-Macro：1:3=.676249 [95% CI .653846,.699352]，3:1=.825317 [.815060,.835169]；中心分歧35.38/22.44px。多簇探索性代理13.58%/1.22%，非总体多峰证明；同帧Scale分歧均0，数据主要提供固定最大窗下的Position构图分歧，不能伪造可变Scale人工偏好。
+
+全部200源继续exposed_eval，Train/fresh-validation Adapter选择均0；原holdout ledger及spatial_crop_v1 RELEASE/quality SHA原样保留。媒体恢复不构成新的独立视频域，不解除P2候选效用研究的独立域门，也未把这些源加进Train/Confirm。后续训练需独立新实验版本并标记已暴露。代码已同步35092独立目录，GPU使用0、未训练、P1/P2及旧提交包不变。CPU compileall及tests+ext_data/tests合并468 tests通过；具体命令、远端复验与哈希见交付证据。
+
 ## 2026-11-08 — P2 候选构图效用研究 CPU 就绪
 
 已按 `plan/AIC_spatial_research_review.md` 执行 E1/E5/E6/E8 CPU 研究，并补齐 E2/E3/E4/E7 的真实特征→小读出训练→checkpoint恢复→Dev锁定→Confirm→原P2 QP评价运行链；尚未启动GPU。P2为唯一父链，当前参考分44.65来自负责人研究报告，C0新轮回分仍未测；不覆盖旧成绩来源。

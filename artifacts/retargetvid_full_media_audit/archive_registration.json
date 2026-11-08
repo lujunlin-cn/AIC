@@ -1,0 +1,1215 @@
+{
+  "requested_ids": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    87,
+    88,
+    89,
+    90,
+    91,
+    92,
+    93,
+    94,
+    95,
+    96,
+    97,
+    98,
+    99,
+    100,
+    601,
+    602,
+    603,
+    604,
+    605,
+    606,
+    607,
+    608,
+    609,
+    610,
+    611,
+    612,
+    613,
+    614,
+    615,
+    616,
+    617,
+    618,
+    619,
+    620,
+    621,
+    622,
+    623,
+    624,
+    625,
+    626,
+    627,
+    628,
+    629,
+    630,
+    631,
+    632,
+    633,
+    634,
+    635,
+    636,
+    637,
+    638,
+    639,
+    640,
+    641,
+    642,
+    643,
+    644,
+    645,
+    646,
+    647,
+    648,
+    649,
+    650,
+    651,
+    652,
+    653,
+    654,
+    655,
+    656,
+    657,
+    658,
+    659,
+    660,
+    661,
+    662,
+    663,
+    664,
+    665,
+    666,
+    667,
+    668,
+    669,
+    670,
+    671,
+    672,
+    673,
+    674,
+    675,
+    676,
+    677,
+    678,
+    679,
+    680,
+    681,
+    682,
+    683,
+    684,
+    685,
+    686,
+    687,
+    688,
+    689,
+    690,
+    691,
+    692,
+    693,
+    694,
+    695,
+    696,
+    697,
+    698,
+    699,
+    700
+  ],
+  "preexisting_AVI": 0,
+  "duplicate_copies_created": 0,
+  "preexisting_equal_byte_duplicates": [],
+  "extracted": [
+    {
+      "video_id": "001",
+      "archive_member": "video/001.AVI",
+      "bytes": 3496762
+    },
+    {
+      "video_id": "002",
+      "archive_member": "video/002.AVI",
+      "bytes": 2676794
+    },
+    {
+      "video_id": "003",
+      "archive_member": "video/003.AVI",
+      "bytes": 3381814
+    },
+    {
+      "video_id": "004",
+      "archive_member": "video/004.AVI",
+      "bytes": 6245522
+    },
+    {
+      "video_id": "005",
+      "archive_member": "video/005.AVI",
+      "bytes": 3583466
+    },
+    {
+      "video_id": "006",
+      "archive_member": "video/006.AVI",
+      "bytes": 4229964
+    },
+    {
+      "video_id": "007",
+      "archive_member": "video/007.AVI",
+      "bytes": 3024320
+    },
+    {
+      "video_id": "008",
+      "archive_member": "video/008.AVI",
+      "bytes": 3870350
+    },
+    {
+      "video_id": "009",
+      "archive_member": "video/009.AVI",
+      "bytes": 1560378
+    },
+    {
+      "video_id": "010",
+      "archive_member": "video/010.AVI",
+      "bytes": 4167774
+    },
+    {
+      "video_id": "011",
+      "archive_member": "video/011.AVI",
+      "bytes": 4714840
+    },
+    {
+      "video_id": "012",
+      "archive_member": "video/012.AVI",
+      "bytes": 6860040
+    },
+    {
+      "video_id": "013",
+      "archive_member": "video/013.AVI",
+      "bytes": 2605584
+    },
+    {
+      "video_id": "014",
+      "archive_member": "video/014.AVI",
+      "bytes": 2440314
+    },
+    {
+      "video_id": "015",
+      "archive_member": "video/015.AVI",
+      "bytes": 4955186
+    },
+    {
+      "video_id": "016",
+      "archive_member": "video/016.AVI",
+      "bytes": 2082520
+    },
+    {
+      "video_id": "017",
+      "archive_member": "video/017.AVI",
+      "bytes": 4572822
+    },
+    {
+      "video_id": "018",
+      "archive_member": "video/018.AVI",
+      "bytes": 4698590
+    },
+    {
+      "video_id": "019",
+      "archive_member": "video/019.AVI",
+      "bytes": 6135516
+    },
+    {
+      "video_id": "020",
+      "archive_member": "video/020.AVI",
+      "bytes": 4108480
+    },
+    {
+      "video_id": "021",
+      "archive_member": "video/021.AVI",
+      "bytes": 3512906
+    },
+    {
+      "video_id": "022",
+      "archive_member": "video/022.AVI",
+      "bytes": 3166692
+    },
+    {
+      "video_id": "023",
+      "archive_member": "video/023.AVI",
+      "bytes": 5725898
+    },
+    {
+      "video_id": "024",
+      "archive_member": "video/024.AVI",
+      "bytes": 4220490
+    },
+    {
+      "video_id": "025",
+      "archive_member": "video/025.AVI",
+      "bytes": 1828576
+    },
+    {
+      "video_id": "026",
+      "archive_member": "video/026.AVI",
+      "bytes": 2364954
+    },
+    {
+      "video_id": "027",
+      "archive_member": "video/027.AVI",
+      "bytes": 6136924
+    },
+    {
+      "video_id": "028",
+      "archive_member": "video/028.AVI",
+      "bytes": 3912664
+    },
+    {
+      "video_id": "029",
+      "archive_member": "video/029.AVI",
+      "bytes": 6928816
+    },
+    {
+      "video_id": "030",
+      "archive_member": "video/030.AVI",
+      "bytes": 2955592
+    },
+    {
+      "video_id": "031",
+      "archive_member": "video/031.AVI",
+      "bytes": 4097394
+    },
+    {
+      "video_id": "032",
+      "archive_member": "video/032.AVI",
+      "bytes": 3035068
+    },
+    {
+      "video_id": "033",
+      "archive_member": "video/033.AVI",
+      "bytes": 6030378
+    },
+    {
+      "video_id": "034",
+      "archive_member": "video/034.AVI",
+      "bytes": 3552704
+    },
+    {
+      "video_id": "035",
+      "archive_member": "video/035.AVI",
+      "bytes": 4153888
+    },
+    {
+      "video_id": "036",
+      "archive_member": "video/036.AVI",
+      "bytes": 4021642
+    },
+    {
+      "video_id": "037",
+      "archive_member": "video/037.AVI",
+      "bytes": 3206834
+    },
+    {
+      "video_id": "038",
+      "archive_member": "video/038.AVI",
+      "bytes": 7958590
+    },
+    {
+      "video_id": "039",
+      "archive_member": "video/039.AVI",
+      "bytes": 5664248
+    },
+    {
+      "video_id": "040",
+      "archive_member": "video/040.AVI",
+      "bytes": 3451230
+    },
+    {
+      "video_id": "041",
+      "archive_member": "video/041.AVI",
+      "bytes": 3850942
+    },
+    {
+      "video_id": "042",
+      "archive_member": "video/042.AVI",
+      "bytes": 2860536
+    },
+    {
+      "video_id": "043",
+      "archive_member": "video/043.AVI",
+      "bytes": 4069610
+    },
+    {
+      "video_id": "044",
+      "archive_member": "video/044.AVI",
+      "bytes": 2240870
+    },
+    {
+      "video_id": "045",
+      "archive_member": "video/045.AVI",
+      "bytes": 3977198
+    },
+    {
+      "video_id": "046",
+      "archive_member": "video/046.AVI",
+      "bytes": 5526542
+    },
+    {
+      "video_id": "047",
+      "archive_member": "video/047.AVI",
+      "bytes": 7044744
+    },
+    {
+      "video_id": "048",
+      "archive_member": "video/048.AVI",
+      "bytes": 4597102
+    },
+    {
+      "video_id": "049",
+      "archive_member": "video/049.AVI",
+      "bytes": 5541876
+    },
+    {
+      "video_id": "050",
+      "archive_member": "video/050.AVI",
+      "bytes": 4014062
+    },
+    {
+      "video_id": "051",
+      "archive_member": "video/051.AVI",
+      "bytes": 3253140
+    },
+    {
+      "video_id": "052",
+      "archive_member": "video/052.AVI",
+      "bytes": 4695446
+    },
+    {
+      "video_id": "053",
+      "archive_member": "video/053.AVI",
+      "bytes": 6523594
+    },
+    {
+      "video_id": "054",
+      "archive_member": "video/054.AVI",
+      "bytes": 3912732
+    },
+    {
+      "video_id": "055",
+      "archive_member": "video/055.AVI",
+      "bytes": 2902890
+    },
+    {
+      "video_id": "056",
+      "archive_member": "video/056.AVI",
+      "bytes": 6346864
+    },
+    {
+      "video_id": "057",
+      "archive_member": "video/057.AVI",
+      "bytes": 4729958
+    },
+    {
+      "video_id": "058",
+      "archive_member": "video/058.AVI",
+      "bytes": 5166940
+    },
+    {
+      "video_id": "059",
+      "archive_member": "video/059.AVI",
+      "bytes": 8360022
+    },
+    {
+      "video_id": "060",
+      "archive_member": "video/060.AVI",
+      "bytes": 3235166
+    },
+    {
+      "video_id": "061",
+      "archive_member": "video/061.AVI",
+      "bytes": 4401858
+    },
+    {
+      "video_id": "062",
+      "archive_member": "video/062.AVI",
+      "bytes": 6417394
+    },
+    {
+      "video_id": "063",
+      "archive_member": "video/063.AVI",
+      "bytes": 7272562
+    },
+    {
+      "video_id": "064",
+      "archive_member": "video/064.AVI",
+      "bytes": 3520026
+    },
+    {
+      "video_id": "065",
+      "archive_member": "video/065.AVI",
+      "bytes": 2851064
+    },
+    {
+      "video_id": "066",
+      "archive_member": "video/066.AVI",
+      "bytes": 3793622
+    },
+    {
+      "video_id": "067",
+      "archive_member": "video/067.AVI",
+      "bytes": 6813610
+    },
+    {
+      "video_id": "068",
+      "archive_member": "video/068.AVI",
+      "bytes": 3946368
+    },
+    {
+      "video_id": "069",
+      "archive_member": "video/069.AVI",
+      "bytes": 4402600
+    },
+    {
+      "video_id": "070",
+      "archive_member": "video/070.AVI",
+      "bytes": 4169074
+    },
+    {
+      "video_id": "071",
+      "archive_member": "video/071.AVI",
+      "bytes": 3930250
+    },
+    {
+      "video_id": "072",
+      "archive_member": "video/072.AVI",
+      "bytes": 3970214
+    },
+    {
+      "video_id": "073",
+      "archive_member": "video/073.AVI",
+      "bytes": 4757402
+    },
+    {
+      "video_id": "074",
+      "archive_member": "video/074.AVI",
+      "bytes": 5092828
+    },
+    {
+      "video_id": "075",
+      "archive_member": "video/075.AVI",
+      "bytes": 6207126
+    },
+    {
+      "video_id": "076",
+      "archive_member": "video/076.AVI",
+      "bytes": 6135376
+    },
+    {
+      "video_id": "077",
+      "archive_member": "video/077.AVI",
+      "bytes": 3006186
+    },
+    {
+      "video_id": "078",
+      "archive_member": "video/078.AVI",
+      "bytes": 3348602
+    },
+    {
+      "video_id": "079",
+      "archive_member": "video/079.AVI",
+      "bytes": 5406318
+    },
+    {
+      "video_id": "080",
+      "archive_member": "video/080.AVI",
+      "bytes": 3876110
+    },
+    {
+      "video_id": "081",
+      "archive_member": "video/081.AVI",
+      "bytes": 5618108
+    },
+    {
+      "video_id": "082",
+      "archive_member": "video/082.AVI",
+      "bytes": 2412330
+    },
+    {
+      "video_id": "083",
+      "archive_member": "video/083.AVI",
+      "bytes": 6671222
+    },
+    {
+      "video_id": "084",
+      "archive_member": "video/084.AVI",
+      "bytes": 3236428
+    },
+    {
+      "video_id": "085",
+      "archive_member": "video/085.AVI",
+      "bytes": 2091132
+    },
+    {
+      "video_id": "086",
+      "archive_member": "video/086.AVI",
+      "bytes": 3862894
+    },
+    {
+      "video_id": "087",
+      "archive_member": "video/087.AVI",
+      "bytes": 2316426
+    },
+    {
+      "video_id": "088",
+      "archive_member": "video/088.AVI",
+      "bytes": 2038566
+    },
+    {
+      "video_id": "089",
+      "archive_member": "video/089.AVI",
+      "bytes": 4373586
+    },
+    {
+      "video_id": "090",
+      "archive_member": "video/090.AVI",
+      "bytes": 5410768
+    },
+    {
+      "video_id": "091",
+      "archive_member": "video/091.AVI",
+      "bytes": 2655430
+    },
+    {
+      "video_id": "092",
+      "archive_member": "video/092.AVI",
+      "bytes": 4837244
+    },
+    {
+      "video_id": "093",
+      "archive_member": "video/093.AVI",
+      "bytes": 4487606
+    },
+    {
+      "video_id": "094",
+      "archive_member": "video/094.AVI",
+      "bytes": 3889188
+    },
+    {
+      "video_id": "095",
+      "archive_member": "video/095.AVI",
+      "bytes": 6273710
+    },
+    {
+      "video_id": "096",
+      "archive_member": "video/096.AVI",
+      "bytes": 6148788
+    },
+    {
+      "video_id": "097",
+      "archive_member": "video/097.AVI",
+      "bytes": 4674696
+    },
+    {
+      "video_id": "098",
+      "archive_member": "video/098.AVI",
+      "bytes": 3483414
+    },
+    {
+      "video_id": "099",
+      "archive_member": "video/099.AVI",
+      "bytes": 5009460
+    },
+    {
+      "video_id": "100",
+      "archive_member": "video/100.AVI",
+      "bytes": 2291330
+    },
+    {
+      "video_id": "601",
+      "archive_member": "video/601.AVI",
+      "bytes": 5131522
+    },
+    {
+      "video_id": "602",
+      "archive_member": "video/602.AVI",
+      "bytes": 2575532
+    },
+    {
+      "video_id": "603",
+      "archive_member": "video/603.AVI",
+      "bytes": 7870230
+    },
+    {
+      "video_id": "604",
+      "archive_member": "video/604.AVI",
+      "bytes": 5100994
+    },
+    {
+      "video_id": "605",
+      "archive_member": "video/605.AVI",
+      "bytes": 4671086
+    },
+    {
+      "video_id": "606",
+      "archive_member": "video/606.AVI",
+      "bytes": 6512606
+    },
+    {
+      "video_id": "607",
+      "archive_member": "video/607.AVI",
+      "bytes": 5736318
+    },
+    {
+      "video_id": "608",
+      "archive_member": "video/608.AVI",
+      "bytes": 5601358
+    },
+    {
+      "video_id": "609",
+      "archive_member": "video/609.AVI",
+      "bytes": 6639760
+    },
+    {
+      "video_id": "610",
+      "archive_member": "video/610.AVI",
+      "bytes": 3151286
+    },
+    {
+      "video_id": "611",
+      "archive_member": "video/611.AVI",
+      "bytes": 5462082
+    },
+    {
+      "video_id": "612",
+      "archive_member": "video/612.AVI",
+      "bytes": 5561684
+    },
+    {
+      "video_id": "613",
+      "archive_member": "video/613.AVI",
+      "bytes": 4092732
+    },
+    {
+      "video_id": "614",
+      "archive_member": "video/614.AVI",
+      "bytes": 3655424
+    },
+    {
+      "video_id": "615",
+      "archive_member": "video/615.AVI",
+      "bytes": 4243106
+    },
+    {
+      "video_id": "616",
+      "archive_member": "video/616.AVI",
+      "bytes": 6030236
+    },
+    {
+      "video_id": "617",
+      "archive_member": "video/617.AVI",
+      "bytes": 5898854
+    },
+    {
+      "video_id": "618",
+      "archive_member": "video/618.AVI",
+      "bytes": 3293868
+    },
+    {
+      "video_id": "619",
+      "archive_member": "video/619.AVI",
+      "bytes": 2279370
+    },
+    {
+      "video_id": "620",
+      "archive_member": "video/620.AVI",
+      "bytes": 5901140
+    },
+    {
+      "video_id": "621",
+      "archive_member": "video/621.AVI",
+      "bytes": 3176706
+    },
+    {
+      "video_id": "622",
+      "archive_member": "video/622.AVI",
+      "bytes": 1720124
+    },
+    {
+      "video_id": "623",
+      "archive_member": "video/623.AVI",
+      "bytes": 6102302
+    },
+    {
+      "video_id": "624",
+      "archive_member": "video/624.AVI",
+      "bytes": 4857558
+    },
+    {
+      "video_id": "625",
+      "archive_member": "video/625.AVI",
+      "bytes": 3693988
+    },
+    {
+      "video_id": "626",
+      "archive_member": "video/626.AVI",
+      "bytes": 1993372
+    },
+    {
+      "video_id": "627",
+      "archive_member": "video/627.AVI",
+      "bytes": 2015806
+    },
+    {
+      "video_id": "628",
+      "archive_member": "video/628.AVI",
+      "bytes": 5208520
+    },
+    {
+      "video_id": "629",
+      "archive_member": "video/629.AVI",
+      "bytes": 6772698
+    },
+    {
+      "video_id": "630",
+      "archive_member": "video/630.AVI",
+      "bytes": 6476402
+    },
+    {
+      "video_id": "631",
+      "archive_member": "video/631.AVI",
+      "bytes": 5811504
+    },
+    {
+      "video_id": "632",
+      "archive_member": "video/632.AVI",
+      "bytes": 5088866
+    },
+    {
+      "video_id": "633",
+      "archive_member": "video/633.AVI",
+      "bytes": 4136092
+    },
+    {
+      "video_id": "634",
+      "archive_member": "video/634.AVI",
+      "bytes": 6299578
+    },
+    {
+      "video_id": "635",
+      "archive_member": "video/635.AVI",
+      "bytes": 5180002
+    },
+    {
+      "video_id": "636",
+      "archive_member": "video/636.AVI",
+      "bytes": 3502588
+    },
+    {
+      "video_id": "637",
+      "archive_member": "video/637.AVI",
+      "bytes": 4863050
+    },
+    {
+      "video_id": "638",
+      "archive_member": "video/638.AVI",
+      "bytes": 3462990
+    },
+    {
+      "video_id": "639",
+      "archive_member": "video/639.AVI",
+      "bytes": 3783812
+    },
+    {
+      "video_id": "640",
+      "archive_member": "video/640.AVI",
+      "bytes": 3392494
+    },
+    {
+      "video_id": "641",
+      "archive_member": "video/641.AVI",
+      "bytes": 3103000
+    },
+    {
+      "video_id": "642",
+      "archive_member": "video/642.AVI",
+      "bytes": 4185648
+    },
+    {
+      "video_id": "643",
+      "archive_member": "video/643.AVI",
+      "bytes": 5738170
+    },
+    {
+      "video_id": "644",
+      "archive_member": "video/644.AVI",
+      "bytes": 6562950
+    },
+    {
+      "video_id": "645",
+      "archive_member": "video/645.AVI",
+      "bytes": 4358318
+    },
+    {
+      "video_id": "646",
+      "archive_member": "video/646.AVI",
+      "bytes": 1982340
+    },
+    {
+      "video_id": "647",
+      "archive_member": "video/647.AVI",
+      "bytes": 2266918
+    },
+    {
+      "video_id": "648",
+      "archive_member": "video/648.AVI",
+      "bytes": 6035644
+    },
+    {
+      "video_id": "649",
+      "archive_member": "video/649.AVI",
+      "bytes": 4008614
+    },
+    {
+      "video_id": "650",
+      "archive_member": "video/650.AVI",
+      "bytes": 5716718
+    },
+    {
+      "video_id": "651",
+      "archive_member": "video/651.AVI",
+      "bytes": 8119224
+    },
+    {
+      "video_id": "652",
+      "archive_member": "video/652.AVI",
+      "bytes": 4070792
+    },
+    {
+      "video_id": "653",
+      "archive_member": "video/653.AVI",
+      "bytes": 3613680
+    },
+    {
+      "video_id": "654",
+      "archive_member": "video/654.AVI",
+      "bytes": 3392418
+    },
+    {
+      "video_id": "655",
+      "archive_member": "video/655.AVI",
+      "bytes": 3444948
+    },
+    {
+      "video_id": "656",
+      "archive_member": "video/656.AVI",
+      "bytes": 3236598
+    },
+    {
+      "video_id": "657",
+      "archive_member": "video/657.AVI",
+      "bytes": 4028128
+    },
+    {
+      "video_id": "658",
+      "archive_member": "video/658.AVI",
+      "bytes": 3101818
+    },
+    {
+      "video_id": "659",
+      "archive_member": "video/659.AVI",
+      "bytes": 2457594
+    },
+    {
+      "video_id": "660",
+      "archive_member": "video/660.AVI",
+      "bytes": 3581856
+    },
+    {
+      "video_id": "661",
+      "archive_member": "video/661.AVI",
+      "bytes": 3357844
+    },
+    {
+      "video_id": "662",
+      "archive_member": "video/662.AVI",
+      "bytes": 5001212
+    },
+    {
+      "video_id": "663",
+      "archive_member": "video/663.AVI",
+      "bytes": 3941372
+    },
+    {
+      "video_id": "664",
+      "archive_member": "video/664.AVI",
+      "bytes": 4239834
+    },
+    {
+      "video_id": "665",
+      "archive_member": "video/665.AVI",
+      "bytes": 2596076
+    },
+    {
+      "video_id": "666",
+      "archive_member": "video/666.AVI",
+      "bytes": 5254846
+    },
+    {
+      "video_id": "667",
+      "archive_member": "video/667.AVI",
+      "bytes": 4126776
+    },
+    {
+      "video_id": "668",
+      "archive_member": "video/668.AVI",
+      "bytes": 1803388
+    },
+    {
+      "video_id": "669",
+      "archive_member": "video/669.AVI",
+      "bytes": 3824800
+    },
+    {
+      "video_id": "670",
+      "archive_member": "video/670.AVI",
+      "bytes": 1683228
+    },
+    {
+      "video_id": "671",
+      "archive_member": "video/671.AVI",
+      "bytes": 3718010
+    },
+    {
+      "video_id": "672",
+      "archive_member": "video/672.AVI",
+      "bytes": 2640540
+    },
+    {
+      "video_id": "673",
+      "archive_member": "video/673.AVI",
+      "bytes": 1799840
+    },
+    {
+      "video_id": "674",
+      "archive_member": "video/674.AVI",
+      "bytes": 5383384
+    },
+    {
+      "video_id": "675",
+      "archive_member": "video/675.AVI",
+      "bytes": 4635892
+    },
+    {
+      "video_id": "676",
+      "archive_member": "video/676.AVI",
+      "bytes": 2507984
+    },
+    {
+      "video_id": "677",
+      "archive_member": "video/677.AVI",
+      "bytes": 5291308
+    },
+    {
+      "video_id": "678",
+      "archive_member": "video/678.AVI",
+      "bytes": 4930716
+    },
+    {
+      "video_id": "679",
+      "archive_member": "video/679.AVI",
+      "bytes": 3480136
+    },
+    {
+      "video_id": "680",
+      "archive_member": "video/680.AVI",
+      "bytes": 3515366
+    },
+    {
+      "video_id": "681",
+      "archive_member": "video/681.AVI",
+      "bytes": 6001174
+    },
+    {
+      "video_id": "682",
+      "archive_member": "video/682.AVI",
+      "bytes": 2229358
+    },
+    {
+      "video_id": "683",
+      "archive_member": "video/683.AVI",
+      "bytes": 3480314
+    },
+    {
+      "video_id": "684",
+      "archive_member": "video/684.AVI",
+      "bytes": 3197790
+    },
+    {
+      "video_id": "685",
+      "archive_member": "video/685.AVI",
+      "bytes": 3924326
+    },
+    {
+      "video_id": "686",
+      "archive_member": "video/686.AVI",
+      "bytes": 3314348
+    },
+    {
+      "video_id": "687",
+      "archive_member": "video/687.AVI",
+      "bytes": 5112950
+    },
+    {
+      "video_id": "688",
+      "archive_member": "video/688.AVI",
+      "bytes": 5435126
+    },
+    {
+      "video_id": "689",
+      "archive_member": "video/689.AVI",
+      "bytes": 2220150
+    },
+    {
+      "video_id": "690",
+      "archive_member": "video/690.AVI",
+      "bytes": 1882356
+    },
+    {
+      "video_id": "691",
+      "archive_member": "video/691.AVI",
+      "bytes": 2838174
+    },
+    {
+      "video_id": "692",
+      "archive_member": "video/692.AVI",
+      "bytes": 8810096
+    },
+    {
+      "video_id": "693",
+      "archive_member": "video/693.AVI",
+      "bytes": 4322296
+    },
+    {
+      "video_id": "694",
+      "archive_member": "video/694.AVI",
+      "bytes": 3111224
+    },
+    {
+      "video_id": "695",
+      "archive_member": "video/695.AVI",
+      "bytes": 4158916
+    },
+    {
+      "video_id": "696",
+      "archive_member": "video/696.AVI",
+      "bytes": 3798848
+    },
+    {
+      "video_id": "697",
+      "archive_member": "video/697.AVI",
+      "bytes": 4292266
+    },
+    {
+      "video_id": "698",
+      "archive_member": "video/698.AVI",
+      "bytes": 3281252
+    },
+    {
+      "video_id": "699",
+      "archive_member": "video/699.AVI",
+      "bytes": 8131878
+    },
+    {
+      "video_id": "700",
+      "archive_member": "video/700.AVI",
+      "bytes": 3225058
+    }
+  ],
+  "archive": "/root/autodl-tmp/videoora42_clone/datasets/DHF1K/video.rar",
+  "archive_sha256": "0a9da0d057a22217e3ab513515d04325c3478b3bb57ebcefbd9178e70d25875b",
+  "archive_bytes": 4032563381,
+  "action": "first_extract_selected_200_only",
+  "extracted_bytes": 859741142,
+  "complete": true
+}

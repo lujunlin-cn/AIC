@@ -1,0 +1,44 @@
+{
+  "source_sha256": "f16c451286514fa23aecb2bb7e2d786e2a14ea3c89b61d16c6ed9de16ad97493",
+  "decode_contract_sha256": "ac6779df3137d8cc1b3f4c4a05fb9609df7bd31aac585c7ffb491d868ca6d178",
+  "timeline_sha256": "e8c5c36e55077dda47c552ffc3ddb36252267410831b1ca3e3b147b5a6e3bc59",
+  "actual_DenseCropAdapter_RGB_read": true,
+  "first_RGB_hash_matches_actual_first_decoded_frame": true,
+  "trace": {
+    "time_base": "1/30",
+    "method": "decode",
+    "frame_count": 485,
+    "duration_s": 16.166666666666664,
+    "fps_measured": 30.000000000000107,
+    "non_increasing": 0,
+    "first_time_zero": true,
+    "missing_pts": 0,
+    "frame_dimensions": [
+      [
+        640,
+        360
+      ]
+    ],
+    "frame_probes": {
+      "0": {
+        "rgb_sha256": "a3d145dd6eeeda5a76c53d31016cfe6b0d2033975861331692e8c771663a44f8",
+        "width": 640,
+        "height": 360,
+        "pts": 0
+      },
+      "242": {
+        "rgb_sha256": "4558b890a1d10734d4df5061d4dabd44b688dd1706fcc4427f6c6144b398decc",
+        "width": 640,
+        "height": 360,
+        "pts": 242
+      },
+      "484": {
+        "rgb_sha256": "f64fa643a09c2230e258672a69b8f753cce3c49156a164a13217e58c42e4566e",
+        "width": 640,
+        "height": 360,
+        "pts": 484
+      }
+    },
+    "order": "0-based enumerate(PyAV container.decode(video_stream)); not packet order and never sorted"
+  }
+}

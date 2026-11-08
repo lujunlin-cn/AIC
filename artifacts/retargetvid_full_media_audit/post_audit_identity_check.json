@@ -1,0 +1,10 @@
+{
+  "checked_at": "2026-11-08T11:35:24.324760+00:00",
+  "media_count": 200,
+  "annotation_count": 2400,
+  "all_AVI_SHA256_unchanged": true,
+  "all_TXT_SHA256_unchanged": true,
+  "all_timelines_SHA256_valid": true,
+  "original_ledger_release_quality_SHA256_unchanged": true,
+  "passed": true
+}

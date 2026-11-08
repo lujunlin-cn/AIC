@@ -1,3 +1,12 @@
+## 完成 — RetargetVid 原始媒体审计（2026-11-08）
+
+- [x] 原地接入200个DHF1K AVI，保留源SHA/大小/分辨率/FPS/实解帧数/真实PTS；不复制视频给RetargetVid。
+- [x] 六人×两画幅2400原始标注全部对齐，真实DenseCropAdapter完成RGB和全标签读回。
+- [x] 完成坐标、源级标注者一致性、多簇代理与系统偏好分析；没有平均GT或伪造Scale偏好。
+- [x] 全部200源保留exposed_eval；原ledger/release不变，Train/fresh-validation均0。
+- [x] 同步代码、manifest和审计至远端，报告回传本地；本轮无GPU训练。
+- [ ] 若后续要训练RetargetVid，先独立建立标明已暴露的新实验版本；本轮没有创建。
+
 ## 当前 P0 — P2 候选效用研究（2026-11-08）
 
 - [x] 阅读空间评审和最新状态；在newday工作树隔离实现，保留P2原权重/包/历史记录。
@@ -7,7 +16,7 @@
 - [x] 同步独立研究目录到35092计算机器，并运行远端CPU核验；详见交付审计。
 - [ ] 负责人开启GPU后，运行 `bash scripts/run_spatial_research_gpu.sh`；先检查真实新视觉路径，再完成小读出研究，累计GPU不超过6小时。
 - [ ] 获得实际readout源外指标；完整新包还需原生B视频/第二独立视频域证据，不能以转置LIVE或静态GNMC填补。
-- [ ] 恢复RetargetVid原视频/精确来源（当前只有标注），不冒充已可训练，不引入额外LFM编码器。
+- [x] 恢复RetargetVid原视频/精确来源，见上方审计；仍非fresh验证域，未自动加入训练，不引入额外LFM编码器。
 - [ ] 正式提交晋级只依据真实官方反馈；当前P2包保持不动，无SFT/DPO或9B训练。
 
 ## P0 — Partial P2 Scale scores recorded (2026-11-08)

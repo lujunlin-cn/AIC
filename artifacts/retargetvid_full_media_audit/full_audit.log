@@ -1,0 +1,31 @@
+{"decoded_or_reused": 10, "full_decodes_this_run": 10, "errors": 0}
+{"decoded_or_reused": 20, "full_decodes_this_run": 20, "errors": 0}
+{"decoded_or_reused": 30, "full_decodes_this_run": 30, "errors": 0}
+{"decoded_or_reused": 40, "full_decodes_this_run": 40, "errors": 0}
+{"decoded_or_reused": 50, "full_decodes_this_run": 50, "errors": 0}
+{"decoded_or_reused": 60, "full_decodes_this_run": 60, "errors": 0}
+{"decoded_or_reused": 70, "full_decodes_this_run": 70, "errors": 0}
+{"decoded_or_reused": 80, "full_decodes_this_run": 80, "errors": 0}
+{"decoded_or_reused": 90, "full_decodes_this_run": 90, "errors": 0}
+{"decoded_or_reused": 100, "full_decodes_this_run": 100, "errors": 0}
+{"decoded_or_reused": 110, "full_decodes_this_run": 110, "errors": 0}
+{"decoded_or_reused": 120, "full_decodes_this_run": 120, "errors": 0}
+{"decoded_or_reused": 130, "full_decodes_this_run": 130, "errors": 0}
+{"decoded_or_reused": 140, "full_decodes_this_run": 140, "errors": 0}
+{"decoded_or_reused": 150, "full_decodes_this_run": 150, "errors": 0}
+{"decoded_or_reused": 160, "full_decodes_this_run": 160, "errors": 0}
+{"decoded_or_reused": 170, "full_decodes_this_run": 170, "errors": 0}
+{"decoded_or_reused": 180, "full_decodes_this_run": 180, "errors": 0}
+{"decoded_or_reused": 190, "full_decodes_this_run": 190, "errors": 0}
+{"decoded_or_reused": 200, "full_decodes_this_run": 200, "errors": 0}
+{
+  "all_200_media_available": true,
+  "all_2400_annotations_aligned": true,
+  "safe_for_exposed_spatial_diagnostics": true,
+  "fresh_validation_eligible": false,
+  "training_started": false,
+  "GPU_used": false,
+  "P1_P2_weights_changed": false,
+  "historical_release_media_SHA_match": null,
+  "historical_SHA_limitation": "immutable release summary and ledger are present, original per-media release manifest is not in this clone; do not claim byte-for-byte comparison to historical AVI"
+}

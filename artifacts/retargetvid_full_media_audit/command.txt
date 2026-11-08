@@ -1,0 +1,4 @@
+cd /root/autodl-tmp/videoora42_clone/retargetvid_media_audit_newday
+OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 PYTHONPATH=ext_data:/root/autodl-tmp/videoora42_clone/retargetvid_media_tools/libarchive_c_5_3 /root/autodl-tmp/videoora42_clone/.venv/bin/python -u ext_data/scripts/ingest_dhf1k_retargetvid.py --existing-media-root /root/autodl-tmp/videoora42_clone/datasets/DHF1K --registry-root /root/autodl-tmp/videoora42_clone/datasets --retargetvid-root /root/autodl-tmp/videoora42_clone/datasets/RetargetVid --evidence-root ext_data --audit-output artifacts/retargetvid_full_media_audit
+# actual isolated CPU verification (no change to model venv)
+OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 PYTHONPATH=ext_data:.:/root/autodl-tmp/videoora42_clone/retargetvid_media_tools/pytest_9_0_3 /root/autodl-tmp/videoora42_clone/.venv/bin/python artifacts/retargetvid_full_media_audit/capture_runtime.py

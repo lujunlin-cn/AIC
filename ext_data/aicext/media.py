@@ -142,8 +142,14 @@ def uniform_sample(time_s: np.ndarray, fps: float) -> tuple[np.ndarray, np.ndarr
     return idx, time_s[idx]
 
 
-def read_frames(path: str | Path, indices, size: Optional[int] = None) -> dict[int, np.ndarray]:
-    """Decode selected display-order frames (RGB uint8). Sequential decode."""
+def read_frames(path: str | Path, indices, size: Optional[int] = None, *, observer=None,
+                through_eof: bool = False) -> dict[int, np.ndarray]:
+    """Decode selected display-order frames (RGB uint8). Sequential decode.
+
+    Optional audit hooks observe the same decode, avoiding a second full pass
+    for a timeline/count check. Ordinary callers retain early-stop behavior.
+    observer(index, frame, stream.time_base) must not retain every RGB frame.
+    """
     import av
 
     want = sorted(set(int(i) for i in indices))
@@ -154,8 +160,12 @@ def read_frames(path: str | Path, indices, size: Optional[int] = None) -> dict[i
     with av.open(str(path)) as c:
         st = c.streams.video[0]
         st.thread_type = "AUTO"
+        if observer is not None:
+            st.codec_context.thread_count = 1
         for i, fr in enumerate(c.decode(st)):
-            if i == want[ptr]:
+            if observer is not None:
+                observer(i, fr, st.time_base)
+            if ptr < len(want) and i == want[ptr]:
                 img = fr.to_ndarray(format="rgb24")
                 if size:
                     import cv2
@@ -165,6 +175,6 @@ def read_frames(path: str | Path, indices, size: Optional[int] = None) -> dict[i
                                      interpolation=cv2.INTER_AREA)
                 out[i] = img
                 ptr += 1
-                if ptr == len(want):
+                if ptr == len(want) and not through_eof:
                     break
     return out

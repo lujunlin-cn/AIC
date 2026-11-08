@@ -1,0 +1,1706 @@
+{
+  "source_groups": 200,
+  "ratio_units": 400,
+  "annotation_files": 2400,
+  "exposed_eval_sources": 200,
+  "fresh_validation_sources": 0,
+  "training_sources_created": 0,
+  "protected_original_sha256_before": {
+    "release": "569fb4fa6cd754818c67ed6cbabb2c9df3c9d73d88691824c5e58377ea9b0bf6",
+    "quality": "69721e13c8405d397327e0ae40ce54688ae7c01c422afdda4031f2b1425c83d8",
+    "ledger": "64bc3e330eee85fb5092873a799b9789320b9fe547963ac0893fa078a4fb7ff7"
+  },
+  "protected_original_sha256_after": {
+    "release": "569fb4fa6cd754818c67ed6cbabb2c9df3c9d73d88691824c5e58377ea9b0bf6",
+    "quality": "69721e13c8405d397327e0ae40ce54688ae7c01c422afdda4031f2b1425c83d8",
+    "ledger": "64bc3e330eee85fb5092873a799b9789320b9fe547963ac0893fa078a4fb7ff7"
+  },
+  "original_holdout_ledger_modified": false,
+  "original_frozen_release_modified": false,
+  "one_physical_video_group_for_both_datasets_all_ratios_all_raters": true,
+  "new_training_experiment_version_created": false,
+  "future_training_requires": "explicit new experiment version, mark these groups previously exposed and never use them as independent fresh validation",
+  "registry_before_sha256": {},
+  "source_groups_and_exposures": [
+    {
+      "group_id": "dhf1k:001",
+      "release_split": "exposed_eval",
+      "roles": [
+        "diagnostic",
+        "fit",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:002",
+      "release_split": "exposed_eval",
+      "roles": [
+        "diagnostic",
+        "fit",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:003",
+      "release_split": "exposed_eval",
+      "roles": [
+        "diagnostic",
+        "fit",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:004",
+      "release_split": "exposed_eval",
+      "roles": [
+        "diagnostic",
+        "fit",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:005",
+      "release_split": "exposed_eval",
+      "roles": [
+        "diagnostic",
+        "fit",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:006",
+      "release_split": "exposed_eval",
+      "roles": [
+        "diagnostic",
+        "fit",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:007",
+      "release_split": "exposed_eval",
+      "roles": [
+        "diagnostic",
+        "fit",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:008",
+      "release_split": "exposed_eval",
+      "roles": [
+        "diagnostic",
+        "fit",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:009",
+      "release_split": "exposed_eval",
+      "roles": [
+        "diagnostic",
+        "fit",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:010",
+      "release_split": "exposed_eval",
+      "roles": [
+        "diagnostic",
+        "fit",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:011",
+      "release_split": "exposed_eval",
+      "roles": [
+        "diagnostic",
+        "fit",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:012",
+      "release_split": "exposed_eval",
+      "roles": [
+        "diagnostic",
+        "fit",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:013",
+      "release_split": "exposed_eval",
+      "roles": [
+        "diagnostic",
+        "fit",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:014",
+      "release_split": "exposed_eval",
+      "roles": [
+        "diagnostic",
+        "fit",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:015",
+      "release_split": "exposed_eval",
+      "roles": [
+        "diagnostic",
+        "fit",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:016",
+      "release_split": "exposed_eval",
+      "roles": [
+        "diagnostic",
+        "fit",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:017",
+      "release_split": "exposed_eval",
+      "roles": [
+        "diagnostic",
+        "fit",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:018",
+      "release_split": "exposed_eval",
+      "roles": [
+        "diagnostic",
+        "fit",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:019",
+      "release_split": "exposed_eval",
+      "roles": [
+        "diagnostic",
+        "fit",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:020",
+      "release_split": "exposed_eval",
+      "roles": [
+        "diagnostic",
+        "fit",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:021",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "diagnostic",
+        "fit"
+      ]
+    },
+    {
+      "group_id": "dhf1k:022",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "diagnostic",
+        "fit"
+      ]
+    },
+    {
+      "group_id": "dhf1k:023",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "diagnostic",
+        "fit"
+      ]
+    },
+    {
+      "group_id": "dhf1k:024",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "diagnostic",
+        "fit"
+      ]
+    },
+    {
+      "group_id": "dhf1k:025",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "diagnostic",
+        "fit"
+      ]
+    },
+    {
+      "group_id": "dhf1k:026",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "diagnostic",
+        "fit"
+      ]
+    },
+    {
+      "group_id": "dhf1k:027",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "diagnostic",
+        "fit"
+      ]
+    },
+    {
+      "group_id": "dhf1k:028",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "diagnostic",
+        "fit"
+      ]
+    },
+    {
+      "group_id": "dhf1k:029",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "diagnostic",
+        "fit"
+      ]
+    },
+    {
+      "group_id": "dhf1k:030",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "diagnostic",
+        "fit"
+      ]
+    },
+    {
+      "group_id": "dhf1k:031",
+      "release_split": "exposed_eval",
+      "roles": [
+        "fit",
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:032",
+      "release_split": "exposed_eval",
+      "roles": [
+        "fit",
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:033",
+      "release_split": "exposed_eval",
+      "roles": [
+        "fit",
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:034",
+      "release_split": "exposed_eval",
+      "roles": [
+        "fit",
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:035",
+      "release_split": "exposed_eval",
+      "roles": [
+        "fit",
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:036",
+      "release_split": "exposed_eval",
+      "roles": [
+        "fit",
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:037",
+      "release_split": "exposed_eval",
+      "roles": [
+        "fit",
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:038",
+      "release_split": "exposed_eval",
+      "roles": [
+        "fit",
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:039",
+      "release_split": "exposed_eval",
+      "roles": [
+        "fit",
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:040",
+      "release_split": "exposed_eval",
+      "roles": [
+        "fit",
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:041",
+      "release_split": "exposed_eval",
+      "roles": [
+        "fit",
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:042",
+      "release_split": "exposed_eval",
+      "roles": [
+        "fit",
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:043",
+      "release_split": "exposed_eval",
+      "roles": [
+        "fit",
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:044",
+      "release_split": "exposed_eval",
+      "roles": [
+        "fit",
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:045",
+      "release_split": "exposed_eval",
+      "roles": [
+        "fit",
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:046",
+      "release_split": "exposed_eval",
+      "roles": [
+        "fit",
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:047",
+      "release_split": "exposed_eval",
+      "roles": [
+        "fit",
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:048",
+      "release_split": "exposed_eval",
+      "roles": [
+        "fit",
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:049",
+      "release_split": "exposed_eval",
+      "roles": [
+        "fit",
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:050",
+      "release_split": "exposed_eval",
+      "roles": [
+        "fit",
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:051",
+      "release_split": "exposed_eval",
+      "roles": [
+        "fit",
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:052",
+      "release_split": "exposed_eval",
+      "roles": [
+        "fit",
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:053",
+      "release_split": "exposed_eval",
+      "roles": [
+        "fit",
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:054",
+      "release_split": "exposed_eval",
+      "roles": [
+        "fit",
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:055",
+      "release_split": "exposed_eval",
+      "roles": [
+        "fit",
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:056",
+      "release_split": "exposed_eval",
+      "roles": [
+        "fit",
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:057",
+      "release_split": "exposed_eval",
+      "roles": [
+        "fit",
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:058",
+      "release_split": "exposed_eval",
+      "roles": [
+        "fit",
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:059",
+      "release_split": "exposed_eval",
+      "roles": [
+        "fit",
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:060",
+      "release_split": "exposed_eval",
+      "roles": [
+        "fit",
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:061",
+      "release_split": "exposed_eval",
+      "roles": [
+        "fit",
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:062",
+      "release_split": "exposed_eval",
+      "roles": [
+        "fit",
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:063",
+      "release_split": "exposed_eval",
+      "roles": [
+        "fit",
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:064",
+      "release_split": "exposed_eval",
+      "roles": [
+        "fit",
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:065",
+      "release_split": "exposed_eval",
+      "roles": [
+        "fit",
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:066",
+      "release_split": "exposed_eval",
+      "roles": [
+        "fit",
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:067",
+      "release_split": "exposed_eval",
+      "roles": [
+        "fit",
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:068",
+      "release_split": "exposed_eval",
+      "roles": [
+        "fit",
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:069",
+      "release_split": "exposed_eval",
+      "roles": [
+        "fit",
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:070",
+      "release_split": "exposed_eval",
+      "roles": [
+        "fit",
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:071",
+      "release_split": "exposed_eval",
+      "roles": [
+        "fit",
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:072",
+      "release_split": "exposed_eval",
+      "roles": [
+        "fit",
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:073",
+      "release_split": "exposed_eval",
+      "roles": [
+        "fit",
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:074",
+      "release_split": "exposed_eval",
+      "roles": [
+        "fit",
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:075",
+      "release_split": "exposed_eval",
+      "roles": [
+        "fit",
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:076",
+      "release_split": "exposed_eval",
+      "roles": [
+        "fit",
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:077",
+      "release_split": "exposed_eval",
+      "roles": [
+        "fit",
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:078",
+      "release_split": "exposed_eval",
+      "roles": [
+        "fit",
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:079",
+      "release_split": "exposed_eval",
+      "roles": [
+        "fit",
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:080",
+      "release_split": "exposed_eval",
+      "roles": [
+        "fit",
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:081",
+      "release_split": "exposed_eval",
+      "roles": [
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:082",
+      "release_split": "exposed_eval",
+      "roles": [
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:083",
+      "release_split": "exposed_eval",
+      "roles": [
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:084",
+      "release_split": "exposed_eval",
+      "roles": [
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:085",
+      "release_split": "exposed_eval",
+      "roles": [
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:086",
+      "release_split": "exposed_eval",
+      "roles": [
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:087",
+      "release_split": "exposed_eval",
+      "roles": [
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:088",
+      "release_split": "exposed_eval",
+      "roles": [
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:089",
+      "release_split": "exposed_eval",
+      "roles": [
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:090",
+      "release_split": "exposed_eval",
+      "roles": [
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:091",
+      "release_split": "exposed_eval",
+      "roles": [
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:092",
+      "release_split": "exposed_eval",
+      "roles": [
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:093",
+      "release_split": "exposed_eval",
+      "roles": [
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:094",
+      "release_split": "exposed_eval",
+      "roles": [
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:095",
+      "release_split": "exposed_eval",
+      "roles": [
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:096",
+      "release_split": "exposed_eval",
+      "roles": [
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:097",
+      "release_split": "exposed_eval",
+      "roles": [
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:098",
+      "release_split": "exposed_eval",
+      "roles": [
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:099",
+      "release_split": "exposed_eval",
+      "roles": [
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:100",
+      "release_split": "exposed_eval",
+      "roles": [
+        "in_progress_unregistered",
+        "selection"
+      ]
+    },
+    {
+      "group_id": "dhf1k:601",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:602",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:603",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:604",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:605",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:606",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:607",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:608",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:609",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:610",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:611",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:612",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:613",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:614",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:615",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:616",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:617",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:618",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:619",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:620",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:621",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:622",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:623",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:624",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:625",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:626",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:627",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:628",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:629",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:630",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:631",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:632",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:633",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:634",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:635",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:636",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:637",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:638",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:639",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:640",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:641",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:642",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:643",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:644",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:645",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:646",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:647",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:648",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:649",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:650",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:651",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:652",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:653",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:654",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:655",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:656",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:657",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:658",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:659",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:660",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:661",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:662",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:663",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:664",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:665",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:666",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:667",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:668",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:669",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:670",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:671",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:672",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:673",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:674",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:675",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:676",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:677",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:678",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:679",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:680",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:681",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:682",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:683",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:684",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:685",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:686",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:687",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:688",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:689",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:690",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:691",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:692",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:693",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:694",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:695",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:696",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:697",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:698",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:699",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    },
+    {
+      "group_id": "dhf1k:700",
+      "release_split": "exposed_eval",
+      "roles": [
+        "confirmation",
+        "in_progress_unregistered"
+      ]
+    }
+  ]
+}

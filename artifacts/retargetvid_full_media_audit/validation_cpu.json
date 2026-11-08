@@ -1,0 +1,81 @@
+{
+  "passed": true,
+  "local": {
+    "compileall": {
+      "command": "python -m compileall -q aic scripts tests ext_data",
+      "exit_code": 0
+    },
+    "tests_new": {
+      "command": "PYTHONPATH=ext_data:. pytest -q ext_data/tests/test_retargetvid_full_media.py",
+      "passed": 17,
+      "exit_code": 0
+    },
+    "tests_external": {
+      "command": "PYTHONPATH=ext_data:. pytest -q ext_data/tests",
+      "passed": 33,
+      "exit_code": 0
+    },
+    "tests_project": {
+      "command": "PYTHONPATH=. pytest -q",
+      "passed": 435,
+      "exit_code": 0
+    },
+    "tests_combined": {
+      "command": "PYTHONPATH=ext_data:. pytest -q tests ext_data/tests",
+      "passed": 468,
+      "exit_code": 0,
+      "stdout": "468 passed in 6.83s"
+    },
+    "python": "3.13.12 | packaged by conda-forge | (main, Feb  5 2026, 05:43:35) [GCC 14.3.0]",
+    "platform": "Linux-6.17.0-1026-nvidia-aarch64-with-glibc2.39"
+  },
+  "remote": {
+    "started_at": "2026-11-08T11:35:17.105893+00:00",
+    "finished_at": "2026-11-08T11:35:22.405716+00:00",
+    "passed": true,
+    "checks": [
+      {
+        "command": [
+          "/root/autodl-tmp/videoora42_clone/.venv/bin/python",
+          "-m",
+          "compileall",
+          "-q",
+          "ext_data/aicext",
+          "ext_data/scripts/ingest_dhf1k_retargetvid.py",
+          "scripts/audit_retargetvid.py",
+          "ext_data/tests/test_retargetvid_full_media.py"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/root/autodl-tmp/videoora42_clone/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "ext_data/tests/test_retargetvid_full_media.py"
+        ],
+        "exit_code": 0,
+        "stdout": ".................                                                        [100%]\n17 passed in 4.31s\n",
+        "stderr": ""
+      }
+    ]
+  },
+  "independent_artifact_verification": {
+    "passed": true,
+    "real_media_sources": 200,
+    "aligned_annotation_files": 2400,
+    "shared_source_groups": 200,
+    "actual_Adapter_ratio_units": 400,
+    "fresh_validation_sources": 0,
+    "decoded_source_frames": 122684,
+    "raw_box_rows": 1472208,
+    "remote_source_hashes_match_local": 25
+  },
+  "recorded_at": "2026-11-08T11:37:16.819733+00:00",
+  "GPU_used": false,
+  "training_started": false,
+  "model_smoke_repeated": false
+}

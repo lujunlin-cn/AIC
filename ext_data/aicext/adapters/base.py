@@ -84,10 +84,14 @@ def sample_indices(m: dict, fps: Optional[float], max_frames: Optional[int] = No
     return idx, t[idx]
 
 
-def load_video_frames(m: dict, idx: np.ndarray, size: Optional[int] = None) -> np.ndarray:
+def load_video_frames(m: dict, idx: np.ndarray, size: Optional[int] = None, *, observer=None,
+                      through_eof: bool = False) -> np.ndarray:
     """Decode frames by display index for video files, or read image files for frame folders."""
     if m["media_kind"] == "video_file":
-        got = read_frames(m["media_path"], idx, size=size)
+        if observer is None and not through_eof:
+            got = read_frames(m["media_path"], idx, size=size)
+        else:
+            got = read_frames(m["media_path"], idx, size=size, observer=observer, through_eof=through_eof)
         missing = [int(i) for i in idx if int(i) not in got]
         if missing:
             raise IndexError(f"{m['uid']}: frames not decodable {missing[:5]}")

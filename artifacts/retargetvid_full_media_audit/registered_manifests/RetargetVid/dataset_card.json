@@ -1,0 +1,10 @@
+{
+  "dataset": "RetargetVid",
+  "media_registration_scope": "RetargetVid 001-100,601-700 subset only",
+  "registered_sources": 200,
+  "readiness": "media_available_exposed_diagnostic_only",
+  "default_training_eligible": false,
+  "fresh_validation_eligible": false,
+  "audit_path": "/root/autodl-tmp/videoora42_clone/retargetvid_media_audit_newday/artifacts/retargetvid_full_media_audit",
+  "holdout_ledger_sha256": "64bc3e330eee85fb5092873a799b9789320b9fe547963ac0893fa078a4fb7ff7"
+}

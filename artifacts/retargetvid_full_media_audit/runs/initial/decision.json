@@ -1,0 +1,11 @@
+{
+  "all_200_media_available": true,
+  "all_2400_annotations_aligned": true,
+  "safe_for_exposed_spatial_diagnostics": true,
+  "fresh_validation_eligible": false,
+  "training_started": false,
+  "GPU_used": false,
+  "P1_P2_weights_changed": false,
+  "historical_release_media_SHA_match": null,
+  "historical_SHA_limitation": "immutable release summary and ledger are present, original per-media release manifest is not in this clone; do not claim byte-for-byte comparison to historical AVI"
+}

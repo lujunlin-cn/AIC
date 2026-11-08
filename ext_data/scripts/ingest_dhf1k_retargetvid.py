@@ -104,7 +104,17 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--workers", type=int, default=4)
     ap.add_argument("--skip-probe", action="store_true")
+    ap.add_argument("--existing-media-root", type=Path, help="register/audit existing RetargetVid 200 AVI in place; preserves exposure")
+    ap.add_argument("--registry-root", type=Path)
+    ap.add_argument("--retargetvid-root", type=Path)
+    ap.add_argument("--evidence-root", type=Path, default=Path(__file__).resolve().parents[1])
+    ap.add_argument("--audit-output", type=Path)
     a = ap.parse_args()
+    if a.existing_media_root:
+        if not all((a.registry_root,a.retargetvid_root,a.audit_output)):
+            ap.error("existing-media mode requires --registry-root, --retargetvid-root and --audit-output")
+        from aicext.retargetvid_audit import run_full_audit
+        return run_full_audit(a.existing_media_root,a.registry_root,a.retargetvid_root,a.evidence_root,a.audit_output)
 
     droot = dataset_dir("DHF1K")
     rroot = dataset_dir("RetargetVid")

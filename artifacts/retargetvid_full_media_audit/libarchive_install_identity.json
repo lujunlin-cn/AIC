@@ -1,0 +1,7 @@
+{
+  "distribution": "libarchive-c",
+  "version": "5.3",
+  "wheel_sha256": "651550a6ec39266b78f81414140a1e04776c935e72dfc70f1d7c8e0a3672ffba",
+  "installed_in_isolated_directory": true,
+  "model_environment_modified": false
+}

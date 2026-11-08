@@ -37,14 +37,16 @@ class DenseCropAdapter:
 
     def __init__(self, dataset: str = "RetargetVid", split: Optional[str | Iterable[str]] = None,
                  ratios: Iterable[str] = ("1-3", "3-1"), fps: Optional[float] = 2.0,
-                 max_frames: Optional[int] = None, decode: bool = False, size: Optional[int] = 256):
-        self.ix = Index.load(dataset)
+                 max_frames: Optional[int] = None, decode: bool = False, size: Optional[int] = 256,
+                 root: Optional[Path] = None, decode_observer=None, decode_through_eof: bool = False):
+        self.ix = Index.load(dataset) if root is None else Index.load(dataset, root=Path(root))
         pairs = self.ix.select("crop_box_dense", split=split, where=lambda m, a: a["variant"] in set(ratios))
         groups: dict[tuple[str, str], list[dict]] = {}
         for m, a in pairs:
             groups.setdefault((m["uid"], a["variant"]), []).append(a)
         self.items = sorted(groups.items())
         self.fps, self.max_frames, self.decode, self.size = fps, max_frames, decode, size
+        self.decode_observer, self.decode_through_eof = decode_observer, decode_through_eof
 
     def __len__(self):
         return len(self.items)
@@ -66,7 +68,11 @@ class DenseCropAdapter:
                "valid": valid, "width": W, "height": H,
                "annotators": [a["annotator"] for a in sorted(anns, key=lambda a: a["annotator"])]}
         if self.decode:
-            out["frames"] = load_video_frames(m, idx, self.size)
+            if self.decode_observer is None and not self.decode_through_eof:
+                out["frames"] = load_video_frames(m, idx, self.size)
+            else:
+                out["frames"] = load_video_frames(m, idx, self.size, observer=self.decode_observer,
+                                                  through_eof=self.decode_through_eof)
         return out
 
 

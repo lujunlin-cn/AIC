@@ -1,0 +1,3610 @@
+{
+  "passed": true,
+  "annotation_units_read": 400,
+  "raw_annotation_files_read": 2400,
+  "all_frames_and_all_raters_compared": true,
+  "Train_units": 0,
+  "fresh_validation_units": 0,
+  "units": [
+    {
+      "uid": "retargetvid:001",
+      "ratio": "1-3",
+      "frames": 450,
+      "first_frame_id": 0,
+      "last_frame_id": 449,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:001",
+      "ratio": "3-1",
+      "frames": 450,
+      "first_frame_id": 0,
+      "last_frame_id": 449,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:002",
+      "ratio": "1-3",
+      "frames": 783,
+      "first_frame_id": 0,
+      "last_frame_id": 782,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:002",
+      "ratio": "3-1",
+      "frames": 783,
+      "first_frame_id": 0,
+      "last_frame_id": 782,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:003",
+      "ratio": "1-3",
+      "frames": 448,
+      "first_frame_id": 0,
+      "last_frame_id": 447,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:003",
+      "ratio": "3-1",
+      "frames": 448,
+      "first_frame_id": 0,
+      "last_frame_id": 447,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:004",
+      "ratio": "1-3",
+      "frames": 892,
+      "first_frame_id": 0,
+      "last_frame_id": 891,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:004",
+      "ratio": "3-1",
+      "frames": 892,
+      "first_frame_id": 0,
+      "last_frame_id": 891,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:005",
+      "ratio": "1-3",
+      "frames": 459,
+      "first_frame_id": 0,
+      "last_frame_id": 458,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:005",
+      "ratio": "3-1",
+      "frames": 459,
+      "first_frame_id": 0,
+      "last_frame_id": 458,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:006",
+      "ratio": "1-3",
+      "frames": 594,
+      "first_frame_id": 0,
+      "last_frame_id": 593,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:006",
+      "ratio": "3-1",
+      "frames": 594,
+      "first_frame_id": 0,
+      "last_frame_id": 593,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:007",
+      "ratio": "1-3",
+      "frames": 533,
+      "first_frame_id": 0,
+      "last_frame_id": 532,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:007",
+      "ratio": "3-1",
+      "frames": 533,
+      "first_frame_id": 0,
+      "last_frame_id": 532,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:008",
+      "ratio": "1-3",
+      "frames": 560,
+      "first_frame_id": 0,
+      "last_frame_id": 559,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:008",
+      "ratio": "3-1",
+      "frames": 560,
+      "first_frame_id": 0,
+      "last_frame_id": 559,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:009",
+      "ratio": "1-3",
+      "frames": 230,
+      "first_frame_id": 0,
+      "last_frame_id": 229,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:009",
+      "ratio": "3-1",
+      "frames": 230,
+      "first_frame_id": 0,
+      "last_frame_id": 229,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:010",
+      "ratio": "1-3",
+      "frames": 596,
+      "first_frame_id": 0,
+      "last_frame_id": 595,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:010",
+      "ratio": "3-1",
+      "frames": 596,
+      "first_frame_id": 0,
+      "last_frame_id": 595,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:011",
+      "ratio": "1-3",
+      "frames": 693,
+      "first_frame_id": 0,
+      "last_frame_id": 692,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:011",
+      "ratio": "3-1",
+      "frames": 693,
+      "first_frame_id": 0,
+      "last_frame_id": 692,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:012",
+      "ratio": "1-3",
+      "frames": 967,
+      "first_frame_id": 0,
+      "last_frame_id": 966,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:012",
+      "ratio": "3-1",
+      "frames": 967,
+      "first_frame_id": 0,
+      "last_frame_id": 966,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:013",
+      "ratio": "1-3",
+      "frames": 339,
+      "first_frame_id": 0,
+      "last_frame_id": 338,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:013",
+      "ratio": "3-1",
+      "frames": 339,
+      "first_frame_id": 0,
+      "last_frame_id": 338,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:014",
+      "ratio": "1-3",
+      "frames": 399,
+      "first_frame_id": 0,
+      "last_frame_id": 398,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:014",
+      "ratio": "3-1",
+      "frames": 399,
+      "first_frame_id": 0,
+      "last_frame_id": 398,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:015",
+      "ratio": "1-3",
+      "frames": 999,
+      "first_frame_id": 0,
+      "last_frame_id": 998,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:015",
+      "ratio": "3-1",
+      "frames": 999,
+      "first_frame_id": 0,
+      "last_frame_id": 998,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:016",
+      "ratio": "1-3",
+      "frames": 646,
+      "first_frame_id": 0,
+      "last_frame_id": 645,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:016",
+      "ratio": "3-1",
+      "frames": 646,
+      "first_frame_id": 0,
+      "last_frame_id": 645,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:017",
+      "ratio": "1-3",
+      "frames": 663,
+      "first_frame_id": 0,
+      "last_frame_id": 662,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:017",
+      "ratio": "3-1",
+      "frames": 663,
+      "first_frame_id": 0,
+      "last_frame_id": 662,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:018",
+      "ratio": "1-3",
+      "frames": 648,
+      "first_frame_id": 0,
+      "last_frame_id": 647,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:018",
+      "ratio": "3-1",
+      "frames": 648,
+      "first_frame_id": 0,
+      "last_frame_id": 647,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:019",
+      "ratio": "1-3",
+      "frames": 900,
+      "first_frame_id": 0,
+      "last_frame_id": 899,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:019",
+      "ratio": "3-1",
+      "frames": 900,
+      "first_frame_id": 0,
+      "last_frame_id": 899,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:020",
+      "ratio": "1-3",
+      "frames": 566,
+      "first_frame_id": 0,
+      "last_frame_id": 565,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:020",
+      "ratio": "3-1",
+      "frames": 566,
+      "first_frame_id": 0,
+      "last_frame_id": 565,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:021",
+      "ratio": "1-3",
+      "frames": 488,
+      "first_frame_id": 0,
+      "last_frame_id": 487,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:021",
+      "ratio": "3-1",
+      "frames": 488,
+      "first_frame_id": 0,
+      "last_frame_id": 487,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:022",
+      "ratio": "1-3",
+      "frames": 421,
+      "first_frame_id": 0,
+      "last_frame_id": 420,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:022",
+      "ratio": "3-1",
+      "frames": 421,
+      "first_frame_id": 0,
+      "last_frame_id": 420,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:023",
+      "ratio": "1-3",
+      "frames": 824,
+      "first_frame_id": 0,
+      "last_frame_id": 823,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:023",
+      "ratio": "3-1",
+      "frames": 824,
+      "first_frame_id": 0,
+      "last_frame_id": 823,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:024",
+      "ratio": "1-3",
+      "frames": 575,
+      "first_frame_id": 0,
+      "last_frame_id": 574,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:024",
+      "ratio": "3-1",
+      "frames": 575,
+      "first_frame_id": 0,
+      "last_frame_id": 574,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:025",
+      "ratio": "1-3",
+      "frames": 238,
+      "first_frame_id": 0,
+      "last_frame_id": 237,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:025",
+      "ratio": "3-1",
+      "frames": 238,
+      "first_frame_id": 0,
+      "last_frame_id": 237,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:026",
+      "ratio": "1-3",
+      "frames": 492,
+      "first_frame_id": 0,
+      "last_frame_id": 491,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:026",
+      "ratio": "3-1",
+      "frames": 492,
+      "first_frame_id": 0,
+      "last_frame_id": 491,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:027",
+      "ratio": "1-3",
+      "frames": 882,
+      "first_frame_id": 0,
+      "last_frame_id": 881,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:027",
+      "ratio": "3-1",
+      "frames": 882,
+      "first_frame_id": 0,
+      "last_frame_id": 881,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:028",
+      "ratio": "1-3",
+      "frames": 528,
+      "first_frame_id": 0,
+      "last_frame_id": 527,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:028",
+      "ratio": "3-1",
+      "frames": 528,
+      "first_frame_id": 0,
+      "last_frame_id": 527,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:029",
+      "ratio": "1-3",
+      "frames": 966,
+      "first_frame_id": 0,
+      "last_frame_id": 965,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:029",
+      "ratio": "3-1",
+      "frames": 966,
+      "first_frame_id": 0,
+      "last_frame_id": 965,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:030",
+      "ratio": "1-3",
+      "frames": 398,
+      "first_frame_id": 0,
+      "last_frame_id": 397,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:030",
+      "ratio": "3-1",
+      "frames": 398,
+      "first_frame_id": 0,
+      "last_frame_id": 397,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:031",
+      "ratio": "1-3",
+      "frames": 564,
+      "first_frame_id": 0,
+      "last_frame_id": 563,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:031",
+      "ratio": "3-1",
+      "frames": 564,
+      "first_frame_id": 0,
+      "last_frame_id": 563,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:032",
+      "ratio": "1-3",
+      "frames": 408,
+      "first_frame_id": 0,
+      "last_frame_id": 407,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:032",
+      "ratio": "3-1",
+      "frames": 408,
+      "first_frame_id": 0,
+      "last_frame_id": 407,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:033",
+      "ratio": "1-3",
+      "frames": 848,
+      "first_frame_id": 0,
+      "last_frame_id": 847,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:033",
+      "ratio": "3-1",
+      "frames": 848,
+      "first_frame_id": 0,
+      "last_frame_id": 847,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:034",
+      "ratio": "1-3",
+      "frames": 484,
+      "first_frame_id": 0,
+      "last_frame_id": 483,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:034",
+      "ratio": "3-1",
+      "frames": 484,
+      "first_frame_id": 0,
+      "last_frame_id": 483,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:035",
+      "ratio": "1-3",
+      "frames": 625,
+      "first_frame_id": 0,
+      "last_frame_id": 624,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:035",
+      "ratio": "3-1",
+      "frames": 625,
+      "first_frame_id": 0,
+      "last_frame_id": 624,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:036",
+      "ratio": "1-3",
+      "frames": 546,
+      "first_frame_id": 0,
+      "last_frame_id": 545,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:036",
+      "ratio": "3-1",
+      "frames": 546,
+      "first_frame_id": 0,
+      "last_frame_id": 545,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:037",
+      "ratio": "1-3",
+      "frames": 434,
+      "first_frame_id": 0,
+      "last_frame_id": 433,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:037",
+      "ratio": "3-1",
+      "frames": 434,
+      "first_frame_id": 0,
+      "last_frame_id": 433,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:038",
+      "ratio": "1-3",
+      "frames": 1131,
+      "first_frame_id": 0,
+      "last_frame_id": 1130,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:038",
+      "ratio": "3-1",
+      "frames": 1131,
+      "first_frame_id": 0,
+      "last_frame_id": 1130,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:039",
+      "ratio": "1-3",
+      "frames": 848,
+      "first_frame_id": 0,
+      "last_frame_id": 847,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:039",
+      "ratio": "3-1",
+      "frames": 848,
+      "first_frame_id": 0,
+      "last_frame_id": 847,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:040",
+      "ratio": "1-3",
+      "frames": 480,
+      "first_frame_id": 0,
+      "last_frame_id": 479,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:040",
+      "ratio": "3-1",
+      "frames": 480,
+      "first_frame_id": 0,
+      "last_frame_id": 479,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:041",
+      "ratio": "1-3",
+      "frames": 488,
+      "first_frame_id": 0,
+      "last_frame_id": 487,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:041",
+      "ratio": "3-1",
+      "frames": 488,
+      "first_frame_id": 0,
+      "last_frame_id": 487,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:042",
+      "ratio": "1-3",
+      "frames": 377,
+      "first_frame_id": 0,
+      "last_frame_id": 376,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:042",
+      "ratio": "3-1",
+      "frames": 377,
+      "first_frame_id": 0,
+      "last_frame_id": 376,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:043",
+      "ratio": "1-3",
+      "frames": 568,
+      "first_frame_id": 0,
+      "last_frame_id": 567,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:043",
+      "ratio": "3-1",
+      "frames": 568,
+      "first_frame_id": 0,
+      "last_frame_id": 567,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:044",
+      "ratio": "1-3",
+      "frames": 318,
+      "first_frame_id": 0,
+      "last_frame_id": 317,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:044",
+      "ratio": "3-1",
+      "frames": 318,
+      "first_frame_id": 0,
+      "last_frame_id": 317,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:045",
+      "ratio": "1-3",
+      "frames": 817,
+      "first_frame_id": 0,
+      "last_frame_id": 816,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:045",
+      "ratio": "3-1",
+      "frames": 817,
+      "first_frame_id": 0,
+      "last_frame_id": 816,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:046",
+      "ratio": "1-3",
+      "frames": 817,
+      "first_frame_id": 0,
+      "last_frame_id": 816,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:046",
+      "ratio": "3-1",
+      "frames": 817,
+      "first_frame_id": 0,
+      "last_frame_id": 816,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:047",
+      "ratio": "1-3",
+      "frames": 1018,
+      "first_frame_id": 0,
+      "last_frame_id": 1017,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:047",
+      "ratio": "3-1",
+      "frames": 1018,
+      "first_frame_id": 0,
+      "last_frame_id": 1017,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:048",
+      "ratio": "1-3",
+      "frames": 628,
+      "first_frame_id": 0,
+      "last_frame_id": 627,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:048",
+      "ratio": "3-1",
+      "frames": 628,
+      "first_frame_id": 0,
+      "last_frame_id": 627,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:049",
+      "ratio": "1-3",
+      "frames": 755,
+      "first_frame_id": 0,
+      "last_frame_id": 754,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:049",
+      "ratio": "3-1",
+      "frames": 755,
+      "first_frame_id": 0,
+      "last_frame_id": 754,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:050",
+      "ratio": "1-3",
+      "frames": 579,
+      "first_frame_id": 0,
+      "last_frame_id": 578,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:050",
+      "ratio": "3-1",
+      "frames": 579,
+      "first_frame_id": 0,
+      "last_frame_id": 578,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:051",
+      "ratio": "1-3",
+      "frames": 450,
+      "first_frame_id": 0,
+      "last_frame_id": 449,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:051",
+      "ratio": "3-1",
+      "frames": 450,
+      "first_frame_id": 0,
+      "last_frame_id": 449,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:052",
+      "ratio": "1-3",
+      "frames": 663,
+      "first_frame_id": 0,
+      "last_frame_id": 662,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:052",
+      "ratio": "3-1",
+      "frames": 663,
+      "first_frame_id": 0,
+      "last_frame_id": 662,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:053",
+      "ratio": "1-3",
+      "frames": 894,
+      "first_frame_id": 0,
+      "last_frame_id": 893,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:053",
+      "ratio": "3-1",
+      "frames": 894,
+      "first_frame_id": 0,
+      "last_frame_id": 893,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:054",
+      "ratio": "1-3",
+      "frames": 570,
+      "first_frame_id": 0,
+      "last_frame_id": 569,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:054",
+      "ratio": "3-1",
+      "frames": 570,
+      "first_frame_id": 0,
+      "last_frame_id": 569,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:055",
+      "ratio": "1-3",
+      "frames": 419,
+      "first_frame_id": 0,
+      "last_frame_id": 418,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:055",
+      "ratio": "3-1",
+      "frames": 419,
+      "first_frame_id": 0,
+      "last_frame_id": 418,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:056",
+      "ratio": "1-3",
+      "frames": 897,
+      "first_frame_id": 0,
+      "last_frame_id": 896,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:056",
+      "ratio": "3-1",
+      "frames": 897,
+      "first_frame_id": 0,
+      "last_frame_id": 896,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:057",
+      "ratio": "1-3",
+      "frames": 659,
+      "first_frame_id": 0,
+      "last_frame_id": 658,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:057",
+      "ratio": "3-1",
+      "frames": 659,
+      "first_frame_id": 0,
+      "last_frame_id": 658,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:058",
+      "ratio": "1-3",
+      "frames": 739,
+      "first_frame_id": 0,
+      "last_frame_id": 738,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:058",
+      "ratio": "3-1",
+      "frames": 739,
+      "first_frame_id": 0,
+      "last_frame_id": 738,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:059",
+      "ratio": "1-3",
+      "frames": 1178,
+      "first_frame_id": 0,
+      "last_frame_id": 1177,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:059",
+      "ratio": "3-1",
+      "frames": 1178,
+      "first_frame_id": 0,
+      "last_frame_id": 1177,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:060",
+      "ratio": "1-3",
+      "frames": 432,
+      "first_frame_id": 0,
+      "last_frame_id": 431,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:060",
+      "ratio": "3-1",
+      "frames": 432,
+      "first_frame_id": 0,
+      "last_frame_id": 431,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:061",
+      "ratio": "1-3",
+      "frames": 598,
+      "first_frame_id": 0,
+      "last_frame_id": 597,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:061",
+      "ratio": "3-1",
+      "frames": 598,
+      "first_frame_id": 0,
+      "last_frame_id": 597,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:062",
+      "ratio": "1-3",
+      "frames": 890,
+      "first_frame_id": 0,
+      "last_frame_id": 889,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:062",
+      "ratio": "3-1",
+      "frames": 890,
+      "first_frame_id": 0,
+      "last_frame_id": 889,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:063",
+      "ratio": "1-3",
+      "frames": 1039,
+      "first_frame_id": 0,
+      "last_frame_id": 1038,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:063",
+      "ratio": "3-1",
+      "frames": 1039,
+      "first_frame_id": 0,
+      "last_frame_id": 1038,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:064",
+      "ratio": "1-3",
+      "frames": 485,
+      "first_frame_id": 0,
+      "last_frame_id": 484,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:064",
+      "ratio": "3-1",
+      "frames": 485,
+      "first_frame_id": 0,
+      "last_frame_id": 484,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:065",
+      "ratio": "1-3",
+      "frames": 422,
+      "first_frame_id": 0,
+      "last_frame_id": 421,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:065",
+      "ratio": "3-1",
+      "frames": 422,
+      "first_frame_id": 0,
+      "last_frame_id": 421,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:066",
+      "ratio": "1-3",
+      "frames": 511,
+      "first_frame_id": 0,
+      "last_frame_id": 510,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:066",
+      "ratio": "3-1",
+      "frames": 511,
+      "first_frame_id": 0,
+      "last_frame_id": 510,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:067",
+      "ratio": "1-3",
+      "frames": 944,
+      "first_frame_id": 0,
+      "last_frame_id": 943,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:067",
+      "ratio": "3-1",
+      "frames": 944,
+      "first_frame_id": 0,
+      "last_frame_id": 943,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:068",
+      "ratio": "1-3",
+      "frames": 540,
+      "first_frame_id": 0,
+      "last_frame_id": 539,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:068",
+      "ratio": "3-1",
+      "frames": 540,
+      "first_frame_id": 0,
+      "last_frame_id": 539,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:069",
+      "ratio": "1-3",
+      "frames": 574,
+      "first_frame_id": 0,
+      "last_frame_id": 573,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:069",
+      "ratio": "3-1",
+      "frames": 574,
+      "first_frame_id": 0,
+      "last_frame_id": 573,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:070",
+      "ratio": "1-3",
+      "frames": 569,
+      "first_frame_id": 0,
+      "last_frame_id": 568,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:070",
+      "ratio": "3-1",
+      "frames": 569,
+      "first_frame_id": 0,
+      "last_frame_id": 568,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:071",
+      "ratio": "1-3",
+      "frames": 577,
+      "first_frame_id": 0,
+      "last_frame_id": 576,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:071",
+      "ratio": "3-1",
+      "frames": 577,
+      "first_frame_id": 0,
+      "last_frame_id": 576,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:072",
+      "ratio": "1-3",
+      "frames": 550,
+      "first_frame_id": 0,
+      "last_frame_id": 549,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:072",
+      "ratio": "3-1",
+      "frames": 550,
+      "first_frame_id": 0,
+      "last_frame_id": 549,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:073",
+      "ratio": "1-3",
+      "frames": 685,
+      "first_frame_id": 0,
+      "last_frame_id": 684,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:073",
+      "ratio": "3-1",
+      "frames": 685,
+      "first_frame_id": 0,
+      "last_frame_id": 684,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:074",
+      "ratio": "1-3",
+      "frames": 711,
+      "first_frame_id": 0,
+      "last_frame_id": 710,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:074",
+      "ratio": "3-1",
+      "frames": 711,
+      "first_frame_id": 0,
+      "last_frame_id": 710,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:075",
+      "ratio": "1-3",
+      "frames": 909,
+      "first_frame_id": 0,
+      "last_frame_id": 908,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:075",
+      "ratio": "3-1",
+      "frames": 909,
+      "first_frame_id": 0,
+      "last_frame_id": 908,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:076",
+      "ratio": "1-3",
+      "frames": 856,
+      "first_frame_id": 0,
+      "last_frame_id": 855,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:076",
+      "ratio": "3-1",
+      "frames": 856,
+      "first_frame_id": 0,
+      "last_frame_id": 855,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:077",
+      "ratio": "1-3",
+      "frames": 441,
+      "first_frame_id": 0,
+      "last_frame_id": 440,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:077",
+      "ratio": "3-1",
+      "frames": 441,
+      "first_frame_id": 0,
+      "last_frame_id": 440,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:078",
+      "ratio": "1-3",
+      "frames": 424,
+      "first_frame_id": 0,
+      "last_frame_id": 423,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:078",
+      "ratio": "3-1",
+      "frames": 424,
+      "first_frame_id": 0,
+      "last_frame_id": 423,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:079",
+      "ratio": "1-3",
+      "frames": 752,
+      "first_frame_id": 0,
+      "last_frame_id": 751,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:079",
+      "ratio": "3-1",
+      "frames": 752,
+      "first_frame_id": 0,
+      "last_frame_id": 751,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:080",
+      "ratio": "1-3",
+      "frames": 558,
+      "first_frame_id": 0,
+      "last_frame_id": 557,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:080",
+      "ratio": "3-1",
+      "frames": 558,
+      "first_frame_id": 0,
+      "last_frame_id": 557,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:081",
+      "ratio": "1-3",
+      "frames": 842,
+      "first_frame_id": 0,
+      "last_frame_id": 841,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:081",
+      "ratio": "3-1",
+      "frames": 842,
+      "first_frame_id": 0,
+      "last_frame_id": 841,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:082",
+      "ratio": "1-3",
+      "frames": 319,
+      "first_frame_id": 0,
+      "last_frame_id": 318,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:082",
+      "ratio": "3-1",
+      "frames": 319,
+      "first_frame_id": 0,
+      "last_frame_id": 318,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:083",
+      "ratio": "1-3",
+      "frames": 934,
+      "first_frame_id": 0,
+      "last_frame_id": 933,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:083",
+      "ratio": "3-1",
+      "frames": 934,
+      "first_frame_id": 0,
+      "last_frame_id": 933,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:084",
+      "ratio": "1-3",
+      "frames": 476,
+      "first_frame_id": 0,
+      "last_frame_id": 475,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:084",
+      "ratio": "3-1",
+      "frames": 476,
+      "first_frame_id": 0,
+      "last_frame_id": 475,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:085",
+      "ratio": "1-3",
+      "frames": 280,
+      "first_frame_id": 0,
+      "last_frame_id": 279,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:085",
+      "ratio": "3-1",
+      "frames": 280,
+      "first_frame_id": 0,
+      "last_frame_id": 279,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:086",
+      "ratio": "1-3",
+      "frames": 535,
+      "first_frame_id": 0,
+      "last_frame_id": 534,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:086",
+      "ratio": "3-1",
+      "frames": 535,
+      "first_frame_id": 0,
+      "last_frame_id": 534,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:087",
+      "ratio": "1-3",
+      "frames": 292,
+      "first_frame_id": 0,
+      "last_frame_id": 291,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:087",
+      "ratio": "3-1",
+      "frames": 292,
+      "first_frame_id": 0,
+      "last_frame_id": 291,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:088",
+      "ratio": "1-3",
+      "frames": 399,
+      "first_frame_id": 0,
+      "last_frame_id": 398,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:088",
+      "ratio": "3-1",
+      "frames": 399,
+      "first_frame_id": 0,
+      "last_frame_id": 398,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:089",
+      "ratio": "1-3",
+      "frames": 591,
+      "first_frame_id": 0,
+      "last_frame_id": 590,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:089",
+      "ratio": "3-1",
+      "frames": 591,
+      "first_frame_id": 0,
+      "last_frame_id": 590,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:090",
+      "ratio": "1-3",
+      "frames": 756,
+      "first_frame_id": 0,
+      "last_frame_id": 755,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:090",
+      "ratio": "3-1",
+      "frames": 756,
+      "first_frame_id": 0,
+      "last_frame_id": 755,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:091",
+      "ratio": "1-3",
+      "frames": 361,
+      "first_frame_id": 0,
+      "last_frame_id": 360,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:091",
+      "ratio": "3-1",
+      "frames": 361,
+      "first_frame_id": 0,
+      "last_frame_id": 360,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:092",
+      "ratio": "1-3",
+      "frames": 651,
+      "first_frame_id": 0,
+      "last_frame_id": 650,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:092",
+      "ratio": "3-1",
+      "frames": 651,
+      "first_frame_id": 0,
+      "last_frame_id": 650,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:093",
+      "ratio": "1-3",
+      "frames": 646,
+      "first_frame_id": 0,
+      "last_frame_id": 645,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:093",
+      "ratio": "3-1",
+      "frames": 646,
+      "first_frame_id": 0,
+      "last_frame_id": 645,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:094",
+      "ratio": "1-3",
+      "frames": 578,
+      "first_frame_id": 0,
+      "last_frame_id": 577,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:094",
+      "ratio": "3-1",
+      "frames": 578,
+      "first_frame_id": 0,
+      "last_frame_id": 577,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:095",
+      "ratio": "1-3",
+      "frames": 875,
+      "first_frame_id": 0,
+      "last_frame_id": 874,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:095",
+      "ratio": "3-1",
+      "frames": 875,
+      "first_frame_id": 0,
+      "last_frame_id": 874,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:096",
+      "ratio": "1-3",
+      "frames": 879,
+      "first_frame_id": 0,
+      "last_frame_id": 878,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:096",
+      "ratio": "3-1",
+      "frames": 879,
+      "first_frame_id": 0,
+      "last_frame_id": 878,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:097",
+      "ratio": "1-3",
+      "frames": 639,
+      "first_frame_id": 0,
+      "last_frame_id": 638,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:097",
+      "ratio": "3-1",
+      "frames": 639,
+      "first_frame_id": 0,
+      "last_frame_id": 638,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:098",
+      "ratio": "1-3",
+      "frames": 501,
+      "first_frame_id": 0,
+      "last_frame_id": 500,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:098",
+      "ratio": "3-1",
+      "frames": 501,
+      "first_frame_id": 0,
+      "last_frame_id": 500,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:099",
+      "ratio": "1-3",
+      "frames": 693,
+      "first_frame_id": 0,
+      "last_frame_id": 692,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:099",
+      "ratio": "3-1",
+      "frames": 693,
+      "first_frame_id": 0,
+      "last_frame_id": 692,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:100",
+      "ratio": "1-3",
+      "frames": 318,
+      "first_frame_id": 0,
+      "last_frame_id": 317,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:100",
+      "ratio": "3-1",
+      "frames": 318,
+      "first_frame_id": 0,
+      "last_frame_id": 317,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:601",
+      "ratio": "1-3",
+      "frames": 739,
+      "first_frame_id": 0,
+      "last_frame_id": 738,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:601",
+      "ratio": "3-1",
+      "frames": 739,
+      "first_frame_id": 0,
+      "last_frame_id": 738,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:602",
+      "ratio": "1-3",
+      "frames": 343,
+      "first_frame_id": 0,
+      "last_frame_id": 342,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:602",
+      "ratio": "3-1",
+      "frames": 343,
+      "first_frame_id": 0,
+      "last_frame_id": 342,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:603",
+      "ratio": "1-3",
+      "frames": 1103,
+      "first_frame_id": 0,
+      "last_frame_id": 1102,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:603",
+      "ratio": "3-1",
+      "frames": 1103,
+      "first_frame_id": 0,
+      "last_frame_id": 1102,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:604",
+      "ratio": "1-3",
+      "frames": 744,
+      "first_frame_id": 0,
+      "last_frame_id": 743,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:604",
+      "ratio": "3-1",
+      "frames": 744,
+      "first_frame_id": 0,
+      "last_frame_id": 743,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:605",
+      "ratio": "1-3",
+      "frames": 677,
+      "first_frame_id": 0,
+      "last_frame_id": 676,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:605",
+      "ratio": "3-1",
+      "frames": 677,
+      "first_frame_id": 0,
+      "last_frame_id": 676,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:606",
+      "ratio": "1-3",
+      "frames": 938,
+      "first_frame_id": 0,
+      "last_frame_id": 937,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:606",
+      "ratio": "3-1",
+      "frames": 938,
+      "first_frame_id": 0,
+      "last_frame_id": 937,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:607",
+      "ratio": "1-3",
+      "frames": 797,
+      "first_frame_id": 0,
+      "last_frame_id": 796,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:607",
+      "ratio": "3-1",
+      "frames": 797,
+      "first_frame_id": 0,
+      "last_frame_id": 796,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:608",
+      "ratio": "1-3",
+      "frames": 776,
+      "first_frame_id": 0,
+      "last_frame_id": 775,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:608",
+      "ratio": "3-1",
+      "frames": 776,
+      "first_frame_id": 0,
+      "last_frame_id": 775,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:609",
+      "ratio": "1-3",
+      "frames": 958,
+      "first_frame_id": 0,
+      "last_frame_id": 957,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:609",
+      "ratio": "3-1",
+      "frames": 958,
+      "first_frame_id": 0,
+      "last_frame_id": 957,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:610",
+      "ratio": "1-3",
+      "frames": 443,
+      "first_frame_id": 0,
+      "last_frame_id": 442,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:610",
+      "ratio": "3-1",
+      "frames": 443,
+      "first_frame_id": 0,
+      "last_frame_id": 442,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:611",
+      "ratio": "1-3",
+      "frames": 747,
+      "first_frame_id": 0,
+      "last_frame_id": 746,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:611",
+      "ratio": "3-1",
+      "frames": 747,
+      "first_frame_id": 0,
+      "last_frame_id": 746,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:612",
+      "ratio": "1-3",
+      "frames": 770,
+      "first_frame_id": 0,
+      "last_frame_id": 769,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:612",
+      "ratio": "3-1",
+      "frames": 770,
+      "first_frame_id": 0,
+      "last_frame_id": 769,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:613",
+      "ratio": "1-3",
+      "frames": 546,
+      "first_frame_id": 0,
+      "last_frame_id": 545,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:613",
+      "ratio": "3-1",
+      "frames": 546,
+      "first_frame_id": 0,
+      "last_frame_id": 545,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:614",
+      "ratio": "1-3",
+      "frames": 516,
+      "first_frame_id": 0,
+      "last_frame_id": 515,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:614",
+      "ratio": "3-1",
+      "frames": 516,
+      "first_frame_id": 0,
+      "last_frame_id": 515,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:615",
+      "ratio": "1-3",
+      "frames": 630,
+      "first_frame_id": 0,
+      "last_frame_id": 629,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:615",
+      "ratio": "3-1",
+      "frames": 630,
+      "first_frame_id": 0,
+      "last_frame_id": 629,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:616",
+      "ratio": "1-3",
+      "frames": 854,
+      "first_frame_id": 0,
+      "last_frame_id": 853,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:616",
+      "ratio": "3-1",
+      "frames": 854,
+      "first_frame_id": 0,
+      "last_frame_id": 853,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:617",
+      "ratio": "1-3",
+      "frames": 808,
+      "first_frame_id": 0,
+      "last_frame_id": 807,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:617",
+      "ratio": "3-1",
+      "frames": 808,
+      "first_frame_id": 0,
+      "last_frame_id": 807,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:618",
+      "ratio": "1-3",
+      "frames": 471,
+      "first_frame_id": 0,
+      "last_frame_id": 470,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:618",
+      "ratio": "3-1",
+      "frames": 471,
+      "first_frame_id": 0,
+      "last_frame_id": 470,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:619",
+      "ratio": "1-3",
+      "frames": 304,
+      "first_frame_id": 0,
+      "last_frame_id": 303,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:619",
+      "ratio": "3-1",
+      "frames": 304,
+      "first_frame_id": 0,
+      "last_frame_id": 303,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:620",
+      "ratio": "1-3",
+      "frames": 840,
+      "first_frame_id": 0,
+      "last_frame_id": 839,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:620",
+      "ratio": "3-1",
+      "frames": 840,
+      "first_frame_id": 0,
+      "last_frame_id": 839,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:621",
+      "ratio": "1-3",
+      "frames": 414,
+      "first_frame_id": 0,
+      "last_frame_id": 413,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:621",
+      "ratio": "3-1",
+      "frames": 414,
+      "first_frame_id": 0,
+      "last_frame_id": 413,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:622",
+      "ratio": "1-3",
+      "frames": 250,
+      "first_frame_id": 0,
+      "last_frame_id": 249,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:622",
+      "ratio": "3-1",
+      "frames": 250,
+      "first_frame_id": 0,
+      "last_frame_id": 249,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:623",
+      "ratio": "1-3",
+      "frames": 831,
+      "first_frame_id": 0,
+      "last_frame_id": 830,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:623",
+      "ratio": "3-1",
+      "frames": 831,
+      "first_frame_id": 0,
+      "last_frame_id": 830,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:624",
+      "ratio": "1-3",
+      "frames": 699,
+      "first_frame_id": 0,
+      "last_frame_id": 698,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:624",
+      "ratio": "3-1",
+      "frames": 699,
+      "first_frame_id": 0,
+      "last_frame_id": 698,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:625",
+      "ratio": "1-3",
+      "frames": 538,
+      "first_frame_id": 0,
+      "last_frame_id": 537,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:625",
+      "ratio": "3-1",
+      "frames": 538,
+      "first_frame_id": 0,
+      "last_frame_id": 537,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:626",
+      "ratio": "1-3",
+      "frames": 296,
+      "first_frame_id": 0,
+      "last_frame_id": 295,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:626",
+      "ratio": "3-1",
+      "frames": 296,
+      "first_frame_id": 0,
+      "last_frame_id": 295,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:627",
+      "ratio": "1-3",
+      "frames": 613,
+      "first_frame_id": 0,
+      "last_frame_id": 612,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:627",
+      "ratio": "3-1",
+      "frames": 613,
+      "first_frame_id": 0,
+      "last_frame_id": 612,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:628",
+      "ratio": "1-3",
+      "frames": 739,
+      "first_frame_id": 0,
+      "last_frame_id": 738,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:628",
+      "ratio": "3-1",
+      "frames": 739,
+      "first_frame_id": 0,
+      "last_frame_id": 738,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:629",
+      "ratio": "1-3",
+      "frames": 969,
+      "first_frame_id": 0,
+      "last_frame_id": 968,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:629",
+      "ratio": "3-1",
+      "frames": 969,
+      "first_frame_id": 0,
+      "last_frame_id": 968,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:630",
+      "ratio": "1-3",
+      "frames": 937,
+      "first_frame_id": 0,
+      "last_frame_id": 936,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:630",
+      "ratio": "3-1",
+      "frames": 937,
+      "first_frame_id": 0,
+      "last_frame_id": 936,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:631",
+      "ratio": "1-3",
+      "frames": 842,
+      "first_frame_id": 0,
+      "last_frame_id": 841,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:631",
+      "ratio": "3-1",
+      "frames": 842,
+      "first_frame_id": 0,
+      "last_frame_id": 841,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:632",
+      "ratio": "1-3",
+      "frames": 725,
+      "first_frame_id": 0,
+      "last_frame_id": 724,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:632",
+      "ratio": "3-1",
+      "frames": 725,
+      "first_frame_id": 0,
+      "last_frame_id": 724,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:633",
+      "ratio": "1-3",
+      "frames": 593,
+      "first_frame_id": 0,
+      "last_frame_id": 592,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:633",
+      "ratio": "3-1",
+      "frames": 593,
+      "first_frame_id": 0,
+      "last_frame_id": 592,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:634",
+      "ratio": "1-3",
+      "frames": 908,
+      "first_frame_id": 0,
+      "last_frame_id": 907,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:634",
+      "ratio": "3-1",
+      "frames": 908,
+      "first_frame_id": 0,
+      "last_frame_id": 907,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:635",
+      "ratio": "1-3",
+      "frames": 755,
+      "first_frame_id": 0,
+      "last_frame_id": 754,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:635",
+      "ratio": "3-1",
+      "frames": 755,
+      "first_frame_id": 0,
+      "last_frame_id": 754,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:636",
+      "ratio": "1-3",
+      "frames": 511,
+      "first_frame_id": 0,
+      "last_frame_id": 510,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:636",
+      "ratio": "3-1",
+      "frames": 511,
+      "first_frame_id": 0,
+      "last_frame_id": 510,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:637",
+      "ratio": "1-3",
+      "frames": 655,
+      "first_frame_id": 0,
+      "last_frame_id": 654,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:637",
+      "ratio": "3-1",
+      "frames": 655,
+      "first_frame_id": 0,
+      "last_frame_id": 654,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:638",
+      "ratio": "1-3",
+      "frames": 462,
+      "first_frame_id": 0,
+      "last_frame_id": 461,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:638",
+      "ratio": "3-1",
+      "frames": 462,
+      "first_frame_id": 0,
+      "last_frame_id": 461,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:639",
+      "ratio": "1-3",
+      "frames": 527,
+      "first_frame_id": 0,
+      "last_frame_id": 526,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:639",
+      "ratio": "3-1",
+      "frames": 527,
+      "first_frame_id": 0,
+      "last_frame_id": 526,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:640",
+      "ratio": "1-3",
+      "frames": 472,
+      "first_frame_id": 0,
+      "last_frame_id": 471,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:640",
+      "ratio": "3-1",
+      "frames": 472,
+      "first_frame_id": 0,
+      "last_frame_id": 471,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:641",
+      "ratio": "1-3",
+      "frames": 420,
+      "first_frame_id": 0,
+      "last_frame_id": 419,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:641",
+      "ratio": "3-1",
+      "frames": 420,
+      "first_frame_id": 0,
+      "last_frame_id": 419,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:642",
+      "ratio": "1-3",
+      "frames": 599,
+      "first_frame_id": 0,
+      "last_frame_id": 598,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:642",
+      "ratio": "3-1",
+      "frames": 599,
+      "first_frame_id": 0,
+      "last_frame_id": 598,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:643",
+      "ratio": "1-3",
+      "frames": 815,
+      "first_frame_id": 0,
+      "last_frame_id": 814,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:643",
+      "ratio": "3-1",
+      "frames": 815,
+      "first_frame_id": 0,
+      "last_frame_id": 814,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:644",
+      "ratio": "1-3",
+      "frames": 915,
+      "first_frame_id": 0,
+      "last_frame_id": 914,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:644",
+      "ratio": "3-1",
+      "frames": 915,
+      "first_frame_id": 0,
+      "last_frame_id": 914,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:645",
+      "ratio": "1-3",
+      "frames": 613,
+      "first_frame_id": 0,
+      "last_frame_id": 612,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:645",
+      "ratio": "3-1",
+      "frames": 613,
+      "first_frame_id": 0,
+      "last_frame_id": 612,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:646",
+      "ratio": "1-3",
+      "frames": 311,
+      "first_frame_id": 0,
+      "last_frame_id": 310,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:646",
+      "ratio": "3-1",
+      "frames": 311,
+      "first_frame_id": 0,
+      "last_frame_id": 310,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:647",
+      "ratio": "1-3",
+      "frames": 303,
+      "first_frame_id": 0,
+      "last_frame_id": 302,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:647",
+      "ratio": "3-1",
+      "frames": 303,
+      "first_frame_id": 0,
+      "last_frame_id": 302,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:648",
+      "ratio": "1-3",
+      "frames": 847,
+      "first_frame_id": 0,
+      "last_frame_id": 846,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:648",
+      "ratio": "3-1",
+      "frames": 847,
+      "first_frame_id": 0,
+      "last_frame_id": 846,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:649",
+      "ratio": "1-3",
+      "frames": 547,
+      "first_frame_id": 0,
+      "last_frame_id": 546,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:649",
+      "ratio": "3-1",
+      "frames": 547,
+      "first_frame_id": 0,
+      "last_frame_id": 546,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:650",
+      "ratio": "1-3",
+      "frames": 818,
+      "first_frame_id": 0,
+      "last_frame_id": 817,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:650",
+      "ratio": "3-1",
+      "frames": 818,
+      "first_frame_id": 0,
+      "last_frame_id": 817,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:651",
+      "ratio": "1-3",
+      "frames": 1196,
+      "first_frame_id": 0,
+      "last_frame_id": 1195,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:651",
+      "ratio": "3-1",
+      "frames": 1196,
+      "first_frame_id": 0,
+      "last_frame_id": 1195,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:652",
+      "ratio": "1-3",
+      "frames": 576,
+      "first_frame_id": 0,
+      "last_frame_id": 575,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:652",
+      "ratio": "3-1",
+      "frames": 576,
+      "first_frame_id": 0,
+      "last_frame_id": 575,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:653",
+      "ratio": "1-3",
+      "frames": 502,
+      "first_frame_id": 0,
+      "last_frame_id": 501,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:653",
+      "ratio": "3-1",
+      "frames": 502,
+      "first_frame_id": 0,
+      "last_frame_id": 501,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:654",
+      "ratio": "1-3",
+      "frames": 432,
+      "first_frame_id": 0,
+      "last_frame_id": 431,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:654",
+      "ratio": "3-1",
+      "frames": 432,
+      "first_frame_id": 0,
+      "last_frame_id": 431,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:655",
+      "ratio": "1-3",
+      "frames": 490,
+      "first_frame_id": 0,
+      "last_frame_id": 489,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:655",
+      "ratio": "3-1",
+      "frames": 490,
+      "first_frame_id": 0,
+      "last_frame_id": 489,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:656",
+      "ratio": "1-3",
+      "frames": 412,
+      "first_frame_id": 0,
+      "last_frame_id": 411,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:656",
+      "ratio": "3-1",
+      "frames": 412,
+      "first_frame_id": 0,
+      "last_frame_id": 411,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:657",
+      "ratio": "1-3",
+      "frames": 538,
+      "first_frame_id": 0,
+      "last_frame_id": 537,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:657",
+      "ratio": "3-1",
+      "frames": 538,
+      "first_frame_id": 0,
+      "last_frame_id": 537,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:658",
+      "ratio": "1-3",
+      "frames": 424,
+      "first_frame_id": 0,
+      "last_frame_id": 423,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:658",
+      "ratio": "3-1",
+      "frames": 424,
+      "first_frame_id": 0,
+      "last_frame_id": 423,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:659",
+      "ratio": "1-3",
+      "frames": 294,
+      "first_frame_id": 0,
+      "last_frame_id": 293,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:659",
+      "ratio": "3-1",
+      "frames": 294,
+      "first_frame_id": 0,
+      "last_frame_id": 293,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:660",
+      "ratio": "1-3",
+      "frames": 525,
+      "first_frame_id": 0,
+      "last_frame_id": 524,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:660",
+      "ratio": "3-1",
+      "frames": 525,
+      "first_frame_id": 0,
+      "last_frame_id": 524,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:661",
+      "ratio": "1-3",
+      "frames": 465,
+      "first_frame_id": 0,
+      "last_frame_id": 464,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:661",
+      "ratio": "3-1",
+      "frames": 465,
+      "first_frame_id": 0,
+      "last_frame_id": 464,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:662",
+      "ratio": "1-3",
+      "frames": 692,
+      "first_frame_id": 0,
+      "last_frame_id": 691,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:662",
+      "ratio": "3-1",
+      "frames": 692,
+      "first_frame_id": 0,
+      "last_frame_id": 691,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:663",
+      "ratio": "1-3",
+      "frames": 535,
+      "first_frame_id": 0,
+      "last_frame_id": 534,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:663",
+      "ratio": "3-1",
+      "frames": 535,
+      "first_frame_id": 0,
+      "last_frame_id": 534,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:664",
+      "ratio": "1-3",
+      "frames": 579,
+      "first_frame_id": 0,
+      "last_frame_id": 578,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:664",
+      "ratio": "3-1",
+      "frames": 579,
+      "first_frame_id": 0,
+      "last_frame_id": 578,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:665",
+      "ratio": "1-3",
+      "frames": 514,
+      "first_frame_id": 0,
+      "last_frame_id": 513,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:665",
+      "ratio": "3-1",
+      "frames": 514,
+      "first_frame_id": 0,
+      "last_frame_id": 513,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:666",
+      "ratio": "1-3",
+      "frames": 731,
+      "first_frame_id": 0,
+      "last_frame_id": 730,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:666",
+      "ratio": "3-1",
+      "frames": 731,
+      "first_frame_id": 0,
+      "last_frame_id": 730,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:667",
+      "ratio": "1-3",
+      "frames": 552,
+      "first_frame_id": 0,
+      "last_frame_id": 551,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:667",
+      "ratio": "3-1",
+      "frames": 552,
+      "first_frame_id": 0,
+      "last_frame_id": 551,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:668",
+      "ratio": "1-3",
+      "frames": 245,
+      "first_frame_id": 0,
+      "last_frame_id": 244,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:668",
+      "ratio": "3-1",
+      "frames": 245,
+      "first_frame_id": 0,
+      "last_frame_id": 244,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:669",
+      "ratio": "1-3",
+      "frames": 581,
+      "first_frame_id": 0,
+      "last_frame_id": 580,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:669",
+      "ratio": "3-1",
+      "frames": 581,
+      "first_frame_id": 0,
+      "last_frame_id": 580,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:670",
+      "ratio": "1-3",
+      "frames": 241,
+      "first_frame_id": 0,
+      "last_frame_id": 240,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:670",
+      "ratio": "3-1",
+      "frames": 241,
+      "first_frame_id": 0,
+      "last_frame_id": 240,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:671",
+      "ratio": "1-3",
+      "frames": 542,
+      "first_frame_id": 0,
+      "last_frame_id": 541,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:671",
+      "ratio": "3-1",
+      "frames": 542,
+      "first_frame_id": 0,
+      "last_frame_id": 541,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:672",
+      "ratio": "1-3",
+      "frames": 356,
+      "first_frame_id": 0,
+      "last_frame_id": 355,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:672",
+      "ratio": "3-1",
+      "frames": 356,
+      "first_frame_id": 0,
+      "last_frame_id": 355,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:673",
+      "ratio": "1-3",
+      "frames": 258,
+      "first_frame_id": 0,
+      "last_frame_id": 257,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:673",
+      "ratio": "3-1",
+      "frames": 258,
+      "first_frame_id": 0,
+      "last_frame_id": 257,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:674",
+      "ratio": "1-3",
+      "frames": 764,
+      "first_frame_id": 0,
+      "last_frame_id": 763,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:674",
+      "ratio": "3-1",
+      "frames": 764,
+      "first_frame_id": 0,
+      "last_frame_id": 763,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:675",
+      "ratio": "1-3",
+      "frames": 657,
+      "first_frame_id": 0,
+      "last_frame_id": 656,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:675",
+      "ratio": "3-1",
+      "frames": 657,
+      "first_frame_id": 0,
+      "last_frame_id": 656,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:676",
+      "ratio": "1-3",
+      "frames": 358,
+      "first_frame_id": 0,
+      "last_frame_id": 357,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:676",
+      "ratio": "3-1",
+      "frames": 358,
+      "first_frame_id": 0,
+      "last_frame_id": 357,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:677",
+      "ratio": "1-3",
+      "frames": 752,
+      "first_frame_id": 0,
+      "last_frame_id": 751,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:677",
+      "ratio": "3-1",
+      "frames": 752,
+      "first_frame_id": 0,
+      "last_frame_id": 751,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:678",
+      "ratio": "1-3",
+      "frames": 689,
+      "first_frame_id": 0,
+      "last_frame_id": 688,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:678",
+      "ratio": "3-1",
+      "frames": 689,
+      "first_frame_id": 0,
+      "last_frame_id": 688,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:679",
+      "ratio": "1-3",
+      "frames": 471,
+      "first_frame_id": 0,
+      "last_frame_id": 470,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:679",
+      "ratio": "3-1",
+      "frames": 471,
+      "first_frame_id": 0,
+      "last_frame_id": 470,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:680",
+      "ratio": "1-3",
+      "frames": 453,
+      "first_frame_id": 0,
+      "last_frame_id": 452,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:680",
+      "ratio": "3-1",
+      "frames": 453,
+      "first_frame_id": 0,
+      "last_frame_id": 452,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:681",
+      "ratio": "1-3",
+      "frames": 849,
+      "first_frame_id": 0,
+      "last_frame_id": 848,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:681",
+      "ratio": "3-1",
+      "frames": 849,
+      "first_frame_id": 0,
+      "last_frame_id": 848,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:682",
+      "ratio": "1-3",
+      "frames": 326,
+      "first_frame_id": 0,
+      "last_frame_id": 325,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:682",
+      "ratio": "3-1",
+      "frames": 326,
+      "first_frame_id": 0,
+      "last_frame_id": 325,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:683",
+      "ratio": "1-3",
+      "frames": 474,
+      "first_frame_id": 0,
+      "last_frame_id": 473,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:683",
+      "ratio": "3-1",
+      "frames": 474,
+      "first_frame_id": 0,
+      "last_frame_id": 473,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:684",
+      "ratio": "1-3",
+      "frames": 411,
+      "first_frame_id": 0,
+      "last_frame_id": 410,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:684",
+      "ratio": "3-1",
+      "frames": 411,
+      "first_frame_id": 0,
+      "last_frame_id": 410,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:685",
+      "ratio": "1-3",
+      "frames": 565,
+      "first_frame_id": 0,
+      "last_frame_id": 564,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:685",
+      "ratio": "3-1",
+      "frames": 565,
+      "first_frame_id": 0,
+      "last_frame_id": 564,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:686",
+      "ratio": "1-3",
+      "frames": 472,
+      "first_frame_id": 0,
+      "last_frame_id": 471,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:686",
+      "ratio": "3-1",
+      "frames": 472,
+      "first_frame_id": 0,
+      "last_frame_id": 471,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:687",
+      "ratio": "1-3",
+      "frames": 691,
+      "first_frame_id": 0,
+      "last_frame_id": 690,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:687",
+      "ratio": "3-1",
+      "frames": 691,
+      "first_frame_id": 0,
+      "last_frame_id": 690,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:688",
+      "ratio": "1-3",
+      "frames": 766,
+      "first_frame_id": 0,
+      "last_frame_id": 765,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:688",
+      "ratio": "3-1",
+      "frames": 766,
+      "first_frame_id": 0,
+      "last_frame_id": 765,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:689",
+      "ratio": "1-3",
+      "frames": 312,
+      "first_frame_id": 0,
+      "last_frame_id": 311,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:689",
+      "ratio": "3-1",
+      "frames": 312,
+      "first_frame_id": 0,
+      "last_frame_id": 311,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:690",
+      "ratio": "1-3",
+      "frames": 273,
+      "first_frame_id": 0,
+      "last_frame_id": 272,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:690",
+      "ratio": "3-1",
+      "frames": 273,
+      "first_frame_id": 0,
+      "last_frame_id": 272,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:691",
+      "ratio": "1-3",
+      "frames": 360,
+      "first_frame_id": 0,
+      "last_frame_id": 359,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:691",
+      "ratio": "3-1",
+      "frames": 360,
+      "first_frame_id": 0,
+      "last_frame_id": 359,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:692",
+      "ratio": "1-3",
+      "frames": 1283,
+      "first_frame_id": 0,
+      "last_frame_id": 1282,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:692",
+      "ratio": "3-1",
+      "frames": 1283,
+      "first_frame_id": 0,
+      "last_frame_id": 1282,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:693",
+      "ratio": "1-3",
+      "frames": 574,
+      "first_frame_id": 0,
+      "last_frame_id": 573,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:693",
+      "ratio": "3-1",
+      "frames": 574,
+      "first_frame_id": 0,
+      "last_frame_id": 573,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:694",
+      "ratio": "1-3",
+      "frames": 409,
+      "first_frame_id": 0,
+      "last_frame_id": 408,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:694",
+      "ratio": "3-1",
+      "frames": 409,
+      "first_frame_id": 0,
+      "last_frame_id": 408,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:695",
+      "ratio": "1-3",
+      "frames": 600,
+      "first_frame_id": 0,
+      "last_frame_id": 599,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:695",
+      "ratio": "3-1",
+      "frames": 600,
+      "first_frame_id": 0,
+      "last_frame_id": 599,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:696",
+      "ratio": "1-3",
+      "frames": 562,
+      "first_frame_id": 0,
+      "last_frame_id": 561,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:696",
+      "ratio": "3-1",
+      "frames": 562,
+      "first_frame_id": 0,
+      "last_frame_id": 561,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:697",
+      "ratio": "1-3",
+      "frames": 584,
+      "first_frame_id": 0,
+      "last_frame_id": 583,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:697",
+      "ratio": "3-1",
+      "frames": 584,
+      "first_frame_id": 0,
+      "last_frame_id": 583,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:698",
+      "ratio": "1-3",
+      "frames": 434,
+      "first_frame_id": 0,
+      "last_frame_id": 433,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:698",
+      "ratio": "3-1",
+      "frames": 434,
+      "first_frame_id": 0,
+      "last_frame_id": 433,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:699",
+      "ratio": "1-3",
+      "frames": 1142,
+      "first_frame_id": 0,
+      "last_frame_id": 1141,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:699",
+      "ratio": "3-1",
+      "frames": 1142,
+      "first_frame_id": 0,
+      "last_frame_id": 1141,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:700",
+      "ratio": "1-3",
+      "frames": 434,
+      "first_frame_id": 0,
+      "last_frame_id": 433,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    },
+    {
+      "uid": "retargetvid:700",
+      "ratio": "3-1",
+      "frames": 434,
+      "first_frame_id": 0,
+      "last_frame_id": 433,
+      "rater_count": 6,
+      "all_values_equal_raw_conversion": true
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "python": "3.12.3 | packaged by Anaconda, Inc. | (main, May  6 2024, 19:46:43) [GCC 11.2.0]",
+  "executable": "/root/autodl-tmp/videoora42_clone/.venv/bin/python",
+  "platform": "Linux-5.15.0-78-generic-x86_64-with-glibc2.35",
+  "numpy": "2.2.6",
+  "pyav": "17.1.0",
+  "ffmpeg_libraries": {
+    "libavutil": [
+      60,
+      26,
+      101
+    ],
+    "libavcodec": [
+      62,
+      28,
+      101
+    ],
+    "libavformat": [
+      62,
+      12,
+      101
+    ],
+    "libavdevice": [
+      62,
+      3,
+      101
+    ],
+    "libavfilter": [
+      11,
+      14,
+      101
+    ],
+    "libswscale": [
+      9,
+      5,
+      101
+    ],
+    "libswresample": [
+      6,
+      3,
+      101
+    ]
+  },
+  "resource_limits": {
+    "/sys/fs/cgroup/cpu.max": "50000 100000",
+    "/sys/fs/cgroup/memory.max": "2147483648"
+  },
+  "GPU_used": false,
+  "training_started": false,
+  "audit_code_identity": "remote_source_sha256.json; actual deployed files, not an inferred remote Git checkout",
+  "reported_at": "2026-11-08T11:35:24.330244+00:00"
+}

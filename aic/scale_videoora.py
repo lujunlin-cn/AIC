@@ -136,7 +136,7 @@ class VideoOraScaleBackend:
         self.adapter_name = "scale"
         self.max_image_side = settings["max_image_side"]
         self.preprocessing_contract = {"max_image_side": self.max_image_side, "alignment": 32,
-                                       "color": "RGB", "resize": "PIL_nearest", "prompt_version": "scale_json_v1"}
+                                       "color": "RGB", "resize": "PIL_BICUBIC", "prompt_version": "scale_json_v1"}
         self.gradient_checkpointing = settings["gradient_checkpointing"]
         self.model_contract = {"parent_identity_sha256": config["parent"]["identity_sha256"],
                                "training_geometry": [9, 16] if self.config_arm == "a" else [16, 9],
@@ -186,7 +186,8 @@ class VideoOraScaleBackend:
                 raise ValueError("stored image size does not match manifest preprocessing")
             width, height = image.size
             image = image.resize((max(32, round(width * self.max_image_side / max(width, height) / 32) * 32),
-                                  max(32, round(height * self.max_image_side / max(width, height) / 32) * 32)))
+                                  max(32, round(height * self.max_image_side / max(width, height) / 32) * 32)),
+                                 resample=Image.Resampling.BICUBIC)
             messages = [{"role": "user", "content": [{"type": "image"},
                          {"type": "text", "text": build_prompt(row, self.bins)}]}]
             prompt = self.processor.apply_chat_template(messages, tokenize=False,

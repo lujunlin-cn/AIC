@@ -1,47 +1,16 @@
 {
-  "status": "historical_dev_geometry_verified",
-  "arms": {
-    "a": {
-      "historical_public_dev_outputs": 1200,
-      "action_status_counts": {
-        "ok": 9600
-      },
-      "maximum_valid_center_drift_px": 0.5,
-      "raw_requested_center_shift_count": 14,
-      "p1_deployed_center_range": {
-        "x": [
-          303.5,
-          1616.5
-        ],
-        "y": [
-          539.5555555555555,
-          539.5555555555555
-        ]
-      },
-      "source": "historical raw public-dev center output; not a new real-model run",
-      "training_labels_used": false
-    },
-    "b": {
-      "historical_public_dev_outputs": 2000,
-      "action_status_counts": {
-        "ok": 16000
-      },
-      "maximum_valid_center_drift_px": 0.5,
-      "raw_requested_center_shift_count": 16,
-      "p1_deployed_center_range": {
-        "x": [
-          540.0,
-          540.0
-        ],
-        "y": [
-          303.75,
-          1615.75
-        ]
-      },
-      "source": "historical raw public-dev center output; not a new real-model run",
-      "training_labels_used": false
-    }
+  "status": "passed_limited_real_P1_pilot",
+  "position_rows": 64,
+  "live_video_sources": 1,
+  "live_annotated_original_frames": 30,
+  "gnmc_image_ids": 2,
+  "action_checks": 512,
+  "action_status_counts": {
+    "ok": 512
   },
-  "training_geometry_1000_per_arm_requirement_passed": false,
-  "remaining": "Need hash-bound actual training P1 deployed centers; dev audit does not replace this gate."
+  "max_position_drift_px": 0.5,
+  "raw_video_pixel_roundtrip_passed": true,
+  "full_data_position_coverage": false,
+  "full_training_center_requirement_passed": false,
+  "evidence": "gpu_35092_singleton/positions.jsonl"
 }

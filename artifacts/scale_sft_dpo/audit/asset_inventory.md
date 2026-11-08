@@ -1,3 +1,9 @@
+# Live update — cloned GPU host 35092
+
+Current host: `ssh -p 35092 root@connect.westd.seetacloud.com`, RTX 4090 48 GiB, 96 GiB RAM, 20 CPU equivalents (8470Q host). Real Base/P1/Scale A/B forward/backward/checkpoint smoke passes, complete conservative count 8,999,976,258. LIVE original sources now verify 1,800/1,800. See `../gpu_preflight_35092.md`, `live_remote_verified.json` and `../smoke_test/gpu_35092_verified.json`. The previous no-card inventory below is retained as history.
+
+---
+
 # Verified assets — 2026-11-08
 
 Remote: `ssh -p 10045 root@connect.westb.seetacloud.com`. Read-only audit used the previously pinned ED25519 key; no security check was disabled. Weight and public-frame audits completed in 97.19 s. Raw results: `remote_assets.json`.

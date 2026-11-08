@@ -1,3 +1,9 @@
+# Current status: full P1 coverage still pending
+
+A real GPU pilot now has 64 frame/view centers (one LIVE source, two GNMC images), with 512 legal Scale projections and maximum drift 0.5 px. This does not determine effective full-data training labels, quality thresholds or source-level uncertainty. Full-data center inference has not started. See `../gpu_preflight_35092.md`.
+
+Historical CPU snapshot follows.
+
 # Position-conditioned Scale coverage
 
 Status: blocked.

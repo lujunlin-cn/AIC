@@ -1,3 +1,9 @@
+# Current GPU preflight update
+
+The latest verified state is in [gpu_preflight_35092.md](gpu_preflight_35092.md). Real A/B Video-ORA smoke now passes, LIVE originals are complete, and full-data P1 coverage/calibration remain blocked. No formal SFT/DPO has started. The CPU-delivery snapshot below predates this GPU run; its no-GPU/missing-original-media statements are historical.
+
+---
+
 # Scale SFT-DPO repair — 2026-11-08
 
 **Formal GPU training is not ready. No GPU task ran; all four formal stage budgets remain unused.** This delivery repairs executable code, audits real public data and parent weight identities, and preserves the unresolved gates. It does not claim SFT/DPO training success or an Oracle/official-score improvement.

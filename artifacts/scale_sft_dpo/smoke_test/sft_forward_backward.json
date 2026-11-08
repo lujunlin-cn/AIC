@@ -1,9 +1,29 @@
 {
-  "status": "blocked",
+  "status": "passed",
   "real_model": true,
-  "passed": false,
-  "cuda_initialized": false,
-  "formal_gpu_hours_used": 0,
-  "reason": "Remote CPU-only cgroup memory.max=2147483648 and cpu.max=50000/100000. Full real-weight smoke not executed; meta inspection is not a substitute.",
-  "local_alternative": "Separate pinned PEFT/Transformers CPU venv prepared; 18GB weight transfer stopped after measured low throughput. No partial file was used as a valid model."
+  "passed": true,
+  "cuda_initialized": true,
+  "optimizer_steps": 0,
+  "gpu_name": "NVIDIA GeForce RTX 4090",
+  "device": "cuda:0",
+  "evidence": "gpu_35092_verified.json",
+  "evidence_sha256": "c677d291a34ef39ea3b119343419884a467bb4824f5e5e1c8a74f8d3b3158659",
+  "ratios_verified": [
+    [
+      9,
+      16
+    ],
+    [
+      16,
+      9
+    ]
+  ],
+  "formal_training": false,
+  "loss_by_ratio": {
+    "[9, 16]": 0.31605568528175354,
+    "[16, 9]": 0.2807941138744354
+  },
+  "checkpoint_restore_exact": true,
+  "parent_immutable": true,
+  "objective": "causal_completion_sft_loss"
 }

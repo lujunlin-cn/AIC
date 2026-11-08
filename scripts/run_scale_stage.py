@@ -77,7 +77,7 @@ def run_preferences(config: dict, rows: list[dict], output: Path):
         views_with_preferences += bool(produced)
         from aic.scale_videoora import build_prompt
         preprocessing = {"max_image_side": config["runtime"]["max_image_side"], "alignment": 32,
-                         "color": "RGB", "resize": "PIL_nearest", "prompt_version": "scale_json_v1"}
+                         "color": "RGB", "resize": "PIL_BICUBIC", "prompt_version": "scale_json_v1"}
         for pair in produced:
             pair["candidate_provenance"] = "fixed_scale_grid_train" if dataset in {"LIVE_YT_VC", "GNMC"} else "human_rated_or_ranked_candidates"
             pairs.append(bind_preference_input(pair, row, build_prompt(row, bins), preprocessing))

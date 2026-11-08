@@ -5,7 +5,7 @@ import hashlib
 import json
 from pathlib import Path
 from aic.scale_data import read_jsonl, attach_frozen_positions
-from aic.scale_geometry import deployed_center
+from aic.scale_geometry import deployed_center, checked_scale_action
 
 
 def prepare(labels, positions, parent_sha):
@@ -17,7 +17,16 @@ def prepare(labels, positions, parent_sha):
     for row in positions:
         if row.get('parent_identity_sha256')!=parent_sha or row.get('position_kind')!='P1_final_deployed':
             raise ValueError('P1 center cache lacks deployed-path identity/provenance')
-        converted.append(dict(row,center_xy=list(deployed_center(row['p1_aic_bbox_xyw'],row['target_ratio']))))
+        center=list(deployed_center(row['p1_aic_bbox_xyw'],row['target_ratio']))
+        if row.get('center_xy')!=center:
+            raise ValueError('P1 cache center does not match actual deployed bbox')
+        baseline=checked_scale_action(row['image_width'],row['image_height'],row['target_ratio'],center,1.)
+        if not baseline['valid'] or baseline['aic_bbox_xyw']!=row['p1_aic_bbox_xyw']:
+            raise ValueError('Scale=1 must exactly reproduce actual P1 deployed baseline')
+        for field in ('selected_frames_sha256','path_cache_sha256','position_protocol_sha256','spatial_entrypoint_sha256'):
+            if not row.get(field):raise ValueError('P1 cache is missing '+field)
+        if row.get('qp_floor')!=.15:raise ValueError('P1 QP floor must be .15')
+        converted.append(dict(row,center_xy=center))
     joined=attach_frozen_positions(labels,converted)
     source_sets={s:{(r['dataset_source'],r['source_id']) for r in joined if r['split']==s} for s in ['train','val']}
     if source_sets['train']&source_sets['val']:raise ValueError('source leakage')

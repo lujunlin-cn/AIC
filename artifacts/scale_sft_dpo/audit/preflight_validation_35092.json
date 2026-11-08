@@ -1,0 +1,54 @@
+{
+  "created_at": "2026-11-08T03:00:12.888197+00:00",
+  "scope": "CPU validation of current newday worktree; real GPU smoke is separately recorded",
+  "local_cpu": [
+    {
+      "command": [
+        "python",
+        "-m",
+        "compileall",
+        "-q",
+        "aic",
+        "scripts",
+        "tests"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "elapsed_seconds": 0.04943865071982145
+    },
+    {
+      "command": [
+        "bash",
+        "-lc",
+        "PYTHONPATH=. pytest -q tests/test_scale_*.py"
+      ],
+      "exit_code": 0,
+      "stdout": "........................................................................ [ 46%]\n........................................................................ [ 92%]\n...........                                                              [100%]\n155 passed in 1.45s\n",
+      "stderr": "",
+      "elapsed_seconds": 3.152627028990537
+    },
+    {
+      "command": [
+        "bash",
+        "-lc",
+        "PYTHONPATH=. pytest -q"
+      ],
+      "exit_code": 0,
+      "stdout": "........................................................................ [ 25%]\n........................................................................ [ 51%]\n........................................................................ [ 77%]\n..............................................................           [100%]\n278 passed in 5.46s\n",
+      "stderr": "",
+      "elapsed_seconds": 7.796133826021105
+    }
+  ],
+  "python_source_hash_count": 646,
+  "python_source_scope_sha256": "8c8365b75f14b099b78a3818a017448488ec54fdd45fe5472bbb982e7eb4c06e",
+  "formal_training_started": false,
+  "gpu_tasks_launched_by_validation": false,
+  "remote_cpu_scale_tests": {
+    "host": "connect.westd.seetacloud.com:35092",
+    "command": "PYTHONPATH=.:../test_deps CUDA_VISIBLE_DEVICES=\"\" PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 /root/autodl-tmp/videoora42_clone/.venv/bin/python -m pytest -q tests/test_scale_*.py",
+    "exit_code": 0,
+    "stdout": "155 passed in 2.90s",
+    "evidence": "completed SSH session 60778; isolated preserved test dependency directory; final file synchronization verified separately"
+  }
+}

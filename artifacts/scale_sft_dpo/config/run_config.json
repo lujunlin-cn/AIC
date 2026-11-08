@@ -99,7 +99,22 @@
     "validation_manifest": null,
     "train_manifest_sha256": null,
     "validation_manifest_sha256": null,
-    "preference_source_balanced_weights": null
+    "preference_source_balanced_weights": null,
+    "authorization_review": {
+      "owner": "user",
+      "instruction": "user_handles_dataset_authorization",
+      "agent_scope": "technical_readiness_only",
+      "datasets": [
+        "LIVE_YT_VC",
+        "GNMC",
+        "GAICD",
+        "SACD"
+      ],
+      "legal_authorization_not_inferred": true,
+      "provenance": "User response: 1.你不需要关心; dataset authorization review excluded from agent work."
+    },
+    "public_label_manifest": "/root/autodl-tmp/videoora42_clone/scale_sft_dpo_preflight_20261108/clean_public_labels/labels.jsonl",
+    "public_label_manifest_sha256": "a98aa78ada1f3f6b2a349c29c4bad15b65ede955dee761c586ced83f9d7d96c0"
   },
   "action_protocol": {
     "output_template": "{\"scale_id\":<integer>}",
@@ -259,10 +274,11 @@
       "compact_model.py": "85091392cf071879d0c39e5edd5db091744733b7eefe3fdd2736d9221aa732c3",
       "model_io.py": "7af768545128ebfd66b994e6c940162ee6504eb21a11bab2a329f07a6c3066e3",
       "structured_decode.py": "9f2552a40085c5b4fec2c1404005b83ee1f73b73c8a26f9fc0455636fe69deec"
-    }
+    },
+    "spatial_entrypoint_sha256": "8f9b9ab785d395d6c0b57789d1591228f25f34f323098618e9ed82538037ad04"
   },
   "position_identity": {
-    "frozen_parent_isolation_verified": false,
+    "frozen_parent_isolation_verified": true,
     "metadata_adapter_stacking_supported": true,
     "parent_scale_parameters": 204800,
     "strategy": "frozen default/other_geometry for Position; enable additional isolated scale only for JSON Scale task; never train parent banks"
@@ -273,8 +289,20 @@
     "gate_passed": false
   },
   "model_smoke": {
-    "real_model_forward_backward_passed": false,
-    "metadata_probe_passed": true
+    "real_model_forward_backward_passed": true,
+    "metadata_probe_passed": true,
+    "real_weight_smoke_evidence_sha256": "c677d291a34ef39ea3b119343419884a467bb4824f5e5e1c8a74f8d3b3158659",
+    "ratios_verified": [
+      [
+        9,
+        16
+      ],
+      [
+        16,
+        9
+      ]
+    ],
+    "optimizer_steps": 0
   },
   "promotion": {
     "sft": {
@@ -293,5 +321,14 @@
     }
   },
   "formal_gpu_training_authorized": false,
-  "gpu_budget_ledger": "artifacts/scale_sft_dpo/config/gpu_budget.json"
+  "gpu_budget_ledger": "artifacts/scale_sft_dpo/config/gpu_budget.json",
+  "gpu_preflight": {
+    "status": "small_smokes_complete_full_centers_pending",
+    "usage_evidence_sha256": "067e1819a01fcd1af6a33227aa3cd08313db8037a92dd0eb9a6fbce17ea10b77",
+    "same_device_wall_hours": 0.19689676694444444,
+    "formal_training_hours": 0,
+    "full_cache_started": false,
+    "full_cache_budget_approved": false,
+    "requested_training_budget_hours": 12
+  }
 }

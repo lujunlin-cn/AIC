@@ -59,7 +59,9 @@ def attach_frozen_positions(label_rows: Sequence[dict], position_rows: Sequence[
         joined["position_source"] = "P1_frozen"
         joined["image_width"] = int(position["image_width"])
         joined["image_height"] = int(position["image_height"])
-        for field in ("parent_identity_sha256", "p1_aic_bbox_xyw", "position_kind", "position_cache_sha256"):
+        for field in ("parent_identity_sha256", "p1_aic_bbox_xyw", "position_kind", "position_cache_sha256",
+                      "position_protocol_sha256", "selected_frames_sha256", "path_cache_sha256",
+                      "qp_floor", "spatial_entrypoint_sha256", "parent_execution_context", "frame_pts"):
             if field in position:
                 joined[field] = position[field]
         result.append(joined)

@@ -1,3 +1,13 @@
+# 35092 live preflight update
+
+The GPU smoke and original LIVE recovery are complete; see `gpu_preflight_35092.md`. No full P1 position generation or formal training is authorized/running. Do not auto-start a long cache job merely because the GPU is available. The original singleton P1 projection is the default; batch16 failed coordinate parity.
+
+Prebuilding a cache file is optional in principle, but actual P1 centers are still required for fixed-Position labels and coverage audits. The current executable pipeline consumes offline, hash-bound centers; it does not implement online P1 inference inside training. Removing cache writes would not eliminate model generation. Limited pilot validation is complete, while full-data coverage remains unmeasured.
+
+When a full preflight scope is explicitly agreed, use the clean public labels at `/root/autodl-tmp/videoora42_clone/scale_sft_dpo_preflight_20261108/clean_public_labels/labels.jsonl`. `scripts/generate_p1_scale_positions.py` verifies and resumes complete sources and writes an actual usage receipt; use an external timeout as well. `scripts/calibrate_scale_training.py` consumes a complete hash-bound position join on CPU; its `--pilot` option cannot lock the formal configuration. Mapping changes require a new real A/B model smoke. Downstream measured SFT/candidate/preference/DPO stage gates remain mandatory. No trained checkpoint or learned Oracle result has been produced.
+
+Historical CPU runbook follows.
+
 # Executable entrypoints and remaining preflight
 
 Run from the repository root. The original remote Python is `/root/autodl-tmp/videoora42_clone/.venv/bin/python` (torch 2.8.0+cu128 / transformers 5.5.4 / peft 0.20.0). Preserve it. Local tests use CPU PyTorch; model-specific imports are lazy.

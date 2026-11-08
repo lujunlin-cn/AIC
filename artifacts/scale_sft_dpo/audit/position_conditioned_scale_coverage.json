@@ -1,5 +1,5 @@
 {
-  "status": "blocked_missing_training_P1_centers",
+  "status": "blocked_full_real_P1_centers_pending",
   "valid_scale_sft_labels": null,
   "p1_fixed_center_scale_optimizable_samples": null,
   "position_mismatch_rate": null,
@@ -13,5 +13,10 @@
   },
   "centers_from_GT_or_image_center_substituted": false,
   "position_center_cache_required": true,
-  "validation_used_to_set_train_labels": false
+  "validation_used_to_set_train_labels": false,
+  "real_P1_pilot_position_views": 64,
+  "real_P1_pilot_video_sources": 1,
+  "full_position_cache_started": false,
+  "full_data_valid_labels": null,
+  "reason": "Full center inference is computational work, not a CPU file-cache step. Waiting on explicit scope/budget after throughput measurement; no formal training started."
 }

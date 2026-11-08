@@ -53,7 +53,9 @@
         "competition_weight_submission_authorized": null,
         "competition_use_authorized": null,
         "review_note": "Do not infer dataset rights from repository software license or research citation request."
-      }
+      },
+      "authorization_review_owner": "user",
+      "authorization_not_inferred_by_agent": true
     },
     "SACD": {
       "present": true,
@@ -130,7 +132,9 @@
         "competition_weight_submission_authorized": null,
         "competition_use_authorized": null,
         "review_note": "Do not infer dataset rights from repository software license or research citation request."
-      }
+      },
+      "authorization_review_owner": "user",
+      "authorization_not_inferred_by_agent": true
     },
     "LIVE_YT_VC": {
       "present": true,
@@ -178,7 +182,16 @@
         "review_note": "Do not infer dataset rights from repository software license or research citation request."
       },
       "historical_cross_split_identical_image_groups": 1,
-      "clean_split_required_sha256": "95ad3dee24105fc85cf66b6ae2b1af79b2f4e58e087fb339176d8f276960d59f"
+      "clean_split_required_sha256": "95ad3dee24105fc85cf66b6ae2b1af79b2f4e58e087fb339176d8f276960d59f",
+      "original_source_videos_verified": 1800,
+      "original_source_videos_missing": 0,
+      "original_source_video_sha_mismatches": 0,
+      "source_video_root": "/root/autodl-tmp/videoora42_clone/data/reproduction_sources/LIVE_YT_VC/study_videos",
+      "original_media_inventory_evidence_sha256": "cc6ea3aa1dd4eabb94f75e9df122b111847cf9c800968cb366811036f9764c2b",
+      "full_media_present": true,
+      "full_p1_deployed_center_cache_complete": false,
+      "authorization_review_owner": "user",
+      "authorization_not_inferred_by_agent": true
     },
     "GNMC": {
       "present": true,
@@ -221,7 +234,20 @@
         "review_note": "Personal/noncommercial research clause present. Competition participation/weight submission remains unconfirmed, not automatically inferred.",
         "original_license": "PolyForm-Noncommercial-1.0.0"
       },
-      "execution_host_archive_path_not_verified": true
+      "execution_host_archive_path_not_verified": true,
+      "cross_split_identical_image_groups_before_quarantine": 4,
+      "quarantined_train_ids": [
+        "001183",
+        "001972",
+        "003413",
+        "009560"
+      ],
+      "effective_train_ids": 6996,
+      "effective_train_independent_image_bytes": 6983,
+      "clean_public_label_views": 123692,
+      "clean_input_isolation_sha256": "86117ed130cd210661a90ad414bda0a93a6dfd451c451ad432a6bffd6f0bfd65",
+      "authorization_review_owner": "user",
+      "authorization_not_inferred_by_agent": true
     }
   },
   "p1_parent": {

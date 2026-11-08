@@ -1,3 +1,9 @@
+## 2026-11-08 — New GPU host preflight completed; full centers not started
+
+Real A/B Video-ORA Base+P1+isolated-Scale smoke passes on `35092`: JSON generation, completion-only SFT/DPO backward, deterministic frozen reference, exact checkpoint restore and unchanged P1 parameters; zero optimizer steps. LIVE original videos recovered and verified remotely 1,800/1,800. GNMC four Train/Val byte aliases are quarantined (6,996 Train IDs / 6,983 independent image bytes); raw data preserved. Detailed evidence and remaining blockers: `artifacts/scale_sft_dpo/gpu_preflight_35092.md`.
+
+Full-data P1 centers, effective labels, train-only bins/thresholds and GAICD fixed-center retention remain pending. No full preprocessing or formal SFT/DPO is running. CPU-thread and two-process throughput pilots are recorded; GPU preflight device-wall use is 0.196897 h, formal updates=0. User-managed dataset authorization fields remain unmodified/null.
+
 ## 2026-11-08 — Scale E0/E1/E2 local preparation; GPU approval pending
 
 User scope: re-evaluate whether Scale is worth learning. No SFT/DPO and no new GPU work. `artifacts/scale_sft_dpo/diagnostics/diagnostic_report.md` and the three required JSON deliverables distinguish historical raw-center pilots from final P1 deployment evidence. The latter remains unmeasured without public final-P1 trajectory caches.

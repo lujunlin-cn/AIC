@@ -2,10 +2,29 @@
   "budget_hours": 12.0,
   "total_used_hours": 0.0,
   "stages": {
-    "scale_sft": {"limit_hours": 4.0, "used_hours": 0.0, "runs": []},
-    "candidate_generation": {"limit_hours": 3.0, "used_hours": 0.0, "runs": []},
-    "preference_build": {"limit_hours": 1.0, "used_hours": 0.0, "runs": []},
-    "spatial_dpo": {"limit_hours": 4.0, "used_hours": 0.0, "runs": []}
+    "scale_sft": {
+      "limit_hours": 4.0,
+      "used_hours": 0.0,
+      "runs": []
+    },
+    "candidate_generation": {
+      "limit_hours": 3.0,
+      "used_hours": 0.0,
+      "runs": []
+    },
+    "preference_build": {
+      "limit_hours": 1.0,
+      "used_hours": 0.0,
+      "runs": []
+    },
+    "spatial_dpo": {
+      "limit_hours": 4.0,
+      "used_hours": 0.0,
+      "runs": []
+    }
   },
-  "gpu_tasks_started": false
+  "gpu_tasks_started": true,
+  "formal_gpu_tasks_started": false,
+  "preflight_gpu_tasks_started": true,
+  "preflight_usage_reference": "../audit/preflight_gpu_usage.json"
 }

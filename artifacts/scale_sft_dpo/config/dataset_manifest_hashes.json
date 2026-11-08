@@ -62,5 +62,9 @@
     "inference_config_sha256": "2054b3cef446d1ebe948a8d387ca43362c1b2f5e19518576e9a9b22e1ae32ec0"
   },
   "qualified_source_manifest_sha256": "ecb89357f6a63d8e50dfd27903004eb2f8c9068344436444b32f44bd7f102f17",
-  "public_label_export_sha256": "b5beb7ebb075e436ff31d0e8293957277a68b59bb58beb7bdf9f6cc04b0b011d"
+  "public_label_export_sha256": "b5beb7ebb075e436ff31d0e8293957277a68b59bb58beb7bdf9f6cc04b0b011d",
+  "clean_public_labels_sha256": "a98aa78ada1f3f6b2a349c29c4bad15b65ede955dee761c586ced83f9d7d96c0",
+  "original_live_media_inventory_sha256": "cc6ea3aa1dd4eabb94f75e9df122b111847cf9c800968cb366811036f9764c2b",
+  "gaicd_journal_train_label_views_sha256": "87c9fced9c21d59dc5fd38d6000ba1abccef4fac3651deb071598793f6fcfa8e",
+  "source_split_manifest_sha256": "b846baa0137ac9cf9c35bcab8381686421957856a00c7392c15c620c49d412ad"
 }

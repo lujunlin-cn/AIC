@@ -14,6 +14,23 @@ def load_json(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8")) if path.is_file() else {}
 
 
+def dataset_use_review_ready(name: str, datasets: dict, config: dict) -> bool:
+    """Technical gating only: keep legal facts distinct from user ownership.
+
+    The default remains fail-closed. An explicit user-managed review may remove
+    this item from the agent's technical checklist, but cannot turn a known
+    prohibition into permission or manufacture a dataset license.
+    """
+    authorization = datasets.get(name, {}).get('competition_use_authorized')
+    if authorization is not None:
+        return authorization is True
+    review = config.get('data', {}).get('authorization_review', {})
+    return (review.get('owner') == 'user'
+            and review.get('instruction') == 'user_handles_dataset_authorization'
+            and review.get('agent_scope') == 'technical_readiness_only'
+            and name in review.get('datasets', []))
+
+
 def evaluate(stage: str, config: dict, audit: dict, preference_audit: dict,
              sft_metrics: dict, candidate_metrics: dict) -> dict:
     blockers = []
@@ -73,7 +90,7 @@ def evaluate(stage: str, config: dict, audit: dict, preference_audit: dict,
             blockers.append("Scale-SFT training sources are not explicitly locked")
         else:
             for dataset_name in training_sources:
-                if datasets.get(dataset_name, {}).get("competition_use_authorized") is not True:
+                if not dataset_use_review_ready(dataset_name, datasets, config):
                     blockers.append(f"{dataset_name} competition-use license review is incomplete")
     elif stage == "candidate_generation":
         if sft_metrics.get("gate_passed") is not True:
@@ -90,7 +107,7 @@ def evaluate(stage: str, config: dict, audit: dict, preference_audit: dict,
             blockers.append("preference data sources are not explicitly locked")
         else:
             for dataset_name in preference_sources:
-                if datasets.get(dataset_name, {}).get("competition_use_authorized") is not True:
+                if not dataset_use_review_ready(dataset_name, datasets, config):
                     blockers.append(f"{dataset_name} competition-use license review is incomplete")
     elif stage == "spatial_dpo":
         if candidate_metrics.get("gate_passed") is not True:
@@ -121,7 +138,7 @@ def evaluate(stage: str, config: dict, audit: dict, preference_audit: dict,
         if preference_audit.get("sacd_subject_condition_preserved") is not True:
             blockers.append("SACD subject conditions were not verified")
         for dataset_name, pair_count in (preference_audit.get("source_counts_by_dataset") or {}).items():
-            if pair_count and datasets.get(dataset_name, {}).get("competition_use_authorized") is not True:
+            if pair_count and not dataset_use_review_ready(dataset_name, datasets, config):
                 blockers.append(f"{dataset_name} competition-use license review is incomplete")
     else:
         raise ValueError(f"unknown stage: {stage}")

@@ -3,10 +3,6 @@
   "gate_passed": false,
   "blockers": [
     "position-mismatch threshold is not locked from training-only analysis",
-    "LIVE_YT_VC competition-use license review is incomplete",
-    "GNMC competition-use license review is incomplete",
-    "frozen P1 Position adapter isolation has not passed real-model smoke",
-    "real Video-ORA load/forward/backward/checkpoint smoke has not passed",
     "P1-conditioned Scale label coverage has not passed its train-locked requirement",
     "hashed data manifest is missing: train_manifest",
     "hashed data manifest is missing: validation_manifest",

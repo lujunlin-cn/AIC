@@ -26,5 +26,7 @@
   },
   "created_at_utc": "2026-11-07T17:45:50.024927+00:00",
   "validation_or_test_labels_read": false,
-  "p1_centers_used": false
+  "p1_centers_used": false,
+  "execution_status": "provisional_pending_train_P1_conditioned_analysis",
+  "analysis": "audit/scale_bin_analysis.json"
 }

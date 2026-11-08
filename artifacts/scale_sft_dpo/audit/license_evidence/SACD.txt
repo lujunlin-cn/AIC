@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style type="text/css">
+      body{
+        margin: 25px
+      }
+      h1{
+        text-align: center;
+      }
+      #author{
+        text-align: center;
+        font-size: 15px;
+      }
+      #affiliation{
+        text-align: center;
+        font-size: 15px;
+      }
+      #teaser{
+        max-height: 55%;
+        max-width: 55%;
+      }
+      #annotations{
+        max-height: 85%;
+        max-width: 85%;
+      }
+      table {
+        border-collapse: collapse;
+        border-spacing: 0;
+      }
+       
+      td,th {
+          padding: 0;
+      }
+       
+      .pure-table {
+          border-collapse: collapse;
+          border-spacing: 0;
+          empty-cells: show;
+          border: 1px solid #cbcbcb;
+      }
+       
+      .pure-table caption {
+          color: #000;
+          font: italic 85%/1 arial,sans-serif;
+          padding: 1em 0;
+          text-align: center;
+      }
+       
+      .pure-table td,.pure-table th {
+          border-left: 1px solid #cbcbcb;
+          border-width: 0 0 0 1px;
+          font-size: inherit;
+          margin: 0;
+          overflow: visible;
+          padding: .5em 1em;
+      }
+       
+      .pure-table thead {
+          background-color: #e0e0e0;
+          color: #000;
+          text-align: left;
+          vertical-align: bottom;
+      }
+       
+      .pure-table td {
+          background-color: transparent;
+      }
+       
+      .pure-table-odd td {
+          background-color: #f2f2f2;
+      }
+      #bib{
+        background-color: #e0e0e0;
+      }
+      #article{
+        color: red;
+      }
+    </style>
+
+    <title>SACD: Subject-Aware Composition Dataset</title>
+
+  </head>
+  
+  <body >
+  <center>
+  <div style="max-width:70%;text-align:left">
+    <h1>SACD: Subject-Aware Composition Dataset</h1>
+    <p id="author">Guo-Ye Yang<sup>1</sup>, Wen-Yang Zhou<sup>1</sup>, Yun Cai<sup>1</sup>, Song-Hai Zhang<sup>1</sup>, Fang-Lue Zhang<sup>2</sup></p>
+    <p id="affiliation"><sup>1</sup>Tsinghua University, <sup>2</sup>Victoria University of Wellington</p>
+
+
+    <h2 class="section">Introduction of SACD</h2>
+    <hr />
+    <p id="intro">We propose a subject-aware composition dataset (SACD) for the task of image cropping for composition. It includes 2,777 images and over 5.2 Million ranking pairs. The labeled cropping windows all have high aesthetic value with a certain focused subject. Some example images of our dataset are shown in Fig. 1. Rather than aimlessly finding cropping windows with good compositions in the entire image, models trained on SACD can give cropping recommendations for a specific subject in the image.</p>
+    <div align="center">
+      <img id="annotations" src="fig1.jpg"/>
+      <br />
+	  <div style="max-width: 85%">
+      Fig. 1  Subject-aware composition dataset (SACD) examples. (a) some images with multi-subjects in SACD. Original images are tagged with A, and sub-images labeled by professional artists for different subjects are tagged with B1 and B2. (b) some images with single-subject in SACD, meaning of tags are same as (a).
+	  </div>
+    </div>
+    <p>Following is the brief information about the dataset:</p>
+    <ul>
+      <li><strong>Number of images:</strong> 2777;</li>
+      <li><strong>Number of cropping windows:</strong> >24000;</li>
+      <li><strong>Number of ranking pairs:</strong> >5.2 Million.</li>
+    </ul>
+
+    <h2 class="section">Download</h2>
+    <hr />
+    <p> Details about SACD can be found in this paper [<a href="TODO" target="_blank">link</a>].</p>
+	Download link of SACD:
+    <table class="pure-table">
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Download Link</th>
+                <th>Size</th>
+            </tr>
+        </thead>
+    
+        <tbody>
+            <tr class="pure-table-odd">
+                <td>SACD.zip</td>
+                <td><a href="https://cloud.tsinghua.edu.cn/f/a2268780b2324300a266/?dl=1" target="_blank">Tsinghua Cloud</a></td>
+                <td>452.8 MB</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2 class="section">Citing</h2>
+    <hr />
+    <p>Please cite our paper in your publications if it helps your research:</p>
+	Focusing On Your Subject: Deep Subject-Aware Image Composition Recommendation Networks
+  </div>
+  </center>
+  </body>
+</html>

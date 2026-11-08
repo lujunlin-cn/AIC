@@ -1,0 +1,74 @@
+{
+  "compileall": {
+    "command": "python -m compileall -q aic scripts tests",
+    "exit_code": 0
+  },
+  "scale_tests": {
+    "command": "PYTHONPATH=. pytest -q tests/test_scale_*.py",
+    "passed": 139
+  },
+  "full_tests": {
+    "command": "PYTHONPATH=. pytest -q",
+    "passed": 262
+  },
+  "real_weight_smoke_passed": false,
+  "gpu_hours_used": 0,
+  "gate_exit_code": 2,
+  "backend_initialized_by_gated_entry": false,
+  "semantic_review": "audit/semantic_review.md",
+  "environment": {
+    "python": "3.13.12",
+    "host": "spark-e602",
+    "cuda_visible_devices": ""
+  },
+  "local_results": [
+    {
+      "check": "compileall",
+      "command": [
+        "python",
+        "-m",
+        "compileall",
+        "-q",
+        "aic",
+        "scripts",
+        "tests"
+      ],
+      "exit_code": 0,
+      "output": "",
+      "elapsed_seconds": 0.028338633943349123
+    },
+    {
+      "check": "scale_tests",
+      "command": [
+        "pytest",
+        "-q",
+        "tests/test_scale_asset_audit.py",
+        "tests/test_scale_bin_fitting.py",
+        "tests/test_scale_budget.py",
+        "tests/test_scale_candidates.py",
+        "tests/test_scale_data.py",
+        "tests/test_scale_execution.py",
+        "tests/test_scale_gate.py",
+        "tests/test_scale_geometry.py",
+        "tests/test_scale_objectives.py",
+        "tests/test_scale_preferences.py",
+        "tests/test_scale_repair.py",
+        "tests/test_scale_runtime.py"
+      ],
+      "exit_code": 0,
+      "output": "........................................................................ [ 51%]\n...................................................................      [100%]\n139 passed in 1.08s\n",
+      "elapsed_seconds": 1.716168933082372
+    },
+    {
+      "check": "full_tests",
+      "command": [
+        "pytest",
+        "-q"
+      ],
+      "exit_code": 0,
+      "output": "........................................................................ [ 27%]\n........................................................................ [ 54%]\n........................................................................ [ 82%]\n..............................................                           [100%]\n262 passed in 3.87s\n",
+      "elapsed_seconds": 4.825407720170915
+    }
+  ],
+  "remote_cpu_results": "audit/remote_code_sync.json"
+}

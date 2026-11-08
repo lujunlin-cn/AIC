@@ -1,0 +1,4 @@
+remote_snapshot/
+runs/
+manifests/
+smoke_test/real_cpu/

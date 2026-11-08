@@ -2,16 +2,18 @@
   "stage": "scale_sft",
   "gate_passed": false,
   "blockers": [
-    "verified P1 base/adapter SHA256 is missing",
-    "verified parent tokenizer SHA256 is missing",
-    "complete active inference parameter count is missing",
-    "post-SFT active inference parameter count is missing",
-    "exact spatial adapter trainable-parameter allowlist is missing",
-    "P1 adapter target-module inventory SHA256 is missing",
     "position-mismatch threshold is not locked from training-only analysis",
-    "LIVE source-level train/validation manifest gate has not passed",
     "LIVE_YT_VC competition-use license review is incomplete",
-    "GNMC competition-use license review is incomplete"
+    "GNMC competition-use license review is incomplete",
+    "frozen P1 Position adapter isolation has not passed real-model smoke",
+    "real Video-ORA load/forward/backward/checkpoint smoke has not passed",
+    "P1-conditioned Scale label coverage has not passed its train-locked requirement",
+    "hashed data manifest is missing: train_manifest",
+    "hashed data manifest is missing: validation_manifest",
+    "hashed data manifest is missing: train_manifest_sha256",
+    "hashed data manifest is missing: validation_manifest_sha256",
+    "Scale bins are provisional until train P1 coverage analysis is locked",
+    "train-calibrated scale collapse bound is missing"
   ],
   "cuda_initialization_allowed": false
 }

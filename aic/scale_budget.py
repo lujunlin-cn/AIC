@@ -61,3 +61,17 @@ def record_gpu_run(
     stage_entry["used_hours"] = next_stage_hours
     budget["total_used_hours"] = next_total_hours
     return budget
+
+
+def validate_budget(budget: dict) -> None:
+    if budget.get("budget_exceeded"):
+        raise ValueError("a previous GPU budget overrun blocks all further GPU tasks")
+    values=[]
+    for name,limit in STAGE_LIMIT_HOURS.items():
+        value=budget["stages"][name]["used_hours"]
+        if not isinstance(value,(int,float)) or not math.isfinite(value) or not 0<=value<=limit:
+            raise ValueError("invalid or exceeded stage budget: "+name)
+        values.append(value)
+    total=budget.get("total_used_hours")
+    if not isinstance(total,(int,float)) or not math.isfinite(total) or not 0<=total<=TOTAL_LIMIT_HOURS or abs(sum(values)-total)>1e-8:
+        raise ValueError("inconsistent or exceeded cumulative GPU budget")

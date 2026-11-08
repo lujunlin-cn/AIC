@@ -20,7 +20,7 @@ def test_candidate_generation_deduplicates_projected_geometry_and_reports_oracle
     assert result["position_fixed"]
     macro = source_macro_candidate_metrics([result, dict(result, source_id="src-2", oracle_gain=0.0)])
     assert macro["sources"] == 2
-    assert macro["macro_unit"] == "source"
+    assert macro["macro_unit"] == "dataset_macro_of_source_macros"
 
 
 def test_candidate_oracle_rejects_test_split_labels():

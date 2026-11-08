@@ -21,14 +21,15 @@ def causal_completion_sft_loss(
     logits: torch.Tensor,
     labels: torch.Tensor,
     completion_mask: torch.Tensor,
+    *, already_shifted: bool = False,
 ) -> torch.Tensor:
     if logits.ndim != 3 or labels.ndim != 2 or completion_mask.ndim != 2:
         raise ValueError("expected logits [B,T,V] and labels/mask [B,T]")
     if logits.shape[:2] != labels.shape or labels.shape != completion_mask.shape:
         raise ValueError("logits, labels, and completion mask must align")
-    shifted_logits = logits[:, :-1].float()
-    shifted_labels = labels[:, 1:].long()
-    shifted_mask = completion_mask[:, 1:].bool() & shifted_labels.ne(-100)
+    shifted_logits = (logits if already_shifted else logits[:, :-1]).float()
+    shifted_labels = (labels if already_shifted else labels[:, 1:]).long()
+    shifted_mask = (completion_mask if already_shifted else completion_mask[:, 1:]).bool() & shifted_labels.ne(-100)
     if not torch.any(shifted_mask):
         raise ValueError("batch contains no completion tokens")
     token_losses = F.cross_entropy(
@@ -84,7 +85,7 @@ def source_macro_mean(rows: Iterable[dict], value_key: str = "iou") -> float:
         value = row.get(value_key)
         if not isinstance(value, (int, float)) or isinstance(value, bool) or not math.isfinite(value):
             raise ValueError(f"{value_key} must be finite")
-        by_source[str(row["source_id"])].append(float(value))
+        by_source[(str(row.get("dataset_source", "")), str(row["source_id"]))].append(float(value))
     if not by_source:
         raise ValueError("cannot macro-average an empty source set")
     return sum(sum(values) / len(values) for values in by_source.values()) / len(by_source)

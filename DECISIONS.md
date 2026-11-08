@@ -1,3 +1,9 @@
+## 2026-11-08 — Preserve Position in an isolated, budgeted Scale adapter
+
+Decision: do not call historical `load_bundle(train_arm=...)` for Scale, because it creates fresh A/B training adapters. Verify and load actual P1 banks frozen; add a rank-1 Scale delta on q/v/o of the eight full-attention layers. Position uses only original P1; Scale uses parent+Scale on the same base. Real architecture count is 8,999,976,258 including buffers. Exact allowlist and parent immutability must pass real smoke before training. This follows the current explicit repair requirement to inject Scale while freezing Position; no independent inference model/reward model is introduced.
+
+Decision: preserve held-out SACD images using test>val>train priority, keeping every subject together; do not infer rankings from best_box. Quarantine complete LIVE train sources with identical dev image bytes; do not silently skip media or fit labels to validation. Existing scale bins stay provisional until actual train P1 coverage is audited. No fixed 2000/300 preference minimum without coverage/stability evidence. Formal GPU training remains disabled.
+
 # 2026-11-08：Scale v2 保持固定位置，并阻断训练至远端预检
 
 **Decision:** Implement Scale as an ordered discrete action over the frozen P1 center. Keep P1 as the planned parent, P2 as the higher-scoring deployment comparison, and B_MIX as candidate/error-analysis input only. No GPU work starts until the model identity, parameter, target-module, LIVE source-split and train-only calibration checks pass.

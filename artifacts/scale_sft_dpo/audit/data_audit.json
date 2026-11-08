@@ -1,13 +1,13 @@
 {
   "schema_version": "aic.scale_stage0.v1",
-  "created_at_utc": "2026-11-07T17:59:19.290980+00:00",
+  "created_at_utc": "2026-11-08",
   "official_aic_test_data_accessed": false,
   "official_score_used_for_training_or_preference_construction": false,
   "datasets": {
     "GAICD": {
       "present": true,
       "source_url": "https://github.com/HuiZeng/Grid-Anchor-based-Image-Cropping-Pytorch",
-      "license_status": "not recorded in local dataset card; verify original data terms before external use",
+      "license_status": "upstream code MIT verified; separate downloaded dataset/underlying image permission for competition not verified",
       "competition_use_authorized": null,
       "media_count": 3336,
       "unique_source_count": 3336,
@@ -45,12 +45,20 @@
         "tree_sha256": "f4b1bc7820f82e113bb41ecc43cf56cc9e758c3c2cd70720f0ceec2b71fcfe79"
       },
       "train_data_integrity_ready": true,
-      "blockers": []
+      "blockers": [],
+      "license_review": {
+        "original_terms_evidence": "audit/license_evidence/",
+        "research_use_authorized": null,
+        "competition_training_authorized": null,
+        "competition_weight_submission_authorized": null,
+        "competition_use_authorized": null,
+        "review_note": "Do not infer dataset rights from repository software license or research citation request."
+      }
     },
     "SACD": {
       "present": true,
       "provenance": "user supplied to /root/autodl-tmp/videoora42_clone/datasets/SACD/; original download URL and archive hash not supplied",
-      "license_status": "not recorded in local provenance metadata; verify before external use",
+      "license_status": "author data page requests research citation; no explicit competition/weights permission located",
       "competition_use_authorized": null,
       "images": 2777,
       "subject_annotations": 2906,
@@ -76,18 +84,58 @@
         "train_test": 20,
         "val_test": 4
       },
-      "source_image_splits_disjoint": false,
+      "source_image_splits_disjoint": true,
       "explicit_ranked_pair_count": 0,
-      "scale_preference_gate": "blocked_no_confirmed_explicit_ranked_pairs",
+      "scale_preference_gate": "blocked_no_confirmed_explicit_subject_ranked_pairs",
       "blockers": [
-        "split files share source images",
-        "no explicit subject-linked ranked-pair records"
-      ]
+        "No confirmed explicit subject-linked ranked-pair supervision",
+        "Competition-use license unconfirmed"
+      ],
+      "repaired_split": {
+        "new_split_source_counts": {
+          "train": 2203,
+          "val": 286,
+          "test": 288
+        },
+        "new_split_subject_counts": {
+          "train": 2281,
+          "val": 309,
+          "test": 316
+        },
+        "manifest_sha256": "3db9de0e922e3c18f0da9f0537958b3d112660fc2378a5d9da0b312d6fc3d3bc",
+        "training_annotation_schema_counts": {
+          "index": 2281,
+          "phase1_box": 2281,
+          "phase2_box": 2281,
+          "select_from_phase2_box": 2281,
+          "crop_box": 2281,
+          "best_box": 2281,
+          "mask_x": 2281,
+          "mask_y": 2281,
+          "mask_box": 2281,
+          "class": 2244,
+          "time": 2281
+        },
+        "explicit_ranked_pairs": 0,
+        "best_box_not_converted_to_pairs": true,
+        "dpo_included": false,
+        "source_disjoint": true,
+        "image_hash_audit_complete": true,
+        "identical_image_groups": 0
+      },
+      "license_review": {
+        "original_terms_evidence": "audit/license_evidence/",
+        "research_use_authorized": null,
+        "competition_training_authorized": null,
+        "competition_weight_submission_authorized": null,
+        "competition_use_authorized": null,
+        "review_note": "Do not infer dataset rights from repository software license or research citation request."
+      }
     },
     "LIVE_YT_VC": {
       "present": true,
       "source_url": "https://github.com/steven413d/LIVE-YT-VideoCropping",
-      "license_status": "not confirmed in local asset metadata",
+      "license_status": "author README documents source media and frame indices; no LICENSE found at checked endpoint; competition rights unconfirmed",
       "competition_use_authorized": null,
       "labeled_sources": 1800,
       "label_rows": 1800,
@@ -95,20 +143,42 @@
       "video_files_locally_present": 37,
       "label_csv_sha256": "43d5a16071aa57c4b7a0ae33f59d905e5b744e3c5d5c310b1bb3182a1000eee0",
       "source_split_manifest": {
-        "provided": false,
-        "source_counts": null,
-        "source_disjoint": null,
-        "invalid_split_sources": 0,
-        "missing_required_splits": [
-          "train",
-          "val"
-        ]
+        "provided": true,
+        "historical_counts": {
+          "train": 1600,
+          "val": 200
+        },
+        "clean_counts": {
+          "train": 1595,
+          "val": 200
+        },
+        "source_disjoint": true,
+        "sha256": "95ad3dee24105fc85cf66b6ae2b1af79b2f4e58e087fb339176d8f276960d59f"
       },
-      "source_level_gate": false,
+      "source_level_gate": true,
       "blockers": [
-        "LIVE source split manifest is missing",
-        "LIVE manifest must contain both train and val sources"
-      ]
+        "Complete training P1 center cache absent",
+        "Use clean source quarantine manifest; historical split has byte-identical cross-split images",
+        "Competition-use license not confirmed"
+      ],
+      "remote_media_checked": 54000,
+      "remote_media_missing": 0,
+      "remote_media_hash_mismatches": 0,
+      "cross_split_identical_image_groups": 0,
+      "quarantine_manifest": "config/live_source_split.json",
+      "raw_remote_source_videos_at_recorded_path": 0,
+      "media_complete_for_training": true,
+      "original_frame_pts_redecoded": false,
+      "license_review": {
+        "original_terms_evidence": "audit/license_evidence/",
+        "research_use_authorized": null,
+        "competition_training_authorized": null,
+        "competition_weight_submission_authorized": null,
+        "competition_use_authorized": null,
+        "review_note": "Do not infer dataset rights from repository software license or research citation request."
+      },
+      "historical_cross_split_identical_image_groups": 1,
+      "clean_split_required_sha256": "95ad3dee24105fc85cf66b6ae2b1af79b2f4e58e087fb339176d8f276960d59f"
     },
     "GNMC": {
       "present": true,
@@ -141,15 +211,25 @@
       "source_split_disjoint": true,
       "test_labels_used_for_training_or_selection": false,
       "train_validation_only_adapter": true,
-      "blockers": []
+      "blockers": [],
+      "license_review": {
+        "original_terms_evidence": "audit/license_evidence/",
+        "research_use_authorized": true,
+        "competition_training_authorized": null,
+        "competition_weight_submission_authorized": null,
+        "competition_use_authorized": null,
+        "review_note": "Personal/noncommercial research clause present. Competition participation/weight submission remains unconfirmed, not automatically inferred.",
+        "original_license": "PolyForm-Noncommercial-1.0.0"
+      },
+      "execution_host_archive_path_not_verified": true
     }
   },
   "p1_parent": {
-    "path_supplied": null,
-    "present": false,
-    "manifest_or_weight_files": [],
-    "sha256": null,
-    "parameter_count": null,
-    "blocker": "P1 parent model, tokenizer, and adapter are not present in the local dataset/code checkout"
+    "remote_present": true,
+    "weight_hashes_verified": true,
+    "base_elements": 8996674800,
+    "parent_complete_elements": 8999771458,
+    "with_isolated_scale_elements": 8999976258,
+    "real_model_smoke_passed": false
   }
 }

@@ -27,6 +27,9 @@ def test_scale_action_json_roundtrip_and_unique_tokenizer_actions():
     "scale_id=2", '{"scale_id":true}', '{"scale_id":8}',
     '{"scale_id":1,"crop_center":[1,2]}', "{\"scale_id\":NaN}",
     '{"scale_id":1,"scale_id":2}',
+    '<answer>{"scale_id":2}</answer>',
+    '```json\n{"scale_id":2}\n```',
+    'The best scale is {"scale_id":2}',
 ])
 def test_invalid_scale_action_output_is_rejected(text):
     with pytest.raises(ValueError):

@@ -1,0 +1,42 @@
+{
+  "cross_split_identical_image_groups": 1,
+  "groups": [
+    [
+      "images/shared/video702_150.png",
+      "images/shared/video702_162.png",
+      "images/shared/video1240_144.png",
+      "images/shared/video1240_150.png",
+      "images/shared/video1240_156.png",
+      "images/shared/video1240_162.png",
+      "images/shared/video1240_168.png",
+      "images/shared/video1240_174.png",
+      "images/shared/video2618_150.png",
+      "images/shared/video2770_006.png",
+      "images/shared/video2770_042.png",
+      "images/shared/video2770_048.png",
+      "images/shared/video2770_054.png",
+      "images/shared/video2770_060.png",
+      "images/shared/video2770_126.png",
+      "images/shared/video2770_138.png",
+      "images/shared/video2798_126.png",
+      "images/shared/video2793_018.png",
+      "images/shared/video2793_024.png",
+      "images/shared/video2793_030.png",
+      "images/shared/video2793_036.png",
+      "images/shared/video2793_042.png"
+    ]
+  ],
+  "quarantined_train_sources": [
+    "video1240",
+    "video2618",
+    "video2770",
+    "video2798",
+    "video702"
+  ],
+  "historical_train_sources": 1600,
+  "historical_val_sources": 200,
+  "clean_train_sources": 1595,
+  "clean_val_sources": 200,
+  "cross_split_after_quarantine": 0,
+  "note": "A byte-identical group may be static/blank content; quarantine avoids treating it as independent evidence."
+}

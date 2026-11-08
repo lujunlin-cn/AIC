@@ -17,8 +17,6 @@ def parse_scale_action(text: str, scale_count: int) -> int:
             or isinstance(scale_count, bool) or scale_count <= 0):
         raise ValueError("invalid action text or scale count")
     text = text.strip()
-    if text.startswith("<answer>") and text.endswith("</answer>"):
-        text = text[len("<answer>"):-len("</answer>")].strip()
 
     def reject_duplicate_keys(pairs):
         result = {}
@@ -70,3 +68,24 @@ def prompt_sha256(prompt: str) -> str:
     if not isinstance(prompt, str) or not prompt:
         raise ValueError("prompt must be a nonempty string")
     return hashlib.sha256(prompt.encode("utf-8")).hexdigest()
+
+
+def apply_scale_to_p1_predictions(p1_record: dict, actions_by_frame: dict, width: int,
+                                  height: int, target_ratio, bins) -> dict:
+    """Final integration: preserve selected frame IDs and the P1 deployed centers."""
+    import copy
+    from aic.scale_geometry import checked_scale_action, deployed_center
+    output = copy.deepcopy(p1_record)
+    frames = [p["frame"] for p in p1_record["predictions"]]
+    if set(frames) != set(actions_by_frame) or len(frames) != len(set(frames)):
+        raise ValueError("Scale actions must cover exactly the immutable P1 selected frames")
+    for item in output["predictions"]:
+        action = actions_by_frame[item["frame"]]
+        if type(action) is not int or not 0 <= action < len(bins):
+            raise ValueError("invalid Scale ID")
+        center = deployed_center(item["bboxes"], target_ratio)
+        box = checked_scale_action(width, height, target_ratio, center, bins[action])
+        if not box["valid"]:
+            raise ValueError("position_shift_invalid")
+        item["bboxes"] = [int(v) for v in box["aic_bbox_xyw"]]
+    return output

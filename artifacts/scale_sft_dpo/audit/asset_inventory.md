@@ -1,63 +1,24 @@
-# Scale SFT/DPO Asset Inventory
+# Verified assets — 2026-11-08
 
-Audit time: 2026-11-07T17:59:19.290980+00:00
+Remote: `ssh -p 10045 root@connect.westb.seetacloud.com`. Read-only audit used the previously pinned ED25519 key; no security check was disabled. Weight and public-frame audits completed in 97.19 s. Raw results: `remote_assets.json`.
 
-No AIC official test media, labels, predictions, or hidden-test-derived information were read.
-Public-dataset test labels were not used for fitting, candidate selection, or threshold choice.
+| Asset | Verified identity / count |
+|---|---|
+| Compact base | `/root/autodl-tmp/videoora42_clone/models/compact`; eight shard hashes agree with `MODEL_FREEZE.json`; 8,996,674,800 tensor elements |
+| P1 portrait adapter | `semifinal_20261107/code/adapters/portrait`; SHA256 `d18f187d630cc7854859858a827f105e278df4205960857da411d4fb22181013`; 1,966,080 parameters |
+| P1 vertical adapter | `semifinal_20261107/code/adapters/vertical`; SHA256 `c89b05dd209295543e1b07de388dd24dba6e8fabca590f859bba6475948f9b1d`; 983,040 parameters |
+| Parent deployment | Base+A+B = 8,999,623,920 parameters; conservative original buffer count 147,538; total 8,999,771,458 |
+| Isolated Scale adapter | Rank 1 on q/v/o of eight full-attention layers; 204,800 parameters; exact names/shapes in `../smoke_test/metadata_probe.json` |
+| Complete planned inference | 8,999,976,258 including buffers; 23,742 below 9B. Structural count verified with actual architecture and adapter configurations; real-weight loading still pending |
+| Runtime | Python 3.12.3; torch 2.8.0+cu128; transformers 5.5.4; peft 0.20.0; safetensors 0.6.2 |
+| No-card allocation | `memory.max=2147483648`, `cpu.max=50000 100000`; `nvidia-smi -L` permission denied. No CUDA job launched |
 
-## GAICD
+P1/P2 share the same parent base and A/B weights. Inspected `infer_candidates.py` uses P1 QP floor 0.15 and P2 0.6. The user-reported semifinal scores are P2=44.65, P1=44.63, B_MIX=42.88. Package hashes and model hashes are recorded separately; no package-level score is assigned to a single adapter.
 
-- source_url: `"https://github.com/HuiZeng/Grid-Anchor-based-Image-Cropping-Pytorch"`
-- license_status: `"not recorded in local dataset card; verify original data terms before external use"`
-- competition_use_authorized: `null`
-- media_count: `3336`
-- unique_source_count: `3336`
-- official_split_source_counts: `{"train": 2636, "val": 200, "test": 500}`
-- journal_train_candidate_count: `231489`
-- journal_train_unrated_candidate_count: `3734`
-- journal_train_annotation_missing: `0`
-- manifest_hashes: `{"dataset_card.json": "76deec38f4cad478e2fcd55762751bc13dd23a53e898537670f503f1ef54542c", "media.jsonl": "b8df764a4c7221a5385fa0df0acd3d23b3354982aabadf3da24e626bbd2fdf98", "annotations.jsonl": "90b378f15c8bfb6695ffe23c41f1bc0fa2f169dd22200fef346c91a7f13b422f"}`
-- raw_tree: `{"files": 9149, "bytes": 900897198, "tree_sha256": "f4b1bc7820f82e113bb41ecc43cf56cc9e758c3c2cd70720f0ceec2b71fcfe79"}`
-- blockers: `[]`
+Position outputs are per-mille `crop_center` coordinates in the original prompt; `generation.parse_center` projects a maximum legal window. The full P1 submission then applies its existing smoothing/projection. Scale uses the immutable **final deployed P1 center**, with both its original `[x,y,w]` and complete parent identity retained. Raw requested centers and final crop centers must not be silently substituted. The historical public-dev raw cache permits a limited geometry audit, not a new forward pass or a full training-center cache.
 
-## SACD
+The historical `load_bundle(train_arm=...)` creates fresh A/B training adapters, so it is deliberately not used for Scale continuation. The new loader verifies base/runtime/tokenizer hashes, loads the actual frozen P1 A/B banks, and adds the small isolated Scale delta. Position activates only the original parent bank; Scale activates parent+Scale. Every activation reapplies the exact allowlist; checkpoint saving verifies that parent tensors are unchanged. No parent file is overwritten. This resolves the Position-freeze conflict within the 9B cap without adding an independent model or reward model.
 
-- license_status: `"not recorded in local provenance metadata; verify before external use"`
-- competition_use_authorized: `null`
-- images: `2777`
-- subject_annotations: `2906`
-- split_annotation_counts: `{"train": 2326, "val": 290, "test": 290}`
-- split_image_overlap_counts: `{"train_val": 22, "train_test": 20, "val_test": 4}`
-- explicit_ranked_pair_count: `0`
-- source_tree_sha256_from_prior_validation: `"0f61926d885062cd36717f8ee53dcacac6e262ff9c9e3d1e57fcd966af2438c4"`
-- blockers: `["split files share source images", "no explicit subject-linked ranked-pair records"]`
+Public LIVE cache: 54,000/54,000 files exist and match recorded hashes; 1,600/200 historical video sources are disjoint. One identical-image group crosses the split. Five complete train sources are quarantined in `../config/live_source_split.json`, leaving **1,595 train sources / 47,850 frames**, and the original 200 validation sources / 6,000 frames. Source-video hashes are unique across all 1,800 sources. Recorded original-video paths are absent remotely; cached frame bytes and extraction provenance are verified, but complete original-video PTS re-decoding has not been repeated.
 
-## LIVE_YT_VC
-
-- source_url: `"https://github.com/steven413d/LIVE-YT-VideoCropping"`
-- license_status: `"not confirmed in local asset metadata"`
-- competition_use_authorized: `null`
-- labeled_sources: `1800`
-- video_files_locally_present: `37`
-- source_split_manifest: `{"provided": false, "source_counts": null, "source_disjoint": null, "invalid_split_sources": 0, "missing_required_splits": ["train", "val"]}`
-- blockers: `["LIVE source split manifest is missing", "LIVE manifest must contain both train and val sources"]`
-
-## GNMC
-
-- source_url: `"https://doi.org/10.5281/zenodo.6228834"`
-- license: `"PolyForm-Noncommercial-1.0.0"`
-- competition_use_authorized: `null`
-- split_image_counts: `{"train": 7000, "validation": 1000, "test": 2000}`
-- source_split_disjoint: `true`
-- blockers: `[]`
-
-## P1 Parent
-
-{
-  "path_supplied": null,
-  "present": false,
-  "manifest_or_weight_files": [],
-  "sha256": null,
-  "parameter_count": null,
-  "blocker": "P1 parent model, tokenizer, and adapter are not present in the local dataset/code checkout"
-}
+Real-weight smoke remains blocked by the no-card resource allocation. A separate local environment was prepared without changing the shared Python installation; an incomplete weight transfer was stopped and was never used as a valid model. The metadata probe is explicitly not counted as real-model loading or training success.

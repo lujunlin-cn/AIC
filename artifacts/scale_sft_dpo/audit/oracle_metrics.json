@@ -1,0 +1,9 @@
+{
+  "status": "not_run",
+  "sft_checkpoint_sha256": null,
+  "SFT_Stochastic_Oracle@K": null,
+  "Fixed_Grid_Oracle@K": null,
+  "Combined_Oracle@K": null,
+  "oracle_gain": null,
+  "reason": "No real SFT checkpoint or generated candidate manifest exists; no inferred gain is reported."
+}

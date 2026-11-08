@@ -1,0 +1,3 @@
+
+# Preserve upstream license evidence byte-for-byte, including whitespace.
+artifacts/scale_sft_dpo/audit/license_evidence/*.txt -whitespace

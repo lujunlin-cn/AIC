@@ -1,3 +1,7 @@
+# SCALE_SFT_DPO_20261108_REPAIR — CPU-only evidence
+
+Hypothesis: an isolated 204,800-parameter Scale LoRA on the shared frozen P1 base/banks preserves Position while remaining ≤9B. Remote real-architecture/PEFT structural count passed (8,999,976,258 including buffers). This is not trained or real-weight smoke evidence. Geometry, input contracts, reference-cache immutability, measured promotion gates and budget supervision were repaired; CPU Scale/full tests 130/253 passed. Actual training-center coverage, preferences and learned Oracle gains remain unmeasured. Evidence: `artifacts/scale_sft_dpo/report.md`, audit and smoke records. No GPU budget or official hidden-test labels were used. Stop before training.
+
 # SCALE_SFT_DPO_20261108 — CPU implementation and asset audit
 
 **Hypothesis:** A discrete scale action can learn crop extent while using the P1 position output as a frozen center. The immediate work validates geometry, source isolation, data semantics and training objectives without claiming model-quality gains.

@@ -9,6 +9,7 @@ from typing import Iterable, Sequence
 
 from aic.scale_geometry import (
     box_iou_xywh,
+    checked_scale_action,
     map_box_to_scale_id,
     scale_crop_from_center,
     scale_crop_xywh_exact,
@@ -51,12 +52,18 @@ def fixed_center_sft_target(
     width = int(_required(row, "image_width"))
     height = int(_required(row, "image_height"))
     scored = []
+    invalid = 0
     for scale_id, scale in enumerate(scale_bins):
-        iou = box_iou_xywh(
-            scale_crop_xywh_exact(width, height, tuple(ratio), tuple(center), float(scale)), gt
-        )
-        exact_box = scale_crop_xywh_exact(width, height, tuple(ratio), tuple(center), float(scale))
-        scored.append((iou, scale_id, exact_box))
+        checked = checked_scale_action(width, height, ratio, center, float(scale))
+        if not checked["valid"]:
+            invalid += 1
+            continue
+        exact_box = checked["crop_xywh"]
+        scored.append((box_iou_xywh(exact_box, gt), scale_id, exact_box))
+    if not scored:
+        return {"source_id": source_id, "dataset_source": dataset_source, "scale_id": None,
+                "label_status": "position_shift_invalid", "invalid_action_count": invalid,
+                "best_fixed_center_deploy_iou": None}
     best_iou, best_id, best_box = max(scored, key=lambda item: (item[0], -item[1]))
     best_submission_box = scale_crop_from_center(
         width, height, tuple(ratio), tuple(center), float(scale_bins[best_id])
@@ -72,9 +79,9 @@ def fixed_center_sft_target(
         "scale_id": best_id if best_iou >= min_deploy_iou else None,
         "crop_xywh": list(best_box),
         "aic_bbox_xyw": list(best_submission_box[:3]),
-        "aic_bbox_xyw": list(best_box[:3]),
         "best_fixed_center_deploy_iou": best_iou,
         "label_status": "ok" if best_iou >= min_deploy_iou else "position_mismatch",
+        "invalid_action_count": invalid,
     }
 
 
@@ -134,7 +141,10 @@ def geometry_preference_pairs(
     height = int(_required(row, "image_height"))
     actions = []
     for scale_id, scale in enumerate(scale_bins):
-        crop = scale_crop_from_center(width, height, tuple(ratio), tuple(center), float(scale))
+        checked = checked_scale_action(width, height, ratio, center, float(scale))
+        if not checked["valid"]:
+            continue
+        crop = checked["crop_xywh"]
         score = box_iou_xywh(
             scale_crop_xywh_exact(width, height, tuple(ratio), tuple(center), float(scale)), gt
         )
@@ -192,7 +202,7 @@ def gaicd_scale_preferences(
             continue
         mos = candidate.get("mos")
         if (not isinstance(mos, (int, float)) or isinstance(mos, bool)
-                or not math.isfinite(mos) or mos in (-2, -1)):
+                or not math.isfinite(mos) or not 1 <= mos <= 5):
             continue
         crop = candidate.get("crop_xywh")
         if not isinstance(crop, (list, tuple)) or len(crop) != 4:
@@ -306,6 +316,15 @@ def validate_preference_pair(pair: dict) -> None:
     for action in (pair["chosen"], pair["rejected"]):
         if len(action.get("crop_xywh", [])) != 4 or len(action.get("aic_bbox_xyw", [])) != 3:
             raise ValueError("preference action geometry does not match AIC contracts")
+        from aic.scale_geometry import deployed_center, deployed_box_xyxy
+        if type(action.get("scale_id")) is not int or action["scale_id"] < 0:
+            raise ValueError("preference Scale action must be a nonnegative integer")
+        center = deployed_center(action["aic_bbox_xyw"], pair["target_ratio"])
+        if max(abs(a-b) for a,b in zip(center,pair["position_center_xy"])) > 1:
+            raise ValueError("position_shift_invalid in preference action")
+        x1,y1,x2,y2 = deployed_box_xyxy(action["aic_bbox_xyw"], pair["target_ratio"])
+        if max(abs(a-b) for a,b in zip(action["crop_xywh"], [x1,y1,x2-x1,y2-y1])) > 1e-6:
+            raise ValueError("preference crop height must follow the official target ratio")
     if not pair.get("chosen_score", 0) > pair.get("rejected_score", 0):
         raise ValueError("chosen score must be greater than rejected score")
     if pair["score_name"] == "IoU" and pair["preference_source"] != "deploy_iou":
@@ -344,14 +363,14 @@ def audit_preference_pairs(
         counts_by_dataset[pair["dataset_source"]] += 1
         counts_by_preference_source[pair["preference_source"]] += 1
         source_id, image_id = str(pair["source_id"]), str(pair["image_id"])
-        if split_by_source is not None and split_by_source.get(source_id) != "train":
+        if split_by_source is not None and split_by_source.get(f"{pair['dataset_source']}:{source_id}", split_by_source.get(source_id)) != "train":
             raise ValueError(f"preference source {source_id!r} is not in the training manifest")
-        pairs_by_image[(source_id, image_id)] += 1
-        pairs_by_source[source_id] += 1
+        pairs_by_image[(pair["dataset_source"], source_id, image_id, pair.get("subject_id"))] += 1
+        pairs_by_source[(pair["dataset_source"], source_id)] += 1
         chosen_id, rejected_id = pair["chosen"]["scale_id"], pair["rejected"]["scale_id"]
         scale_coverage[f"{chosen_id}->{rejected_id}"] += 1
         deltas.append(float(pair["score_delta"]))
-        key = (source_id, image_id, tuple(pair["target_ratio"]), pair["preference_source"],
+        key = (pair["dataset_source"], source_id, image_id, pair.get("subject_id"), tuple(pair["target_ratio"]), pair["preference_source"],
                chosen_id, rejected_id)
         if key in duplicate_keys:
             duplicate_count += 1
@@ -385,3 +404,26 @@ def audit_preference_pairs(
         ),
         "official_aic_test_data_used": False,
     }
+
+
+def bind_preference_input(pair: dict, row: dict, prompt: str, preprocessing: dict) -> dict:
+    """One canonical input shared by both actions; duplicated side inputs are forbidden."""
+    import hashlib
+    import json
+    if any(k in row for k in ("chosen_input", "rejected_input", "chosen_image", "rejected_image")):
+        raise ValueError("chosen/rejected must share one canonical image input")
+    contract = {"dataset_source": row["dataset_source"], "source_id": row["source_id"],
+                "image_id": row["image_id"], "image_sha256": row["image_sha256"],
+                "input_image": row["input_image"], "input_archive": row.get("input_archive"),
+                "transposed_geometry_augmentation": row.get("transposed_geometry_augmentation", False),
+                "media_size": row.get("media_size"), "target_ratio": row["target_ratio"],
+                "center_xy": row["center_xy"], "prompt": prompt, "preprocessing": preprocessing}
+    digest = hashlib.sha256(json.dumps(contract, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
+    return {**row, **pair, "input_contract": contract, "input_contract_sha256": digest}
+
+
+def validate_bound_preference(pair: dict, prompt: str, preprocessing: dict) -> None:
+    validate_preference_pair(pair)
+    bound = bind_preference_input(pair, pair, prompt, preprocessing)
+    if pair.get("input_contract") != bound["input_contract"] or pair.get("input_contract_sha256") != bound["input_contract_sha256"]:
+        raise ValueError("DPO image/prompt/preprocessing contract changed")

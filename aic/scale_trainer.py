@@ -98,12 +98,27 @@ def _assert_same_dpo_prompt(batch: dict) -> None:
     if batch.get("position_source") != "P1_frozen":
         raise ValueError("DPO batch must use the frozen P1 position contract")
 
+    # Compare actual multimodal tensors as well as provenance strings.
+    left = batch["chosen"]["model_inputs"]
+    right = batch["rejected"]["model_inputs"]
+    for key in ("pixel_values", "image_grid_thw", "pixel_values_videos", "video_grid_thw"):
+        if key in left or key in right:
+            if key not in left or key not in right or not torch.equal(left[key], right[key]):
+                raise ValueError("DPO image input tensors differ: " + key)
+    if "input_ids" in left and "input_ids" in right:
+        for index in range(left["input_ids"].shape[0]):
+            chosen_prompt = left["input_ids"][index][~batch["chosen"]["completion_mask"][index].bool()]
+            rejected_prompt = right["input_ids"][index][~batch["rejected"]["completion_mask"][index].bool()]
+            if not torch.equal(chosen_prompt, rejected_prompt):
+                raise ValueError("DPO prompt token inputs differ")
+
 
 def dpo_train_step(model, reference_model, optimizer, batch: dict, beta: float,
                    max_grad_norm: float = 1.0) -> dict:
     _assert_same_dpo_prompt(batch)
     if any(parameter.requires_grad for parameter in reference_model.parameters()):
         raise ValueError("DPO reference parameters must be frozen")
+    reference_model.eval()
     optimizer.zero_grad(set_to_none=True)
     policy_chosen = _forward_logps(model, batch["chosen"])
     policy_rejected = _forward_logps(model, batch["rejected"])

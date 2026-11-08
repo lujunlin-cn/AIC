@@ -9,20 +9,58 @@
     "train.json": "8fb1d482379a3ee13e56c2fe08f11527eb00c27d02c7ff2064ff4d404116614a",
     "val.json": "a6bff68c3bf4dacbba69a53955ce07b0267ccb4a7883b90ad063dcd5902b1081",
     "test.json": "b881bcac7865c834a154af3d5de2c469661237e6066c94a3cb7aa8eaa3dbfea4",
-    "source_payload_tree_sha256": "70e9b3b32469900066da003ebb721baabdc2415d2d16e6c850f5d0262b91f0fd"
+    "source_payload_tree_sha256": "70e9b3b32469900066da003ebb721baabdc2415d2d16e6c850f5d0262b91f0fd",
+    "repaired_image_split_sha256": "3db9de0e922e3c18f0da9f0537958b3d112660fc2378a5d9da0b312d6fc3d3bc"
   },
   "LIVE_YT_VC": {
     "video_bbox_labels.csv": "43d5a16071aa57c4b7a0ae33f59d905e5b744e3c5d5c310b1bb3182a1000eee0",
-    "source_split_manifest": null
+    "source_split_manifest": "95ad3dee24105fc85cf66b6ae2b1af79b2f4e58e087fb339176d8f276960d59f",
+    "remote_build_manifest_sha256": "eb65337a9b9858de55d299e6b4cbe0c7ce9bd4f2674eaaeaba45bc8f5288cd99"
   },
   "GNMC": {
     "archive_sha256": "2292aa403b447a0bb1130ab64633741956668ecc7c85c568869d42d12dd9b6a3",
     "license_sha256": "ffcca38841adb694b6f380647e15f17c446a4d1656fed51a1e2041d064c94cc8"
   },
   "P1": {
-    "path": null,
-    "weights_sha256": null,
-    "adapter_sha256": null,
-    "tokenizer_sha256": null
-  }
+    "candidate": "P1",
+    "role": "frozen_position_parent_per_execution_plan",
+    "reported_semifinal_score": 44.63,
+    "score_source": "user_reported",
+    "score_package_zip_sha256": "b2280d10e712c44810cffea6a40a25aabf32d87ad7b6c761c533c003c133f7ee",
+    "weights_sha256": "3fd997fdbfda6f17d13a400e68d0fd5c44d0d9565e83f7411c185137491545ff",
+    "adapter_sha256": "ab809e77f0efec4d863df369960fb0c58486e2e8cbc2eb1aaa54fe32f9893370",
+    "tokenizer_sha256": "87a7830d63fcf43bf241c3c5242e96e62dd3fdc29224ca26fed8ea333db72de4",
+    "parameter_count": 8999771458,
+    "status": "remote_weight_hashes_verified_real_smoke_pending",
+    "identity_manifest": "artifacts/scale_sft_dpo/audit/remote_assets.json",
+    "weights_sha256_semantics": "SHA256 of canonical filename-to-shard-hash manifest, not one concatenated checkpoint",
+    "identity_sha256": "0cdc528b7753c2715a27affc5844f56b16bb7aa3bb4936e0f59bf2d73aa15d52",
+    "inference_config": {
+      "P1_qp_floor": 0.15,
+      "P2_qp_floor": 0.6,
+      "sampling_fps": 4,
+      "cap": 24,
+      "max_speed": 0.15,
+      "infer_source_sha256": "8f9b9ab785d395d6c0b57789d1591228f25f34f323098618e9ed82538037ad04",
+      "runtime_sources": {
+        "temporal_protocol.py": "bc9ee116b81a5076a0b8b679d84bba35d2ebe7d4e4831db12e030ac771183058",
+        "contracts.py": "430e0533f4bc1f18e87ba7e42aac8c42f9d14b97d292b9ed3f459d8f3a20fb36",
+        "generation.py": "c9f37edf6d80e388ffcff9748fd2d2175e098de78c5cf9221c7ec9f961e0b845",
+        "runtime.py": "0e9643b6bb890339f6a597ef0d74013fcbc761e8c8c81276b71e9624316db2e0",
+        "clock_rule.py": "cf22057b9fcdfd686f5e55556743861323110023af4d9ad74ae89a1f1dde4843",
+        "native_parser.py": "891c4366d3d78a2b9a2a60681692c2da93cda7d8d35e4ce83cdaa85c0e00519a",
+        "video.py": "340515422a9427b62b1fbaa459d752cf245e880b94d124fabae112fd29582239",
+        "vocabulary.py": "5d7a53448e91d7bad6e6dd6bab47dad944cebc8eb9ee46235828d9218babe66f",
+        "frame_bank.py": "18124e1e0e30fe551f7531c7e87cdbbf2e49d058c207338de979fc991058eca6",
+        "adaptive_crop.py": "da0b4691938ba10f75d0541b505c0372f45cc4d17520f417aacb4e50a74cd1a8",
+        "recovery_path_projection.py": "b4ad52a71f019412572c41e43655fb586ef8ee9723f58fd9faff4e814dc1bab1",
+        "compact_model.py": "85091392cf071879d0c39e5edd5db091744733b7eefe3fdd2736d9221aa732c3",
+        "model_io.py": "7af768545128ebfd66b994e6c940162ee6504eb21a11bab2a329f07a6c3066e3",
+        "structured_decode.py": "9f2552a40085c5b4fec2c1404005b83ee1f73b73c8a26f9fc0455636fe69deec"
+      }
+    },
+    "inference_config_sha256": "2054b3cef446d1ebe948a8d387ca43362c1b2f5e19518576e9a9b22e1ae32ec0"
+  },
+  "qualified_source_manifest_sha256": "ecb89357f6a63d8e50dfd27903004eb2f8c9068344436444b32f44bd7f102f17",
+  "public_label_export_sha256": "b5beb7ebb075e436ff31d0e8293957277a68b59bb58beb7bdf9f6cc04b0b011d"
 }

@@ -1,3 +1,11 @@
+## P0 — Required after CPU repair, before formal Scale GPU run
+
+- [ ] Obtain documented dataset competition training/weight-submission permissions; unknowns stay null.
+- [ ] Generate complete public-train P1 **final deployed** centers with parent/config/image hashes; use the clean 1,595/200 LIVE split, never GT response centers.
+- [ ] Audit fixed-center label coverage and real A/B train geometry; lock train-only bins, thresholds, collapse bounds and sample-size evidence; create hashed manifests.
+- [ ] On a sufficient-memory host, run actual Video-ORA/P1/Scale forward/backward and checkpoint smoke; meta/Tiny results do not clear it.
+- [ ] Re-run measured promotion gates. GPU training requires a later explicit user authorization; enforce the single 4/3/1/4 h ledger.
+
 
 ## P0 — Scale SFT/DPO v2 remote preflight
 

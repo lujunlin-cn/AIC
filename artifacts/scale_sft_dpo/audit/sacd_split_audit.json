@@ -1,0 +1,30 @@
+{
+  "new_split_source_counts": {
+    "train": 2203,
+    "val": 286,
+    "test": 288
+  },
+  "new_split_subject_counts": {
+    "train": 2281,
+    "val": 309,
+    "test": 316
+  },
+  "manifest_sha256": "3db9de0e922e3c18f0da9f0537958b3d112660fc2378a5d9da0b312d6fc3d3bc",
+  "training_annotation_schema_counts": {
+    "index": 2281,
+    "phase1_box": 2281,
+    "phase2_box": 2281,
+    "select_from_phase2_box": 2281,
+    "crop_box": 2281,
+    "best_box": 2281,
+    "mask_x": 2281,
+    "mask_y": 2281,
+    "mask_box": 2281,
+    "class": 2244,
+    "time": 2281
+  },
+  "explicit_ranked_pairs": 0,
+  "best_box_not_converted_to_pairs": true,
+  "dpo_included": false,
+  "source_disjoint": true
+}

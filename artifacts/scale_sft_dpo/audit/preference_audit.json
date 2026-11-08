@@ -1,13 +1,11 @@
 {
-  "status": "not_constructed",
-  "total_pairs": null,
-  "sources_with_pairs": null,
-  "by_dataset_source": {},
-  "official_aic_test_data_used": false,
-  "blockers": [
-    "P1 inference adapter and center manifest are not present in the local checkout.",
-    "LIVE complete source-level split manifest is not present locally.",
-    "SACD source images overlap the supplied splits and no explicit ranked-pair field was found in current annotations.",
-    "Train-only MOS and IoU noise thresholds have not been calibrated or locked."
-  ]
+  "status": "not_built",
+  "total_pairs": 0,
+  "effective_pair_count": null,
+  "unique_sources": 0,
+  "gate_passed": false,
+  "source_split_overlap_checked": true,
+  "source_manifest_sha256": "ecb89357f6a63d8e50dfd27903004eb2f8c9068344436444b32f44bd7f102f17",
+  "sacd_excluded": true,
+  "reason": "Training P1 centers, quality/noise thresholds, coverage-based minima and competition permissions not verified. No fabricated candidate pairs."
 }

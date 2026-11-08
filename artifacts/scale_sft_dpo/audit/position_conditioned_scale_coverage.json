@@ -1,0 +1,17 @@
+{
+  "status": "blocked_missing_training_P1_centers",
+  "valid_scale_sft_labels": null,
+  "p1_fixed_center_scale_optimizable_samples": null,
+  "position_mismatch_rate": null,
+  "threshold": null,
+  "threshold_status": "requires_train_only_P1_quality_distribution",
+  "original_samples": {
+    "LIVE_YT_VC_A": 47850,
+    "LIVE_YT_VC_B_transposed": 47850,
+    "GNMC_native_B": 7000,
+    "GNMC_transposed_A": 7000
+  },
+  "centers_from_GT_or_image_center_substituted": false,
+  "position_center_cache_required": true,
+  "validation_used_to_set_train_labels": false
+}

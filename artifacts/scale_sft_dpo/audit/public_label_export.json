@@ -1,0 +1,19 @@
+{
+  "status": "public_labels_exported_NOT_P1_conditioned",
+  "counts": {
+    "LIVE_YT_VC:train:9:16": 47850,
+    "LIVE_YT_VC:train:16:9": 47850,
+    "LIVE_YT_VC:val:9:16": 6000,
+    "LIVE_YT_VC:val:16:9": 6000,
+    "GNMC:train:16:9": 7000,
+    "GNMC:train:9:16": 7000,
+    "GNMC:val:16:9": 1000,
+    "GNMC:val:9:16": 1000
+  },
+  "labels_sha256": "b5beb7ebb075e436ff31d0e8293957277a68b59bb58beb7bdf9f6cc04b0b011d",
+  "P1_positions_substituted": false,
+  "gnmc_archive_deployment_path": "data/scale_public/GNMC.zip",
+  "archive_must_exist_on_execution_host": true,
+  "test_labels_opened": false,
+  "coverage_independently_verified": true
+}

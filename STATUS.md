@@ -1,3 +1,13 @@
+## 2026-11-08 — Scale SFT-DPO repair delivery
+
+**Status: blocked before formal GPU training.** Complete executable stage entrypoints and the original Video-ORA/PEFT structural bridge are implemented; real-weight smoke is not passed. `artifacts/scale_sft_dpo/report.md` answers all readiness questions with evidence. CPU validation: compileall passed; Scale 139 tests; whole repository 262 tests.
+
+Remote parent shards and adapters are verified: P1 base+A+B+buffers=8,999,771,458; the isolated frozen-Position/rank-1-Scale architecture has 8,999,976,258 elements (23,742 below 9B). This is a real-architecture metadata probe, not a real-weight training claim. P1/P2 share weights and differ in QP floor; user-reported semifinal P2/P1/B_MIX scores remain 44.65/44.63/42.88.
+
+LIVE: 54,000 frame hashes verified; complete 1,600/200 source split recovered. One cross-split identical-image group led to quarantining five train sources; clean train=1,595 videos/47,850 frames. Training P1 deployed centers remain absent, so effective Scale-SFT labels and P1-conditioned improvement space are unknown. SACD is now image-disjoint (2,203/286/288 images) but has no confirmed explicit subject rankings and stays outside DPO. GAICD Journal train has only 54 target-9:16 / 2,082 target-16:9 candidates before fixed-P1-center/bin filters. No effective preference count or learned Oracle gain is claimed.
+
+Current blockers: competition-use/weight-submission permissions; train P1 deployed-center cache; locked coverage/quality/noise/collapse/sample-size criteria and hashes; provisional grid review; real-weight load/forward/backward/save/restore. Remote no-card cgroup is 2 GiB/0.5 CPU. Stage gate rejects before backend initialization. Formal GPU budget is 0/12 h used; **do not launch training**.
+
 # 2026-11-08：Scale SFT/DPO v2 本地实现与 CPU 阶段完成
 
 - 按 `plan/AIC_Scale_SFT_DPO_execution_plan_v2.md` 实现固定中心 Scale 几何、公开数据适配、SFT/DPO loss 与训练步骤、候选 Oracle、源级 bootstrap、偏好审计、tokenizer 合同和 GPU 预算账本。

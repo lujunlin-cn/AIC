@@ -97,12 +97,19 @@ def evaluate(stage: str, config: dict, audit: dict, preference_audit: dict,
             blockers.append("candidate gate has not passed")
         if preference_audit.get("status") != "audited":
             blockers.append("preference audit has not completed")
-        if int(preference_audit.get("total_pairs") or 0) < 2000:
-            blockers.append("valid preference pair count is below the plan minimum 2000")
-        if int(preference_audit.get("unique_sources") or 0) < 300:
-            blockers.append("unique preference source count is below the plan minimum 300")
+        criteria = config.get("promotion", {}).get("preference", {})
+        if not criteria.get("evidence_sha256") or not criteria.get("minimum_pairs") or not criteria.get("minimum_sources"):
+            blockers.append("preference minimum sample sizes lack locked coverage/stability evidence")
+        elif (int(preference_audit.get("total_pairs") or 0) < criteria["minimum_pairs"]
+              or int(preference_audit.get("unique_sources") or 0) < criteria["minimum_sources"]):
+            blockers.append("preference coverage is below its preregistered evidence-based minimum")
+        for field in ("input_contracts_verified", "quality_deltas_above_train_threshold"):
+            if preference_audit.get(field) is not True:
+                blockers.append("preference audit missing " + field)
         if not sft_metrics.get("checkpoint_sha256"):
             blockers.append("SFT policy/reference checkpoint identity is missing")
+        if config.get("data", {}).get("preference_source_balanced_weights") is None:
+            blockers.append("DPO dataset weights require train coverage calibration")
         if preference_audit.get("source_split_overlap_checked") is not True:
             blockers.append("preference sources are not bound to the audited source split manifest")
         if preference_audit.get("all_pairs_train_split") is not True:
@@ -118,12 +125,113 @@ def evaluate(stage: str, config: dict, audit: dict, preference_audit: dict,
                 blockers.append(f"{dataset_name} competition-use license review is incomplete")
     else:
         raise ValueError(f"unknown stage: {stage}")
+    # These requirements are common to every execution stage; a downstream
+    # boolean cannot silently bypass missing upstream identities or permission.
+    if stage in {"scale_sft", "spatial_dpo", "candidate_generation"}:
+        training = config.get("training", {})
+        for field in ("optimizer_learning_rate", "batch_size", "gradient_accumulation", "max_steps",
+                      "precision", "optimizer", "scheduler", "seed", "eval_every"):
+            if training.get(field) is None:
+                blockers.append("locked training setting is missing: " + field)
+        if training.get("sft_objective") != "causal_completion_sft_loss":
+            blockers.append("actual SFT objective must be autoregressive JSON completion")
+        if training.get("optimizer") != "AdamW" or training.get("scheduler") != "constant":
+            blockers.append("executable backend requires the locked AdamW/constant recipe")
+        if training.get("precision") != "bfloat16":
+            blockers.append("executable Video-ORA backend requires the locked bfloat16 precision")
+        if stage in {"scale_sft", "spatial_dpo"}:
+            key = "preference_source_balanced_weights" if stage == "spatial_dpo" else "source_balanced_weights"
+            weights = config.get("data", {}).get(key)
+            if not isinstance(weights, dict) or not weights or any(
+                not isinstance(v, (int, float)) or isinstance(v, bool)
+                or not math.isfinite(v) or v <= 0 for v in weights.values()
+            ):
+                blockers.append("train-calibrated positive source weights are missing: " + key)
+        if stage == "spatial_dpo":
+            beta = training.get("dpo_beta")
+            if not isinstance(beta, (int, float)) or isinstance(beta, bool) or not math.isfinite(beta) or beta <= 0:
+                blockers.append("positive locked DPO beta is missing")
+        if config.get("position_identity", {}).get("frozen_parent_isolation_verified") is not True:
+            blockers.append("frozen P1 Position adapter isolation has not passed real-model smoke")
+        if config.get("model_smoke", {}).get("real_model_forward_backward_passed") is not True:
+            blockers.append("real Video-ORA load/forward/backward/checkpoint smoke has not passed")
+        if audit.get("datasets", {}).get("LIVE_YT_VC", {}).get("cross_split_identical_image_groups", 0):
+            blockers.append("LIVE byte-identical media crosses train/validation; quarantine sources first")
+        coverage = config.get("position_coverage", {})
+        if (coverage.get("status") != "audited" or coverage.get("coverage_requirement_locked") is not True
+                or coverage.get("gate_passed") is not True):
+            blockers.append("P1-conditioned Scale label coverage has not passed its train-locked requirement")
+    if stage in {"candidate_generation", "preference_build", "spatial_dpo"}:
+        if not assess_sft_metrics(sft_metrics):
+            blockers.append("SFT measured deployment metrics are missing or fail promotion")
+        expected = config.get("training", {}).get("sft_checkpoint_sha256")
+        if not expected or expected != sft_metrics.get("checkpoint_sha256"):
+            blockers.append("configured SFT/reference checkpoint differs from the measured SFT identity")
+        if stage != "preference_build" and not config.get("training", {}).get("sft_initialization_checkpoint"):
+            blockers.append("actual SFT initialization checkpoint path is missing")
+        threshold = config.get("data", {}).get("geometry_preference_delta_iou")
+        if (not isinstance(threshold, (int, float)) or isinstance(threshold, bool)
+                or not math.isfinite(threshold) or threshold <= 0):
+            blockers.append("positive train-calibrated geometry preference threshold is missing")
+    if stage in {"preference_build", "spatial_dpo"}:
+        if not assess_candidate_metrics(candidate_metrics):
+            blockers.append("measured model-sampled Oracle gain has not passed; fixed grid is insufficient")
+        if candidate_metrics.get("checkpoint_sha256") != sft_metrics.get("checkpoint_sha256"):
+            blockers.append("candidate and SFT metrics refer to different checkpoints")
+    if stage in {"scale_sft", "spatial_dpo", "candidate_generation"}:
+        runtime = config.get("runtime", {})
+        for field in ("model_dir", "runtime_dir", "parent_adapter_root", "parent_adapter_hashes",
+                      "runtime_source_hashes", "scale_target_modules", "image_root", "arm", "max_image_side"):
+            if not runtime.get(field):
+                blockers.append("locked runtime field is missing: " + field)
+        data = config.get("data", {})
+        for field in ("train_manifest", "validation_manifest", "train_manifest_sha256", "validation_manifest_sha256"):
+            if not data.get(field):
+                blockers.append("hashed data manifest is missing: " + field)
+        if data.get("scale_bins", {}).get("status") != "fitted_from_train_only_and_P1_coverage_locked":
+            blockers.append("Scale bins are provisional until train P1 coverage analysis is locked")
+        if config.get("training", {}).get("majority_scale_upper_bound") is None:
+            blockers.append("train-calibrated scale collapse bound is missing")
+        if config.get("training", {}).get("position_frozen") is not True:
+            blockers.append("Position must stay frozen")
+        if config.get("training", {}).get("temporal_path_frozen") is not True:
+            blockers.append("temporal path must stay frozen")
+    if stage != "scale_sft":
+        count = config.get("training", {}).get("post_sft_inference_parameter_count")
+        if not isinstance(count, int) or isinstance(count, bool) or not 0 < count <= 9_000_000_000:
+            blockers.append("complete downstream inference parameter count has not passed 9B audit")
     return {
         "stage": stage,
         "gate_passed": not blockers,
         "blockers": blockers,
         "cuda_initialization_allowed": not blockers,
     }
+
+
+def assess_sft_metrics(report: dict) -> bool:
+    metrics = report.get("metrics_by_dataset_ratio", {})
+    return bool(report.get("checkpoint_sha256")) and bool(metrics) and all(
+        m.get("comparison") == "P1_scale1" and m.get("valid_action_rate") == 1.0
+        and m.get("bootstrap", {}).get("mean_difference", -1) >= 0
+        and m.get("max_position_drift_px", 100) <= 1 and m.get("gate_passed") is True
+        for m in metrics.values())
+
+
+def assess_candidate_metrics(report: dict) -> bool:
+    groups = report.get("model_oracle_by_dataset_ratio", {})
+    return (bool(report.get("checkpoint_sha256")) and report.get("model_generated") is True
+            and report.get("reproducible_seed_manifest") is True and report.get("valid_action_rate") == 1.
+            and report.get("max_position_drift_px", 100) <= 1 and bool(groups)
+            and all(g.get("ci95", [-1])[0] > 0 and g.get("positive_source_fraction", 0) > 0
+                    for g in groups.values()) and report.get("gate_passed") is True)
+
+
+def assess_dpo_metrics(report: dict) -> bool:
+    metrics = report.get("metrics_by_dataset_ratio", {})
+    return bool(metrics) and report.get("reference_frozen_verified") is True and all(
+        m.get("comparison") == "frozen_SFT" and m.get("bootstrap", {}).get("ci95", [-1])[0] > 0
+        and m.get("max_position_drift_px", 100) <= 1 and m.get("valid_action_rate") == 1.
+        and m.get("gate_passed") is True for m in metrics.values())
 
 
 def main() -> int:

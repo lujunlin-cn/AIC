@@ -182,13 +182,23 @@ def map_box_to_scale_id(
     if not _finite_number(tolerance_px) or tolerance_px < 0:
         raise ValueError("tolerance_px must be finite and nonnegative")
     x, y, width, height = box_xywh
+    if (not all(_finite_number(v) for v in box_xywh) or width <= 0 or height <= 0
+            or x < 0 or y < 0 or x + width > image_width + 1e-9
+            or y + height > image_height + 1e-9):
+        return None
+    # Coordinate-wise closeness to a bin does not imply center closeness:
+    # x and w errors can accumulate in x+w/2. Check human center directly.
+    if max(abs(x + width / 2 - center_xy[0]),
+           abs(y + height / 2 - center_xy[1])) > min(tolerance_px, 1.0):
+        return None
     if abs(height - width * target_ratio[1] / target_ratio[0]) > tolerance_px:
         return None
     best: tuple[float, int] | None = None
     for scale_id, scale in enumerate(scale_bins):
-        projected = scale_crop_from_center(
-            image_width, image_height, target_ratio, center_xy, float(scale)
-        )
+        checked = checked_scale_action(image_width, image_height, target_ratio, center_xy, float(scale))
+        if not checked["valid"]:
+            continue
+        projected = checked["crop_xywh"]
         delta = sum(abs(float(actual) - expected) for actual, expected in zip(
             (x, y, width, height), projected
         ))
@@ -197,3 +207,20 @@ def map_box_to_scale_id(
         )) <= tolerance_px and (best is None or delta < best[0]):
             best = (delta, scale_id)
     return None if best is None else best[1]
+
+
+def deployed_center(aic_bbox_xyw: Sequence[float], target_ratio: Sequence[int]) -> tuple[float, float]:
+    """Center of the actual submission rectangle; height is never independently submitted."""
+    x1, y1, x2, y2 = deployed_box_xyxy(aic_bbox_xyw, target_ratio)
+    return (x1 + x2) / 2, (y1 + y2) / 2
+
+
+def checked_scale_action(image_width: int, image_height: int, target_ratio: Sequence[int],
+                         center_xy: Sequence[float], scale: float) -> dict:
+    """Audit legal projection without changing the frozen P1 center to rescue it."""
+    crop = scale_crop_xywh_exact(image_width, image_height, tuple(target_ratio), tuple(center_xy), scale)
+    center = deployed_center(crop[:3], target_ratio)
+    drift = max(abs(a - b) for a, b in zip(center, center_xy))
+    return {"crop_xywh": list(crop), "aic_bbox_xyw": [int(v) for v in crop[:3]],
+            "deployed_center_xy": list(center), "position_drift_px": drift,
+            "valid": drift <= 1.0, "status": "ok" if drift <= 1 else "position_shift_invalid"}

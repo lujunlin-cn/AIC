@@ -1,0 +1,9 @@
+{
+  "status": "blocked",
+  "real_model": true,
+  "passed": false,
+  "cuda_initialized": false,
+  "formal_gpu_hours_used": 0,
+  "reason": "Remote CPU-only cgroup memory.max=2147483648 and cpu.max=50000/100000. Full real-weight smoke not executed; meta inspection is not a substitute.",
+  "local_alternative": "Separate pinned PEFT/Transformers CPU venv prepared; 18GB weight transfer stopped after measured low throughput. No partial file was used as a valid model."
+}

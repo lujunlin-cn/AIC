@@ -35,7 +35,7 @@ def attach_frozen_positions(label_rows: Sequence[dict], position_rows: Sequence[
     for row in position_rows:
         if row.get("split") not in {"train", "val"}:
             raise ValueError("P1 center cache may contain train/val rows only")
-        key = (str(row.get("dataset_source")), str(row.get("source_id")), str(row.get("image_id")))
+        key = (str(row.get("dataset_source")), str(row.get("source_id")), str(row.get("image_id")), tuple(row.get("target_ratio", [])))
         if key in positions:
             raise ValueError(f"duplicate P1 center cache key: {key}")
         positions[key] = row
@@ -44,11 +44,11 @@ def attach_frozen_positions(label_rows: Sequence[dict], position_rows: Sequence[
     for label in label_rows:
         if label.get("split") not in {"train", "val"}:
             raise ValueError("position join accepts train/val labels only")
-        key = (str(label.get("dataset_source")), str(label.get("source_id")), str(label.get("image_id")))
+        key = (str(label.get("dataset_source")), str(label.get("source_id")), str(label.get("image_id")), tuple(label.get("target_ratio", [])))
         if key not in positions:
             raise ValueError(f"missing P1 center for labeled sample: {key}")
         position = positions[key]
-        for field in ("split", "target_ratio"):
+        for field in ("split", "target_ratio") + tuple(k for k in ("image_sha256", "image_width", "image_height") if k in label):
             if label.get(field) != position.get(field):
                 raise ValueError(f"label/P1 center {field} mismatch for {key}")
         center = position.get("center_xy")
@@ -59,6 +59,9 @@ def attach_frozen_positions(label_rows: Sequence[dict], position_rows: Sequence[
         joined["position_source"] = "P1_frozen"
         joined["image_width"] = int(position["image_width"])
         joined["image_height"] = int(position["image_height"])
+        for field in ("parent_identity_sha256", "p1_aic_bbox_xyw", "position_kind", "position_cache_sha256"):
+            if field in position:
+                joined[field] = position[field]
         result.append(joined)
         used.add(key)
     unused = set(positions) - used
@@ -239,9 +242,10 @@ def gnmc_split_rows(archive_path: str | Path) -> dict[str, list[dict]]:
     """Read GNMC split membership; returns train/val rows and test IDs only."""
     result: dict[str, list[dict]] = {"train": [], "val": [], "test_source_ids": []}
     with ZipFile(archive_path) as archive:
+        result["test_source_ids"] = sorted(Path(n).stem for n in archive.namelist()
+                                            if n.startswith("GNMC/test/") and n.lower().endswith((".jpeg", ".jpg", ".png")))
         for split, member in (("train", "GNMC/json/train.json"),
-                              ("val", "GNMC/json/validation.json"),
-                              ("test", "GNMC/json/test.json")):
+                              ("val", "GNMC/json/validation.json")):
             rows = json.loads(archive.read(member))
             source_ids = [Path(row["filename"]).stem for row in rows]
             if split == "test":

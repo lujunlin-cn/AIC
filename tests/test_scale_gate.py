@@ -20,7 +20,8 @@ def test_candidate_gate_requires_sft_promotion_and_checkpoint_identity():
     result = evaluate("candidate_generation", {}, {}, {}, {}, {})
     assert result["gate_passed"] is False
     assert result["cuda_initialization_allowed"] is False
-    assert len(result["blockers"]) == 2
+    assert any("SFT" in item for item in result["blockers"])
+    assert any("smoke" in item for item in result["blockers"])
 
 
 def test_scale_sft_gate_enforces_parameter_cap_and_dataset_use_review():
@@ -53,3 +54,10 @@ def test_scale_sft_gate_enforces_parameter_cap_and_dataset_use_review():
     assert result["cuda_initialization_allowed"] is False
     assert any("9B cap" in item for item in result["blockers"])
     assert any("GNMC competition-use license" in item for item in result["blockers"])
+
+
+def test_downstream_gate_binds_actual_sft_and_candidate_checkpoint_identities():
+    result = evaluate('spatial_dpo', {'training':{'sft_checkpoint_sha256':'actual'}}, {}, {},
+                      {'checkpoint_sha256':'other'}, {'checkpoint_sha256':'third'})
+    assert any('configured SFT/reference checkpoint' in item for item in result['blockers'])
+    assert any('candidate and SFT metrics' in item for item in result['blockers'])

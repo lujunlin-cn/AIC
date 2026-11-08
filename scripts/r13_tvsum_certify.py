@@ -156,7 +156,7 @@ res = {"tag": args.tag, "model": args.model, "n_videos": n_ok,
        "elapsed_min": round((time.time() - t0) / 60, 1)}
 os.makedirs("/data/aic/experiments_910a/LFM_V13/tvsum_cert", exist_ok=True)
 with open(f"/data/aic/experiments_910a/LFM_V13/tvsum_cert/{args.tag}.json", "w") as f:
-    json.dump({**res, "per_video": dict(zip([v[:-4] for v in vids], zip(maps, spears))},
+    json.dump({**res, "per_video": dict(zip([v[:-4] for v in vids], zip(maps, spears)))},
               f, ensure_ascii=False, indent=1)
 print(json.dumps(res, ensure_ascii=False))
 print("CERT_DONE")

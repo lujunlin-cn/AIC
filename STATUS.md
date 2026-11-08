@@ -1,3 +1,7 @@
+## 2026-11-08 — P2 Scale official-score update reported by owner
+
+Owner chat feedback: **C1=42.23; C3=42.87**. Exact ZIP identities are bound in `artifacts/scale_policy_optimization/official_results.json` and `owner_feedback_C1_C3.json`; no independent platform authentication or result receipt has been supplied. C3 is 0.64 points above C1. C0/C2 for this round remain null, so the newly measured C0 deltas and final promotion remain null. Original packages, weights and temporal outputs are unchanged; no inference/training was started. The earlier all-null entries below describe the initial delivery state.
+
 ## 2026-11-08 — P2 route-specific Scale packages audited; official evaluation pending
 
 Owner correction: **P2 is the sole parent; P1 is not used to generate candidates.** C0=original P2, C1=A .90/B .95, C2=A .93/B .97, C3=A .90/B 1.00; Native=1.00 throughout. Four independent ZIPs cover 890 videos / 263,970 unchanged original frame IDs. All 890 original P2 CPU geometry replays match; C0 retains the original ZIP SHA256 `1489ace9d0ab5108af257800fb7a0cf83d07cfccc2b8c9a0c2f53e16fd557644`. A/B/Native coverage is 266/228/396 videos. Native boxes remain exactly unchanged.

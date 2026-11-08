@@ -1,5 +1,5 @@
 {
-  "status": "AUDITED_PACKAGES_READY_OFFICIAL_EVALUATION_PENDING",
+  "status": "PARTIAL_OFFICIAL_RESULTS_OWNER_REPORTED",
   "parent": "P2",
   "official_winner": null,
   "geometry_gate_passed": true,
@@ -8,5 +8,10 @@
   "GPU_seconds": 0.0,
   "GPU_cap_seconds": 36000,
   "training_started": false,
-  "best_existing_submission_overwritten": false
+  "best_existing_submission_overwritten": false,
+  "reported_candidates": [
+    "C1",
+    "C3"
+  ],
+  "highest_reported_candidate": "C3"
 }

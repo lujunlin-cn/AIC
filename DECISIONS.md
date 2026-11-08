@@ -1,3 +1,7 @@
+## 2026-11-08 — Retain baseline while partial P2 Scale scores arrive
+
+Evidence: owner reports C1=42.23 and C3=42.87, bound to their frozen ZIP hashes in `artifacts/scale_policy_optimization/official_results.json`. C3 exceeds C1 by 0.64 points; C0/C2 remain unreported for this round. Record the feedback as owner-reported, preserve historical score conflicts, keep promotion pending and leave all original submission packages unchanged. No further model or Scale experiment is authorized by this score-recording update.
+
 ## 2026-11-08 — Freeze P2 and retain four route-Scale candidates pending official F1
 
 Decision: adopt the owner's latest correction to use **P2 only**. Keep its temporal set, frame IDs, routes and final centers. Register C0/C1/C2/C3 constants exactly as requested. Preserve the original QP solver/objective/cut/speed/overlap code while adding `lo=hi=scaled_baseline_position`; this explicit postprocessing change prevents a second QP pass from translating Position. Use `floor(actual_P2_width*Scale+1e-9)` and derive height solely from the target ratio; never call the width-restoring integer exporter after Scale. Infeasible windows revert to P2 and record a reason.

@@ -1,0 +1,26 @@
+{
+  "kind": "owner_reported_score_update",
+  "files": {
+    "STATUS.md": "d8c9ef7d87d394f3743d71d77472303ee705cc5da9a54ffaa05711a5dad18d57",
+    "EXPERIMENTS.md": "0877b7bcd6291f1af97a43fba69017686c13bcc8870281d4624bec8535360cdd",
+    "DECISIONS.md": "249fb782102256610c8d5c3e3f40351d143eb0093ac121aaf8cb68f82e079801",
+    "TODO.md": "d01707d67961ba224787569066c29e512eaad757034fc457d402740075f30c7b",
+    "artifacts/scale_policy_optimization/official_results.json": "0c84215835cf4590ddd4dd6c966a43934bb8612274f42d095820f252e91a7bed",
+    "artifacts/scale_policy_optimization/final_report.md": "a86f33dfeeed408d836209d62c7cab6a6d1bba94378a9b8531f9e04129fe8485",
+    "artifacts/scale_policy_optimization/delivery_status.json": "29d9bb6d4261dcd9f4e7170d84ec927f7fba38427b340ded2452ca901c1c929d",
+    "artifacts/scale_policy_optimization/owner_feedback_C1_C3.json": "7bd58f9c945c901d5eedf5b4e09b41ebe311f083dd9aee6107d8ecc628d9d448"
+  },
+  "scores": {
+    "C1": 42.23,
+    "C3": 42.87
+  },
+  "GPU_seconds": 0,
+  "remote_sync": {
+    "completed": false,
+    "attempted_at_utc": "2026-11-08T05:21:17.348973+00:00",
+    "host": "connect.westd.seetacloud.com",
+    "port": 35092,
+    "error": "SSH connection refused; rsync exit 255; no remote score updates applied",
+    "pending": true
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "reported_at_utc": "2026-11-08T05:19:03.068120+00:00",
+  "source_kind": "owner_reported_chat",
+  "stage": "semifinal",
+  "metric": "official_f1_percent",
+  "verbatim_user_message": "记录C1和C3得分分别为42.23和42.87",
+  "independently_authenticated_by_agent": false,
+  "platform_receipt_available": false,
+  "package_binding_basis": "owner candidate names resolved through frozen P2 candidate manifest",
+  "scores": {
+    "C1": {
+      "official_f1": 42.23,
+      "zip_sha256": "1d2d9dd63ff6e22eba5124046c68656208e448a531f16d42e4d48ce3558478fa"
+    },
+    "C3": {
+      "official_f1": 42.87,
+      "zip_sha256": "436abbef0316bfaa5a97347932fc6195d64d0a16001e53dbb30083667a18e518"
+    }
+  }
+}

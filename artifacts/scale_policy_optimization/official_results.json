@@ -11,10 +11,16 @@
       "promotion_eligible": false
     },
     "C1": {
-      "official_f1": null,
+      "official_f1": 42.23,
       "absolute_delta_from_C0": null,
       "zip_sha256": "1d2d9dd63ff6e22eba5124046c68656208e448a531f16d42e4d48ce3558478fa",
-      "evidence": null,
+      "evidence": {
+        "file": "owner_feedback_C1_C3.json",
+        "sha256": "7bd58f9c945c901d5eedf5b4e09b41ebe311f083dd9aee6107d8ecc628d9d448",
+        "source_kind": "owner_reported_chat",
+        "independently_authenticated_by_agent": false,
+        "platform_receipt_available": false
+      },
       "promotion_eligible": false
     },
     "C2": {
@@ -25,10 +31,16 @@
       "promotion_eligible": false
     },
     "C3": {
-      "official_f1": null,
+      "official_f1": 42.87,
       "absolute_delta_from_C0": null,
       "zip_sha256": "436abbef0316bfaa5a97347932fc6195d64d0a16001e53dbb30083667a18e518",
-      "evidence": null,
+      "evidence": {
+        "file": "owner_feedback_C1_C3.json",
+        "sha256": "7bd58f9c945c901d5eedf5b4e09b41ebe311f083dd9aee6107d8ecc628d9d448",
+        "source_kind": "owner_reported_chat",
+        "independently_authenticated_by_agent": false,
+        "platform_receipt_available": false
+      },
       "promotion_eligible": false
     }
   },
@@ -41,7 +53,10 @@
     "P1_previous_owner_report": 44.63,
     "resolution": "current task owner-reported P2=44.63 retained separately; no new official evaluation claimed"
   },
-  "unmeasured_reason": "no authenticated official submission adapter or confirmed semifinal multi-submission quota",
+  "unmeasured_reason": "C0 and C2 remain unreported for this candidate round; C1/C3 scores were provided by owner in chat, not independently retrieved from platform",
   "official_labels_accessed": false,
-  "proxy_IoU_converted_to_official_F1": false
+  "proxy_IoU_converted_to_official_F1": false,
+  "highest_reported_candidate": "C3",
+  "reported_C3_minus_C1": 0.64,
+  "owner_feedback_recorded_at_utc": "2026-11-08T05:19:03.068120+00:00"
 }

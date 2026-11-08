@@ -1,3 +1,9 @@
+## P0 — Partial P2 Scale scores recorded (2026-11-08)
+
+- [x] Record owner-reported C1=42.23 and C3=42.87 with exact ZIP SHA256 and chat provenance.
+- [ ] Record remaining C0/C2 results when provided; do not substitute historical P2 scores for this round's C0.
+- [ ] Keep final promotion pending and retain all existing submission packages.
+
 ## P0 — P2 route-Scale candidates ready; wait for official evaluation access
 
 - [x] Follow owner's P2-only correction and lock C0/C1/C2/C3 protocol/input/source SHA256.

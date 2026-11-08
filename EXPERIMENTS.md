@@ -1,3 +1,7 @@
+## 2026-11-08 — P2_ROUTE_SCALE_POLICY_V1 owner-reported official feedback
+
+Recorded **C1 (A=.90/B=.95)=42.23** and **C3 (A=.90/B=1.00)=42.87** from the owner's chat message. C3−C1=+0.64 points. Each score is bound to the frozen submission ZIP SHA256 in `artifacts/scale_policy_optimization/official_results.json`; provenance is `owner_reported_chat`, not an independently authenticated platform receipt. C0/C2 are still unreported; no new C0 delta or promotion is claimed. No packages/weights/predictions were changed and no new experiment ran. Initial delivery records below remain historical evidence.
+
 ## 2026-11-08 — P2_ROUTE_SCALE_POLICY_V1
 
 Hypothesis: the public LIVE train-selected route constants might improve P2's official spatial contribution with unchanged time/Position. Public P1 IoU gains are not a P2 or official F1 result; B evidence is transpose augmentation only.

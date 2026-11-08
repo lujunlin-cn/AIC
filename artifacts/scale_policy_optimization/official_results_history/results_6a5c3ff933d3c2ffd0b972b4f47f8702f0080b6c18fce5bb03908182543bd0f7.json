@@ -1,0 +1,47 @@
+{
+  "parent": "P2",
+  "metric": "official_f1_percent",
+  "new_official_evaluation_executed_by_agent": false,
+  "by_candidate": {
+    "C0": {
+      "official_f1": null,
+      "absolute_delta_from_C0": null,
+      "zip_sha256": "1489ace9d0ab5108af257800fb7a0cf83d07cfccc2b8c9a0c2f53e16fd557644",
+      "evidence": null,
+      "promotion_eligible": false
+    },
+    "C1": {
+      "official_f1": null,
+      "absolute_delta_from_C0": null,
+      "zip_sha256": "1d2d9dd63ff6e22eba5124046c68656208e448a531f16d42e4d48ce3558478fa",
+      "evidence": null,
+      "promotion_eligible": false
+    },
+    "C2": {
+      "official_f1": null,
+      "absolute_delta_from_C0": null,
+      "zip_sha256": "ff0df4a23f3f4724d4ddde1934c373e622a35ffc3451305c03fcb8868bad653f",
+      "evidence": null,
+      "promotion_eligible": false
+    },
+    "C3": {
+      "official_f1": null,
+      "absolute_delta_from_C0": null,
+      "zip_sha256": "436abbef0316bfaa5a97347932fc6195d64d0a16001e53dbb30083667a18e518",
+      "evidence": null,
+      "promotion_eligible": false
+    }
+  },
+  "best_improving_measured_candidate": null,
+  "all_four_official_results_available": false,
+  "owner_reported_historical_P2_score": 44.63,
+  "historical_score_substituted_for_new_C0_evaluation": false,
+  "historical_score_conflict": {
+    "P2_previous_owner_report": 44.65,
+    "P1_previous_owner_report": 44.63,
+    "resolution": "current task owner-reported P2=44.63 retained separately; no new official evaluation claimed"
+  },
+  "unmeasured_reason": "no authenticated official submission adapter or confirmed semifinal multi-submission quota",
+  "official_labels_accessed": false,
+  "proxy_IoU_converted_to_official_F1": false
+}
